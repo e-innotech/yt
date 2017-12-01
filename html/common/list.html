@@ -8,17 +8,18 @@
     <link rel="stylesheet" href="../../css/index.css"/>
     <link rel="stylesheet" href="../../css/list.css"/>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/sidebar-menu.js"></script>
 </head>
 <body>
 <div class="wrapper auto-height">
     <nav class="navbar-inverse chebian" role="navigation" id="head-cut">
         <div class="container-fluid logo-1" style="background-color: #3c4353;">
-            <ul class="nav nav-pills nav-stacked crosswise-nav tree" id="nav-stack">
-                <li class="active2">
+            <ul class="nav nav-pills nav-stacked crosswise-nav" id="nav-stack">
+                <li class="active2 treeview">
                     <a class="nav-gation " href="">
                         <span class="nav-label">网站管理</span>
                     </a>
-                    <ul>
+                    <ul class="treeview-menu">
                         <li>
                             <a href="">首页</a>
                         </li>
@@ -33,11 +34,11 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="treeview">
                     <a class="nav-gation">
                         <span class="nav-label">论坛管理</span>
                     </a>
-                    <ul>
+                    <ul class="treeview-menu">
                         <li>
                             <a href="">积分管理</a>
                         </li>
@@ -48,13 +49,12 @@
                             <a href="">删帖管理</a>
                         </li>
                     </ul>
-
                 </li>
-                <li>
+                <li class="treeview">
                     <a class="nav-gation">
                         <span class="nav-label">我的资料</span>
                     </a>
-                    <ul>
+                    <ul class="treeview-menu">
                         <li>
                             <a href="">修改资料</a>
                         </li>
@@ -66,11 +66,11 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="treeview">
                     <a class="nav-gation">
                         <span class="nav-label">用户管理</span>
                     </a>
-                    <ul>
+                    <ul class="treeview-menu">
                         <li>
                             <a href="">会员管理</a>
                         </li>
@@ -88,9 +88,8 @@
 </div>
 
 
-
-
-    　　
-<span>我是指一个span而已</span>
+<script>
+    $.sidebarMenu($('#nav-stack'));
+</script>
 </body>
 </html>

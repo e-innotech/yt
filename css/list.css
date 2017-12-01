@@ -1,24 +1,61 @@
 /*list*/
 
-#nav-stack .nav-label{
+#nav-stack .nav-label {
     font-size: 16px;
 }
-#nav-stack li ul{
+
+#nav-stack .treeview>ul{
     display: none;
     margin-left: 16px;
 }
+
+
+
 /*list_1*/
+table.reference {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.list_1 table tr th {
+    height: 32px;
+    line-height: 32px;
+    border: 0;
+    text-align: center;
+    font-weight: bold;
+    background-color: #f7f7f7;
+
+}
+
+.list_1 table tr th input, .list_1 table tr input {
+    width: 16px;
+    height: 16px;
+}
+
+
+
+.list_1 table tr {
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px solid #ccc;
+}
+.list_1 table tbody tr:hover{
+    background:#f7f7f7;
+    cursor: pointer;
+}
+
 /*list_2*/
 
-
 /*list_3*/
-.list_4{
+.list_4 {
     margin: 40px 40px 0 40px;
 }
-.list_3 .table>tbody>tr>td:first-child, .list_3 .table>tbody>tr>td:nth-child(3){
+
+.list_3 .table > tbody > tr > td:first-child, .list_3 .table > tbody > tr > td:nth-child(3) {
     background: #e5e5e5;
     text-align: center;
 }
+
 /*list_4*/
 /*list_5*/
 /*list_6*/
