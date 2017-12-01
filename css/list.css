@@ -1,3 +1,11 @@
+*{
+    margin:0;
+    padding:0;
+}
+input, button{
+    outline:none;
+}
+
 /*list*/
 
 #nav-stack .nav-label{
@@ -12,14 +20,90 @@
 
 
 /*list_3*/
+
+/*list_4*/
 .list_4{
-    margin: 40px 40px 0 40px;
+    margin-top: 40px;
 }
+#table th{
+    text-align:center;
+    height:50px;
+    line-height:50px;
+    font-size:14px;
+}
+#table tr{
+    text-align:center;
+    height:40px;
+    line-height:40px;
+
+}
+#table tr td{
+    line-height:40px;
+    height:40px;
+
+}
+#table tr td input[type="button"]{
+    width:40px;
+    height:30px;
+    margin-left:3px;
+    line-height:26px;
+    text-align:center;
+}
+.alertbox{
+    width:100%;
+    height:100vh;
+    background: rgba(0, 0, 0, .4);
+    position: absolute;
+    display:none;
+
+}
+.add{
+    width: 400px;
+    height:300px;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    border-radius: 15px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.input1{
+    width:300px;
+    height:30px;
+}
+.add button{
+    margin-left:100px;
+    margin-top:40px;
+
+}
+.del{
+    width:300px;
+    height:200px;
+    background: red;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left:50%;
+    top:200px;
+}
+.del p{
+    width:300px;
+    height:100px;
+    line-height:100px;
+    text-align:center;
+    font-size:18px;
+}
+
+.del button{
+    margin-left:65px;
+    margin-top:40px;
+}
+
+
 .list_3 .table>tbody>tr>td:first-child, .list_3 .table>tbody>tr>td:nth-child(3){
     background: #e5e5e5;
     text-align: center;
 }
-/*list_4*/
 /*list_5*/
 /*list_6*/
 /*list_7*/
