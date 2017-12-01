@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../css/index.css"/>
     <link rel="stylesheet" href="../../css/list.css"/>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.page.js"></script>
 </head>
 <body>
 
@@ -42,16 +43,36 @@
                 </td>
             </tr>
 
+            <tr></tr>
+            <tr></tr>
 
-
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            
+            <tr>
+                <td align="center"><input type="checkbox" name="selected"/></td>
+                <td align="center">2</td>
+                <td width="600">3</td>
+                <td align="center">4</td>
+                <td align="center">5</td>
+                <td align="center">6</td>
+                <td align="center">7</td>
+                <td align="center">8</td>
+                <td width="150">
+                    <button type="button">查看</button>
+                    <button type="button">修改</button>
+                    <button type="button">删除</button>
+                </td>
+            </tr>
 
             </tbody>
         </table>
     </div>
     <ul class="pagination fr">
-        <li><a href="#">&laquo;</a></li>
+        <li class="pagerLeft"><a href="#">&laquo;</a></li>
         <li class="active"><a href="#">1</a></li>
-        <li class="disabled"><a href="#">2</a></li>
+        <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
         <li><a href="#">4</a></li>
         <li><a href="#">5</a></li>
@@ -65,8 +86,10 @@
         <li><a href="#">13</a></li>
         <li><a href="#">14</a></li>
         <li><a href="#">15</a></li>
-        <li><a href="#">&raquo;</a></li>
+        <li class="pagerRight"><a href="#">&raquo;</a></li>
     </ul>
+
+
 </div>
 
 <script type="text/javascript">
@@ -84,6 +107,9 @@
             isCheckAll = true;
         }
     }
+
+
+
 </script>
 </body>
 </html>
