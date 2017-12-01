@@ -3,7 +3,6 @@
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
 html {
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
@@ -2734,8 +2733,7 @@ th {
 
 .table > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid #ddd;
-    font-size:20px;
+    border-bottom: 2px solid #ddd
 }
 
 .table > caption + thead > tr:first-child > td, .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table > thead:first-child > tr:first-child > th {
