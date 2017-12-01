@@ -7,12 +7,48 @@
     <link rel="stylesheet" href="../../css/index.css"/>
     <link rel="stylesheet" href="../../css/list.css"/>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/jquery.page.js"></script>
 
 </head>
 <body>
 
 
+<div class="container fl" style="margin: 80px 0 0 150px">
+    <div class="list_2 row">
+        <table class="col-sm-12 table message">
+            <tbody>
+            <tr>
+                <td>部署路径:</td>
+                <td><input type="text"/><span>部署在根目录请留空</span></td>
+                <td>端口号:</td>
+                <td><input type="text" placeholder="80"/><span>默认留空</span></td>
+            </tr>
+            <tr>
+                <td>数据库附件:</td>
+                <td><label><input type="radio"/>是</label><label><input type="radio" value="true"/>否</label></td>
+                <td>附件地址:</td>
+                <td><input type="text" value="/dbfile.svl?n="/><span>一般无需改动</span></td>
+            </tr>
+            <tr>
+                <td>只终审浏览内容页:</td>
+                <td><label><input type="radio"/>是</label><label><input type="radio" value="true"/>否</label></td>
+                <td>内网:</td>
+                <td><label><input type="radio"/>是</label><label><input type="radio" value="true"/>否</label><span>内网通过站点路径区分站点</span>
+                </td>
+            </tr>
+            <tr>
+                <td>openoffice安装目录:</td>
+                <td><input type="text" value="/opt/openoffice4"/></td>
+                <td>openoffice端口:</td>
+                <td><input type="text" value="8820"/></td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button">提交</button>
+        <button type="button">重置</button>
+    </div>
+
+
+</div>
 
 
 </body>
