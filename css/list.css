@@ -47,11 +47,10 @@ table.reference {
 /*list_2*/
 
 /*list_3*/
-.list_4 {
+.list_4{
     margin: 40px 40px 0 40px;
 }
-
-.list_3 .table > tbody > tr > td:first-child, .list_3 .table > tbody > tr > td:nth-child(3) {
+.list_3 .table>tbody>tr>td:first-child, .list_3 .table>tbody>tr>td:nth-child(3){
     background: #e5e5e5;
     text-align: center;
 }
