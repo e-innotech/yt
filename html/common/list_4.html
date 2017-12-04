@@ -16,32 +16,31 @@
               <div class="form-group" style="margin-top:30px;">
                   <label class="col-sm-2 control-label">姓名</label>
                   <div class="col-sm-10">
-                      <input type="email" class="form-control input1" />
+                      <input class="form-control input1" id="input1"/>
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-sm-2 control-label">性别</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1"/>
+                      <input class="form-control input1" id="input2"/>
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-sm-2 control-label">账号</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1"/>
+                      <input class="form-control input1" id="input3"/>
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-sm-2 control-label ">身份</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1"/>
+                      <input class="form-control input1" id="input4"/>
                   </div>
               </div>
           </form>
           <button class="btn btn-success btn1">确定</button>
           <button class="btn btn-warning btn2">取消</button>
       </div>
-
       <div class="del">
           <p>
              您确定要删除吗？
@@ -49,96 +48,152 @@
           <button class="btn btn-success btn1">确定</button>
           <button class="btn btn-warning btn2">取消</button>
       </div>
+
+      <div class="revise">
+          <form class="form-horizontal">
+              <div class="form-group" style="margin-top:30px;">
+                  <label class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs1"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">性别</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs2"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">账号</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs3"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label ">身份</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs4"/>
+                  </div>
+              </div>
+          </form>
+          <button class="btn btn-success btn1 baocun">保存</button>
+          <button class="btn btn-warning btn2">取消</button>
+
+      </div>
+      <div class="find">
+          <form class="form-horizontal">
+              <div class="form-group" style="margin-top:30px;">
+                  <label class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input1"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">性别</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input2"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">账号</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input3"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label ">身份</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input4"></span>
+                  </div>
+              </div>
+          </form>
+          <button class="btn btn-warning btn2 yes">确定</button>
+
+      </div>
   </div>
 
-
-
-
-
-
-  </div>
 
 <div class="container">
     <div class="list_4 row">
         <div class="table-responsive">
             <table class="table" id="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>账号</th>
-                <th>身份</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>小小45</td>
-                <td>女</td>
-                <td>18827636650</td>
-                <td>管理员</td>
-                <td>
-                    <input type="button" value="增加"/>
-                    <input type="button" value="删除"/>
-                    <input type="button" value="修改"/>
-                    <input type="button" value="查找"/>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>小小44</td>
-                <td>女</td>
-                <td>18827636650</td>
-                <td>管理员</td>
-                <td>
-                    <input type="button" value="增加"/>
-                    <input type="button" value="删除"/>
-                    <input type="button" value="修改"/>
-                    <input type="button" value="查找"/>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>小小2</td>
-                <td>女</td>
-                <td>18827636650</td>
-                <td>管理员</td>
-                <td>
-                    <input type="button" value="增加"/>
-                    <input type="button" value="删除"/>
-                    <input type="button" value="修改"/>
-                    <input type="button" value="查找"/>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>小小33</td>
-                <td>女</td>
-                <td>18827636650</td>
-                <td>管理员</td>
-                <td>
-                    <input type="button" value="增加"/>
-                    <input type="button" value="删除"/>
-                    <input type="button" value="修改"/>
-                    <input type="button" value="查找"/>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"/></td>
-                <td>小小777</td>
-                <td>女</td>
-                <td>18827636650</td>
-                <td>管理员</td>
-                <td>
-                    <input type="button" value="增加"/>
-                    <input type="button" value="删除"/>
-                    <input type="button" value="修改"/>
-                    <input type="button" value="查找"/>
-                </td>
-            </tr>
-            </tbody>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>账号</th>
+                        <th>身份</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>小小45</td>
+                        <td>女</td>
+                        <td>18827636650</td>
+                        <td>管理员</td>
+                        <td>
+                            <input type="button" value="增加"/>
+                            <input type="button" value="删除"/>
+                            <input type="button" value="修改"/>
+                            <input type="button" value="查找"/>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>小小44</td>
+                        <td>女</td>
+                        <td>18827636650</td>
+                        <td>管理员</td>
+                        <td>
+                            <input type="button" value="增加"/>
+                            <input type="button" value="删除"/>
+                            <input type="button" value="修改"/>
+                            <input type="button" value="查找"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>小小2</td>
+                        <td>女</td>
+                        <td>18827636650</td>
+                        <td>管理员</td>
+                        <td>
+                            <input type="button" value="增加"/>
+                            <input type="button" value="删除"/>
+                            <input type="button" value="修改"/>
+                            <input type="button" value="查找"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>小小33</td>
+                        <td>女</td>
+                        <td>18827636650</td>
+                        <td>管理员</td>
+                        <td>
+                            <input type="button" value="增加"/>
+                            <input type="button" value="删除"/>
+                            <input type="button" value="修改"/>
+                            <input type="button" value="查找"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>小小777</td>
+                        <td>女</td>
+                        <td>18827636650</td>
+                        <td>管理员</td>
+                        <td>
+                            <input type="button" value="增加"/>
+                            <input type="button" value="删除"/>
+                            <input type="button" value="修改"/>
+                            <input type="button" value="查找"/>
+                        </td>
+                    </tr>
+                </tbody>
         </table>
         </div>
     </div>
@@ -146,50 +201,139 @@
 </body>
 
 <script>
-    $("tbody").on("click","input",function (e) {
-        e = e || window.event;
-        var target = e.target;
-        switch (target.value) {
-            case "增加":
-                    add();
-                break;
-            case "删除":
-                    del(e)
-                break;
-            case "修改":
-                    revise()
-                break;
-            case "查找":
-                find();
-                break;
-        }
-    });
-    function add(){
-       $(".alertbox").show();
-        $(".del").hide();
-        $(".add .btn2").click(function(){
-            $(".alertbox").hide();
-        })
-    }
-    function del(e){
-        $(".alertbox").show();
-        $(".add").hide();
-        $(".del>.btn1").click(function(){
-            $(e.target).closest("tr").remove();
-            $(".alertbox").hide();
-        })
-        $(".del>.btn2").click(function(){
-            $(".alertbox").hide();
-        })
-        return true
-    }
-    function revise(){
-        $(".alertbox").show();
 
-    }
-    function find(){
-        $(".alertbox").show();
-    }
+            $("tbody").on("click","input",function (e) {
+                console.log(555555555)
+                e = e || window.event;
+                var target = e.target;
+                switch (target.value) {
+                    case "增加":
+                            add();
+                        break;
+                    case "删除":
+                            del(e);
+                        break;
+                    case "修改":
+                            revise(e);
+                        break;
+                    case "查找":
+                        find(e);
+                        break;
+                }
+            });
+//如果内容是增加时，遮罩的显示 删除的弹出框隐藏
+            function add(){
+                $(".alertbox").show();
+                $(".add").show();
+                $(".del").hide();
+                $(".find").hide();
+                //点击确定把当前行的值赋值给弹窗出框
+                $(".add .btn1").one("click", function () {
+                    //获取姓名的值
+                    var input1=$("#input1").val();
+                   //获取性别的值
+                    var input2=$("#input2").val();
+                    //获取账号的值
+                    var input3=$("#input3").val();
+                    //获取的身份的值
+                    var input4=$("#input4").val();
+
+                    //做一个字符串拼接放进tbody中
+
+                    $("tbody tr:last").after("<tr><td><input type='checkbox'/></td>" +
+                    "<td>"+input1+"</td>" +
+                    "<td>"+input2+"</td>" +
+                    "<td>"+input3+"</td>" +
+                    "<td>"+input4+"</td>" +
+                    "<td>" +"<input type='button' value='增加'/>" +
+                    "<input type='button' value='删除'/>" +
+                    "<input type='button' value='修改'/>" +
+                    "<input type='button' value='查找'/> " +
+                    "</td></tr>")
+
+                    $("#input1").val("");
+                    $("#input2").val("");
+                    $("#input3").val("");
+                    $("#input4").val("");
+                    $(".alertbox").hide();
+
+                    })
+                    //点击取消关闭弹窗
+                    $(".add .btn2").click(function(){
+                        $(".add").hide();
+                        $(".alertbox").hide();
+                })
+            };
+            //点击删除按钮 弹出删除弹出框
+            function del(e){
+                $(".alertbox").show();
+                $(".add").hide();
+                  $(".find").hide();
+                $(".revise").hide();
+                $(".del").show();
+                console.log($(e.target).closest("tr"));
+                $(".del>.btn1").click(function(){
+                    $(e.target).closest("tr").remove();
+                    $(".alertbox").hide();
+                })
+                $(".del>.btn2").click(function(){
+                    $(".alertbox").hide();
+                    $(".del").hide();
+                })
+
+            };
+            //点击修改按钮弹出修改弹出框
+            function revise(e){
+              $(".alertbox").show();
+                $(".find").hide();
+              $(".add").hide();
+              $(".del").hide();
+              $(".revise").show();
+              //把当前行的值赋值给弹出框
+              // console.log($(e.target).closest("tr").children("td").eq(1).html());
+             $("#inputs1").val($(e.target).closest("tr").children("td").eq(1).html());
+             $("#inputs2").val($(e.target).closest("tr").children("td").eq(2).html());
+             $("#inputs3").val($(e.target).closest("tr").children("td").eq(3).html());
+             $("#inputs4").val($(e.target).closest("tr").children("td").eq(4).html());
+            //点击 保存把弹窗里的值赋值给当前行;   
+             $(".revise .btn1").one("click",function () {
+                   $(e.target).closest("tr").children("td").eq(1).html($("#inputs1").val());
+                   $(e.target).closest("tr").children("td").eq(2).html($("#inputs2").val());
+                   $(e.target).closest("tr").children("td").eq(3).html($("#inputs3").val());
+                   $(e.target).closest("tr").children("td").eq(4).html($("#inputs4").val());
+                  $(".revise").hide();
+                  $(".alertbox").hide();
+             });
+
+
+              //点击取消隐藏修改弹出框
+              $(".revise .btn2").click(function(){
+                    $(".revise").hide();
+                    $(".alertbox").hide();
+              })
+
+            };
+             //点击查看按钮弹出查看弹出框
+            function find(e){
+              $(".alertbox").show();
+              $(".add").hide();
+              $(".del").hide();
+              $(".revise").hide();
+              $(".find").show();
+              //把当前行的值赋值给弹出框
+              // console.log($(e.target).closest("tr").children("td").eq(1).html());
+             $("#Input1").html($(e.target).closest("tr").children("td").eq(1).html());
+             $("#Input2").html($(e.target).closest("tr").children("td").eq(2).html());
+             $("#Input3").html($(e.target).closest("tr").children("td").eq(3).html());
+             $("#Input4").html($(e.target).closest("tr").children("td").eq(4).html());  
+              //点击取消隐藏修改弹出框
+              $(".find .btn2").click(function(){
+                    $(".find").hide();
+                    $(".alertbox").hide();
+              })
+
+            }
+
 
 
 
