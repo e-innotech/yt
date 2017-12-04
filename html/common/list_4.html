@@ -226,6 +226,7 @@
                 $(".alertbox").show();
                 $(".add").show();
                 $(".del").hide();
+                $(".find").hide();
                 //点击确定把当前行的值赋值给弹窗出框
                 $(".add .btn1").one("click", function () {
                     //获取姓名的值
@@ -267,6 +268,7 @@
             function del(e){
                 $(".alertbox").show();
                 $(".add").hide();
+                  $(".find").hide();
                 $(".revise").hide();
                 $(".del").show();
                 console.log($(e.target).closest("tr"));
@@ -283,6 +285,7 @@
             //点击修改按钮弹出修改弹出框
             function revise(e){
               $(".alertbox").show();
+                $(".find").hide();
               $(".add").hide();
               $(".del").hide();
               $(".revise").show();
