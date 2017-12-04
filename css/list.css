@@ -37,9 +37,15 @@ input, button{
     width: 50px;
 }
 /*list_1*/
+
 table.reference {
     border-collapse: collapse;
     width: 100%;
+}
+.list_1 table tr{
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
 }
 
 .list_1 table tr th {
@@ -49,7 +55,6 @@ table.reference {
     text-align: center;
     font-weight: bold;
     background-color: #f7f7f7;
-
 }
 
 .list_1 table tr th input, .list_1 table tr input {
@@ -57,9 +62,10 @@ table.reference {
     height: 16px;
 }
 
-
-
-
+.tablelist{
+    width: 100%;
+    border: 1px solid #000000;
+}
 /*list_2*/
 .list_2 table tr th {
     height: 32px;
