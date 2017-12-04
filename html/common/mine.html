@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/index.css"/>
+    <link rel="stylesheet" href="../../css/list.css"/>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+</head>
+
+
+<body style="margin-top:150px;">
+    <div class="container">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">
+              编辑用户</a>
+            </li>
+            <li><a href="#ios" data-toggle="tab">数据展示</a></li>
+
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+
+            </div>
+            <div class="tab-pane fade kong" id="ios" >
+                <form class="form-inline form1">
+                    <div class="form-group">
+                        <label>综合查询</label>
+                        <input type="text"  id="exampleInputName2" >
+                    </div>
+                    <div class="form-group btn-group btns">
+                           <lable style="float:left; margin:5px 5px 0 5px;">重点客户</lable>
+                           <button type="button" class="btn btn-primary dropdown-toggle btn-sm"
+                                data-toggle="dropdown" >
+                                全部 <span class="caret"></span>
+                           </button>
+                            <ul class="dropdown-menu" role="menu" id="uls">
+                                <li><a href="#">全部</a></li>
+                                <li><a href="#">其他</a></li>
+                            </ul>
+                    </div>
+                    <div class="form-group btn-group btns">
+                        <lable style="float:left; margin:5px 5px 0 5px;">客户状态</lable>
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm"
+                                data-toggle="dropdown" style="">
+                            全部 <span class="caret" style=""></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" id="ulss">
+                            <li><a href="#">全部</a></li>
+                            <li><a href="#">其他</a></li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn btn-primary">查询</button>
+
+                </form>
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Id</th>
+                        <th>角色</th>
+                        <th>姓名</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>001</td>
+                        <td>你猜</td>
+                        <td>晓晓</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>002</td>
+                        <td>你猜</td>
+                        <td>晓晓</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>003</td>
+                        <td>你猜</td>
+                        <td>晓晓</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

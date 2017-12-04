@@ -165,3 +165,38 @@ table.reference {
 /*list_5*/
 /*list_6*/
 /*list_7*/
+
+/*mine*/
+.kong{
+    margin-top:20px;
+}
+.kong .form1{
+    margin-bottom:10px;
+}
+#uls,#ulss{
+    top:28px;
+    left:57px;
+    min-width:67px;
+}
+/*#uls li{*/
+    /*width:200px;*/
+/*}*/
+#uls li a{
+    height:30px;
+    line-height:30px;
+}
+#ulss li a{
+    height:30px;
+    line-height:30px;
+}
+
+.btns button{
+    padding:5px 20px;
+    position:relative;
+}
+
+.btns button span{
+    position:absolute;
+    right:5px;
+    top:13px;
+}
