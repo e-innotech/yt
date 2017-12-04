@@ -14,16 +14,27 @@ input, button{
 
 #nav-stack .treeview>ul{
     display: none;
-
 }
 
 .treeview-menu li:hover{
     background: #444d5e;;
     border-left: 5px solid yellowgreen;
-
 }
 .treeview-menu li:hover a{
     margin-left: -5px;
+}
+
+/*分页*/
+.pageJump{
+    margin: 25px 15px;
+
+}
+.pageJump input[type='text']{
+    width: 30px;
+    text-align: center;
+}
+.pageJump .button{
+    width: 50px;
 }
 /*list_1*/
 table.reference {
