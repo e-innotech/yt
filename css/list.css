@@ -14,11 +14,21 @@ input, button{
 
 #nav-stack .treeview>ul{
     display: none;
-    margin-left: 16px;
 }
 
 
+/*分页*/
+.pageJump{
+    margin: 25px 15px;
 
+}
+.pageJump input[type='text']{
+    width: 30px;
+    text-align: center;
+}
+.pageJump .button{
+    width: 50px;
+}
 /*list_1*/
 table.reference {
     border-collapse: collapse;
@@ -42,18 +52,15 @@ table.reference {
 
 
 
-.list_1 table tr {
-    height: 42px;
-    line-height: 42px;
-    border-bottom: 1px solid #ccc;
-}
-.list_1 table tbody tr:hover{
-    background:#f7f7f7;
-    cursor: pointer;
-}
 
 /*list_2*/
-
+.list_2 table tr th {
+    height: 32px;
+    line-height: 32px;
+    border: 0;
+    text-align: center;
+    font-weight: bold;
+    background-color: #f7f7f7;}
 /*list_3*/
 
 /*list_4*/
