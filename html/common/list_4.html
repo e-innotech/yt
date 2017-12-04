@@ -9,6 +9,49 @@
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
+  <!--遮罩-->
+  <div class="alertbox">
+      <div class="add">
+          <form class="form-horizontal">
+              <div class="form-group" style="margin-top:30px;">
+                  <label class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="input1"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">性别</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="input2"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">账号</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="input3"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label ">身份</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="input4"/>
+                  </div>
+              </div>
+          </form>
+          <button class="btn btn-success btn1">确定</button>
+          <button class="btn btn-warning btn2">取消</button>
+      </div>
+      <div class="del">
+          <p>
+             您确定要删除吗？
+          </p>
+          <button class="btn btn-success btn1">确定</button>
+          <button class="btn btn-warning btn2">取消</button>
+      </div>
+      </div>
+  </div>
+=======
 <!--遮罩-->
 <div class="alertbox">
     <div class="add">
@@ -57,6 +100,7 @@
 
 
 </div>
+>>>>>>> bbe1604b1f660cbabd20b75774ef8c9982f11c4d
 
 <div class="container">
     <div class="list_4 row">
@@ -146,6 +190,87 @@
 </body>
 
 <script>
+<<<<<<< HEAD
+
+            $("tbody").on("click","input",function (e) {
+                console.log(555555555)
+                e = e || window.event;
+                var target = e.target;
+                switch (target.value) {
+                    case "增加":
+                            add();
+                        break;
+                    case "删除":
+                            del(e);
+                        break;
+                    case "修改":
+                            revise();
+                        break;
+                    case "查找":
+                        find();
+                        break;
+                }
+            });
+//如果内容是增加时，遮罩的显示 删除的弹出框隐藏
+            function add(){
+               $(".alertbox").show();
+                $(".del").hide();
+                $(".add .btn1").click(function(){
+                    trues()
+                })
+                $(".add .btn2").click(function(){
+                    $(".add").hide();
+                    $(".alertbox").hide();
+                })
+            }
+
+            function trues(){
+        //        获取姓名的值
+                var input1=$("#input1").val();
+        //        获取性别的值
+                var input2=$("#input2").val();
+        //        获取账号的值
+                var input3=$("#input3").val();
+        //        获取的身份的值
+                var input4=$("#input4").val();
+
+        //        做一个字符串拼接放进tbody中
+
+                $("<tr><td><input type='checkbox'/></td>" +
+                "<td>"+input1+"</td>" +
+                "<td>"+input2+"</td>" +
+                "<td>"+input3+"</td>" +
+                "<td>"+input4+"</td>" +
+                "<td>" +
+                "<input type='button' value='增加'/>'" +
+                "<input type='button' value='删除'/>" +
+                "<input type='button' value='修改'/>" +
+                "<input type='button' value='查找'/> " +
+                "</td></tr>").appendTo($("tbody"));
+
+                $("#input1").val("");
+                $("#input2").val("");
+                $("#input3").val("");
+                $("#input4").val("");
+                $(".alertbox").hide();
+
+
+            }
+            function del(e){
+                $(".alertbox").show();
+                $(".add").hide();
+                $(".del>.btn1").click(function(){
+                    $(e.target).closest("tr").remove();
+                    $(".alertbox").hide();
+                })
+                $(".del>.btn2").click(function(){
+                    $(".alertbox").hide();
+                    $(".del").hide();
+                })
+
+            }
+
+=======
     $("tbody").on("click", "input", function (e) {
         e = e || window.event;
         var target = e.target;
@@ -190,6 +315,7 @@
     function find() {
         $(".alertbox").show();
     }
+>>>>>>> bbe1604b1f660cbabd20b75774ef8c9982f11c4d
 
 
 </script>
