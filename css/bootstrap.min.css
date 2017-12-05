@@ -2929,7 +2929,7 @@ output {
 
 .form-control {
     display: block;
-    width: 100%;
+    width: 130px;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -6939,7 +6939,7 @@ button.close {
 }
 
 .pull-left {
-    float: left !important
+    float: left !important;
 }
 
 .hide {

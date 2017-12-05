@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/index.css"/>
+    <link rel="stylesheet" href="../../css/list.css"/>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/pager.js"></script>
+    <script type="text/javascript" src="../../js/sidebar-menu.js"></script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+    /*全选*/
+    var isCheckAll = false;
+    function swapCheck() {
+        if (isCheckAll) {
+            $("input[type='checkbox']").each(function () {
+                this.checked = false;
+            });
+            isCheckAll = false;
+        } else {
+            $("input[type='checkbox']").each(function () {
+                this.checked = true;
+            });
+            isCheckAll = true;
+        }
+    }
+    /*分页*/
+    Page({
+        num: 100,					//页码数
+        startnum: 1,				//指定页码
+        elem: $('.page1'),		//指定的元素
+        callback: function (n) {	//回调函数
+            console.log(n);
+        }
+    });
+
+
+</script>
+</body>
+</html>

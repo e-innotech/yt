@@ -44,7 +44,7 @@ function Page(opt){
 									return;
 								}
 								if (clickpages.num > 6) {
-									clickpages.newPages('«', 1);
+									clickpages.newPages('《', 1);
 								}
 								ele = clickpages.elem.children('li[page=1]');
 								break;
@@ -53,7 +53,7 @@ function Page(opt){
 									return;
 								}
 								if (clickpages.num > 6) {
-									clickpages.newPages('»', clickpages.num);
+									clickpages.newPages('》', clickpages.num);
 								}
 								ele = clickpages.elem.children('li[page=' + clickpages.num + ']');
 								break;
