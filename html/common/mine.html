@@ -18,12 +18,57 @@
               编辑用户</a>
             </li>
             <li><a href="#ios" data-toggle="tab">数据展示</a></li>
-
         </ul>
         <div id="myTabContent" class="tab-content">
+            <!--以下为编辑盒子的内容-->
             <div class="tab-pane fade in active" id="home">
+                 <h5>Hi
+                     <b>admin</b> , 欢迎您使用编辑用户功能
+                 </h5>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">负责人</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">客户名称</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">客户地址</label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" />
+                        </div>
+                    </div>
+                    <div  class="form-group">
+                        <label class="col-sm-2 control-label">1222</label>
+                        <div class="col-sm-10">
+                            <div class="uew-select">
+                                <select class="select1" style="width: 345px; ">
+                                    <option>3000-5000</option>
+                                    <option>5000-8000</option>
+                                    <option>8000-10000</option>
+                                    <option>10000-15000</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile" class="col-sm-2 control-label">File input</label>
+                        <div class="col-sm-10">
+                            <input type="file" id="exampleInputFile">
+                        </div>
+                    </div>
+                </form>
+
+                <button class="btn btn-primary" style="margin-left:50px; margin-top:20px; ">马上发布</button>
 
             </div>
+            <!--以下为数据展示盒子的内容-->
             <div class="tab-pane fade kong" id="ios" >
                 <form class="form-inline form1">
                     <div class="form-group">
@@ -53,7 +98,7 @@
                         </ul>
                     </div>
 
-                    <button type="button" class="btn btn-primary">查询</button>
+                    <button type="button" class="btn btn-primary findbtn  btn-default" >查询</button>
 
                 </form>
                 <table class="table table-striped">
@@ -62,24 +107,34 @@
                         <th>Id</th>
                         <th>角色</th>
                         <th>姓名</th>
+                        <th>状态</th>
                     </tr>
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td>001</td>
                         <td>你猜</td>
                         <td>晓晓</td>
+                        <td>
+                            <p class="anniu"><span></span></p>
+                        </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td>002</td>
                         <td>你猜</td>
                         <td>晓晓</td>
+                        <td>
+                            <p class="anniu"><span></span></p>
+                        </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td>003</td>
                         <td>你猜</td>
                         <td>晓晓</td>
+                        <td>
+                            <p class="anniu"><span></span></p>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -88,4 +143,15 @@
     </div>
 
 </body>
+<script>
+    //	按钮开关
+    $(".anniu").on("click", function () {
+         console.log($(this).find("span").css("left"))
+        if ($(this).find("span").css("left") == "2px") {
+            $(this).addClass("active")
+        } else {
+            $(this).removeClass("active")
+        }
+    });
+</script>
 </html>
