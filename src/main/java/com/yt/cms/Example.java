@@ -1,7 +1,6 @@
 package com.yt.cms;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +13,5 @@ public class Example {
 		return "spring boot Hello World!";
 	} 
 
-	@RequestMapping("/hello/{myName}")
-	String index(@PathVariable String myName) {
-		return "Hello " + myName + "!!!";
-	}
+
 }

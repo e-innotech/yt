@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.neo.mapper.UserMapper" >
-    <resultMap id="BaseResultMap" type="com.neo.entity.UserEntity" >
-        <id column="id" property="id" jdbcType="Integer" />
+<mapper namespace="com.yt.cms.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.yt.cms.entity.UserEntity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
         <result column="uname" property="userName" jdbcType="VARCHAR" />
         <result column="pwd" property="passWord" jdbcType="VARCHAR" />
-        <result column="createDate" property="nickName" jdbcType="VARCHAR" />
-        <result column="isUse" property="isUse" jdbcType="Integer"/>
+        <result column="createDate" property="createDate" jdbcType="VARCHAR" />
+        <result column="isUse" property="isUse" jdbcType="INTEGER"/>
     </resultMap>
     
     <sql id="Base_Column_List" >
-        id, userName, passWord, user_sex, nick_name
+        id, uname, pwd, createDate,isUse
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap"  >
@@ -19,33 +19,45 @@
 	   FROM users
     </select>
 
-    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
         SELECT 
        <include refid="Base_Column_List" />
 	   FROM users
 	   WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.neo.entity.UserEntity" >
+    <insert id="insert" parameterType="com.yt.cms.entity.UserEntity">
+       <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      </selectKey>
        INSERT INTO 
        		users
-       		(userName,passWord,user_sex) 
+       		(uname,pwd) 
        	VALUES
-       		(#{userName}, #{passWord}, #{userSex})
+       		(#{userName}, #{passWord})
     </insert>
     
-    <update id="update" parameterType="com.neo.entity.UserEntity" >
+    <update id="update" parameterType="com.yt.cms.entity.UserEntity" >
        UPDATE 
        		users 
        SET 
-       	<if test="userName != null">userName = #{userName},</if>
-       	<if test="passWord != null">passWord = #{passWord},</if>
-       	nick_name = #{nickName}
+       	<if test="userName != null">uname = #{userName},</if>
+       	<if test="passWord != null">pwd = #{passWord},</if>
+       	isUse = #{isUse}
        WHERE 
        		id = #{id}
     </update>
     
-    <delete id="delete" parameterType="java.lang.Long" >
+     <update id="enableOrdisable" parameterType="com.yt.cms.entity.UserEntity" >
+       UPDATE 
+       		users 
+       SET 
+       	isUse = #{isUse}
+       WHERE 
+       		id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Integer">
        DELETE FROM
        		 users 
        WHERE 

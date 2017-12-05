@@ -1,9 +1,8 @@
 package com.yt.cms.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import com.yt.cms.enums.UserSexEnum;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class UserEntity implements Serializable {
 
@@ -20,10 +19,7 @@ public class UserEntity implements Serializable {
 	 * 密码
 	 */
 	private String passWord;
-	/**
-	 * 用户性别
-	 */
-	private UserSexEnum userSex;
+	
 	/**
 	 * 用户状态是否可用
 	 */
@@ -31,17 +27,16 @@ public class UserEntity implements Serializable {
 	/**
 	 * 创建用户时间
 	 */
-	private Date createDate;
+	private String createDate;
 
 	public UserEntity() {
 		super();
 	}
 
-	public UserEntity(String userName, String passWord, UserSexEnum userSex) {
+	public UserEntity(String userName, String passWord) {
 		super();
 		this.passWord = passWord;
 		this.userName = userName;
-		this.userSex = userSex;
 	}
 
 	public Integer getId() {
@@ -68,14 +63,6 @@ public class UserEntity implements Serializable {
 		this.passWord = passWord;
 	}
 
-	public UserSexEnum getUserSex() {
-		return userSex;
-	}
-
-	public void setUserSex(UserSexEnum userSex) {
-		this.userSex = userSex;
-	}
-
 	public Integer getIsUse() {
 		return isUse;
 	}
@@ -84,16 +71,22 @@ public class UserEntity implements Serializable {
 		this.isUse = isUse;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			createDate = sdf.format(sdf.parse(createDate));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		this.createDate = createDate;
 	}
 
 	@Override
 	public String toString() {
-		return "userName " + this.userName + ", pasword " + this.passWord + "sex " + userSex.name();
+		return "userName " + this.userName + ", pasword " + this.passWord ;
 	}
 }

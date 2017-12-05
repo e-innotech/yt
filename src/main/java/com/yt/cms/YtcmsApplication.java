@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.yt.cms.entity")
+@MapperScan("com.yt.cms.mapper")
 public class YtcmsApplication {
 
 	public static void main(String[] args) {
