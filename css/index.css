@@ -35,20 +35,21 @@ iframe {
 
 a {
     text-decoration: none;
+    /*color:#eee;*/
 }
 
-a:link {
-    color: #009;
-}
+/*a:link {*/
+    /*color: #009;*/
+/*}*/
 
-a:visited {
-    color: #800080;
-}
+/*a:visited {*/
+    /*color: #800080;*/
+/*}*/
 
-a:hover, a:active, a:focus {
-    color: #c00;
-    text-decoration: underline;
-}
+/*a:hover, a:active, a:focus {*/
+    /*color: #c00;*/
+    /*text-decoration: underline;*/
+/*}*/
 
 /*css为clearfix，清除浮动*/
 .clearfix::before,
