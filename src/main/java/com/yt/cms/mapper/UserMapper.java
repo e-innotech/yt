@@ -2,19 +2,19 @@ package com.yt.cms.mapper;
 
 import java.util.List;
 
-import com.yt.cms.entity.UserEntity;
+import com.yt.cms.model.User;
 
 public interface UserMapper {
 	
-	List<UserEntity> getAll();
+	List<User> getAll();
 	
-	UserEntity findById(Integer id);
+	User findById(Integer id);
 
-	void insert(UserEntity user);
+	void insert(User user);
 
-	void update(UserEntity user);
+	void update(User user);
 
-	void disableOrEnable(UserEntity user);
+	void disableOrEnable(User user);
 	
 	void delete(Long id);
 

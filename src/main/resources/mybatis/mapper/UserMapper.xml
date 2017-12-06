@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yt.cms.mapper.UserMapper" >
-    <resultMap id="BaseResultMap" type="com.yt.cms.entity.UserEntity" >
+    <resultMap id="BaseResultMap" type="com.yt.cms.model.User" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="uname" property="userName" jdbcType="VARCHAR" />
         <result column="pwd" property="passWord" jdbcType="VARCHAR" />
@@ -19,14 +19,14 @@
 	   FROM users
     </select>
 
-    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
         SELECT 
        <include refid="Base_Column_List" />
 	   FROM users
 	   WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.yt.cms.entity.UserEntity">
+    <insert id="insert" parameterType="com.yt.cms.model.User">
        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
           SELECT LAST_INSERT_ID()
       </selectKey>
@@ -37,7 +37,7 @@
        		(#{userName}, #{passWord})
     </insert>
     
-    <update id="update" parameterType="com.yt.cms.entity.UserEntity" >
+    <update id="update" parameterType="com.yt.cms.model.User" >
        UPDATE 
        		users 
        SET 
@@ -48,7 +48,7 @@
        		id = #{id}
     </update>
     
-     <update id="enableOrdisable" parameterType="com.yt.cms.entity.UserEntity" >
+     <update id="disableOrEnable" parameterType="com.yt.cms.model.User" >
        UPDATE 
        		users 
        SET 
