@@ -18,8 +18,6 @@
 
         }
         .passwords{
-
-
             z-index:1000;
             width:600px;
             height:200px;
@@ -29,24 +27,39 @@
             left: 50%;
             top: 30%;
             transform: translate(-50%, -50%);
+        }
+        .passwords h4{
+            margin-top:10px;
+            line-height:28px;
+        }
+        .passwords h4 span{
+            float:right;
+            margin-top:3px;
 
         }
         .passwordbtn{
            float:right;
 
         }
+        .passwords form{
+            margin:-10px 0 0 -18px;
+        }
+        .alertbox{
+            width:100%;
+            height:100vh;
+            background:rgba(0, 0, 0, .3);
+            display:none;
 
-
-
-
-
+        }
     </style>
 
 </head>
 <body>
-
-<div class="alertbox" style="width:100%;height:100vh; background:pink;">
+<!--以下为遮罩框-->
+<div class="alertbox">
+    <!--以下为修改密码弹出框-->
     <div class="container passwords">
+        <h4>修改密码 <span class="glyphicon glyphicon-remove"></span></h4>
         <form class="form-horizontal">
             <div class="form-group" style="margin-top:30px;">
                 <label class="col-sm-2 control-label">新密码</label>
@@ -61,10 +74,7 @@
                 </div>
             </div>
         </form>
-        <div class="passwordbtn">
-            <button class="btn btn-success btn1 " style="">确定</button>
-            <button class="btn btn-success btn1 " style="">取消</button>
-        </div>
+            <button class="btn btn-success btn1 passwordbtn" style="">确定</button>
     </div>
 </div>
 <!--以下为头部-->
@@ -101,15 +111,23 @@
         </ul>
     </div>
 </div>
-
-
 </body>
 <script type="text/javascript">
+    //点击修改密码时
     $(".passwordspan").click(function(){
         $(".alertbox").show();
+        $(".passwords").show();
+
     })
-
-
-
+//    点击确定按钮时
+    $(".passwordbtn").click(function(){
+        $(".passwords").hide();
+        $(".alertbox").hide();
+    })
+//点击x号时
+    $(".passwords h4 span").click(function(){
+        $(".passwords").hide();
+        $(".alertbox").hide();
+    })
 </script>
 </html>
