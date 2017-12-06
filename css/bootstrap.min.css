@@ -269,8 +269,8 @@ td, th {
 
 @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url(../fonts/glyphicons-halflings-regular.eot);
-    src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../fonts/glyphicons-halflings-regular.woff) format('woff'), url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+    src: url(../css/fonts/glyphicons-halflings-regular.eot);
+    src: url(../css/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../css/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../ccs/fonts/glyphicons-halflings-regular.woff) format('woff'), url(../css/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../css/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
 }
 
 .glyphicon {
@@ -2929,7 +2929,7 @@ output {
 
 .form-control {
     display: block;
-    width: 130px;
+    width: 100%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -5376,7 +5376,7 @@ a.badge:focus, a.badge:hover {
 }
 
 .jumbotron .container {
-    max-width: 100%;
+    max-width: 100%
 }
 
 @media screen and (min-width: 768px) {
@@ -6939,7 +6939,7 @@ button.close {
 }
 
 .pull-left {
-    float: left !important;
+    float: left !important
 }
 
 .hide {
