@@ -215,29 +215,29 @@ table.reference {
     right:5px;
     top:13px;
 }
-#ios form .findbtn{
+#home form .findbtn{
     margin-left:30px;
 }
 
-#ios table td{
+#home table td{
     line-height:34px;
 }
-#home{
+#ios{
     height: 45px;
     padding-left: 25px;
     padding-top:20px;
     line-height: 20px;
 }
-#home h5{
+#ios h5{
 
     color: #848383;
 }
 
-#home h5 b{
+#ios h5 b{
     color:#d70101;
 }
 
-#home form{
+#ios form{
     margin-left:-50px;
     margin-top:30px;
 
@@ -248,86 +248,6 @@ select{
     border-radius:4px;
 
 }
-/*.uew-select {*/
-    /*position: relative;*/
-/*}*/
-/*.uew-select .uew-select-value {*/
-    /*z-index: 1;*/
-    /*position: relative;*/
-    /*padding-right: 20px;*/
-    /*background: #fff;*/
-    /*font-size: 12px;*/
-    /*text-indent: 5px;*/
-/*}*/
-
-
-/*.uew-select select {*/
-    /*z-index: 2;*/
-    /*position: absolute;*/
-    /*top: 3px;*/
-    /*_top: 6px;*/
-    /*cursor: pointer;*/
-    /*height: 28px;*/
-/*}*/
-/*.uew-select select{*/
-    /*background:url(../images/common/uew_icon.png);*/
-/*}*/
-/*select {*/
-    /*opacity: 0;*/
-    /*filter: alpha(opacity=0);*/
-/*}*/
-/*option {*/
-    /*overflow: auto;*/
-/*}*/
-
-/*#chk-toggle{*/
-    /*display:none;*/
-/*}*/
-
-/*#chk-toggle + label{*/
-    /*display:block;*/
-    /*position:relative;*/
-    /*cursor:pointer;*/
-    /*padding:15px;*/
-    /*width:60px;*/
-    /*background:#ddd;*/
-    /*border-radius: 10px;*/
-/*}*/
-
-/*#chk-toggle + label:before,#chk-toggle + label:after{*/
-    /*display: block;*/
-    /*position:absolute;*/
-    /*top:1px ;*/
-    /*left:1px;*/
-    /*bottom:1px;*/
-    /*content:"";*/
-/*}*/
-/*#chk-toggle + label:after {*/
-    /*width: 36px;*/
-    /*background-color: #fff;*/
-    /*border-radius: 100%;*/
-    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);*/
-    /*transition: margin 0.4s;*/
-/*}*/
-
-
-/*#chk-toggle + label:before{*/
-    /*right: 1px;*/
-    /*background-color: #f1f1f1;*/
-    /*border-radius: 60px;*/
-    /*transition: background 0.4s;*/
-/*}*/
-
-/*注意，after和before中的transition都是为了之后的切换动作用的*/
-
-
-/*#chk-toggle:checked + label:before{*/
-    /*background-color: #8ce196;*/
-/*}*/
-
-/*#chk-toggle:checked + label:after,#chk-toggle2:checked + label:after,#chk-toggle3:checked + label:after {*/
-    /*margin-left: 25px;*/
-/*}*/
 
 /*广告列表*/
 .anniu{
