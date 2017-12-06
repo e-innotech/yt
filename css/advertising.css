@@ -1,5 +1,5 @@
 /*广告列表*/
-.anniu {
+.anniu{
     position: relative;
     width: 50px;
     height: 25px;
@@ -9,12 +9,11 @@
     background: #cccccc;
     margin: 0 auto;
 }
-
-.anniu.active {
+.anniu.active{
     background-color: #1cbb95;
+    margin: 0 auto;
 }
-
-.anniu > span {
+.anniu>span{
     position: absolute;
     width: 25px;
     height: 25px;
@@ -23,11 +22,14 @@
     top: 0;
     background: #fff;
 }
-
-.active > span {
+.active>span{
     left: 24px;
 }
 
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th{
+    vertical-align: inherit;
+}
+/*input下拉框*/
 .operation span a {
     display: inline-block;
     width: 40px;
@@ -38,3 +40,7 @@
     text-align: center;
 }
 
+.selectinput{
+    width: 130px;
+    height: 36px;
+}

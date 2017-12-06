@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<div class="wrapper wrapper-content system" style="width:75%;">
+<div class="wrapper wrapper-content system" style="width:75%;margin: 30px">
 
     <div class="row">
         <!--筛选左-->
@@ -24,20 +24,17 @@
             <from action="#" method="post" class="form-horizontal">
                 <div class="form-group col-xs-6 one-choice">
                     <label class="control-label pull-left choice-label">广告位置：</label>
-                    <div class="btn-group">
-                        <input type="text" class="btn btn-default dropdown-toggle"
-                               data-toggle="dropdown"/>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">全部</a></li>
-                            <li><a href="#">头部</a></li>
-                            <li><a href="#">banner</a></li>
-                        </ul>
-                    </div>
-
+                    <select name="Dropdown selectinput" onchange="input_Dropdown('parent',this,0)">
+                        <option value="0">top</option>
+                        <option value="1">banner</option>
+                    </select>
                 </div>
                 <div class="form-group col-xs-6 one-choice">
                     <label class="control-label pull-left choice-label">到期时间：</label>
-
+                    <select name="Dropdown selectinput" onchange="input_Dropdown('parent',this,0)">
+                        <option value="0">top</option>
+                        <option value="1">banner</option>
+                    </select>
 
                 </div>
 
@@ -170,6 +167,7 @@
                 <ul class="pagination fr page1"></ul>
             </div>
             <!--删除弹出框-->
+            <!--
             <div role="dialog" class="modal" id="delete">
                 <div class="model-dialog">
                     <div class="modal-content">
@@ -190,6 +188,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </div>
 </div>
@@ -212,16 +211,12 @@
             isCheckAll = true;
         }
     }
-    /*删除*/
-    /*
 
-     function removeTd (){
-     $(".delete").parent().parent().parent().remove();
-     }
-     */
-
-/*下拉*/
-    $('.dropdown-toggle').dropdown();
+/*input下拉*/
+    function input_Dropdown(targ,selObj,restore){
+        eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+        if (restore) selObj.selectedIndex=0;
+    }
     /*分页*/
     Page({
         num: 100,					//页码数

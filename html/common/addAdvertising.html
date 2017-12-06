@@ -11,6 +11,52 @@
     <script type="text/javascript" src="../../js/sidebar-menu.js"></script>
 </head>
 <body>
+<div class="">
+    <ul>
+        <li>
+            <label class="control-label pull-left choice-label">广告名称：</label>
+            <input type="text"/>
+        </li>
+        <li><label class="control-label pull-left choice-label">广告位置：</label>
+            <select name="Dropdown" onchange="input_Dropdown('parent',this,0)">
+                <option value="0">top</option>
+                <option value="1">banner</option>
+            </select></li>
+        <li>
+            <label class="control-label pull-left choice-label">开始时间：</label>
+            <input type="text"/>
+        </li>
+        <li>
+            <label class="control-label pull-left choice-label">到期时间：</label>
+            <input type="text"/>
+        </li>
+        <li>
+            <label class="control-label pull-left choice-label">上线/下线：</label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 上线
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">下线
+        </li>
+        <li>
+            <label class="control-label pull-left choice-label">广告图片：</label>
+            <input type="file"/><span>只能上传jpg/png格式文件,文件不能超过50kb</span>
+        </li>
+        <li>
+            <label class="control-label pull-left choice-label">广告备注：</label>
+            <div class="pull-left col-sm-8">
+                <textarea type="text" class="form-control" name="antistop" rows="10"></textarea>
+            </div>
+        </li>
+        <li>
+            <input type="button" value="提交"/>
+<!--
+            <input type="submit" value="提交" class="pull-left">
+-->
+        </li>
+
+    </ul>
+
+</div>
+
+
 
 
 <script type="text/javascript">
