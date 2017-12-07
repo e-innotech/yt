@@ -466,7 +466,8 @@ select{
 /*用户*/
 .container .user{
     width:500px;
-    height:500px;
+    /*height:500px;*/
+    padding-bottom:30px;
     /*background:pink;*/
     border-radius:8px;
     margin:30px auto 0 auto;
