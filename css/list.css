@@ -268,11 +268,10 @@ select{
     padding: 0;
     background: #cccccc;
     margin: 0 auto;
-    margin-left:0;
 }
 .anniu.active{
     background-color: #1cbb95;
-    margin-left:0;
+    /*margin-left:0;*/
 }
 .anniu>span{
     position: absolute;
@@ -423,8 +422,6 @@ select{
 .column{
     height:60px;
     border-bottom:6px solid #eee;
-
-
 }
 .column>li{
     width:80px;
@@ -520,4 +517,14 @@ input[type=file] {
     padding-right:30px;
     background:#1cbb95;
     color:#fff;
+}
+/*权限管理*/
+.jurisdiction h2{
+    height:50px;
+    line-height:50px;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:20px;
+    background:#f5f5f5;
+
 }

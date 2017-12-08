@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/index.css"/>
+    <link rel="stylesheet" href="../../css/list.css"/>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+       .container{
+           margin-top:100px;
+       }
+        .column li{
+            color:black;
+            background:none;
+            border:1px solid;
+
+        }
+        #columntab tr{
+            height:40px;
+        }
+        #columntab tr th{
+            height:50px;
+            line-height:50px;
+        }
+       #columntab tr #textareas{
+            width:300px; height:100px;
+
+        }
+        #columntab select{
+            width:180px;
+        }
+        #columntab .model{
+           line-height:34px;
+        }
+        input[type=radio]{
+            margin-top:-2px;
+        }
+
+    </style>
+</head>
+<body>
+     <div class="container">
+         <ul class="column">
+             <li><span class="glyphicon glyphicon-chevron-left"></span>返回列表</li>
+         </ul>
+         <table class="table " id="columntab">
+             <tr>
+                 <th>上级栏目</th>
+                 <th>顶级栏目</th>
+                 <th>模型</th>
+                 <th>新闻</th>
+             </tr>
+             <tr>
+                 <td>栏目名称</td>
+                 <td><input type="text"/></td>
+                 <td>访问路径</td>
+                 <td><input type="text"/></td>
+             </tr>
+             <tr>
+                 <td>meta标题</td>
+                 <td><input type="text"/></td>
+                 <td>meta关键字</td>
+                 <td><input type="text"/></td>
+             </tr>
+             <tr>
+                 <td style="line-height:50px;">
+                   meta描述
+                 </td>
+                 <td colspan="3" >
+                     <textarea id="textareas"></textarea>
+                 </td>
+             </tr>
+             <tr>
+                 <td class="model">栏目模板</td>
+                 <td>
+                     <select>
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                         <option>5</option>
+                     </select>
+                 </td>
+                 <td class="model">栏目手机模板</td>
+                 <td>
+                     <select>
+                         <option>aaa</option>
+                         <option>aaa</option>
+                         <option>aaa</option>
+                         <option>aaa</option>
+                         <option>aaa</option>
+                     </select>
+                 </td>
+             </tr>
+             <tr>
+                 <td>评论</td>
+                 <td>
+                     <input type="radio"name="p"/> 游客评论
+                     <input type="radio"name="p"/> 登陆评论一次
+                     <input type="radio"name="p"/> 登陆评论一次
+                     <input type="radio"name="p"/> 关闭评论
+                 </td>
+                 <td>顶踩</td>
+                 <td>
+                     <input type="radio"name="promise"/> 允许
+                     <input type="radio"name="promise"/> 不允许
+                 </td>
+             </tr>
+             <tr>
+                 <td class="model">审核后</td>
+                 <td>
+                     <select>
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                         <option>5</option>
+                     </select>
+                 </td>
+                 <td class="model">工作流</td>
+                 <td>
+                     <select>
+                         <option>1</option>
+                         <option>2</option>
+                         <option>3</option>
+                         <option>4</option>
+                         <option>5</option>
+                     </select>
+                 </td>
+             </tr>
+         </table>
+
+         <button class="btn btn-primary">提交</button>
+         <button class="btn">重置</button>
+
+
+
+     </div>
+
+
+</body>
+</html>
