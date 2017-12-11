@@ -528,3 +528,108 @@ input[type=file] {
     background:#f5f5f5;
 
 }
+
+/*用户登陆页面*/
+#body{
+    background:url(http://demo.jeecms.com/res/jeecms/img/login/bg.jpg) repeat-x
+}
+
+#box form{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    height:391px;
+}
+#box form .login-index {
+    width: 1000px;
+    margin: 0 auto;
+    background: url(http://demo.jeecms.com/res/jeecms/images/login-index.jpg) center 122px no-repeat;
+    height:100%;
+    overflow: hidden;
+}
+.login-index-box {
+    width: 660px;
+    margin: 0 auto;
+    padding: 12px;
+    position: relative;
+    margin-top: 274px;
+}
+.login-index-box .login-logo {
+    width:279px;
+    height:78px;
+    line-height:78px;
+    float: left;
+    /*padding-right: 64px;*/
+    margin-top: 11px;
+}
+
+
+.login-text {
+    float: left;
+    width: 256px;
+}
+.login-text .username-con, .login-text .password-con, .login-captcha {
+    position: relative;
+}
+.login-text .username-con i {
+    background: url(http://demo.jeecms.com/res/jeecms/images/username.png) no-repeat;
+    top: 9px;
+}
+.login-text .password-con i {
+    background: url(http://demo.jeecms.com/res/jeecms/images/password.png) no-repeat;
+    top: 10px;
+}
+.password-con{
+    margin-top:10px;
+}
+.login-submit {
+    float: left;
+    margin-left: 26px;
+    display: inline;
+}
+
+.login-text .username-con i, .login-text .password-con i, .login-captcha i {
+    width: 16px;
+    height: 19px;
+    display: block;
+    position: absolute;
+    left: 11px;
+}
+.login-text .username {
+    margin-bottom: 13px;
+}
+.login-text .username, .login-text .password, .login-captcha .captcha {
+    width: 214px;
+    background: #ffffff;
+    border: 1px solid #b5b5b5;
+    height: 38px;
+    padding: 0 0 0 40px;
+    line-height: 38px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #777;
+    font-size: 14px;
+    box-shadow: inset 0 -1px rgba(34,25,25,.15), 0 -1px rgba(255,255,255,.8);
+    -moz-box-shadow: inset 0 -1px rgba(34,25,25,.15),0 -1px rgba(255,255,255,.8);
+    -webkit-box-shadow: inset 0 -1px rgba(34,25,25,.15), 0 -1px rgba(255,255,255,.8);
+    display: inline-block !important;
+    display: block;
+    margin: 0;
+}
+.login-submit input {
+    width: 93px;
+    height: 93px;
+    background: url(http://demo.jeecms.com/res/jeecms/images/login-submit.jpg) no-repeat;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    border: none;
+}
+.login-index span{
+    position:absolute;
+    top:-10px;
+    color:red;
+    font-size:12px;
+}
