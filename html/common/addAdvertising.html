@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../css/index.css"/>
     <link rel="stylesheet" href="../../css/list.css"/>
+    <link rel="stylesheet" href="../../css/advertising.css"/>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
     <script type="text/javascript" src="../../js/pager.js"></script>
     <script type="text/javascript" src="../../js/sidebar-menu.js"></script>
@@ -13,43 +14,42 @@
 <body>
 <div class="">
     <ul>
-        <li>
-            <label class="control-label pull-left choice-label">广告名称：</label>
-            <input type="text"/>
+        <li class="form-group">
+            <label class="col-sm-1">广告名称：</label>
+            <input class="form_select" type="text"/>
         </li>
-        <li><label class="control-label pull-left choice-label">广告位置：</label>
-            <select name="Dropdown" onchange="input_Dropdown('parent',this,0)">
+        <li class="form-group">
+            <label class="control-label pull-left choice-label col-sm-1">广告位置：</label>
+            <select class="form_select" name="Dropdown" onchange="input_Dropdown('parent',this,0)">
                 <option value="0">top</option>
                 <option value="1">banner</option>
-            </select></li>
-        <li>
-            <label class="control-label pull-left choice-label">开始时间：</label>
-            <input type="text"/>
+            </select>
         </li>
-        <li>
-            <label class="control-label pull-left choice-label">到期时间：</label>
-            <input type="text"/>
+        <li class="form-group">
+            <label class="control-label pull-left choice-label col-sm-1">开始时间：</label>
+            <input class="form_select" type="text"/>
         </li>
-        <li>
-            <label class="control-label pull-left choice-label">上线/下线：</label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 上线
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">下线
+        <li class="form-group">
+            <label class="control-label pull-left choice-label col-sm-1">到期时间：</label>
+            <input class="form_select" type="text"/>
         </li>
-        <li>
-            <label class="control-label pull-left choice-label">广告图片：</label>
+        <li class="form-group">
+            <label class="control-label pull-left choice-label col-sm-1">上线/下线：</label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 上线
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">下线
+        </li>
+        <li class="form-group">
+            <label class="control-label pull-left choice-label col-sm-1">广告图片：</label>
             <input type="file"/><span>只能上传jpg/png格式文件,文件不能超过50kb</span>
         </li>
-        <li>
-            <label class="control-label pull-left choice-label">广告备注：</label>
-            <div class="pull-left col-sm-8">
+        <li class="form-group">
+            <label class="control-label pull-left choice-label col-sm-1">广告备注：</label>
+            <div class="pull-left col-sm-8" style="padding-left: 0">
                 <textarea type="text" class="form-control" name="antistop" rows="10"></textarea>
             </div>
         </li>
-        <li>
+        <li class="form-group">
             <input type="button" value="提交"/>
-<!--
-            <input type="submit" value="提交" class="pull-left">
--->
         </li>
 
     </ul>
@@ -57,34 +57,8 @@
 </div>
 
 
-
-
 <script type="text/javascript">
 
-    /*全选*/
-    var isCheckAll = false;
-    function swapCheck() {
-        if (isCheckAll) {
-            $("input[type='checkbox']").each(function () {
-                this.checked = false;
-            });
-            isCheckAll = false;
-        } else {
-            $("input[type='checkbox']").each(function () {
-                this.checked = true;
-            });
-            isCheckAll = true;
-        }
-    }
-    /*分页*/
-    Page({
-        num: 100,					//页码数
-        startnum: 1,				//指定页码
-        elem: $('.page1'),		//指定的元素
-        callback: function (n) {	//回调函数
-            console.log(n);
-        }
-    });
 
 
 </script>
