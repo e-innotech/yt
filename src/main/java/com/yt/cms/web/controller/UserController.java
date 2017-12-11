@@ -38,10 +38,10 @@ public class UserController {
 	 * 列表页面
 	 * @return
 	 */
-	@GetMapping(value="queryAll")
+	@GetMapping(value="query")
 	@ApiOperation("查询用户列表")
-	List<User> queryAll(){
-		return userService.queryAll();
+	List<User> query(){
+		return userService.query();
 	}
 
 	/**
@@ -64,11 +64,11 @@ public class UserController {
 	 */
 	@PostMapping
 	@ApiOperation("添加用户")
-	public HttpEntity<?> add(@RequestParam  String userName,@RequestParam  String passWord) {
+	public HttpEntity<?> add(@PathVariable  String userName,@PathVariable  String passWord) {
 		User user = new User();
 		user.setUserName(userName);
 		user.setPassWord(passWord);
-		boolean created = userService.saveOne(user);
+		boolean created = userService.save(user);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userDAO;
 	
 	@Override
-	public boolean saveOne(User user) {
+	public boolean save(User user) {
 		userDAO.insert(user);
         if (user.getId() > 0) {
             return true;
@@ -23,18 +23,44 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public boolean login(User user) {
+		// TODO 密码加密与解密
+		int user_db = userDAO.login(user);
+		if(user_db > 0) {
+			return true;
+		}
+		return false;
+	}
+
+
+	@Override
 	public User findById(Integer id) {
 		return userDAO.findById(id);
 	}
 
 	@Override
-	public List<User> queryAll() {
-		return userDAO.getAll();
+	public boolean findByUserName(String userName) {
+		int user_db = userDAO.findByUserName(userName);
+		if(user_db > 0) {
+			return true;
+		}
+		return false;
+	}
+
+
+	@Override
+	public List<User> query() {
+		return userDAO.query();
 	}
 
 	@Override
 	public boolean update(User user) {
-		
+		try {
+			userDAO.update(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -56,4 +82,19 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public boolean setUserGroup4User(int userId, int userGroupId) {
+		try {
+			User user = new User();
+			user.setId(userId);
+			user.setUserGroupId(userGroupId);
+			userDAO.setUserGroup4User(user);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	
 }
