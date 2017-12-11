@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/list.css"/>
+    <script src="https://s.ssl.qhres.com/static/6d694f8071623fb4/lib/jquery/jquery.js"></script>
+</head>
+<body id="body">
+     <div id="box">
+        <form id="jvForm" method="post" style="width:100%;" novalidate="novalidate">
+            <div class="login-index">
+                <div class="login-index-box">
+                    <div class="login-logo">后台管理系统</div>
+                    <span id="text1"></span>
+                    <div class="login-text">
+                        <div class="username-con"><i></i><input type="text" onfocus="f1()" onblur="f2()" id="username" name="username"  class="username" placeholder="用户名"></div>
+                        <div class="password-con"><i></i><input type="text" onfocus="f3()" onblur="f4()" id="password" name="password" class="password" placeholder="密码"></div>
+                    </div>
+                    <div class="login-submit" style="border:none;">
+                        <input type="button" name="submit" value="" style="border:0px none;" id="login">
+                    </div>
+                    <div style="height:0; clear:both;"></div>
+                </div>
+            </div>
+        </form>
+     </div>
+</body>
+<script>
+var str1;
+var str2;
+
+
+    //当用户框获取焦点时
+function f1(){
+    $("#text1").html("请输入用户名");
+    return false
+}
+
+function f2(){
+    str1=$("#username").val();
+//    以英文字母开头，6-16位
+   var reg1 = /^[a-zA-Z]\w{5,15}$/
+    if(str1==""){
+        $("#text1").html("用户名为空");
+        return false;
+    }
+   if(reg1.test(str1)==false){
+       $("#text1").html("请输入英文数字下划线组成的用户名");
+       return false;
+   }
+    $("#text1").html("ok");
+    return true;
+}
+
+// 密码框获取焦点时
+function f3(){
+    $("#text1").html("请输入密码");
+    return false;
+}
+//当密码框失去焦点时
+function f4(){
+   str2=$("#password").val();
+    var reg2=/^[a-zA-Z_]\w{5}$/;
+    if(str2==""){
+        $("#text1").html("密码为空");
+        return false;
+    }
+    if (reg2.test(str2)==false){
+        $("#text1").html("请输入五位数密码")
+        return false;
+    }
+        $("#text1").html("ok");
+        return true
+}
+//点击登陆按钮时
+$("#login").click(function(){
+    f2();
+    f4();
+    if(f2()==true && f4()==true){
+        location.href="success.html";
+        str1.val("");
+        str2.val("");
+    }
+})
+
+
+
+
+</script>
+</html>
+
