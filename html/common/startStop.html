@@ -105,32 +105,8 @@
                             <input type="button" value="删除"/>
                         </td>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>002</td>
-                        <td>晓晓</td>
-                        <td>是的方法烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦</td>
-                        <td>12月7日</td>
-                        <td>
-                            <p class="anniu"><span></span></p>
-                        </td>
-                        <td>
-                            <input type="button" value="删除"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>003</td>
-                        <td>晓晓</td>
-                        <td>VS个地方烦烦烦啵啵啵啵啵啵啵啵啵宝宝烦烦烦烦烦烦烦烦烦烦烦烦</td>
-                        <td>12月7日</td>
-                        <td>
-                            <p class="anniu"><span></span></p>
-                        </td>
-                        <td>
-                            <input type="button" value="删除"/>
-                        </td>
-                    </tr>
+
+
                 </table>
             </div>
         </div>
@@ -151,13 +127,37 @@
         }
     });
 
+$(function(){
+        $.ajax({
+            type:"get",//请求方式
+            url:"startstop.json",//请求路径
+            async:false,
+            dataType:"json",//数据格式
+            success: function(startdata){
+                console.log(startdata);
+                for(var n=0;n<startdata.length;n++){
+                    str="<tr><td><input type='checkbox'/></td>"+
+                    "<td>"+startdata[n].id+"</td>" +
+                    "<td>"+startdata[n].userName+"</td>" +
+                    "<td>"+startdata[n].theme+"</td>" +
+                    "<td>"+startdata[n].createDate+"</td>" +
+                    "<td><p class='anniu'><span></span></p></td>"+
+                    "<td><input type='button' value=删除></td>"+
+                   "</tr>";
+                    $("tbody").append(str);
 
-    $("tbody").on("click","input",function(){
-        if(confirm("你确信要删除这行吗？")){
-            $(this).closest("tr").remove()
-        }
+                }
 
-    })
+            }
+        });
+})
+
+//    $("tbody").on("click","input",function(){
+//        if(confirm("你确信要删除这行吗？")){
+//            $(this).closest("tr").remove()
+//        }
+//
+//    })
 
 </script>
 </html>

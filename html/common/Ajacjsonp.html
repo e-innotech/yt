@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="https://s.ssl.qhres.com/static/6d694f8071623fb4/lib/jquery/jquery.js"></script>
+</head>
+<body>
+<input type="text" id="input1" />
+<input type="button" value="提交" id="search"/>
+<p id="p"></p>
+    
+</body>
+<script type="text/javascript">
+$.ajax({  
+        type : "get",  
+        url: "http://bang.360.cn/aj/get_area/?citycode=tian_jin&callback=QWJsonp1513128053031",  
+        dataType : "jsonp",//数据类型为jsonp    
+        // jsonp: "QWJsonp1513128053031",//服务端用于接收callback调用的function名的参数    
+        success : function(data){ 
+           console.log(data) 
+            //回调函数  
+        },  
+        error:function(){  
+            console.log("fail")
+        }  
+    });  
+
+</script>
+</html>
+    
