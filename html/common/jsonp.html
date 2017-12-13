@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>jQuery jsonp demo</title>
+    <script src="https://s.ssl.qhres.com/static/6d694f8071623fb4/lib/jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "http://bang.360.cn/aj/get_area/?citycode=tian_jin",
+            dataType: "jsonp",  //数据类型为jsonp
+            dataType:"jsonp",
+            jsonp:"callback",
+            jsonpCallback:"jsonpCallback",
+            success: function (data) {
+                console.log(data)
+            },
+            error: function () {
+                alert('fail');
+            }
+        });
+    </script>
+</head>
+<body>
+    使用jQuery一切将会变得非常简单。
+</body>
+</html>
