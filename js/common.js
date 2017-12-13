@@ -64,6 +64,7 @@ function createXhr(){
     }
 }
 
+//增删改查页面的逻辑
 //点击增加按钮时
 function add(){
     $(".alertbox").show();
@@ -105,3 +106,10 @@ function revise(){
 function find(){
     console.log("我是查找函数")
 }
+
+//用户状态启停页面的逻辑
+//	按钮开关
+
+
+
+

@@ -82,7 +82,7 @@
            <!--消息盒子-->
             <div class="tab-pane fade in active" id="ios">
 
-                <table class="table" style="margin-left:-25px;">
+                <table class="table" id="status">
                     <tr>
                         <th>#</th>
                         <th>id</th>
@@ -93,17 +93,17 @@
                         <th>操作</th>
                     </tr>
                     <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>001</td>
-                        <td>晓晓</td>
-                        <td>我能怎么办，，，，，我也很绝望啊！！！！！！！！！</td>
-                        <td>12月6日</td>
-                        <td>
-                            <p class="anniu"><span></span></p>
-                        </td>
-                        <td>
-                            <input type="button" value="删除"/>
-                        </td>
+                        <!--<td><input type="checkbox"/></td>-->
+                        <!--<td>001</td>-->
+                        <!--<td>晓晓</td>-->
+                        <!--<td>我能怎么办，，，，，我也很绝望啊！！！！！！！！！</td>-->
+                        <!--<td>12月6日</td>-->
+                        <!--<td class="annius">-->
+                            <!--<p class="anniu"><span></span></p>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<input type="button" value="删除"/>-->
+                        <!--</td>-->
                     </tr>
 
 
@@ -115,18 +115,6 @@
 
 </body>
 <script>
-    //	按钮开关
-    $(".anniu").on("click", function () {
-         console.log($(this).find("span").css("left"))
-        if ($(this).find("span").css("left") == "2px") {
-
-            $(this).addClass("active");
-
-        } else {
-            $(this).removeClass("active");
-        }
-    });
-
 $(function(){
         $.ajax({
             type:"get",//请求方式
@@ -136,13 +124,13 @@ $(function(){
             success: function(startdata){
                 console.log(startdata);
                 for(var n=0;n<startdata.length;n++){
-                    str="<tr><td><input type='checkbox'/></td>"+
+                    str="<tr><td><input type='checkbox' value=444/></td>"+
                     "<td>"+startdata[n].id+"</td>" +
                     "<td>"+startdata[n].userName+"</td>" +
                     "<td>"+startdata[n].theme+"</td>" +
                     "<td>"+startdata[n].createDate+"</td>" +
-                    "<td><p class='anniu'><span></span></p></td>"+
-                    "<td><input type='button' value=删除></td>"+
+                    "<td class='annius'><p class='anniu' onclick='fn(this)'><span></span></p></td>"+
+                    "<td><input type='button' name='dee' value=删除 onclick='dels(this)'></td>"+
                    "</tr>";
                     $("tbody").append(str);
 
@@ -152,10 +140,36 @@ $(function(){
         });
 })
 
-//    $("tbody").on("click","input",function(){
-//        if(confirm("你确信要删除这行吗？")){
-//            $(this).closest("tr").remove()
-//        }
+//用户启停状态的逻辑
+function fn(obj){
+    if ($(obj).find("span").css("left") == "2px") {
+        $(obj).addClass("active");
+    } else {
+        $(obj).removeClass("active");
+    }
+}
+//    console.log($(obj).parent().parent().html())
+function dels(obj){
+    var c=$(obj).closest("tr")[0];
+//    console.log(c)
+    var checkbox=$(obj).closest("tr").find("input[type='checkbox']")[0];
+
+//判断checkbox的状态是不是选中
+    if($(checkbox).is(':checked')) {
+        alert(11)
+        c.remove()
+    }
+
+}
+
+
+    //    });
+//$("tbody").on("click","input[type=button]",function(){
+//    $(this).p;
+//
+////        if(confirm("你确信要删除这行吗？")){
+////
+////        }
 //
 //    })
 
