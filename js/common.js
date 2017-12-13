@@ -105,3 +105,107 @@ function revise(){
 function find(){
     console.log("我是查找函数")
 }
+
+//正则验证
+function verify(){
+    //昵称
+    var h = /^[\u4E00-\u9FA5A-Za-z0-9_]+$/;
+
+    $("[name='name']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='name']").next().html("姓名不能为空！");
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(h)) {
+            $("[name='name']").next().html("姓名不合法！");
+            $("[name='name']").next().css("color", "#f00");
+        } else {
+            $(this).next().css("color", "#0EA74A");
+            $("[name='name']").next().html("正确");
+        }
+    });
+}
+function userName(){
+    //手机号
+    var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
+    $("[name='userName']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='userName']").next().html("手机号不能为空！");
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(d)) {
+            $("[name='userName']").next().html("手机号不正确！");
+            $("[name='userName']").next().css("color", "#f00");
+        } else {
+            $(this).next().css("color", "#0EA74A");
+            $("[name='userName']").next().html("正确");
+        }
+    });
+}
+
+
+function password(){
+    //密码
+    var p = /^[a-zA-Z]\w{5,17}$/;
+    $("[name='password']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='password']").next().html("密码不能为空！");
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(p)) {
+            $("[name='password']").next().html("密码格式不正确！");
+            $("[name='password']").next().css("color", "#f00");
+        } else {
+            $(this).next().css("color", "#0EA74A");
+            $("[name='password']").next().html("正确");
+        }
+    });
+}
+function email() {
+
+//邮箱
+    var y = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+    $("[name='email']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='email']").next().html("邮箱不能为空！")
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(y)) {
+            $("[name='email']").next().html("请填写正确的邮箱！");
+            $("[name='email']").next().css("color", "#f00");
+        } else {
+            $(this).next().css("color", "#0EA74A");
+            $("[name='email']").next().html("正确");
+        }
+    });
+}
+function idCard() {
+
+//身份证
+    var idCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    $("[name='idCard']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='idCard']").next().html("身份证号不能为空！");
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(idCard)) {
+            $("[name='idCard']").next().html("身份证号不正确！");
+            $("[name='idCard']").next().css("color", "#f00");
+        } else {
+            $(this).next().css("color", "#0EA74A");
+            $("[name='idCard']").next().html("正确");
+        }
+    });
+
+}
+/*
+$("input").focus(function () {
+    $(this).prev().css("color", "#008DE8");
+});
+*/
+
+
+
+
+
+

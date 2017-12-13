@@ -132,28 +132,11 @@
                         <th>性别</th>
                         <th>操作</th> -->
                 </tr>
-                    <tr>
-                        <th>id名</th>
-                        <th>用户名</th>
-                        <th>密码</th>
-                        <th>状态</th>
-                        <th>操作</th>
-                    </tr>
+
                 </thead>
                 <tbody>
 
-                     <tr>
-                        <td>001</td>
-                        <td>张三</td>
-                        <td>2222</td>
-                        <td>0</td>
-                        <td>
-                          <input type='button' value='增加'/> 
-                          <input type='button' value='删除'/> 
-                          <input type='button' value='修改'/> 
-                          <input type='button' value='查找'/>
-                       </td>                        
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -176,6 +159,7 @@ $(document).ready(function() {
                   "<td>"+resultdata[i].userName+"</td>" +
                   "<td>"+resultdata[i].passWord+"</td>" +
                   "<td>"+resultdata[i].isUse+"</td>" +
+             "<td>"+resultdata[i].createDate+"</td>" +
                   "<td>" +"<input type='button' value='增加'/>"  +
                   "<input type='button' value='删除'/>" +
                   "<input type='button' value='修改'/>" +

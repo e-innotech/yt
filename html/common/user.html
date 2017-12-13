@@ -35,7 +35,7 @@
 
                 <div class="col-sm-7">
                     <input type="text" name="name" class="form-control" placeholder="昵称" maxlength="5">
-                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                    <span style="position:absolute;top:8px;left:235px;width: 100%;"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -43,7 +43,7 @@
 
                 <div class="col-sm-7" style="position: relative;">
                     <input type="text" name="userName" class="form-control" placeholder="手机号码" maxlength="11">
-                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                    <span style="position:absolute;top:8px;left:235px;width: 100%;"></span>
                 </div>
 
             </div>
@@ -52,7 +52,7 @@
 
                 <div class="col-sm-7">
                     <input type="password" name="password" class="form-control" placeholder="密码">
-                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                    <span style="position:absolute;top:8px;left:235px;width: 100%;"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -60,7 +60,7 @@
 
                 <div class="col-sm-7">
                     <input type="text" name="email" class="form-control" placeholder="电子邮箱">
-                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                    <span style="position:absolute;top:8px;left:235px;width: 100%;"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -68,7 +68,7 @@
 
                 <div class="col-sm-7">
                     <input type="text" name="idCard" class="form-control" placeholder="身份证号码">
-                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                    <span style="position:absolute;top:8px;left:235px;width: 100%;"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -98,56 +98,20 @@
 </div>
 
 
-<script src="../../js/login.js"></script>
+<script src="../../js/common.js"></script>
 
 <script>
-   /* $('.button').click(function () {
-        var name = $("[name='name']").val();
-        var phone = $("[name='phone']").val();
-        var email = $("[name='email']").val();
-        var password = $("[name='password']").val();
-        var idCard = $("[name='idCard']").val();
+    //验证
+    $("input").focus(function () {
+        $(this).prev().css("color", "#008DE8");
+        verify();
+        userName();
+        password();
+        email();
+        idCard();
+    });
 
-        if (name == "") {
-            $("[name='name']").next().html("姓名不能为空！");
-            return;
-        } else if (!name.match(h)) {
-            $("[name='name']").next().html("姓名不合法！");
-            $("[name='name']").prev().css("color", "#f00");
-            return;
-        }
-        if (phone == '') {
-            $("[name='phone']").next().html("手机号码不能为空！");
-            return;
-        } else if (!phone.match(d)) {
-            $("[name='phone']").next().html("请填写正确的手机号！");
-            $("[name='phone']").prev().css("color", "#f00");
-            return;
-        }
 
-        if (email != '' && !email.match(y)) {
-            $("[name='email']").next().html("请填写正确的邮箱！");
-            $("[name='email']").prev().css("color", "#f00");
-            return;
-        }
-        if (password == '') {
-            $("[name='password']").next().html("手机号码不能为空！");
-            return;
-        } else if (!password.match(p)) {
-            $("[name='password']").next().html("请填写正确的手机号！");
-            $("[name='password']").prev().css("color", "#f00");
-            return;
-        }
-        if (idCard == '') {
-            $("[name='idCard']").next().html("手机号码不能为空！");
-            return;
-        } else if (!idCard.match(idCard)) {
-            $("[name='idCard']").next().html("请填写正确的手机号！");
-            $("[name='idCard']").prev().css("color", "#f00");
-            return;
-        }
-
-    });*/
 </script>
 </body>
 </html>
