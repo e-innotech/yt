@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../../css/index.css"/>
     <link rel="stylesheet" href="../../css/list.css"/>
     <script type="text/javascript" src="../../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/vali.min.js"></script>
     <style>
         .form-horizontal .form-group {
             margin-left: 77px;
@@ -33,28 +32,44 @@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">昵称</label>
-                <input type="text" name="name" class="col-sm-5 form-control" placeholder="昵称" maxlength="5">
-                <span style="color: #f00;"></span>
+
+                <div class="col-sm-7">
+                    <input type="text" name="name" class="form-control" placeholder="昵称" maxlength="5">
+                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">手机号码</label>
-                <input type="text" name="userName" class="col-sm-5 form-control" placeholder="手机号码" maxlength="11">
-                <span style="color: #f00;"></span>
+
+                <div class="col-sm-7" style="position: relative;">
+                    <input type="text" name="userName" class="form-control" placeholder="手机号码" maxlength="11">
+                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                </div>
+
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">密码</label>
-                <input type="password" name="password" class="col-sm-5 form-control" placeholder="密码">
-                <span style="color: #f00;"></span>
+
+                <div class="col-sm-7">
+                    <input type="password" name="password" class="form-control" placeholder="密码">
+                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Email</label>
-                <input type="text" name="email" class="col-sm-5 form-control" placeholder="电子邮箱">
-                <span style="color: #f00;"></span>
+
+                <div class="col-sm-7">
+                    <input type="text" name="email" class="form-control" placeholder="电子邮箱">
+                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">身份证号</label>
-                <input type="text" name="idCard" class="col-sm-5 form-control" placeholder="身份证号码">
-                <span style="color: #f00;"></span>
+
+                <div class="col-sm-7">
+                    <input type="text" name="idCard" class="form-control" placeholder="身份证号码">
+                    <span style="color: #f00;position:absolute;top:8px;left:235px;width: 100%;"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">用户权限</label>
@@ -87,13 +102,13 @@
     //汉字昵称
     var h = /^[\u4e00-\u9fa5]{0,5}$/;
     //手机号
-    var d = /^1[3|4|5|8][0-9]\d{4,8}$/;
+    var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
     //邮箱
     var y = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
     //密码
     var p = /^[a-zA-Z]\w{5,17}$/;
     //身份证
-    var idCard =/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    var idCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 
 
     $("input").focus(function () {
@@ -113,14 +128,14 @@
             $("[name='name']").next().html("");
         }
     });
-    $("[name='password']").blur(function () {
+    $("[name='userName']").blur(function () {
         var v = $(this).val();
         if (v == '') {
-            $("[name='password']").next().html("手机号不能为空！");
+            $("[name='userName']").next().html("手机号不能为空！");
             $(this).prev().css("color", "#f00");
         } else if (!v.match(d)) {
-            $("[name='password']").next().html("手机号不正确！");
-            $("[name='password']").prev().css("color", "#f00");
+            $("[name='userName']").next().html("手机号不正确！");
+            $("[name='userName']").prev().css("color", "#f00");
         } else {
             $(this).prev().css("color", "#0EA74A");
             $("[name='password']").next().html("");
@@ -171,8 +186,8 @@
         var name = $("[name='name']").val();
         var phone = $("[name='phone']").val();
         var email = $("[name='email']").val();
-        var password =$("[name='password']").val();
-        var idCard =$("[name='idCard']").val();
+        var password = $("[name='password']").val();
+        var idCard = $("[name='idCard']").val();
 
         if (name == "") {
             $("[name='name']").next().html("姓名不能为空！");
