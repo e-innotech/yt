@@ -227,23 +227,22 @@
                 })
             };
 //            //点击删除按钮 弹出删除弹出框
-//            function del(e){
-//                $(".alertbox").show();
-//                $(".add").hide();
-//                  $(".find").hide();
-//                $(".revise").hide();
-//                $(".del").show();
-//                console.log($(e.target).closest("tr"));
-//                $(".del>.btn1").click(function(){
-//                    $(e.target).closest("tr").remove();
-//                    $(".alertbox").hide();
-//                })
-//                $(".del>.btn2").click(function(){
-//                    $(".alertbox").hide();
-//                    $(".del").hide();
-//                })
-//
-//            };
+            function del(e){
+                $(".alertbox").show();
+                $(".add").hide();
+                $(".find").hide();
+                $(".revise").hide();
+                $(".del").show();
+                console.log($(e.target).closest("tr"));
+                $(".del>.btn1").click(function(){
+                    $(e.target).closest("tr").remove();
+                    $(".alertbox").hide();
+                })
+                $(".del>.btn2").click(function(){
+                    $(".alertbox").hide();
+                    $(".del").hide();
+                })
+            };
 //            //点击修改按钮弹出修改弹出框
 //            function revise(e){
 //              $(".alertbox").show();
