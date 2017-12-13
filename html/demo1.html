@@ -30,12 +30,12 @@
         <td>123</td>
         <td>1</td>
         <td>2017-12-12</td>-->
-        <td>
+       <!-- <td>
             <input type="button" value="增加"/>
             <input type="button" value="删除"/>
             <input type="button" value="修改"/>
             <input type="button" value="查找"/>
-        </td>
+        </td>-->
     </tr>
     </tbody>
 </table>
@@ -44,21 +44,24 @@
 
     $(document).ready(function () {
         $.ajax({
-            url: 'dome.json',
+            url: 'demo1.json',
             type: "get",
-            data: {},//传递的参数
             dataType: 'json', //返回json格式
             success: function (data) {
-                $.each(data, function (n, val) {
-                    $("#table").append("<tr>" +
-                    "<td>" + val["id"] + "</td>" +
-                    "<td>" + val["userName"] + "</td>" +
-                    "<td>" + val["passWord"] + "</td>" +
-                    "<td>" + val["isUse"] + "</td>" +
-                    "<td>" + val["createDate"] + "</td>" +
-                    "<td>" </td>" +
-                    "</tr>");
-                })
+                var tempHtml = "";
+                for(var i = 0; i< data.length; i++){
+                    tempHtml += "<tr>" +
+                    "<td>"+data[i]["id"]+"</td>" +
+                    "<td>"+data[i]["userName"]+"</td>" +
+                    "<td>"+data[i]["passWord"]+"</td>" +
+                    "<td>"+data[i]["isUse"]+"</td>" +
+                    "<td>"+data[i]["createDate"]+"</td>" +
+                    "<td>"+'<input type="button" value="增加"/>'
+                    +'<input type="button" value="删除"/>'
+                    +'<input type="button" value="修改"/>'
+                    +'<input type="button" value="查找"/>'+"</td>" +
+                    "</tr>";
+                }
                 $("table").append(tempHtml);
             }
         })

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../css/index.css"/>
     <link rel="stylesheet" href="../../css/list.css"/>
     <script src="https://cdn.upchinapro.com/media/assets/js/plugin/jquery-1.11.3.min.js"></script>
+    <script src="../demo1.json"></script>
 </head>
 <body>
 
@@ -15,51 +16,54 @@
         <div class="table-responsive">
             <table class="table" id="table">
                 <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>用户名</th>
-                        <th>密码</th>
-                        <th>状态</th>
-                        <th>操作</th>
+                <tr>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>状态</th>
+                    <th>时间</th>
+                    <th>操作</th>
                     <!--     <th>id</th>
                         <th>用户名</th>
                         <th>性别</th>
                         <th>操作</th> -->
-                    </tr>
+                </tr>
                 </thead>
                 <tbody>
+
                 </tbody>
-        </table>
+            </table>
         </div>
     </div>
 </div>
 </body>
 
 <script>
-$(document).ready(function() {
-     $.ajax({
-        type:"get",//请求方式
-        url:"http://192.168.20.195:8080/user/query",//请求路径
-        async:false,
-        dataType:"json",//数据格式
-        success: function(resultdata){
-            console.log(resultdata);
-            for(var i=0;i<resultdata.length;i++){
-             str="<tr><td>"+resultdata[i].id+"</td>" +
-                  "<td>"+resultdata[i].userName+"</td>" +
-                  "<td>"+resultdata[i].passWord+"</td>" +
-                  "<td>"+resultdata[i].isUse+"</td>" +
-                  "<td>" +"<input type='button' value='增加'/>" +
-                  "<input type='button' value='删除'/>" +
-                  "<input type='button' value='修改'/>" +
-                  "<input type='button' value='查找'/> " +
-                  "</td></tr>";
-                  $("tbody").append(str);
+    $(document).ready(function () {
+        $.ajax({
+            url: '../demo1.json',
+            type: "get",
+            dataType: 'json', //返回json格式
+            success: function (data) {
+                var tempHtml = "";
+                for(var i = 0; i< data.length; i++){
+                    tempHtml += "<tr>" +
+                    "<td>"+data[i]["id"]+"</td>" +
+                    "<td>"+data[i]["userName"]+"</td>" +
+                    "<td>"+data[i]["passWord"]+"</td>" +
+                    "<td>"+data[i]["isUse"]+"</td>" +
+                    "<td>"+data[i]["createDate"]+"</td>" +
+                    "<td>"+'<input type="button" value="增加"/>'
+                    +'<input type="button" value="删除"/>'
+                    +'<input type="button" value="修改"/>'
+                    +'<input type="button" value="查找"/>'+"</td>" +
+                    "</tr>";
+                }
+                $("table").append(tempHtml);
             }
-        }
-    });
-});
- 
+        })
+
+    })
 
 
 </script>
