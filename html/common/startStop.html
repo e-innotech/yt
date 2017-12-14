@@ -129,49 +129,14 @@ $(function(){
                     "<td>"+startdata[n].userName+"</td>" +
                     "<td>"+startdata[n].theme+"</td>" +
                     "<td>"+startdata[n].createDate+"</td>" +
-                    "<td class='annius'><p class='anniu' onclick='fn(this)'><span></span></p></td>"+
-                    "<td><input type='button' name='dee' value=删除 onclick='dels(this)'></td>"+
+                    "<td class='annius'><p class='anniu' onclick='anniu(this)'><span></span></p></td>"+
+                    "<td><input type='button' name='dee' value=删除 onclick='del_anniu(this)'></td>"+
                    "</tr>";
                     $("tbody").append(str);
-
                 }
-
             }
         });
 })
-
-//用户启停状态的逻辑
-function fn(obj){
-    if ($(obj).find("span").css("left") == "2px") {
-        $(obj).addClass("active");
-    } else {
-        $(obj).removeClass("active");
-    }
-}
-//    console.log($(obj).parent().parent().html())
-function dels(obj){
-    var c=$(obj).closest("tr")[0];
-//    console.log(c)
-    var checkbox=$(obj).closest("tr").find("input[type='checkbox']")[0];
-
-//判断checkbox的状态是不是选中
-    if($(checkbox).is(':checked')) {
-        alert(11)
-        c.remove()
-    }
-
-}
-
-
-    //    });
-//$("tbody").on("click","input[type=button]",function(){
-//    $(this).p;
-//
-////        if(confirm("你确信要删除这行吗？")){
-////
-////        }
-//
-//    })
 
 </script>
 </html>
