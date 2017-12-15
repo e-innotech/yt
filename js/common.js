@@ -112,23 +112,29 @@ function del(e){
     //拿到了第一个td里面的值
     //console.log($(e.target).closest("tsr").find("td")[0]);
     var del=$(e.target).closest("tr").find("td")[0];
+    var del2=$(e.target).closest("tr").find("td")[3];
     deltd=$(del).html()
+    deltd2=$(del2).html()
     console.log(444,deltd)
 };
 
 var deltd =0;
+var deltd2 =0;
 function test() {
     console.log('ssssss');
     //console.log($('.del'));
     $(".del>.btn1").click(function () {
         console.log(666, deltd)
+        console.log(777, deltd2)
         $.ajax({
-            type: 'get',
-            url: 'http://192.168.20.195:8080/user/' + deltd,
+            type: 'PUT',
+            url: 'http://192.168.20.195:8080/user/' + deltd+'/'+deltd2,
+            //url: 'http://192.168.20.195:8080/user/' + deltd+'/'+,;
             dataType: "json",//数据格式
             //data: JSON.stringify(search),
             success: function () {
                 console.log(111)
+                $(".alertbox").hide();
                 //$(".alertbox").hide();
                 //window.location.reload();
                 //$(".add").hide();
