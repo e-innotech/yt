@@ -7,154 +7,126 @@
     <link rel="stylesheet" href="../common/css/index.css"/>
     <link rel="stylesheet" href="../css/list.css"/>
     <script src="../common/js/jquery.min.js"></script>
-    <script src="../common/js/bootstrap.min.js"></script>
     <script src="../common/js/common.js"></script>
-    <script type="text/javascript" src="../js/pager.js"></script>
-    <style>
-        .add>input{
-            padding: 10px 25px;
-            border: none;
-            border-radius: 4px;
-            color: #fff;
-            background: #1cbb95;
-        }
-    </style>
 </head>
 <body>
-<!-- 遮罩 -->
-<div class="alertbox">
-    <div class="add">
-        <form class="form-horizontal">
-            <div class="form-group" style="margin-top:30px;">
-                <label class="col-sm-2 control-label">姓名</label>
+  <!-- 遮罩 -->
+   <div class="alertbox">
+      <div class="add">
+          <form class="form-horizontal">
+              <div class="form-group" style="margin-top:30px;">
+                  <label class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="addinput1"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">性别</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="addinput4"/>
+                  </div>
+              </div>
+              <!--<div class="form-group">-->
+                  <!--<label class="col-sm-2 control-label">账号</label>-->
+                  <!--<div class="col-sm-10">-->
+                      <!--<input class="form-control input1" id="input3"/>-->
+                  <!--</div>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                  <!--<label class="col-sm-2 control-label ">身份</label>-->
+                  <!--<div class="col-sm-10">-->
+                      <!--<input class="form-control input1" id="input4"/>-->
+                  <!--</div>-->
+              <!--</div>-->
+          </form>
+          <button class="btn btn-success btn1">确定</button>
+          <button class="btn btn-warning btn2">取消</button>
+      </div>
+      <div class="del">
+          <p>
+             您确定要删除吗？
+          </p>
+          <button class="btn btn-success btn1">确定</button>
+          <button class="btn btn-warning btn2">取消</button>
+      </div>
 
-                <div class="col-sm-10">
-                    <input class="form-control input1" id="addinput1"/>
-                </div>
-            </div>
-            <!--<div class="form-group">
-                <label class="col-sm-2 control-label">性别</label>
+      <div class="revise">
+          <form class="form-horizontal">
+              <div class="form-group" style="margin-top:30px;">
+                  <label class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs1"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">性别</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs2"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">账号</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs3"/>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label ">身份</label>
+                  <div class="col-sm-10">
+                      <input class="form-control input1" id="inputs4"/>
+                  </div>
+              </div>
+          </form>
+          <button class="btn btn-success btn1 baocun">保存</button>
+          <button class="btn btn-warning btn2">取消</button>
 
-                <div class="col-sm-10">
-                    <input class="form-control input2" id="addinput2"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">账号</label>
+      </div>
+      <div class="find">
+          <form class="form-horizontal">
+              <div class="form-group" style="margin-top:30px;">
+                  <label class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input1"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">性别</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input2"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">账号</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input3"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label ">身份</label>
+                  <div class="col-sm-10">
+                      <span class="form-control input1" id="Input4"></span>
+                  </div>
+              </div>
+          </form>
+          <button class="btn btn-warning btn2 yes">确定</button>
 
-                <div class="col-sm-10">
-                    <input class="form-control input3" id="addinput3"/>
-                </div>
-            </div>-->
-            <div class="form-group">
-                <label class="col-sm-2 control-label ">密码</label>
-
-                <div class="col-sm-10">
-                    <input class="form-control input4" id="addinput4"/>
-                </div>
-            </div>
-        </form>
-        <button class="btn btn-success btn1">确定</button>
-        <button class="btn btn-warning btn2">取消</button>
-    </div>
-    <div class="del">
-        <p>
-            您确定要删除吗？
-        </p>
-        <button class="btn btn-success btn1">确定</button>
-        <button class="btn btn-warning btn2">取消</button>
-    </div>
-
-    <div class="revise">
-        <form class="form-horizontal">
-            <div class="form-group" style="margin-top:30px;">
-                <label class="col-sm-2 control-label">姓名</label>
-
-                <div class="col-sm-10">
-                    <input class="form-control input1" id="inputs1"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">性别</label>
-
-                <div class="col-sm-10">
-                    <input class="form-control input1" id="inputs2"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">账号</label>
-
-                <div class="col-sm-10">
-                    <input class="form-control input1" id="inputs3"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label ">身份</label>
-
-                <div class="col-sm-10">
-                    <input class="form-control input1" id="inputs4"/>
-                </div>
-            </div>
-        </form>
-        <button class="btn btn-success btn1 baocun">保存</button>
-        <button class="btn btn-warning btn2">取消</button>
-
-    </div>
-    <div class="find">
-        <form class="form-horizontal">
-            <div class="form-group" style="margin-top:30px;">
-                <label class="col-sm-2 control-label">姓名</label>
-
-                <div class="col-sm-10">
-                    <span class="form-control input1" id="Input1"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">性别</label>
-
-                <div class="col-sm-10">
-                    <span class="form-control input1" id="Input2"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">账号</label>
-
-                <div class="col-sm-10">
-                    <span class="form-control input1" id="Input3"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label ">身份</label>
-
-                <div class="col-sm-10">
-                    <span class="form-control input1" id="Input4"></span>
-                </div>
-            </div>
-        </form>
-        <button class="btn btn-warning btn2 yes">确定</button>
-
-    </div>
-</div>
+      </div>
+  </div>
 
 <!--表格-->
 <div class="wrapper wrapper-content system" style="width: 75%">
     <div class="list_4 row">
-        <div class="clearfix">
-            <div class="fl add" onclick="add()"><input type="button" value="增加"/></div>
-            <div class="fl find"><input type="text"/><label>查找</label></div>
-        </div>
         <div class="table-responsive">
             <table class="table" id="table">
                 <thead>
-                <tr>
-                    <th>id</th>
-                    <th>用户名</th>
-                    <th>密码</th>
-                    <th>时间</th>
-                    <th>状态</th>
-                    <th>操作</th>
-                </tr>
-
+                    <tr>
+                        <th>id</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>状态</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
                 </thead>
                 <tbody>
 
@@ -163,70 +135,61 @@
             </table>
         </div>
     </div>
-
-</div>
-<div>
-    <ul class="pagination fr page1"></ul>
 </div>
 </body>
 
 <script>
-
-
-    /*分页*/
-    Page({
-        num: 10,					//页码数
-        startnum: 1,				//指定页码
-        elem: $('.page1'),		//指定的元素
-        setNum: 10,
-        callback: function (n) {	//回调函数
-            console.log(n);
+  //发送ajax请求，拿到数据并渲染到页面上
+$(document).ready(function() {
+    setTimeout(function(){},500);
+     $.ajax({
+        type:"get",//请求方式
+        url:"http://192.168.20.195:8080/user/query",//请求路径
+        async:false,
+        dataType:"json",//数据格式
+        success: function(resultdata){
+          console.log(resultdata);
+         console.log(resultdata[0]);
+          for(var i=0;i<resultdata.length;i++){
+             str="<tr><td>"+resultdata[i].id+"</td>" +
+                  "<td>"+resultdata[i].userName+"</td>" +
+                  "<td>"+resultdata[i].passWord+"</td>" +
+                  "<td>"+resultdata[i].isUse+"</td>" +
+                  "<td>"+resultdata[i].createDate+"</td>" +
+                  "<td>" +
+                      "<input type='button' value='增加'/>"+
+                      "<input type='button' value='删除' />" +
+                      "<input type='button' value='修改'/>" +
+                  "</td></tr>";
+                  $("tbody").append(str);
+          }
         }
     });
-    //发送ajax请求，拿到数据并渲染到页面上
-    $(document).ready(function () {
-        $.ajax({
-            type: "get",//请求方式
-            url: "http://192.168.20.195:8080/user/query",//请求路径
-            async: false,
+    test();
+});
 
-            dataType: "json",//数据格式
-            success: function (resultdata) {
-                console.log(resultdata);
-                for (var i = 0; i < resultdata.length; i++) {
-                    str = "<tr><td>" + resultdata[i].id + "</td>" +
-                    "<td>" + resultdata[i].userName + "</td>" +
-                    "<td>" + resultdata[i].passWord + "</td>" +
-                    "<td>" + resultdata[i].createDate + "</td>" +
-                    "<td class='annius'>" + "<p class='anniu' onclick='anniu(this)'><span></span></p>" +
-                    "</td>"+
-                    "<td>" +
-                    "<input type='button' value='删除'/>" +
-                    "<input type='button' value='修改'/>" +
-                    "</td></tr>";
-                    $("tbody").append(str);
-                }
-            }
-        });
-    });
+ //点击增删改查按钮时做判断分别进入不同的方法
+  $("tbody").on("click","input",function (e) {
+          console.log(555555555)
+          e = e || window.event;
+          var target = e.target;
+          switch (target.value) {
+              case "增加":
+                  add();
+                  break;
+              case "删除":
+                  del(e);
+                  break;
+              case "修改":
+                  revise();
+                  break;
+              case "查找":
+                  find();
+                  break;
+          }
 
-    //点击增删改查按钮时做判断分别进入不同的方法
-    $("tbody").on("click", "input", function (e) {
-        // console.log(555555555)
-        e = e || window.event;
-        var target = e.target;
-        switch (target.value) {
+  });
 
-            case "删除":
-                del(e);
-                break;
-            case "修改":
-                revise();
-                break;
-
-        }
-
-    });
 
 
 </script>
