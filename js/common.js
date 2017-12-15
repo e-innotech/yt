@@ -1,3 +1,6 @@
+/**
+ * Created by admin on 2017/12/15.
+ */
 /*
  通用的ajax请求函数
  @param type get、post
@@ -70,7 +73,26 @@ function add(){
     $(".add").show();
     $(".del").hide();
     $(".find").hide();
-
+  //点击确定按钮时：
+    $(".add .btn1").click(function () {
+            var search = {};
+            search["userName"] = $("#addinput1").val();
+            search["passWord"] = $("#addinput4").val();
+            $.ajaxSetup({
+                contentType: 'application/json'
+            });
+            $.ajax({
+                type: 'post',
+                url: 'http://192.168.20.195:8080/user',
+                dataType: "json",//数据格式
+                data: JSON.stringify(search),
+                success: function () {
+                    $(".alertbox").hide();
+                    window.location.reload();
+                    //$(".add").hide();
+                }
+            })
+    });
     //点击取消关闭弹窗
     $(".add .btn2").click(function(){
         $(".add").hide();
@@ -84,17 +106,42 @@ function del(e){
     $(".add").hide();
     $(".find").hide();
     $(".revise").hide();
-    $(".del").show();
-    //console.log($(e.target).closest("tr"));
-    $(".del>.btn1").click(function(){
-        $(e.target).closest("tr").remove();
-        $(".alertbox").hide();
+    //$(".alertbox").load('myAlert.html');
+    $(".del").show()
+    //$(".del").show();
+    //拿到了第一个td里面的值
+    //console.log($(e.target).closest("tsr").find("td")[0]);
+    var del=$(e.target).closest("tr").find("td")[0];
+    deltd=$(del).html()
+    console.log(444,deltd)
+};
+
+var deltd =0;
+function test() {
+    console.log('ssssss');
+    //console.log($('.del'));
+    $(".del>.btn1").click(function () {
+        console.log(666, deltd)
+        $.ajax({
+            type: 'get',
+            url: 'http://192.168.20.195:8080/user/' + deltd,
+            dataType: "json",//数据格式
+            //data: JSON.stringify(search),
+            success: function () {
+                console.log(111)
+                //$(".alertbox").hide();
+                //window.location.reload();
+                //$(".add").hide();
+            }
+        })
+        //$(e.target).closest("tr").remove();
+        //$(".alertbox").hide();
     })
-    $(".del>.btn2").click(function(){
+    $(".del>.btn2").click(function () {
         $(".alertbox").hide();
         $(".del").hide();
     })
-};
+}
 
 //点击修改按钮时
 function revise(){
@@ -162,7 +209,6 @@ function password(){
     });
 }
 function email() {
-
 //邮箱
     var y = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
     $("[name='email']").blur(function () {
@@ -199,17 +245,12 @@ function idCard() {
 
 }
 /*
-$("input").focus(function () {
-    $(this).prev().css("color", "#008DE8");
-});
-*/
+ $("input").focus(function () {
+ $(this).prev().css("color", "#008DE8");
+ });
+ */
 
 
-
-
-
-
-}
 
 //用户状态启停页面的逻辑
 //	按钮开关
