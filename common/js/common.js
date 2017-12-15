@@ -72,13 +72,32 @@ function add() {
     $(".del").hide();
     $(".find").hide();
 
+//
+    $(".add .btn1").click(function () {
+        var search = {};
+        search["userName"] = $("#addinput1").val();
+        search["passWord"] = $("#addinput4").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            url: 'http://192.168.20.195:8080/user',
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function () {
+
+                $(".alertbox").hide();
+
+                    //$(".add").hide();
+            }
+        })
+    });
+
     //点击取消关闭弹窗
     $(".add .btn2").click(function () {
         $(".add").hide();
         $(".alertbox").hide();
     })
 }
-
 //点击删除按钮时
 function del(e) {
     $(".alertbox").show();
@@ -206,7 +225,7 @@ function anniu(obj){
     }
 }
 //删除选中的行
-function del_anniu(obj){
+function delanniu(obj){
     var c=$(obj).closest("tr")[0];
 //    console.log(c)
     var checkbox=$(obj).closest("tr").find("input[type='checkbox']")[0];
@@ -219,5 +238,3 @@ function del_anniu(obj){
     }
 
 }
-
-

@@ -3,11 +3,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>我的</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../css/index.css"/>
-    <link rel="stylesheet" href="../../css/list.css"/>
-    <script type="text/javascript" src="../../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../common/css/index.css"/>
+    <link rel="stylesheet" href="../css/list.css"/>
+    <script type="text/javascript" src="../common/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../common/js/common.js"></script>
 </head>
 
 <body style="margin-top:150px; margin-left:150px;">
@@ -130,7 +131,7 @@ $(function(){
                     "<td>"+startdata[n].theme+"</td>" +
                     "<td>"+startdata[n].createDate+"</td>" +
                     "<td class='annius'><p class='anniu' onclick='anniu(this)'><span></span></p></td>"+
-                    "<td><input type='button' name='dee' value=删除 onclick='del_anniu(this)'></td>"+
+                    "<td><input type='button' name='dee' value=删除 onclick='delanniu(this)'></td>"+
                    "</tr>";
                     $("tbody").append(str);
                 }

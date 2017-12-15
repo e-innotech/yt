@@ -3,8 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>登陆</title>
-    <link rel="stylesheet" href="../../css/list.css"/>
-    <script src="https://s.ssl.qhres.com/static/6d694f8071623fb4/lib/jquery/jquery.js"></script>
+
+    <link rel="stylesheet" href="../css/list.css"/>
+    <link rel="stylesheet" href="../common/css/index.css"/>
+    <script src="../common/js/jquery.min.js"></script>
 </head>
 <body id="body">
 <div id="box">
@@ -47,9 +49,7 @@
         password();
     });
 
-   /* doAjax("get", "../demo1.json", false, "", function(){
 
-    });*/
     $(function (){
         $("#login").click(function (){
             var username=$(name="userName").val()
@@ -62,12 +62,9 @@
                 beforeSend: function(xhr) {   //beforeSend定义全局变量
                     xhr.setRequestHeader("If-Modified-Since", "0");  //If-Modified-Since HTTP请求头标签,即比较浏览器缓存页面时间
                 },
-                success: function(xmlDoc, textStatus, xhr)
-                {
-                    if(xhr.readyState==4)
-                    {
-                        if(xhr.status == 200)
-                        {
+                success: function(xmlDoc, textStatus, xhr) {
+                    if(xhr.readyState==4) {
+                        if(xhr.status == 200) {
                             var str=xhr.responseText; //获取返回值
                             if (str==0){ //查询返回0表示已注册
                                 alert("已被注册")

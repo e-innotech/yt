@@ -16,25 +16,25 @@
               <div class="form-group" style="margin-top:30px;">
                   <label class="col-sm-2 control-label">姓名</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1" id="input1"/>
+                      <input class="form-control input1" id="add_input1"/>
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-sm-2 control-label">性别</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1" id="input2"/>
+                      <input class="form-control input1" id="add_input2"/>
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-sm-2 control-label">账号</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1" id="input3"/>
+                      <input class="form-control input1" id="add_input3"/>
                   </div>
               </div>
               <div class="form-group">
                   <label class="col-sm-2 control-label ">身份</label>
                   <div class="col-sm-10">
-                      <input class="form-control input1" id="input4"/>
+                      <input class="form-control input1" id="add_input4"/>
                   </div>
               </div>
           </form>
@@ -181,13 +181,13 @@
                 //点击确定把当前行的值赋值给弹窗出框
                 $(".add .btn1").one("click", function () {
                         //获取姓名的值
-                        var input1=$("#input1").val();
+                        var input1=$("#add_input1").val();
                        //获取性别的值
-                        var input2=$("#input2").val();
+                        var input2=$("#add_input2").val();
                         //获取账号的值
-                        var input3=$("#input3").val();
+                        var input3=$("#add_input3").val();
                         //获取的身份的值
-                        var input4=$("#input4").val();
+                        var input4=$("#add_input4").val();
 
                         //做一个字符串拼接放进tbody中
                         $("tbody tr:last").after("<tr><td><input type='checkbox'/></td>" +
@@ -201,10 +201,10 @@
                         "<input type='button' value='查找'/> " +
                         "</td></tr>")
 
-                        $("#input1").val("");
-                        $("#input2").val("");
-                        $("#input3").val("");
-                        $("#input4").val("");
+                        $("#add_input1").val("");
+                        $("#add_input2").val("");
+                        $("#add_input3").val("");
+                        $("#add_input4").val("");
                         $(".alertbox").hide();
 
                         $.ajax({
