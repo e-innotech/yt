@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yt.cms.dao.ResourceMapper" >
+<mapper namespace="com.yt.cms.mapper.ResourceMapper" >
   <resultMap id="BaseResultMap" type="com.yt.cms.model.Resource" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="resourceName" property="resourcename" jdbcType="VARCHAR" />
@@ -29,6 +29,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yt.cms.model.Resource" >
+  	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
     insert into resource (id, resourceName, uri, 
       module_id, rw)
     values (#{id,jdbcType=INTEGER}, #{resourcename,jdbcType=VARCHAR}, #{uri,jdbcType=VARCHAR}, 

@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Spring Boot ajax example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Insert title here</title>
+<script type="text/javascript" src="webjars/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+	
+	$(document).ready(function () {
+
+		 $.ajax({
+		        type: "GET",
+		        url: "http://192.168.20.195:8080/user/query",
+		        cache: false,
+		        timeout: 600000,
+		        success: function (data) {
+		        	$.each(data, function(n, value) {
+						alert(n);
+						alert(value.userName);
+						alert(value.passWord);
+					});
+		           
+		        },
+		        error: function (e) {
+		        	
+		        }
+		    });
+	});
+
+	</script>
+
+</body>
+</html>

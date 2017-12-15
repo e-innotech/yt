@@ -10,35 +10,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.common.Response;
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserResponseBody;
 import com.yt.cms.service.UserService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/user")
 @Api(value = "用户服务",description = "提供RESTful风格API的用户的增删改查服务")
 public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/hello/{myName}")
-	String index(@PathVariable String myName) {
-		return "Hello " + myName + "!!!";
-	}
-
 	/**
 	 * 列表页面
 	 * @return
 	 */
-	@GetMapping(value="query")
+	@GetMapping("/user/query")
 	@ApiOperation("查询用户列表")
 	List<User> query(){
 		return userService.query();
@@ -50,7 +44,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(value = "{id}")
+	@GetMapping("/user/{id}")
 	@ApiOperation("按照id查询用户")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
 		User result = userService.findById(id);
@@ -62,19 +56,19 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PostMapping
+	@PostMapping("/user")
 	@ApiOperation("添加用户")
-	public HttpEntity<?> add(@PathVariable  String userName,@PathVariable  String passWord) {
+	public HttpEntity<?> add(@RequestBody UserResponseBody userBody) {
 		User user = new User();
-		user.setUserName(userName);
-		user.setPassWord(passWord);
+		user.setPassWord(userBody.getPassWord());
+		user.setUserName(userBody.getUserName());
 		boolean created = userService.save(user);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		Response response = new Response();
-		response.setMessage(Const.SUCCESS);
-		return new ResponseEntity<Response>(response,HttpStatus.CREATED);
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
 	
 	/**
@@ -82,7 +76,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping(value="{id}/{isUse}")
+	@PutMapping("/user/{id}/{isUse}")
 	@ApiOperation("启停用户")
 	public HttpEntity<?> enableOrDisable(@PathVariable Integer id,@PathVariable Integer isUse) {
 		User user = new User();
@@ -92,9 +86,9 @@ public class UserController {
 		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		Response response = new Response();
-		response.setMessage(Const.SUCCESS);
-		return new ResponseEntity<Response>(response,HttpStatus.CREATED);
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
 	
 }

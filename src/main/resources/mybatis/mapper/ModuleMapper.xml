@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yt.cms.dao.ModuleMapper" >
+<mapper namespace="com.yt.cms.mapper.ModuleMapper" >
   <resultMap id="BaseResultMap" type="com.yt.cms.model.Module" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="moduleName" property="modulename" jdbcType="VARCHAR" />
@@ -28,6 +28,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yt.cms.model.Module" >
+  	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
     insert into module (id, moduleName, moduleCode
       )
     values (#{id,jdbcType=INTEGER}, #{modulename,jdbcType=VARCHAR}, #{modulecode,jdbcType=VARCHAR}

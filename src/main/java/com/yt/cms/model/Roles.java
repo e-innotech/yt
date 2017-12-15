@@ -12,7 +12,7 @@ public class Roles {
     /**
      * 角色说明
      */
-    private String desc;
+    private String comment;
 
     public Integer getId() {
         return id;
@@ -30,11 +30,13 @@ public class Roles {
         this.roleName = roleName == null ? null : roleName.trim();
     }
 
-    public String getDesc() {
-        return desc;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
-    }
+	public void setComment(String comment) {
+		this.comment = comment == null ? null : comment.trim();
+	}
+
+ 
 }

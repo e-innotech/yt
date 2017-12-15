@@ -12,7 +12,7 @@ public class UserGroup {
     /**
      * 用户组描述
      */
-    private String desc;
+    private String comment;
 
     public Integer getId() {
         return id;
@@ -29,12 +29,13 @@ public class UserGroup {
     public void setGroupName(String groupName) {
         this.groupName = groupName == null ? null : groupName.trim();
     }
+    
+    public String getComment() {
+		return comment;
+	}
 
-    public String getDesc() {
-        return desc;
-    }
+	public void setComment(String comment) {
+		this.comment = comment == null ? null : comment.trim();
+	}
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
-    }
 }

@@ -5,17 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yt.cms.mapper.UserGroupMapper;
 import com.yt.cms.model.UserGroup;
 import com.yt.cms.service.UserGroupService;
 @Service
 public class UserGroupServiceImpl implements UserGroupService {
 
 	@Autowired
-	private UserGroupService userGroupService;
+	private UserGroupMapper userGroupDAO;
 
 	@Override
 	public boolean save(UserGroup userGroup) {
-		userGroupService.save(userGroup);
+		userGroupDAO.insert(userGroup);
 		if (userGroup.getId() > 0) {
 			return true;
 		}
@@ -24,18 +25,18 @@ public class UserGroupServiceImpl implements UserGroupService {
 
 	@Override
 	public UserGroup findById(Integer id) {
-		return userGroupService.findById(id);
+		return userGroupDAO.selectByPrimaryKey(id);
 	}
 
 	@Override
 	public List<UserGroup> query() {
-		return userGroupService.query();
+		return userGroupDAO.query();
 	}
 
 	@Override
 	public boolean update(UserGroup userGroup) {
 		try {
-			userGroupService.update(userGroup);
+			userGroupDAO.updateByPrimaryKeySelective(userGroup);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

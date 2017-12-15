@@ -27,6 +27,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yt.cms.model.RolesResource" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
     insert into roles_resource (id, roles_id, resource_id
       )
     values (#{id,jdbcType=INTEGER}, #{rolesId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}

@@ -27,7 +27,7 @@ public interface ModuleService {
 	 * 列表显示模块信息
 	 * @return
 	 */
-	public List<Module> queryAll();
+	public List<Module> queryAll(Module module);
 	/**
 	 * 更新模块信息
 	 * @param module
