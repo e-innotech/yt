@@ -5,7 +5,8 @@
     <title>用户管理</title>
     <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../common/css/index.css"/>
-    <link rel="stylesheet" href="../css/list.css"/>
+    <link rel="stylesheet" href="../css/common.css.css"/>
+    <link rel="stylesheet" href="../css/list_4.css"/>
     <script src="../common/js/jquery.min.js"></script>
     <script src="../common/js/common.js"></script>
 </head>
@@ -144,7 +145,8 @@ $(document).ready(function() {
     setTimeout(function(){},500);
      $.ajax({
         type:"get",//请求方式
-        url:"http://192.168.20.195:8080/user/query",//请求路径
+        url:"data.json",
+//        url:"http://192.168.20.195:8080/user/query",//请求路径
         async:false,
         dataType:"json",//数据格式
         success: function(resultdata){
