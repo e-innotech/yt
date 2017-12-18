@@ -87,7 +87,7 @@ function add() {
 
                 $(".alertbox").hide();
 
-                    //$(".add").hide();
+                //$(".add").hide();
             }
         })
     });
@@ -109,15 +109,15 @@ function del(e) {
     //$(".del").show();
     //拿到了第一个td里面的值
     //console.log($(e.target).closest("tsr").find("td")[0]);
-    var del=$(e.target).closest("tr").find("td")[0];
-    var del2=$(e.target).closest("tr").find("td")[3];
-    deltd=$(del).html()
-    deltd2=$(del2).html()
-    console.log(444,deltd)
+    var del = $(e.target).closest("tr").find("td")[0];
+    var del2 = $(e.target).closest("tr").find("td")[3];
+    deltd = $(del).html()
+    deltd2 = $(del2).html()
+    console.log(444, deltd)
 };
 
-var deltd =0;
-var deltd2 =0;
+var deltd = 0;
+var deltd2 = 0;
 function test() {
     console.log('ssssss');
     //console.log($('.del'));
@@ -126,7 +126,7 @@ function test() {
         console.log(777, deltd2)
         $.ajax({
             type: 'PUT',
-            url: 'http://192.168.20.195:8080/user/' + deltd+'/'+deltd2,
+            url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,
             //url: 'http://192.168.20.195:8080/user/' + deltd+'/'+,;
             dataType: "json",//数据格式
             //data: JSON.stringify(search),
@@ -137,28 +137,29 @@ function test() {
                 //window.location.reload();
                 //$(".add").hide();
             }
+
         })
         //$(e.target).closest("tr").remove();
         //$(".alertbox").hide();
     })
-    $(".del>.btn2").click(function(){
+    $(".del>.btn2").click(function () {
         $(".alertbox").hide();
         $(".del").hide();
     })
 };
 
 //点击修改按钮时
-function revise(){
+function revise() {
     console.log("我是修改函数")
 }
 
 //点击查看按钮时
-function find(){
+function find() {
     console.log("我是查找函数")
 }
 
 //正则验证
-function verify(){
+function verify() {
     //昵称
     var h = /^[\u4E00-\u9FA5A-Za-z0-9_]+$/;
 
@@ -246,10 +247,9 @@ function idCard() {
 }
 
 
-
 //用户状态启停页面的逻辑
 //	按钮开关
-function anniu(obj){
+function anniu(obj) {
     if ($(obj).find("span").css("left") == "2px") {
         $(obj).addClass("active");
     } else {
@@ -257,15 +257,15 @@ function anniu(obj){
     }
 }
 //删除选中的行
-function delanniu(obj){
-    var c=$(obj).closest("tr")[0];
+function delanniu(obj) {
+    var c = $(obj).closest("tr")[0];
 //    console.log(c)
-    var checkbox=$(obj).closest("tr").find("input[type='checkbox']")[0];
+    var checkbox = $(obj).closest("tr").find("input[type='checkbox']")[0];
 //判断checkbox的状态是不是选中
-    if($(checkbox).is(':checked')) {
+    if ($(checkbox).is(':checked')) {
 //        alert(11)
         c.remove()
-    }else{
+    } else {
         alert('删除选中的信息')
     }
 

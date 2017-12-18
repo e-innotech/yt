@@ -115,6 +115,8 @@
 
 <!--表格-->
 <div class="wrapper wrapper-content system" style="width: 75%">
+    <input type="button" value="增加" onclick="test();"/>
+    <input type="text" value="查找"/><input type="button" value="查找"/>
     <div class="list_4 row">
         <div class="table-responsive">
             <table class="table" id="table">
@@ -136,61 +138,98 @@
         </div>
     </div>
 </div>
-</body>
 
+</body>
 <script>
   //发送ajax请求，拿到数据并渲染到页面上
 $(document).ready(function() {
-    setTimeout(function(){},500);
-     $.ajax({
-        type:"get",//请求方式
-        url:"http://192.168.20.195:8080/user/query",//请求路径
+    setTimeout(function () {}, 500);
+   /* $.ajax({
+        type: "get",//请求方式
+        //url:"http://192.168.20.195:8080/user/query",//请求路径
+        url: "data.json",//请求路径
         async:false,
-        dataType:"json",//数据格式
+        dataType:"json", //数据格式
         success: function(resultdata){
-          console.log(resultdata);
+          console.
+                  log(
+                  resultdata
+          );
          console.log(resultdata[0]);
-          for(var i=0;i<resultdata.length;i++){
-             str="<tr><td>"+resultdata[i].id+"</td>" +
-                  "<td>"+resultdata[i].userName+"</td>" +
-                  "<td>"+resultdata[i].passWord+"</td>" +
-                  "<td>"+resultdata[i].isUse+"</td>" +
-                  "<td>"+resultdata[i].createDate+"</td>" +
-                  "<td>" +
-                      "<input type='button' value='增加'/>"+
-                      "<input type='button' value='删除' />" +
-                      "<input type='button' value='修改'/>" +
-                  "</td></tr>";
-                  $("tbody").append(str);
-          }
+            for(var i=0;i< resultdata.length;i++){
+             str= "< tr>" +
+             "< td>"+ resultdata [i].id+"</td>" +
+             " <td>"+ resultdata[i].userName+"</td>" +
+             "< td>"+ resultdata[i].passWord + "</td>" +
+             "<td>" + resultdata[i].isUse + "</td>" +
+             "< td>" + resultdata[i].createDate + "</td>" +
+             "<td>" +
+             "<input type='button' value='删除' />" +
+             "<input type='button' value='修改'/>" +
+             "</td></tr>";
+                $("tbody").append(str);
+            }
+        }
+    });*/
+    test();
+
+
+
+    $.ajax({
+        //用户表
+        type: "get",//请求方式
+        /*
+         url:"http://192.168.20.195:8080/user/query",//请求路径
+         */
+        url: "uname.json",//请求路径
+        async:false,
+        dataType:"json", //数据格式
+        success: function(resultdata){
+            console.
+                    log(
+                    resultdata
+            );
+            console.log(resultdata[0]);
+            for(var i=0;i< resultdata.length;i++){
+                str= "< tr>" +
+                "< td>"+ resultdata [i].id+"</td>" +
+                " <td>"+ resultdata[i].uname +"</td>" +
+                "< td>"+ resultdata[i].pwd + "</td>" +
+                "<td>" + resultdata[i].createDate + "</td>" +
+                "< td>" + resultdata[i].isUse + "</td>" +
+                "< td>" + resultdata[i].user_group_id + "</td>" +
+                "<td>" +
+                "<input type='button' value='删除' />" +
+                "<input type='button' value='修改'/>" +
+                "</td></tr>";
+                $("tbody").append(str);
+            }
         }
     });
-    test();
+
+    //点击增删改查按钮时做判断分别进入不同的方法
+    $("tbody").on("click", "input", function (e) {
+        console.log(555555555)
+        e = e || window.event;
+        var target = e.target;
+        switch (target.value) {
+            case "增加":
+                add();
+                break;
+            case "删除":
+                del(e);
+                break;
+            case "修改":
+                revise();
+                break;
+            case "查找":
+                find();
+                break;
+        }
+
+    });
+
 });
-
- //点击增删改查按钮时做判断分别进入不同的方法
-  $("tbody").on("click","input",function (e) {
-          console.log(555555555)
-          e = e || window.event;
-          var target = e.target;
-          switch (target.value) {
-              case "增加":
-                  add();
-                  break;
-              case "删除":
-                  del(e);
-                  break;
-              case "修改":
-                  revise();
-                  break;
-              case "查找":
-                  find();
-                  break;
-          }
-
-  });
-
-
 
 </script>
 </html>
