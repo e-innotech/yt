@@ -83,11 +83,18 @@ function add() {
             url: 'http://192.168.20.195:8080/user',
             dataType: "json",//数据格式
             data: JSON.stringify(search),
-            success: function () {
+            success: function (data) {
 
-                $(".alertbox").hide();
+                //
+                if (msg == true) {
+                    $(".alertbox").hide();
+                }
+                else if(msg == "no"){
+                    alert("数据已存在");
+                }else{
+                    alert("添加失败")
+                }
 
-                //$(".add").hide();
             }
         })
     });
@@ -125,17 +132,17 @@ function test() {
         console.log(666, deltd)
         console.log(777, deltd2)
         $.ajax({
-            type: 'PUT',
-            url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,
-            //url: 'http://192.168.20.195:8080/user/' + deltd+'/'+,;
+            type: 'get',
+            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,
+            url:'data.json',
             dataType: "json",//数据格式
             //data: JSON.stringify(search),
-            success: function () {
-                console.log(111)
-                $(".alertbox").hide();
-                //$(".alertbox").hide();
-                //window.location.reload();
-                //$(".add").hide();
+            success: function (data) {
+                if(msg==true){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
             }
 
         })
@@ -150,12 +157,53 @@ function test() {
 
 //点击修改按钮时
 function revise() {
-    console.log("我是修改函数")
-}
+    $(".alertbox").show();
+    $(".revise").show();
+    $(".del").hide();
+    $(".find").hide();
 
-//点击查看按钮时
+}
+function revise_is (){
+    $(".revise .btn1").click(function () {
+        var search = {};
+        search["userName"] = $("#addinput1").val();
+        search["passWord"] = $("#addinput4").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            url: 'data.json',
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (data) {
+                if (msg == true) {
+                    window.location.reload();
+                }
+                else if(msg == "no"){
+                    alert("数据已存在");
+                }else{
+                    alert("添加失败")
+                }
+
+            }
+        })
+    });
+    //点击取消关闭弹窗
+    $(".revise .btn2").click(function () {
+        $(".revise").hide();
+        $(".alertbox").hide();
+    })
+
+}
+//点击查询按钮时
 function find() {
-    console.log("我是查找函数")
+    $.ajax({
+        type: "get",
+        url: "queryAll.json",
+        dataType: "json",
+        success: function (data) {
+            alert(1)
+        }
+    })
 }
 
 //正则验证

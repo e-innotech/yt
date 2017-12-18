@@ -1,69 +1,66 @@
-
-
-[/*用户表*/
-    {
-        "id": 1,
-        "uname": "wu",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 2,
-        "uname": "wu2",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 3,
-        "uname": "wu3",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 4,
-        "uname": "wu4",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 5,
-        "uname": "wu5",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 6,
-        "uname": "wu6",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 7,
-        "uname": "wu7",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    },
-    {
-        "id": 8,
-        "uname": "wu8",
-        "pwd": "a123456",
-        "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
-        "user_group_id": "管理员"
-    }
-
+[
+  {
+    "id": 1,
+    "uname": "wu",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 2,
+    "uname": "wu2",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 3,
+    "uname": "wu3",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 4,
+    "uname": "wu4",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 5,
+    "uname": "wu5",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 6,
+    "uname": "wu6",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 7,
+    "uname": "wu7",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  },
+  {
+    "id": 8,
+    "uname": "wu8",
+    "pwd": "a123456",
+    "createDate": "2017-12-11 17:58:40",
+    "isUse": 1,
+    "user_group_id": "管理员"
+  }
 ]
