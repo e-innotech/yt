@@ -14,29 +14,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.Const;
 import com.yt.cms.common.AjaxResponseBody;
-import com.yt.cms.model.UserGroup;
-import com.yt.cms.service.UserGroupService;
+import com.yt.cms.common.Const;
+import com.yt.cms.model.Resource;
+import com.yt.cms.service.ResourceService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/userGroup")
-@Api(value = "用户组服务",description = "提供RESTful风格API的用户组的增删改查服务")
-public class UserGroupController {
+@RequestMapping("/resource")
+@Api(value = "资源服务")
+public class ResourceController {
 	@Autowired
-	private UserGroupService userGroupService;
+	private ResourceService resourceService;
 
 	/**
 	 * 列表页面
 	 * @return
 	 */
 	@GetMapping("/query")
-	@ApiOperation("查询用户组列表")
-	public List<UserGroup> query(){
-		return userGroupService.query();
+	@ApiOperation("查询系统资源列表")
+	public List<Resource> query(){
+		Resource resource = new Resource();
+		return resourceService.find(resource);
 	}
 
 	/**
@@ -46,21 +47,21 @@ public class UserGroupController {
 	 * @return
 	 */
 	@GetMapping("/{id}")
-	@ApiOperation("按照id查询用户组")
+	@ApiOperation("按照id查询系统资源")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
-		UserGroup result = userGroupService.findById(id);
+		Resource result = resourceService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<UserGroup>(result, status);
+		return new ResponseEntity<Resource>(result, status);
 	}
 	/**
-	 * 新增用户组
-	 * @param userGroup
+	 * 新增系统资源
+	 * @param resource
 	 * @return
 	 */
 	@PostMapping
-	@ApiOperation("添加用户组")
-	public HttpEntity<?> add(@RequestBody UserGroup userGroup) {
-		boolean created = userGroupService.save(userGroup);
+	@ApiOperation("添加系统资源")
+	public HttpEntity<?> add(@RequestBody Resource resource) {
+		boolean created = resourceService.save(resource);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -69,14 +70,14 @@ public class UserGroupController {
 		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
 	/**
-	 * 修改用户组
-	 * @param userGroup
+	 * 修改系统资源
+	 * @param resource
 	 * @return
 	 */
 	@PutMapping
-	@ApiOperation("修改用户组")
-	public HttpEntity<?> update(@RequestBody UserGroup userGroup){
-		boolean created = userGroupService.update(userGroup);
+	@ApiOperation("修改系统资源")
+	public HttpEntity<?> update(@RequestBody Resource resource){
+		boolean created = resourceService.update(resource);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

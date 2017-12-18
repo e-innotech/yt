@@ -3,8 +3,8 @@
 <mapper namespace="com.yt.cms.mapper.ModuleMapper" >
   <resultMap id="BaseResultMap" type="com.yt.cms.model.Module" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="moduleName" property="modulename" jdbcType="VARCHAR" />
-    <result column="moduleCode" property="modulecode" jdbcType="VARCHAR" />
+    <result column="moduleName" property="moduleName" jdbcType="VARCHAR" />
+    <result column="moduleCode" property="moduleCode" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, moduleName, moduleCode
@@ -33,7 +33,7 @@
       	</selectKey>
     insert into module (id, moduleName, moduleCode
       )
-    values (#{id,jdbcType=INTEGER}, #{modulename,jdbcType=VARCHAR}, #{modulecode,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{moduleName,jdbcType=VARCHAR}, #{moduleCode,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yt.cms.model.Module" >
@@ -42,10 +42,10 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="modulename != null" >
+      <if test="moduleName != null" >
         moduleName,
       </if>
-      <if test="modulecode != null" >
+      <if test="moduleCode != null" >
         moduleCode,
       </if>
     </trim>
@@ -53,30 +53,30 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="modulename != null" >
-        #{modulename,jdbcType=VARCHAR},
+      <if test="moduleName != null" >
+        #{moduleName,jdbcType=VARCHAR},
       </if>
-      <if test="modulecode != null" >
-        #{modulecode,jdbcType=VARCHAR},
+      <if test="moduleCode != null" >
+        #{moduleCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Module" >
     update module
     <set >
-      <if test="modulename != null" >
-        moduleName = #{modulename,jdbcType=VARCHAR},
+      <if test="moduleName != null" >
+        moduleName = #{moduleName,jdbcType=VARCHAR},
       </if>
-      <if test="modulecode != null" >
-        moduleCode = #{modulecode,jdbcType=VARCHAR},
+      <if test="moduleCode != null" >
+        moduleCode = #{moduleCode,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yt.cms.model.Module" >
     update module
-    set moduleName = #{modulename,jdbcType=VARCHAR},
-      moduleCode = #{modulecode,jdbcType=VARCHAR}
+    set moduleName = #{moduleName,jdbcType=VARCHAR},
+      moduleCode = #{moduleCode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

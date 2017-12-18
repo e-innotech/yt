@@ -41,13 +41,14 @@ public interface UserService {
 	 */
 	public List<User> query();
 	/**
-	 * 更新用户
+	 * 更新用户 密码
 	 * @param user
 	 * @return
 	 */
 	public boolean update(User user);
 	/**
 	 * 对用户的启用或者禁用
+	 * 逻辑删除
 	 * @param user
 	 * @return
 	 */

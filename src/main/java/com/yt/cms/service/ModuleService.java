@@ -24,6 +24,7 @@ public interface ModuleService {
 	 */
 	public Module findById(Integer id);
 	/**
+	 * 按照module 参数查询
 	 * 列表显示模块信息
 	 * @return
 	 */
@@ -34,10 +35,5 @@ public interface ModuleService {
 	 * @return
 	 */
 	public boolean update(Module module);
-	/**
-	 * 按照module 参数查询
-	 * @param module
-	 * @return
-	 */
-	public List<Module> find(Module module);
+	
 }

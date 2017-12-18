@@ -43,9 +43,5 @@ public class ModuleServiceImpl implements ModuleService {
 		return false;
 	}
 
-	@Override
-	public List<Module> find(Module module) {
-		return moduleDAO.query(module);
-	}
 
 }

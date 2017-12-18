@@ -27,11 +27,6 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public List<Resource> queryAll() {
-		return resourceDAO.query();
-	}
-
-	@Override
 	public boolean update(Resource resource) {
 		try {
 			resourceDAO.updateByPrimaryKeySelective(resource);

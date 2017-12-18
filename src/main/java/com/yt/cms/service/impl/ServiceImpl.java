@@ -6,7 +6,6 @@ import com.yt.cms.service.BaseService;
 
 public class ServiceImpl<T> implements BaseService<T> {
 	
-	
 	@Override
 	public boolean save(T model) {
 		// TODO Auto-generated method stub

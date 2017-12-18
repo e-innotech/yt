@@ -23,11 +23,7 @@ public interface ResourceService {
 	 * @return
 	 */
 	public Resource findById(Integer id);
-	/**
-	 * 列表显示资源信息
-	 * @return
-	 */
-	public List<Resource> queryAll();
+
 	/**
 	 * 更新资源信息
 	 * @param resource

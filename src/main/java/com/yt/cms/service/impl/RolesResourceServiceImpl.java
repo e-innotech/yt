@@ -27,21 +27,19 @@ public class RolesResourceServiceImpl implements RolesResourceService {
 	}
 
 	@Override
-	public List<RolesResource> queryAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean update(RolesResource rolesResource) {
-		// TODO Auto-generated method stub
+		try {
+			rolesResourceDAO.updateByPrimaryKeySelective(rolesResource);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public List<RolesResource> find(RolesResource rolesResource) {
-		// TODO Auto-generated method stub
-		return null;
+		return rolesResourceDAO.query();
 	}
 
 }
