@@ -1,0 +1,18 @@
+[
+  {
+    "id":1,
+    "navigationName":"栏目一",
+    "desc":"我是栏目一的描述"
+  },
+  {
+    "id":2,
+    "navigationName":"栏目二",
+    "desc":"我是栏目二的描述"
+  },
+  {
+    "id":3,
+    "navigationName":"栏目三",
+    "desc":"我是栏目三的描述"
+
+  }
+]

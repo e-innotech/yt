@@ -225,7 +225,7 @@ function verify() {
         }
     });
 }
-//正则手机号验证
+//正则手机号验证（注册）
 function userName() {
     var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
     $("[name='userName']").blur(function () {
@@ -242,7 +242,7 @@ function userName() {
         }
     });
 }
-//正则密码验证
+//正则密码验证（注册的）
 function password() {
     var p = /^[a-zA-Z]\w{5,17}$/;
     $("[name='password']").blur(function () {
@@ -259,6 +259,46 @@ function password() {
         }
     });
 }
+
+//登录页面的验证
+function userNames() {
+    var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
+    $("[name='userName']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='userName']").next().html("手机号不能为空！");
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(d)) {
+            $("[name='userName']").next().html("手机号格式不正确！");
+            $("[name='userName']").next().css("color", "#f00");
+        }// else {
+        //    $(this).next().css("color", "#0EA74A");
+        //    $("[name='userName']").next().html("正确");
+        //}
+    });
+}
+
+
+
+//登录页面（密码）的验证
+function passwords() {
+    var p = /^[a-zA-Z]\w{5,17}$/;
+    $("[name='password']").blur(function () {
+        var v = $(this).val();
+        if (v == '') {
+            $("[name='password']").next().html("密码不能为空！");
+            $(this).next().css("color", "#f00");
+        } else if (!v.match(p)) {
+            $("[name='password']").next().html("密码格式不正确！");
+            $("[name='password']").next().css("color", "#f00");
+        } //else {
+        //    $(this).next().css("color", "#0EA74A");
+        //    $("[name='password']").next().html("正确");
+        //}
+    });
+}
+
+
 //正则邮箱验证
 function email() {
     var y = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
