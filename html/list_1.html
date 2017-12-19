@@ -9,9 +9,21 @@
     <script type="text/javascript" src="../common/js/jquery.min.js"></script>
     <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="../js/pager.js"></script>
+    <script type="text/javascript" src="../js/pager.js"></script>
+<!--
     <script type="text/javascript" src="../js/loader.js"></script>
+-->
+    <script type="text/javascript" src="../common/js/common.js"></script>
 
+    <style>
+        .modal_conment{
+            padding: 20px 0;
+        }
+        .modal_conment label{
+            line-height: 40px;
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,97 +34,106 @@
     <iframe src="../common/html/list.html" frameborder="0" height="924"></iframe>
 </div>
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
+    <input type="button" value="增加" class="addModal"/>
+    <input type="text"/><input type="button" value="查找" onclick="find()"/>
     <div class="list_1 row">
         <table class="col-sm-12 table table-bordered table-hover">
-            <tbody>
+            <thead>
             <tr>
-                <th><input type="checkbox" onclick="swapCheck()"></th>
                 <th>ID</th>
-                <th>标题</th>
-                <th>类型</th>
-                <th>发布者</th>
-                <th>点击次数</th>
-                <th>发布时间</th>
+                <th>网站名</th>
+                <th>地址</th>
+                <th>注册时间</th>
                 <th>状态</th>
-                <th>操作选项</th>
+                <th>模板路径</th>
+                <th>操作</th>
             </tr>
-            <tr>
-                <td align="center"><input type="checkbox" name="selected"/></td>
-                <td align="center">蚂蚁上树</td>
-                <td width="500">3</td>
-                <td align="center">4</td>
-                <td align="center">新闻</td>
-                <td align="center">6</td>
-                <td align="center">2017-12-04</td>
-                <td align="center">8</td>
-                <td width="150">
-                    <button type="button">查看</button>
-                    <button type="button">修改</button>
-                    <button type="button">删除</button>
-                </td>
-            </tr>
-
-            <tr>
-                <td align="center"><input type="checkbox" name="selected"/></td>
-                <td align="center">坐看太阳西升东落</td>
-                <td width="600">3</td>
-                <td align="center">4</td>
-                <td align="center">广告</td>
-                <td align="center">6</td>
-                <td align="center">2017-12-04</td>
-                <td align="center">8</td>
-                <td width="150">
-                    <button type="button">查看</button>
-                    <button type="button">修改</button>
-                    <button type="button">删除</button>
-                </td>
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr>
-                <td align="center"><input type="checkbox" name="selected"/></td>
-                <td align="center">追蝴蝶的狼</td>
-                <td width="600">3</td>
-                <td align="center">4</td>
-                <td align="center">财经</td>
-                <td align="center">6</td>
-                <td align="center">2017-12-04</td>
-                <td align="center">8</td>
-                <td width="150">
-                    <button type="button">查看</button>
-                    <button type="button">修改</button>
-                    <button type="button">删除</button>
-                </td>
-            </tr>
+            </thead>
+            <tbody>
 
             </tbody>
         </table>
     </div>
-
-
-
-
-
     <!--分页-->
     <div>
-
         <ul class="pagination fr page1"></ul>
     </div>
 
 </div>
-<div>
-    <iframe src="footer.html" frameborder="0" width="100%" height="50"></iframe>
+
+<!--弹出框-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel" >新增</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <div class="form-group modal_conment">
+                    <label class="col-sm-2 control-label">网站名称</label>
+
+                    <div class="col-sm-8">
+                        <input class="form-control input1 siteName" id="addinput1"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-2 control-label">网站地址</label>
+
+                    <div class="col-sm-8">
+                        <input class="form-control input1 route" id="addinput2"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-2 control-label">模板路径</label>
+
+                    <div class="col-sm-8">
+                        <input class="form-control input1 templteRoute" id="addinput3"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>
 
 <script type="text/javascript">
+
+    //发送ajax请求，拿到数据并渲染到页面上
+    $(document).ready(function () {
+        setTimeout(function () {}, 500);
+        //网站管理基本信息
+        $.ajax({
+            type: "get",//请求方式
+            //url:"http://192.168.20.195:8080/user/query",//请求路径
+            url: "websites.json",//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            success: function (resultdata) {
+//                console.log(resultdata);
+//                console.log(resultdata[0]);
+                for (var i = 0; i < resultdata.length; i++) {
+                    str = "<tr>" +
+                    "<td>" + resultdata [i].id + "</td>" +
+                    "<td>" + resultdata[i].siteName + "</td>" +
+                    "<td>" + resultdata[i].route + "</td>" +
+                    "<td>" + resultdata[i].createDate + "</td>" +
+                    "<td class='annius'><p class='anniu' style='margin: 0 auto;'><span> </span></p></td>" +  //+ resultdata[i].isUse +
+                    "<td>" + resultdata[i].templteRoute + "</td>" +
+                    "<td align='center'>" +
+                    "<input type='button' value='删除' onclick='del()' style='margin: 0 20px'/>" +
+                    "<input type='button' value='编辑'  style='margin: 0 20px'/>" +
+                    "<input type='button' value='修改' onclick='revise()' style='margin: 0 20px'/>" +
+                    "</td>"+"</tr>";
+                    $("tbody").append(str);
+                }
+            }
+        });
+        test();
+
 
 
 
@@ -141,9 +162,62 @@
         }
     });
 
+//网站管理新增
 
+        $(".modal-footer .btn1").click(function(){
+            var siteName = $(".siteName").val();
+            var route = $(".route").val();
+            var templteRoute = $(".templteRoute").val();
+                $.ajax({
+                    type: "post",//请求方式
+                    //url:"http://192.168.20.195:8080/user/query",//请求路径
+                    url: "websites.json",//请求路径
+                    async: true,
+                    dataType: "json", //数据格式
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].siteName == siteName) {
+                                alert("网站已存在");
+                                return false;
+                            }
+                        }
+                        alert("添加成功")
+                        $(".modal").css("display","none")
+                    }
+                })
 
+        })
+        $(".modal-footer .btn2").click(function(){
+            $(".modal").css("display","none")
+        })
+        $(".addModal").click(function(){
+            $(".modal").css("display","block")
+        })
 
+//网站管理启停
+
+        $(".anniu").click(function(){
+            var id = $(".id").val();
+            var isUse = $(".isUse").val();
+            $.ajax({
+                type: "post",//请求方式
+                //url:"http://192.168.20.195:8080/user/query",//请求路径
+                url: "websites.json",//请求路径
+                async: true,
+                dataType: "json", //数据格式
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        if (id == data[i].id) {
+                            anniu(this);
+                            return false;
+                        }
+                    }
+
+                }
+            })
+
+        })
+    });
 
 
 </script>

@@ -133,16 +133,17 @@ function test() {
         console.log(777, deltd2)
         $.ajax({
             type: 'get',
-            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,
+            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,//传输地址
             url:'data.json',
             dataType: "json",//数据格式
             //data: JSON.stringify(search),
             success: function (data) {
-                if(msg==true){
+                window.location.reload();
+                /*if(msg==true){
                     window.location.reload();
                 }else{
                     alert("删除失败");
-                }
+                }*/
             }
 
         })

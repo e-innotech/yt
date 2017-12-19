@@ -37,7 +37,7 @@
     </form>
 </div>
 </body>
-<script src="../../js/common.js"></script>
+<script src="../common/js/common.js"></script>
 <script>
     //验证
     $("input").focus(function () {
@@ -51,27 +51,23 @@
             var username=$(name="userName").val()
             $.ajax({
                 type: "get",
-                url:"../demo1.json",
+                url:"demo1.json",
                 async: true,
                 timeout: 15000,
                 data:{userName:username},
-                beforeSend: function(xhr) {   //beforeSend定义全局变量
-                    xhr.setRequestHeader("If-Modified-Since", "0");  //If-Modified-Since HTTP请求头标签,即比较浏览器缓存页面时间
-                },
-                success: function(xmlDoc, textStatus, xhr) {
-                    if(xhr.readyState==4) {
-                        if(xhr.status == 200) {
-                            var str=xhr.responseText; //获取返回值
-                            if (str==0){ //查询返回0表示已注册
-                                alert("已被注册")
-                                return;
-                            }
-                            else{
-                                //运行正确的代码
-                                alert("可以正常注册")
-                            }
+
+                success: function(data) {
+                    alert(data.username)
+                    for (var i=0;i<data.length;i++){
+                        if(username==data[i].userName){
+                            alert("已被注册")
+                            return;
+                        }else{
+                           // alert("注册成功")
                         }
+
                     }
+
                 }
             });
         });
