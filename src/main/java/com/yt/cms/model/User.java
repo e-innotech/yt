@@ -37,9 +37,9 @@ public class User implements Serializable {
 	@ApiModelProperty("创建用户时间")
 	private String createDate;
 	/**
-	 * 用户组id
+	 * 用户组
 	 */
-	private Integer userGroupId;
+	private UserGroup userGroup;
 	public User() {
 		super();
 	}
@@ -82,12 +82,12 @@ public class User implements Serializable {
 		this.isUse = isUse;
 	}
 
-	public Integer getUserGroupId() {
-		return userGroupId;
+	public UserGroup getUserGroup() {
+		return userGroup;
 	}
 
-	public void setUserGroupId(Integer userGroupId) {
-		this.userGroupId = userGroupId;
+	public void setUserGroup(UserGroup userGroup) {
+		this.userGroup = userGroup;
 	}
 
 	public String getCreateDate() {

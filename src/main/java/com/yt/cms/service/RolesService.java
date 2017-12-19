@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.model.Resource;
 import com.yt.cms.model.Roles;
 
 /**
@@ -23,11 +24,7 @@ public interface RolesService {
 	 * @return
 	 */
 	public Roles findById(Integer id);
-	/**
-	 * 列表显示角色信息
-	 * @return
-	 */
-	public List<Roles> queryAll();
+
 	/**
 	 * 更新角色信息
 	 * @param roles
@@ -40,4 +37,23 @@ public interface RolesService {
 	 * @return
 	 */
 	public List<Roles> find(Roles roles);
+	/**
+	 * 删除角色id
+	 * @param id
+	 * @return
+	 */
+	public boolean delete(Integer id);
+	/**
+	 * 删除角色对应的所有资源
+	 * @param rolesId
+	 * @return
+	 */
+	public boolean removeRolesResource(Integer rolesId);
+	
+	/**
+	 * 查询角色id对应的资源数据
+	 * @param rolesId
+	 * @return
+	 */
+	public List<Resource> findByRolesId(Integer rolesId);
 }

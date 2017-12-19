@@ -85,10 +85,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean setUserGroup4User(int userId, int userGroupId) {
 		try {
-			User user = new User();
-			user.setId(userId);
-			user.setUserGroupId(userGroupId);
-			userDAO.setUserGroup4User(user);
+			userDAO.setUserGroup4User(userId,userGroupId);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

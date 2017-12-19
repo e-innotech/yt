@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import java.util.List;
+
 public class UserGroup {
 	/**
 	 * 主键id
@@ -13,8 +15,20 @@ public class UserGroup {
      * 用户组描述
      */
     private String comment;
+    /**
+     * 用户组角色列表
+     */
+    private List<Roles> roles;
+    
+    public List<Roles> getRoles() {
+		return roles;
+	}
 
-    public Integer getId() {
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
+
+	public Integer getId() {
         return id;
     }
 

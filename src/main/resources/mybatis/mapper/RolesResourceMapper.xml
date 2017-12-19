@@ -9,38 +9,14 @@
   <sql id="Base_Column_List" >
     id, roles_id, resource_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from roles_resource
-    where id = #{id,jdbcType=INTEGER}
-  </select>
   
-   <select id="query" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from roles_resource
-  </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from roles_resource
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yt.cms.model.RolesResource" >
-  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.yt.cms.model.RolesResource" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
           SELECT LAST_INSERT_ID()
       	</selectKey>
-    insert into roles_resource (id, roles_id, resource_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{rolesId,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.yt.cms.model.RolesResource" >
     insert into roles_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
+     
       <if test="rolesId != null" >
         roles_id,
       </if>
@@ -49,9 +25,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
+     
       <if test="rolesId != null" >
         #{rolesId,jdbcType=INTEGER},
       </if>
@@ -72,10 +46,11 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yt.cms.model.RolesResource" >
-    update roles_resource
-    set roles_id = #{rolesId,jdbcType=INTEGER},
-      resource_id = #{resourceId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  
+  <!-- 删除该角色id下的所有角色资源关系数据 -->
+  <delete id="deleteByRolesId" parameterType="java.lang.Integer" >
+    delete from roles_resource
+    where roles_id = #{rolesId,jdbcType=INTEGER}
+  </delete>
+  
 </mapper>

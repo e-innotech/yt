@@ -9,38 +9,15 @@
   <sql id="Base_Column_List" >
     id, roles_id, userGroup_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from usergroup_roles
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  
-  <select id="query" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from usergroup_roles
-  </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from usergroup_roles
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yt.cms.model.UserGroupRoles" >
-  		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+
+
+  <insert id="insertSelective" parameterType="com.yt.cms.model.UserGroupRoles" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
           SELECT LAST_INSERT_ID()
       	</selectKey>
-    insert into usergroup_roles (id, roles_id, userGroup_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{rolesId,jdbcType=INTEGER}, #{usergroupId,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.yt.cms.model.UserGroupRoles" >
     insert into usergroup_roles
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
+      
       <if test="rolesId != null" >
         roles_id,
       </if>
@@ -49,9 +26,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
+      
       <if test="rolesId != null" >
         #{rolesId,jdbcType=INTEGER},
       </if>
@@ -72,10 +47,10 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yt.cms.model.UserGroupRoles" >
-    update usergroup_roles
-    set roles_id = #{rolesId,jdbcType=INTEGER},
-      userGroup_id = #{usergroupId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+ 
+  <!-- 按照用户组id，删除该用户组下面的所有角色数据 -->
+   <delete id="deleteByUserGroupId" parameterType="java.lang.Integer" >
+    delete from usergroup_roles
+    where userGroup_id = #{usergroupId,jdbcType=INTEGER}
+  </delete>
 </mapper>

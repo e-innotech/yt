@@ -70,7 +70,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PostMapping("/user")
+	@PostMapping("/user/add")
 	@ApiOperation("添加用户")
 	public HttpEntity<?> add(@RequestBody UserResponseBody userBody) {
 		User user = new User();
@@ -111,7 +111,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user")
+	@PutMapping("/user/update")
 	@ApiOperation("更新用户")
 	public HttpEntity<?> update(@RequestBody User user) {
 		if(StringUtils.isEmpty(user.getPassWord())) {

@@ -9,10 +9,11 @@
   <sql id="Base_Column_List" >
     id, roleName, comment
   </sql>
+  <!-- 查询单个角色下的所有资源列表 -->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
-    from roles
+     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName, c.uri, c.module_id, c.rw
+    from roles a, roles_resource b, resource c
     where id = #{id,jdbcType=INTEGER}
   </select>
   
@@ -26,21 +27,14 @@
     delete from roles
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yt.cms.model.Roles" >
-  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.Roles" >
+     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
           SELECT LAST_INSERT_ID()
       	</selectKey>
-    insert into roles (id, roleName, comment
-      )
-    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.yt.cms.model.Roles" >
     insert into roles
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
+      
       <if test="roleName != null" >
         roleName,
       </if>
@@ -49,9 +43,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
+      
       <if test="roleName != null" >
         #{roleName,jdbcType=VARCHAR},
       </if>
@@ -72,10 +64,5 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yt.cms.model.Roles" >
-    update roles
-    set roleName = #{roleName,jdbcType=VARCHAR},
-      comment = #{comment,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+ 
 </mapper>

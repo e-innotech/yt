@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +47,7 @@ public class ModuleController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/{id}")
+	@GetMapping("/find/{id}")
 	@ApiOperation("按照id查询模块")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
 		Module result = moduleService.findById(id);
@@ -58,7 +59,7 @@ public class ModuleController {
 	 * @param module
 	 * @return
 	 */
-	@PostMapping
+	@PostMapping("/add")
 	@ApiOperation("添加模块")
 	public HttpEntity<?> add(@RequestBody Module module) {
 		boolean created = moduleService.save(module);
@@ -74,7 +75,7 @@ public class ModuleController {
 	 * @param module
 	 * @return
 	 */
-	@PutMapping
+	@PutMapping("/update")
 	@ApiOperation("修改模块")
 	public HttpEntity<?> update(@RequestBody Module module){
 		boolean created = moduleService.update(module);
@@ -85,6 +86,32 @@ public class ModuleController {
 		response.setMsg(Const.SUCCESS);
 		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
+	/**
+	 * 删除模块
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/delete/{id}")
+	@ApiOperation("删除模块")
+	public HttpEntity<?> delete(@PathVariable Integer id){
+		boolean created = moduleService.delete(id);
+		if(!created) {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+	}
 	
+	/**
+	 * 按照parentId查询所有下属模块
+	 * @return
+	 */
+	@GetMapping("/queryByParentId/{parentId}")
+	@ApiOperation("查询系统模块列表")
+	public List<Module> queryByParentId(@PathVariable Integer parentId){
+		return moduleService.queryByParentId(parentId);
+	}
+
 	
 }

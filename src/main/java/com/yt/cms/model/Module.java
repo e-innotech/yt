@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import java.util.List;
+
 public class Module {
 	/**
 	 * 主键id
@@ -13,8 +15,32 @@ public class Module {
      * 模块code
      */
     private String moduleCode;
+    /**
+     * 上级模块id
+     */
+    private Integer parentId;
+    /**
+     * 模块下的所有资源
+     */
+    private List<Resource> resources;
 
-    public Integer getId() {
+    public List<Resource> getResources() {
+		return resources;
+	}
+
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
+	}
+
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -7,15 +7,21 @@ import com.yt.cms.model.UserGroup;
 public interface UserGroupMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(UserGroup record);
-
     int insertSelective(UserGroup record);
 
     UserGroup selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(UserGroup record);
-
-    int updateByPrimaryKey(UserGroup record);
+    /**
+     * 分页查询或者多条件查询
+     * @param record
+     * @return
+     */
+    List<UserGroup> query(UserGroup record);
+    /**
+     * 树形展现使用
+     * @return
+     */
+    List<UserGroup> queryAll();
     
-    List<UserGroup> query();
 }

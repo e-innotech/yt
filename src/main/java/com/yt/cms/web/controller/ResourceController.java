@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +47,7 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/{id}")
+	@GetMapping("/find/{id}")
 	@ApiOperation("按照id查询系统资源")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
 		Resource result = resourceService.findById(id);
@@ -58,7 +59,7 @@ public class ResourceController {
 	 * @param resource
 	 * @return
 	 */
-	@PostMapping
+	@PostMapping("/add")
 	@ApiOperation("添加系统资源")
 	public HttpEntity<?> add(@RequestBody Resource resource) {
 		boolean created = resourceService.save(resource);
@@ -74,7 +75,7 @@ public class ResourceController {
 	 * @param resource
 	 * @return
 	 */
-	@PutMapping
+	@PutMapping("/update")
 	@ApiOperation("修改系统资源")
 	public HttpEntity<?> update(@RequestBody Resource resource){
 		boolean created = resourceService.update(resource);
@@ -86,5 +87,38 @@ public class ResourceController {
 		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
 	
+	/**
+	 * 删除系统资源
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/delete/{id}")
+	@ApiOperation("删除系统资源")
+	public HttpEntity<?> delete(@PathVariable Integer id){
+		boolean created = resourceService.delete(id);
+		if(!created) {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+	}
+	
+	/**
+	 * 关联资源到模块
+	 * @param user
+	 * @return
+	 */
+	@PutMapping("/setModule/{id}/{moduleId}")
+	@ApiOperation("关联资源到模块")
+	public HttpEntity<?> setUserGroup(@PathVariable Integer id,@PathVariable Integer moduleId) {
+		boolean flag = resourceService.setModule(id, moduleId);
+		if(!flag) {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+	}
 	
 }

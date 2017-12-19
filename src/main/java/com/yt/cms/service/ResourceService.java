@@ -36,4 +36,17 @@ public interface ResourceService {
 	 * @return
 	 */
 	public List<Resource> find(Resource resource);
+	/**
+	 * 按照资源id删除资源
+	 * @param id
+	 * @return
+	 */
+	public boolean delete(Integer id);
+	/**
+	 * 设置资源所属模块
+	 * @param id
+	 * @param moduleId
+	 * @return
+	 */
+	public boolean setModule(Integer id, Integer moduleId);
 }

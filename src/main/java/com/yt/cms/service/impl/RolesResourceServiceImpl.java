@@ -1,7 +1,5 @@
 package com.yt.cms.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +12,13 @@ public class RolesResourceServiceImpl implements RolesResourceService {
 	private RolesResourceMapper rolesResourceDAO;
 	@Override
 	public boolean save(RolesResource rolesResource) {
-		rolesResourceDAO.insert(rolesResource);
+		rolesResourceDAO.insertSelective(rolesResource);
 		if (rolesResource.getId() > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public RolesResource findById(Integer id) {
-		return rolesResourceDAO.selectByPrimaryKey(id);
-	}
 
 	@Override
 	public boolean update(RolesResource rolesResource) {
@@ -37,9 +31,6 @@ public class RolesResourceServiceImpl implements RolesResourceService {
 		return false;
 	}
 
-	@Override
-	public List<RolesResource> find(RolesResource rolesResource) {
-		return rolesResourceDAO.query();
-	}
+
 
 }

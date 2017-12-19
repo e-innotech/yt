@@ -1,8 +1,5 @@
 package com.yt.cms.service;
 
-import java.util.List;
-
-import com.yt.cms.model.Roles;
 import com.yt.cms.model.UserGroupRoles;
 
 /**
@@ -17,17 +14,7 @@ public interface UserGroupRolesService {
 	 * @return
 	 */
 	public boolean save(UserGroupRoles userGroupRoles);
-	/**
-	 * 按照用户组id查询用户组角色列表
-	 * @param id
-	 * @return
-	 */
-	public List<Roles> findById(Integer id);
-	/**
-	 * 列表页面查询，显示用户组信息与角色信息
-	 * @return
-	 */
-	public List<UserGroupRoles> queryAll();
+
 	/**
 	 * 更新用户组角色
 	 * @param user

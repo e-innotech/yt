@@ -2,6 +2,8 @@ package com.yt.cms.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.yt.cms.model.User;
 
 public interface UserMapper {
@@ -31,7 +33,8 @@ public interface UserMapper {
 	void delete(Long id);
 	/**
 	 * 设置用户所属用户组，注册用户必须设置用户组，否则没有权限编辑系统数据
-	 * @param user
+	 * @param id
+	 * @param userGroupId
 	 */
-	void setUserGroup4User(User user);
+	void setUserGroup4User(@Param("id")Integer id, @Param("userGroupId")Integer userGroupId);
 }

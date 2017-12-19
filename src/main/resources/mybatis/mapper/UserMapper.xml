@@ -10,27 +10,28 @@
     </resultMap>
     
      <resultMap id="ResultMap" type="com.yt.cms.model.User" extends="BaseResultMap">
-        <result column="user_group_id" property="userGroupId" jdbcType="INTEGER" />
+         <association property="userGroup" javaType="com.yt.cms.model.UserGroup">
+           	<id column="user_group_id" property="id" jdbcType="INTEGER" />
+    		<result column="groupName" property="groupName" jdbcType="VARCHAR" />
+    		<result column="comment" property="comment" jdbcType="VARCHAR" />
+         </association>
     </resultMap>
     <sql id="Base_Column_List" >
         id, uname, pwd, createDate,isUse
     </sql>
-
- 	<sql id="Column_List" >
-        id, uname, pwd, createDate,isUse,user_group_id
-    </sql>
+ 	
     <!-- 查询所有用户信息 -->
     <select id="query" resultMap="BaseResultMap"  >
        SELECT 
        <include refid="Base_Column_List" />
 	   FROM users where isUse = 1
     </select>
-	<!-- 主键id查找用户信息 -->
+	<!-- 主键id查找用户信息,用户组 -->
     <select id="findById" parameterType="java.lang.Integer" resultMap="ResultMap" >
         SELECT 
-       <include refid="Column_List" />
-	   FROM users
-	   WHERE id = #{id} and isUse = 1
+       a.id, a.uname, a.pwd, a.createDate,a.isUse,a.user_group_id,b.groupName 
+	   FROM users a, user_group b
+	   WHERE a.id = #{id} and isUse = 1 and a.user_group_id = b.id
     </select>
 	<!-- 用户登录 -->
 	<select id="login" parameterType="com.yt.cms.model.User" resultType="java.lang.Integer" >
@@ -72,7 +73,7 @@
        		id = #{id}
     </update>
     <!-- 更新用户组id -->
-    <update id="setUserGroup4User" parameterType="com.yt.cms.model.User" >
+    <update id="setUserGroup4User">
        UPDATE 
        		users 
        SET 

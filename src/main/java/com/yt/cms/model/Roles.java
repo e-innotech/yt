@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import java.util.List;
+
 public class Roles {
 	/**
 	 * 主键id
@@ -13,8 +15,20 @@ public class Roles {
      * 角色说明
      */
     private String comment;
+    /**
+     * 角色对应的资源列表
+     */
+    private List<Resource> resource;
 
-    public Integer getId() {
+    public List<Resource> getResource() {
+		return resource;
+	}
+
+	public void setResource(List<Resource> resource) {
+		this.resource = resource;
+	}
+
+	public Integer getId() {
         return id;
     }
 
