@@ -4,7 +4,7 @@
         "siteName": "百度",
         "route": "www.baidu.com",
         "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
+        "isUse": 0,
         "templteRoute": "www.baidu.com"
     },
     {
@@ -12,7 +12,7 @@
         "siteName": "淘宝",
         "route": "www.baidu.com",
         "createDate": "2017-12-11 17:58:40",
-        "isUse": 1,
+        "isUse":0,
         "templteRoute": "www.baidu.com"
     },
     {

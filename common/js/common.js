@@ -65,7 +65,7 @@ function createXhr() {
 }
 
 //增删改查页面的逻辑
-//点击增加按钮时
+//点击用户管理增加按钮时
 function add() {
     $(".alertbox").show();
     $(".add").show();
@@ -76,24 +76,16 @@ function add() {
     $(".add .btn1").click(function () {
         var search = {};
         search["userName"] = $("#addinput1").val();
-        search["passWord"] = $("#addinput4").val();
+        search["isUse"] = $("#addinput2").val();
         $.ajax({
             type: 'post',
             contentType: "application/json",
-            url: 'http://192.168.20.195:8080/user',
+            //url: 'http://192.168.20.195:8080/user',
+            url: 'data.json',
             dataType: "json",//数据格式
             data: JSON.stringify(search),
-            success: function (data) {
-
-                //
-                if (msg == true) {
-                    $(".alertbox").hide();
-                }
-                else if(msg == "no"){
-                    alert("数据已存在");
-                }else{
-                    alert("添加失败")
-                }
+            success: function (msg) {
+               alert(msg)
 
             }
         })
@@ -105,15 +97,103 @@ function add() {
         $(".alertbox").hide();
     })
 }
-//点击删除按钮时
-function del(e) {
-    $(".alertbox").show();
-    $(".add").hide();
+//点击稿件管理增加按钮时
+function newsadd() {
+
     $(".find").hide();
+
+//
+    $(".add .btn1").click(function () {
+        var search = {};
+        search["news_title"] = $("#addinput1").val();
+        search["content"] = $("#addinput2").val();
+        search["source"] = $("#addinput3").val();
+        search["staticUrl"] = $("#addinput4").val();
+        search["submit_user_id"] = $("#addinput5").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            //url: 'http://192.168.20.195:8080/user',
+            url:"news.json",
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (msg) {
+                alert(msg);
+                window.location.reload();
+                /*//
+                if (msg == true) {
+                    $(".alertbox").hide();
+                }
+                else if(msg == "no"){
+                    alert("数据已存在");
+                }else{
+                    alert("添加失败")
+                }
+*/
+            }
+        })
+    });
+
+    //点击取消关闭弹窗
+    $(".add .btn2").click(function () {
+        $(".add").hide();
+        $(".alertbox").hide();
+    })
+}
+
+
+//点击广告管理增加按钮时
+function adadd() {
+
+    $(".find").hide();
+
+//
+    $(".add .btn1").click(function () {
+        var search = {};
+        search["ad_width"] = $("#addinput1").val();
+        search["ad_height"] = $("#addinput2").val();
+        search["ad_name"] = $("#addinput3").val();
+        search["websites_id"] = $("#addinput4").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            //url: 'http://192.168.20.195:8080/user',
+            url:"adPosition.json",
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (msg) {
+                alert(msg);
+                window.location.reload();
+                /*//
+                 if (msg == true) {
+                 $(".alertbox").hide();
+                 }
+                 else if(msg == "no"){
+                 alert("数据已存在");
+                 }else{
+                 alert("添加失败")
+                 }
+                 */
+            }
+        })
+    });
+
+    //点击取消关闭弹窗
+    $(".add .btn2").click(function () {
+        $(".add").hide();
+        $(".alertbox").hide();
+    })
+}
+
+//点击用户管理删除按钮时
+function del(e) {
+    //$(".alertbox").show();
+    //$(".add").hide();
+    //$(".find").hide();
     $(".revise").hide();
     //$(".alertbox").load('myAlert.html');
     $(".del").show()
-    //$(".del").show();
+    $(".del").show();
     //拿到了第一个td里面的值
     //console.log($(e.target).closest("tsr").find("td")[0]);
     var del = $(e.target).closest("tr").find("td")[0];
@@ -126,7 +206,7 @@ function del(e) {
 var deltd = 0;
 var deltd2 = 0;
 function test() {
-    console.log('ssssss');
+    //console.log('ssssss');
     //console.log($('.del'));
     $(".del>.btn1").click(function () {
         console.log(666, deltd)
@@ -156,13 +236,12 @@ function test() {
     })
 };
 
-//点击修改按钮时
+//点击用户管理修改按钮时
 function revise() {
     $(".alertbox").show();
     $(".revise").show();
     $(".del").hide();
     $(".find").hide();
-
 }
 function revise_is (){
     $(".revise .btn1").click(function () {
@@ -195,18 +274,75 @@ function revise_is (){
     })
 
 }
-//点击查询按钮时
-function find() {
+//点击网站管理修改按钮时
+function revise() {
+    $("#myModal_res").show();
+}
+function revise_is (){
+    $(".revise .btn1").click(function () {
+        var search = {};
+        search["siteName"] = $("#resinput1").val();
+        search["route"] = $("#resinput2").val();
+        search["templteRoute"] = $("#resinput3").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            url: 'website.json',
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (msg) {
+
+                alert(msg);
+                window.location.reload();
+
+            }
+        })
+    });
+    //点击取消关闭弹窗
+    $(".revise .btn2").click(function () {
+        $(".revise").hide();
+        $(".alertbox").hide();
+    })
+
+}
+//点击用户管理查询按钮时
+function queryAll_find() {
     $.ajax({
         type: "get",
         url: "queryAll.json",
         dataType: "json",
         success: function (data) {
-            alert(1)
+            for(var i=0;i<data.length;i++){
+                var userName=$(".btn_find").val();
+                console.log(data[i].userName)
+                //console.log(userName)
+                if(userName==data[i].userName){
+                    alert("找到了")
+                    return false;
+                }
+            }alert("不存在")
         }
     })
 }
-
+//点击网站管理查询按钮时
+function websites_find() {
+    $.ajax({
+        type: "get",
+        url: "websites.json",
+        dataType: "json",
+        success: function (data) {
+            for(var i=0;i<data.length;i++){
+                var siteName=$(".btn_find").val();
+                console.log(data[i].siteName)
+                //console.log(userName)
+                if(siteName==data[i].siteName){
+                    alert("找到了")
+                    return false;
+                }
+            }alert("不存在")
+        }
+    })
+}
 //正则验证
 function verify() {
     //昵称
@@ -337,8 +473,17 @@ function idCard() {
 
 
 //用户状态启停页面的逻辑
-//	按钮开关
 function anniu(obj) {
+    $.ajax({
+        type: "get",//请求方式console.log(data);
+        //url:"http://192.168.20.195:8080/user/query",//请求路径
+        url: "websites.json",//请求路径
+        async: true,
+        dataType: "json", //数据格式
+        success: function (data) {
+
+        }
+    })
     if ($(obj).find("span").css("left") == "2px") {
         $(obj).addClass("active");
     } else {
