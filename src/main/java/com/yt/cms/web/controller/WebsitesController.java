@@ -17,30 +17,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.model.Resource;
-import com.yt.cms.model.Roles;
-import com.yt.cms.service.RolesService;
+import com.yt.cms.model.Websites;
+import com.yt.cms.service.WebsitesService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/role")
-@Api(value = "角色服务")
-public class RoleController {
+@RequestMapping("/websites")
+@Api(value = "网站服务")
+public class WebsitesController {
 	@Autowired
-	private RolesService rolesService;
+	private WebsitesService websitesService;
 
 
 	/**
-	 * 新增角色
-	 * @param roles
+	 * 新增网站
+	 * @param Websites
 	 * @return
 	 */
 	@PostMapping("/add")
-	@ApiOperation("添加角色")
-	public HttpEntity<?> add(@RequestBody Roles roles) {
-		boolean created = rolesService.save(roles);
+	@ApiOperation("添加网站")
+	public HttpEntity<?> add(@RequestBody Websites web) {
+		boolean created = websitesService.save(web);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -55,22 +54,22 @@ public class RoleController {
 	 * @return
 	 */
 	@GetMapping("/find/{id}")
-	@ApiOperation("按照id查询角色")
+	@ApiOperation("按照id查询网站")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
-		Roles result = rolesService.findById(id);
+		Websites result = websitesService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Roles>(result, status);
+		return new ResponseEntity<Websites>(result, status);
 	}
 
 	/**
-	 * 修改角色
+	 * 修改网站
 	 * @param userGroup
 	 * @return
 	 */
 	@PutMapping("/update")
-	@ApiOperation("修改角色")
-	public HttpEntity<?> update(@RequestBody Roles roles){
-		boolean created = rolesService.update(roles);
+	@ApiOperation("修改网站")
+	public HttpEntity<?> update(@RequestBody Websites web){
+		boolean created = websitesService.update(web);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -83,19 +82,19 @@ public class RoleController {
 	 * @return
 	 */
 	@GetMapping("/query")
-	@ApiOperation("查询角色列表")
-	public List<Roles> query(Roles roles){
-		return rolesService.find(roles);
+	@ApiOperation("查询网站列表")
+	public List<Websites> query(Websites web){
+		return websitesService.queryAll(web);
 	}
 	/**
-	 * 删除角色
+	 * 删除网站
 	 * @param id
 	 * @return
 	 */
 	@DeleteMapping("/delete/{id}")
-	@ApiOperation("删除角色")
+	@ApiOperation("删除网站")
 	public HttpEntity<?> delete(@PathVariable Integer id){
-		boolean created = rolesService.delete(id);
+		boolean created = websitesService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -103,31 +102,5 @@ public class RoleController {
 		response.setMsg(Const.SUCCESS);
 		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
-	/**
-	 * 删除角色下的所有资源
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping("/resource/{rolesId}")
-	@ApiOperation("删除角色下的所有资源")
-	public HttpEntity<?> deleteRolesResource(@PathVariable Integer rolesId){
-		boolean created = rolesService.removeRolesResource(rolesId);
-		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
-	}
-	/**
-	 * 查询角色id对应的资源数据
-	 * @return
-	 */
-	@GetMapping("/queryResources/{rolesId}")
-	@ApiOperation("查询角色列表")
-	public List<Resource> queryResources(@PathVariable Integer rolesId){
-		return rolesService.findByRolesId(rolesId);
-	}
-	
 	
 }

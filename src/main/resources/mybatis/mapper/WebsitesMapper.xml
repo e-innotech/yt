@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.WebsitesMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.Websites" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="siteName" property="siteName" jdbcType="VARCHAR" />
+    <result column="route" property="route" jdbcType="VARCHAR" />
+    <result column="isUse" property="isUse" jdbcType="INTEGER" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="templteRoute" property="templteRoute" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="ResultMap" type="com.yt.cms.model.Websites" extends="BaseResultMap">
+   		<collection property="resources" ofType="com.yt.cms.model.NavigationBar">
+            <id column="navigationBar_id" property="id" jdbcType="INTEGER" />
+		    <result column="navigationName" property="navigationName" jdbcType="VARCHAR" />
+		    <result column="comment" property="comment" jdbcType="VARCHAR" />
+        </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, siteName, route, isUse, createDate, templteRoute
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
+    select 
+    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templteRoute,b.id as navigationBar_id  b.navigationName, b.comment
+    from websites a, navigationbar b, websites_navigationbar c 
+    where a.id = #{id,jdbcType=INTEGER} and a.id = c.websites_id and c.navigationBar_id = b.id and a.isUse = 1 and b.isUse = 1
+  </select>
+  <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Websites" >
+    select 
+    <include refid="Base_Column_List" />
+    from websites
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from websites
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.Websites" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into websites
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="siteName != null" >
+        siteName,
+      </if>
+      <if test="route != null" >
+        route,
+      </if>
+      <if test="isUse != null" >
+        isUse,
+      </if>
+      <if test="createDate != null" >
+        createDate,
+      </if>
+      <if test="templteRoute != null" >
+        templteRoute,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="route != null" >
+        #{route,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="templteRoute != null" >
+        #{templteRoute,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Websites" >
+    update websites
+    <set >
+      <if test="siteName != null" >
+        siteName = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="route != null" >
+        route = #{route,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        isUse = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="templteRoute != null" >
+        templteRoute = #{templteRoute,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

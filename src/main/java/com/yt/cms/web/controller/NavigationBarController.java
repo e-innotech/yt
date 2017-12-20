@@ -17,30 +17,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.model.Resource;
-import com.yt.cms.model.Roles;
-import com.yt.cms.service.RolesService;
+import com.yt.cms.model.NavigationBar;
+import com.yt.cms.service.NavigationBarService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/role")
-@Api(value = "角色服务")
-public class RoleController {
+@RequestMapping("/navigation")
+@Api(value = "栏位服务")
+public class NavigationBarController {
 	@Autowired
-	private RolesService rolesService;
+	private NavigationBarService navigationBarService;
 
 
 	/**
-	 * 新增角色
-	 * @param roles
+	 * 新增栏位
+	 * @param NavigationBar
 	 * @return
 	 */
 	@PostMapping("/add")
-	@ApiOperation("添加角色")
-	public HttpEntity<?> add(@RequestBody Roles roles) {
-		boolean created = rolesService.save(roles);
+	@ApiOperation("添加栏位")
+	public HttpEntity<?> add(@RequestBody NavigationBar bar) {
+		boolean created = navigationBarService.save(bar);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -55,22 +54,22 @@ public class RoleController {
 	 * @return
 	 */
 	@GetMapping("/find/{id}")
-	@ApiOperation("按照id查询角色")
+	@ApiOperation("按照id查询栏位")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
-		Roles result = rolesService.findById(id);
+		NavigationBar result = navigationBarService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Roles>(result, status);
+		return new ResponseEntity<NavigationBar>(result, status);
 	}
 
 	/**
-	 * 修改角色
+	 * 修改栏位
 	 * @param userGroup
 	 * @return
 	 */
 	@PutMapping("/update")
-	@ApiOperation("修改角色")
-	public HttpEntity<?> update(@RequestBody Roles roles){
-		boolean created = rolesService.update(roles);
+	@ApiOperation("修改栏位")
+	public HttpEntity<?> update(@RequestBody NavigationBar bar){
+		boolean created = navigationBarService.update(bar);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -83,19 +82,19 @@ public class RoleController {
 	 * @return
 	 */
 	@GetMapping("/query")
-	@ApiOperation("查询角色列表")
-	public List<Roles> query(Roles roles){
-		return rolesService.find(roles);
+	@ApiOperation("查询栏位列表")
+	public List<NavigationBar> query(NavigationBar bar){
+		return navigationBarService.queryAll(bar);
 	}
 	/**
-	 * 删除角色
+	 * 删除栏位
 	 * @param id
 	 * @return
 	 */
 	@DeleteMapping("/delete/{id}")
-	@ApiOperation("删除角色")
+	@ApiOperation("删除栏位")
 	public HttpEntity<?> delete(@PathVariable Integer id){
-		boolean created = rolesService.delete(id);
+		boolean created = navigationBarService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -103,31 +102,5 @@ public class RoleController {
 		response.setMsg(Const.SUCCESS);
 		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
 	}
-	/**
-	 * 删除角色下的所有资源
-	 * @param id
-	 * @return
-	 */
-	@DeleteMapping("/resource/{rolesId}")
-	@ApiOperation("删除角色下的所有资源")
-	public HttpEntity<?> deleteRolesResource(@PathVariable Integer rolesId){
-		boolean created = rolesService.removeRolesResource(rolesId);
-		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
-	}
-	/**
-	 * 查询角色id对应的资源数据
-	 * @return
-	 */
-	@GetMapping("/queryResources/{rolesId}")
-	@ApiOperation("查询角色列表")
-	public List<Resource> queryResources(@PathVariable Integer rolesId){
-		return rolesService.findByRolesId(rolesId);
-	}
-	
 	
 }
