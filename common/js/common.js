@@ -339,8 +339,45 @@ function idCard() {
 //用户状态启停页面的逻辑
 //	按钮开关
 function anniu(obj) {
+    //得到当前点的元素的id
+    var qitinghtml=$(obj).parent().prev().prev().prev().prev().html();
+    var objindex=$(obj).closest("tr").index()-1;
+    //console.log(objindex)
+    //console.log(111,$(obj).closest("tr").index())
+    //console.log(qitinghtml)
+    //当前点的元素的状态 0或者1
+    var statushtml=$(obj).parent().prev().html();
+    //console.log(statushtml)
+//得到当前元素的
+    $.ajax({
+        type:"get",
+        url:"column.json",
+        data:{id:qitinghtml,status: statushtml}, //上送数据
+        success:function(data){  //返回成功的json数据
+            //console.log(111,data[objindex].isUse);
+            //console.log(222,data);
+            var flag=data[objindex].isUse;
+            console.log(data[objindex].isUse)
+            if(flag){
+                data[objindex].isUse=0;
+                console.log(111,data[objindex].isUse);
+                //return flag=true;
+            }else{
+                data[objindex].isUse=1;
+                console.log(22,data[objindex].isUse)
+                //return flag=false;
+            }
+
+
+        }
+    })
+
+    //console.log(statushtml)
+    //console.log($(obj).parent().prev().html())
+
     if ($(obj).find("span").css("left") == "2px") {
         $(obj).addClass("active");
+
     } else {
         $(obj).removeClass("active");
     }
