@@ -29,7 +29,7 @@
                     <!--<div class="password-con"><i></i><input type="password" onfocus="f3()" onblur="f4()" id="password" name="password" class="password" placeholder="密码"></div>-->
                 </div>
                 <div class="login-submit" style="border:none;">
-                    <input type="button" name="submit" value="" style="border:0px none;" id="login">
+                    <input type="button" value="登 录"  id="login">
                 </div>
                 <div style="height:0; clear:both;"></div>
             </div>
@@ -41,40 +41,43 @@
 <script>
     //验证
     $("input").focus(function () {
-        userName();
-        password();
+          userName();
+          passwords();
     });
 
 
+    //点击登录按钮时获取姓名的值，发送ajax请求，将用户名的值作为上送数据
+//    循环和json数据做对比，如果json中有则是已被注册，否则注册成功
     $(function (){
+        //点击登录按钮时
         $("#login").click(function (){
-            var username=$(name="userName").val()
+            //获取用户名文本框的值
+            var username=$(".username").val();
+            localStorage.setItem('xinxi',username);
+            alert(localStorage.getItem('xinxi'));
+//            var username=$(name="userName").val()
             $.ajax({
                 type: "get",
                 url:"demo1.json",
                 async: true,
                 timeout: 15000,
                 data:{userName:username},
-
                 success: function(data) {
-                    alert(data.username)
-                    for (var i=0;i<data.length;i++){
+                    console.log(username)
+                    for(var i=0;i<data.length;i++){
+                       // console.log(data[i].userName);
                         if(username==data[i].userName){
-                            alert("已被注册")
-                            return;
-                        }else{
-                           // alert("注册成功")
+                            alert("登录成功");
+                            window.location.href=localStorage.getItem('xinxi')+".html";
+                            return false;
                         }
-
                     }
-
+                    alert("登录失败")
                 }
             });
         });
     });
-
-
-
 </script>
+
 </html>
 

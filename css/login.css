@@ -58,6 +58,7 @@
     float: left;
     margin-left: 26px;
     display: inline;
+    background:pink;
 }
 
 .login-text .username-con i, .login-text .password-con i, .login-captcha i {
@@ -89,15 +90,21 @@
     display: inline-block !important;
     display: block;
     margin: 0;
+    border-radius: 5px;
 }
 .login-submit input {
     width: 93px;
     height: 93px;
-    background: url(http://demo.jeecms.com/res/jeecms/images/login-submit.jpg) no-repeat;
+    color:#fff;
+    font-size:16px;
+    /*background: url(http://demo.jeecms.com/res/jeecms/images/login-submit.jpg) no-repeat;*/
     cursor: pointer;
     display: block;
     outline: none;
     border: none;
+    background:#B3D5FF;
+
+
 }
 .login-index span{
     position:absolute;
