@@ -34,8 +34,8 @@
     <iframe src="../common/html/list.html" frameborder="0" height="924"></iframe>
 </div>
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
-    <input type="button" value="增加" class="addModal"/>
-    <input type="text" class="btn_find"/><input type="button" value="add" onclick="websites_find()"/>
+    <input type="button" value="增加" class="addModal" onclick="add(this)"/>
+    <input type="text" class="btn_find"/><input type="button" value="查找" onclick="websites_find()"/>
     <div class="list_1 row">
         <table class="col-sm-12 table table-bordered table-hover">
             <thead>
@@ -62,7 +62,7 @@
 </div>
 
 <!--添加弹出框-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
+<div class="modal fade add" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -103,7 +103,7 @@
     </div><!-- /.modal-dialog -->
 </div>
 <!--修改弹出框-->
-<div class="modal fade" id="myModal_res" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;display: block">
+<div class="modal fade revise" id="myModal_res" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -211,136 +211,47 @@
         }
     });
 
-//网站管理新增
-
-        $(".modal-footer .btn1").click(function(){
-            var siteName = $(".siteName").val();
-            var route = $(".route").val();
-            var templteRoute = $(".templteRoute").val();
-                $.ajax({
-                    type: "post",//请求方式
-                    //url:"http://192.168.20.195:8080/user/query",//请求路径
-                    url: "websites.json",//请求路径
-                    async: true,
-                    dataType: "json", //数据格式
-                    success: function (data) {
-                        for (var i = 0; i < data.length; i++) {
-                            if (siteName == data[i].siteName) {
-                                alert("网站已存在");
-                                return false;
-                            }
-                        }alert("添加成功");
-                        $(".modal").css("display","none")
-                    }
-                })
-
-        })
-        $(".modal-footer .btn2").click(function(){
-            $(".modal").css("display","none")
-        })
-        $(".addModal").click(function(){
-            $(".modal").css("display","block")
-        })
 
 
 
 
 
 
-
-/*
-
-        var g_table = $("#g_table");
-
-        function add() {
-            var addRow = $("<tr></tr>");
-
-            g_table.append(addRow);
-            for (var i = 0; i < 4; i++) {
-                var col_td = $("<td><input type='text' /></td>");
-                addRow.append(col_td);
-            }
-            var col_opt = $("<td></td>");
-            var confirmBtn = $("<a href='javascript:;'>确认</a>");
-            var cancelBtn = $("<a href='javascript:;'>取消</a>");
-            cancelBtn.click(function () {
-                window.location.reload();
-            });
-            confirmBtn.click(function () {
-                var currentRow = $(this).parent().parent();
-                var input_files = currentRow.find("input");
-                var post_files = {};
-                for (var i = 0, j = input_files.length; i < j; i++) {
-                    post_files['clo_' + i] = input_files[i].value;
-                }
-// $.post("{:U('ajax/add')}",post_files,function(msg){
-// debugger;
-// })
-                $.ajax({
-                    type: 'post',
-                    url: "{:U('ajax/add')}",
-                    data: {post_files},
-                    success: function (msg) {
-                        alert(msg);
-                        window.location.reload();
-                    }
-                })
-            });
-            col_opt.append(confirmBtn);
-            col_opt.append(cancelBtn);
-            addRow.append(col_opt);
-        }
-
-        function del(obj) {
-            var id = $(obj).parent().prev().prev().prev().prev().prev().val();
-            $.ajax({
-                type: 'post',
-                url: "{:U('ajax/del')}",
-                data: {id: id},
-                success: function (msg) {
-                    alert(msg);
-                }
-            })
-            $(obj).parent().parent().remove();
-        }
-
-        function edit(obj) {
-            var id = $(obj).parent().prev().prev().prev().prev().prev().val();
-            for (var i = 1; i < 5; i++) {
-                var temp = "<td><input type='text' value='" + $(obj).parent().parent().children().eq(i).html() + "'/></td>";
-                $(obj).parent().parent().children().eq(i).replaceWith(temp);
-            }
-            var confirmBtn1 = $("<span id='confirm'>确认</span>");
-            var cancelBtn1 = $("<span onclick='back()'>取消</span>");
-            confirmBtn1.click(function () {
-                var currentRow = $(this).parent().parent();
-                var input_files = currentRow.find("input");
-                var post_files = {};
-                for (var i = 0, j = input_files.length; i < j; i++) {
-                    post_files['clo_' + i] = input_files[i].value;
-                }
-                $.ajax({
-                    type: 'post',
-                    url: "{:U('ajax/edit')}",
-                    data: {post_files: post_files, id: id},
-                    success: function (msg) {
-                        alert(msg);
-                        window.location.reload();
-                    }
-                })
-            });
-            $(obj).prev().replaceWith(confirmBtn1);
-            $(obj).replaceWith(cancelBtn1);
-
-
-        }
-
-        function back() {
-            location.reload();
-        }*/
     });
 
 
+
+
+
+    $(".modal-footer .btn1").click(function(){
+        //var siteName = ;
+        //var route = ;
+        //var templteRoute =;
+        var aa={};
+        aa["sitename"]=$(".siteName").val();
+        aa["rout"]=$(".route").val();
+        aa["templteroute"]= $(".templteRoute").val();
+
+        $.ajax({
+            type: "post",//请求方式
+            //url:"http://192.168.20.195:8080/user/query",//请求路径
+            url: "websites.json",//请求路径
+            async: true,
+            data: JSON.stringify(aa),
+            dataType: "json", //数据格式
+            success: function (data) {
+                //for (var i = 0; i < data.length; i++) {
+                //    /*console.log(data[i].siteName)*/
+                //    if (siteName == data[i].siteName) {
+                //        alert("网站已存在");
+                //        return false;
+                //    }
+                //}alert("添加成功");
+                //$(".modal").css("display","none")
+            }
+        })
+
+    })
 </script>
 </body>
 </html>

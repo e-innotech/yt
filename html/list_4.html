@@ -12,7 +12,98 @@
     <script src="../common/js/common.js"></script>
 </head>
 <body>
-<!-- 遮罩 -->
+
+<!--添加弹出框-->
+<div class="modal fade add" id="myModal" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title" id="myModalLabel" >新增</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">用户名</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1" id="addinput1"/>
+
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">状态</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1" id="addinput2"/>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--删除弹出框-->
+<div class="modal fade del" id="delmyModal" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                -->
+                <h4 class="modal-title" id="delmyModalLabel" >删除</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <p>您确认删除吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!--修改弹出框-->
+<div class="modal fade revise" id="revisemyModal" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                -->
+                <h4 class="modal-title" id="revisemyModalLabel" >修改</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">用户名</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1" id="reviseinput1"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">密码</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1" id="reviseinput2"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!--
+&lt;!&ndash; 遮罩 &ndash;&gt;
 <div class="alertbox">
     <div class="add">
         <form class="form-horizontal">
@@ -30,18 +121,18 @@
                     <input class="form-control input1" id="addinput2"/>
                 </div>
             </div>
-            <!--<div class="form-group">-->
-            <!--<label class="col-sm-2 control-label">账号</label>-->
-            <!--<div class="col-sm-10">-->
-            <!--<input class="form-control input1" id="input3"/>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="form-group">-->
-            <!--<label class="col-sm-2 control-label ">身份</label>-->
-            <!--<div class="col-sm-10">-->
-            <!--<input class="form-control input1" id="input4"/>-->
-            <!--</div>-->
-            <!--</div>-->
+            &lt;!&ndash;<div class="form-group">&ndash;&gt;
+            &lt;!&ndash;<label class="col-sm-2 control-label">账号</label>&ndash;&gt;
+            &lt;!&ndash;<div class="col-sm-10">&ndash;&gt;
+            &lt;!&ndash;<input class="form-control input1" id="input3"/>&ndash;&gt;
+            &lt;!&ndash;</div>&ndash;&gt;
+            &lt;!&ndash;</div>&ndash;&gt;
+            &lt;!&ndash;<div class="form-group">&ndash;&gt;
+            &lt;!&ndash;<label class="col-sm-2 control-label ">身份</label>&ndash;&gt;
+            &lt;!&ndash;<div class="col-sm-10">&ndash;&gt;
+            &lt;!&ndash;<input class="form-control input1" id="input4"/>&ndash;&gt;
+            &lt;!&ndash;</div>&ndash;&gt;
+            &lt;!&ndash;</div>&ndash;&gt;
         </form>
         <button class="btn btn-success btn1">确定</button>
         <button class="btn btn-warning btn2">取消</button>
@@ -111,6 +202,7 @@
 
     </div>
 </div>
+-->
 
 <!--表格-->
 <div class="wrapper wrapper-content system" style="width: 75%">
@@ -171,7 +263,12 @@
         });
         test();
         revise_is();
-
+        $(".modal-footer .btn2").click(function(){
+            $(".modal").css("display","none")
+        })
+        /*$(".addModal").click(function(){
+            $(".modal").css("display","block")
+        })*/
         /*$.ajax({
 
             //用户表
