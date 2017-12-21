@@ -36,8 +36,8 @@
   
    <select id="queryByParentId" resultMap="ResultMap"  >
     select 
-    <include refid="Base_Column_List" />
-    from module where parentId = #{parentId,jdbcType=INTEGER}
+    a.id, a.moduleName, a.moduleCode,a.parentId, b.id as resource_id, b.resourceName, b.uri, b.module_id, b.rw
+    from module a, resource b where b.module_id = a.id and a.parentId = #{parentId,jdbcType=INTEGER}
   </select>
   <!-- 查询模块下所有的资源数据 -->
   <select id="queryResourcesByModuleId" resultMap="BaseResultMap"  >

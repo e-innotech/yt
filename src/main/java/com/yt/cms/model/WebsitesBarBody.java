@@ -7,8 +7,8 @@ public class WebsitesBarBody {
 	}
 
 	Integer websitesId;
-	Integer[] old_navigationBarIds;
-	Integer[] new_navigationBarIds;
+	Integer[] old_channelIds;
+	Integer[] new_channelIds;
 
 	public Integer getWebsitesId() {
 		return websitesId;
@@ -18,20 +18,22 @@ public class WebsitesBarBody {
 		this.websitesId = websitesId;
 	}
 
-	public Integer[] getOld_navigationBarIds() {
-		return old_navigationBarIds;
+	public Integer[] getOld_channelIds() {
+		return old_channelIds;
 	}
 
-	public void setOld_navigationBarIds(Integer[] old_navigationBarIds) {
-		this.old_navigationBarIds = old_navigationBarIds;
+	public void setOld_channelIds(Integer[] old_channelIds) {
+		this.old_channelIds = old_channelIds;
 	}
 
-	public Integer[] getNew_navigationBarIds() {
-		return new_navigationBarIds;
+	public Integer[] getNew_channelIds() {
+		return new_channelIds;
 	}
 
-	public void setNew_navigationBarIds(Integer[] new_navigationBarIds) {
-		this.new_navigationBarIds = new_navigationBarIds;
+	public void setNew_channelIds(Integer[] new_channelIds) {
+		this.new_channelIds = new_channelIds;
 	}
+
+	
 
 }

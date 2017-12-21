@@ -11,8 +11,8 @@
   </resultMap>
   
    <resultMap id="ResultMap" type="com.yt.cms.model.Websites" extends="BaseResultMap">
-   		<collection property="resources" ofType="com.yt.cms.model.NavigationBar">
-            <id column="navigationBar_id" property="id" jdbcType="INTEGER" />
+   		<collection property="channels" ofType="com.yt.cms.model.Channel">
+            <id column="channel_id" property="id" jdbcType="INTEGER" />
 		    <result column="navigationName" property="navigationName" jdbcType="VARCHAR" />
 		    <result column="comment" property="comment" jdbcType="VARCHAR" />
         </collection>
@@ -23,9 +23,9 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templteRoute,b.id as navigationBar_id  b.navigationName, b.comment
-    from websites a, navigationbar b, websites_navigationbar c 
-    where a.id = #{id,jdbcType=INTEGER} and a.id = c.websites_id and c.navigationBar_id = b.id and a.isUse = 1 and b.isUse = 1
+    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templteRoute,b.id as channel_id  b.navigationName, b.comment
+    from websites a, channel b, websites_channel c 
+    where a.id = #{id,jdbcType=INTEGER} and a.id = c.websites_id and c.channel_id = b.id and a.isUse = 1 and b.isUse = 1
   </select>
   <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Websites" >
     select 

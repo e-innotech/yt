@@ -16,14 +16,14 @@ public class Websites {
 
     private String templteRoute;
 
-    private List<NavigationBar> navigationBar;
+    private List<Channel> channels;
     
-    public List<NavigationBar> getNavigationBar() {
-		return navigationBar;
+	public List<Channel> getChannels() {
+		return channels;
 	}
 
-	public void setNavigationBar(List<NavigationBar> navigationBar) {
-		this.navigationBar = navigationBar;
+	public void setChannels(List<Channel> channels) {
+		this.channels = channels;
 	}
 
 	public Integer getId() {
