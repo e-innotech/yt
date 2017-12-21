@@ -84,8 +84,6 @@ function add() {
             dataType: "json",//数据格式
             data: JSON.stringify(search),
             success: function (data) {
-
-                //
                 if (msg == true) {
                     $(".alertbox").hide();
                 }
@@ -335,6 +333,14 @@ function idCard() {
     });
 }
 
+//正则验证栏目名称
+function columnname(){
+    var columne=/^[\u4e00-\u9fa5]+$/;
+    $()
+
+
+
+}
 
 //用户状态启停页面的逻辑
 //	按钮开关
@@ -344,15 +350,21 @@ function anniu(obj) {
     var objindex=$(obj).closest("tr").index()-1;
     //console.log(objindex)
     //console.log(111,$(obj).closest("tr").index())
-    //console.log(qitinghtml)
+    console.log(1,qitinghtml)
     //当前点的元素的状态 0或者1
     var statushtml=$(obj).parent().prev().html();
-    //console.log(statushtml)
+    console.log(2,statushtml)
+    var dataqiting={};
+    dataqiting["id"]=qitinghtml;
+    dataqiting["status"]=statushtml;
+    console.log(666,dataqiting)
 //得到当前元素的
     $.ajax({
         type:"get",
+        contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+        //url:"column.json?id=" +"&status="+escape(statushtml)+"",
         url:"column.json",
-        data:{id:qitinghtml,status: statushtml}, //上送数据
+        data:{"id":qitinghtml,"status": statushtml}, //上送数据
         success:function(data){  //返回成功的json数据
             //console.log(111,data[objindex].isUse);
             //console.log(222,data);
@@ -360,17 +372,18 @@ function anniu(obj) {
             console.log(data[objindex].isUse)
             if(flag){
                 data[objindex].isUse=0;
-                console.log(111,data[objindex].isUse);
+              //  console.log(111,data[objindex].isUse);
                 //return flag=true;
             }else{
                 data[objindex].isUse=1;
-                console.log(22,data[objindex].isUse)
+               // console.log(22,data[objindex].isUse)
                 //return flag=false;
             }
 
 
         }
     })
+    //console.log(data)
 
     //console.log(statushtml)
     //console.log($(obj).parent().prev().html())
