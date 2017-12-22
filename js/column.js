@@ -1,4 +1,5 @@
 //栏目页面的渲染
+var json_data ;
 $(function(){
     $.ajax({
         type:"get",
@@ -6,20 +7,24 @@ $(function(){
         async:true,
         url:"column.json",
         success:function(columndata){
-            for(var i=0;i<columndata.length;i++){
-                str='<tr><td>'+columndata[i].id+'</td>'+
-                '<td>'+columndata[i].navigationName+'</td>' +
-                '<td>'+columndata[i].desc+'</td>' +
-                '<td>'+columndata[i].isUse+'</td>' +
-                '<td><p class="'+(columndata[i].isUse==0?'anniu':'anniu active')+'"onclick="anniu(this)"><span> </span></p></td>' +
-                '<td><input type="button" value=修改 onclick="revisecolumn(this)" /></td>'+
-                '</tr>';
-                $("tbody").append(str);
-            }
+            json_data = columndata;
+            renderList();
         }
     })
-
 })
+function renderList(){
+    $("tbody").empty();
+    for(var i=0;i<json_data.length;i++){
+        str='<tr><td>'+json_data[i].id+'</td>'+
+        '<td>'+json_data[i].navigationName+'</td>' +
+        '<td>'+json_data[i].desc+'</td>' +
+        '<td>'+json_data[i].isUse+'</td>' +
+        '<td><p class="'+(json_data[i].isUse==0?'anniu':'anniu active')+'"onclick="anniu(this)"><span> </span></p></td>' +
+        '<td><input type="button" value=修改 onclick="revisecolumn(this)" /></td>'+
+        '</tr>';
+        $("tbody").append(str);
+    }
+}
 
 //栏目的增加
 //点击增加按钮时出现弹出框
@@ -28,16 +33,18 @@ $(".addModal").click(function(){
 })
 //点击确认按钮时
 $(".modal-footer .btn1").click(function(){
-    var newcolumn = $("#addcolumninput1").val();
-    console.log(newcolumn)
-    $.ajax({
-        type:"get",
-        url:"column.json",
-        data:{"columnname":newcolumn},
-        success:function(data){
-            console.log(data);
+     var newcolumn = $("#addcolumninput1").val();
+        console.log(newcolumn)
+        console.log(newcolumn)
+    for(var i=0;i<json_data.length;i++){
+        if(newcolumn == json_data[i].navigationName){
+            alert('栏目存在');
+            return;
         }
-    })
+    }
+    json_data.push({navigationName:newcolumn});
+    console.log(json_data);
+    renderList();
     $("#addcolumninput1").val("");
     $("#addcolumninput2").val("");
     $("#text1").html("");
@@ -123,17 +130,7 @@ function revisecolumn(obj){
         acolumnname.html($("#revisecolumninput1").val());
         bdescription.html($("#description").val());
         $("#revisecolumn").css("display","none");
-        $.ajax({
-            type: 'get',
-            contentType: "application/json",
-            url: 'column.json',
-            dataType: "json",//数据格式
-            data: JSON.stringify(revise),
-            success:function(columndata){
-                console.log(columndata)
-
-            }
-        })
+        json_data
 
 
     })
