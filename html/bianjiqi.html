@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../kindeditor/themes/default/default.css"/>
+    <link rel="stylesheet" href="../kindeditor/plugins/code/prettify.css"/>
+
+    <!--jquery-lib-->
+    <script src="../common/js/jquery.min.js"></script>
+    <!--kindeidtor-plugin-->
+    <!--kindeidtor-css-->
+
+
+    <!--kindeidtor-core&language.js-->
+    <script charset="utf-8" src="../kindeditor/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="../kindeditor/lang/zh-CN.js"></script>
+    <!--kindeidtor-eidtor-plugin-->
+    <script charset="utf-8" src="../kindeditor/plugins/code/prettify.js"></script>
+    <!--kindeidtor-call-js-->
+</head>
+<body>
+
+<!--2.插入kindedit的输入文本到html的body中-->
+<textarea id="comment_data" name="content" class="textarea" rows="7"></textarea>
+
+
+
+<script>
+
+   var re = '{"action":"adminLogin","success":true,"msg":"\u767b\u5f55\u6210\u529f","data":{"admins_id":"1","admin_admins_id":"0","userName":"admin","contact":"admin","roles_id":"1","roleName":"\u8d85\u7ea7\u7ba1\u7406\u5458","powers":[{"id":"1","modules_id":"0","moduleCode":"YHGL","isQuery":"1","isEdit":"1","moduleName":"\u7528\u6237\u7ba1\u7406"},{"id":"2","modules_id":"0","moduleCode":"MTGL","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u7ba1\u7406"},{"id":"3","modules_id":"0","moduleCode":"WZGL","isQuery":"1","isEdit":"1","moduleName":"\u6587\u7ae0\u7ba1\u7406"},{"id":"4","modules_id":"0","moduleCode":"DDGL","isQuery":"1","isEdit":"1","moduleName":"\u8ba2\u5355\u7ba1\u7406"},{"id":"5","modules_id":"0","moduleCode":"CWGL","isQuery":"1","isEdit":"1","moduleName":"\u8d22\u52a1\u7ba1\u7406"},{"id":"6","modules_id":"0","moduleCode":"XTGL","isQuery":"1","isEdit":"1","moduleName":"\u7cfb\u7edf\u7ba1\u7406"},{"id":"7","modules_id":"1","moduleCode":"QXFP","isQuery":"1","isEdit":"1","moduleName":"\u6743\u9650\u5206\u914d"},{"id":"8","modules_id":"1","moduleCode":"YHLB","isQuery":"1","isEdit":"1","moduleName":"\u7528\u6237\u5217\u8868"},{"id":"9","modules_id":"1","moduleCode":"KHGL","isQuery":"1","isEdit":"1","moduleName":"\u5ba2\u6237\u7ba1\u7406"},{"id":"10","modules_id":"1","moduleCode":"QZKH","isQuery":"1","isEdit":"1","moduleName":"\u6f5c\u5728\u5ba2\u6237"},{"id":"11","modules_id":"2","moduleCode":"MTFL","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u5206\u7c7b"},{"id":"12","modules_id":"2","moduleCode":"MTZY","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u8d44\u6e90"},{"id":"13","modules_id":"3","moduleCode":"WZFB","isQuery":"1","isEdit":"1","moduleName":"\u6587\u7ae0\u53d1\u5e03"},{"id":"14","modules_id":"3","moduleCode":"WZLB","isQuery":"1","isEdit":"1","moduleName":"\u6587\u7ae0\u5217\u8868"},{"id":"15","modules_id":"3","moduleCode":"MTLB","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u5217\u8868"},{"id":"16","modules_id":"4","moduleCode":"DDLB","isQuery":"1","isEdit":"1","moduleName":"\u8ba2\u5355\u5217\u8868"},{"id":"17","modules_id":"4","moduleCode":"TDLB","isQuery":"1","isEdit":"1","moduleName":"\u9000\u5355\u5217\u8868"},{"id":"18","modules_id":"5","moduleCode":"MTQK","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u8bf7\u6b3e"},{"id":"19","modules_id":"5","moduleCode":"KHXK","isQuery":"1","isEdit":"1","moduleName":"\u5ba2\u6237\u9500\u6b3e"},{"id":"20","modules_id":"5","moduleCode":"KHCW","isQuery":"1","isEdit":"1","moduleName":"\u5ba2\u6237\u8d22\u52a1"},{"id":"21","modules_id":"5","moduleCode":"XSMX","isQuery":"1","isEdit":"1","moduleName":"\u9500\u552e\u660e\u7ec6"},{"id":"22","modules_id":"5","moduleCode":"CWBB","isQuery":"1","isEdit":"1","moduleName":"\u8d22\u52a1\u62a5\u8868"},{"id":"23","modules_id":"6","moduleCode":"CZJL","isQuery":"1","isEdit":"1","moduleName":"\u64cd\u4f5c\u8bb0\u5f55"},{"id":"24","modules_id":"6","moduleCode":"MTGLB","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u7a3f\u91cf\u699c"}]}}'
+    console.log(JSON.parse(re))
+</script>
+
+
+<!--3.插入kindedit的运行脚本到head中-->
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="content"]', {
+            newlineTag : "br",
+            resizeType : 2,
+            allowPreviewEmoticons : true,
+            allowImageUpload : true,
+            minHeight:"100px",
+            autoHeightMode : false,
+            afterCreate : function() {
+                this.loadPlugin('autoheight');
+            },
+            items : [
+                'fullscreen', 'source' , 'table',
+                'insertfile', 'link' , 'image' , 'emoticons' , '|' , 'forecolor', 'hilitecolor', 'bold' ,'underline', 'removeformat', '|' ,
+                'justifyleft', 'justifycenter', 'justifyright', 'preview']
+        });
+    });
+</script>
+</body>
+</html>

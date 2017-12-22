@@ -148,7 +148,7 @@ a {
     min-width: 100%;
     padding: 0;
     box-shadow: none;
-    top: 65px
+    top: 35px
 }
 
 .navbar-default .home-right > li > a:focus, .navbar-default .home-right > li > a:hover {

@@ -65,143 +65,188 @@ function createXhr() {
 }
 
 //增删改查页面的逻辑
-//点击增加按钮时
+//增加
 function add() {
-    $(".alertbox").show();
     $(".add").show();
-    $(".del").hide();
-    $(".find").hide();
-
-//
-    $(".add .btn1").click(function () {
+    //网站管理新增
+    $(".modal-footer .btn1").click(function(){
         var search = {};
-        search["userName"] = $("#addinput1").val();
-        search["passWord"] = $("#addinput4").val();
+        search["siteName"] = $(".siteName").val();
+        search["route"] = $(".route").val();
+        search["templteRoute"] = $(".templteRoute").val();
         $.ajax({
-            type: 'post',
+            type: "post",//请求方式
+            //url:"http://192.168.20.195:8080/websites/add",//请求路径
+            url:"data.json",
+            async: true,
             contentType: "application/json",
-            url: 'http://192.168.20.195:8080/user',
-            dataType: "json",//数据格式
+            dataType: "json", //数据格式
             data: JSON.stringify(search),
             success: function (data) {
-                if (msg == true) {
-                    $(".alertbox").hide();
-                }
-                else if(msg == "no"){
-                    alert("数据已存在");
-                }else{
-                    alert("添加失败")
-                }
-
+                //alert(msg);
+                window.location.reload();
             }
         })
-    });
-
+    })
     //点击取消关闭弹窗
     $(".add .btn2").click(function () {
         $(".add").hide();
-        $(".alertbox").hide();
     })
 }
-//点击删除按钮时
-function del(e) {
-    $(".alertbox").show();
-    $(".add").hide();
-    $(".find").hide();
-    $(".revise").hide();
-    //$(".alertbox").load('myAlert.html');
-    $(".del").show()
-    //$(".del").show();
-    //拿到了第一个td里面的值
-    //console.log($(e.target).closest("tsr").find("td")[0]);
-    var del = $(e.target).closest("tr").find("td")[0];
-    var del2 = $(e.target).closest("tr").find("td")[3];
-    deltd = $(del).html()
-    deltd2 = $(del2).html()
-    console.log(444, deltd)
-};
 
-var deltd = 0;
-var deltd2 = 0;
-function test() {
-    console.log('ssssss');
-    //console.log($('.del'));
-    $(".del>.btn1").click(function () {
-        console.log(666, deltd)
-        console.log(777, deltd2)
-        $.ajax({
-            type: 'get',
-            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,//传输地址
-            url:'data.json',
-            dataType: "json",//数据格式
-            //data: JSON.stringify(search),
-            success: function (data) {
-                window.location.reload();
-                /*if(msg==true){
-                    window.location.reload();
-                }else{
-                    alert("删除失败");
-                }*/
-            }
-
-        })
-        //$(e.target).closest("tr").remove();
-        //$(".alertbox").hide();
-    })
-    $(".del>.btn2").click(function () {
-        $(".alertbox").hide();
-        $(".del").hide();
-    })
-};
-
-//点击修改按钮时
+//修改
 function revise() {
-    $(".alertbox").show();
     $(".revise").show();
-    $(".del").hide();
-    $(".find").hide();
-
-}
-function revise_is (){
+    //获取当前tr下的td eq（）的值给弹出的input框
+    //$(".id").val($(event.target).parents("tr").children("td").eq(0).html());
+    $(".siteName").val($(event.target).parents("tr").children("td").eq(1).html());
+    $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
+    $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
     $(".revise .btn1").click(function () {
         var search = {};
-        search["userName"] = $("#addinput1").val();
-        search["passWord"] = $("#addinput4").val();
+        //search["id"] = $(".id").val();
+        search["siteName"] = $(".siteName").val();
+        search["route"] = $(".route").val();
+        search["templteRoute"] = $(".templteRoute").val();//网站管理的修改值
+        //search["uesrName"] = $(".uesrName").val();
+        //search["passWord"] = $(".passWord").val();//用户管理的值
         $.ajax({
             type: 'post',
+            //url: 'http://192.168.20.195:8080/websites/update',
+            url:'websites.json',
+            async: true,
             contentType: "application/json",
-            url: 'data.json',
             dataType: "json",//数据格式
             data: JSON.stringify(search),
             success: function (data) {
-                if (msg == true) {
-                    window.location.reload();
-                }
-                else if(msg == "no"){
-                    alert("数据已存在");
-                }else{
-                    alert("添加失败")
-                }
-
+                //alert(msg);
+                window.location.reload();
             }
         })
     });
     //点击取消关闭弹窗
     $(".revise .btn2").click(function () {
         $(".revise").hide();
-        $(".alertbox").hide();
     })
-
 }
+
 //点击查询按钮时
 function find() {
+    var search = {};
+    search["userName"] = $(".text_find").val();
+
     $.ajax({
         type: "get",
-        url: "queryAll.json",
+        //url: "http://192.168.20.195:8080/user/queryAll/",
+        url:"data.json",
+        async: true,
+        contentType: "application/json",
         dataType: "json",
+        data:JSON.stringify(search),
         success: function (data) {
-            alert(1)
+
         }
+    })
+}
+
+//点击编辑按钮时
+function edit() {
+    $(".edit").show();
+    /*//获取当前tr下的td eq（）的值给弹出的input框
+    $(".siteName").val($(event.target).parents("tr").children("td").eq(1).html());
+    $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
+    $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
+    $(".edit .btn1").click(function () {
+        var search = {};
+        search["siteName"] = $(".siteName").val();
+        search["route"] = $(".route").val();
+        search["templteRoute"] = $(".templteRoute").val();//网站管理的修改值
+        //search["uesrName"] = $(".uesrName").val();
+        //search["passWord"] = $(".passWord").val();//用户管理的值
+        $.ajax({
+            type: 'get',
+            url: 'http://192.168.20.195:8080/websites/update',
+            //url:'data.json',
+            async: true,
+            contentType: "application/json",
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (data) {
+                //alert(msg);
+                window.location.reload();
+            }
+        })
+    });*/
+    //点击取消关闭弹窗
+    $(".edit .btn2").click(function () {
+        $(".edit").hide();
+    })
+}
+
+//点击删除按钮时
+function del() {
+
+    $(".del").show();
+
+    //拿到了第一个td里面的值
+    //console.log($(e.target).closest("tsr").find("td")[0].html());
+    //var del = $(event.target).closest("tr");
+
+    //console.log(444, deltd)
+    //var deltd = 0;
+    //var deltd2 = 0;
+    var search = {};
+    search["userName"] = $(".btn_del").val();//用户管理的删除数值
+    $(".del .btn1").bind(function () {
+        //console.log(666, deltd)
+        //console.log(777, deltd2)
+        $.ajax({
+            type: 'delete',
+            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,//传输地址
+            url:"data.json",
+            async: true,
+            contentType: "application/json",
+            dataType: "json",//数据格式
+            //data: JSON.stringify(search),
+            success: function (data) {
+                $(event.target).closest("tr").html();
+                window.location.reload();
+
+
+            }
+        })
+    })
+    //点击取消关闭弹窗
+    $(".del .btn2").click(function () {
+        $(".del").hide();
+    })
+
+};
+
+//点击审核
+function audit(){
+    $(".audit").show();
+    var search = {};
+    search["id"] = $(".id").val();
+    search["status"] = $(".status").val();
+    search["aduit_des"] = $(".aduit_des").val();
+    search["aduit_user_id"] = $(".aduit_user_id").val();
+
+    $.ajax({
+        type: 'get',
+        url:"news.json",
+        async: true,
+        contentType: "application/json",
+        dataType: "json",//数据格式
+        data: JSON.stringify(search),
+        success: function (data) {
+
+
+        }
+    })
+    //点击取消关闭弹窗
+    $(".audit .btn2").click(function () {
+        $(".audit").hide();
     })
 }
 
