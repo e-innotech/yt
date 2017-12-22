@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yt.cms.mapper.NewsMapper;
-import com.yt.cms.mapper.NewsWebsitesMapper;
 import com.yt.cms.model.News;
 import com.yt.cms.service.NewsService;
 @Service
@@ -14,8 +13,6 @@ public class NewsServiceImpl implements NewsService {
 	
 	@Autowired
 	private NewsMapper newsDAO;
-	@Autowired
-	private NewsWebsitesMapper newsWebsitesDAO;
 	
 	@Override
 	public boolean save(News news) {
@@ -59,16 +56,7 @@ public class NewsServiceImpl implements NewsService {
 		return false;
 	}
 
-	@Override
-	public boolean launch(Integer newsId,List<Integer> websitesId) {
-		try {
-			newsWebsitesDAO.insertBatch(newsId, websitesId);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+
 	
 
 }

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.dao.NewsPublishMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.NewsPublish" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="website_id" property="websiteId" jdbcType="INTEGER" />
+    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
+    <result column="isLine" property="isline" jdbcType="INTEGER" />
+    <result column="isHome" property="ishome" jdbcType="INTEGER" />
+    <result column="home_weight" property="homeWeight" jdbcType="INTEGER" />
+    <result column="onLine_date" property="onlineDate" jdbcType="TIMESTAMP" />
+    <result column="offLine_date" property="offlineDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="findNewsWebChannelResultMap" type="com.yt.cms.model.NewsPublishLine" extends="BaseResultMap">
+    	<id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="isLine" property="isline" jdbcType="INTEGER" />
+	    <result column="isHome" property="ishome" jdbcType="INTEGER" />
+	    <result column="home_weight" property="homeWeight" jdbcType="INTEGER" />
+	    <result column="onLine_date" property="onlineDate" jdbcType="TIMESTAMP" />
+	    <result column="offLine_date" property="offlineDate" jdbcType="TIMESTAMP" />
+    	<association property="news" javaType="com.yt.cms.model.News">
+    		<id column="news_id" property="id" jdbcType="INTEGER" />
+		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    	</association>
+    	<association property="websites" javaType="com.yt.cms.model.Websites">
+    		<id column="news_id" property="id" jdbcType="INTEGER" />
+		   	<result column="siteName" property="siteName" jdbcType="VARCHAR" />
+    	</association>
+    	<association property="channel" javaType="com.yt.cms.model.Channel">
+    		<id column="news_id" property="id" jdbcType="INTEGER" />
+		     <result column="channelName" property="channelName" jdbcType="VARCHAR" />
+    	</association>
+  </resultMap>
+  
+    <resultMap id="ResultMap" type="com.yt.cms.model.NewsPublish" extends="BaseResultMap">
+    	<association property="newsLaunch" javaType="com.yt.cms.model.NewsLaunch">
+    		<id column="news_launch_id" property="id" jdbcType="INTEGER" />
+		    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+		    <result column="news_launch_config" property="newsLaunchConfig" jdbcType="VARCHAR" />
+		    <result column="status" property="status" jdbcType="INTEGER" />
+		    <result column="aduit_user_id" property="aduitUserId" jdbcType="INTEGER" />
+		    <result column="aduit_des" property="aduitDes" jdbcType="VARCHAR" />
+		    <result column="aduit_date" property="aduitDate" jdbcType="TIMESTAMP" />
+		    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+		    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    	</association>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, news_id, website_id, channel_id, isLine, isHome, home_weight, onLine_date, offLine_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="findNewsWebChannelResultMap" parameterType="java.lang.Integer" >
+    select 
+    a.id, a.isLine, a.isHome, a.home_weight, a.onLine_date, a.offLine_date,b.news_title,c.siteName,d.channelName
+    from news_publish a, news b, weisites c, channel d
+    where a.id = #{id,jdbcType=INTEGER} and a.news_id = b.id and a.website_id = c.id and a.channel_id = d.id
+  </select>
+  
+    <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.NewsPublish" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_publish
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news_publish
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+    <!-- 批量新增 -->
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into news_publish (news_id, website_id, channel_id, isLine) values
+		<foreach collection="list" item="item" index="index" 
+			separator=",">
+			(#{item.newsId,jdbcType=INTEGER},#{item.websiteId,jdbcType=INTEGER},
+			#{item.channelId,jdbcType=INTEGER},1)
+		</foreach>
+	</insert>
+	
+  <insert id="insertSelective" parameterType="com.yt.cms.model.NewsPublish" >
+       <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into news_publish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="websiteId != null" >
+        website_id,
+      </if>
+      <if test="channelId != null" >
+        channel_id,
+      </if>
+      <if test="isline != null" >
+        isLine,
+      </if>
+      <if test="ishome != null" >
+        isHome,
+      </if>
+      <if test="homeWeight != null" >
+        home_weight,
+      </if>
+      <if test="onlineDate != null" >
+        onLine_date,
+      </if>
+      <if test="offlineDate != null" >
+        offLine_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="websiteId != null" >
+        #{websiteId,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="isline != null" >
+        #{isline,jdbcType=INTEGER},
+      </if>
+      <if test="ishome != null" >
+        #{ishome,jdbcType=INTEGER},
+      </if>
+      <if test="homeWeight != null" >
+        #{homeWeight,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDate != null" >
+        #{onlineDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offlineDate != null" >
+        #{offlineDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.NewsPublish" >
+    update news_publish
+    <set >
+      <if test="newsId != null" >
+        news_id = #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="websiteId != null" >
+        website_id = #{websiteId,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="isline != null" >
+        isLine = #{isline,jdbcType=INTEGER},
+      </if>
+      <if test="ishome != null" >
+        isHome = #{ishome,jdbcType=INTEGER},
+      </if>
+      <if test="homeWeight != null" >
+        home_weight = #{homeWeight,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDate != null" >
+        onLine_date = #{onlineDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="offlineDate != null" >
+        offLine_date = #{offlineDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

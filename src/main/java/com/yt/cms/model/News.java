@@ -9,26 +9,18 @@ public class News {
 
     private String staticUrl;
 
-    private Integer status;
-
-    private Integer isLine;
-
-    private Integer aduitUserId;
-
     private Integer submitUserId;
 
-    private String aduitDes;
-
     private String content;
-
-    private String aduitDate;
     
-    public String getAduitDate() {
-		return aduitDate;
+    private String createDate;
+    
+	public String getCreateDate() {
+		return createDate;
 	}
 
-	public void setAduitDate(String aduitDate) {
-		this.aduitDate = aduitDate;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
 
 	public Integer getId() {
@@ -62,45 +54,13 @@ public class News {
 	public void setStaticUrl(String staticUrl) {
 		this.staticUrl = staticUrl == null ? null : staticUrl.trim();
 	}
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getIsLine() {
-		return isLine;
-	}
-
-	public void setIsLine(Integer isLine) {
-		this.isLine = isLine;
-	}
-
-    public Integer getAduitUserId() {
-        return aduitUserId;
-    }
-
-    public void setAduitUserId(Integer aduitUserId) {
-        this.aduitUserId = aduitUserId;
-    }
-
+   
     public Integer getSubmitUserId() {
         return submitUserId;
     }
 
     public void setSubmitUserId(Integer submitUserId) {
         this.submitUserId = submitUserId;
-    }
-
-    public String getAduitDes() {
-        return aduitDes;
-    }
-
-    public void setAduitDes(String aduitDes) {
-        this.aduitDes = aduitDes == null ? null : aduitDes.trim();
     }
 
     public String getContent() {

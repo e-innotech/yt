@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yt.cms.mapper.MembersCollectNewsMapper">
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.MembersCollectNews">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="members_id" jdbcType="INTEGER" property="membersId" />
+    <result column="news_id" jdbcType="INTEGER" property="newsId" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  
+    <resultMap id="ResultMap" type="com.yt.cms.model.MembersCollectNews" >
+    	<id column="id" jdbcType="INTEGER" property="id" />
+	    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    	<association property="news" javaType="com.yt.cms.model.News">
+    		<id column="news_id" property="id" jdbcType="INTEGER" />
+		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+		    <result column="staticUrl" property="staticUrl" jdbcType="VARCHAR" />
+    	</association>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, members_id, news_id, createDate, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from members_collect_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+   <select id="query" parameterType="com.yt.cms.model.MembersCollectNews" resultMap="ResultMap">
+    select a.id, a.createDate,b.is as news_id,b.news_title, b.staticUrl
+    from members_collect_news a, news b where a.news_id = b.id and a.status = 0
+     and a.members_id =  #{membersId,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from members_collect_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.MembersCollectNews">
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into members_collect_news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+     
+      <if test="membersId != null">
+        members_id,
+      </if>
+      <if test="newsId != null">
+        news_id,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      
+      <if test="membersId != null">
+        #{membersId,jdbcType=INTEGER},
+      </if>
+      <if test="newsId != null">
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.MembersCollectNews">
+    update members_collect_news
+    <set>
+      <if test="membersId != null">
+        members_id = #{membersId,jdbcType=INTEGER},
+      </if>
+      <if test="newsId != null">
+        news_id = #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

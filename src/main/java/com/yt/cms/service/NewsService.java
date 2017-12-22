@@ -42,11 +42,5 @@ public interface NewsService {
 	 * @return
 	 */
 	public boolean delete(Integer id);
-	/**
-	 * 稿件投放到网站
-	 * @param newsId
-	 * @param websitesId
-	 * @return
-	 */
-	public boolean launch(Integer newsId,List<Integer> websitesId);
+	
 }

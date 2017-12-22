@@ -84,7 +84,7 @@ public class ModuleController {
 		}
 		AjaxResponseBody response = new AjaxResponseBody();
 		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 	}
 	/**
 	 * 删除模块
@@ -100,7 +100,7 @@ public class ModuleController {
 		}
 		AjaxResponseBody response = new AjaxResponseBody();
 		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 	}
 	
 	/**

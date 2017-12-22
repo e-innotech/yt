@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.MembersCommentsNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.MembersCommentsNews" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="members_id" property="membersId" jdbcType="INTEGER" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="isDel" property="isDel" jdbcType="INTEGER" />
+    <result column="delDate" property="delDate" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+
+<resultMap id="ResultMap" type="com.yt.cms.model.MembersCommentsNews" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="members_id" property="membersId" jdbcType="INTEGER" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+	    <association property="news" javaType="com.yt.cms.model.News">
+	    	 <id column="news_id" property="id" jdbcType="INTEGER" />
+		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+	    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, members_id, news_id, createDate, isDel, delDate,content
+  </sql>
+
+   <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.MembersCommentsNews" >
+    select a.id, a.members_id, a.createDate, a.content, b.id as news_id, b.news_title
+    from members_comments_news a, news b  where a.isDel = #{isDel,jdbcType=INTEGER} and a.news_id = b.id
+    <if test="membersId != null" >
+       and members_id = #{membersId,jdbcType=INTEGER}
+      </if>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from members_comments_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByModel" parameterType="com.yt.cms.model.MembersCommentsNews" >
+    delete from members_comments_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.MembersCommentsNews" >
+     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into members_comments_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="membersId != null" >
+        members_id,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="createDate != null" >
+        createDate,
+      </if>
+      <if test="isDel != null" >
+        isDel,
+      </if>
+      <if test="delDate != null" >
+        delDate,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="membersId != null" >
+        #{membersId,jdbcType=INTEGER},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="delDate != null" >
+        #{delDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>

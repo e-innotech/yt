@@ -6,19 +6,14 @@
     <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="staticUrl" property="staticUrl" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="isLine" property="isLine" jdbcType="INTEGER" />
-    <result column="aduit_user_id" property="aduitUserId" jdbcType="INTEGER" />
     <result column="submit_user_id" property="submitUserId" jdbcType="INTEGER" />
-    <result column="aduit_des" property="aduitDes" jdbcType="VARCHAR" />
-    <result column="aduit_date" property="aduitDate" jdbcType="VARCHAR" />
+    <result column="createDate" property="createDate" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.model.News" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, news_title, source, staticUrl, status, isLine, aduit_user_id, submit_user_id, 
-    aduit_des,aduit_date
+    id, news_title, source, staticUrl, submit_user_id,createDate
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -50,7 +45,6 @@
       	</selectKey>
     insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      
       <if test="newsTitle != null" >
         news_title,
       </if>
@@ -60,23 +54,14 @@
       <if test="staticUrl != null" >
         staticUrl,
       </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="isLine != null" >
-        isLine,
-      </if>
-     
       <if test="submitUserId != null" >
         submit_user_id,
       </if>
-      
       <if test="content != null" >
         content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-     
       <if test="newsTitle != null" >
         #{newsTitle,jdbcType=VARCHAR},
       </if>
@@ -86,17 +71,9 @@
       <if test="staticUrl != null" >
         #{staticUrl,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="isLine != null" >
-        #{isLine,jdbcType=INTEGER},
-      </if>
-      
       <if test="submitUserId != null" >
         #{submitUserId,jdbcType=INTEGER},
       </if>
-    
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -114,30 +91,11 @@
       <if test="staticUrl != null" >
         staticUrl = #{staticUrl,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="isLine != null" >
-        isLine = #{isLine,jdbcType=INTEGER},
-      </if>
-      <if test="aduitUserId != null" >
-        aduit_user_id = #{aduitUserId,jdbcType=INTEGER},
-      </if>
-      <if test="submitUserId != null" >
-        submit_user_id = #{submitUserId,jdbcType=INTEGER},
-      </if>
-      <if test="aduitDes != null" >
-        aduit_des = #{aduitDes,jdbcType=VARCHAR},
-      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-       <if test="aduitDate != null" >
-        aduit_date = #{aduitDate,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-
 
 </mapper>

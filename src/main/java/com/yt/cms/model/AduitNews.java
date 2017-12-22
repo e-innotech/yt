@@ -1,8 +1,10 @@
 package com.yt.cms.model;
 
+import java.util.Date;
+
 public class AduitNews {
 	/**
-	 * 稿件id
+	 * 投放id
 	 */
 	private Integer id;
 	/**
@@ -12,7 +14,12 @@ public class AduitNews {
 	/**
 	 * 稿件审批意见
 	 */
-	private String aduitDesc;
+	private String aduitDes;
+	/**
+	 * 稿件审批时间
+	 */
+	private Date aduitDate;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -25,11 +32,18 @@ public class AduitNews {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public String getAduitDesc() {
-		return aduitDesc;
+
+	public String getAduitDes() {
+		return aduitDes;
 	}
-	public void setAduitDesc(String aduitDesc) {
-		this.aduitDesc = aduitDesc;
+	public void setAduitDes(String aduitDes) {
+		this.aduitDes = aduitDes;
+	}
+	public Date getAduitDate() {
+		return aduitDate;
+	}
+	public void setAduitDate(Date aduitDate) {
+		this.aduitDate = aduitDate;
 	}
 	
 	

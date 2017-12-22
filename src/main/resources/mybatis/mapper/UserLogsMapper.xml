@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.UserLogsMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.UserLogs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="users_id" property="usersId" jdbcType="INTEGER" />
+    <result column="resource_id" property="resourceId" jdbcType="INTEGER" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, users_id, resource_id, action, createDate
+  </sql>
+  
+  <select id="query" parameterType="com.yt.cms.model.UserLogs" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" />
+    from userlogs
+  </select>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.UserLogs" >
+    insert into userlogs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     
+      <if test="usersId != null" >
+        users_id,
+      </if>
+      <if test="resourceId != null" >
+        resource_id,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="usersId != null" >
+        #{usersId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+ 
+</mapper>
