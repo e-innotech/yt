@@ -35,7 +35,9 @@ public class WebsitesChannelServiceImpl implements WebsitesChannelService {
 			List<Integer> addList = CollectionUtils.find(new_channelIds, old_channelIds);
 					
 			// 删除解除关系的数据
-			websitesBarDAO.deleteByWebsitesId(websitesId, delList);
+			if(CollectionUtils.isNotEmpty(delList)) {
+				websitesBarDAO.deleteByWebsitesId(websitesId, delList);
+			}
 			// 新增新建立关系的数据
 			List<WebsitesChannel> moduleList = new ArrayList<WebsitesChannel>();
 			for(Integer id : addList) {
@@ -44,7 +46,9 @@ public class WebsitesChannelServiceImpl implements WebsitesChannelService {
 				bar.setWebsitesId(websitesId);
 				moduleList.add(bar);
 			}
-			websitesBarDAO.insertBatch(moduleList);
+			if(CollectionUtils.isNotEmpty(moduleList)) {
+				websitesBarDAO.insertBatch(moduleList);
+			}
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

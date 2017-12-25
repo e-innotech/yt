@@ -1,5 +1,7 @@
 package com.yt.cms.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
+import com.yt.cms.model.M2MUpdateBody;
 import com.yt.cms.model.RolesResource;
 import com.yt.cms.service.RolesResourceService;
 
@@ -32,14 +34,12 @@ public class RolesResourceController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加角色资源关系")
-	public HttpEntity<?> add(@RequestBody RolesResource rolesResource) {
+	public HttpEntity<?> add(@RequestBody List<RolesResource> rolesResource) {
 		boolean created = rolesResourceService.save(rolesResource);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 
 	/**
@@ -49,14 +49,15 @@ public class RolesResourceController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改角色资源关系")
-	public HttpEntity<?> update(@RequestBody RolesResource rolesResource){
-		boolean created = rolesResourceService.update(rolesResource);
+	public HttpEntity<?> update(@RequestBody M2MUpdateBody body){
+		Integer rolesId = body.getMasterId();
+		Integer[] old_resourceIds = body.getOld_slaveIds();
+		Integer[] new_resourceIds = body.getNew_slaveIds();
+		boolean created = rolesResourceService.update(rolesId, old_resourceIds, new_resourceIds);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 
 	

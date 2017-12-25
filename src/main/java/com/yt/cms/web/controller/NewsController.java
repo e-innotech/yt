@@ -154,7 +154,7 @@ public class NewsController {
 	 * 按照稿件投放id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/launch/{id}")
+	@GetMapping("/launch/id/{id}")
 	@ApiOperation("按照稿件投放id查询稿件投放详情")
 	public HttpEntity<?> findLaunch(@PathVariable Integer id){
 		NewsLaunch module =  newsLaunchService.findById(id);

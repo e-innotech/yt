@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.Module;
 import com.yt.cms.service.ModuleService;
@@ -66,9 +65,7 @@ public class ModuleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 修改模块
@@ -82,9 +79,7 @@ public class ModuleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 删除模块
@@ -98,9 +93,7 @@ public class ModuleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	/**

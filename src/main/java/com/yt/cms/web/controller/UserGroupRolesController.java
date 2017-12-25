@@ -1,5 +1,7 @@
 package com.yt.cms.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
+import com.yt.cms.model.M2MUpdateBody;
 import com.yt.cms.model.UserGroupRoles;
 import com.yt.cms.service.UserGroupRolesService;
 
@@ -32,14 +34,12 @@ public class UserGroupRolesController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("给用户组赋予角色")
-	public HttpEntity<?> add(@RequestBody UserGroupRoles userGroupRoles) {
+	public HttpEntity<?> add(@RequestBody List<UserGroupRoles> userGroupRoles) {
 		boolean created = userGroupRolesService.save(userGroupRoles);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 修改用户组的角色
@@ -48,14 +48,15 @@ public class UserGroupRolesController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改用户组的角色")
-	public HttpEntity<?> update(@RequestBody UserGroupRoles userGroupRoles){
-		boolean created = userGroupRolesService.update(userGroupRoles);
+	public HttpEntity<?> update(@RequestBody M2MUpdateBody body){
+		Integer userGroupId = body.getMasterId();
+		Integer[] old_rolesIds = body.getOld_slaveIds();
+		Integer[] new_rolesIds = body.getNew_slaveIds();
+		boolean created = userGroupRolesService.update(userGroupId, old_rolesIds, new_rolesIds);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	

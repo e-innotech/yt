@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.model.WebsitesBarBody;
+import com.yt.cms.model.M2MUpdateBody;
 import com.yt.cms.model.WebsitesChannel;
 import com.yt.cms.service.WebsitesChannelService;
 
@@ -54,10 +54,10 @@ public class WebsitesChannelController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改网站栏位关系")
-	public HttpEntity<?> update(@RequestBody WebsitesBarBody body){
-		Integer websitesId = body.getWebsitesId();
-		Integer[] old_channelIds = body.getOld_channelIds();
-		Integer[] new_channelIds = body.getNew_channelIds();
+	public HttpEntity<?> update(@RequestBody M2MUpdateBody body){
+		Integer websitesId = body.getMasterId();
+		Integer[] old_channelIds = body.getOld_slaveIds();
+		Integer[] new_channelIds = body.getNew_slaveIds();
 		boolean created = websitesChannelService.update(websitesId, old_channelIds, new_channelIds);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);

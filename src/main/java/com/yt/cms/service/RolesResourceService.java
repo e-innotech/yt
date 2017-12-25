@@ -1,5 +1,7 @@
 package com.yt.cms.service;
 
+import java.util.List;
+
 import com.yt.cms.model.RolesResource;
 
 /**
@@ -13,13 +15,15 @@ public interface RolesResourceService {
 	 * @param rolesResource
 	 * @return
 	 */
-	public boolean save(RolesResource rolesResource);
+	public boolean save(List<RolesResource> rolesResource);
 
 	/**
 	 * 更新角色资源关系信息
-	 * @param rolesResource
+	 * @param rolesId
+	 * @param old_resourceIds
+	 * @param new_resourceIds
 	 * @return
 	 */
-	public boolean update(RolesResource rolesResource);
+	public boolean update(Integer rolesId, Integer[] old_resourceIds, Integer[] new_resourceIds);
 	
 }

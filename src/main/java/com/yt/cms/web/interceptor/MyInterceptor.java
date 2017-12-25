@@ -13,6 +13,9 @@ import java.util.Enumeration;
  * 
  */
 public class MyInterceptor implements HandlerInterceptor {
+	/**
+	 * 在执行action里面的处理逻辑之前执行，它返回的是boolean，这里如果我们返回true在接着执行postHandle和afterCompletion，如果我们返回false则中断执行。
+	 */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         boolean flag =true;
@@ -24,15 +27,15 @@ public class MyInterceptor implements HandlerInterceptor {
         System.out.println("请求类型： " + request.getMethod());
         System.out.println("pathInfo: " + request.getPathInfo());
         System.out.println("queryString:" + request.getQueryString());
-        System.out.println("remote :"+request.getRemoteAddr());
+//        System.out.println("remote :"+request.getRemoteAddr());
         System.out.println("requestURL :" + request.getRequestURI());
 //        System.out.println("用户:"+ip+",访问目标:"+method.getDeclaringClass().getName() + "." + method.getName());
         Enumeration<String> headers = request.getHeaderNames();
-        while (headers.hasMoreElements()) {
+/*        while (headers.hasMoreElements()) {
             String string = (String) headers.nextElement();
            String value = request.getHeader(string);
             System.out.println(string + " " + value);
-        }
+        }*/
     /*    User user=(User)request.getSession().getAttribute("user");
         if(null==user){
             response.sendRedirect("toLogin");
@@ -43,6 +46,9 @@ public class MyInterceptor implements HandlerInterceptor {
         return flag;
     }
 
+    /**
+     * 在执行action里面的逻辑后返回视图之前执行
+     */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 //        HandlerMethod handlerMethod = (HandlerMethod) handler;
@@ -59,7 +65,9 @@ public class MyInterceptor implements HandlerInterceptor {
 //                    + executeTime + "ms");
 //        }
     }
-
+/**
+ * 在action返回视图后执行。
+ */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 

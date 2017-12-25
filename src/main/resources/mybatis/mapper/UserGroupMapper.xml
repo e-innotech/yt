@@ -11,7 +11,7 @@
     	<collection property="roles" ofType="com.yt.cms.model.Roles">
             <id column="roles_id" property="id"/>
             <result column="roleName" property="roleName" jdbcType="VARCHAR" />
-    		<result column="comment" property="comment" jdbcType="VARCHAR" />
+    		<result column="roles_comment" property="comment" jdbcType="VARCHAR" />
         </collection>
   </resultMap>
   
@@ -21,9 +21,11 @@
   <!-- 查询单个用户组的角色信息 -->
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.groupName, a.comment, b.id as roles_id, b.roleName, b.comment
-    from user_group a, roles b , usergroup_roles c
-    where a.id = #{id,jdbcType=INTEGER} and a.id = c.userGroup_id and b.id = c.roles_id
+    a.id, a.groupName, a.comment, b.id as roles_id, b.roleName, b.comment as roles_comment
+    from user_group a 
+    LEFT JOIN usergroup_roles c ON a.id = c.userGroup_id 
+    left join roles b on c.roles_id = b.id
+    where a.id = #{id,jdbcType=INTEGER}
   </select>
   <!-- 分页或者多条件查询 -->
   <select id="query" resultMap="BaseResultMap" >

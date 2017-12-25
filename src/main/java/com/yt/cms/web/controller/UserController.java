@@ -45,7 +45,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/user/{id}")
+	@GetMapping("/user/id/{id}")
 	@ApiOperation("按照id查询用户")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
 		User result = userService.findById(id);
@@ -80,9 +80,7 @@ public class UserController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 用户登录
@@ -98,12 +96,11 @@ public class UserController {
 		boolean isLogin = userService.login(user);
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(!isLogin) {
-			response.setMsg(Const.LOGIN_FAILED);
-			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(Const.LOGIN_FAILED,HttpStatus.BAD_REQUEST);
 		} else {
 			response.setMsg(Const.LOGIN_SUCCESS);
 			// TODO 请求权限服务，并将权限数据返回
-			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 		}
 	}
 	/**
@@ -121,7 +118,7 @@ public class UserController {
 		if(!flag) {
 			return new ResponseEntity<String>(Const.FAILED,HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	/**
@@ -129,7 +126,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/{id}/{isUse}")
+	@PutMapping("/user/enableOrDisable/{id}/{isUse}")
 	@ApiOperation("启停用户")
 	public HttpEntity<?> enableOrDisable(@PathVariable Integer id,@PathVariable Integer isUse) {
 		User user = new User();
@@ -139,9 +136,7 @@ public class UserController {
 		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	/**
@@ -156,9 +151,7 @@ public class UserController {
 		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 }

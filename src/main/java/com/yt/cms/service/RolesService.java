@@ -2,7 +2,6 @@ package com.yt.cms.service;
 
 import java.util.List;
 
-import com.yt.cms.model.Resource;
 import com.yt.cms.model.Roles;
 
 /**
@@ -50,10 +49,4 @@ public interface RolesService {
 	 */
 	public boolean removeRolesResource(Integer rolesId);
 	
-	/**
-	 * 查询角色id对应的资源数据
-	 * @param rolesId
-	 * @return
-	 */
-	public List<Resource> findByRolesId(Integer rolesId);
 }

@@ -6,15 +6,28 @@
     <result column="roleName" property="roleName" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
   </resultMap>
+  
+   <resultMap id="ResultMap" type="com.yt.cms.model.Roles" extends="BaseResultMap">
+    <collection property="resource" ofType="com.yt.cms.model.Resource">
+	    <id column="resource_id" property="id" jdbcType="INTEGER" />
+	    <result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
+	    <result column="uri" property="uri" jdbcType="VARCHAR" />
+	    <result column="module_id" property="moduleId" jdbcType="INTEGER" />
+	    <result column="rw" property="rw" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     id, roleName, comment
   </sql>
   <!-- 查询单个角色下的所有资源列表 -->
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
      a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName, c.uri, c.module_id, c.rw
-    from roles a, roles_resource b, resource c
-    where id = #{id,jdbcType=INTEGER}
+    from roles a
+    left join roles_resource b on a.id = b.roles_id
+    left join resource c on b.resource_id = c.id
+    where a.id = #{id,jdbcType=INTEGER}
   </select>
   
    <select id="query" resultMap="BaseResultMap" >
@@ -41,6 +54,7 @@
       <if test="comment != null" >
         comment,
       </if>
+     
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       
@@ -50,6 +64,7 @@
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
       </if>
+    
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Roles" >

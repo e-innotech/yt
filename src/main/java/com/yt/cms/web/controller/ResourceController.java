@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.Resource;
 import com.yt.cms.service.ResourceService;
@@ -66,9 +65,7 @@ public class ResourceController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 修改系统资源
@@ -82,9 +79,7 @@ public class ResourceController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	
 	/**
@@ -99,9 +94,7 @@ public class ResourceController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	
 	/**
@@ -116,9 +109,7 @@ public class ResourceController {
 		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	
 }

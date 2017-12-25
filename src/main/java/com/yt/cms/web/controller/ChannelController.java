@@ -107,10 +107,10 @@ public class ChannelController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/name/{navigationName}")
+	@GetMapping("/name/{channelName}")
 	@ApiOperation("按照栏目名查询")
-	public HttpEntity<?> findByNavigationName(@PathVariable String navigationName) {
-		boolean result = channelService.findByNavigationName(navigationName);
+	public HttpEntity<?> findByChannelName(@PathVariable String channelName) {
+		boolean result = channelService.findByChannelName(channelName);
 		HttpStatus status = result == true ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Boolean>(result, status);
 	}

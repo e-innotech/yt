@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.yt.cms.mapper.RolesMapper;
 import com.yt.cms.mapper.RolesResourceMapper;
-import com.yt.cms.model.Resource;
 import com.yt.cms.model.Roles;
 import com.yt.cms.service.RolesService;
 @Service
@@ -62,18 +61,12 @@ public class RolesServiceImpl implements RolesService {
 	public boolean removeRolesResource(Integer rolesId) {
 		try {
 			int k = rolesResourceDAO.deleteByRolesId(rolesId);
-			System.out.println(k);
+			// k 是指影响到的行数
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
-	}
-
-	@Override
-	public List<Resource> findByRolesId(Integer rolesId) {
-
-		return null;
 	}
 
 	

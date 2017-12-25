@@ -43,10 +43,10 @@ public interface ChannelService {
 	public boolean delete(Integer id);
 	/**
 	 * 按照栏目名称查询栏目
-	 * @param navigationName
+	 * @param channelName
 	 * @return 如果找到返回 true，否则返回false
 	 */
-	public boolean findByNavigationName(String navigationName);
+	public boolean findByChannelName(String channelName);
 	/**
 	 * 查询栏位id被那些网站引用
 	 * 在查询单个栏位时级联查询网站信息

@@ -29,7 +29,7 @@
 	<!-- 主键id查找用户信息,用户组 -->
     <select id="findById" parameterType="java.lang.Integer" resultMap="ResultMap" >
         SELECT 
-       a.id, a.uname, a.pwd, a.createDate,a.isUse,a.user_group_id,b.groupName 
+       a.id, a.uname, a.createDate,a.isUse,a.user_group_id,b.groupName 
 	   FROM users a, user_group b
 	   WHERE a.id = #{id} and isUse = 1 and a.user_group_id = b.id
     </select>

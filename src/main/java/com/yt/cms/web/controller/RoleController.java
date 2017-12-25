@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.model.Resource;
 import com.yt.cms.model.Roles;
 import com.yt.cms.service.RolesService;
 
@@ -44,18 +42,15 @@ public class RoleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
-	 * 按照id查询
-	 * 
+	 * 查询角色id对应的资源数据
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
-	@ApiOperation("按照id查询角色")
+	@GetMapping("/queryResources/{id}")
+	@ApiOperation("查询角色id对应的资源数据")
 	public HttpEntity<?> findById(@PathVariable Integer id) {
 		Roles result = rolesService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
@@ -74,9 +69,7 @@ public class RoleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 列表页面
@@ -99,9 +92,7 @@ public class RoleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 删除角色下的所有资源
@@ -115,19 +106,7 @@ public class RoleController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
-	/**
-	 * 查询角色id对应的资源数据
-	 * @return
-	 */
-	@GetMapping("/queryResources/{rolesId}")
-	@ApiOperation("查询角色列表")
-	public List<Resource> queryResources(@PathVariable Integer rolesId){
-		return rolesService.findByRolesId(rolesId);
-	}
-	
 	
 }

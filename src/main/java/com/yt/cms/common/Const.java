@@ -12,7 +12,7 @@ public class Const {
 	
 	public static final String LOGIN_SUCCESS = "登陆成功！";
 	
-	public static final String LOGIN_FAILED = "登陆失败！";
+	public static final String LOGIN_FAILED = "登陆失败！账号或者密码错误。";
 	
 	public static final String NOT_FOUND = "没有找到！";
 	

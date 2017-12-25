@@ -4,12 +4,29 @@
   <resultMap id="BaseResultMap" type="com.yt.cms.model.UserGroupRoles" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="roles_id" property="rolesId" jdbcType="INTEGER" />
-    <result column="userGroup_id" property="usergroupId" jdbcType="INTEGER" />
+    <result column="userGroup_id" property="userGroupId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, roles_id, userGroup_id
   </sql>
 
+<!-- 批量新增 -->
+  <insert id="insertBatch" parameterType="java.util.List" >
+   	insert into usergroup_roles (roles_id, userGroup_id) values
+		<foreach collection="list" item="item" index="index" 
+			separator=",">
+			(#{item.rolesId,jdbcType=INTEGER},#{item.userGroupId,jdbcType=INTEGER})
+		</foreach>
+  </insert>
+  
+  <!-- 批量删除 按照用户组id 和角色id集合 -->
+	<delete id="deleteByUserGroupIdRolesIds" parameterType="map">
+		delete from usergroup_roles
+		where userGroup_id = #{userGroupId,jdbcType=INTEGER} and roles_id in 
+		 <foreach collection="rolesIds" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+	</delete>
 
   <insert id="insertSelective" parameterType="com.yt.cms.model.UserGroupRoles" >
     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
@@ -21,7 +38,7 @@
       <if test="rolesId != null" >
         roles_id,
       </if>
-      <if test="usergroupId != null" >
+      <if test="userGroupId != null" >
         userGroup_id,
       </if>
     </trim>
@@ -30,8 +47,8 @@
       <if test="rolesId != null" >
         #{rolesId,jdbcType=INTEGER},
       </if>
-      <if test="usergroupId != null" >
-        #{usergroupId,jdbcType=INTEGER},
+      <if test="userGroupId != null" >
+        #{userGroupId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -41,16 +58,16 @@
       <if test="rolesId != null" >
         roles_id = #{rolesId,jdbcType=INTEGER},
       </if>
-      <if test="usergroupId != null" >
-        userGroup_id = #{usergroupId,jdbcType=INTEGER},
+      <if test="userGroupId != null" >
+        userGroup_id = #{userGroupId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
  
   <!-- 按照用户组id，删除该用户组下面的所有角色数据 -->
-   <delete id="deleteByUserGroupId" parameterType="java.lang.Integer" >
+   <delete id="deleteByuserGroupId" parameterType="java.lang.Integer" >
     delete from usergroup_roles
-    where userGroup_id = #{usergroupId,jdbcType=INTEGER}
+    where userGroup_id = #{userGroupId,jdbcType=INTEGER}
   </delete>
 </mapper>

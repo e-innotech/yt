@@ -54,8 +54,8 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	@Override
-	public boolean findByNavigationName(String navigationName) {
-		int i = channelDAO.findChannelName(navigationName);
+	public boolean findByChannelName(String channelName) {
+		int i = channelDAO.findChannelName(channelName);
 		if(i > 0) {
 			return true;
 		}

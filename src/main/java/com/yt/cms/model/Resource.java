@@ -21,6 +21,10 @@ public class Resource {
      * 资源读写标记
      */
     private Integer rw;
+    /**
+     * 是否菜单
+     */
+    private Integer isMenu;
 
     public Integer getId() {
         return id;
@@ -61,4 +65,14 @@ public class Resource {
     public void setRw(Integer rw) {
         this.rw = rw;
     }
+
+	public Integer getIsMenu() {
+		return isMenu;
+	}
+
+	public void setIsMenu(Integer isMenu) {
+		this.isMenu = isMenu;
+	}
+    
+    
 }
