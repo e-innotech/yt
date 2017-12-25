@@ -65,35 +65,36 @@ function createXhr() {
 }
 
 //增删改查页面的逻辑
-//增加
+//栏目的增
 function add() {
+//点击增加按钮时出现弹出框
+
     $(".add").show();
-    //网站管理新增
-    $(".modal-footer .btn1").click(function(){
-        var search = {};
-        search["siteName"] = $(".siteName").val();
-        search["route"] = $(".route").val();
-        search["templteRoute"] = $(".templteRoute").val();
-        $.ajax({
-            type: "post",//请求方式
-            //url:"http://192.168.20.195:8080/websites/add",//请求路径
-            url:"data.json",
-            async: true,
-            contentType: "application/json",
-            dataType: "json", //数据格式
-            data: JSON.stringify(search),
-            success: function (data) {
-                //alert(msg);
-                window.location.reload();
+    //点击确认按钮时
+    $(".modal-footer .btn1").click(function () {
+        var newuserName = $("userName").val();
+
+        for (var i = 0; i < json_data.length; i++) {
+            if (newuserName == json_data[i].userName) {
+                alert('栏目存在');
+                return;
             }
+        }
+        json_data.push({userName: newuserName});
+        console.log(json_data);
+        renderList();
+        $(".userName").val("");
+        $(".passWord").val("");
+//点击关闭按钮时
+        $(".add .btn2").click(function () {
+            $(".add").hide();
         })
     })
-    //点击取消关闭弹窗
-    $(".add .btn2").click(function () {
-        $(".add").hide();
-    })
-}
 
+
+
+
+}
 //修改
 function revise() {
     $(".revise").show();
@@ -103,13 +104,9 @@ function revise() {
     $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
     $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
     $(".revise .btn1").click(function () {
-        var search = {};
-        //search["id"] = $(".id").val();
-        search["siteName"] = $(".siteName").val();
-        search["route"] = $(".route").val();
-        search["templteRoute"] = $(".templteRoute").val();//网站管理的修改值
-        //search["uesrName"] = $(".uesrName").val();
-        //search["passWord"] = $(".passWord").val();//用户管理的值
+        var siteName = $(".siteName").val();
+        var route = $(".route").val();
+        var templteRoute = $(".templteRoute").val();
         $.ajax({
             type: 'post',
             //url: 'http://192.168.20.195:8080/websites/update',
@@ -117,10 +114,14 @@ function revise() {
             async: true,
             contentType: "application/json",
             dataType: "json",//数据格式
+/*
             data: JSON.stringify(search),
+*/
             success: function (data) {
                 //alert(msg);
-                window.location.reload();
+                console.log(data);
+                data.push({siteName:siteName,route:route,templteRoute:templteRoute});
+
             }
         })
     });

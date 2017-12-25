@@ -17,6 +17,7 @@
     position: relative;
     line-height: 30px;
     color: #fff;
+    padding-left: 16px;
 }
 
 .treeview-menu>li:hover{
@@ -85,7 +86,6 @@ table.reference {
     padding: 0;
     background: #cccccc;
     margin: 0 auto;
-    margin-left:-6px;
 }
 .anniu.active{
     background-color: #1cbb95;

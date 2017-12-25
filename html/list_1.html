@@ -245,15 +245,30 @@
             isCheckAll = true;
         }
     }
-    /*分页*/
-    Page({
-        num: 100,					//页码数
-        startnum: 1,				//指定页码
-        elem: $('.page1'),		//指定的元素
-        callback: function (n) {	//回调函数
-            console.log(n);
-        }
-    });
+        /*分页*/
+        Page({
+            num: 100,					//页码数
+            startnum: 1,				//指定页码
+            elem: $('.page1'),		//指定的元素
+            callback: function (n) {	//回调函数
+                //console.log(n)
+                var data = {};
+                data["pagecur"] =n;//page
+                data["text_find"] = $(".text_find").val();//查找的值
+                data["option"] = $("option").val();//当前显示的值
+
+                $.ajax({
+                    type: "get",//请求方式
+                    url: "data.json",//请求路径
+                    async: false,
+                    dataType: "json", //数据格式
+                    data: JSON.stringify(data),
+                    success: function (data) {
+                        ergodic(data);
+                    }
+                })
+            }
+        });
 
 
 
