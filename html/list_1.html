@@ -10,7 +10,6 @@
     <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="../js/pager.js"></script>
-
     <script type="text/javascript" src="../common/js/common.js"></script>
 
     <style>
@@ -212,7 +211,7 @@
                     "<td>" + data[i].siteName + "</td>" +
                     "<td>" + data[i].route + "</td>" +
                     "<td>" + data[i].createDate + "</td>" +
-                    '<td><p class="' + (data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+                    '<td><p class="' + (data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
                     "<td>" + data[i].templteRoute + "</td>" +
                     "<td align='center'>" +
                     "<input type='button' value='编辑' onclick='edit()' style='margin: 0 20px'/>" +

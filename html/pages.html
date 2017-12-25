@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../common/js/jquery.min.js"></script>
+    <script src="../js/pager.js"></script>
+    <script src="../js/shujv2.js"></script>
+    <link rel="stylesheet" href="../css/common.css"/>
+</head>
+<body>
+<div id="histroyBox"></div>
+
+
+<script>
+
+    //前台分页的样子
+    $('#histroyBox').CJJTable({
+        'title':["id","用户名","密码","状态","注册时间"],//thead中的标题 必填
+        'body':["id","userName","passWord","isUse","createDate"],//tbody td 取值的字段 必填
+        'display':[1,1,1,1,1,2],//隐藏域，1显示，2隐藏 必填
+        'pageNUmber':5,//每页显示的条数 选填
+        'pageLength':data.length,//选填
+        'url':data,//数据源 必填
+        dbTrclick:function(e){//双击tr事件
+            alert(e.find('.taskCode').html())
+        }
+    });
+</script>
+
+
+</body>
+</html>
