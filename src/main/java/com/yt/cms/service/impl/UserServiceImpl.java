@@ -23,13 +23,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(User user) {
+	public User login(User user) {
 		// TODO 密码加密与解密
-		int user_db = userDAO.login(user);
-		if(user_db > 0) {
-			return true;
-		}
-		return false;
+		User user_db = userDAO.login(user);
+		return user_db;
 	}
 
 

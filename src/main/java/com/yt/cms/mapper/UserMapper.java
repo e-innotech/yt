@@ -22,7 +22,7 @@ public interface UserMapper {
 	 * @param user
 	 * @return
 	 */
-	int login(User user);
+	User login(User user);
 	
 	void insert(User user);
 

@@ -1,6 +1,6 @@
 package com.yt.cms.model;
 
-public class Resource {
+public class Button {
 	/**
 	 * 主键id
 	 */
@@ -13,19 +13,8 @@ public class Resource {
      * 资源uri
      */
     private String uri;
-    /**
-     * 模块id
-     */
-    private Integer parentId;
-    /**
-     * 资源读写标记
-     */
-    private Integer rw;
-    /**
-     * 是否菜单
-     */
-    private Integer isMenu;
-
+    
+    
     public Integer getId() {
         return id;
     }
@@ -50,29 +39,5 @@ public class Resource {
         this.uri = uri == null ? null : uri.trim();
     }
 
-    public Integer getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
-	}
-
-	public Integer getRw() {
-        return rw;
-    }
-
-    public void setRw(Integer rw) {
-        this.rw = rw;
-    }
-
-	public Integer getIsMenu() {
-		return isMenu;
-	}
-
-	public void setIsMenu(Integer isMenu) {
-		this.isMenu = isMenu;
-	}
-    
     
 }

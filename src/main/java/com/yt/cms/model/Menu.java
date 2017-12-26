@@ -1,6 +1,8 @@
 package com.yt.cms.model;
 
-public class Resource {
+import java.util.List;
+
+public class Menu {
 	/**
 	 * 主键id
 	 */
@@ -14,18 +16,15 @@ public class Resource {
      */
     private String uri;
     /**
-     * 模块id
+     * 父id
      */
     private Integer parentId;
     /**
-     * 资源读写标记
+     * 子节点
      */
-    private Integer rw;
-    /**
-     * 是否菜单
-     */
-    private Integer isMenu;
-
+    private List<Menu> childList;
+    
+    
     public Integer getId() {
         return id;
     }
@@ -58,21 +57,13 @@ public class Resource {
 		this.parentId = parentId;
 	}
 
-	public Integer getRw() {
-        return rw;
-    }
-
-    public void setRw(Integer rw) {
-        this.rw = rw;
-    }
-
-	public Integer getIsMenu() {
-		return isMenu;
+	public List<Menu> getChildList() {
+		return childList;
 	}
 
-	public void setIsMenu(Integer isMenu) {
-		this.isMenu = isMenu;
+	public void setChildList(List<Menu> childList) {
+		this.childList = childList;
 	}
-    
+
     
 }

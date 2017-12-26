@@ -42,11 +42,5 @@ public interface ResourceService {
 	 * @return
 	 */
 	public boolean delete(Integer id);
-	/**
-	 * 设置资源所属模块
-	 * @param id
-	 * @param moduleId
-	 * @return
-	 */
-	public boolean setModule(Integer id, Integer moduleId);
+	
 }

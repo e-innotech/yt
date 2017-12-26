@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
+import com.yt.cms.model.Menu;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserResponseBody;
+import com.yt.cms.service.PermissionService;
 import com.yt.cms.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -28,7 +30,8 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private PermissionService permissionService;
 	/**
 	 * 列表页面
 	 * @return
@@ -36,6 +39,7 @@ public class UserController {
 	@GetMapping("/user/query")
 	@ApiOperation("查询用户列表")
 	public List<User> query(){
+		// 列表页面查出该用户在列表页面所有的按钮资源
 		return userService.query();
 	}
 
@@ -93,13 +97,15 @@ public class UserController {
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
 		
-		boolean isLogin = userService.login(user);
+		User db_user = userService.login(user);
 		AjaxResponseBody response = new AjaxResponseBody();
-		if(!isLogin) {
+		if(db_user == null) {
 			return new ResponseEntity<String>(Const.LOGIN_FAILED,HttpStatus.BAD_REQUEST);
 		} else {
 			response.setMsg(Const.LOGIN_SUCCESS);
 			// TODO 请求权限服务，并将权限数据返回
+			List<Menu> menu = permissionService.queryMenu(db_user);
+			response.setData(menu);
 			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 		}
 	}

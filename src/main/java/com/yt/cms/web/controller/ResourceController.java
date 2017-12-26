@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.Resource;
 import com.yt.cms.service.ResourceService;
@@ -33,10 +34,13 @@ public class ResourceController {
 	 * 列表页面
 	 * @return
 	 */
-	@GetMapping("/query")
+	@GetMapping("/query/{pageNo}")
 	@ApiOperation("查询系统资源列表")
-	public List<Resource> query(){
+	public List<Resource> query(@PathVariable Integer pageNo){
 		Resource resource = new Resource();
+		if (pageNo > 0) {
+			PageHelper.startPage(pageNo,3); // 设置分页，参数1=页数，参数2=每页显示条数
+		}
 		return resourceService.find(resource);
 	}
 
@@ -92,21 +96,6 @@ public class ResourceController {
 	public HttpEntity<?> delete(@PathVariable Integer id){
 		boolean created = resourceService.delete(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
-	}
-	
-	/**
-	 * 关联资源到模块
-	 * @param user
-	 * @return
-	 */
-	@PutMapping("/setModule/{id}/{moduleId}")
-	@ApiOperation("关联资源到模块")
-	public HttpEntity<?> setUserGroup(@PathVariable Integer id,@PathVariable Integer moduleId) {
-		boolean flag = resourceService.setModule(id, moduleId);
-		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);

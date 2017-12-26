@@ -20,9 +20,9 @@ public interface UserService {
 	 * 用户登录
 	 * 输入的密码是加密处理的
 	 * @param user
-	 * @return 如果用户输入的用户名和密码在数据库中验证通过返回true，否则返回false
+	 * @return 如果用户输入的用户名和密码在数据库中验证通过返回User
 	 */
-	public boolean login(User user);
+	public User login(User user);
 	/**
 	 * 按照id查询用户
 	 * @param id

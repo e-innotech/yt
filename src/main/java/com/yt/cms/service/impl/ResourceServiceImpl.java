@@ -53,19 +53,5 @@ public class ResourceServiceImpl implements ResourceService {
 		
 		return false;
 	}
-
-
-
-	@Override
-	public boolean setModule(Integer id, Integer moduleId) {
-		try {
-			resourceDAO.setResourceModule(id, moduleId);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
 	
 }

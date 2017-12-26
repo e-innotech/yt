@@ -12,7 +12,7 @@
 	    <id column="resource_id" property="id" jdbcType="INTEGER" />
 	    <result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
 	    <result column="uri" property="uri" jdbcType="VARCHAR" />
-	    <result column="module_id" property="moduleId" jdbcType="INTEGER" />
+	    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
 	    <result column="rw" property="rw" jdbcType="INTEGER" />
     </collection>
   </resultMap>
@@ -23,7 +23,7 @@
   <!-- 查询单个角色下的所有资源列表 -->
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName, c.uri, c.module_id, c.rw
+     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName, c.uri, c.parent_id, c.rw
     from roles a
     left join roles_resource b on a.id = b.roles_id
     left join resource c on b.resource_id = c.id

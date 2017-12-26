@@ -34,8 +34,8 @@
 	   WHERE a.id = #{id} and isUse = 1 and a.user_group_id = b.id
     </select>
 	<!-- 用户登录 -->
-	<select id="login" parameterType="com.yt.cms.model.User" resultType="java.lang.Integer" >
-        SELECT count(1) FROM users WHERE uname = #{userName} and pwd = #{passWord} and isUse = 1
+	<select id="login" parameterType="com.yt.cms.model.User" resultMap="ResultMap" >
+        SELECT id, uname, user_group_id FROM users WHERE uname = #{userName} and pwd = #{passWord} and isUse = 1
     </select>
     <!-- 检测用户名是否已经被注册 -->
     <select id="findByUserName" parameterType="java.lang.String" resultType="java.lang.Integer" >
