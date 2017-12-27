@@ -53,8 +53,12 @@ function add_submit() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/user",
-        data: JSON.stringify(search),
+        url: "/user/add",
+       // data: JSON.stringify(search),
+        data :{
+            "userName" : $("#userName").val(),
+            "passWord" : $("#password").val()
+        },
         dataType: 'json',
         cache: false,
         timeout: 600000,

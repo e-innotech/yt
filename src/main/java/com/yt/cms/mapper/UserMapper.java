@@ -8,7 +8,9 @@ import com.yt.cms.model.User;
 
 public interface UserMapper {
 	
-	List<User> query();
+	List<User> query(User user);
+	
+//	Integer queryCount(User user);
 	
 	User findById(Integer id);
 	/**

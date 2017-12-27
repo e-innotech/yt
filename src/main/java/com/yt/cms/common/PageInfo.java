@@ -1,8 +1,10 @@
 package com.yt.cms.common;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Page implements Serializable {
+public class PageInfo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,24 +18,46 @@ public class Page implements Serializable {
 	 * 当前页码
 	 */
 	private Integer currentPage = MIN_PAGE;
-	/**
-	 * limit的开始位置
-	 */
-	private Integer offSet;
+
 	/**
 	 * 每页显示数
 	 */
 	private Integer pageSize;
 
+	/**
+	 * limit的开始位置
+	 */
+	private Integer offSet;
 
-	public Page() {
+	/**
+	 * 总数据数
+	 */
+	private Integer totalSize;
+	/**
+	 * 总页数
+	 */
+	private Integer totalPage;
+
+	private List list = new ArrayList();
+
+	public PageInfo() {
 	}
 
-	public Page(Integer currentPage,Integer offSet, Integer pageSize) {
+	public PageInfo(Integer currentPage, Integer pageSize, Integer offSet, Integer totalSize,Integer totalPage) {
 		super();
 		this.currentPage = currentPage;
-		this.offSet = offSet;
 		this.pageSize = pageSize;
+		this.offSet = offSet;
+		this.totalSize = totalSize;
+		this.totalPage = totalPage;
+	}
+
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage =  (totalSize % pageSize == 0) ? (totalSize / pageSize) : (totalSize / pageSize) + 1;
 	}
 
 	
@@ -47,6 +71,7 @@ public class Page implements Serializable {
 	public void setCurrentPage(Integer currentPage) {
 		this.currentPage = currentPage;
 	}
+
 	public Integer getOffSet() {
 		offSet = (this.getCurrentPage() - 1) * this.getPageSize();
 		return offSet;
@@ -56,7 +81,16 @@ public class Page implements Serializable {
 		this.offSet = offSet;
 	}
 
-	
+	public Integer getTotalSize() {
+		if (this.totalSize != null && this.totalSize >= 0) {
+			return this.totalSize;
+		}
+		return TOTAL_SIZE;
+	}
+
+	public void setTotalSize(Integer totalSize) {
+		this.totalSize = totalSize;
+	}
 
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
@@ -73,5 +107,12 @@ public class Page implements Serializable {
 		this.pageSize = pageSize;
 	}
 
+	public List getList() {
+		return list;
+	}
+
+	public void setList(List list) {
+		this.list = list;
+	}
 
 }

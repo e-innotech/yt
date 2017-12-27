@@ -10,11 +10,11 @@ public class Menu {
     /**
      * 资源名称
      */
-    private String resourceName;
+    private String text;
     /**
      * 资源uri
      */
-    private String uri;
+    private String href;
     /**
      * 父id
      */
@@ -22,7 +22,7 @@ public class Menu {
     /**
      * 子节点
      */
-    private List<Menu> childList;
+    private List<Menu> nodes;
     
     
     public Integer getId() {
@@ -33,23 +33,23 @@ public class Menu {
         this.id = id;
     }
 
-    public String getResourceName() {
-        return resourceName;
-    }
+    public String getText() {
+		return text;
+	}
 
-    public void setResourceName(String resourceName) {
-        this.resourceName = resourceName == null ? null : resourceName.trim();
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public String getUri() {
-        return uri;
-    }
+    public String getHref() {
+		return href;
+	}
 
-    public void setUri(String uri) {
-        this.uri = uri == null ? null : uri.trim();
-    }
+	public void setHref(String href) {
+		this.href = href;
+	}
 
-    public Integer getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
@@ -57,12 +57,12 @@ public class Menu {
 		this.parentId = parentId;
 	}
 
-	public List<Menu> getChildList() {
-		return childList;
+	public List<Menu> getNodes() {
+		return nodes;
 	}
 
-	public void setChildList(List<Menu> childList) {
-		this.childList = childList;
+	public void setNodes(List<Menu> nodes) {
+		this.nodes = nodes;
 	}
 
     

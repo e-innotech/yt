@@ -49,7 +49,7 @@ public class PermissionServiceImpl implements PermissionService {
 			Menu m = it.next();
 			// 父节点匹配的上情况下，才会匹配孩子节点
 			if(m.getId() != null && userResource.contains(m.getId())) {
-				List<Menu> child = m.getChildList();
+				List<Menu> child = m.getNodes();
 				if(CollectionUtils.isNotEmpty(child)) {
 					this.remove(child, userResource);
 				}

@@ -1,10 +1,13 @@
 package com.yt.cms.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.mapper.UserMapper;
 import com.yt.cms.model.User;
 import com.yt.cms.service.UserService;
@@ -45,9 +48,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+/*	@Override
+	public PageInfo query(User user) {
+		Integer count = userDAO.queryCount(user);
+		List<User> list = new ArrayList<User>();
+		if(count != 0) {
+			list = userDAO.query(user);
+		}
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setList(list);
+		pageInfo.setTotalSize(count);
+		return pageInfo;
+	}*/
+
+	
 	@Override
-	public List<User> query() {
-		return userDAO.query();
+	public List<User> query(User user) {
+		PageHelper.startPage(user.getOffSet(), user.getPageSize());
+		return userDAO.query(user);
 	}
 
 	@Override

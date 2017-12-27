@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.Resource;
 import com.yt.cms.service.ResourceService;
@@ -38,9 +37,7 @@ public class ResourceController {
 	@ApiOperation("查询系统资源列表")
 	public List<Resource> query(@PathVariable Integer pageNo){
 		Resource resource = new Resource();
-		if (pageNo > 0) {
-			PageHelper.startPage(pageNo,3); // 设置分页，参数1=页数，参数2=每页显示条数
-		}
+	
 		return resourceService.find(resource);
 	}
 

@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.User;
 
 /**
@@ -39,7 +40,9 @@ public interface UserService {
 	 * 批量查询，可以是分页查询
 	 * @return
 	 */
-	public List<User> query();
+//	public PageInfo query(User user);
+	
+	public List<User> query(User user);
 	/**
 	 * 更新用户 密码
 	 * @param user

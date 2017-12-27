@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.Menu;
@@ -38,9 +39,10 @@ public class UserController {
 	 */
 	@GetMapping("/user/query")
 	@ApiOperation("查询用户列表")
-	public List<User> query(){
+	public PageInfo<User> query(User user){
 		// 列表页面查出该用户在列表页面所有的按钮资源
-		return userService.query();
+		List<User> list = userService.query(user);
+		return new PageInfo<User>(list);
 	}
 
 	/**

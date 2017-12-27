@@ -1,13 +1,14 @@
 package com.yt.cms.model;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import com.yt.cms.common.Base;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 @ApiModel("User(用户模型)")
-public class User implements Serializable {
+public class User  extends Base{
 
 	private static final long serialVersionUID = 1L;
 	/**

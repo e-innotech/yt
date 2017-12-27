@@ -4,7 +4,6 @@
     <resultMap id="BaseResultMap" type="com.yt.cms.model.User" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="uname" property="userName" jdbcType="VARCHAR" />
-        <result column="pwd" property="passWord" jdbcType="VARCHAR" />
         <result column="createDate" property="createDate" jdbcType="VARCHAR" />
         <result column="isUse" property="isUse" jdbcType="INTEGER"/>
     </resultMap>
@@ -17,15 +16,28 @@
          </association>
     </resultMap>
     <sql id="Base_Column_List" >
-        id, uname, pwd, createDate,isUse
+        id, uname, createDate,isUse
     </sql>
  	
     <!-- 查询所有用户信息 -->
-    <select id="query" resultMap="BaseResultMap"  >
+    <select id="query" resultMap="BaseResultMap"  parameterType="com.yt.cms.model.User">
        SELECT 
-       <include refid="Base_Column_List" />
+       id, uname, createDate,isUse
 	   FROM users where isUse = 1
+            <if test="userName!=null and userName!=''">
+                and uname like concat('%', #{userName}, '%') 
+            </if>
     </select>
+    
+    <!-- 查询所有用户信息 -->
+<!--     <select id="queryCount" resultType="java.lang.Integer"  parameterType="com.yt.cms.model.User">
+       SELECT count(1)
+	   FROM users where isUse = 1
+            <if test="userName!=null and userName!=''">
+                and uname like concat('%', #{userName}, '%')
+            </if>
+    </select> -->
+    
 	<!-- 主键id查找用户信息,用户组 -->
     <select id="findById" parameterType="java.lang.Integer" resultMap="ResultMap" >
         SELECT 

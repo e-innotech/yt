@@ -12,13 +12,13 @@
 	
 	<resultMap id="ResultMap" type="com.yt.cms.model.Menu">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
-		<result column="uri" property="uri" jdbcType="VARCHAR" />
+		<result column="resourceName" property="text" jdbcType="VARCHAR" />
+		<result column="uri" property="href" jdbcType="VARCHAR" />
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
-		<collection property="childList" ofType="com.yt.cms.model.Menu">
+		<collection property="nodes" ofType="com.yt.cms.model.Menu">
 			<id column="c_id" property="id" jdbcType="INTEGER" />
-			<result column="c_name" property="resourceName" jdbcType="VARCHAR" />
-			<result column="c_uri" property="uri" jdbcType="VARCHAR" />
+			<result column="c_name" property="text" jdbcType="VARCHAR" />
+			<result column="c_uri" property="href" jdbcType="VARCHAR" />
 			<result column="c_pid" property="parentId" jdbcType="INTEGER" />
 		</collection>
 	</resultMap>
