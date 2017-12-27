@@ -38,7 +38,7 @@
     <iframe src="../common/html/list.html" frameborder="0" height="924"></iframe>
 </div>
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
-    <input type="button" value="增加" class="addModal" onclick="add(this)"/>
+    <input type="button" value="增加" class="addModal add_btn"/>
     <input type="text" class="btn_find"/><input type="button" value="查找"/>
     <div class="list_1 row">
         <table class="col-sm-12 table table-bordered table-hover">
@@ -249,6 +249,115 @@
 <script type="text/javascript">
 
     //发送ajax请求，拿到数据并渲染到页面上
+    $(document).ready(function () {
+        setTimeout(function () {
+        }, 500);
+        //页面的渲染
+        var Data;
+        $.ajax({
+            type: "get",//请求方式
+            url: "news.json",//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            success: function (data) {
+                Data = data;
+                ergodic(data);
+            }
+        });
+        function ergodic(Data) {
+            $("tbody").empty();
+            for (var i = 0; i < Data.length; i++) {
+                str = "<tr>" +
+                "<td>" + Data[i].id + "</td>" +
+                "<td>" + Data[i].news_title + "</td>" +
+                "<td width='20%'>" + Data[i].content + "</td>" +
+                "<td>" + Data[i].source + "</td>" +
+                "<td>" + Data[i].staticUrl + "</td>" +
+                "<td>" + Data[i].status + "</td>" +
+                '<td><p class="' + (Data[i].isLine == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+                "<td>" + Data[i].aduit_user_id + "</td>" +
+                "<td>" + Data[i].submit_user_id + "</td>" +
+                "<td>" + Data[i].aduit_des + "</td>" +
+                "<td align='center'>" +
+                "<input type='button' value='编辑'  style='margin: 0 20px' onclick='edit()'/>" +
+                "<input type='button' value='审批'  style='margin: 0 20px' onclick='audit()'/>" +
+                "<input type='button' value='发布'  style='margin: 0 20px'/>" +
+                "</td>" + "</tr>";
+                $("tbody").append(str);
+
+            }
+        }
+
+        //新增
+        $(".add_btn").click(function () {
+            $(".add").show();
+        })
+        $(".add .btn1").click(function () {
+            var news_title = $(".news_title").val();
+            var content = $(".content").val();
+            var source = $(".source").val();
+            var staticUrl = $(".staticUrl").val();
+            var submit_user_id = $(".submit_user_id").val();
+            for (var i = 0; i < Data.length; i++) {
+                if (news_title == Data[i].news_title || content == Data[i].content) {
+                    alert('稿件已存在');
+                    return;
+                }
+            }
+            Data.push({news_title: news_title, content: content, source: source, staticUrl: staticUrl, submit_user_id: submit_user_id});
+            ergodic(Data);//Data是添加后的数据
+            $(".add").hide();
+        })
+        $(".add .btn2").click(function () {
+            $(".add").hide();
+        })
+
+
+        /*分页*/
+        Page({
+            num: 100,					//页码数
+            startnum: 1,				//指定页码
+            elem: $('.page1'),		//指定的元素
+            callback: function (n) {	//回调函数
+                //console.log(n)
+                var dataPage = {};
+                dataPage["pagecur"] = n;//page
+                dataPage["text1_find"] = $(".text1_find").val();//查找条件的值
+                dataPage["text2_find"] = $(".text2_find").val();//查找条件的值
+                dataPage["text3_find"] = $(".text3_find").val();//查找条件的值
+                dataPage["option"] = $("option").val();//当前页显示条数的值
+
+                $.ajax({
+                    type: "get",//请求方式
+                    url: "news.json",//请求路径
+                    async: false,
+                    dataType: "json", //数据格式
+                    data: JSON.stringify(dataPage),
+                    success: function (dataPage) {
+                        ergodic(dataPage);
+                    }
+                })
+            }
+        });
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //发送ajax请求，拿到数据并渲染到页面上
     $(document).ready(function () {setTimeout(function () {}, 500);
         //网站管理基本信息
         $.ajax({
@@ -260,26 +369,7 @@
             success: function (data) {
 //                console.log(resultdata);
 //                console.log(resultdata[0]);
-                for (var i = 0; i < data.length; i++) {
-                    str = "<tr>" +
-                    "<td>" + data [i].id + "</td>" +
-                    "<td>" + data[i].news_title + "</td>" +
-                    "<td width='20%'>" + data[i].content + "</td>" +
-                    "<td>" + data[i].source + "</td>" +
-                    "<td>" + data[i].staticUrl + "</td>" +
-                    "<td>" + data[i].status + "</td>" +
-                    '<td><p class="' + (data[i].isLine == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
-                    "<td>" + data[i].aduit_user_id + "</td>" +
-                    "<td>" + data[i].submit_user_id + "</td>" +
-                    "<td>" + data[i].aduit_des + "</td>" +
-                    "<td align='center'>" +
-                    "<input type='button' value='编辑'  style='margin: 0 20px' onclick='edit()'/>" +
-                    "<input type='button' value='审批'  style='margin: 0 20px' onclick='audit()'/>" +
-                    "<input type='button' value='发布'  style='margin: 0 20px'/>" +
-                    "</td>" + "</tr>";
-                    $("tbody").append(str);
 
-                }
 
             }
         });

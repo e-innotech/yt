@@ -31,7 +31,7 @@
     <iframe src="../common/html/list.html" frameborder="0" height="924"></iframe>
 </div>
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
-    <input type="button" value="增加" class="addModal" onclick="add(this)"/>
+    <input type="button" value="增加" class="addModal add_btn"/>
 <!--
     <input type="text" class="btn_find"/><input type="button" value="查找" onclick="find()"/>
 -->
@@ -197,54 +197,60 @@
     //发送ajax请求，拿到数据并渲染到页面上
     $(document).ready(function () {
         setTimeout(function () {}, 500);
-        //网站管理基本信息
+        //页面的渲染
+        var Data;
         $.ajax({
             type: "get",//请求方式
-            //url: "http://192.168.20.195:8080/websites/query",//请求路径
-            url:'websites.json',
+            url: "websites.json",//请求路径
             async: false,
             dataType: "json", //数据格式
             success: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    str = "<tr>" +
-                    "<td>" + data [i].id + "</td>" +
-                    "<td>" + data[i].siteName + "</td>" +
-                    "<td>" + data[i].route + "</td>" +
-                    "<td>" + data[i].createDate + "</td>" +
-                    '<td><p class="' + (data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
-                    "<td>" + data[i].templteRoute + "</td>" +
-                    "<td align='center'>" +
-                    "<input type='button' value='编辑' onclick='edit()' style='margin: 0 20px'/>" +
-                    "<input type='button' value='修改' onclick='revise()' style='margin: 0 20px'/>" +
-                    "</td>"+"</tr>";
-                    $("tbody").append(str);
-
-                }
-
+                Data=data;
+                ergodic(data);
             }
         });
-//        test();
-
-
-
-
-
-
-    /*全选*/
-    var isCheckAll = false;
-    function swapCheck() {
-        if (isCheckAll) {
-            $("input[type='checkbox']").each(function () {
-                this.checked = false;
-            });
-            isCheckAll = false;
-        } else {
-            $("input[type='checkbox']").each(function () {
-                this.checked = true;
-            });
-            isCheckAll = true;
+        function ergodic(Data) {
+            $("tbody").empty();
+            for (var i = 0; i < Data.length; i++) {
+                str = "<tr>" +
+                "<td>" + Data[i].id + "</td>" +
+                "<td>" + Data[i].siteName + "</td>" +
+                "<td>" + Data[i].route + "</td>" +
+                "<td>" + Data[i].createDate + "</td>" +
+                '<td><p class="' + (Data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+                "<td>" + Data[i].templteRoute + "</td>" +
+                "<td align='center'>" +
+                "<input type='button' value='编辑' onclick='edit()' style='margin: 0 20px'/>" +
+                "<input type='button' value='修改' onclick='revise()' style='margin: 0 20px'/>" +
+                "</td>"+"</tr>";
+                $("tbody").append(str);
+            }
         }
-    }
+        //新增
+        $(".add_btn").click(function () {
+            $(".add").show();
+        })
+        $(".add .btn1").click(function () {
+            var siteName = $(".siteName").val();
+            var route = $(".route").val();
+            var templteRoute = $(".templteRoute").val();
+            for (var i = 0; i < Data.length; i++) {
+                if (siteName == Data[i].siteName || route == Data[i].route|| templteRoute == Data[i].templteRoute) {
+                    alert('网站已存在');
+                    return;
+                }
+            }
+            Data.push({siteName: siteName, route: route,templteRoute:templteRoute});
+            ergodic(Data);//Data是添加后的数据
+            $(".add").hide();
+        })
+        $(".add .btn2").click(function () {
+            $(".add").hide();
+        })
+
+
+
+
         /*分页*/
         Page({
             num: 100,					//页码数
@@ -252,31 +258,27 @@
             elem: $('.page1'),		//指定的元素
             callback: function (n) {	//回调函数
                 //console.log(n)
-                var data = {};
-                data["pagecur"] =n;//page
-                data["text_find"] = $(".text_find").val();//查找的值
-                data["option"] = $("option").val();//当前显示的值
+                var dataPage = {};
+                dataPage["pagecur"] = n;//page
+                dataPage["text1_find"] = $(".text1_find").val();//查找条件的值
+                dataPage["option"] = $("option").val();//当前页显示条数的值
 
                 $.ajax({
                     type: "get",//请求方式
                     url: "data.json",//请求路径
                     async: false,
                     dataType: "json", //数据格式
-                    data: JSON.stringify(data),
-                    success: function (data) {
-                        ergodic(data);
+                    data: JSON.stringify(dataPage),
+                    success: function (dataPage) {
+                        ergodic(dataPage);
                     }
                 })
             }
         });
 
 
-
-
-
-
-
     });
+
 
 
 </script>

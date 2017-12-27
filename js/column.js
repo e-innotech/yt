@@ -109,16 +109,15 @@ function columnfind(){
 
 //栏目的修改
 function revisecolumn(obj){
-    console.log(obj)
+    //console.log(obj)
     $("#revisecolumn").css("display","block");
     var columnid=$(obj).parent().prev().prev().prev().prev().prev().html();
     var acolumnname=$(obj).parent().prev().prev().prev().prev();
     var bdescription=$(obj).parent().prev().prev().prev();
-    //console.log(acolumnname)
-    console.log(bdescription)
+    //console.log(111,acolumnname,222)
+    //console.log(2222222222223,bdescription)
     $("#revisecolumninput1").val(acolumnname.html());
     $("#description").val(bdescription.html());
-
     //点击确认按钮时
     $(".modal-footer .btntrue").click(function(){
         //把上送数据放到一个空对象中
@@ -126,11 +125,10 @@ function revisecolumn(obj){
         revise["id"]=columnid;
         revise["columnname"]=$("#revisecolumninput1").val();
         revise["columndescription"]=$("#description").val();
-        console.log(222,revise)
+        //console.log(222,revise)
         acolumnname.html($("#revisecolumninput1").val());
         bdescription.html($("#description").val());
         $("#revisecolumn").css("display","none");
-        json_data
 
 
     })

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap Tree View</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="./css/bootstrap-treeview.css" rel="stylesheet"> -->
+</head>
+<body>
+<div class="container">
+    <h1>Bootstrap Tree View</h1>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>Default</h2>
+            <div id="treeview1" class=""></div>
+        </div>
+
+    </div>
+
+
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap-treeview.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+
+        var defaultData = [
+            {
+                "id": 2,
+                text: '用户管理',
+                href: null,
+                "parentId": 0,
+                nodes: [
+                    {
+                        "id": 1,
+                        text: '用户列表',
+                        href: "/user/query",
+                        "parentId": 2
+                    },
+                    {
+                        "id": 9,
+                        text: '用户组列表',
+                        href: "/userGroup/query",
+                        "parentId": 2
+                    }
+                ]
+            },
+            {
+                "id": 73,
+                text: '权限管理',
+                href: null,
+                "parentId": 0,
+                nodes: [
+                    {
+                        "id": 22,
+                        text: '资源列表',
+                        href: "/resource/query",
+                        "parentId": 73
+                    },
+                    {
+                        "id": 28,
+                        text: '角色列表',
+                        href: "/role/query",
+                        "parentId": 73
+                    }
+                ]
+            },
+            {
+                "id": 74,
+                text: '网站管理',
+                href: null,
+                "parentId": 0,
+                nodes: [
+                    {
+                        "id": 34,
+                        text: '网站列表查询',
+                        href: "/websites/query",
+                        "parentId": 74
+                    },
+                    {
+                        "id": 39,
+                        text: '栏目列表查询',
+                        href: "/channel/query",
+                        "parentId": 74
+                    }
+                ]
+            },
+            {
+                "id": 75,
+                text: '广告管理',
+                href: null,
+                "parentId": 0,
+                nodes: [
+                    {
+                        "id": 45,
+                        text: '广告列表',
+                        href: "/ad/query",
+                        "parentId": 75
+                    },
+                    {
+                        "id": 50,
+                        text: '广告位列表',
+                        href: "/adPositions/query",
+                        "parentId": 75
+                    }
+                ]
+            },
+            {
+                "id": 79,
+                text: '稿件管理',
+                href: null,
+                "parentId": 0,
+                nodes: [
+                    {
+                        "id": 55,
+                        text: '稿件列表',
+                        href: "/news/query",
+                        "parentId": 79
+                    },
+                    {
+                        "id": 66,
+                        text: '查看所有稿件投放信息',
+                        href: "/news/publish/list",
+                        "parentId": 79
+                    }
+                ]
+            },
+            {
+                "id": 77,
+                text: '系统管理',
+                href: null,
+                "parentId": 0,
+                nodes: [
+                    {
+                        "id": 68,
+                        text: '系统配置列表',
+                        href: "/config/query",
+                        "parentId": 77
+                    },
+                    {
+                        "id": 72,
+                        text: '用户日志查询列表',
+                        href: "/log/query",
+                        "parentId": 77
+                    }
+                ]
+            },
+            {
+                "id": 76,
+                text: '会员管理',
+                href: null,
+                "parentId": 0
+            },
+            {
+                "id": 78,
+                text: '我的',
+                href: null,
+                "parentId": 0
+            }
+
+        ];
+
+
+        $('#treeview1').treeview({
+            data: defaultData,
+            text: "resourceName",
+            color: "#000000",
+            backColor: "#FFFFFF",
+
+            href: "#node-1",
+            selectable: true,
+            state: {
+                checked: true,
+                disabled: true,
+                expanded: true,
+                selected: true
+            },
+            tags: ['available'],
+            nodes: [
+                {},
+            ]
+        })
+    });
+
+
+</script>
+</body>
+</html>

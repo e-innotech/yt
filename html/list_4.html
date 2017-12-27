@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/list_4.css"/>
     <link rel="stylesheet" href="../css/list.css"/>
     <script src="../common/js/jquery.min.js"></script>
-        <script src="../common/js/common.js"></script>
+    <script src="../common/js/common.js"></script>
     <script type="text/javascript" src="../js/pager.js"></script>
 
 </head>
@@ -122,8 +122,8 @@
 
 <!--表格-->
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
-    <input type="button" value="增加" class="add_btn"/>
-    <input type="text" class="text_find"/><input type="button" value="查找" class="btn_find" onclick="find()"/>
+    <input type="button" value="新增" class="add_btn"/>
+    <input type="text" class="text1_find"/><input type="button" value="查找" class="btn_find" onclick="find()"/>
 
     <div class="list_1 row">
         <table class="col-sm-12 table table-bordered table-hover">
@@ -150,7 +150,6 @@
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="50">50</option>
-
             </select>
         </div>
         <ul class="pagination page1"></ul>
@@ -167,6 +166,8 @@
 
 
 </body>
+
+
 
 <script>
     //发送ajax请求，拿到数据并渲染到页面上
@@ -195,18 +196,16 @@
                 "<td>" + Data[i].createDate + "</td>" +
                 "<td>" +
                 "<input type='button' value='删除' onclick='del(this)'/>" +
-                "<input type='button' value='修改' onclick='revise()'/>" +
+                "<input type='button' value='修改' onclick='revise(this)'/>" +
                 "</td></tr>";
                 $("tbody").append(str);
             }
         }
-
-
-
+        //新增
         $(".add_btn").click(function () {
             $(".add").show();
         })
-        $(".modal-footer .btn1").click(function () {
+        $(".add .btn1").click(function () {
             var userName = $(".userName").val();
             var passWord = $(".passWord").val();
             for (var i = 0; i < Data.length; i++) {
@@ -217,14 +216,11 @@
             }
             Data.push({userName: userName, passWord: passWord});
             ergodic(Data);//Data是添加后的数据
+            $(".add").hide();
         })
         $(".add .btn2").click(function () {
             $(".add").hide();
         })
-
-
-
-
 
 
 
@@ -237,8 +233,8 @@
                 //console.log(n)
                 var dataPage = {};
                 dataPage["pagecur"] = n;//page
-                dataPage["text_find"] = $(".text_find").val();//查找的值
-                dataPage["option"] = $("option").val();//当前显示的值
+                dataPage["text1_find"] = $(".text1_find").val();//查找条件的值
+                dataPage["option"] = $("option").val();//当前页显示条数的值
 
                 $.ajax({
                     type: "get",//请求方式

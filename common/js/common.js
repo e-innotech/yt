@@ -100,30 +100,38 @@ function revise() {
     $(".revise").show();
     //获取当前tr下的td eq（）的值给弹出的input框
     //$(".id").val($(event.target).parents("tr").children("td").eq(0).html());
-    $(".siteName").val($(event.target).parents("tr").children("td").eq(1).html());
-    $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
-    $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
+    var oldsiteName=$(event.target).parents("tr").children("td").eq(1);
+    var oldroute=$(event.target).parents("tr").children("td").eq(2);
+    var oldtemplteRoute=$(event.target).parents("tr").children("td").eq(5);
+    $(".siteName").val(oldsiteName.html());
+    $(".route").val(oldroute.html());
+    $(".templteRoute").val(oldtemplteRoute.html());
+
+
     $(".revise .btn1").click(function () {
-        var siteName = $(".siteName").val();
-        var route = $(".route").val();
-        var templteRoute = $(".templteRoute").val();
-        $.ajax({
+        var a=$(".siteName").val();
+        console.log(a)
+        /*var revise={};
+         revise["siteName"]=$(".siteName").val();
+         revise["route"]=$(".route").val();
+         revise["templteRoute"]=$("templteRoute").val();*/
+        oldsiteName.html($(".siteName").val());
+        oldroute.html($(".route").val());
+        oldtemplteRoute.html($(".templteRoute").val());
+
+
+        /*$.ajax({
             type: 'post',
             //url: 'http://192.168.20.195:8080/websites/update',
             url:'websites.json',
             async: true,
             contentType: "application/json",
             dataType: "json",//数据格式
-/*
-            data: JSON.stringify(search),
-*/
-            success: function (data) {
-                //alert(msg);
-                console.log(data);
-                data.push({siteName:siteName,route:route,templteRoute:templteRoute});
-
-            }
-        })
+            *//*
+             data: JSON.stringify(search),
+             *//*
+            success: function (data) {}
+        })*/
     });
     //点击取消关闭弹窗
     $(".revise .btn2").click(function () {
@@ -154,30 +162,30 @@ function find() {
 function edit() {
     $(".edit").show();
     /*//获取当前tr下的td eq（）的值给弹出的input框
-    $(".siteName").val($(event.target).parents("tr").children("td").eq(1).html());
-    $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
-    $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
-    $(".edit .btn1").click(function () {
-        var search = {};
-        search["siteName"] = $(".siteName").val();
-        search["route"] = $(".route").val();
-        search["templteRoute"] = $(".templteRoute").val();//网站管理的修改值
-        //search["uesrName"] = $(".uesrName").val();
-        //search["passWord"] = $(".passWord").val();//用户管理的值
-        $.ajax({
-            type: 'get',
-            url: 'http://192.168.20.195:8080/websites/update',
-            //url:'data.json',
-            async: true,
-            contentType: "application/json",
-            dataType: "json",//数据格式
-            data: JSON.stringify(search),
-            success: function (data) {
-                //alert(msg);
-                window.location.reload();
-            }
-        })
-    });*/
+     $(".siteName").val($(event.target).parents("tr").children("td").eq(1).html());
+     $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
+     $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
+     $(".edit .btn1").click(function () {
+     var search = {};
+     search["siteName"] = $(".siteName").val();
+     search["route"] = $(".route").val();
+     search["templteRoute"] = $(".templteRoute").val();//网站管理的修改值
+     //search["uesrName"] = $(".uesrName").val();
+     //search["passWord"] = $(".passWord").val();//用户管理的值
+     $.ajax({
+     type: 'get',
+     url: 'http://192.168.20.195:8080/websites/update',
+     //url:'data.json',
+     async: true,
+     contentType: "application/json",
+     dataType: "json",//数据格式
+     data: JSON.stringify(search),
+     success: function (data) {
+     //alert(msg);
+     window.location.reload();
+     }
+     })
+     });*/
     //点击取消关闭弹窗
     $(".edit .btn2").click(function () {
         $(".edit").hide();
@@ -418,11 +426,11 @@ function anniu(obj) {
             console.log(data[objindex].isUse)
             if(flag){
                 data[objindex].isUse=0;
-              //  console.log(111,data[objindex].isUse);
+                //  console.log(111,data[objindex].isUse);
                 //return flag=true;
             }else{
                 data[objindex].isUse=1;
-               // console.log(22,data[objindex].isUse)
+                // console.log(22,data[objindex].isUse)
                 //return flag=false;
             }
 

@@ -21,7 +21,74 @@
 }
 
 .treeview-menu>li:hover{
-    background: #444d5e;
+   background: #27b255;
+;
+}
+#nav-stack li > a {
+    color: #ffffff;
+    border-radius: 0;
+    height: 50px;
+    line-height: 30px;
+    padding-left: 56px;
+    font-size: 12px;
+}
+
+#nav-stack .active2 > a {
+    background-color: #444d5e;
+    border-left: 6px solid greenyellow;
+    padding-left: 50px;
+
+}#nav-stack>li.active > a {
+     background-color: #444d5e;
+     border-left: 6px solid greenyellow;
+     padding-left: 50px;
+
+ }
+
+#nav-stack > li > a:hover {
+    background-color: #444d5e;
+    border-left: 6px solid greenyellow;
+    padding-left: 50px;
+}
+
+a:focus,
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.home-right {
+    margin-right: 20px;
+}
+
+.home-right > li > a {
+    font-size: 14px;
+    line-height: 50px;
+    height: 50px;
+}
+
+.home-right > li:first-child a > .iconfont {
+    font-size: 24px;
+}
+
+.home-right > li:last-child a > .iconfont {
+    font-size: 17px;
+}
+
+.home-right > li {
+    line-height: 50px;
+
+}
+
+.navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+
+}
+
+#nav-stack > li:first-child {
+    border-top: 1px solid #444d5e;
+    background: #222;
 }
 
 /*分页*/
