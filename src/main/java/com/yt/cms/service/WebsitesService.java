@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Websites;
 
 /**
@@ -28,7 +29,7 @@ public interface WebsitesService {
 	 * 列表显示网站信息
 	 * @return
 	 */
-	public List<Websites> queryAll(Websites web);
+	public List<Websites> queryAll(Websites web, Page page);
 	/**
 	 * 更新网站信息
 	 * @param Websites

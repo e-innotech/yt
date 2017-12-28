@@ -8,15 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Websites;
 import com.yt.cms.service.WebsitesService;
 
@@ -43,9 +44,7 @@ public class WebsitesController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 按照id查询
@@ -53,9 +52,9 @@ public class WebsitesController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询网站")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Websites result = websitesService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Websites>(result, status);
@@ -73,9 +72,7 @@ public class WebsitesController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 列表页面
@@ -83,24 +80,27 @@ public class WebsitesController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询网站列表")
-	public List<Websites> query(Websites web){
-		return websitesService.queryAll(web);
+	public PageInfo<Websites> query(@RequestParam(required=false) String siteName,
+			@RequestParam(required=false) Integer isUse,Page page){
+		Websites web = new Websites();
+		web.setIsUse(isUse);
+		web.setSiteName(siteName);
+		List<Websites> list = websitesService.queryAll(web,page);
+		return new PageInfo<Websites>(list);
 	}
 	/**
 	 * 删除网站
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除网站")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = websitesService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	
 }

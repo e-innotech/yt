@@ -28,10 +28,13 @@
     where a.id = #{id,jdbcType=INTEGER}
   </select>
   <!-- 分页或者多条件查询 -->
-  <select id="query" resultMap="BaseResultMap" >
+  <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
     select 
     <include refid="Base_Column_List" />
-    from user_group
+    from user_group where 1=1 
+    <if test="_parameter != null">
+                and groupName like concat('%', #{_parameter}, '%')
+       </if>
   </select>
   <!-- 树形展现 -->
   <select id="queryAll" resultMap="BaseResultMap" >

@@ -20,10 +20,17 @@
    <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Channel" >
     select 
     <include refid="Base_Column_List" />
-    from channel
+    from channel where 1=1
+	    <if test="isUse != null" >
+	        and isUse = #{isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="channelName != null" >
+	       and channelName like concat('%', #{channelName}, '%')
+	      </if>
+	 
   </select>
   
-  <select id="findchannelName" parameterType="java.lang.String" resultType="java.lang.Integer" >
+  <select id="findChannelName" parameterType="java.lang.String" resultType="java.lang.Integer" >
     SELECT count(1) FROM channel WHERE channelName = #{channelName}
   </select>
   

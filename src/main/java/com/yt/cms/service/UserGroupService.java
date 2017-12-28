@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.UserGroup;
 
 /**
@@ -26,8 +27,8 @@ public interface UserGroupService {
 	 * 批量查询，可以是分页查询
 	 * @return
 	 */
-	public List<UserGroup> query(UserGroup userGroup);
 	
+	public List<UserGroup> query(String groupName, Page page);
 	/**
 	 * 查询所有，树形展现
 	 * @return

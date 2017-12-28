@@ -7,14 +7,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.YtcmsConfig;
 import com.yt.cms.service.YtcmsConfigService;
@@ -40,9 +39,7 @@ public class YtcmsConfigController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	
 
@@ -52,9 +49,9 @@ public class YtcmsConfigController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询配置")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		YtcmsConfig result = configService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<YtcmsConfig>(result, status);
@@ -84,9 +81,7 @@ public class YtcmsConfigController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 

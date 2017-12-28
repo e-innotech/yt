@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.WebsitesMapper;
 import com.yt.cms.model.Websites;
 import com.yt.cms.service.WebsitesService;
@@ -27,7 +29,8 @@ public class WebsitesServiceImpl implements WebsitesService {
 	}
 
 	@Override
-	public List<Websites> queryAll(Websites web) {
+	public List<Websites> queryAll(Websites web, Page page) {
+		PageHelper.offsetPage(page.getPageNum(), page.getPageSize());
 		return websitesDAO.query(web);
 	}
 

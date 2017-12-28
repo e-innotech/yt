@@ -8,10 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
@@ -39,9 +39,11 @@ public class UserController {
 	 */
 	@GetMapping("/user/query")
 	@ApiOperation("查询用户列表")
-	public PageInfo<User> query(User user){
+	public PageInfo<User> query(@RequestParam(required=false) String userName,
+			@RequestParam(defaultValue="10") Integer pageSize,
+			@RequestParam(defaultValue="1") Integer pageNum){
 		// 列表页面查出该用户在列表页面所有的按钮资源
-		List<User> list = userService.query(user);
+		List<User> list = userService.query(userName, pageSize, pageNum);
 		return new PageInfo<User>(list);
 	}
 
@@ -51,9 +53,9 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/user/id/{id}")
+	@GetMapping("/user/id")
 	@ApiOperation("按照id查询用户")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		User result = userService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<User>(result, status);
@@ -64,9 +66,9 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/user/name/{userName}")
+	@GetMapping("/user/name")
 	@ApiOperation("按照用户名查询用户")
-	public HttpEntity<?> findByUserName(@PathVariable String userName) {
+	public HttpEntity<?> findByUserName(@RequestParam String userName) {
 		boolean result = userService.findByUserName(userName);
 		HttpStatus status = result == true ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Boolean>(result, status);
@@ -134,9 +136,9 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/enableOrDisable/{id}/{isUse}")
+	@PutMapping("/user/enableOrDisable")
 	@ApiOperation("启停用户")
-	public HttpEntity<?> enableOrDisable(@PathVariable Integer id,@PathVariable Integer isUse) {
+	public HttpEntity<?> enableOrDisable(@RequestParam Integer id,@RequestParam Integer isUse) {
 		User user = new User();
 		user.setId(id);
 		user.setIsUse(isUse);
@@ -152,9 +154,9 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/setUserGroup/{userId}/{userGroupId}")
+	@PutMapping("/user/setUserGroup")
 	@ApiOperation("关联用户到用户组")
-	public HttpEntity<?> setUserGroup(@PathVariable Integer userId,@PathVariable Integer userGroupId) {
+	public HttpEntity<?> setUserGroup(@RequestParam Integer userId,@RequestParam Integer userGroupId) {
 		boolean flag = userService.setUserGroup4User(userId, userGroupId);
 		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);

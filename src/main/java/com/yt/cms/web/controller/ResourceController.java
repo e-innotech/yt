@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.Const;
@@ -33,9 +33,9 @@ public class ResourceController {
 	 * 列表页面
 	 * @return
 	 */
-	@GetMapping("/query/{pageNo}")
+	@GetMapping("/query")
 	@ApiOperation("查询系统资源列表")
-	public List<Resource> query(@PathVariable Integer pageNo){
+	public List<Resource> query(@RequestParam Integer pageNo){
 		Resource resource = new Resource();
 	
 		return resourceService.find(resource);
@@ -47,9 +47,9 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询系统资源")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Resource result = resourceService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Resource>(result, status);
@@ -80,7 +80,7 @@ public class ResourceController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	/**
@@ -88,14 +88,14 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除系统资源")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = resourceService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 }

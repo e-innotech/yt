@@ -8,7 +8,7 @@ import com.yt.cms.model.User;
 
 public interface UserMapper {
 	
-	List<User> query(User user);
+	List<User> query(String userName);
 	
 //	Integer queryCount(User user);
 	

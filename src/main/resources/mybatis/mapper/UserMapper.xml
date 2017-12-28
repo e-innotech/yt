@@ -20,13 +20,13 @@
     </sql>
  	
     <!-- 查询所有用户信息 -->
-    <select id="query" resultMap="BaseResultMap"  parameterType="com.yt.cms.model.User">
+    <select id="query" resultMap="BaseResultMap"  parameterType="java.lang.String">
        SELECT 
        id, uname, createDate,isUse
 	   FROM users where isUse = 1
-            <if test="userName!=null and userName!=''">
-                and uname like concat('%', #{userName}, '%') 
-            </if>
+	   <if test="_parameter != null">
+                and uname like concat('%', #{_parameter}, '%')
+       </if>
     </select>
     
     <!-- 查询所有用户信息 -->

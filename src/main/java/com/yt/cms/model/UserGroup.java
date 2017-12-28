@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Transient;
+
 public class UserGroup {
 	/**
 	 * 主键id

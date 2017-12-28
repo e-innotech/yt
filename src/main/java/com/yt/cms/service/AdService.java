@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Ad;
 
 /**
@@ -29,7 +30,7 @@ public interface AdService {
 	 * @param ad
 	 * @return
 	 */
-	public List<Ad> queryAll(Ad ad);
+	public List<Ad> queryAll(Ad ad, Page page);
 	/**
 	 * 更新广告信息
 	 * @param Ad

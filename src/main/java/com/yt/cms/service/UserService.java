@@ -2,7 +2,6 @@ package com.yt.cms.service;
 
 import java.util.List;
 
-import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.User;
 
 /**
@@ -42,7 +41,7 @@ public interface UserService {
 	 */
 //	public PageInfo query(User user);
 	
-	public List<User> query(User user);
+	public List<User> query(String userName, Integer pageSize, Integer pageNum);
 	/**
 	 * 更新用户 密码
 	 * @param user

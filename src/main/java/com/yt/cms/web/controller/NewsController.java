@@ -10,11 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.AjaxResponseBody;
@@ -59,9 +59,9 @@ public class NewsController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询稿件")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		News result = newsService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<News>(result, status);
@@ -78,9 +78,7 @@ public class NewsController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 修改稿件
@@ -94,25 +92,21 @@ public class NewsController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 删除稿件
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除稿件")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = newsService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	/**
@@ -126,9 +120,7 @@ public class NewsController {
 		if(!release) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 
 
@@ -145,18 +137,16 @@ public class NewsController {
 		if(!release) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	/**
 	 * 按照稿件投放id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/launch/id/{id}")
+	@GetMapping("/launch/id")
 	@ApiOperation("按照稿件投放id查询稿件投放详情")
-	public HttpEntity<?> findLaunch(@PathVariable Integer id){
+	public HttpEntity<?> findLaunch(@RequestParam Integer id){
 		NewsLaunch module =  newsLaunchService.findById(id);
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(module == null) {
@@ -171,16 +161,14 @@ public class NewsController {
 	 * 按照稿件投放id删除
 	 * @return
 	 */
-	@DeleteMapping("/launch/{id}")
+	@DeleteMapping("/launch")
 	@ApiOperation("按照稿件投放id删除")
-	public HttpEntity<?> deleteLaunch(@PathVariable Integer id){
+	public HttpEntity<?> deleteLaunch(@RequestParam Integer id){
 		boolean release =  newsLaunchService.delete(id);
 		if(!release) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 稿件审批
@@ -197,17 +185,15 @@ public class NewsController {
 		if(!release) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 按照稿件发布id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/publish/{id}")
+	@GetMapping("/publish")
 	@ApiOperation("按照稿件发布id查询稿件投放详情")
-	public HttpEntity<?> findPublish(@PathVariable Integer id){
+	public HttpEntity<?> findPublish(@RequestParam Integer id){
 		NewsPublishLine module =  newsPublishService.findById(id);
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(module == null) {
@@ -240,9 +226,9 @@ public class NewsController {
 	 * 稿件上下线
 	 * @return
 	 */
-	@PutMapping("/ofLine/{id}/{lineStatus}")
+	@PutMapping("/ofLine")
 	@ApiOperation("稿件上下线")
-	public HttpEntity<?> ofLine(@PathVariable Integer id, Integer lineStatus){
+	public HttpEntity<?> ofLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态
@@ -258,9 +244,7 @@ public class NewsController {
 		if(!release) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 	

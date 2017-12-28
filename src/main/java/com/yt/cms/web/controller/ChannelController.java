@@ -8,15 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Channel;
 import com.yt.cms.service.ChannelService;
 
@@ -43,9 +44,7 @@ public class ChannelController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 按照id查询
@@ -53,9 +52,9 @@ public class ChannelController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询栏位")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Channel result = channelService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Channel>(result, status);
@@ -73,9 +72,7 @@ public class ChannelController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 列表页面
@@ -83,33 +80,37 @@ public class ChannelController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询栏位列表")
-	public List<Channel> query(Channel bar){
-		return channelService.queryAll(bar);
+	public PageInfo<Channel> query(@RequestParam(required=false) String channelName,
+			@RequestParam(required=false) Integer isUse,
+			Page page){
+		Channel bar = new Channel();
+		bar.setChannelName(channelName);
+		bar.setIsUse(isUse);
+		List<Channel> list = channelService.queryAll(bar,page);
+		return new PageInfo<Channel>(list);
 	}
 	/**
 	 * 删除栏位
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除栏位")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = channelService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	/**
 	 * 按照栏目名查询
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/name/{channelName}")
+	@GetMapping("/name")
 	@ApiOperation("按照栏目名查询")
-	public HttpEntity<?> findByChannelName(@PathVariable String channelName) {
+	public HttpEntity<?> findByChannelName(@RequestParam String channelName) {
 		boolean result = channelService.findByChannelName(channelName);
 		HttpStatus status = result == true ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Boolean>(result, status);

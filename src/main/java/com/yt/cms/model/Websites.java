@@ -3,6 +3,8 @@ package com.yt.cms.model;
 import java.util.Date;
 import java.util.List;
 
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Websites {
     private Integer id;
 
@@ -14,8 +16,8 @@ public class Websites {
 
     private Date createDate;
 
-    private String templteRoute;
-
+    private String templteConfig;
+//    @JsonIgnore
     private List<Channel> channels;
     
 	public List<Channel> getChannels() {
@@ -66,12 +68,12 @@ public class Websites {
 		this.createDate = createDate;
 	}
 
-	public String getTemplteRoute() {
-		return templteRoute;
+	public String getTemplteConfig() {
+		return templteConfig;
 	}
 
-	public void setTemplteRoute(String templteRoute) {
-		this.templteRoute = templteRoute == null ? null : templteRoute.trim();
+	public void setTemplteConfig(String templteConfig) {
+		this.templteConfig = templteConfig == null ? null : templteConfig.trim();;
 	}
 
 	

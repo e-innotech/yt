@@ -8,15 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yt.cms.common.AjaxResponseBody;
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.AdPositions;
 import com.yt.cms.service.AdPositionsService;
 
@@ -36,9 +37,14 @@ public class AdPositionsController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询广告位列表")
-	public List<AdPositions> query(){
+	public PageInfo<AdPositions> query(@RequestParam(required=false) String adName, // 广告位名称
+			@RequestParam(required=false) Integer isUse,
+			Page page){
 		AdPositions adPositions = new AdPositions();
-		return adPositionsService.queryAll(adPositions);
+		adPositions.setAdName(adName);
+		adPositions.setIsUse(isUse);
+		List<AdPositions> list =  adPositionsService.queryAll(adPositions,page);
+		return new PageInfo<AdPositions>(list);
 	}
 
 	/**
@@ -47,9 +53,9 @@ public class AdPositionsController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询广告位")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		AdPositions result = adPositionsService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<AdPositions>(result, status);
@@ -66,9 +72,7 @@ public class AdPositionsController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 修改广告位
@@ -82,25 +86,21 @@ public class AdPositionsController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	/**
 	 * 删除广告位
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除广告位")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = adPositionsService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		AjaxResponseBody response = new AjaxResponseBody();
-		response.setMsg(Const.SUCCESS);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
 	}
 	
 

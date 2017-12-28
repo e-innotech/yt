@@ -8,14 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.UserGroup;
 import com.yt.cms.service.UserGroupService;
 
@@ -35,8 +37,10 @@ public class UserGroupController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询用户组列表")
-	public List<UserGroup> query(@RequestBody UserGroup userGroup){
-		return userGroupService.query(userGroup);
+	public PageInfo<UserGroup> query(@RequestParam(required=false) String groupName,
+		 Page page){
+		List<UserGroup> list = userGroupService.query(groupName, page);
+		return new PageInfo<UserGroup>(list);
 	}
 	/**
 	 * 树形展现
@@ -53,9 +57,9 @@ public class UserGroupController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find/{id}")
+	@GetMapping("/find")
 	@ApiOperation("按照id查询用户组")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		UserGroup result = userGroupService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<UserGroup>(result, status);
@@ -93,9 +97,9 @@ public class UserGroupController {
 	 * @param userGroup
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除用户组")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(Integer id){
 		boolean created = userGroupService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -108,9 +112,9 @@ public class UserGroupController {
 	 * @param rolesResource
 	 * @return
 	 */
-	@DeleteMapping("/userGroup/roles/{userGroupId}")
+	@DeleteMapping("/userGroup/roles")
 	@ApiOperation("删除用户组所有角色")
-	public HttpEntity<?> update(@PathVariable Integer userGroupId){
+	public HttpEntity<?> update(Integer userGroupId){
 		boolean created = userGroupService.deleteByUserGroupId(userGroupId);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);

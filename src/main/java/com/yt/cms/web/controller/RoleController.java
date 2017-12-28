@@ -8,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.Const;
@@ -49,9 +49,9 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/queryResources/{id}")
+	@GetMapping("/queryResources")
 	@ApiOperation("查询角色id对应的资源数据")
-	public HttpEntity<?> findById(@PathVariable Integer id) {
+	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Roles result = rolesService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
 		return new ResponseEntity<Roles>(result, status);
@@ -85,9 +85,9 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete")
 	@ApiOperation("删除角色")
-	public HttpEntity<?> delete(@PathVariable Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = rolesService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -99,9 +99,9 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/resource/{rolesId}")
+	@DeleteMapping("/resource")
 	@ApiOperation("删除角色下的所有资源")
-	public HttpEntity<?> deleteRolesResource(@PathVariable Integer rolesId){
+	public HttpEntity<?> deleteRolesResource(@RequestParam Integer rolesId){
 		boolean created = rolesService.removeRolesResource(rolesId);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);

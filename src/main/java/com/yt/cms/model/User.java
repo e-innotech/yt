@@ -1,14 +1,15 @@
 package com.yt.cms.model;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import com.yt.cms.common.Base;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 @ApiModel("User(用户模型)")
-public class User  extends Base{
+public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -25,6 +26,7 @@ public class User  extends Base{
 	 * 密码
 	 */
 	@ApiModelProperty("密码")
+	@JsonIgnore
 	private String passWord;
 	
 	/**
@@ -40,6 +42,7 @@ public class User  extends Base{
 	/**
 	 * 用户组
 	 */
+	@JsonIgnore
 	private UserGroup userGroup;
 	public User() {
 		super();

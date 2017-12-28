@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Channel;
 
 /**
@@ -28,7 +29,7 @@ public interface ChannelService {
 	 * 列表显示栏位信息
 	 * @return
 	 */
-	public List<Channel> queryAll(Channel bar);
+	public List<Channel> queryAll(Channel bar,Page page);
 	/**
 	 * 更新栏位信息
 	 * @param Channel

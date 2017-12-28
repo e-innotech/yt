@@ -17,7 +17,7 @@ public interface UserGroupMapper {
      * @param record
      * @return
      */
-    List<UserGroup> query(UserGroup record);
+    List<UserGroup> query(String groupName);
     /**
      * 树形展现使用
      * @return
