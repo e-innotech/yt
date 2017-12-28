@@ -58,15 +58,12 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!--删除弹出框-->
+<!--删除弹出框
 <div class="modal fade del" id="delmyModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
      style="top: 20%;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <!--
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                -->
                 <h4 class="modal-title" id="delmyModalLabel">删除</h4>
             </div>
             <div class="modal-body" style="overflow: hidden;">
@@ -77,11 +74,9 @@
                 <button type="button" class="btn btn-primary btn1">确认</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-
+-->
 <!--修改弹出框-->
 <div class="modal fade revise" id="revisemyModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
      style="top: 20%;">
@@ -98,14 +93,14 @@
                     <label class="col-sm-3 control-label">用户名</label>
 
                     <div class="col-sm-7">
-                        <input class="form-control input1 userName"/>
+                        <input class="form-control input1 userName" id="userName"/>
                     </div>
                 </div>
                 <div class="form-group modal_conment">
                     <label class="col-sm-3 control-label">密码</label>
 
                     <div class="col-sm-7">
-                        <input class="form-control input1 passWord"/>
+                        <input class="form-control input1 passWord" id="passWord"/>
                     </div>
                 </div>
             </div>
@@ -123,7 +118,7 @@
 <!--表格-->
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
     <input type="button" value="新增" class="add_btn"/>
-    <input type="text" class="text1_find"/><input type="button" value="查找" class="btn_find" onclick="find()"/>
+    <input type="text" class="text1_find" placeholder="用户名查找"/><input type="text" class="text2_find" placeholder="状态1或者0查找"/><input type="button" value="查找" class="btn_find" onclick="find()"/>
 
     <div class="list_1 row">
         <table class="col-sm-12 table table-bordered table-hover">
@@ -134,6 +129,7 @@
                 <th>密码</th>
                 <th>状态</th>
                 <th>时间</th>
+                <th>用户组</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -194,8 +190,9 @@
                 "<td>" + Data[i].passWord + "</td>" +
                 '<td><p class="' + (Data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
                 "<td>" + Data[i].createDate + "</td>" +
+                "<td>" + Data[i].user_group_id + "</td>" +
                 "<td>" +
-                "<input type='button' value='删除' onclick='del(this)'/>" +
+                "<input type='button' value='删除' onclick='delanniu(this)'/>" +
                 "<input type='button' value='修改' onclick='revise(this)'/>" +
                 "</td></tr>";
                 $("tbody").append(str);
@@ -210,7 +207,7 @@
             var passWord = $(".passWord").val();
             for (var i = 0; i < Data.length; i++) {
                 if (userName == Data[i].userName || passWord == Data[i].passWord) {
-                    alert('栏目存在');
+                    alert('用户已存在');
                     return;
                 }
             }
@@ -224,6 +221,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
         /*分页*/
         Page({
             num: 100,					//页码数
@@ -234,6 +240,7 @@
                 var dataPage = {};
                 dataPage["pagecur"] = n;//page
                 dataPage["text1_find"] = $(".text1_find").val();//查找条件的值
+                dataPage["text2_find"] = $(".text2_find").val();//查找条件的值
                 dataPage["option"] = $("option").val();//当前页显示条数的值
 
                 $.ajax({
@@ -249,5 +256,11 @@
             }
         });
     });
+
+
+
+
+
+
 </script>
 </html>

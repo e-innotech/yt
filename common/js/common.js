@@ -96,42 +96,46 @@ function add() {
 
 }
 //修改
-function revise() {
+function revise(obj) {
     $(".revise").show();
     //获取当前tr下的td eq（）的值给弹出的input框
-    //$(".id").val($(event.target).parents("tr").children("td").eq(0).html());
-    var oldsiteName=$(event.target).parents("tr").children("td").eq(1);
-    var oldroute=$(event.target).parents("tr").children("td").eq(2);
-    var oldtemplteRoute=$(event.target).parents("tr").children("td").eq(5);
-    $(".siteName").val(oldsiteName.html());
-    $(".route").val(oldroute.html());
-    $(".templteRoute").val(oldtemplteRoute.html());
+    //var oldsiteName=$(obj).parents("tr").children("td").eq(1);
+    //var oldroute=$(obj).parents("tr").children("td").eq(2);
+    //var oldtemplteRoute=$(obj).parents("tr").children("td").eq(5);
+    //$(".siteName").val(oldsiteName.html());
+    //$(".route").val(oldroute.html());
+    //$(".templteRoute").val(oldtemplteRoute.html());
 
-
+    var olduserName=$(obj).parents("tr").children("td").eq(1);
+    var oldpassWord=$(obj).parents("tr").children("td").eq(2);
+    //把获取的td的值给弹出的input
+    $(".userName").val(olduserName.html());
+    $(".passWord").val(oldpassWord.html());
     $(".revise .btn1").click(function () {
-        var a=$(".siteName").val();
-        console.log(a)
-        /*var revise={};
-         revise["siteName"]=$(".siteName").val();
-         revise["route"]=$(".route").val();
-         revise["templteRoute"]=$("templteRoute").val();*/
-        oldsiteName.html($(".siteName").val());
-        oldroute.html($(".route").val());
-        oldtemplteRoute.html($(".templteRoute").val());
+        //var revise={};
+        //revise["siteName"]=$("#siteName").val();
+        //revise["route"]=$("#route").val();
+        //revise["templteRoute"]=$("#templteRoute").val();
 
+        //if(revise["siteName"]==$(".siteName").val()){
+        //    alert("与修改前的内容一样")
+        //    return false;
+        //}else{
+        //    oldsiteName.html($("#siteName").val());
+        //    oldroute.html($("#route").val());
+        //    oldtemplteRoute.html($("#templteRoute").val());
+        //}
+        for(var i=0;i<data.length;i++){
+            if (oldpassWord.html() == $(".userName").val()) {
+                alert("与修改前的内容一样")
+                return false;
+            } else {
+                olduserName.html($("#userName").val());
+                oldpassWord.html($("#passWord").val());
+            }
+        }
 
-        /*$.ajax({
-            type: 'post',
-            //url: 'http://192.168.20.195:8080/websites/update',
-            url:'websites.json',
-            async: true,
-            contentType: "application/json",
-            dataType: "json",//数据格式
-            *//*
-             data: JSON.stringify(search),
-             *//*
-            success: function (data) {}
-        })*/
+        $(".revise").hide();
     });
     //点击取消关闭弹窗
     $(".revise .btn2").click(function () {
@@ -139,29 +143,50 @@ function revise() {
     })
 }
 
+
+
+
+
 //点击查询按钮时
 function find() {
     var search = {};
-    search["userName"] = $(".text_find").val();
+    search["userName"] = $(".text1_find").val();
+    search["passWord"] = $(".text2_find").val();
 
-    $.ajax({
-        type: "get",
-        //url: "http://192.168.20.195:8080/user/queryAll/",
-        url:"data.json",
-        async: true,
-        contentType: "application/json",
-        dataType: "json",
-        data:JSON.stringify(search),
-        success: function (data) {
-
+    for(var i=0;i<data.length;i++){
+        console.log(data[i].userName)
+    }
+    var len = search["userName"].length;
+    console.log(len)
+  /*  var arr = [];
+    for(var i=0;i<len;i++){
+        //如果字符串中不包含目标字符会返回-1
+        if(list[i].indexOf(keyWord)>=0){
+            arr.push(list[i]);
         }
-    })
+    }
+    return arr;
+*/
+
+
+    //$.ajax({
+    //    type: "get",
+    //    //url: "http://192.168.20.195:8080/user/queryAll/",
+    //    url:"data.json",
+    //    async: true,
+    //    contentType: "application/json",
+    //    dataType: "json",
+    //    data:JSON.stringify(search),
+    //    success: function (data) {
+    //
+    //    }
+    //})
 }
 
 //点击编辑按钮时
 function edit() {
     $(".edit").show();
-    /*//获取当前tr下的td eq（）的值给弹出的input框
+    //获取当前tr下的td eq（）的值给弹出的input框
      $(".siteName").val($(event.target).parents("tr").children("td").eq(1).html());
      $(".route").val($(event.target).parents("tr").children("td").eq(2).html());
      $(".templteRoute").val($(event.target).parents("tr").children("td").eq(5).html());
@@ -185,52 +210,14 @@ function edit() {
      window.location.reload();
      }
      })
-     });*/
+     });
     //点击取消关闭弹窗
     $(".edit .btn2").click(function () {
         $(".edit").hide();
     })
 }
 
-//点击删除按钮时
-function del() {
 
-    $(".del").show();
-
-    //拿到了第一个td里面的值
-    //console.log($(e.target).closest("tsr").find("td")[0].html());
-    //var del = $(event.target).closest("tr");
-
-    //console.log(444, deltd)
-    //var deltd = 0;
-    //var deltd2 = 0;
-    var search = {};
-    search["userName"] = $(".btn_del").val();//用户管理的删除数值
-    $(".del .btn1").bind(function () {
-        //console.log(666, deltd)
-        //console.log(777, deltd2)
-        $.ajax({
-            type: 'delete',
-            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,//传输地址
-            url:"data.json",
-            async: true,
-            contentType: "application/json",
-            dataType: "json",//数据格式
-            //data: JSON.stringify(search),
-            success: function (data) {
-                $(event.target).closest("tr").html();
-                window.location.reload();
-
-
-            }
-        })
-    })
-    //点击取消关闭弹窗
-    $(".del .btn2").click(function () {
-        $(".del").hide();
-    })
-
-};
 
 //点击审核
 function audit(){
@@ -451,15 +438,24 @@ function anniu(obj) {
 }
 //删除选中的行
 function delanniu(obj) {
-    var c = $(obj).closest("tr")[0];
-//    console.log(c)
-    var checkbox = $(obj).closest("tr").find("input[type='checkbox']")[0];
-//判断checkbox的状态是不是选中
-    if ($(checkbox).is(':checked')) {
-//        alert(11)
-        c.remove()
-    } else {
-        alert('删除选中的信息')
-    }
+    var search={};
+
+    $.ajax({
+            type: 'get',
+            url:"news.json",
+            async: true,
+            contentType: "application/json",
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success:function(search){
+                var trs = $(obj).closest("tr")[0];
+                alert("删除我吗");
+                trs.remove();
+        }
+    })
+
 
 }
+
+
+

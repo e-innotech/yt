@@ -129,8 +129,6 @@ function revisecolumn(obj){
         acolumnname.html($("#revisecolumninput1").val());
         bdescription.html($("#description").val());
         $("#revisecolumn").css("display","none");
-
-
     })
 }
 //点击关闭按钮时

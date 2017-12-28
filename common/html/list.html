@@ -21,125 +21,6 @@
     <nav class="navbar-inverse chebian" role="navigation" id="head-cut">
         <div class="container-fluid logo-1" style="background-color: #3c4353;">
             <ul class="nav nav-stacked crosswise-nav" id="tree">
-                <!--<li class="treeview">
-                    <a class="nav-gation " href="">
-                        <span class="nav-label">用户管理</span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="" target="rightFrame">角色管理</a>
-                        </li>
-                        <li>
-                            <a hgref="" target="rightFrame">用户列表</a>
-                        </li>
-                        <li>
-                            <a href="" target="rightFrame">会员管理</a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">网站管理</span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="" target="rightFrame">网站列表</a>
-                        </li>
-                        <li>
-                            <a href="" target="rightFrame">网站列表</a>
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">栏目管理</span>
-                    </a>
-                    <ul class="treeview-menu">
-
-                        <li>
-                            <a href="../../html/column.html">栏目列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">广告管理</span>
-                    </a>
-                    <ul class="treeview-menu">
-
-                        <li>
-                            <a href="">广告位管理</a>
-                        </li>
-                        <li>
-                            <a href="">广告列表</a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">稿件管理</span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="">稿件列表</a>
-                        </li>
-                        <li>
-                            <a href="">稿件发布</a>
-                        </li>
-                        <li>
-                            <a href="">内容类型</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">评论管理</span>
-                    </a>
-                    <ul class="treeview-menu" style="display: none">
-
-                        <li>
-                            <a href="">评论列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">我的资料</span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="">基本信息</a>
-                        </li>
-                        <li>
-                            <a href="">密码修改</a>
-                        </li>
-                        <li>
-                            <a href="">消息</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a class="nav-gation">
-                        <span class="nav-label">系统管理</span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="">全局参数</a>
-                        </li>
-                        <li>
-                            <a href="">操作日志</a>
-                        </li>
-                        <li>
-                            <a href="">平台统计</a>
-                        </li>
-                    </ul>
-                </li>
-
--->
 
             </ul>
         </div>
@@ -148,167 +29,39 @@
 <script type="text/javascript">
     $(function() {
 
-        var defaultData = [
-            {
-                "id": 2,
-                text: '用户管理',
-                href: null,
-                "parentId": 0,
-                nodes: [
-                    {
-                        "id": 1,
-                        text: '用户列表',
-                        href: "https://www.baidu.com/",
-                        "parentId": 2
-                    },
-                    {
-                        "id": 9,
-                        text: '用户组列表',
-                        href: "../../html/column.html",
-                        "parentId": 2
+
+
+        $.ajax({
+            type: 'post',
+            url: 'list.json',
+            success: function (tree) {
+                $('#tree').treeview({
+                    data: tree.data,
+                    showTags: true,
+                    text: "resourceName",
+                    color: "#000000",
+                    backColor: "#FFFFFF",
+                    //href: "#node-1",
+                    selectable: true,
+                    enableLinks: true,//启用链接
+                    highlightSelected: true,
+                    state: {
+                        checked: true,
+                        disabled: true,
+                        expanded: true,
+                        selected: true
                     }
-                ]
-            },
-            {
-                "id": 73,
-                text: '权限管理',
-                href: null,
-                "parentId": 0,
-                nodes: [
-                    {
-                        "id": 22,
-                        text: '资源列表',
-                        href: "/resource/query",
-                        "parentId": 73
-                    },
-                    {
-                        "id": 28,
-                        text: '角色列表',
-                        href: "/role/query",
-                        "parentId": 73
-                    }
-                ]
-            },
-            {
-                "id": 74,
-                text: '网站管理',
-                href: null,
-                "parentId": 0,
-                nodes: [
-                    {
-                        "id": 34,
-                        text: '网站列表查询',
-                        href: "/websites/query",
-                        "parentId": 74
-                    },
-                    {
-                        "id": 39,
-                        text: '栏目列表查询',
-                        href: "/channel/query",
-                        "parentId": 74
-                    }
-                ]
-            },
-            {
-                "id": 75,
-                text: '广告管理',
-                href: null,
-                "parentId": 0,
-                nodes: [
-                    {
-                        "id": 45,
-                        text: '广告列表',
-                        href: "/ad/query",
-                        "parentId": 75
-                    },
-                    {
-                        "id": 50,
-                        text: '广告位列表',
-                        href: "/adPositions/query",
-                        "parentId": 75
-                    }
-                ]
-            },
-            {
-                "id": 79,
-                text: '稿件管理',
-                href: null,
-                "parentId": 0,
-                nodes: [
-                    {
-                        "id": 55,
-                        text: '稿件列表',
-                        href: "/news/query",
-                        "parentId": 79
-                    },
-                    {
-                        "id": 66,
-                        text: '查看所有稿件投放信息',
-                        href: "/news/publish/list",
-                        "parentId": 79
-                    }
-                ]
-            },
-            {
-                "id": 77,
-                text: '系统管理',
-                href: null,
-                "parentId": 0,
-                nodes: [
-                    {
-                        "id": 68,
-                        text: '系统配置列表',
-                        href: "/config/query",
-                        "parentId": 77
-                    },
-                    {
-                        "id": 72,
-                        text: '用户日志查询列表',
-                        href: "/log/query",
-                        "parentId": 77
-                    }
-                ]
-            },
-            {
-                "id": 76,
-                text: '会员管理',
-                href: null,
-                "parentId": 0
-            },
-            {
-                "id": 78,
-                text: '我的',
-                href: null,
-                "parentId": 0
+
+                })
+
             }
-
-        ];
-
-
-        $('#tree').treeview({
-            data: defaultData,
-            text: "resourceName",
-            color: "#000000",
-            backColor: "#FFFFFF",
-            //href: "#node-1",
-            selectable: true,
-            enableLinks:true,
-            highlightSelected:true,
-            state: {
-                checked: true,
-                disabled: true,
-                expanded: true,
-                selected: true
-            },
-            tags: ['available'],
-            nodes: [
-                {},
-            ]
         })
 
 
 
     });
+
+
 
 
     function itemOnclick(target){
