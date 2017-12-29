@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>会员管理</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../common/css/index.css"/>
+    <link rel="stylesheet" href="../css/list.css"/>
+    <script type="text/javascript" src="../common/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container jurisdiction" >
+    <h2>会员列表</h2>
+    <table class="table" id="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>昵称</th>
+                <th>账号</th>
+                <th>密码</th>
+                <th>状态</th>
+                <th>操作</th>
+                <th>禁言</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"/></td>
+                <td>小小</td>
+                <td>女</td>
+                <td>简单的快乐</td>
+                <td>18827636650</td>
+                <td>111111</td>
+                <td>
+                    启动 <input type="radio" name="a"/>
+                    停止 <input type="radio" name="a"/>
+                </td>
+                <td>
+                    <input type="button" value="编辑"/>
+                </td>
+                <td>
+                    <p class="anniu"><span></span></p>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"/></td>
+                <td>小小2</td>
+                <td>女</td>
+                <td>简单的快乐</td>
+                <td>18827636650</td>
+                <td>111111</td>
+                <td>
+                    启动 <input type="radio" name="a"/>
+                    停止 <input type="radio" name="a"/>
+                </td>
+                <td>
+                    <input type="button" value="编辑"/>
+                </td>
+                <td>
+                    <p class="anniu"><span></span></p>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"/></td>
+                <td>小小3</td>
+                <td>女</td>
+                <td>简单的快乐</td>
+                <td>18827636650</td>
+                <td>111111</td>
+                <td>
+                    启动 <input type="radio" name="a"/>
+                    停止 <input type="radio" name="a"/>
+                </td>
+                <td>
+                    <input type="button" value="编辑"/>
+                </td>
+                <td>
+                    <p class="anniu"><span></span></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    //	按钮开关
+    $(".anniu").on("click", function () {
+        console.log($(this).find("span").css("left"))
+        if ($(this).find("span").css("left") == "2px") {
+            $(this).addClass("active")
+        } else {
+            $(this).removeClass("active")
+        }
+    });
+
+</script>
+</html>

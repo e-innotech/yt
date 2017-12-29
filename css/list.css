@@ -1,17 +1,4 @@
-*{
-    margin:0;
-    padding:0;
 
-}
-input, button{
-    outline:none;
-}
-a{
-    text-decoration: none;
-}
-li{
-    list-style: none;
-}
 /*头部*/
 
 
@@ -30,10 +17,78 @@ li{
     position: relative;
     line-height: 30px;
     color: #fff;
+    padding-left: 16px;
 }
 
 .treeview-menu>li:hover{
-    background: #444d5e;
+   background: #27b255;
+;
+}
+#nav-stack li > a {
+    color: #ffffff;
+    border-radius: 0;
+    height: 50px;
+    line-height: 30px;
+    padding-left: 56px;
+    font-size: 12px;
+}
+
+#nav-stack .active2 > a {
+    background-color: #444d5e;
+    border-left: 6px solid greenyellow;
+    padding-left: 50px;
+
+}#nav-stack>li.active > a {
+     background-color: #444d5e;
+     border-left: 6px solid greenyellow;
+     padding-left: 50px;
+
+ }
+
+#nav-stack > li > a:hover {
+    background-color: #444d5e;
+    border-left: 6px solid greenyellow;
+    padding-left: 50px;
+}
+
+a:focus,
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.home-right {
+    margin-right: 20px;
+}
+
+.home-right > li > a {
+    font-size: 14px;
+    line-height: 50px;
+    height: 50px;
+}
+
+.home-right > li:first-child a > .iconfont {
+    font-size: 24px;
+}
+
+.home-right > li:last-child a > .iconfont {
+    font-size: 17px;
+}
+
+.home-right > li {
+    line-height: 50px;
+
+}
+
+.navbar-nav > li > a {
+    padding-top: 0;
+    padding-bottom: 0;
+
+}
+
+#nav-stack > li:first-child {
+    border-top: 1px solid #444d5e;
+    background: #222;
 }
 
 /*分页*/
@@ -61,13 +116,9 @@ table.reference {
     text-align: center;
     font-weight: bold;
     background-color: #f7f7f7;
-
 }
 
-.list_1 table tr th input, .list_1 table tr input {
-    width: 16px;
-    height: 16px;
-}
+
 
 
 
@@ -83,113 +134,7 @@ table.reference {
 /*list_3*/
 
 /*list_4*/
-.list_4{
-    margin-top: 40px;
-}
-#table th{
-    text-align:center;
-    height:50px;
-    line-height:50px;
-    font-size:14px;
-}
-#table tr{
-    text-align:center;
-    height:40px;
-    line-height:40px;
 
-}
-#table tr td{
-    line-height:40px;
-    height:40px;
-
-}
-#table tr td input[type="button"]{
-    width:40px;
-    height:30px;
-    margin-left:3px;
-    line-height:26px;
-    text-align:center;
-}
-.alertbox{
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background-color: rgba(0,0,0,0.3);
-        display:none;
-        z-index:1000;
-
-}
-.add, .revise,.find{
-    width: 400px;
-    height:300px;
-    background:green;
-    position: absolute;
-    border-radius: 15px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-.input1{
-    width:300px;
-    height:30px;
-}
-.add button{
-    margin-left:100px;
-    margin-top:40px;
-
-}
-.del{
-    width:300px;
-    height:200px;
-    background: red;
-    border-radius: 15px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    left:50%;
-    top:200px;
-}
-.del p{
-    width:300px;
-    height:100px;
-    line-height:100px;
-    text-align:center;
-    font-size:18px;
-}
-
-.del button{
-    margin-left:65px;
-    margin-top:40px;
-}
-
-
-.list_3 .table>tbody>tr>td:first-child, .list_3 .table>tbody>tr>td:nth-child(3){
-    background: #e5e5e5;
-    text-align: center;
-}
-
-.list_4 {
-    margin: 40px 40px 0 40px;
-}
-
-.list_3 .table > tbody > tr > td:first-child, .list_3 .table > tbody > tr > td:nth-child(3) {
-    background: #e5e5e5;
-    text-align: center;
-}
-
-.revise{
-    display:none;
-}
-.revise button{
-    margin-left:100px;
-    margin-top:40px;
-
-}
-.find .yes{
-    margin-left: 163px;
-    margin-top: 30px;
-}
 /*list_4*/
 /*list_5*/
 /*list_6*/
@@ -197,69 +142,6 @@ table.reference {
 
 /*mine*/
 
-.kong{
-    margin-top:20px;
-}
-.kong .form1{
-    margin-bottom:10px;
-}
-#uls,#ulss{
-    top:28px;
-    left:57px;
-    min-width:67px;
-}
-
-#uls li a{
-    height:30px;
-    line-height:30px;
-}
-#ulss li a{
-    height:30px;
-    line-height:30px;
-}
-
-.btns button{
-    padding:5px 20px;
-    position:relative;
-}
-
-.btns button span{
-    position:absolute;
-    right:5px;
-    top:13px;
-}
-#home form .findbtn{
-    margin-left:30px;
-}
-
-#home table td{
-    line-height:34px;
-}
-#ios{
-    padding-left: 25px;
-    padding-top:20px;
-    line-height: 20px;
-}
-#ios h5{
-
-    color: #848383;
-}
-
-#ios h5 b{
-    color:#d70101;
-}
-
-#ios form{
-    margin-left:-50px;
-    margin-top:30px;
-
-}
-
-select{
-    height:34px;
-    border-radius:4px;
-
-}
 
 /*广告列表*/
 .anniu{
@@ -271,7 +153,6 @@ select{
     padding: 0;
     background: #cccccc;
     margin: 0 auto;
-    margin-left:-6px;
 }
 .anniu.active{
     background-color: #1cbb95;
@@ -291,237 +172,14 @@ select{
 }
 
 /*错误页面*/
-.top-box{
-    height:40px;
-    border-bottom:1px solid #eee;
-}
-.top-box span{
-    line-height: 40px;
-    font-weight: bold;
-    float: left;
-    margin-left: 12px;
-}
-.top-box ul{
-    float:left;
-}
-
-.top-box ul li{
-    float:left;
-    line-height:40px;
-    width:50px;
-    text-align:center;
-}
-.top-box ul li a{
-    color:#9d9d9d;
-}
-
-.top-box ul li a:hover{
-    color:red;
-}
-.error{
-    width:490px;
-    height:200px;
-    margin: 75px auto;
-    padding-top: 65px;
-    background:url("../images/common/404.png")no-repeat;
-
-}
-.error h2{
-    font-size: 22px;
-    padding-left: 154px;
-}
-.error p{
-    padding-left: 154px;
-    line-height: 35px;
-    color: #717678;
-
-}
-.reindex{
-    padding-left:154px;
-}
-.error .reindex a{
-    width: 115px;
-    height: 35px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background: #3c95c8;
-    display: block;
-    line-height: 35px;
-    text-align: center;
-    border-radius: 3px;
-    margin-top: 20px;
-}
 
 /*评论页面*/
-.main{
-    width: 800px;
-    margin:20px auto;
-}
-.main span{
-    display: inline-block;
-    width: 200px;
-    height: 25px;
-    line-height: 25px;
-    vertical-align: center;
-    text-align: left;
-    margin-bottom: 10px;
-}
-.main .tag{
-    font-size: 13px;
-    margin-left: 370px;
-    vertical-align: bottom;
-    text-align: center;
-    margin-bottom: 0;
-}
-.main .text{
-    width: 750px;
-    height: 180px;
-    margin:0 auto;
-
-    resize:none;
-}
-
-.main input{
-    display: inline-block;
-    width: 80px;
-    height: 33px;
-    background: #E2526F;
-    border: 0;
-    margin-left: 670px;
-    margin-top: 10px;
-}
-.creatediv{
-    width: 675px;
-    height: 80px;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-    margin-top: 10px;
-    padding-left: 75px;
-
-}
-.createinput{
-    width: 80px;
-    height: 30px;
-    position:absolute;
-    right: 5px;
-    bottom:5px;
-}
-.createimg{
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-}
-.createdivs{
-    width:600px;
-    height:50px;
-    position: absolute;
-    top: 15px;
-    left: 85px;
-}
 
 /*栏目*/
-.column{
-    height:60px;
-    border-bottom:6px solid #eee;
-}
-.column>li{
-    width:80px;
-    height:30px;
-    border-radius: 4px;
-    background:#3694d7;
-    color:#fff;
-    line-height:30px;
-}
-.column>li span{
-    margin-left:5px;
-}
-.column .erji{
-    width:80px;
-    background:#fff;
-    border-left: 1px solid #3694d7;
-    border-right: 1px solid #3694d7;
-    border-bottom: 1px solid #3694d7;
-    position:absolute;
-    display:none;
-}
-.column:hover .erji{
-    display:block;
-}
 
-.column ul li{
-    width:78px;
-    height:30px;
-    border-bottom:1px solid #eee;
-    line-height:30px;
-    text-align:center;
-}
-.column ul li a{
-    color:#010101;
-}
-.line{
-    height:5px;
-    background:#eee;
-    position:fixed;
-
-}
 
 /*用户*/
-.container .user{
-    width:500px;
-    /*height:500px;*/
-    padding-bottom:30px;
-    /*background:pink;*/
-    border-radius:8px;
-    margin:30px auto 0 auto;
-    overflow:hidden;
-    background-color: #ffffff;
-    box-shadow: 0px 0 20px #e6e6e6;
 
-}
-.container .user form>p{
-    width:100px;
-    height:100px;
-    border:1px solid #eee;
-    border-radius: 50%;
-    margin:20px auto;
-    background:#dedfe3;
-}
-.user .upload{
-    position:relative;
-    margin-bottom:20px;
-    /*text-align:center;*/
-}
-.user .upload p{
-    font-size:16px;
-    color:#74ceb5;
-    text-align:center;
-}
-input[type=file] {
-    display: block;
-    position: absolute;
-    top: 0;
-    opacity: 0;
-    width: 68px;
-    height: 22px;
-    left: 44%;
-}
-.account-message{
-    box-sizing: border-box;
-    padding-right:84px;
-}
-.account-message1{
-    text-align:center;
-    margin-top:60px;
-}
-.bth{
-    padding-left:30px;
-    padding-right:30px;
-    background:#1cbb95;
-    color:#fff;
-}
 /*权限管理*/
 .jurisdiction h2{
     height:50px;
@@ -534,106 +192,3 @@ input[type=file] {
 }
 
 /*用户登陆页面*/
-#body{
-    background:url(http://demo.jeecms.com/res/jeecms/img/login/bg.jpg) repeat-x
-}
-
-#box form{
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    height:391px;
-}
-#box form .login-index {
-    width: 1000px;
-    margin: 0 auto;
-    background: url(http://demo.jeecms.com/res/jeecms/images/login-index.jpg) center 122px no-repeat;
-    height:100%;
-    overflow: hidden;
-}
-.login-index-box {
-    width: 660px;
-    margin: 0 auto;
-    padding: 12px;
-    position: relative;
-    margin-top: 274px;
-}
-.login-index-box .login-logo {
-    width:130px;
-    height:78px;
-    line-height:78px;
-    float: left;
-    /*padding-right: 64px;*/
-    margin-top: 11px;
-}
-
-
-.login-text {
-    float: left;
-    width: 256px;
-}
-.login-text .username-con, .login-text .password-con, .login-captcha {
-    position: relative;
-}
-.login-text .username-con i {
-    background: url(http://demo.jeecms.com/res/jeecms/images/username.png) no-repeat;
-    top: 9px;
-}
-.login-text .password-con i {
-    background: url(http://demo.jeecms.com/res/jeecms/images/password.png) no-repeat;
-    top: 10px;
-}
-.password-con{
-    margin-top:10px;
-}
-.login-submit {
-    float: left;
-    margin-left: 26px;
-    display: inline;
-}
-
-.login-text .username-con i, .login-text .password-con i, .login-captcha i {
-    width: 16px;
-    height: 19px;
-    display: block;
-    position: absolute;
-    left: 11px;
-}
-.login-text .username {
-    margin-bottom: 13px;
-}
-.login-text .username, .login-text .password, .login-captcha .captcha {
-    width: 214px;
-    background: #ffffff;
-    border: 1px solid #b5b5b5;
-    height: 38px;
-    padding: 0 0 0 40px;
-    line-height: 38px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -o-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    color: #777;
-    font-size: 14px;
-    box-shadow: inset 0 -1px rgba(34,25,25,.15), 0 -1px rgba(255,255,255,.8);
-    -moz-box-shadow: inset 0 -1px rgba(34,25,25,.15),0 -1px rgba(255,255,255,.8);
-    -webkit-box-shadow: inset 0 -1px rgba(34,25,25,.15), 0 -1px rgba(255,255,255,.8);
-    display: inline-block !important;
-    display: block;
-    margin: 0;
-}
-.login-submit input {
-    width: 93px;
-    height: 93px;
-    background: url(http://demo.jeecms.com/res/jeecms/images/login-submit.jpg) no-repeat;
-    cursor: pointer;
-    display: block;
-    outline: none;
-    border: none;
-}
-.login-index span{
-    position:absolute;
-    top:-10px;
-    color:red;
-    font-size:12px;
-}

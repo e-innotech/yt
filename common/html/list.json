@@ -1,0 +1,138 @@
+{
+  "msg": "登陆成功！",
+  "data": [
+    {
+      "id": 2,
+      "text": "用户管理",
+      "href": null,
+      "parentId": 0,
+      "nodes": [
+        {
+          "id": 1,
+          "text": "用户列表",
+          "href": "../../html/home.html",
+          "parentId": 2
+        },
+        {
+          "id": 9,
+          "text": "用户组列表",
+          "href": "../../html/user_group.html",
+          "parentId": 2
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "text": "权限管理",
+      "href": null,
+      "parentId": 0,
+      "nodes": [
+        {
+          "id": 22,
+          "text": "资源列表",
+          "href": "/resource/query",
+          "parentId": 73
+        },
+        {
+          "id": 28,
+          "text": "角色列表",
+          "href": "../../html/roles.html",
+          "parentId": 73
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "text": "网站管理",
+      "href": null,
+      "parentId": 0,
+      "nodes": [
+        {
+          "id": 34,
+          "text": "网站列表查询",
+          "href": "../../html/websites.html",
+          "parentId": 74
+        },
+        {
+          "id": 39,
+          "text": "栏目列表查询",
+          "href": "../../html/column.html",
+          "parentId": 74
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "text": "广告管理",
+      "href": null,
+      "parentId": 0,
+      "nodes": [
+        {
+          "id": 45,
+          "text": "广告列表",
+          "href": "../../html/adPositions.html",
+          "parentId": 75
+        },
+        {
+          "id": 50,
+          "text": "广告位管理",
+          "href": "../../html/adPositions.html",
+          "parentId": 75
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "text":"稿件管理",
+      "href": null,
+      "parentId": 0,
+      "nodes": [
+        {
+          "id": 55,
+          "text": "稿件列表",
+          "href": "../../html/news.htm",
+          "parentId": 79
+        },
+        {
+          "id": 66,
+          "text": "稿件发布",
+          "href": "",
+          "parentId": 79
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "text":"系统管理",
+      "href": null,
+      "parentId": 0,
+      "nodes": [
+        {
+          "id": 68,
+          "text": "系统配置列表",
+          "href": "/config/query",
+          "parentId": 77
+        },
+        {
+          "id": 72,
+          "text": "用户日志查询列表",
+          "href": "/log/query",
+          "parentId": 77
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "text": "会员管理",
+      "href": null,
+      "parentId": 0
+    },
+    {
+      "id": 78,
+      "text":"我的",
+      "href": null,
+      "parentId": 0
+    }
+
+  ]
+}

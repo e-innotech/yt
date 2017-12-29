@@ -1,0 +1,67 @@
+.main{
+    width: 800px;
+    margin:20px auto;
+}
+.main span{
+    display: inline-block;
+    width: 200px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: center;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.main .tag{
+    font-size: 13px;
+    margin-left: 370px;
+    vertical-align: bottom;
+    text-align: center;
+    margin-bottom: 0;
+}
+.main .text{
+    width: 750px;
+    height: 180px;
+    margin:0 auto;
+
+    resize:none;
+}
+
+.main input{
+    display: inline-block;
+    width: 80px;
+    height: 33px;
+    background: #E2526F;
+    border: 0;
+    margin-left: 670px;
+    margin-top: 10px;
+}
+.creatediv{
+    width: 675px;
+    height: 80px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    margin-top: 10px;
+    padding-left: 75px;
+
+}
+.createinput{
+    width: 80px;
+    height: 30px;
+    position:absolute;
+    right: 5px;
+    bottom:5px;
+}
+.createimg{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+.createdivs{
+    width:600px;
+    height:50px;
+    position: absolute;
+    top: 15px;
+    left: 85px;
+}

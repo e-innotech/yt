@@ -1,0 +1,48 @@
+.list_4{
+    margin-top: 40px;
+}
+#table th{
+    text-align:center;
+    height:50px;
+    line-height:50px;
+    font-size:14px;
+}
+#table tr{
+    text-align:center;
+    height:40px;
+    line-height:40px;
+
+}
+#table tr td{
+    line-height:40px;
+    height:40px;
+
+}
+#table tr td input[type="button"]{
+    width:40px;
+    height:30px;
+    margin-left:3px;
+    line-height:26px;
+    text-align:center;
+}
+
+.input1{
+    width:300px;
+    height:30px;
+}
+
+
+.list_3 .table>tbody>tr>td:first-child, .list_3 .table>tbody>tr>td:nth-child(3){
+    background: #e5e5e5;
+    text-align: center;
+}
+
+.list_4 {
+    margin: 40px 40px 0 40px;
+}
+
+.list_3 .table > tbody > tr > td:first-child, .list_3 .table > tbody > tr > td:nth-child(3) {
+    background: #e5e5e5;
+    text-align: center;
+}
+

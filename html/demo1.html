@@ -3,10 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="../common/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../common/js/common.js"></script>
 </head>
 <body>
 
@@ -56,16 +56,15 @@
                     "<td>"+data[i]["passWord"]+"</td>" +
                     "<td>"+data[i]["isUse"]+"</td>" +
                     "<td>"+data[i]["createDate"]+"</td>" +
-                    "<td>"+'<input type="button" value="增加"/>'
-                    +'<input type="button" value="删除"/>'
-                    +'<input type="button" value="修改"/>'
-                    +'<input type="button" value="查找"/>'+"</td>" +
+                    "<td>"+'<input type="button" value="增加" onclick="add()"/>'
+                    +'<input type="button" value="删除" onclick="del()"/>'
+                    +'<input type="button" value="修改" onclick="revise"/>'
+                    +'<input type="button" value="查找" onclick="find()"/>'+"</td>" +
                     "</tr>";
                 }
                 $("table").append(tempHtml);
             }
         })
-
     })
 
 

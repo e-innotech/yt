@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>稿件管理</title>
+    <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../common/css/index.css"/>
+    <link rel="stylesheet" href="../css/list.css"/>
+
+    <script type="text/javascript" src="../common/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../common/js/common.js"></script>
+
+    <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/pager.js"></script>
+    <!--编辑内容的-->
+    <script src="../common/js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor1_4_3_3-utf8-jsp/utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor1_4_3_3-utf8-jsp/utf8-jsp/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="../ueditor1_4_3_3-utf8-jsp/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
+    <style>
+        .modal_conment{
+            padding: 20px 0;
+            clear: both;
+        }
+        .modal_conment label{
+            line-height: 40px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
+    <input type="button" value="增加" class="addModal add_btn"/>
+    <input type="text" class="btn_find"/><input type="button" value="查找"/>
+    <div class="list_1 row">
+        <table class="col-sm-12 table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>稿件标题</th>
+                <th>稿件内容</th>
+                <th>稿件出处来源</th>
+                <th>静态页地址</th>
+                <th>稿件状态</th>
+                <th>上下线状态</th>
+                <th>审核人</th>
+                <th>稿件提交人</th>
+                <th>审批描述</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <!--分页-->
+    <div>
+        <ul class="pagination fr page1"></ul>
+    </div>
+
+</div>
+
+<!--添加弹出框-->
+<div class="modal fade add" id="addmyModal" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true" style="top: 10%;left: 30%; ">
+    <div class="modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                -->
+                <h4 class="modal-title" id="myModalLabel" >新增</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件标题</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 news_title"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <div class="form-group easel">
+                        <label class="control-label write-label pull-left col-sm-3">稿件内容</label>
+
+                        <div class="pull-right col-sm-9">
+                            <script id="editor" type="text/plain" style="width:100%;height:260px;"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件出处来源</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 source"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件静态页面地址</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 staticUrl"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件提交人</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 submit_user_id"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--审核弹出框-->
+<div class="modal fade audit" id="auditmyModal" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true" style="top: 10%;left: 30%; ">
+    <div class="modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                -->
+                <h4 class="modal-title" id="auditmyModalLabel" >审核</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">ID</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 id"/>
+                    </div>
+                </div>
+
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">审核状态</label>
+
+                    <div class="col-sm-7">
+                        <div class="btn-group">
+
+                            <select name="num" id="num" onchange="changNum(this.value)">
+                                <option value="province" >发布</option>
+                                <option value="province" >待审核</option>
+                                <option value="province" >待修改</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">审核描述</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 aduit_des"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">审核人</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 aduit_user_id"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!--编辑弹出框-->
+<div class="modal fade edit" id="editmyModal" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true" style="top: 10%;left: 30%; ">
+    <div class="modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                -->
+                <h4 class="modal-title" id="editmyModalLabel" >编辑</h4>
+            </div>
+            <div class="modal-body" style="overflow: hidden;">
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">ID</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 id"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">新稿件标题</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 news_title"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <div class="form-group easel">
+                        <label class="control-label write-label pull-left col-sm-3">稿件内容</label>
+
+                        <div class="pull-right col-sm-9">
+                            <script id="editor" type="text/plain" style="width:100%;height:260px;"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件出处来源</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 source"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件静态页面地址</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 staticUrl"/>
+                    </div>
+                </div>
+                <div class="form-group modal_conment">
+                    <label class="col-sm-3 control-label">稿件提交人</label>
+
+                    <div class="col-sm-7">
+                        <input class="form-control input1 submit_user_id"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn1">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<script type="text/javascript">
+
+    //发送ajax请求，拿到数据并渲染到页面上
+    $(document).ready(function () {
+        setTimeout(function () {
+        }, 500);
+        //页面的渲染
+        var Data;
+        $.ajax({
+            type: "get",//请求方式
+            url: "news.json",//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            success: function (data) {
+                Data = data;
+                ergodic(data);
+            }
+        });
+        function ergodic(Data) {
+            $("tbody").empty();
+            for (var i = 0; i < Data.length; i++) {
+                str = "<tr>" +
+                "<td>" + Data[i].id + "</td>" +
+                "<td>" + Data[i].news_title + "</td>" +
+                "<td width='20%'>" + Data[i].content + "</td>" +
+                "<td>" + Data[i].source + "</td>" +
+                "<td>" + Data[i].staticUrl + "</td>" +
+                "<td>" + Data[i].status + "</td>" +
+                '<td><p class="' + (Data[i].isLine == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+                "<td>" + Data[i].aduit_user_id + "</td>" +
+                "<td>" + Data[i].submit_user_id + "</td>" +
+                "<td>" + Data[i].aduit_des + "</td>" +
+                "<td align='center'>" +
+                "<input type='button' value='编辑'  style='margin: 0 20px' onclick='edit()'/>" +
+                "<input type='button' value='审批'  style='margin: 0 20px' onclick='audit()'/>" +
+                "<input type='button' value='发布'  style='margin: 0 20px'/>" +
+                "</td>" + "</tr>";
+                $("tbody").append(str);
+
+            }
+        }
+
+        //新增
+        $(".add_btn").click(function () {
+            $(".add").show();
+        })
+        $(".add .btn1").click(function () {
+            var news_title = $(".news_title").val();
+            var content = $(".content").val();
+            var source = $(".source").val();
+            var staticUrl = $(".staticUrl").val();
+            var submit_user_id = $(".submit_user_id").val();
+            for (var i = 0; i < Data.length; i++) {
+                if (news_title == Data[i].news_title || content == Data[i].content) {
+                    alert('稿件已存在');
+                    return;
+                }
+            }
+            Data.push({news_title: news_title, content: content, source: source, staticUrl: staticUrl, submit_user_id: submit_user_id});
+            ergodic(Data);//Data是添加后的数据
+            $(".add").hide();
+        })
+        $(".add .btn2").click(function () {
+            $(".add").hide();
+        })
+
+
+        /*分页*/
+        Page({
+            num: 100,					//页码数
+            startnum: 1,				//指定页码
+            elem: $('.page1'),		//指定的元素
+            callback: function (n) {	//回调函数
+                //console.log(n)
+                var dataPage = {};
+                dataPage["pagecur"] = n;//page
+                dataPage["text1_find"] = $(".text1_find").val();//查找条件的值
+                dataPage["text2_find"] = $(".text2_find").val();//查找条件的值
+                dataPage["text3_find"] = $(".text3_find").val();//查找条件的值
+                dataPage["option"] = $("option").val();//当前页显示条数的值
+
+                $.ajax({
+                    type: "get",//请求方式
+                    url: "news.json",//请求路径
+                    async: false,
+                    dataType: "json", //数据格式
+                    data: JSON.stringify(dataPage),
+                    success: function (dataPage) {
+                        ergodic(dataPage);
+                    }
+                })
+            }
+        });
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //发送ajax请求，拿到数据并渲染到页面上
+    $(document).ready(function () {setTimeout(function () {}, 500);
+        //网站管理基本信息
+        $.ajax({
+            type: "get",//请求方式
+            //url:"http://192.168.20.195:8080/user/query",//请求路径
+            url: "news.json",//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            success: function (data) {
+//                console.log(resultdata);
+//                console.log(resultdata[0]);
+
+
+            }
+        });
+
+        /*分页*/
+        Page({
+            num: 100,					//页码数
+            startnum: 1,				//指定页码
+            elem: $('.page1'),		//指定的元素
+            callback: function (n) {	//回调函数
+                console.log(n);
+            }
+        });
+
+
+
+
+    });
+
+
+
+</script>
+
+
+<!--编辑器-->
+<script>
+
+    var re = '{"action":"adminLogin","success":true,"msg":"\u767b\u5f55\u6210\u529f","data":{"admins_id":"1","admin_admins_id":"0","userName":"admin","contact":"admin","roles_id":"1","roleName":"\u8d85\u7ea7\u7ba1\u7406\u5458","powers":[{"id":"1","modules_id":"0","moduleCode":"YHGL","isQuery":"1","isEdit":"1","moduleName":"\u7528\u6237\u7ba1\u7406"},{"id":"2","modules_id":"0","moduleCode":"MTGL","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u7ba1\u7406"},{"id":"3","modules_id":"0","moduleCode":"WZGL","isQuery":"1","isEdit":"1","moduleName":"\u6587\u7ae0\u7ba1\u7406"},{"id":"4","modules_id":"0","moduleCode":"DDGL","isQuery":"1","isEdit":"1","moduleName":"\u8ba2\u5355\u7ba1\u7406"},{"id":"5","modules_id":"0","moduleCode":"CWGL","isQuery":"1","isEdit":"1","moduleName":"\u8d22\u52a1\u7ba1\u7406"},{"id":"6","modules_id":"0","moduleCode":"XTGL","isQuery":"1","isEdit":"1","moduleName":"\u7cfb\u7edf\u7ba1\u7406"},{"id":"7","modules_id":"1","moduleCode":"QXFP","isQuery":"1","isEdit":"1","moduleName":"\u6743\u9650\u5206\u914d"},{"id":"8","modules_id":"1","moduleCode":"YHLB","isQuery":"1","isEdit":"1","moduleName":"\u7528\u6237\u5217\u8868"},{"id":"9","modules_id":"1","moduleCode":"KHGL","isQuery":"1","isEdit":"1","moduleName":"\u5ba2\u6237\u7ba1\u7406"},{"id":"10","modules_id":"1","moduleCode":"QZKH","isQuery":"1","isEdit":"1","moduleName":"\u6f5c\u5728\u5ba2\u6237"},{"id":"11","modules_id":"2","moduleCode":"MTFL","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u5206\u7c7b"},{"id":"12","modules_id":"2","moduleCode":"MTZY","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u8d44\u6e90"},{"id":"13","modules_id":"3","moduleCode":"WZFB","isQuery":"1","isEdit":"1","moduleName":"\u6587\u7ae0\u53d1\u5e03"},{"id":"14","modules_id":"3","moduleCode":"WZLB","isQuery":"1","isEdit":"1","moduleName":"\u6587\u7ae0\u5217\u8868"},{"id":"15","modules_id":"3","moduleCode":"MTLB","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u5217\u8868"},{"id":"16","modules_id":"4","moduleCode":"DDLB","isQuery":"1","isEdit":"1","moduleName":"\u8ba2\u5355\u5217\u8868"},{"id":"17","modules_id":"4","moduleCode":"TDLB","isQuery":"1","isEdit":"1","moduleName":"\u9000\u5355\u5217\u8868"},{"id":"18","modules_id":"5","moduleCode":"MTQK","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u8bf7\u6b3e"},{"id":"19","modules_id":"5","moduleCode":"KHXK","isQuery":"1","isEdit":"1","moduleName":"\u5ba2\u6237\u9500\u6b3e"},{"id":"20","modules_id":"5","moduleCode":"KHCW","isQuery":"1","isEdit":"1","moduleName":"\u5ba2\u6237\u8d22\u52a1"},{"id":"21","modules_id":"5","moduleCode":"XSMX","isQuery":"1","isEdit":"1","moduleName":"\u9500\u552e\u660e\u7ec6"},{"id":"22","modules_id":"5","moduleCode":"CWBB","isQuery":"1","isEdit":"1","moduleName":"\u8d22\u52a1\u62a5\u8868"},{"id":"23","modules_id":"6","moduleCode":"CZJL","isQuery":"1","isEdit":"1","moduleName":"\u64cd\u4f5c\u8bb0\u5f55"},{"id":"24","modules_id":"6","moduleCode":"MTGLB","isQuery":"1","isEdit":"1","moduleName":"\u5a92\u4f53\u7a3f\u91cf\u699c"}]}}'
+    console.log(JSON.parse(re))
+</script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>
+</body>
+</html>
