@@ -10,13 +10,13 @@
         {
           "id": 1,
           "text": "用户列表",
-          "href": "",
+          "href": "../../html/home.html",
           "parentId": 2
         },
         {
           "id": 9,
           "text": "用户组列表",
-          "href": "../../html/column.html",
+          "href": "../../html/user_group.html",
           "parentId": 2
         }
       ]
@@ -36,7 +36,7 @@
         {
           "id": 28,
           "text": "角色列表",
-          "href": "/role/query",
+          "href": "../../html/roles.html",
           "parentId": 73
         }
       ]
@@ -70,13 +70,13 @@
         {
           "id": 45,
           "text": "广告列表",
-          "href": "/ad/query",
+          "href": "../../html/adPositions.html",
           "parentId": 75
         },
         {
           "id": 50,
-          "text": "稿件管理",
-          "href": "/adPositions/query",
+          "text": "广告位管理",
+          "href": "../../html/adPositions.html",
           "parentId": 75
         }
       ]
@@ -90,13 +90,13 @@
         {
           "id": 55,
           "text": "稿件列表",
-          "href": "../../html/news.html",
+          "href": "../../html/news.htm",
           "parentId": 79
         },
         {
           "id": 66,
-          "text": "查看所有稿件投放信息",
-          "href": "/news/publish/list",
+          "text": "稿件发布",
+          "href": "",
           "parentId": 79
         }
       ]

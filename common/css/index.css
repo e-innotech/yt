@@ -52,6 +52,44 @@ a {
 /*}*/
 
 /*css为clearfix，清除浮动*/
+/*密码修改*/
+.passwords{
+    z-index:1000;
+    width:600px;
+    height:200px;
+    background:gray;
+    position: absolute;
+    border-radius: 15px;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+.passwords h4{
+    margin-top:10px;
+    line-height:28px;
+}
+.passwords h4 span{
+    float:right;
+    margin-top:3px;
+
+}
+.passwordbtn{
+    float:right;
+
+}
+.passwords form{
+    margin:-10px 0 0 -18px;
+}
+.alertbox{
+    width:100%;
+    height:100vh;
+    background:rgba(0, 0, 0, .3);
+    display:none;
+
+}
+
+
+
 .clearfix::before,
 .clearfix::after {
     content: "";

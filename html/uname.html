@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>用户管理</title>
+    <title>用户列表</title>
     <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../common/css/index.css"/>
     <link rel="stylesheet" href="../css/common.css"/>
@@ -15,12 +15,7 @@
 </head>
 <body>
 
-<div>
-    <iframe src="../common/html/header.html" frameborder="0" width="100%" height="50"></iframe>
-</div>
-<div class="clearfix fl">
-    <iframe src="../common/html/list.html" frameborder="0" height="924"></iframe>
-</div>
+
 <!--添加弹出框-->
 <div class="modal fade add" id="addmyModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
      style="top: 20%;">
@@ -193,7 +188,7 @@
                 "<td>" + Data[i].user_group_id + "</td>" +
                 "<td>" +
                 "<input type='button' value='删除' onclick='delanniu(this)'/>" +
-                "<input type='button' value='修改' onclick='revise(this)'/>" +
+                "<input type='button' value='修改' onclick='reviselist(this)'/>" +
                 "</td></tr>";
                 $("tbody").append(str);
             }

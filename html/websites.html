@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="../js/pager.js"></script>
-    <script type="text/javascript" src="../common/js/common.js"></script>
+        <script type="text/javascript" src="../common/js/common.js"></script>
 
     <style>
         .modal_conment{
@@ -24,12 +24,7 @@
 </head>
 <body>
 
-<div>
-    <iframe src="../common/html/header.html" frameborder="0" width="100%" height="50"></iframe>
-</div>
-<div class="clearfix fl">
-    <iframe src="../common/html/list.html" frameborder="0" height="924"></iframe>
-</div>
+
 <div class="fl wrapper wrapper-content system" style="margin: 80px 0 0 50px;width: 75%;">
     <input type="button" value="增加" class="addModal add_btn"/>
     <div class="list_1 row">
@@ -76,9 +71,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-<!--
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
--->
+                <!--
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                -->
                 <h4 class="modal-title" id="myModalLabel" >新增</h4>
             </div>
             <div class="modal-body" style="overflow: hidden;">
@@ -168,29 +163,17 @@
                 <!--
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 -->
-                <h4 class="modal-title" id="editmyModalLabel" >编辑栏目</h4>
+                <h4 class="modal-title" id="editmyModalLabel" >编辑栏目(websites_channel表)</h4>
             </div>
             <div class="modal-body" style="overflow: hidden;">
                 <div class="form-group modal_conment">
                     <label>栏目选择</label>:
-                    <input type="checkbox" checked/>新闻
-                    <input type="checkbox" checked>体育
-                    <input type="checkbox">财经
-                    <input type="checkbox"/>汽车
-                    <input type="checkbox" checked>房产
-                    <input type="checkbox">趣闻
-                    <input type="checkbox" checked/>新闻
-                    <input type="checkbox" checked>体育
-                    <input type="checkbox">财经
-                    <input type="checkbox"/>汽车
-                    <input type="checkbox" checked>房产
-                    <input type="checkbox">趣闻
-                    <input type="checkbox" checked/>新闻
-                    <input type="checkbox" checked>体育
-                    <input type="checkbox">财经
-                    <input type="checkbox"/>汽车
-                    <input type="checkbox" checked>房产
-                    <input type="checkbox">趣闻
+                    <input type="checkbox" value="1" class="inputwms"/>新闻
+                    <input type="checkbox" value="2"/>体育
+                    <input type="checkbox" value="3"/>财经
+                    <input type="checkbox" value="4"/>汽车
+                    <input type="checkbox" value="5"/>房产
+                    <input type="checkbox" value="6"/>趣闻
                 </div>
             </div>
             <div class="modal-footer">
@@ -203,25 +186,34 @@
 
 
 <script type="text/javascript">
-
+    var wmsData = [];
     //发送ajax请求，拿到数据并渲染到页面上
     $(document).ready(function () {
         setTimeout(function () {}, 500);
+
+
         //页面的渲染
         var Data;
         $.ajax({
             type: "get",//请求方式
             url: "websites.json",//请求路径
             async: false,
+            contentType: "application/json",
             dataType: "json", //数据格式
             success: function (data) {
                 Data=data;
                 ergodic(data);
+
+
             }
         });
+
         function ergodic(Data) {
             $("tbody").empty();
             for (var i = 0; i < Data.length; i++) {
+                //吧获取的几个值保存到webData里面
+                wmsData.push(Data[i].id,Data[i].siteName,Data[i].route,Data[i].templteRoute,Data[i].isUse);
+                //console.log(Data[2].id)
                 str = "<tr>" +
                 "<td>" + Data[i].id + "</td>" +
                 "<td>" + Data[i].siteName + "</td>" +
@@ -230,12 +222,16 @@
                 '<td><p class="' + (Data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
                 "<td>" + Data[i].templteRoute + "</td>" +
                 "<td align='center'>" +
-                "<input type='button' value='编辑栏目' onclick='edit()' style='margin: 0 20px'/>" +
+                "<input type='button' value='编辑栏目' onclick='edit(this)' style='margin: 0 20px'/>" +
                 "<input type='button' value='修改' onclick='revise(this)' style='margin: 0 20px'/>" +
                 "</td>"+"</tr>";
                 $("tbody").append(str);
             }
+
         }
+
+
+
         //新增
         $(".add_btn").click(function () {
             $(".add").show();
@@ -261,6 +257,7 @@
 
 
 
+
         /*分页*/
         Page({
             num: 100,					//页码数
@@ -275,9 +272,10 @@
 
                 $.ajax({
                     type: "get",//请求方式
-                    url: "websites.json",//请求路径
+                    url: "http://123.59.156.27:8080/websites/add",//请求路径
                     async: false,
-                    dataType: "json", //数据格式
+                    contentType: "application/json",
+                    dataType: "websites.json", //数据格式
                     data: JSON.stringify(dataPage),
                     success: function (dataPage) {
                         ergodic(dataPage);
