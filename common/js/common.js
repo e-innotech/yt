@@ -99,41 +99,45 @@ function add() {
 function revise(obj) {
     $(".revise").show();
     //获取当前tr下的td eq（）的值给弹出的input框
-    //var oldsiteName=$(obj).parents("tr").children("td").eq(1);
-    //var oldroute=$(obj).parents("tr").children("td").eq(2);
-    //var oldtemplteRoute=$(obj).parents("tr").children("td").eq(5);
-    //$(".siteName").val(oldsiteName.html());
-    //$(".route").val(oldroute.html());
-    //$(".templteRoute").val(oldtemplteRoute.html());
+    var oldsiteName=$(obj).parents("tr").children("td").eq(1);
+    var oldroute=$(obj).parents("tr").children("td").eq(2);
+    var oldtemplteRoute=$(obj).parents("tr").children("td").eq(5);
+    $(".siteName").val(oldsiteName.html());
+    $(".route").val(oldroute.html());
+    $(".templteRoute").val(oldtemplteRoute.html());
 
-    var olduserName=$(obj).parents("tr").children("td").eq(1);
-    var oldpassWord=$(obj).parents("tr").children("td").eq(2);
+    //var olduserName=$(obj).parents("tr").children("td").eq(1);
+    //var oldpassWord=$(obj).parents("tr").children("td").eq(2);
     //把获取的td的值给弹出的input
-    $(".userName").val(olduserName.html());
-    $(".passWord").val(oldpassWord.html());
+    //$(".userName").val(olduserName.html());
+    //$(".passWord").val(oldpassWord.html());
     $(".revise .btn1").click(function () {
-        //var revise={};
-        //revise["siteName"]=$("#siteName").val();
-        //revise["route"]=$("#route").val();
-        //revise["templteRoute"]=$("#templteRoute").val();
+        var revise={};
+        revise["siteName"]=$("#siteName").val();
+        revise["route"]=$("#route").val();
+        revise["templteRoute"]=$("#templteRoute").val();
+        //revise["userName"]=$("#userName").val();
+        //revise["passWord"]=$("#passWord").val();
 
-        //if(revise["siteName"]==$(".siteName").val()){
-        //    alert("与修改前的内容一样")
-        //    return false;
-        //}else{
-        //    oldsiteName.html($("#siteName").val());
-        //    oldroute.html($("#route").val());
-        //    oldtemplteRoute.html($("#templteRoute").val());
-        //}
-        for(var i=0;i<data.length;i++){
-            if (oldpassWord.html() == $(".userName").val()) {
-                alert("与修改前的内容一样")
-                return false;
-            } else {
-                olduserName.html($("#userName").val());
-                oldpassWord.html($("#passWord").val());
-            }
+
+
+        if(revise["siteName"]==$(".siteName").val()){
+            alert("与修改前的内容一样")
+            return false;
+        }else{
+            oldsiteName.html($("#siteName").val());
+            oldroute.html($("#route").val());
+            oldtemplteRoute.html($("#templteRoute").val());
         }
+        //for(var i=0;i<data.length;i++){
+        //    if (oldpassWord.html() == $(".userName").val()) {
+        //        alert("与修改前的内容一样")
+        //        return false;
+        //    } else {
+        //        olduserName.html($("#userName").val());
+        //        oldpassWord.html($("#passWord").val());
+        //    }
+        //}
 
         $(".revise").hide();
     });

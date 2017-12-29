@@ -18,9 +18,8 @@ function renderList(){
         str='<tr><td>'+json_data[i].id+'</td>'+
         '<td>'+json_data[i].navigationName+'</td>' +
         '<td>'+json_data[i].desc+'</td>' +
-        '<td>'+json_data[i].isUse+'</td>' +
         '<td><p class="'+(json_data[i].isUse==0?'anniu':'anniu active')+'"onclick="anniu(this)"><span> </span></p></td>' +
-        '<td><input type="button" value=修改 onclick="revisecolumn(this)" /></td>'+
+        '<td><input type="button" value="修改" onclick="revisecolumn(this)" /><input type="button" value="编辑栏目" /></td>'+
         '</tr>';
         $("tbody").append(str);
     }

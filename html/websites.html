@@ -160,7 +160,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
-<!--编辑弹出框-->
+<!--网站与栏目弹出框-->
 <div class="modal fade edit" id="myModal_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top: 20%;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -168,31 +168,30 @@
                 <!--
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 -->
-                <h4 class="modal-title" id="editmyModalLabel" >编辑</h4>
+                <h4 class="modal-title" id="editmyModalLabel" >编辑栏目</h4>
             </div>
             <div class="modal-body" style="overflow: hidden;">
                 <div class="form-group modal_conment">
-                    <label class="col-sm-2 control-label">网站名称</label>
-
-                    <div class="col-sm-8">
-                        <input class="form-control input1 siteName"/>
-                    </div>
+                    <label>栏目选择</label>:
+                    <input type="checkbox" checked/>新闻
+                    <input type="checkbox" checked>体育
+                    <input type="checkbox">财经
+                    <input type="checkbox"/>汽车
+                    <input type="checkbox" checked>房产
+                    <input type="checkbox">趣闻
+                    <input type="checkbox" checked/>新闻
+                    <input type="checkbox" checked>体育
+                    <input type="checkbox">财经
+                    <input type="checkbox"/>汽车
+                    <input type="checkbox" checked>房产
+                    <input type="checkbox">趣闻
+                    <input type="checkbox" checked/>新闻
+                    <input type="checkbox" checked>体育
+                    <input type="checkbox">财经
+                    <input type="checkbox"/>汽车
+                    <input type="checkbox" checked>房产
+                    <input type="checkbox">趣闻
                 </div>
-                <div class="form-group modal_conment">
-                    <label class="col-sm-2 control-label">网站地址</label>
-
-                    <div class="col-sm-8">
-                        <input class="form-control input1 route"/>
-                    </div>
-                </div>
-                <div class="form-group modal_conment">
-                    <label class="col-sm-2 control-label">模板路径</label>
-
-                    <div class="col-sm-8">
-                        <input class="form-control input1 templteRoute"/>
-                    </div>
-                </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn2" data-dismiss="modal">关闭</button>
@@ -231,7 +230,7 @@
                 '<td><p class="' + (Data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
                 "<td>" + Data[i].templteRoute + "</td>" +
                 "<td align='center'>" +
-                "<input type='button' value='编辑' onclick='edit()' style='margin: 0 20px'/>" +
+                "<input type='button' value='编辑栏目' onclick='edit()' style='margin: 0 20px'/>" +
                 "<input type='button' value='修改' onclick='revise(this)' style='margin: 0 20px'/>" +
                 "</td>"+"</tr>";
                 $("tbody").append(str);

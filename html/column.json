@@ -1,26 +1,26 @@
 [
   {
     "id":1,
-    "navigationName":"qqq",
-    "desc":"我是栏目一的描述",
+    "navigationName":"新闻栏目",
+    "desc":"我是新闻栏目的描述",
     "isUse":1
   },
   {
     "id":2,
-    "navigationName":"栏目二",
-    "desc":"我是栏目二的描述",
+    "navigationName":"体育栏目",
+    "desc":"我是体育栏目的描述",
     "isUse":0
   },
   {
     "id":3,
-    "navigationName":"栏目三",
-    "desc":"我是栏目三的描述",
+    "navigationName":"财经栏目",
+    "desc":"我是财经栏目的描述",
     "isUse":1
   },
   {
     "id":4,
-    "navigationName":"栏目四",
-    "desc":"我是栏目四的描述",
+    "navigationName":"都市生活",
+    "desc":"我是都市生活的描述",
     "isUse":0
   }
 

@@ -10,7 +10,7 @@
         {
           "id": 1,
           "text": "用户列表",
-          "href": "../../html/websites.html",
+          "href": "",
           "parentId": 2
         },
         {
@@ -50,13 +50,13 @@
         {
           "id": 34,
           "text": "网站列表查询",
-          "href": "/websites/query",
+          "href": "../../html/websites.html",
           "parentId": 74
         },
         {
           "id": 39,
           "text": "栏目列表查询",
-          "href": "/channel/query",
+          "href": "../../html/column.html",
           "parentId": 74
         }
       ]
