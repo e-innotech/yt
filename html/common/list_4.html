@@ -151,13 +151,12 @@ $(document).ready(function() {
         success: function(resultdata){
           console.log(resultdata);
          console.log(resultdata[0]);
-
           for(var i=0;i<resultdata.length;i++){
              str="<tr><td>"+resultdata[i].id+"</td>" +
                   "<td>"+resultdata[i].userName+"</td>" +
                   "<td>"+resultdata[i].passWord+"</td>" +
                   "<td>"+resultdata[i].isUse+"</td>" +
-             "<td>"+resultdata[i].createDate+"</td>" +
+                  "<td>"+resultdata[i].createDate+"</td>" +
                   "<td>" +
                       "<input type='button' value='增加'/>"+
                       "<input type='button' value='删除' />" +
@@ -170,10 +169,6 @@ $(document).ready(function() {
     test();
 });
 
-
-
-
- 
  //点击增删改查按钮时做判断分别进入不同的方法
   $("tbody").on("click","input",function (e) {
           console.log(555555555)
