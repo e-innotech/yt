@@ -15,7 +15,17 @@ public class Members {
 
     private Integer isGag;
 
-    public Integer getId() {
+    private MemberInfos infos;
+    
+    public MemberInfos getInfos() {
+		return infos;
+	}
+
+	public void setInfos(MemberInfos infos) {
+		this.infos = infos;
+	}
+
+	public Integer getId() {
         return id;
     }
 

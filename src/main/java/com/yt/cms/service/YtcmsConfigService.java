@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.YtcmsConfig;
 
 /**
@@ -29,7 +30,7 @@ public interface YtcmsConfigService {
 	 * 列表显示配置信息
 	 * @return
 	 */
-	public List<YtcmsConfig> queryAll(YtcmsConfig config);
+	public List<YtcmsConfig> queryAll(YtcmsConfig config,Page page);
 	/**
 	 * 更新配置信息
 	 * @param config

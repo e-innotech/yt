@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.RolesMapper;
 import com.yt.cms.mapper.RolesResourceMapper;
 import com.yt.cms.model.Roles;
@@ -42,7 +44,8 @@ public class RolesServiceImpl implements RolesService {
 	}
 
 	@Override
-	public List<Roles> find(Roles roles) {
+	public List<Roles> find(Roles roles, Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return rolesDAO.query(roles);
 	}
 

@@ -1,5 +1,6 @@
 package com.yt.cms.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.MembersCommentsNews;
+import com.yt.cms.model.News;
 import com.yt.cms.service.MemberCommentsNewsService;
 
 import io.swagger.annotations.Api;
@@ -49,9 +54,25 @@ public class MembersCommentController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员评论列表")
-	public List<MembersCommentsNews> query(){
+	public PageInfo<MembersCommentsNews> query(@RequestParam(required=false) String content, // 评论内容
+			@RequestParam(required=false) Date startDate, // 评论日期
+			@RequestParam(required=false) Date endDate, // 评论日期
+			@RequestParam(required=false) String newsTitle, // 评论的新闻标题
+			@RequestParam(required=false) String memberUName, //评论用户名
+			Page page){
 		MembersCommentsNews comment = new MembersCommentsNews();
-		return memberCommentService.queryAll(comment);
+		comment.setContent(content);
+		comment.setStartDate(startDate);
+		comment.setEndDate(endDate);
+		
+		News news = new News();
+		news.setNewsTitle(newsTitle);
+		comment.setNews(news);
+		
+		comment.setMemberUName(memberUName);
+		
+		List<MembersCommentsNews> list =  memberCommentService.queryAll(comment,page);
+		return new PageInfo<MembersCommentsNews>(list);
 	}
 
 	/**
@@ -61,10 +82,10 @@ public class MembersCommentController {
 	 */
 	@DeleteMapping("/delete")
 	@ApiOperation("管理员删除评论")
-	public HttpEntity<?> delete(@RequestBody MembersCommentsNews comment){
-		boolean result = memberCommentService.delete(comment);
+	public HttpEntity<?> delete(@RequestParam Integer id){
+		boolean result = memberCommentService.deleteLogical(id);
 		if(!result) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}

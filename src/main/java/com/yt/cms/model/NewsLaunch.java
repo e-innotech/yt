@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class NewsLaunch {
     private Integer id;
 
@@ -21,7 +23,67 @@ public class NewsLaunch {
 
     private Date createDate;
 
-    public Integer getId() {
+    private Integer isDel;
+    
+    private String delDate;
+    private News news;
+    
+    @JsonIgnore
+    private String newsTitle;
+    @JsonIgnore
+    private Date startDate;
+    @JsonIgnore
+    private Date endDate;
+    
+    public News getNews() {
+		return news;
+	}
+
+	public void setNews(News news) {
+		this.news = news;
+	}
+
+	public String getNewsTitle() {
+		return newsTitle;
+	}
+
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
+
+	public String getDelDate() {
+		return delDate;
+	}
+
+	public void setDelDate(String delDate) {
+		this.delDate = delDate;
+	}
+
+	public Integer getId() {
         return id;
     }
 

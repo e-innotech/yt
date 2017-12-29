@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/websitesBar")
+@RequestMapping("/websitesChannel")
 @Api(value = "网站栏位关系服务")
 public class WebsitesChannelController {
 	@Autowired

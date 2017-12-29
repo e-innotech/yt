@@ -30,7 +30,7 @@ public class WebsitesServiceImpl implements WebsitesService {
 
 	@Override
 	public List<Websites> queryAll(Websites web, Page page) {
-		PageHelper.offsetPage(page.getPageNum(), page.getPageSize());
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return websitesDAO.query(web);
 	}
 

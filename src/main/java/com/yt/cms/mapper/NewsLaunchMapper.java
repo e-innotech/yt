@@ -1,5 +1,7 @@
 package com.yt.cms.mapper;
 
+import java.util.List;
+
 import com.yt.cms.model.NewsLaunch;
 
 public interface NewsLaunchMapper {
@@ -10,5 +12,9 @@ public interface NewsLaunchMapper {
     NewsLaunch selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(NewsLaunch record);
+    
+    int deleteLogicById(Integer id);
+    
+    List<NewsLaunch> query(NewsLaunch record);
 
 }

@@ -99,7 +99,7 @@ public class UserGroupController {
 	 */
 	@DeleteMapping("/delete")
 	@ApiOperation("删除用户组")
-	public HttpEntity<?> delete(Integer id){
+	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = userGroupService.delete(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -114,7 +114,7 @@ public class UserGroupController {
 	 */
 	@DeleteMapping("/userGroup/roles")
 	@ApiOperation("删除用户组所有角色")
-	public HttpEntity<?> update(Integer userGroupId){
+	public HttpEntity<?> update(@RequestParam Integer userGroupId){
 		boolean created = userGroupService.deleteByUserGroupId(userGroupId);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Resource;
 import com.yt.cms.service.ResourceService;
 
@@ -35,10 +37,19 @@ public class ResourceController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询系统资源列表")
-	public List<Resource> query(@RequestParam Integer pageNo){
+	public PageInfo<Resource> query(@RequestParam(required=false) String resourceName,
+			@RequestParam(required=false) String uri,
+			@RequestParam(required=false) Integer rw,
+			@RequestParam(required=false) Integer isMenu,
+			Page page){
 		Resource resource = new Resource();
-	
-		return resourceService.find(resource);
+		resource.setIsMenu(isMenu);
+		resource.setResourceName(resourceName);
+		resource.setRw(rw);
+		resource.setUri(uri);
+		
+		List<Resource> list =  resourceService.find(resource,page);
+		return new PageInfo<Resource>(list);
 	}
 
 	/**

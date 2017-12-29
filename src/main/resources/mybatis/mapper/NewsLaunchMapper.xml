@@ -11,21 +11,55 @@
     <result column="aduit_date" property="aduitDate" jdbcType="TIMESTAMP" />
     <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="isDel" property="isDel" jdbcType="INTEGER" />
+    <result column="del_date" property="delDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+    <resultMap id="ResultMap" type="com.yt.cms.model.NewsLaunch" extends="BaseResultMap">
+    	<association property="news" javaType="com.yt.cms.model.News">
+    		<id column="news_id" property="id" jdbcType="INTEGER" />
+		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    	</association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, news_id, news_launch_config, status, aduit_user_id, aduit_des, aduit_date, create_user_id, 
-    create_date
+    create_date,isDel,del_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from news_launch
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and isDel = 0
   </select>
+  
+  <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.NewsLaunch" >
+    select 
+   a.id, b.id as news_id, a.news_launch_config, a.status, a.aduit_user_id, a.aduit_des, a.aduit_date, a.create_user_id, 
+    a.create_date,b.news_title
+    from news_launch a left join news b on a.news_id = b.id
+    where a.isDel = 0
+    <if test="startDate != null" >
+       		<![CDATA[ and a.create_date >= #{startDate,jdbcType=INTEGER}  ]]>
+      	</if>
+        <if test="endDate != null" >
+       		<![CDATA[ and a.create_date <= #{endDate,jdbcType=INTEGER}  ]]>
+      	</if>
+      	
+	     <if test="newsTitle != null" >
+	       and b.news_title like concat('%', #{newsTitle}, '%')
+	    </if>
+	 
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news_launch
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+	<update id="deleteLogicById" parameterType="java.lang.Integer" >
+		update news_launch set isDel = 1, del_date = now() where id = #{id,jdbcType=INTEGER}
+	</update>
 
   <insert id="insertSelective" parameterType="com.yt.cms.model.NewsLaunch" >
     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">

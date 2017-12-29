@@ -7,13 +7,15 @@
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="staticUrl" property="staticUrl" jdbcType="VARCHAR" />
     <result column="submit_user_id" property="submitUserId" jdbcType="INTEGER" />
-    <result column="createDate" property="createDate" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="isDel" property="isDel" jdbcType="INTEGER" />
+    <result column="del_date" property="delDate" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.model.News" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, news_title, source, staticUrl, submit_user_id,createDate
+    id, news_title, source, staticUrl, submit_user_id,create_date,isDel,del_date
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -24,15 +26,30 @@
     ,
     <include refid="Blob_Column_List" />
     from news
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and isDel = 0
   </select>
   
   <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.News" >
     select 
     <include refid="Base_Column_List" />
-    from news
+    from news where 1=1 and isDel = 0
+    <if test="startDate != null" >
+       		<![CDATA[ and create_date >= #{startDate,jdbcType=INTEGER}  ]]>
+      	</if>
+        <if test="endDate != null" >
+       		<![CDATA[ and create_date <= #{endDate,jdbcType=INTEGER}  ]]>
+      	</if>
+	     <if test="newsTitle != null" >
+	       and news_title like concat('%', #{newsTitle}, '%')
+	    </if>
+	    <if test="source != null" >
+	       and source = #{source}
+	    </if>
   </select>
   
+  <update id="deleteLogicById" parameterType="java.lang.Integer">
+  	update news set isDel = 1, del_date = now() where id = #{id,jdbcType=INTEGER}
+  </update>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news
@@ -97,5 +114,6 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 
 </mapper>

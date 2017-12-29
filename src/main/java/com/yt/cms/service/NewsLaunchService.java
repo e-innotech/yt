@@ -1,5 +1,8 @@
 package com.yt.cms.service;
 
+import java.util.List;
+
+import com.yt.cms.common.Page;
 import com.yt.cms.model.NewsLaunch;
 
 /**
@@ -37,7 +40,7 @@ public interface NewsLaunchService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	
 	/**
 	 * 审批稿件
@@ -45,7 +48,12 @@ public interface NewsLaunchService {
 	 * @return
 	 */
 	public boolean aduit(NewsLaunch newsLaunch);
-	
-	
+	/**
+	 * 分页查询投放列表
+	 * @param newsLaunch
+	 * @param page
+	 * @return
+	 */
+	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page);
 	
 }

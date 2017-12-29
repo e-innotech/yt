@@ -30,7 +30,7 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public List<Channel> queryAll(Channel bar,Page page) {
-		PageHelper.offsetPage(page.getPageNum(), page.getPageSize());
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return channelDAO.query(bar);
 	}
 

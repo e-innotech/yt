@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.NewsMapper;
 import com.yt.cms.model.News;
 import com.yt.cms.service.NewsService;
@@ -29,7 +31,8 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public List<News> queryAll(News news) {
+	public List<News> queryAll(News news, Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return newsDAO.query(news);
 	}
 
@@ -41,15 +44,18 @@ public class NewsServiceImpl implements NewsService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return false;
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean deleteLogicById(Integer id) {
 		try {
-			newsDAO.deleteByPrimaryKey(id);
-			return true;
+			int row = newsDAO.deleteLogicById(id);
+			if(row == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

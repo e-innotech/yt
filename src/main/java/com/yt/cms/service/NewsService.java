@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.News;
 
 /**
@@ -29,7 +30,7 @@ public interface NewsService {
 	 * @param news
 	 * @return
 	 */
-	public List<News> queryAll(News news);
+	public List<News> queryAll(News news, Page page);
 	/**
 	 * 更新稿件信息
 	 * @param news
@@ -41,6 +42,6 @@ public interface NewsService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	
 }

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.AduitNews;
 import com.yt.cms.model.News;
 import com.yt.cms.model.NewsLaunch;
@@ -48,9 +50,18 @@ public class NewsController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询稿件列表")
-	public List<News> query(){
-		News News = new News();
-		return newsService.queryAll(News);
+	public PageInfo<News> query(@RequestParam(required=false) String newsTitle,
+			@RequestParam(required=false) String source,
+			@RequestParam(required=false) Date startDate,
+			@RequestParam(required=false) Date endDate,
+			Page page){
+		News news = new News();
+		news.setNewsTitle(newsTitle);
+		news.setSource(source);
+		news.setStartDate(startDate);
+		news.setEndDate(endDate);
+		List<News> list = newsService.queryAll(news,page);
+		return new PageInfo<News>(list);
 	}
 
 	/**
@@ -102,9 +113,9 @@ public class NewsController {
 	@DeleteMapping("/delete")
 	@ApiOperation("删除稿件")
 	public HttpEntity<?> delete(@RequestParam Integer id){
-		boolean created = newsService.delete(id);
+		boolean created = newsService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
@@ -113,7 +124,7 @@ public class NewsController {
 	 * 投放稿件到网站和栏目
 	 * @return
 	 */
-	@PostMapping("/launch")
+	@PostMapping("/launch/add")
 	@ApiOperation("投放稿件到网站和栏目")
 	public HttpEntity<?> launch(@RequestBody NewsLaunch newsLaunch){
 		boolean release =  newsLaunchService.save(newsLaunch);
@@ -128,9 +139,9 @@ public class NewsController {
 	 * 编辑稿件投放网站与栏目
 	 * @return
 	 */
-	@PutMapping("/launch/edit")
+	@PutMapping("/launch/update")
 	@ApiOperation("编辑稿件投放网站与栏目")
-	public HttpEntity<?> editLaunch(@RequestBody NewsLaunch newsLaunch){
+	public HttpEntity<?> updateLaunch(@RequestBody NewsLaunch newsLaunch){
 		// 从session中拿当前用户id
 //		news.setAduitUserId(aduitUserId);
 		boolean release =  newsLaunchService.update(newsLaunch);
@@ -144,7 +155,7 @@ public class NewsController {
 	 * 按照稿件投放id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/launch/id")
+	@GetMapping("/launch/find")
 	@ApiOperation("按照稿件投放id查询稿件投放详情")
 	public HttpEntity<?> findLaunch(@RequestParam Integer id){
 		NewsLaunch module =  newsLaunchService.findById(id);
@@ -157,16 +168,34 @@ public class NewsController {
 		response.setData(module);
 		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 	}
+	
+	/**
+	 * 列表页面
+	 * @return
+	 */
+	@GetMapping("/launch/query")
+	@ApiOperation("查询稿件列表")
+	public PageInfo<NewsLaunch> queryLaunch(@RequestParam(required=false) String newsTitle,
+			@RequestParam(required=false) Date startDate,
+			@RequestParam(required=false) Date endDate,
+			Page page){
+		NewsLaunch newsLaunch = new NewsLaunch();
+		newsLaunch.setNewsTitle(newsTitle);
+		newsLaunch.setStartDate(startDate);
+		newsLaunch.setEndDate(endDate);
+		List<NewsLaunch> list = newsLaunchService.queryAll(newsLaunch,page);
+		return new PageInfo<NewsLaunch>(list);
+	}
 	/**
 	 * 按照稿件投放id删除
 	 * @return
 	 */
-	@DeleteMapping("/launch")
+	@DeleteMapping("/launch/delete")
 	@ApiOperation("按照稿件投放id删除")
 	public HttpEntity<?> deleteLaunch(@RequestParam Integer id){
-		boolean release =  newsLaunchService.delete(id);
+		boolean release =  newsLaunchService.deleteLogicById(id);
 		if(!release) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
@@ -174,7 +203,7 @@ public class NewsController {
 	 * 稿件审批
 	 * @return
 	 */
-	@PutMapping("/aduit")
+	@PostMapping("/aduit")
 	@ApiOperation("稿件审批")
 	public HttpEntity<?> aduit(@RequestBody AduitNews aduit){
 		NewsLaunch newsLaunch = new NewsLaunch();
@@ -191,7 +220,7 @@ public class NewsController {
 	 * 按照稿件发布id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/publish")
+	@GetMapping("/publish/find")
 	@ApiOperation("按照稿件发布id查询稿件投放详情")
 	public HttpEntity<?> findPublish(@RequestParam Integer id){
 		NewsPublishLine module =  newsPublishService.findById(id);
@@ -247,5 +276,22 @@ public class NewsController {
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
+	/**
+	 * 稿件上下线
+	 * @return
+	 */
+	@PutMapping("/home")
+	@ApiOperation("稿件上下线")
+	public HttpEntity<?> setHome(@RequestParam Integer id, @RequestParam Integer homeWeight){
+		NewsPublish publish = new NewsPublish();
+		publish.setId(id);
+		// 前端传递要修改的状态
+		publish.setHomeWeight(homeWeight);
+		boolean release =  newsPublishService.update(publish);
+		if(!release) {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+	}
 	
 }

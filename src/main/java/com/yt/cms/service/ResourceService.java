@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Resource;
 
 /**
@@ -35,7 +36,7 @@ public interface ResourceService {
 	 * @param resource
 	 * @return
 	 */
-	public List<Resource> find(Resource resource);
+	public List<Resource> find(Resource resource,Page page);
 	/**
 	 * 按照资源id删除资源
 	 * @param id

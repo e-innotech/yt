@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.ResourceMapper;
 import com.yt.cms.model.Resource;
 import com.yt.cms.service.ResourceService;
@@ -38,7 +40,8 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public List<Resource> find(Resource resource) {
+	public List<Resource> find(Resource resource,Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return resourceDAO.query(resource);
 	}
 

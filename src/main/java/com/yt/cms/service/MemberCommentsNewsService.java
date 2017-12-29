@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.MembersCommentsNews;
 /**
  * 会员评论服务接口
@@ -24,14 +25,12 @@ public interface MemberCommentsNewsService {
 	 * @param comment
 	 * @return
 	 */
-	public List<MembersCommentsNews> queryAll(MembersCommentsNews comment);
+	public List<MembersCommentsNews> queryAll(MembersCommentsNews comment,Page page);
 	
 	/**
-	 * 删除评论
-	 * @param comment
+	 * 逻辑删除评论
+	 * @param id
 	 * @return
 	 */
-	public boolean delete(MembersCommentsNews comment);
-	
-	
+	public boolean deleteLogical(Integer id);
 }

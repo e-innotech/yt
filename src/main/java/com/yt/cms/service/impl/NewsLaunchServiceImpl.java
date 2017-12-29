@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.NewsLaunchMapper;
 import com.yt.cms.mapper.NewsPublishMapper;
 import com.yt.cms.model.NewsLaunch;
@@ -49,15 +51,27 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean deleteLogicById(Integer id) {
 		try {
-			newsLaunchDAO.deleteByPrimaryKey(id);
-			return true;
+			int row = newsLaunchDAO.deleteLogicById(id);
+			if(row == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return false;
+	}
+	
+	
+
+	@Override
+	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
+		return newsLaunchDAO.query(newsLaunch);
 	}
 
 	@Override

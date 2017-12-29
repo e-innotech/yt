@@ -9,14 +9,29 @@
     <result column="isUse" property="isUse" jdbcType="INTEGER" />
     <result column="isGag" property="isGag" jdbcType="INTEGER" />
   </resultMap>
+  
+     <resultMap id="ResultMap" type="com.yt.cms.model.Members" extends="BaseResultMap">
+    	<association property="infos" javaType="com.yt.cms.model.MemberInfos">
+    		<id column="infoId" property="id" jdbcType="INTEGER" />
+		      	<result column="nickName" property="nickName" jdbcType="VARCHAR" />
+			    <result column="sex" property="sex" jdbcType="INTEGER" />
+			    <result column="birth" property="birth" jdbcType="DATE" />
+			    <result column="phone" property="phone" jdbcType="VARCHAR" />
+			    <result column="email" property="email" jdbcType="VARCHAR" />
+			    <result column="qq" property="qq" jdbcType="VARCHAR" />
+			    <result column="address" property="address" jdbcType="VARCHAR" />
+			    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    	</association>
+  	</resultMap>
   <sql id="Base_Column_List" >
     id, uname, pwd, regDate, isUse, isGag
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
-    from members
-    where id = #{id,jdbcType=INTEGER}
+    a.id , a.uname, a.pwd, a.regDate, a.isUse, a.isGag, 
+    b.id as infoId, b.nickName, b.sex, b.birth, b.phone, b.email, b.qq, b.address,b.icon
+    from members a left join memberinfos b on a.id = b.members_id
+    where a.id = #{id,jdbcType=INTEGER}
   </select>
   
     <select id="selectByUname" resultType="java.lang.Integer" parameterType="java.lang.String" >
@@ -29,7 +44,16 @@
     <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Members" >
     select 
     <include refid="Base_Column_List" />
-    from members
+    from members where 1=1
+    	<if test="isUse != null" >
+	        and isUse = #{isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="isGag != null" >
+	        and isGag = #{isGag,jdbcType=INTEGER}
+	      </if>
+	      <if test="uname != null" >
+	       and uname like concat('%', #{uname}, '%')
+	      </if>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

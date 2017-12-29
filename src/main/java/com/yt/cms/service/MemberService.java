@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
 /**
@@ -23,7 +24,7 @@ public interface MemberService {
 	 * @param id
 	 * @return
 	 */
-	public MemberInfos findById(Integer id);
+	public Members findById(Integer id);
 	
 	/**
 	 * 按照注册用户名查询是否已经注册
@@ -37,7 +38,7 @@ public interface MemberService {
 	 * @param member
 	 * @return
 	 */
-	public List<Members> queryAll(Members member);
+	public List<Members> queryAll(Members member,Page page);
 	/**
 	 * 更新会员信息
 	 * @param memberInfo

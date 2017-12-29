@@ -48,8 +48,13 @@ public class AdPositionsServiceImpl implements AdPositionsService {
 	@Override
 	public boolean delete(Integer id) {
 		try {
-			adpositionDAO.deleteByPrimaryKey(id);
-			return true;
+			// row 数据库中影响的行数
+			int row = adpositionDAO.deleteByPrimaryKey(id);
+			if(row == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

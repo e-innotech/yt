@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.MemberInfosMapper;
 import com.yt.cms.mapper.MembersMapper;
 import com.yt.cms.model.MemberInfos;
@@ -26,8 +28,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberInfos findById(Integer id) {
-		return memberInfoDAO.selectByPrimaryKey(id);
+	public Members findById(Integer id) {
+		return membersDAO.selectByPrimaryKey(id);
 	}
 
 	@Override
@@ -40,7 +42,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Members> queryAll(Members member) {
+	public List<Members> queryAll(Members member,Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return membersDAO.query(member);
 	}
 

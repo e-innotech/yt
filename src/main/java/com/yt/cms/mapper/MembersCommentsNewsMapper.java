@@ -11,6 +11,6 @@ public interface MembersCommentsNewsMapper {
 
     List<MembersCommentsNews> query(MembersCommentsNews record);
     
-    void deleteByModel(MembersCommentsNews record);
+    int deleteLogical(Integer id);
 
 }

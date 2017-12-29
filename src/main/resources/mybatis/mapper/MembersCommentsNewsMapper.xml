@@ -26,11 +26,23 @@
   </sql>
 
    <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.MembersCommentsNews" >
-    select a.id, a.members_id, a.createDate, a.content, b.id as news_id, b.news_title
-    from members_comments_news a, news b  where a.isDel = #{isDel,jdbcType=INTEGER} and a.news_id = b.id
-    <if test="membersId != null" >
-       and members_id = #{membersId,jdbcType=INTEGER}
-      </if>
+    select a.id, a.createDate, a.content, b.id as news_id, b.news_title, c.id as members_id,c.uname
+    from members_comments_news a, news b ,members c where a.isDel = 0 and a.news_id = b.id and a.members_id = c.id
+    	<if test="startDate != null" >
+       		<![CDATA[ and a.createDate >= #{startDate,jdbcType=INTEGER}  ]]>
+      	</if>
+        <if test="endDate != null" >
+       		<![CDATA[ and a.createDate <= #{endDate,jdbcType=INTEGER}  ]]>
+      	</if>
+      	 <if test="memberUName != null" >
+	       and c.uname like concat('%', #{memberUName}, '%')
+	    </if>
+	     <if test="newsTitle != null" >
+	       and b.news_title like concat('%', #{newsTitle}, '%')
+	    </if>
+	    <if test="content != null" >
+	       and a.content like concat('%', #{content}, '%')
+	    </if>
   </select>
   
   
@@ -39,10 +51,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   
-  <delete id="deleteByModel" parameterType="com.yt.cms.model.MembersCommentsNews" >
-    delete from members_comments_news
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+  <update id="deleteLogical" parameterType="java.lang.Integer">
+  	update members_comments_news set isDel = 1, delDate = now() where id = #{id,jdbcType=INTEGER}
+  </update>
   
   <insert id="insertSelective" parameterType="com.yt.cms.model.MembersCommentsNews" >
      <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">

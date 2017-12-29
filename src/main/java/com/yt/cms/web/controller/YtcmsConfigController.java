@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.YtcmsConfig;
 import com.yt.cms.service.YtcmsConfigService;
 
@@ -63,9 +65,16 @@ public class YtcmsConfigController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询系统配置列表")
-	public List<YtcmsConfig> query(){
+	public PageInfo<YtcmsConfig> query(@RequestParam(required=false) String name, // 配置名称
+			@RequestParam(required=false) String value, //配置值
+			@RequestParam(required=false) Integer isUse,
+			Page page){
 		YtcmsConfig config = new YtcmsConfig();
-		return configService.queryAll(config);
+		config.setIsUse(isUse);
+		config.setName(name);
+		config.setValue(value);
+		List<YtcmsConfig> list = configService.queryAll(config,page);
+		return new PageInfo<YtcmsConfig>(list);
 	}
 
 	

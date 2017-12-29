@@ -13,4 +13,5 @@ public interface MembersCollectNewsMapper {
 
     List<MembersCollectNews> query(MembersCollectNews record);
     
+    int cancelCollect(Integer id);
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.MembersCollectNewsMapper;
 import com.yt.cms.model.MembersCollectNews;
 import com.yt.cms.service.MemberCollectNewsService;
@@ -22,15 +24,20 @@ public class MemberCollectNewsServiceImpl implements MemberCollectNewsService {
 	}
 
 	@Override
-	public List<MembersCollectNews> queryAll(MembersCollectNews collect) {
+	public List<MembersCollectNews> queryAll(MembersCollectNews collect, Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return collectDAO.query(collect);
 	}
 
 	@Override
-	public boolean delete(Integer collectId) {
+	public boolean cancelCollect(Integer collectId) {
 		try {
-			collectDAO.deleteByPrimaryKey(collectId);
-			return true;
+			int row = collectDAO.cancelCollect(collectId);
+			if(row == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

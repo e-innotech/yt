@@ -10,6 +10,8 @@ public class Const {
 	
 	public static final String FAILED = "操作失败！";
 	
+	public static final String DELETE_NO_FOUND = "没有找到要删除的行！";
+	
 	public static final String LOGIN_SUCCESS = "登陆成功！";
 	
 	public static final String LOGIN_FAILED = "登陆失败！账号或者密码错误。";

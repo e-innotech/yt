@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Roles;
 
 /**
@@ -35,7 +36,7 @@ public interface RolesService {
 	 * @param roles
 	 * @return
 	 */
-	public List<Roles> find(Roles roles);
+	public List<Roles> find(Roles roles,Page page);
 	/**
 	 * 删除角色id
 	 * @param id

@@ -7,6 +7,8 @@ public class MembersCollectNews {
 
     private Integer membersId;
 
+    private Integer newsId;
+    
     private News news;
 
     private Date createdate;
@@ -21,7 +23,15 @@ public class MembersCollectNews {
         this.id = id;
     }
 
-    public Integer getMembersId() {
+    public Integer getNewsId() {
+		return newsId;
+	}
+
+	public void setNewsId(Integer newsId) {
+		this.newsId = newsId;
+	}
+
+	public Integer getMembersId() {
         return membersId;
     }
 

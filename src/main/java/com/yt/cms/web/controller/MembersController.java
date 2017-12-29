@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
 import com.yt.cms.service.MemberService;
@@ -53,9 +55,9 @@ public class MembersController {
 	@GetMapping("/find")
 	@ApiOperation("按照id查询会员")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
-		MemberInfos result = memberService.findById(id);
+		Members result = memberService.findById(id);
 		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<MemberInfos>(result, status);
+		return new ResponseEntity<Members>(result, status);
 	}
 	
 	/**
@@ -77,9 +79,16 @@ public class MembersController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员列表")
-	public List<Members> query(){
+	public PageInfo<Members> query(@RequestParam(required=false) String uname,
+			@RequestParam(required=false) Integer isUse,
+			@RequestParam(required=false) Integer isGag,
+			Page page){
 		Members member = new Members();
-		return memberService.queryAll(member);
+		member.setIsGag(isGag);
+		member.setIsUse(isUse);
+		member.setUname(uname);
+		List<Members> list = memberService.queryAll(member,page);
+		return new PageInfo<Members>(list);
 	}
 
 	/**
@@ -108,7 +117,7 @@ public class MembersController {
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
 

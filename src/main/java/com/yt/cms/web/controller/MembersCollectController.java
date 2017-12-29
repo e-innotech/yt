@@ -6,15 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.MembersCollectNews;
 import com.yt.cms.service.MemberCollectNewsService;
 
@@ -49,9 +51,12 @@ public class MembersCollectController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员收藏列表")
-	public List<MembersCollectNews> query(){
+	public PageInfo<MembersCollectNews> query(@RequestParam Integer memberId, Page page){
 		MembersCollectNews collect = new MembersCollectNews();
-		return memberCollectService.queryAll(collect);
+		collect.setMembersId(memberId);
+		collect.setStatus(0);
+		List<MembersCollectNews> list = memberCollectService.queryAll(collect,page);
+		return new PageInfo<MembersCollectNews>(list);
 	}
 
 	/**
@@ -59,12 +64,12 @@ public class MembersCollectController {
 	 * @param comment
 	 * @return
 	 */
-	@DeleteMapping("/delete/{collectId}")
+	@PutMapping("/cancel")
 	@ApiOperation("会员取消收藏")
-	public HttpEntity<?> delete(@PathVariable Integer collectId){
-		boolean result = memberCollectService.delete(collectId);
+	public HttpEntity<?> cancel(@RequestParam Integer collectId){
+		boolean result = memberCollectService.cancelCollect(collectId);
 		if(!result) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}

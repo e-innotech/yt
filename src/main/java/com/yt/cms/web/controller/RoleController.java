@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Roles;
 import com.yt.cms.service.RolesService;
 
@@ -77,8 +79,12 @@ public class RoleController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询角色列表")
-	public List<Roles> query(Roles roles){
-		return rolesService.find(roles);
+	public PageInfo<Roles> query(@RequestParam(required=false) String roleName,
+			Page page){
+		Roles roles = new Roles();
+		roles.setRoleName(roleName);
+		List<Roles> list = rolesService.find(roles,page);
+		return new PageInfo<Roles>(list);
 	}
 	/**
 	 * 删除角色

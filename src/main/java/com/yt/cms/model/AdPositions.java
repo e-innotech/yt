@@ -5,15 +5,13 @@ import java.util.List;
 public class AdPositions {
     private Integer id;
 
-    private String adWidth;
+    private Integer adWidth;
 
-    private String adHeight;
+    private Integer adHeight;
 
     private String adName;
 
     private Integer isUse;
-
-    private Integer websitesId;
 
     private List<Ad> ads;
     
@@ -33,20 +31,20 @@ public class AdPositions {
         this.id = id;
     }
 
-    public String getAdWidth() {
+    public Integer getAdWidth() {
         return adWidth;
     }
 
-    public void setAdWidth(String adWidth) {
-        this.adWidth = adWidth == null ? null : adWidth.trim();
+    public void setAdWidth(Integer adWidth) {
+        this.adWidth = adWidth;
     }
 
-    public String getAdHeight() {
+    public Integer getAdHeight() {
         return adHeight;
     }
 
-    public void setAdHeight(String adHeight) {
-        this.adHeight = adHeight == null ? null : adHeight.trim();
+    public void setAdHeight(Integer adHeight) {
+        this.adHeight = adHeight;
     }
 
     public String getAdName() {
@@ -65,11 +63,4 @@ public class AdPositions {
 		this.isUse = isUse;
 	}
 
-	public Integer getWebsitesId() {
-        return websitesId;
-    }
-
-    public void setWebsitesId(Integer websitesId) {
-        this.websitesId = websitesId;
-    }
 }

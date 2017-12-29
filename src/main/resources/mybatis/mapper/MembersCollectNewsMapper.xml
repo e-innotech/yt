@@ -30,7 +30,7 @@
   </select>
   
    <select id="query" parameterType="com.yt.cms.model.MembersCollectNews" resultMap="ResultMap">
-    select a.id, a.createDate,b.is as news_id,b.news_title, b.staticUrl
+    select a.id, a.createDate,b.id as news_id,b.news_title, b.staticUrl
     from members_collect_news a, news b where a.news_id = b.id and a.status = 0
      and a.members_id =  #{membersId,jdbcType=INTEGER}
   </select>
@@ -93,6 +93,10 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="cancelCollect" parameterType="java.lang.Integer">
+  	update members_collect_news set status = 1 where id = #{id,jdbcType=INTEGER}
   </update>
   
 </mapper>

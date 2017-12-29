@@ -19,8 +19,6 @@ public class MemberInfos {
 
     private String address;
 
-    private Members members;
-
     private String icon;
 
     public Integer getId() {
@@ -86,14 +84,6 @@ public class MemberInfos {
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
     }
-
-    public Members getMembers() {
-		return members;
-	}
-
-	public void setMembers(Members members) {
-		this.members = members;
-	}
 
 	public String getIcon() {
         return icon;

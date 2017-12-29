@@ -2,11 +2,15 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class MembersCommentsNews {
     private Integer id;
 
     private Integer membersId;
 
+    private Integer newsId;
+    
     private News news;
 
     private Date createDate;
@@ -16,8 +20,48 @@ public class MembersCommentsNews {
     private Date delDate;
 
     private String content;
+    @JsonIgnore
+    private String newsTitle;
+    @JsonIgnore
+    private String memberUName;
+    @JsonIgnore
+    private Date startDate;
+    @JsonIgnore
+    private Date endDate;
+    
+    public String getNewsTitle() {
+		return newsTitle;
+	}
 
-    public Integer getId() {
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
+	}
+
+	public String getMemberUName() {
+		return memberUName;
+	}
+
+	public void setMemberUName(String memberUName) {
+		this.memberUName = memberUName;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -72,4 +116,14 @@ public class MembersCommentsNews {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	public Integer getNewsId() {
+		return newsId;
+	}
+
+	public void setNewsId(Integer newsId) {
+		this.newsId = newsId;
+	}
+    
+    
 }

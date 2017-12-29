@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.MembersCollectNews;
 /**
  * 会员收藏服务接口
@@ -24,14 +25,14 @@ public interface MemberCollectNewsService {
 	 * @param collect
 	 * @return
 	 */
-	public List<MembersCollectNews> queryAll(MembersCollectNews collect);
+	public List<MembersCollectNews> queryAll(MembersCollectNews collect,Page page);
 	
 	/**
-	 * 删除收藏
+	 * 取消收藏
 	 * @param collectId
 	 * @return
 	 */
-	public boolean delete(Integer collectId);
+	public boolean cancelCollect(Integer collectId);
 	
 	
 }

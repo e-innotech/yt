@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.YtcmsConfigMapper;
 import com.yt.cms.model.YtcmsConfig;
 import com.yt.cms.service.YtcmsConfigService;
@@ -27,7 +29,8 @@ public class YtcmsConfigServiceImpl implements YtcmsConfigService {
 	}
 
 	@Override
-	public List<YtcmsConfig> queryAll(YtcmsConfig config) {
+	public List<YtcmsConfig> queryAll(YtcmsConfig config,Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return configDAO.query(config);
 	}
 

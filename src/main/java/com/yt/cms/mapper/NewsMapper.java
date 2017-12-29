@@ -18,4 +18,6 @@ public interface NewsMapper {
     int updateByPrimaryKeySelective(News record);
 
     List<News> query(News news);
+    
+    int deleteLogicById(Integer id);
 }
