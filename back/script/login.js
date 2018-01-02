@@ -19,6 +19,7 @@ $(function () {
                         sessionStorage.setItem('user',user);
                     }
                     sessionStorage.setItem('permissons',data.data);
+                    alert(1)
                     location.replace('home.html');
                 }else{
                     alert(data.msg);

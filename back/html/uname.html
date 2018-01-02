@@ -165,15 +165,18 @@
     $(document).ready(function () {
         setTimeout(function () {}, 500);
         //页面的渲染
+        var pageSize=5;
+        var pageNum=1;
         var Data;
         $.ajax({
             type: "get",//请求方式
-            url: "../../data/data.json",//请求路径
+            url: "http://123.59.156.27:8080/user/query",//请求路径
             async: false,
             dataType: "json", //数据格式
+            data:{pageSize:pageSize,pageNum:pageNum},
             success: function (data) {
                 Data=data;
-                ergodic(data);
+                ergodic(data.list);
             }
         });
         function ergodic(Data) {
