@@ -340,57 +340,57 @@ function columnname(){
 
 //用户状态启停页面的逻辑
 //	按钮开关
-// function anniu(obj) {
-//     //得到当前点的元素的id
-//     var qitinghtml=$(obj).parent().prev().prev().prev().prev().html();
-//     var objindex=$(obj).closest("tr").index()-1;
-//     //console.log(objindex)
-//     //console.log(111,$(obj).closest("tr").index())
-//     console.log(1,qitinghtml)
-//     //当前点的元素的状态 0或者1
-//     var statushtml=$(obj).parent().prev().html();
-//     console.log(2,statushtml)
-//     var dataqiting={};
-//     dataqiting["id"]=qitinghtml;
-//     dataqiting["status"]=statushtml;
-//     console.log(666,dataqiting)
-// //得到当前元素的
-//     $.ajax({
-//         type:"get",
-//         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
-//         //url:"column.json?id=" +"&status="+escape(statushtml)+"",
-//         url:"column.json",
-//         data:{"id":qitinghtml,"status": statushtml}, //上送数据
-//         success:function(data){  //返回成功的json数据
-//             //console.log(111,data[objindex].isUse);
-//             //console.log(222,data);
-//             var flag=data[objindex].isUse;
-//             console.log(data[objindex].isUse)
-//             if(flag){
-//                 data[objindex].isUse=0;
-//               //  console.log(111,data[objindex].isUse);
-//                 //return flag=true;
-//             }else{
-//                 data[objindex].isUse=1;
-//                // console.log(22,data[objindex].isUse)
-//                 //return flag=false;
-//             }
+function anniu(obj) {
+     //得到当前点的元素的id
+     var qitinghtml=$(obj).parent().prev().prev().prev().prev().html();
+     var objindex=$(obj).closest("tr").index()-1;
+     //console.log(objindex)
+     //console.log(111,$(obj).closest("tr").index())
+     console.log(1,qitinghtml)
+     //当前点的元素的状态 0或者1
+     var statushtml=$(obj).parent().prev().html();
+     console.log(2,statushtml)
+     var dataqiting={};
+     dataqiting["id"]=qitinghtml;
+     dataqiting["status"]=statushtml;
+     console.log(666,dataqiting)
+//得到当前元素的
+     $.ajax({
+         type:"get",
+         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+         //url:"column.json?id=" +"&status="+escape(statushtml)+"",
+         url:"column.json",
+         data:{"id":qitinghtml,"status": statushtml}, //上送数据
+         success:function(data){  //返回成功的json数据
+             //console.log(111,data[objindex].isUse);
+             //console.log(222,data);
+             var flag=data[objindex].isUse;
+             console.log(data[objindex].isUse)
+             if(flag){
+                 data[objindex].isUse=0;
+               //  console.log(111,data[objindex].isUse);
+                 //return flag=true;
+             }else{
+                 data[objindex].isUse=1;
+                // console.log(22,data[objindex].isUse)
+                 //return flag=false;
+             }
 
 
-//         }
-//     })
-//     //console.log(data)
+         }
+     })
+     //console.log(data)
 
-//     //console.log(statushtml)
-//     //console.log($(obj).parent().prev().html())
+     //console.log(statushtml)
+     //console.log($(obj).parent().prev().html())
 
-//     if ($(obj).find("span").css("left") == "2px") {
-//         $(obj).addClass("active");
+     if ($(obj).find("span").css("left") == "2px") {
+         $(obj).addClass("active");
 
-//     } else {
-//         $(obj).removeClass("active");
-//     }
-// }
+     } else {
+         $(obj).removeClass("active");
+     }
+}
 //删除选中的行
 function delanniu(obj) {
     var c = $(obj).closest("tr")[0];
