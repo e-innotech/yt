@@ -184,7 +184,6 @@
     </div><!-- /.modal-dialog -->
 </div>
 
-
 <script type="text/javascript">
     var wmsData = [];
     //发送ajax请求，拿到数据并渲染到页面上
@@ -196,7 +195,7 @@
         var Data;
         $.ajax({
             type: "get",//请求方式
-            url: "websites.json",//请求路径
+            url: "../data/websites.json",//请求路径
             async: false,
             contentType: "application/json",
             dataType: "json", //数据格式
@@ -275,7 +274,7 @@
                     url: "http://123.59.156.27:8080/websites/add",//请求路径
                     async: false,
                     contentType: "application/json",
-                    dataType: "websites.json", //数据格式
+                    dataType: "../data/websites.json", //数据格式
                     data: JSON.stringify(dataPage),
                     success: function (dataPage) {
                         ergodic(dataPage);

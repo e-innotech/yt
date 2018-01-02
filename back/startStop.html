@@ -53,30 +53,7 @@
                     <button type="button" class="btn btn-primary findbtn  btn-default" >查询</button>
                 </form>
                 <table class="table table-striped">
-                    <tr>
-                        <th>#</th>
-                        <th>Id</th>
-                        <th>姓名</th>
-                        <th>角色</th>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>001</td>
-                        <td>晓晓</td>
-                        <td>你猜</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>002</td>
-                        <td>晓晓</td>
-                        <td>你猜</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"/></td>
-                        <td>003</td>
-                        <td>晓晓</td>
-                        <td>你猜</td>
-                    </tr>
+
                 </table>
             </div>
 
@@ -119,7 +96,7 @@
 $(function(){
         $.ajax({
             type:"get",//请求方式
-            url:"startstop.json",//请求路径
+            url:"../data/startstop.json",//请求路径
             async:false,
             dataType:"json",//数据格式
             success: function(startdata){

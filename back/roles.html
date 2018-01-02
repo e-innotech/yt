@@ -165,7 +165,7 @@
         var Data;
         $.ajax({
             type: "get",//请求方式
-            url: "data.json",//请求路径
+            url: "../data/data.json",//请求路径
             async: false,
             dataType: "json", //数据格式
             success: function (data) {
@@ -233,7 +233,7 @@
 
                 $.ajax({
                     type: "get",//请求方式
-                    url: "data.json",//请求路径
+                    url: "../data/data.json",//请求路径
                     async: false,
                     dataType: "json", //数据格式
                     data: JSON.stringify(dataPage),

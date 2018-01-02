@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>用户组表</title>
+    <title>用户列表</title>
     <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../common/css/index.css"/>
     <link rel="stylesheet" href="../css/common.css"/>
@@ -14,6 +14,7 @@
 
 </head>
 <body>
+
 
 <!--添加弹出框-->
 <div class="modal fade add" id="addmyModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -119,9 +120,10 @@
             <thead>
             <tr>
                 <th>id</th>
-                <th>用户组</th>
-                <th>用户组描述</th>
+                <th>用户名</th>
+                <th>密码</th>
                 <th>状态</th>
+                <th>时间</th>
                 <th>用户组</th>
                 <th>操作</th>
             </tr>
@@ -166,7 +168,7 @@
         var Data;
         $.ajax({
             type: "get",//请求方式
-            url: "data.json",//请求路径
+            url: "../data/data.json",//请求路径
             async: false,
             dataType: "json", //数据格式
             success: function (data) {
@@ -179,9 +181,10 @@
             for (var i = 0; i < Data.length; i++) {
                 str = "<tr>" +
                 "<td>" + Data[i].id + "</td>" +
-                "<td>" + Data[i].groupName + "</td>" +
-                "<td>" + Data[i].desc + "</td>" +
+                "<td>" + Data[i].userName + "</td>" +
+                "<td>" + Data[i].passWord + "</td>" +
                 '<td><p class="' + (Data[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+                "<td>" + Data[i].createDate + "</td>" +
                 "<td>" + Data[i].user_group_id + "</td>" +
                 "<td>" +
                 "<input type='button' value='删除' onclick='delanniu(this)'/>" +
@@ -237,7 +240,7 @@
 
                 $.ajax({
                     type: "get",//请求方式
-                    url: "data.json",//请求路径
+                    url: "../data/data.json",//请求路径
                     async: false,
                     dataType: "json", //数据格式
                     data: JSON.stringify(dataPage),
