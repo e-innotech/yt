@@ -1,0 +1,103 @@
+body{
+    width:100%;
+    height:100vh;
+    background:url("../../back/images/bg.png")no-repeat;
+    background-size:100% 100%;
+    font-weight:bold;
+}
+.box{
+    width:430px;
+    height:295px;
+    background:blue;
+    position: absolute;
+    left:0;
+    right:0;
+    top: 0;
+    bottom: 0;
+    margin:auto;
+    background:url("../../back/images/box.png") no-repeat;
+    background-size:100% 100%;
+}
+.box h2{
+    height:44px;
+    line-height:44px;
+    text-align:center;
+    font-size:24px;
+    color:#fff;
+}
+.content{
+    margin-top:33px;
+    height:156px;
+    /*background:pink;*/
+}
+.user{
+    width:360px;
+    height:31px;
+    /*background:yellow;*/
+    margin:0 auto;
+}
+.user span{
+    float:left;
+    line-height:31px;
+    font-size:15px;
+    color:#fff;
+}
+.user input{
+    width:288px;
+    height:31px;
+    background:url(../../back/images/user_box.png) no-repeat;
+    background-color: none ;
+    /*background:#cfd8d7;*/
+    line-height:31px;
+    color:#757d88;
+    font-size:16px;
+    float:right;
+    border:none;
+    outline:none;
+    border-radius: 4px;
+    text-indent:13px;
+
+}
+.passwords {
+    margin-top:15px;
+}
+.login{
+    width:260px;
+    height:40px;
+    margin:0 auto;
+    /*background:yellow;*/
+    margin-top:40px;
+    margin-left:105px;
+
+
+}
+.login input[type="checkbox"]{
+    width:26px;
+    height:26px;
+    float:left;
+    margin-top:9px;
+    margin-right:20px;
+    border-radius:8px;
+
+
+}
+.login span{
+    float:left;
+    line-height:40px;
+    font-size:6px;
+    color:#fff;
+
+}
+.login input[type="button"]{
+    width:116px;
+    height:40px;
+    background:url(../../back/images/gg.png) no-repeat;
+    background-color:none;
+    float:right;
+    line-height:40px;
+    border: none;
+
+}
+form>span{
+    margin-left:120px;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+
+    <link rel="stylesheet" href="../../common/css/index.css"/>
+    <link rel="stylesheet" href="../css/login.css"/>
+    <script src="../../common/js/jquery.min.js"></script>
+    <script src="../../common/js/common.js"></script>
+</head>
+<body>
+   <div class="box">
+       <h2>用户登录</h2>
+       <div class="content">
+           <form>
+               <span class="verifyCall"></span>
+               <div class="user">
+                   <span >账&nbsp &nbsp &nbsp号</span>
+                   <input type="text"name="username" class="username"/>
+               </div>
+
+               <div class="user passwords">
+                   <span>密&nbsp &nbsp &nbsp码</span>
+                   <input stype="password" name="password" class="password"/>
+               </div>
+               <span class="verifyPassword"></span>
+               <div class="login">
+                   <input type="checkbox" />
+                   <span>记住登录密码</span>
+                  <input type="button" id="login"/>
+               </div>
+           </form>
+       </div>
+   </div>
+</body>
+
+<script>
+    userName();
+    passWord();
+    //点击登录按钮时获取姓名的值，发送ajax请求，将用户名的值作为上送数据
+    //循环和json数据做对比，如果json中有则是已被登录成功 否则登录失败
+    $(function (){
+        //点击登录按钮时
+        $("#login").click(function (){
+            //获取用户名文本框的值
+            var username=$(".username").val();
+            console.log(username);
+            var password=$(".password").val();
+            console.log(222,password);
+//            localStorage.setItem('xinxi',username);
+//            alert(localStorage.getItem('xinxi'));
+//            var username=$(name="userName").val()
+            var message={};
+               message["userName"]=username;
+               message["password"]=password;
+               console.log(666,message);
+            $.ajax({
+                type: "get",
+                url:"demo1.json",
+                async: true,
+                timeout: 15000,
+                data:JSON.stringify(message),
+                success: function(data) {
+                    var u = 0;
+                    var p = 0;
+                    for(var i=0;i<data.length;i++){
+                         if(username == data[i].userName && password == data[i].passWord){
+                             alert("登录成功");
+                             $(".username").val("");
+                             $(".password").val("");
+                             return
+                         }
+
+                    }
+                    alert("用户名或密码有误");
+                    $(".username").val("");
+                    $(".password").val("");
+
+
+                }
+            });
+        });
+    });
+
+
+
+</script>
+
+
+
+
+
+
+
+
+</html>
+

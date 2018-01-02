@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>头部</title>
+    <link  rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+
+</head>
+<body>
+<!--以下为遮罩框-->
+<div class="alertbox">
+    <!--以下为修改密码弹出框-->
+    <div class="container passwords">
+        <h4>修改密码 <span class="glyphicon glyphicon-remove"></span></h4>
+        <form class="form-horizontal">
+            <div class="form-group" style="margin-top:30px;">
+                <label class="col-sm-2 control-label">新密码</label>
+                <div class="col-sm-10">
+                    <input class="form-control input1" id="input1"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">旧密码</label>
+                <div class="col-sm-10">
+                    <input class="form-control input1" id="input2"/>
+                </div>
+            </div>
+        </form>
+            <button class="btn btn-success btn1 passwordbtn" style="">确定</button>
+    </div>
+</div>
+<!--以下为头部-->
+<div class="navbar navbar-default navbar-fixed-top logo">
+    <div class="container-fluid logo-1">
+        <div class="navbar-header">
+            <p class="navbar-brand wh">后台管理系统</p>
+        </div>
+        <ul class="nav navbar-nav navbar-right home-right" style="margin-right: 0;">
+            <li>
+                <a href="#">
+                    <span class="nav-label">回首页</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <img src="../../back/images/user.png" alt="头像"/>
+                    <span class="nav-label">急速转弯</span>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                    <li><a href="#">设置</a></li>
+                    <li><a href="#">消息</a></li>
+                    <li><a href="#">退出</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <span class="nav-label passwordspan" >修改密码</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //点击修改密码时
+    $(".passwordspan").click(function(){
+        $(".alertbox").show();
+        $(".passwords").show();
+
+    })
+//    点击确定按钮时
+    $(".passwordbtn").click(function(){
+        $(".passwords").hide();
+        $(".alertbox").hide();
+    })
+//点击x号时
+    $(".passwords h4 span").click(function(){
+        $(".passwords").hide();
+        $(".alertbox").hide();
+    })
+</script>
+</html>
