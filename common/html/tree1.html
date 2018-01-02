@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>左侧栏</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap-treeview.min.css"/>
+    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" href="../../back/css/list.css"/>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-treeview.min.js"></script>
+    <!--<script type="text/javascript" src="../js/tree.js"></script>-->
+    <style>
+        #tree li{color: #fff}
+    </style>
+</head>
+<body>
+
+<div class="main w_1200">
+    <div class="tree">
+        <script type="text/html" id="tree">
+            <div class="tree_box">
+                <div class="nodeBox index" menurl="notice.html">
+                    <span class="m_l_10"><img src="images/icon_home.png" alt=""></span>
+                    <span class="m_l_10">首页</span>
+                    <span class="arrow fr m_r_10"><img src="images/icon_arrow.png" alt=""></span>
+                </div>
+            </div>
+            <%var menus = data.menus;%>
+            <%for(var i = 0;i < menus.length;i++){%>
+            <div class="tree_box">
+                <div class="nodeBox" menurl=<%=menus[i].url%> >
+                    <span class="m_l_10"><img src="" alt=""></span>
+                    <span class="m_l_10"><%=menus[i].name%></span>
+                </div>
+                <%var childmenus = menus[i].childs;%>
+                <%for(var j = 0;j < childmenus.length;j++){%>
+                <div class="childnode">
+                    <div class="nodechild_box" menurl=<%=childmenus[j].url%> >
+                        <%if(childmenus[j].childs.length != 0){%>
+                        <span class="m_l_20"><img class="add" src="images/icon_add.png" alt=""></span>
+                        <span class="m_l_10"><%=childmenus[j].name%></span>
+                        <%}else{%>
+                        <span class="m_l_55"><%=childmenus[j].name%></span>
+                        <span class="arrow fr m_r_10"><img src="images/icon_arrow.png" alt=""></span>
+                        <%}%>
+                    </div>
+                    <%var cchildmenus = childmenus[j].childs;%>
+                    <%for(var k = 0;k < cchildmenus.length;k++){%>
+                    <div class="gchildnode">
+                        <div class="gchild_box" menurl=<%=cchildmenus[k].url%> >
+                            <%if(cchildmenus[k].childs.length != 0){%>
+                            <span class="m_l_30"><img class="add" src="images/icon_add.png" alt=""></span>
+                            <span class="m_l_10"><%=cchildmenus[k].name%></span>
+                            <%}else{%>
+                            <span class="m_l_65"><%=cchildmenus[k].name%></span>
+                            <span class="arrow fr m_r_10"><img src="images/icon_arrow.png" alt=""></span>
+                            <%}%>
+                        </div>
+                        <%var ccchildmenus = cchildmenus[k].childs;%>
+                        <%for(var l = 0;l < ccchildmenus.length;l++){%>
+                        <div class="ggchild_box" menurl=<%=ccchildmenus[l].url%> >
+                            <span class="m_l_70"><%=ccchildmenus[l].name%></span>
+                            <span class="arrow fr m_r_10"><img src="images/icon_arrow.png" alt=""></span>
+                        </div>
+                        <%}%>
+                    </div>
+                    <%}%>
+                </div>
+                <%}%>
+            </div>
+            <%}%>
+        </script>
+    </div>
+</div>
+
+    <script>
+        (function(win) {
+
+            var data = [{
+                text: "Parent 1",
+                nodes: [
+                    {
+                        text: "Child 1",
+                        nodes: [
+                            {
+                                text: "Grandchild 1"
+                            },
+                            {
+                                text: "Grandchild 2"
+                            }
+                        ]
+                    },
+                    {
+                        text: "Child 2"
+                    }
+                ]
+            },
+                {
+                    text: "Parent 2"
+                },
+                {
+                    text: "Parent 3"
+                },
+                {
+                    text: "Parent 4"
+                },
+                {
+                    text: "Parent 5"
+                }
+            ];
+
+            var tree = function () {
+                $('#tree').treeview({
+            　           data: data,
+                        backColor
+                :
+                '#293541',
+                        color
+                :
+                'white',
+                        onhoverColor
+                :
+                '#202a33;',
+                        showBorder
+                :
+                false
+            });
+        }
+
+        var init = function () {
+            tree();
+        }
+
+        init();
+        })(window)
+
+
+
+
+
+        var tree = function() {
+            //一级导航点击事件
+            $('.nodeBox').on('click', function(event) {
+                var _this = $(this);
+                var child = _this.parent().find('.nodechild_box');
+                if (_this.attr('opened') == 'opened') {
+                    _this.parent().find('.childnode').hide();
+                    child.hide();
+                    _this.attr('opened', '');
+                }else{
+                    _this.parent().find('.childnode').show();
+                    child.show();
+                    _this.attr('opened', 'opened');
+                };
+            });
+            //二级导航点击事件
+            $('.nodechild_box').on('click', function(event) {
+                var _this = $(this);
+                var child = _this.parent().find('.gchild_box');
+                if (_this.attr('opened') == 'opened') {
+                    child.hide();
+                    _this.parent().find('.gchildnode').hide();
+                    _this.find('.add').attr('src', 'images/icon_add.png');
+                    _this.attr('opened', '');
+                }else{
+                    child.show();
+                    _this.parent().find('.gchildnode').show();
+                    _this.find('.add').attr('src', 'images/icon_minus.png');
+                    _this.attr('opened', 'opened');
+                };
+            });
+            //三级导航点击事件
+            $('.gchild_box').on('click', function(event) {
+                var _this = $(this);
+                var child = _this.parent().find('.ggchild_box');
+                if (_this.attr('opened') == 'opened') {
+                    child.hide();
+                    _this.find('.add').attr('src', 'images/icon_add.png');
+                    _this.attr('opened', '');
+                }else{
+                    child.show();
+                    _this.find('.add').attr('src', 'images/icon_minus.png');
+                    _this.attr('opened', 'opened');
+                };
+            });
+
+            //hover显示箭头及背景变化
+            $('.nodeBox').mouseover(function(event) {
+                $(this).addClass('tree_hover');
+                $(this).find('.arrow').show();
+            });
+            $('.nodeBox').mouseout(function(event) {
+                $(this).removeClass('tree_hover');
+                $(this).find('.arrow').hide();
+            });
+            $('.nodechild_box').mouseover(function(event) {
+                $(this).addClass('box_hover');
+                $(this).find('.arrow').show();
+            });
+            $('.nodechild_box').mouseout(function(event) {
+                $(this).removeClass('box_hover');
+                $(this).find('.arrow').hide();
+            });
+            $('.gchild_box').mouseover(function(event) {
+                $(this).addClass('box_hover');
+                $(this).find('.arrow').show();
+            });
+            $('.gchild_box').mouseout(function(event) {
+                $(this).removeClass('box_hover');
+                $(this).find('.arrow').hide();
+            });
+            $('.ggchild_box').mouseover(function(event) {
+                $(this).addClass('box_hover');
+                $(this).find('.arrow').show();
+            });
+            $('.ggchild_box').mouseout(function(event) {
+                $(this).removeClass('box_hover');
+                $(this).find('.arrow').hide();
+            });
+        };
+
+        //链接函数
+        var tree_link = function() {
+
+            var linkBox = $('[menurl]');
+            linkBox.each(function(i, ele) {
+                var _ele = $(ele);
+                var key = _ele.attr('menurl');
+                if(key != '/'){
+                    $(this).on('click',function(){
+                        $('#mainweb').attr('src', key);
+                        auto();
+                    })
+                }
+
+            });
+        };
+
+        //获取登陆用户数据
+        var getData = function() {
+            var cond = sessionStorage.cond;
+
+            $.post("XXXX", {}, function(json) {
+                console.log(json)
+                if(json.code == 200){
+                    data = json.data;
+                    fillUserName(data);
+                    fillTree(data);
+                    var length = $('.nodeBox').length ;
+                    for (var i = 0;i < length;i++) {
+                        var iconId = data.icons[i].iconId;
+                        $('.nodeBox').eq(i+1).attr('menuid',i);
+                        $('.nodeBox').eq(i+1).find('img').attr('src','images/'+ data.icons[iconId-1].name +'');
+
+                    }
+                    //为每个菜单添加链接
+                    tree_link()
+                }
+            }, function(xhr) {
+                console.log(xhr)
+            });
+
+        }
+
+
+        var fillTree = function(data){
+            var tmplDom = $('#tree');
+            tmplDom.parent().html(eking.template.getHtml(tmplDom.html(),data));
+            tree();
+        }
+    </script>
+</body>
+</html>

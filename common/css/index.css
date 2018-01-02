@@ -405,7 +405,6 @@ a:hover {
 }
 .list-group .list-group-item span{
     position: relative;
-    top: 3px;
     left: 8px;
 }
 

@@ -11,95 +11,17 @@
 
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap-treeview.min.js"></script>
-
+    <script type="text/javascript" src="../js/tree.js"></script>
 
 </head>
 <body>
 
-
 <div class="wrapper auto-height fl">
     <nav class="navbar-inverse chebian" role="navigation" id="head-cut">
-        <div class="container-fluid logo-1" style="background-color: #3c4353;">
-            <ul class="nav nav-stacked crosswise-nav" id="tree">
-
-            </ul>
+        <div class="container-fluid logo-1">
+            <ul class="nav nav-stacked crosswise-nav" id="tree"></ul>
         </div>
     </nav>
 </div>
-<script type="text/javascript">
-    $(function() {
-
-
-        var resourceName = "";
-        var uri = "";
-        var user = JSON.stringify({resourceName:"",uri:""});
-        $.ajax({
-            type:'POST',
-            url: 'http://123.59.156.27:8080/resource/query',
-            contentType:'application/json',
-            dataType:'json',
-            data:user,
-
-            success: function (tree) {
-                $('#tree').treeview({
-                    data: tree.data,
-                    showTags: true,
-                    text: "resourceName",
-                    color: "#000000",
-                    backColor: "#FFFFFF",
-                    //href: "#node-1",
-                    selectable: true,
-                    enableLinks: true,//启用链接
-                    highlightSelected: true,
-                    state: {
-                        checked: true,
-                        disabled: true,
-                        expanded: true,
-                        selected: true
-                    }
-                })
-            }
-        })
-    });
-
-
-
-
-    function itemOnclick(target){
-        //找到当前节点id
-        var nodeid = $(target).attr('data-nodeid');
-        var tree = $('#tree');
-        //获取当前节点对象
-        var node = tree.treeview('getNode', nodeid);
-
-        if(node.state.expanded){
-            //处于展开状态则折叠
-            tree.treeview('collapseNode', node.nodeId);
-        } else {
-            //展开
-            tree.treeview('expandNode', node.nodeId);
-        }
-    }
-
-
-
-
-
-    /*全选*/
-        var isCheckAll = false;
-        function swapCheck() {
-            if (isCheckAll) {
-                $("input[type='checkbox']").each(function () {
-                    this.checked = false;
-                });
-                isCheckAll = false;
-            } else {
-                $("input[type='checkbox']").each(function () {
-                    this.checked = true;
-                });
-                isCheckAll = true;
-            }
-        }
-</script>
 </body>
 </html>
