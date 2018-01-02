@@ -3,14 +3,14 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>网站管理</title>
-    <link rel="stylesheet" href="../common/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../common/css/index.css"/>
+    <link rel="stylesheet" href="../../common/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../common/css/index.css"/>
     <link rel="stylesheet" href="../css/list.css"/>
-    <script type="text/javascript" src="../common/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../common/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../common/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../common/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="../js/pager.js"></script>
-        <script type="text/javascript" src="../common/js/common.js"></script>
+    <script type="text/javascript" src="../script/pager.js"></script>
+        <script type="text/javascript" src="../../common/js/common.js"></script>
 
     <style>
         .modal_conment{
@@ -195,7 +195,7 @@
         var Data;
         $.ajax({
             type: "get",//请求方式
-            url: "../data/websites.json",//请求路径
+            url: "../../data/websites.json",//请求路径
             async: false,
             contentType: "application/json",
             dataType: "json", //数据格式
@@ -274,7 +274,7 @@
                     url: "http://123.59.156.27:8080/websites/add",//请求路径
                     async: false,
                     contentType: "application/json",
-                    dataType: "../data/websites.json", //数据格式
+                    dataType: "json", //数据格式
                     data: JSON.stringify(dataPage),
                     success: function (dataPage) {
                         ergodic(dataPage);

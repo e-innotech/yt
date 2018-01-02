@@ -1,7 +1,7 @@
 body{
     width:100%;
     height:100vh;
-    background:url("../images/bg.png")no-repeat;
+    background:url("../../back/images/bg.png")no-repeat;
     background-size:100% 100%;
     font-weight:bold;
 }
@@ -15,7 +15,7 @@ body{
     top: 0;
     bottom: 0;
     margin:auto;
-    background:url("../images/box.png") no-repeat;
+    background:url("../../back/images/box.png") no-repeat;
     background-size:100% 100%;
 }
 .box h2{
@@ -45,7 +45,7 @@ body{
 .user input{
     width:288px;
     height:31px;
-    background:url(../images/user_box.png) no-repeat;
+    background:url(../../back/images/user_box.png) no-repeat;
     background-color: none ;
     /*background:#cfd8d7;*/
     line-height:31px;
@@ -91,10 +91,11 @@ body{
 .login input[type="button"]{
     width:116px;
     height:40px;
-    background:url(../images/gg.png) no-repeat;
+    background:url(../../back/images/gg.png) no-repeat;
     background-color:none;
     float:right;
     line-height:40px;
+    border: none;
 
 }
 form>span{
