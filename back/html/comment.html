@@ -5,58 +5,67 @@
     <title>评论</title>
     <link rel="stylesheet" href="../../common/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../common/css/index.css"/>
-    <link rel="stylesheet" href="../css/pinglun.css"/>
+    <!--<link rel="stylesheet" href="../css/pinglun.css"/>-->
     <script type="text/javascript" src="../../common/js/jquery.min.js"></script>
     <script type="text/javascript" src="../script/xml.js"></script>
+    <style>
+        .header{
+            width:1170px;
+            height:50px;
+            background:pink;
+            margin:20px auto 0 auto;
 
+        }
+        .header select{
+            width:200px;
+            height:30px;
+            margin-top:10px;
+            border-radius: 6px;
+            margin-left:20px;
+        }
+        .header select option{
+            line-height:20px;
+        }
+        .header .btn{
+            margin-top:8px;
+        }
+        .header #findinput{
+            margin-top:7px;
+
+        }
+    </style>
 </head>
 <body>
-    <div class="main">
-        <span>你想对楼主说点什么？？？</span>
-        <span class="tag">你最多可以输入30个字符</span>
-        <textarea id="text" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
-        <input type="button" value="发 表" id="ipt">
-        <div id="txt" >
-        </div>
-    </div>
+
+     <div class="container" >
+         <div class="header">
+             <select >
+                 <option>会员名</option>
+                 <option>会员id</option>
+                 <option>新闻标题</option>
+             </select>
+             <input type="text" id="findinput"/>
+             <button class="btn findbtn" id="findbtn">查找</button>
+         </div>
+
+         <table class="table" id="Tab">
+             <thead>
+                 <tr>
+                     <th>会员id</th>
+                     <th>会员名</th>
+                     <th>新闻标题</th>
+                     <th>评论内容</th>
+                     <th>评论时间</th>
+                     <th>操作</th>
+                 </tr>
+             </thead>
+             <tbody>
+
+             </tbody>
+         </table>
+     </div>
 </body>
 <script>
-//    做的评论的功能
-    var ipt = document.getElementById("ipt");
-    var txt = document.getElementById('txt');
-    var textarea = document.getElementById("text");
-    ipt.onclick = function(){
-        var textValue = textarea.value.LTrim();
-        textarea.value="";
-        if(textValue.length>0 ){
-            var divs = document.createElement("div");
-            var imgs = document.createElement("img");
-            var ps = document.createElement("p");
-            var inputs = document.createElement("input");
-            divs.setAttribute("class","creatediv");
-            imgs.setAttribute('class',"createimg");
-            ps.setAttribute("class","createdivs");
-            inputs.setAttribute("class","createinput");
-            imgs.src="../images/1.jpg";
-            inputs.type="button";
-            inputs.value="删除";
-            ps.innerHTML=textValue;
-            divs.appendChild(imgs);
-            divs.appendChild(ps);
-            divs.appendChild(inputs);
-//            做一个判断，如果是第一次评论出现的盒子，就只只放在大盒子中，如果不是就放在之前
-            if(txt.children.length==0){
-                txt.appendChild(divs);
-            }else{
-                txt.insertBefore(divs,get_firstChild(txt))
-            }
-            inputs.onclick = function(){
-                this.parentNode.parentNode.removeChild(this.parentNode)
-            }
-        }
-    }
-
-
-
 </script>
+<script src="../script/pinglun.js"></script>
 </html>
