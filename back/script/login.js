@@ -23,8 +23,6 @@ $(function () {
                 //判断如果登录成功，就跳转到home页面，并且存储权限数据到sessionstorage
                 if(data.success){
                     if($('input[name="remember"]').is(':checked')){
-
-
                         // console.log('remember')
                         sessionStorage.setItem('user',user);
                     }
