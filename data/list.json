@@ -3,149 +3,136 @@
   "data": [
     {
       "id": 2,
-      "resourceName": "用户管理",
-      "uri": null,
+      "text": "用户管理",
+      "href": null,
       "parentId": 0,
-      "childList": [
+      "nodes": [
         {
           "id": 1,
-          "resourceName": "用户列表",
-          "uri": "/user/query",
-          "parentId": 2,
-          "childList": null
+          "text": "用户列表",
+          "href": "../../html/home.html",
+          "parentId": 2
         },
         {
           "id": 9,
-          "resourceName": "用户组列表",
-          "uri": "/userGroup/query",
-          "parentId": 2,
-          "childList": null
+          "text": "用户组列表",
+          "href": "../../html/user_group.html",
+          "parentId": 2
         }
       ]
     },
     {
       "id": 73,
-      "resourceName": "权限管理",
-      "uri": null,
+      "text": "权限管理",
+      "href": null,
       "parentId": 0,
-      "childList": [
+      "nodes": [
         {
           "id": 22,
-          "resourceName": "资源列表",
-          "uri": "/resource/query",
-          "parentId": 73,
-          "childList": null
+          "text": "资源列表",
+          "href": "/resource/query",
+          "parentId": 73
         },
         {
           "id": 28,
-          "resourceName": "角色列表",
-          "uri": "/role/query",
-          "parentId": 73,
-          "childList": null
+          "text": "角色列表",
+          "href": "../../html/roles.html",
+          "parentId": 73
         }
       ]
     },
     {
       "id": 74,
-      "resourceName": "网站管理",
-      "uri": null,
+      "text": "网站管理",
+      "href": null,
       "parentId": 0,
-      "childList": [
+      "nodes": [
         {
           "id": 34,
-          "resourceName": "网站列表查询",
-          "uri": "/websites/query",
-          "parentId": 74,
-          "childList": null
+          "text": "网站列表查询",
+          "href": "../../html/websites.html",
+          "parentId": 74
         },
         {
           "id": 39,
-          "resourceName": "栏目列表查询",
-          "uri": "/channel/query",
-          "parentId": 74,
-          "childList": null
+          "text": "栏目列表查询",
+          "href": "../../html/column.html",
+          "parentId": 74
         }
       ]
     },
     {
       "id": 75,
-      "resourceName": "广告管理",
-      "uri": null,
+      "text": "广告管理",
+      "href": null,
       "parentId": 0,
-      "childList": [
+      "nodes": [
         {
           "id": 45,
-          "resourceName": "广告列表",
-          "uri": "/ad/query",
-          "parentId": 75,
-          "childList": null
+          "text": "广告列表",
+          "href": "../../html/adPositions.html",
+          "parentId": 75
         },
         {
           "id": 50,
-          "resourceName": "广告位列表",
-          "uri": "/adPositions/query",
-          "parentId": 75,
-          "childList": null
+          "text": "广告位管理",
+          "href": "../../html/adPositions.html",
+          "parentId": 75
         }
       ]
     },
     {
       "id": 79,
-      "resourceName": "稿件管理",
-      "uri": null,
+      "text":"稿件管理",
+      "href": null,
       "parentId": 0,
-      "childList": [
+      "nodes": [
         {
           "id": 55,
-          "resourceName": "稿件列表",
-          "uri": "/news/query",
-          "parentId": 79,
-          "childList": null
+          "text": "稿件列表",
+          "href": "../../html/news.htm",
+          "parentId": 79
         },
         {
           "id": 66,
-          "resourceName": "查看所有稿件投放信息",
-          "uri": "/news/publish/list",
-          "parentId": 79,
-          "childList": null
+          "text": "稿件发布",
+          "href": "",
+          "parentId": 79
         }
       ]
     },
     {
       "id": 77,
-      "resourceName": "系统管理",
-      "uri": null,
+      "text":"系统管理",
+      "href": null,
       "parentId": 0,
-      "childList": [
+      "nodes": [
         {
           "id": 68,
-          "resourceName": "系统配置列表",
-          "uri": "/config/query",
-          "parentId": 77,
-          "childList": null
+          "text": "系统配置列表",
+          "href": "/config/query",
+          "parentId": 77
         },
         {
           "id": 72,
-          "resourceName": "用户日志查询列表",
-          "uri": "/log/query",
-          "parentId": 77,
-          "childList": null
+          "text": "用户日志查询列表",
+          "href": "/log/query",
+          "parentId": 77
         }
       ]
     },
     {
       "id": 76,
-      "resourceName": "会员管理",
-      "uri": null,
-      "parentId": 0,
-      "childList": []
+      "text": "会员管理",
+      "href": null,
+      "parentId": 0
     },
     {
       "id": 78,
-      "resourceName": "我的",
-      "uri": null,
-      "parentId": 0,
-      "childList": []
+      "text":"我的",
+      "href": null,
+      "parentId": 0
     }
+
   ]
 }

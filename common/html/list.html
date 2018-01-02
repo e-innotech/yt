@@ -33,7 +33,7 @@
 
         $.ajax({
             type: 'post',
-            url: 'list.json',
+            url: '../../data/list.json',
             success: function (tree) {
                 $('#tree').treeview({
                     data: tree.data,
