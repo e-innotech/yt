@@ -68,12 +68,27 @@
 
 
     });
+
+
+    var $table = $('#table'), $button = $('#addTable');
+
+    $(function () {
+        $button.click(function () {
+            var randomId = 100 + ~~(Math.random() * 100);
+            $table.bootstrapTable('insertRow', {
+                index: 1,
+                row: {
+                    id: randomId,
+                    name: 'Item ' + randomId,
+                    price: '$' + randomId
+                }
+            });
+        });
+    });
     $('#addTable').bootstrapTable('insertRow', {
         index:0,
         row: {siteName: 'siteName', route: 'route', templteRoute: 'templteRoute'}
-
     });
-
 
     var TableInit = function () {
         var oTableInit = new Object();

@@ -65,179 +65,143 @@ function createXhr() {
 }
 
 //增删改查页面的逻辑
-//栏目的增
+//点击增加按钮时
 function add() {
-//点击增加按钮时出现弹出框
-
+    $(".alertbox").show();
     $(".add").show();
-    //点击确认按钮时
-    $(".modal-footer .btn1").click(function () {
-        var newuserName = $("userName").val();
+    $(".del").hide();
+    $(".find").hide();
 
-        for (var i = 0; i < json_data.length; i++) {
-            if (newuserName == json_data[i].userName) {
-                alert('栏目存在');
-                return;
+//
+    $(".add .btn1").click(function () {
+        var search = {};
+        search["userName"] = $("#addinput1").val();
+        search["passWord"] = $("#addinput4").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            url: 'http://192.168.20.195:8080/user',
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (data) {
+                if (msg == true) {
+                    $(".alertbox").hide();
+                }
+                else if(msg == "no"){
+                    alert("数据已存在");
+                }else{
+                    alert("添加失败")
+                }
+
             }
-        }
-        json_data.push({userName: newuserName});
-        console.log(json_data);
-        renderList();
-        $(".userName").val("");
-        $(".passWord").val("");
-//点击关闭按钮时
-        $(".add .btn2").click(function () {
-            $(".add").hide();
         })
-    })
+    });
 
+    //点击取消关闭弹窗
+    $(".add .btn2").click(function () {
+        $(".add").hide();
+        $(".alertbox").hide();
+    })
+}
+//点击删除按钮时
+function del(e) {
+    $(".alertbox").show();
+    $(".add").hide();
+    $(".find").hide();
+    $(".revise").hide();
+    //$(".alertbox").load('myAlert.html');
+    $(".del").show()
+    //$(".del").show();
+    //拿到了第一个td里面的值
+    //console.log($(e.target).closest("tsr").find("td")[0]);
+    var del = $(e.target).closest("tr").find("td")[0];
+    var del2 = $(e.target).closest("tr").find("td")[3];
+    deltd = $(del).html()
+    deltd2 = $(del2).html()
+    console.log(444, deltd)
+};
+
+var deltd = 0;
+var deltd2 = 0;
+function test() {
+    console.log('ssssss');
+    //console.log($('.del'));
+    $(".del>.btn1").click(function () {
+        console.log(666, deltd)
+        console.log(777, deltd2)
+        $.ajax({
+            type: 'get',
+            //url: 'http://192.168.20.195:8080/user/' + deltd + '/' + deltd2,//传输地址
+            url:'data.json',
+            dataType: "json",//数据格式
+            //data: JSON.stringify(search),
+            success: function (data) {
+                window.location.reload();
+                /*if(msg==true){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }*/
+            }
+
+        })
+        //$(e.target).closest("tr").remove();
+        //$(".alertbox").hide();
+    })
+    $(".del>.btn2").click(function () {
+        $(".alertbox").hide();
+        $(".del").hide();
+    })
+};
+
+//点击修改按钮时
+function revise() {
+    $(".alertbox").show();
+    $(".revise").show();
+    $(".del").hide();
+    $(".find").hide();
 
 }
-//修改
-function revise(obj) {
-    $(".revise").show();
-    //获取当前tr下的td eq（）的值给弹出的input框
-    var oldsiteName = $(obj).parents("tr").children("td").eq(1);
-    var oldroute = $(obj).parents("tr").children("td").eq(2);
-    var oldtemplteRoute = $(obj).parents("tr").children("td").eq(5);
-    $(".siteName").val(oldsiteName.html());
-    $(".route").val(oldroute.html());
-    $(".templteRoute").val(oldtemplteRoute.html());
-
-    //var olduserName=$(obj).parents("tr").children("td").eq(1);
-    //var oldpassWord=$(obj).parents("tr").children("td").eq(2);
-    //把获取的td的值给弹出的input
-    //$(".userName").val(olduserName.html());
-    //$(".passWord").val(oldpassWord.html());
+function revise_is (){
     $(".revise .btn1").click(function () {
-        var revise = {};
-        revise["siteName"] = $("#siteName").val();
-        revise["route"] = $("#route").val();
-        revise["templteRoute"] = $("#templteRoute").val();
-        //revise["userName"]=$("#userName").val();
-        //revise["passWord"]=$("#passWord").val();
+        var search = {};
+        search["userName"] = $("#addinput1").val();
+        search["passWord"] = $("#addinput4").val();
+        $.ajax({
+            type: 'post',
+            contentType: "application/json",
+            url: 'data.json',
+            dataType: "json",//数据格式
+            data: JSON.stringify(search),
+            success: function (data) {
+                if (msg == true) {
+                    window.location.reload();
+                }
+                else if(msg == "no"){
+                    alert("数据已存在");
+                }else{
+                    alert("添加失败")
+                }
 
-
-
-            oldsiteName.html($("#siteName").val());
-            oldroute.html($("#route").val());
-            oldtemplteRoute.html($("#templteRoute").val());
-        //for(var i=0;i<data.length;i++){
-        //    if (oldpassWord.html() == $(".userName").val()) {
-        //        alert("与修改前的内容一样")
-        //        return false;
-        //    } else {
-        //        olduserName.html($("#userName").val());
-        //        oldpassWord.html($("#passWord").val());
-        //    }
-        //}
-
-        $(".revise").hide();
+            }
+        })
     });
     //点击取消关闭弹窗
     $(".revise .btn2").click(function () {
         $(".revise").hide();
+        $(".alertbox").hide();
     })
+
 }
-
-
-
 //点击查询按钮时
 function find() {
-    var search = {};
-    search["userName"] = $(".text1_find").val();
-    search["passWord"] = $(".text2_find").val();
-
-    for (var i = 0; i < data.length; i++) {
-        console.log(data[i].userName)
-    }
-    var len = search["userName"].length;
-    console.log(len)
-    /*  var arr = [];
-     for(var i=0;i<len;i++){
-     //如果字符串中不包含目标字符会返回-1
-     if(list[i].indexOf(keyWord)>=0){
-     arr.push(list[i]);
-     }
-     }
-     return arr;
-     */
-
-
-    //$.ajax({
-    //    type: "get",
-    //    //url: "http://192.168.20.195:8080/user/queryAll/",
-    //    url:"data.json",
-    //    async: true,
-    //    contentType: "application/json",
-    //    dataType: "json",
-    //    data:JSON.stringify(search),
-    //    success: function (data) {
-    //
-    //    }
-    //})
-}
-
-
-
-
-//点击编辑栏目按钮时
-function edit() {
-    $(".edit").show();
-    $(".edit .btn1").click(function () {
-        var search = {'websitesId':wmsData[0],'channelId':[]};
-        $('input[type="checkbox"]:checked').each(function (i,n) {//把所有被选中的复选框的值存入数组
-            search["channelId"].push(n.value);
-        });
-        //console.log(wmsData[0])
-        //console.log(wmsData[1])
-        //console.log(search["channelId"])//获取选中的input的值
-
-        //用Ajax传递参数
-        //$.ajax({
-        //    type: "post",
-        //    //url: "http://192.168.20.195:8080/user/queryAll/",
-        //    url:"http://123.59.156.27:8080/websitesBar/add",
-        //    async: true,
-        //    contentType: "application/json",
-        //    dataType: "json",
-        //    data:JSON.stringify(search),
-        //    success: function (search) {}
-        //})
-
-        //console.log(search["channelId"])
-        //$.post('http://123.59.156.27:8080/websitesBar/add', {websitesId:wmsData[0],channelId: search["channelId"]}, function (json) {
-        //}, 'json')
-    });
-
-    //点击取消关闭弹窗
-    $(".edit .btn2").click(function () {
-        $(".edit").hide();
-    })
-}
-
-
-//点击审核
-function audit() {
-    $(".audit").show();
-    var search = {};
-    search["id"] = $(".id").val();
-    search["status"] = $(".status").val();
-    search["aduit_des"] = $(".aduit_des").val();
-    search["aduit_user_id"] = $(".aduit_user_id").val();
-
     $.ajax({
-        type: 'get',
-        url: "news.json",
-        async: true,
-        contentType: "application/json",
-        dataType: "json",//数据格式
-        data: JSON.stringify(search),
-        success: function (data) {}
-    })
-    //点击取消关闭弹窗
-    $(".audit .btn2").click(function () {
-        $(".audit").hide();
+        type: "get",
+        url: "queryAll.json",
+        dataType: "json",
+        success: function (data) {
+            alert(1)
+        }
     })
 }
 
@@ -260,77 +224,74 @@ function verify() {
         }
     });
 }
-//正则手机号验证（注册）
+//正则手机号验证
 function userName() {
     var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
-    $("[name='userName']").blur(function () {
+    $("[name='username']").blur(function () {
         var v = $(this).val();
         if (v == '') {
-            $("[name='userName']").next().html("手机号不能为空！");
-            $(this).next().css("color", "#f00");
+            $(".verifyCall").html("用户名不能为空！");
+            //$(this).next().css("color", "#f00");
         } else if (!v.match(d)) {
-            $("[name='userName']").next().html("手机号不正确！");
-            $("[name='userName']").next().css("color", "#f00");
+            $(".verifyCall").html("用户名不正确！");
         } else {
-            $(this).next().css("color", "#0EA74A");
-            $("[name='userName']").next().html("正确");
+            //$(this).next().css("color", "#0EA74A");
+            $(".verifyCall").html("正确");
         }
     });
 }
-//正则密码验证（注册的）
-function password() {
+//正则密码验证
+function passWord() {
     var p = /^[a-zA-Z]\w{5,17}$/;
     $("[name='password']").blur(function () {
         var v = $(this).val();
         if (v == '') {
-            $("[name='password']").next().html("密码不能为空！");
-            $(this).next().css("color", "#f00");
+            $(".verifyPassword").html("密码不能为空！");
         } else if (!v.match(p)) {
-            $("[name='password']").next().html("密码格式不正确！");
-            $("[name='password']").next().css("color", "#f00");
+            $(".verifyPassword").html("密码格式不正确！");
         } else {
-            $(this).next().css("color", "#0EA74A");
-            $("[name='password']").next().html("正确");
+            $(".verifyPassword").html("正确");
         }
     });
 }
 
-//登录页面的验证
-function userNames() {
-    var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
-    $("[name='userName']").blur(function () {
-        var v = $(this).val();
-        if (v == '') {
-            $("[name='userName']").next().html("手机号不能为空！");
-            $(this).next().css("color", "#f00");
-        } else if (!v.match(d)) {
-            $("[name='userName']").next().html("手机号格式不正确！");
-            $("[name='userName']").next().css("color", "#f00");
-        }// else {
-        //    $(this).next().css("color", "#0EA74A");
-        //    $("[name='userName']").next().html("正确");
-        //}
-    });
-}
-
-
-//登录页面（密码）的验证
-function passwords() {
-    var p = /^[a-zA-Z]\w{5,17}$/;
-    $("[name='password']").blur(function () {
-        var v = $(this).val();
-        if (v == '') {
-            $("[name='password']").next().html("密码不能为空！");
-            $(this).next().css("color", "#f00");
-        } else if (!v.match(p)) {
-            $("[name='password']").next().html("密码格式不正确！");
-            $("[name='password']").next().css("color", "#f00");
-        } //else {
-        //    $(this).next().css("color", "#0EA74A");
-        //    $("[name='password']").next().html("正确");
-        //}
-    });
-}
+////登录页面的验证
+//function userNames() {
+//    var d = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
+//    $("[name='userName']").blur(function () {
+//        var v = $(this).val();
+//        if (v == '') {
+//            $("[name='userName']").next().html("手机号不能为空！");
+//            $(this).next().css("color", "#f00");
+//        } else if (!v.match(d)) {
+//            $("[name='userName']").next().html("手机号格式不正确！");
+//            $("[name='userName']").next().css("color", "#f00");
+//        }// else {
+//        //    $(this).next().css("color", "#0EA74A");
+//        //    $("[name='userName']").next().html("正确");
+//        //}
+//    });
+//}
+//
+//
+//
+////登录页面（密码）的验证
+//function passwords() {
+//    var p = /^[a-zA-Z]\w{5,17}$/;
+//    $("[name='password']").blur(function () {
+//        var v = $(this).val();
+//        if (v == '') {
+//            $("[name='password']").next().html("密码不能为空！");
+//            $(this).next().css("color", "#f00");
+//        } else if (!v.match(p)) {
+//            $("[name='password']").next().html("密码格式不正确！");
+//            $("[name='password']").next().css("color", "#f00");
+//        } //else {
+//        //    $(this).next().css("color", "#0EA74A");
+//        //    $("[name='password']").next().html("正确");
+//        //}
+//    });
+//}
 
 
 //正则邮箱验证
@@ -369,86 +330,78 @@ function idCard() {
 }
 
 //正则验证栏目名称
-function columnname() {
-    var columne = /^[\u4e00-\u9fa5]+$/;
+function columnname(){
+    var columne=/^[\u4e00-\u9fa5]+$/;
     $()
+
 
 
 }
 
 //用户状态启停页面的逻辑
 //	按钮开关
-function anniu(obj) {
-    //得到当前点的元素的id
-    var qitinghtml = $(obj).parent().prev().prev().prev().prev().html();
-    var objindex = $(obj).closest("tr").index() - 1;
-    //console.log(objindex)
-    //console.log(111,$(obj).closest("tr").index())
-    console.log(1, qitinghtml)
-    //当前点的元素的状态 0或者1
-    var statushtml = $(obj).parent().prev().html();
-    console.log(2, statushtml)
-    var dataqiting = {};
-    dataqiting["id"] = qitinghtml;
-    dataqiting["status"] = statushtml;
-    console.log(666, dataqiting)
-        //得到当前元素的
-    $.ajax({
-        type: "get",
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        //url:"column.json?id=" +"&status="+escape(statushtml)+"",
-        url: "column.json",
-        data: {"id": qitinghtml, "status": statushtml}, //上送数据
-        success: function (data) {  //返回成功的json数据
-            //console.log(111,data[objindex].isUse);
-            //console.log(222,data);
-            var flag = data[objindex].isUse;
-            console.log(data[objindex].isUse)
-            if (flag) {
-                data[objindex].isUse = 0;
-                //  console.log(111,data[objindex].isUse);
-                //return flag=true;
-            } else {
-                data[objindex].isUse = 1;
-                // console.log(22,data[objindex].isUse)
-                //return flag=false;
-            }
+// function anniu(obj) {
+//     //得到当前点的元素的id
+//     var qitinghtml=$(obj).parent().prev().prev().prev().prev().html();
+//     var objindex=$(obj).closest("tr").index()-1;
+//     //console.log(objindex)
+//     //console.log(111,$(obj).closest("tr").index())
+//     console.log(1,qitinghtml)
+//     //当前点的元素的状态 0或者1
+//     var statushtml=$(obj).parent().prev().html();
+//     console.log(2,statushtml)
+//     var dataqiting={};
+//     dataqiting["id"]=qitinghtml;
+//     dataqiting["status"]=statushtml;
+//     console.log(666,dataqiting)
+// //得到当前元素的
+//     $.ajax({
+//         type:"get",
+//         contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+//         //url:"column.json?id=" +"&status="+escape(statushtml)+"",
+//         url:"column.json",
+//         data:{"id":qitinghtml,"status": statushtml}, //上送数据
+//         success:function(data){  //返回成功的json数据
+//             //console.log(111,data[objindex].isUse);
+//             //console.log(222,data);
+//             var flag=data[objindex].isUse;
+//             console.log(data[objindex].isUse)
+//             if(flag){
+//                 data[objindex].isUse=0;
+//               //  console.log(111,data[objindex].isUse);
+//                 //return flag=true;
+//             }else{
+//                 data[objindex].isUse=1;
+//                // console.log(22,data[objindex].isUse)
+//                 //return flag=false;
+//             }
 
 
-        }
-    })
-    //console.log(data)
+//         }
+//     })
+//     //console.log(data)
 
-    //console.log(statushtml)
-    //console.log($(obj).parent().prev().html())
+//     //console.log(statushtml)
+//     //console.log($(obj).parent().prev().html())
 
-    if ($(obj).find("span").css("left") == "2px") {
-        $(obj).addClass("active");
+//     if ($(obj).find("span").css("left") == "2px") {
+//         $(obj).addClass("active");
 
-    } else {
-        $(obj).removeClass("active");
-    }
-}
+//     } else {
+//         $(obj).removeClass("active");
+//     }
+// }
 //删除选中的行
 function delanniu(obj) {
-    var search = {};
-
-    $.ajax({
-        type: 'get',
-        url: "news.json",
-        async: true,
-        contentType: "application/json",
-        dataType: "json",//数据格式
-        data: JSON.stringify(search),
-        success: function (search) {
-            var trs = $(obj).closest("tr")[0];
-            alert("删除我吗");
-            trs.remove();
-        }
-    })
-
+    var c = $(obj).closest("tr")[0];
+//    console.log(c)
+    var checkbox = $(obj).closest("tr").find("input[type='checkbox']")[0];
+//判断checkbox的状态是不是选中
+    if ($(checkbox).is(':checked')) {
+//        alert(11)
+        c.remove()
+    } else {
+        alert('删除选中的信息')
+    }
 
 }
-
-
-
