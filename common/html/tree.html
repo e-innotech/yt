@@ -30,10 +30,16 @@
     $(function() {
 
 
-        var resourceName = ""
+        var resourceName = "";
+        var uri = "";
+        var user = JSON.stringify({resourceName:"",uri:""});
         $.ajax({
-            type: 'post',
+            type:'POST',
             url: 'http://123.59.156.27:8080/resource/query',
+            contentType:'application/json',
+            dataType:'json',
+            data:user,
+
             success: function (tree) {
                 $('#tree').treeview({
                     data: tree.data,
