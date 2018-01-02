@@ -22,12 +22,12 @@
 	    </association>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, members_id, news_id, createDate, isDel, delDate,content
+    id, members_id, news_id, createDate, content
   </sql>
 
    <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.MembersCommentsNews" >
     select a.id, a.createDate, a.content, b.id as news_id, b.news_title, c.id as members_id,c.uname
-    from members_comments_news a, news b ,members c where a.isDel = 0 and a.news_id = b.id and a.members_id = c.id
+    from members_comments_news a, news b ,members c where a.isDel = 0 and a.news_id = b.id and a.members_id = c.id and b.isDel =0
     	<if test="startDate != null" >
        		<![CDATA[ and a.createDate >= #{startDate,jdbcType=INTEGER}  ]]>
       	</if>
@@ -70,12 +70,7 @@
       <if test="createDate != null" >
         createDate,
       </if>
-      <if test="isDel != null" >
-        isDel,
-      </if>
-      <if test="delDate != null" >
-        delDate,
-      </if>
+  
       <if test="content != null" >
         content,
       </if>
@@ -90,12 +85,7 @@
       <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="isDel != null" >
-        #{isDel,jdbcType=INTEGER},
-      </if>
-      <if test="delDate != null" >
-        #{delDate,jdbcType=TIMESTAMP},
-      </if>
+
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>

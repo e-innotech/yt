@@ -41,7 +41,7 @@ public interface AdPositionsService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	
 	
 }

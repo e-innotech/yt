@@ -54,8 +54,8 @@
   <select id="selectByPrimaryKey" resultMap="findNewsWebChannelResultMap" parameterType="java.lang.Integer" >
     select 
     a.id, a.isLine, a.isHome, a.home_weight, a.onLine_date, a.offLine_date,b.news_title,c.siteName,d.channelName
-    from news_publish a, news b, weisites c, channel d
-    where a.id = #{id,jdbcType=INTEGER} and a.news_id = b.id and a.website_id = c.id and a.channel_id = d.id
+    from news_publish a, news b, websites c, channel d
+    where a.id = #{id,jdbcType=INTEGER} and a.news_id = b.id and a.website_id = c.id and a.channel_id = d.id and d.isDel = 0 and b.isDel = 0 and c.isDel = 0
   </select>
   
     <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.NewsPublish" >

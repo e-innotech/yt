@@ -1,11 +1,13 @@
 package com.yt.cms.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.AdPositionsMapper;
 import com.yt.cms.model.AdPositions;
@@ -46,15 +48,17 @@ public class AdPositionsServiceImpl implements AdPositionsService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean deleteLogicById(Integer id) {
 		try {
 			// row 数据库中影响的行数
-			int row = adpositionDAO.deleteByPrimaryKey(id);
+			AdPositions record = new AdPositions();
+			record.setId(id);
+			record.setIsDel(Const.DELETE_FLAG);
+			record.setDelDate(new Date());
+			int row = adpositionDAO.updateByPrimaryKeySelective(record);
 			if(row == 1) {
 				return true;
-			} else {
-				return false;
-			}
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,11 @@
 package com.yt.cms.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,6 +25,7 @@ import com.yt.cms.common.Const;
 import com.yt.cms.model.Menu;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserResponseBody;
+import com.yt.cms.model.UserUpdatePwd;
 import com.yt.cms.service.PermissionService;
 import com.yt.cms.service.UserService;
 
@@ -70,8 +76,15 @@ public class UserController {
 	@ApiOperation("按照用户名查询用户")
 	public HttpEntity<?> findByUserName(@RequestParam String userName) {
 		boolean result = userService.findByUserName(userName);
-		HttpStatus status = result == true ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Boolean>(result, status);
+		AjaxResponseBody response = new AjaxResponseBody();
+		if(result) {
+			response.setMsg("该用户名已注册！");
+			response.setSuccess(false);
+		} else {
+			response.setMsg("该用户名可注册！");
+			response.setSuccess(true);
+		} 
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 	}
 	/**
 	 * 新增用户
@@ -85,10 +98,15 @@ public class UserController {
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
 		boolean created = userService.save(user);
+		AjaxResponseBody response = new AjaxResponseBody();
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			response.setMsg(Const.FAILED);
+			response.setSuccess(false);
+			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		response.setMsg(Const.SUCCESS);
+		response.setSuccess(true);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 	}
 	/**
 	 * 用户登录
@@ -96,32 +114,56 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	@ApiOperation("用户登陆")
-	public HttpEntity<?> login(@RequestBody UserResponseBody userBody) {
+	public HttpEntity<?> login(@RequestBody UserResponseBody userBody, HttpServletRequest request) {
 		User user = new User();
+		// TODO 用户名和密码不能为空
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
 		
 		User db_user = userService.login(user);
+		HttpSession session = request.getSession();
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(db_user == null) {
-			return new ResponseEntity<String>(Const.LOGIN_FAILED,HttpStatus.BAD_REQUEST);
+			response.setMsg(Const.LOGIN_FAILED);
+			response.setSuccess(false);
 		} else {
+			session.setAttribute("_session_user", db_user);
 			response.setMsg(Const.LOGIN_SUCCESS);
-			// TODO 请求权限服务，并将权限数据返回
+			response.setSuccess(true);
+			Map<String, Object> map = new HashMap<String, Object>();
 			List<Menu> menu = permissionService.queryMenu(db_user);
-			response.setData(menu);
-			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+			String roleName = permissionService.queryRolesName(db_user.getUserGroup().getId());
+			map.put("userName", db_user.getUserName());
+			map.put("roleName", roleName);
+			map.put("menu", menu);
+			response.setData(map);
 		}
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+	}
+	/**
+	 * 用户退出
+	 * @param userId
+	 */
+	@PostMapping("/logout")
+	@ApiOperation("用户登陆")
+	public HttpEntity<?> logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("_session_user");
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.LOGOUT_SUCCESS);
+		response.setSuccess(true);
+		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
 	}
 	/**
 	 * 更新用户
+	 * 还需要验证新旧密码是否相同
 	 * @param user
 	 * @return
 	 */
 	@PutMapping("/user/update")
-	@ApiOperation("更新用户")
-	public HttpEntity<?> update(@RequestBody User user) {
-		if(StringUtils.isEmpty(user.getPassWord())) {
+	@ApiOperation("更新用户密码")
+	public HttpEntity<?> update(@RequestBody UserUpdatePwd user) {
+		if(StringUtils.isEmpty(user.getPassWord()) || StringUtils.isEmpty(user.getCurrentPwd())) {
 			return new ResponseEntity<String>(Const.FAILED,HttpStatus.BAD_REQUEST);
 		}
 		boolean flag = userService.update(user);

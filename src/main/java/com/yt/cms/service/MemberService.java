@@ -47,11 +47,17 @@ public interface MemberService {
 	public boolean updateInfo(MemberInfos memberInfo);
 	
 	/**
-	 * 修改会员密码
+	 * 启停，禁言会员
 	 * @param members
 	 * @return
 	 */
 	public boolean update(Members members);
+	/**
+	 * 会员密码修改
+	 * @param members
+	 * @return
+	 */
+	public boolean updatePwd(Members members);
 	
 	
 }

@@ -3,6 +3,7 @@ package com.yt.cms.service;
 import java.util.List;
 
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserUpdatePwd;
 
 /**
  * 用户接口定义
@@ -47,7 +48,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public boolean update(User user);
+	public boolean update(UserUpdatePwd user);
 	/**
 	 * 对用户的启用或者禁用
 	 * 逻辑删除

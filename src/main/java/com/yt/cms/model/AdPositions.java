@@ -2,8 +2,13 @@ package com.yt.cms.model;
 
 import java.util.List;
 
-public class AdPositions {
-    private Integer id;
+public class AdPositions extends BaseVo{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer adWidth;
 
@@ -15,7 +20,7 @@ public class AdPositions {
 
     private List<Ad> ads;
     
-    public List<Ad> getAds() {
+	public List<Ad> getAds() {
 		return ads;
 	}
 

@@ -1,10 +1,10 @@
 package com.yt.cms.model;
 
-import java.util.List;
-
-import org.springframework.data.annotation.Transient;
-
-public class UserGroup {
+public class UserGroup extends BaseVo{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 主键id
 	 */
@@ -20,13 +20,13 @@ public class UserGroup {
     /**
      * 用户组角色列表
      */
-    private List<Roles> roles;
-    
-    public List<Roles> getRoles() {
+    private Roles roles;
+
+	public Roles getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Roles> roles) {
+	public void setRoles(Roles roles) {
 		this.roles = roles;
 	}
 

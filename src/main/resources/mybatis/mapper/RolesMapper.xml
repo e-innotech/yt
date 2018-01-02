@@ -27,13 +27,13 @@
     from roles a
     left join roles_resource b on a.id = b.roles_id
     left join resource c on b.resource_id = c.id
-    where a.id = #{id,jdbcType=INTEGER}
+    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 and c.isDel = 0
   </select>
   
    <select id="query" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from roles
+    from roles where 1=1 and isDel = 0
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -79,5 +79,12 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+ 
+ <update id="deleteLogicById" parameterType="java.lang.Integer" >
+    update roles
+   		set isDel = 1, del_date = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
  
 </mapper>

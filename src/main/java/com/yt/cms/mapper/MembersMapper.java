@@ -16,4 +16,6 @@ public interface MembersMapper {
     int updateByPrimaryKeySelective(Members record);
 
     List<Members> query(Members record);
+    
+    int updatePwd(Members record);
 }

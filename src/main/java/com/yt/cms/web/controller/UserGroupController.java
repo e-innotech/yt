@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -97,10 +96,10 @@ public class UserGroupController {
 	 * @param userGroup
 	 * @return
 	 */
-	@DeleteMapping("/delete")
+	@PutMapping("/delete")
 	@ApiOperation("删除用户组")
 	public HttpEntity<?> delete(@RequestParam Integer id){
-		boolean created = userGroupService.delete(id);
+		boolean created = userGroupService.deleteLogicById(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
@@ -108,14 +107,14 @@ public class UserGroupController {
 	}
 	
 	/**
-	 * 删除用户组所有角色
+	 * 修改用户组角色
 	 * @param rolesResource
 	 * @return
 	 */
-	@DeleteMapping("/userGroup/roles")
-	@ApiOperation("删除用户组所有角色")
-	public HttpEntity<?> update(@RequestParam Integer userGroupId){
-		boolean created = userGroupService.deleteByUserGroupId(userGroupId);
+	@PutMapping("/updateRoles")
+	@ApiOperation("修改用户组角色")
+	public HttpEntity<?> updateRoles(@RequestParam Integer userGroupId,@RequestParam Integer rolesId){
+		boolean created = userGroupService.updateRolesByUserGroupId(userGroupId,rolesId);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

@@ -2,7 +2,11 @@ package com.yt.cms.model;
 
 import java.util.List;
 
-public class Roles {
+public class Roles extends BaseVo{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 主键id
 	 */

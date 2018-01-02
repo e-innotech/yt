@@ -1,9 +1,15 @@
 package com.yt.cms.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MembersCollectNews {
-    private Integer id;
+public class MembersCollectNews implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer membersId;
 

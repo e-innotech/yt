@@ -61,8 +61,23 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean update(Members members) {
 		try {
-			membersDAO.updateByPrimaryKeySelective(members);
-			return true;
+			int row = membersDAO.updateByPrimaryKeySelective(members);
+			if(row == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean updatePwd(Members members) {
+		try {
+			int row = membersDAO.updatePwd(members);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

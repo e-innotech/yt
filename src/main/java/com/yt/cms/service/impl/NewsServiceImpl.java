@@ -53,9 +53,7 @@ public class NewsServiceImpl implements NewsService {
 			int row = newsDAO.deleteLogicById(id);
 			if(row == 1) {
 				return true;
-			} else {
-				return false;
-			}
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

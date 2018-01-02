@@ -106,15 +106,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Members" >
     update members
     <set >
-      <if test="uname != null" >
-        uname = #{uname,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null" >
-        pwd = #{pwd,jdbcType=VARCHAR},
-      </if>
-      <if test="regDate != null" >
-        regDate = #{regDate,jdbcType=TIMESTAMP},
-      </if>
       <if test="isUse != null" >
         isUse = #{isUse,jdbcType=INTEGER},
       </if>
@@ -125,4 +116,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
  
+   <update id="updatePwd" parameterType="com.yt.cms.model.Members" >
+    update members
+        pwd = #{pwd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

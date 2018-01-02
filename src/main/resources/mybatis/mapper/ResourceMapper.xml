@@ -10,66 +10,23 @@
 		<result column="isMenu" property="isMenu" jdbcType="INTEGER" />
 	</resultMap>
 	
-	<resultMap id="ResultMap" type="com.yt.cms.model.Menu">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="resourceName" property="text" jdbcType="VARCHAR" />
-		<result column="uri" property="href" jdbcType="VARCHAR" />
-		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
-		<collection property="nodes" ofType="com.yt.cms.model.Menu">
-			<id column="c_id" property="id" jdbcType="INTEGER" />
-			<result column="c_name" property="text" jdbcType="VARCHAR" />
-			<result column="c_uri" property="href" jdbcType="VARCHAR" />
-			<result column="c_pid" property="parentId" jdbcType="INTEGER" />
-		</collection>
-	</resultMap>
-	
-	<resultMap id="ButtonResultMap" type="com.yt.cms.model.Button">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
-		<result column="uri" property="uri" jdbcType="VARCHAR" />
-	</resultMap>
-	
+
 	<sql id="Base_Column_List">
 		id, resourceName, uri, parent_id, rw,isMenu
 	</sql>
-	<!-- 查询所有的左侧菜单，只做到2级菜单，多于2级需要修改代码，目前系统只有2级菜单 -->
-	<select id="queryMenu" resultMap="ResultMap">
-		select d.id,d.resourceName,d.uri,d.parent_id,c.id as c_id,c.resourceName as c_name,c.uri c_uri,c.parent_id as c_pid from
-		(select b.id ,b.resourceName ,b.uri,b.parent_id from resource b where
-		b.parent_id = 0 and b.isMenu = 1) d
-		left join
-		(select a.id ,a.resourceName,a.uri,a.parent_id from resource a where
-		a.parent_id != 0 and a.isMenu = 1) c on c.parent_id = d.id
-	</select>
-
-	<!-- 查询用户所配置的菜单资源id -->
-	<select id="queryMenuByUserGroupId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-		select e.id from usergroup_roles b 
-		left join roles_resource d on b.roles_id = d.roles_id
-		 left join resource e on e.id = d.resource_id
-		 where b.userGroup_id = #{userGroupId,jdbcType=INTEGER} and e.isMenu = 1
-	</select>
-	
-	<!-- 查询用户某个菜单资源下所分配的按钮资源 -->
-	<select id="queryMenuButton" parameterType="map" resultMap="ButtonResultMap">
-		select e.id,e.resourceName,e.uri from usergroup_roles b 
-		left join roles_resource d on b.roles_id = d.roles_id
-        left join resource e on e.id = d.resource_id
-		 where b.userGroup_id = #{userGroupId,jdbcType=INTEGER} and e.parent_id = #{menuId,jdbcType=INTEGER} and e.isMenu = 0;
-	</select>
 	
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
 		from resource
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER} and isDel = 0
 	</select>
 
 	<select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Resource">
 		select
 		<include refid="Base_Column_List" />
-		from resource where 1=1
+		from resource where 1=1 and isDel = 0
 		<if test="isMenu != null" >
 	        and isMenu = #{isMenu,jdbcType=INTEGER}
 	      </if>
@@ -152,4 +109,10 @@
 	</update>
 
 
+	<update id="deleteLogicById" parameterType="java.lang.Integer">
+		update resource
+			set 
+				isDel = 1, del_date = now()
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

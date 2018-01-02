@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -110,7 +109,7 @@ public class NewsController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete")
+	@PutMapping("/delete")
 	@ApiOperation("删除稿件")
 	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = newsService.deleteLogicById(id);
@@ -190,7 +189,7 @@ public class NewsController {
 	 * 按照稿件投放id删除
 	 * @return
 	 */
-	@DeleteMapping("/launch/delete")
+	@PutMapping("/launch/delete")
 	@ApiOperation("按照稿件投放id删除")
 	public HttpEntity<?> deleteLaunch(@RequestParam Integer id){
 		boolean release =  newsLaunchService.deleteLogicById(id);

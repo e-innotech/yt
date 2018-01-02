@@ -47,10 +47,13 @@ public class WebsitesServiceImpl implements WebsitesService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean deleteLogicById(Integer id) {
 		try {
-			websitesDAO.deleteByPrimaryKey(id);
-			return true;
+			int row = websitesDAO.deleteLogicById(id);
+			if(row == 1) {
+				return true;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

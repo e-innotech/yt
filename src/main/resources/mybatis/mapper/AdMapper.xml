@@ -21,13 +21,13 @@
     select 
     <include refid="Base_Column_List" />
     from ad
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and isDel = 0
   </select>
   
    <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Ad" >
     select 
     <include refid="Base_Column_List" />
-    from ad where 1=1
+    from ad where 1=1 and isDel = 0
 	    <if test="status != null" >
 	        and status = #{status,jdbcType=INTEGER}
 	      </if>
@@ -131,6 +131,12 @@
       </if>
       <if test="source != null" >
         source = #{source,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isDel != null" >
+        isDel = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="delDate != null" >
+        del_date = #{delDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

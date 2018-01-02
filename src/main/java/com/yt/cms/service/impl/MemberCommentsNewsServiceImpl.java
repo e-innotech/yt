@@ -36,8 +36,6 @@ public class MemberCommentsNewsServiceImpl implements MemberCommentsNewsService 
 			int row = commentDAO.deleteLogical(id);
 			if(row == 1) {
 				return true;
-			} else {
-				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

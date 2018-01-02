@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.yt.cms.mapper.UserMapper;
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserUpdatePwd;
 import com.yt.cms.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
@@ -67,10 +68,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(UserUpdatePwd user) {
 		try {
-			userDAO.update(user);
-			return true;
+			int row = userDAO.update(user);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

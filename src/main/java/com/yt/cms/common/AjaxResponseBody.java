@@ -18,7 +18,16 @@ public class AjaxResponseBody implements Serializable{
     private String msg;
     //业务数据
     private Object data;
-	
+	// 状态码
+    private boolean success;
+    
+
+	public boolean isSuccess() {
+		return success;
+	}
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
 	public String getMsg() {
 		return msg;
 	}

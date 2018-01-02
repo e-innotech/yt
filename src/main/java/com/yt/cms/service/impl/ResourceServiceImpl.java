@@ -46,10 +46,12 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean deleteLogicById(Integer id) {
 		try {
-			resourceDAO.deleteByPrimaryKey(id);
-			return true;
+			int row = resourceDAO.deleteLogicById(id);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,10 @@
 package com.yt.cms.model;
 
-public class Resource {
+public class Resource extends BaseVo{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 主键id
 	 */
@@ -26,7 +30,7 @@ public class Resource {
      */
     private Integer isMenu;
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 

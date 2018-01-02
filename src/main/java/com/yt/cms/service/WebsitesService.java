@@ -41,7 +41,7 @@ public interface WebsitesService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	
 	/**
 	 * 查询网站id下所有的栏位数据

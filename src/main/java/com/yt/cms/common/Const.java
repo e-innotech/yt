@@ -16,6 +16,8 @@ public class Const {
 	
 	public static final String LOGIN_FAILED = "登陆失败！账号或者密码错误。";
 	
+	public static final String LOGOUT_SUCCESS = "成功退出!";
+	
 	public static final String NOT_FOUND = "没有找到！";
 	
 	public static final Integer ADUIT_PASS = 1;
@@ -25,5 +27,9 @@ public class Const {
 	public static final Integer ON_LINE = 1;
 	
 	public static final Integer OFF_LINE = 0;
+	// 删除标记
+	public static final Integer DELETE_FLAG = 1;
+	
+	public static final Integer SUPER_ADMIN_USER_GROUP = 999999;
 	
 }

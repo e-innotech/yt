@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yt.cms.model.Button;
 import com.yt.cms.model.Menu;
+import com.yt.cms.model.Resource;
 import com.yt.cms.model.User;
 
 /**
@@ -21,6 +22,12 @@ public interface PermissionService {
 	 */
 	public List<Menu> queryMenu(User user);
 	/**
+	 * 查询用户角色名
+	 * @param UserGroupId
+	 * @return
+	 */
+	public String queryRolesName(Integer userGroupId);
+	/**
 	 * 该方法做成切面，对于列表页的资源请求都执行该方法
 	 * 用户点击左侧菜单查询该用户拥有的按钮资源
 	 * @param userGroupId
@@ -28,5 +35,19 @@ public interface PermissionService {
 	 * @return
 	 */
 	public List<Button> queryMenuButton(Integer userGroupId, Integer menuId);
+	/**
+	 * 判断用户是否有权限访问'
+	 * @param userGroupId
+	 * @param userId
+	 * @param requestURL
+	 * @return
+	 */
+	public boolean hasPermission(Integer userGroupId,Integer userId, String requestURL);
+	/**
+	 * 查询改用可访问的所有资源权限
+	 * @param userId
+	 * @return
+	 */
+	public List<Resource> getResources(Integer userId);
 
 }

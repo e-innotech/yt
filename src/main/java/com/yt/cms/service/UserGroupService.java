@@ -45,11 +45,11 @@ public interface UserGroupService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	/**
-	 * 按照用户组id，删除该用户组下面的所有角色数据
+	 * 按照用户组id，修改用户组角色
 	 * @param userGroupId
 	 * @return
 	 */
-	public boolean deleteByUserGroupId(Integer userGroupId);
+	public boolean updateRolesByUserGroupId(Integer userGroupId, Integer rolesId);
 }

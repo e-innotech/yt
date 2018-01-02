@@ -32,13 +32,13 @@
     a.id, a.ad_width, a.ad_height, a.ad_name, a.isUse,
     b.id as ad_id, b.source,b.beginDate, b.endDate, b.status, b.adName, b.adType, b.comment
     from adpositions a left join ad b on a.id = b.adPositions_id 
-    where a.id = #{id,jdbcType=INTEGER}
+    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 and b.isDel = 0
   </select>
   
     <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.AdPositions" >
     select 
     <include refid="Base_Column_List" />
-    from adpositions where 1=1
+    from adpositions where 1=1 and isDel = 0
 	    <if test="isUse != null" >
 	        and isUse = #{isUse,jdbcType=INTEGER}
 	      </if>
@@ -105,7 +105,12 @@
       <if test="isUse != null" >
         isUse = #{isUse,jdbcType=INTEGER},
       </if>
-    
+      <if test="isDel != null" >
+        isDel = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="delDate != null" >
+        del_date = #{delDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>

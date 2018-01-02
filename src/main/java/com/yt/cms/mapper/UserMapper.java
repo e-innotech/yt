@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserUpdatePwd;
 
 public interface UserMapper {
 	
@@ -28,7 +29,7 @@ public interface UserMapper {
 	
 	void insert(User user);
 
-	void update(User user);
+	int update(UserUpdatePwd user);
 
 	void disableOrEnable(User user);
 	

@@ -43,7 +43,7 @@
         SELECT 
        a.id, a.uname, a.createDate,a.isUse,a.user_group_id,b.groupName 
 	   FROM users a, user_group b
-	   WHERE a.id = #{id} and isUse = 1 and a.user_group_id = b.id
+	   WHERE a.id = #{id} and isUse = 1 and a.user_group_id = b.id and b.isDel = 0
     </select>
 	<!-- 用户登录 -->
 	<select id="login" parameterType="com.yt.cms.model.User" resultMap="ResultMap" >
@@ -66,14 +66,13 @@
        		(#{userName}, #{passWord})
     </insert>
     <!-- 更新用户密码，注意用户名不许更新 -->
-    <update id="update" parameterType="com.yt.cms.model.User" >
+    <update id="update" parameterType="com.yt.cms.model.UserUpdatePwd" >
        UPDATE 
        		users 
        SET 
-       	<!-- <if test="userName != null">uname = #{userName},</if> -->
-       	<if test="passWord != null">pwd = #{passWord}</if>
+       	pwd = #{passWord}
        WHERE 
-       		id = #{id}
+       		id = #{id} and pwd = #{currentPwd}
     </update>
     <!-- 启停用户 逻辑删除-->
      <update id="disableOrEnable" parameterType="com.yt.cms.model.User" >

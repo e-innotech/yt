@@ -91,10 +91,10 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete")
+	@PutMapping("/delete")
 	@ApiOperation("删除角色")
 	public HttpEntity<?> delete(@RequestParam Integer id){
-		boolean created = rolesService.delete(id);
+		boolean created = rolesService.deleteLogicById(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

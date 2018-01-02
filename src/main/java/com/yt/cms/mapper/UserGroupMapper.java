@@ -24,4 +24,7 @@ public interface UserGroupMapper {
      */
     List<UserGroup> queryAll();
     
+    int deleteLogicById(Integer id);
+  
+    
 }

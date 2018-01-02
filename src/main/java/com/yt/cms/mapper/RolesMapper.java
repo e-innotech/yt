@@ -14,4 +14,6 @@ public interface RolesMapper {
     int updateByPrimaryKeySelective(Roles record);
 
     List<Roles> query(Roles record);
+    
+    int deleteLogicById(Integer id);
 }

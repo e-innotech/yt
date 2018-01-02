@@ -1,7 +1,12 @@
 package com.yt.cms.model;
 
-public class Channel {
-    private Integer id;
+public class Channel extends BaseVo{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String channelName;
 
@@ -9,7 +14,7 @@ public class Channel {
 
     private String comment;
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 

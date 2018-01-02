@@ -2,8 +2,13 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
-public class Ad {
-    private Integer id;
+public class Ad extends BaseVo{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Date beginDate;
 
@@ -21,7 +26,7 @@ public class Ad {
 
     private String source;
 
-    public Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 

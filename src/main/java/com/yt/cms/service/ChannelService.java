@@ -41,7 +41,7 @@ public interface ChannelService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	/**
 	 * 按照栏目名称查询栏目
 	 * @param channelName

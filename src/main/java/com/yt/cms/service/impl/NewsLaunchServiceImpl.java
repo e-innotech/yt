@@ -56,18 +56,13 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 			int row = newsLaunchDAO.deleteLogicById(id);
 			if(row == 1) {
 				return true;
-			} else {
-				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return false;
 	}
 	
-	
-
 	@Override
 	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page) {
 		PageHelper.startPage(page.getPageNum(), page.getPageSize());

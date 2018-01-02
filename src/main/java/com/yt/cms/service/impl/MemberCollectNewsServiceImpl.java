@@ -35,9 +35,7 @@ public class MemberCollectNewsServiceImpl implements MemberCollectNewsService {
 			int row = collectDAO.cancelCollect(collectId);
 			if(row == 1) {
 				return true;
-			} else {
-				return false;
-			}
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

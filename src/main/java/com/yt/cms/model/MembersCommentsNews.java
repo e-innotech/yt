@@ -4,8 +4,13 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class MembersCommentsNews {
-    private Integer id;
+public class MembersCommentsNews extends BaseVo{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer membersId;
 
@@ -14,10 +19,6 @@ public class MembersCommentsNews {
     private News news;
 
     private Date createDate;
-
-    private Integer isDel;
-
-    private Date delDate;
 
     private String content;
     @JsonIgnore
@@ -91,22 +92,6 @@ public class MembersCommentsNews {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	public Integer getIsDel() {
-		return isDel;
-	}
-
-	public void setIsDel(Integer isDel) {
-		this.isDel = isDel;
-	}
-
-	public Date getDelDate() {
-		return delDate;
-	}
-
-	public void setDelDate(Date delDate) {
-		this.delDate = delDate;
 	}
 
 	public String getContent() {

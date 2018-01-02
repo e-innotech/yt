@@ -92,12 +92,12 @@ public class MembersController {
 	}
 
 	/**
-	 * 修改会员
+	 * 修改会员信息
 	 * @param Ad
 	 * @return
 	 */
 	@PutMapping("/update")
-	@ApiOperation("修改会员")
+	@ApiOperation("修改会员信息")
 	public HttpEntity<?> update(@RequestBody MemberInfos info){
 		boolean created = memberService.updateInfo(info);
 		if(!created) {
@@ -107,12 +107,27 @@ public class MembersController {
 	}
 	/**
 	 * 修改会员密码
-	 * @param Ad
+	 * @param member
 	 * @return
 	 */
 	@PutMapping("/update/p")
-	@ApiOperation("修改会员")
+	@ApiOperation("修改会员密码")
 	public HttpEntity<?> updateP(@RequestBody Members member){
+		boolean created = memberService.updatePwd(member);
+		if(!created) {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+	}
+	
+	/**
+	 * 启用、停用、禁言、取消禁言
+	 * @param
+	 * @return
+	 */
+	@PutMapping("/update/status")
+	@ApiOperation("启用、停用、禁言、取消禁言")
+	public HttpEntity<?> updateStatus(@RequestBody Members member){
 		boolean created = memberService.update(member);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -120,6 +135,5 @@ public class MembersController {
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
 	}
 	
-
 	
 }

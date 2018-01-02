@@ -8,11 +8,11 @@
   </resultMap>
   
   <resultMap id="ResultMap" type="com.yt.cms.model.UserGroup" extends="BaseResultMap">
-    	<collection property="roles" ofType="com.yt.cms.model.Roles">
+    	<association property="roles" javaType="com.yt.cms.model.Roles">
             <id column="roles_id" property="id"/>
             <result column="roleName" property="roleName" jdbcType="VARCHAR" />
     		<result column="roles_comment" property="comment" jdbcType="VARCHAR" />
-        </collection>
+        </association>
   </resultMap>
   
   <sql id="Base_Column_List" >
@@ -23,15 +23,14 @@
     select 
     a.id, a.groupName, a.comment, b.id as roles_id, b.roleName, b.comment as roles_comment
     from user_group a 
-    LEFT JOIN usergroup_roles c ON a.id = c.userGroup_id 
-    left join roles b on c.roles_id = b.id
-    where a.id = #{id,jdbcType=INTEGER}
+    left join roles b on a.roles_id = b.id
+    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 and b.isDel = 0
   </select>
   <!-- 分页或者多条件查询 -->
   <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
     select 
     <include refid="Base_Column_List" />
-    from user_group where 1=1 
+    from user_group where 1=1  and isDel = 0
     <if test="_parameter != null">
                 and groupName like concat('%', #{_parameter}, '%')
        </if>
@@ -40,7 +39,7 @@
   <select id="queryAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from user_group
+    from user_group where isDel = 0
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -84,5 +83,11 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <update id="deleteLogicById" parameterType="java.lang.Integer" >
+    update user_group
+   			set isDel = 1, delDate = now() where id = #{id,jdbcType=INTEGER}
+  </update>
+  
   
 </mapper>

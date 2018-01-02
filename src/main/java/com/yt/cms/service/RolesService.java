@@ -42,12 +42,13 @@ public interface RolesService {
 	 * @param id
 	 * @return
 	 */
-	public boolean delete(Integer id);
+	public boolean deleteLogicById(Integer id);
 	/**
 	 * 删除角色对应的所有资源
 	 * @param rolesId
 	 * @return
 	 */
 	public boolean removeRolesResource(Integer rolesId);
+	
 	
 }

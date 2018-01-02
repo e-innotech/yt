@@ -50,10 +50,12 @@ public class RolesServiceImpl implements RolesService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean deleteLogicById(Integer id) {
 		try {
-			rolesDAO.deleteByPrimaryKey(id);
-			return true;
+			int row = rolesDAO.deleteLogicById(id);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,8 +66,9 @@ public class RolesServiceImpl implements RolesService {
 	public boolean removeRolesResource(Integer rolesId) {
 		try {
 			int k = rolesResourceDAO.deleteByRolesId(rolesId);
-			// k 是指影响到的行数
-			return true;
+			if(k > 0) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

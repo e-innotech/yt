@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -99,10 +98,10 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete")
+	@PutMapping("/delete")
 	@ApiOperation("删除系统资源")
 	public HttpEntity<?> delete(@RequestParam Integer id){
-		boolean created = resourceService.delete(id);
+		boolean created = resourceService.deleteLogicById(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

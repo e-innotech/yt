@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -95,10 +94,10 @@ public class AdController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/delete")
+	@PutMapping("/delete")
 	@ApiOperation("删除广告")
 	public HttpEntity<?> delete(@RequestParam Integer id){
-		boolean created = adService.delete(id);
+		boolean created = adService.deleteLogicById(id);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
