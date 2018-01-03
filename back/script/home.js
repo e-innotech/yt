@@ -10,8 +10,8 @@ $(function(){
             console.log('pwd');
             $.get($components.pwdReset,function (result) {
                 $('#popPanel').html(result);
-                $('#pwdResetModal').show();
 
+                $('#pwdResetModal').modal('show');
                 $('#pwdBtn').click(function () {
                     var pwd = JSON.stringify({'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()});
                     $.ajax({
