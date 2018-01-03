@@ -34,7 +34,6 @@ $(function(){
 
         //修改密码
         $('#pwdBtn').click(function(){
-            alert(11)
             var user = JSON.stringify({'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()});
             $.ajax({
                 type: 'PUT',
@@ -45,11 +44,11 @@ $(function(){
                 success: function(data) {
 
                     console.log(data)
+                    alert(data.msg);
                     if(data.success){
-                        location.replace('home.html');
-                    }else{
-                        alert(data.msg);
+                        $('#checkPwd').hide();
                     }
+
                 }
             });
         })
