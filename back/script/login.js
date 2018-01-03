@@ -26,7 +26,9 @@ $(function () {
                         // console.log('remember')
                         sessionStorage.setItem('user',user);
                     }
-                    sessionStorage.setItem('permissons',JSON.stringify(data.data));
+                    var userinfo = {'userName':data.data.userName,'roleName':data.data.roleName};
+                    sessionStorage.setItem('userinfo',JSON.stringify(userinfo));
+                    sessionStorage.setItem('permissons',JSON.stringify(data.data.menu));
                     location.replace('home.html');
                 }else{
                     alert(data.msg);
