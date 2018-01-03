@@ -25,7 +25,6 @@ $(function(){
                             if(data.success){
                                 $('#pwdResetModal').hide();
                             }
-
                         }
                     });
                 });
