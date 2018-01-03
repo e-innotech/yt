@@ -3,13 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>用户列表</title>
-    <link rel="stylesheet" href="../../../common/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../../common/css/index.css"/>
-    <link rel="stylesheet" href="../../css/common.css"/>
-    <link rel="stylesheet" href="../../css/list_4.css"/>
-    <link rel="stylesheet" href="../../css/list.css"/>
-    <script src="../../../common/js/jquery.min.js"></script>
-    <script src="../../../back/script/userList.js"></script>
+
+    <script src="../script/nodes/user_query.js"></script>
 
 </head>
 <body>
@@ -93,11 +88,11 @@
 
 <!--表格-->
 <div class="fl wrapper wrapper-content system" style="width: 100%">
-    <input type="button" value="新增" class="add_btn"/>
+    <input id="addUserBtn" type="button" value="新增" class="add_btn" style="display: none"/>
     <input type="text" class="text1_find" placeholder="用户名查找"/><input type="text" class="text2_find" placeholder="状态1或者0查找"/><input type="button" value="查找" class="btn_find" onclick="find()"/>
 
     <div class="list_1 row">
-        <table class="col-sm-12 table table-bordered table-hover">
+        <table  class="col-sm-12 table table-bordered table-hover">
             <thead>
             <tr>
                 <th>id</th>
@@ -109,7 +104,7 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="userList">
 
             </tbody>
         </table>

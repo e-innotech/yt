@@ -1,3 +1,6 @@
+var nodeData;
+var pageNum = 1;
+var pageSize = 20;
 /*
  通用的ajax请求函数
  @param type get、post
@@ -404,6 +407,12 @@ function delanniu(obj) {
         alert('删除选中的信息')
     }
 
+}
+
+function getNote(href){
+    var arr  = href.split('/');
+    re = 'nodes/'+arr[1]+'_'+arr[2]+'.html';
+    return re;
 }
 
 

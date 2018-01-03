@@ -17,13 +17,16 @@ $(function(){
                     $.ajax({
                         type: 'PUT',
                         url:$user.update,
-                        contentType:'application/json',
+                        contentType:'application/json',//必须
                         data: pwd,
                         dataType: 'json',
+                        xhrFields: {//必须
+                            withCredentials: true
+                        },
                         success: function(data) {
                             alert(data.msg);
                             if(data.success){
-                                $('#pwdResetModal').hide();
+                                $('#pwdResetModal').modal('hide');
                             }
 
                         }
@@ -71,9 +74,19 @@ $(function(){
                 disabled: true,
                 expanded: true,
                 selected: true
+            },
+            onNodeSelected: function (event, data) {
+                // 事件代码...
+                console.log(data);
+                nodeData = data;
+                //console.log(getNote(data.href))
+                $.get(getNote(data.href),function(re){
+                    $('#main').html(re);
+                });
+
             }
         })
-        //添加菜单点击加载页面逻辑，click-》body里的div取load相应页面
+
     };
     initHeader();
     initMenu();
