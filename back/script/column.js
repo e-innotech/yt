@@ -31,7 +31,7 @@ $(".addModal").click(function(){
     $("#myModal").css("display","block");
 })
 //点击确认按钮时
-$(".modal-footer .btn1").click(function(){
+$(".components-footer .btn1").click(function(){
      var newcolumn = $("#addcolumninput1").val();
         console.log(newcolumn)
         console.log(newcolumn)
@@ -51,7 +51,7 @@ $(".modal-footer .btn1").click(function(){
 })
 
 //点击关闭按钮时
-$(".modal-footer .btn2").click(function(){
+$(".components-footer .btn2").click(function(){
     $("#myModal").css("display","none");
 })
 
@@ -118,7 +118,7 @@ function revisecolumn(obj){
     $("#revisecolumninput1").val(acolumnname.html());
     $("#description").val(bdescription.html());
     //点击确认按钮时
-    $(".modal-footer .btntrue").click(function(){
+    $(".components-footer .btntrue").click(function(){
         //把上送数据放到一个空对象中
         var revise={};
         revise["id"]=columnid;
@@ -131,7 +131,7 @@ function revisecolumn(obj){
     })
 }
 //点击关闭按钮时
-$(".modal-footer .btnclose").click(function(){
+$(".components-footer .btnclose").click(function(){
     $("#revisecolumn").css("display","none");
 
 })

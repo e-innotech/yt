@@ -8,5 +8,13 @@ var config ={
         $user = {
             'update':$apiUrl+'user/update/pwd'
         };
+
+
+
+
+
+        $components = {
+            'pwdReset':'components/pwdReset.html'
+        }
     }
 }

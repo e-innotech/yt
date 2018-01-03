@@ -28,7 +28,7 @@
     var Modal = function ( content, options ) {
         this.options = options
         this.$element = $(content)
-            .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
+            .delegate('[data-dismiss="components"]', 'click.dismiss.modal', $.proxy(this.hide, this))
     }
 
     Modal.prototype = {
@@ -126,7 +126,7 @@
         if (this.isShown && this.options.backdrop) {
             var doAnimate = $.support.transition && animate
 
-            this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+            this.$backdrop = $('<div class="components-backdrop ' + animate + '" />')
                 .appendTo(document.body)
 
             if (this.options.backdrop != 'static') {
@@ -197,7 +197,7 @@
      * ============== */
 
     $(function () {
-        $('body').on('click.modal.data-api', '[data-toggle="modal"]', function ( e ) {
+        $('body').on('click.modal.data-api', '[data-toggle="components"]', function ( e ) {
             var $this = $(this), href
                 , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
                 , option = $target.data('modal') ? 'toggle' : $.extend({}, $target.data(), $this.data())
