@@ -3,7 +3,10 @@ var config ={
         $apiUrl = ' http://192.168.20.195:8080/';
         $admin = {
             'login':$apiUrl+'login',
-            'update':$apiUrl+'update'
-        }
+            'logout':$apiUrl+'logout'
+        };
+        $user = {
+            'update':$apiUrl+'user/update/pwd'
+        };
     }
 }
