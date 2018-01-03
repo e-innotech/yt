@@ -27,6 +27,8 @@ $(function () {
                         sessionStorage.setItem('user',user);
                     }
                     sessionStorage.setItem('permissons',JSON.stringify(data.data));
+                    var treeData = JSON.parse(sessionStorage.getItem('permissons'));
+                    console.log(treeData);
                     location.replace('home.html');
                 }else{
                     alert(data.msg);
