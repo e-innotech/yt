@@ -1,13 +1,17 @@
 package com.yt.cms.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Button {
 	/**
 	 * 主键id
 	 */
+	@JsonIgnore
     private Integer id;
     /**
      * 资源名称
      */
+	@JsonIgnore
     private String resourceName;
     /**
      * 资源uri

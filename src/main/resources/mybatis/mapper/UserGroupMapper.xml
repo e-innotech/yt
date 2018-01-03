@@ -60,6 +60,9 @@
       <if test="comment != null" >
         comment,
       </if>
+       <if test="rolesId != null" >
+        roles_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       
@@ -68,6 +71,9 @@
       </if>
       <if test="comment != null" >
         #{comment,jdbcType=VARCHAR},
+      </if>
+       <if test="rolesId != null" >
+        #{rolesId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -79,6 +85,9 @@
       </if>
       <if test="comment != null" >
         comment = #{comment,jdbcType=VARCHAR},
+      </if>
+       <if test="rolesId != null" >
+        roles_id = #{rolesId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

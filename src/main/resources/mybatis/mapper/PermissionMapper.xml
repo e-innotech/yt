@@ -2,16 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yt.cms.mapper.PermissionMapper">
 
-	<resultMap id="ResultMap" type="com.yt.cms.model.Menu">
+	<resultMap id="ResultMap" type="com.yt.cms.model.MenuLeve1">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="resourceName" property="text" jdbcType="VARCHAR" />
 		<result column="uri" property="href" jdbcType="VARCHAR" />
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
-		<collection property="nodes" ofType="com.yt.cms.model.Menu">
+		<collection property="nodes" ofType="com.yt.cms.model.MenuLeve2">
 			<id column="c_id" property="id" jdbcType="INTEGER" />
 			<result column="c_name" property="text" jdbcType="VARCHAR" />
 			<result column="c_uri" property="href" jdbcType="VARCHAR" />
 			<result column="c_pid" property="parentId" jdbcType="INTEGER" />
+			<collection property="buttons" ofType="com.yt.cms.model.Button">
+				<id column="button_id" property="id" jdbcType="INTEGER"/>
+				<result column="button_uri" property="uri" jdbcType="VARCHAR"/>
+			</collection>
 		</collection>
 	</resultMap>
 
@@ -54,20 +58,24 @@
 		where a.isUse = 1 and a.id = #{userId,jdbcType=INTEGER}
 	</select>
 
-	<!-- 查询所有的左侧菜单，只做到2级菜单，多于2级需要修改代码，目前系统只有2级菜单 -->
+	<!-- 查询所有的左侧菜单，只做到2级菜单，多于2级需要修改代码，目前系统只有2级菜单,并查询二级菜单下的所有按钮资源 -->
 	<select id="queryMenu" resultMap="ResultMap">
 		select
 		d.id,d.resourceName,d.uri,d.parent_id,c.id as c_id,c.resourceName as
-		c_name,c.uri c_uri,c.parent_id as c_pid from
+		c_name,c.uri c_uri,c.parent_id as c_pid,n.id button_id,n.uri as button_uri from
 		(select b.id
 		,b.resourceName ,b.uri,b.parent_id from resource b where
 		b.parent_id =
-		0 and b.isMenu = 1 and b.isDel = 0) d
+		0  and b.isDel = 0) d
 		left join
 		(select a.id
 		,a.resourceName,a.uri,a.parent_id from resource a where
 		a.parent_id !=
-		0 and a.isMenu = 1 and a.isDel = 0) c on c.parent_id = d.id
+		0 and a.isDel = 0) c on c.parent_id = d.id
+		 left join (select m.id
+		,m.resourceName,m.uri,m.parent_id from resource m where
+		m.parent_id !=
+		0  and m.isDel = 0) n on c.id = n.parent_id
 	</select>
 
 	<!-- 查询用户所配置的菜单资源id -->
@@ -76,8 +84,7 @@
 		select e.id from user_group b
 		left join roles_resource d on b.roles_id = d.roles_id
 		left join resource e on e.id = d.resource_id
-		where b.id = #{userGroupId,jdbcType=INTEGER} and e.isMenu = 1 and e.isDel =
-		0
+		where b.id = #{userGroupId,jdbcType=INTEGER} and e.isDel =0
 	</select>
 
 	<!-- 查询用户某个菜单资源下所分配的按钮资源 -->

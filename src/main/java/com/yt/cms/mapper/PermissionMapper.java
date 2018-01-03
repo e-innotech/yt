@@ -5,11 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yt.cms.model.Button;
-import com.yt.cms.model.Menu;
+import com.yt.cms.model.MenuLeve1;
 import com.yt.cms.model.User;
 
 public interface PermissionMapper {
-	List<Menu> queryMenu();
+	List<MenuLeve1> queryMenu();
 
 	List<Integer> queryMenuByUserGroupId(Integer userGroupId);
 

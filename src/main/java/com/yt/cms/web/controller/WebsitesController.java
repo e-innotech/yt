@@ -51,7 +51,7 @@ public class WebsitesController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询网站")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Websites result = websitesService.findById(id);

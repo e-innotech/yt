@@ -52,7 +52,7 @@ public class MembersController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询会员")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Members result = memberService.findById(id);
@@ -96,7 +96,7 @@ public class MembersController {
 	 * @param Ad
 	 * @return
 	 */
-	@PutMapping("/update")
+	@PutMapping("/update/info")
 	@ApiOperation("修改会员信息")
 	public HttpEntity<?> update(@RequestBody MemberInfos info){
 		boolean created = memberService.updateInfo(info);
@@ -110,9 +110,9 @@ public class MembersController {
 	 * @param member
 	 * @return
 	 */
-	@PutMapping("/update/p")
+	@PutMapping("/update/pwd")
 	@ApiOperation("修改会员密码")
-	public HttpEntity<?> updateP(@RequestBody Members member){
+	public HttpEntity<?> updatePwd(@RequestBody Members member){
 		boolean created = memberService.updatePwd(member);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);

@@ -48,7 +48,7 @@ public class YTWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
-        registry.addInterceptor(getPermissionInterceptor()).addPathPatterns("/**").excludePathPatterns("/logout","/login","/swagger-resources/**");
+//        registry.addInterceptor(getPermissionInterceptor()).addPathPatterns("/**").excludePathPatterns("/logout","/login","/swagger-resources/**");
         super.addInterceptors(registry);
     }
 }

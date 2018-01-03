@@ -54,17 +54,6 @@ public class UserGroupServiceImpl implements UserGroupService {
 	}
 
 	@Override
-	public boolean updateRolesByUserGroupId(Integer userGroupId, Integer rolesId) {
-		try {
-
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	@Override
 	public boolean deleteLogicById(Integer id) {
 		try {
 			userGroupDAO.deleteLogicById(id);

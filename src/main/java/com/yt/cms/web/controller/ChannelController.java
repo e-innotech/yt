@@ -51,7 +51,7 @@ public class ChannelController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询栏位")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Channel result = channelService.findById(id);
@@ -107,7 +107,7 @@ public class ChannelController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/name")
+	@GetMapping("/find/name")
 	@ApiOperation("按照栏目名查询")
 	public HttpEntity<?> findByChannelName(@RequestParam String channelName) {
 		boolean result = channelService.findByChannelName(channelName);

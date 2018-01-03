@@ -69,7 +69,7 @@ public class NewsController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询稿件")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		News result = newsService.findById(id);
@@ -154,7 +154,7 @@ public class NewsController {
 	 * 按照稿件投放id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/launch/find")
+	@GetMapping("/launch/find/id")
 	@ApiOperation("按照稿件投放id查询稿件投放详情")
 	public HttpEntity<?> findLaunch(@RequestParam Integer id){
 		NewsLaunch module =  newsLaunchService.findById(id);
@@ -202,7 +202,7 @@ public class NewsController {
 	 * 稿件审批
 	 * @return
 	 */
-	@PostMapping("/aduit")
+	@PostMapping("/launch/aduit")
 	@ApiOperation("稿件审批")
 	public HttpEntity<?> aduit(@RequestBody AduitNews aduit){
 		NewsLaunch newsLaunch = new NewsLaunch();
@@ -219,7 +219,7 @@ public class NewsController {
 	 * 按照稿件发布id查询稿件投放详情
 	 * @return
 	 */
-	@GetMapping("/publish/find")
+	@GetMapping("/publish/find/id")
 	@ApiOperation("按照稿件发布id查询稿件投放详情")
 	public HttpEntity<?> findPublish(@RequestParam Integer id){
 		NewsPublishLine module =  newsPublishService.findById(id);
@@ -237,9 +237,9 @@ public class NewsController {
 	 * 查询所有稿件投放信息
 	 * @return
 	 */
-	@GetMapping("/publish/list")
+	@GetMapping("/publish/query")
 	@ApiOperation("查询所有稿件投放信息")
-	public HttpEntity<?> queryPublishList(@RequestBody NewsPublish newsPublish){
+	public HttpEntity<?> queryPublish(@RequestBody NewsPublish newsPublish){
 		List<NewsPublish> modules =  newsPublishService.query(newsPublish);
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(modules == null || modules.isEmpty()) {
@@ -254,9 +254,9 @@ public class NewsController {
 	 * 稿件上下线
 	 * @return
 	 */
-	@PutMapping("/ofLine")
+	@PutMapping("/publish/ofLine")
 	@ApiOperation("稿件上下线")
-	public HttpEntity<?> ofLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
+	public HttpEntity<?> publishOfLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态
@@ -276,11 +276,11 @@ public class NewsController {
 	}
 	
 	/**
-	 * 稿件上下线
+	 * 设置首页
 	 * @return
 	 */
-	@PutMapping("/home")
-	@ApiOperation("稿件上下线")
+	@PutMapping("/publish/home")
+	@ApiOperation("设置首页")
 	public HttpEntity<?> setHome(@RequestParam Integer id, @RequestParam Integer homeWeight){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);

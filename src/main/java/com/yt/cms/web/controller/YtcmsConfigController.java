@@ -51,7 +51,7 @@ public class YtcmsConfigController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询配置")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		YtcmsConfig result = configService.findById(id);

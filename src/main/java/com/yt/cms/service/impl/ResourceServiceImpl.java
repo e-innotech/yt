@@ -2,16 +2,21 @@ package com.yt.cms.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.ResourceMapper;
 import com.yt.cms.model.Resource;
+import com.yt.cms.model.ResourceW;
 import com.yt.cms.service.ResourceService;
 @Service
 public class ResourceServiceImpl implements ResourceService {
+	private Logger logger = LoggerFactory.getLogger(ResourceServiceImpl.class);
 	@Autowired
 	private ResourceMapper resourceDAO;
 	@Override
@@ -57,6 +62,13 @@ public class ResourceServiceImpl implements ResourceService {
 		}
 		
 		return false;
+	}
+
+	@Override
+	@Cacheable(value = "user", key = "userkey")
+	public List<ResourceW> queryResource_W() {
+		logger.info("from db....");
+		return resourceDAO.queryResource_W();
 	}
 	
 }

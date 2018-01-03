@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,7 +50,7 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/queryResources")
+	@GetMapping("/find/id")
 	@ApiOperation("查询角色id对应的资源数据")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Roles result = rolesService.findById(id);
@@ -105,7 +104,7 @@ public class RoleController {
 	 * @param id
 	 * @return
 	 */
-	@DeleteMapping("/resource")
+/*	@DeleteMapping("/resource")
 	@ApiOperation("删除角色下的所有资源")
 	public HttpEntity<?> deleteRolesResource(@RequestParam Integer rolesId){
 		boolean created = rolesService.removeRolesResource(rolesId);
@@ -113,6 +112,6 @@ public class RoleController {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
-	}
+	}*/
 	
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.Ad;
@@ -54,7 +55,7 @@ public class AdController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询广告")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Ad result = adService.findById(id);
@@ -68,6 +69,7 @@ public class AdController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加广告")
+	@LogAnnotation(action="新增广告")
 	public HttpEntity<?> add(@RequestBody Ad Ad) {
 		boolean created = adService.save(Ad);
 		if(!created) {
@@ -82,6 +84,7 @@ public class AdController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改广告")
+	@LogAnnotation(action="修改广告")
 	public HttpEntity<?> update(@RequestBody Ad ad){
 		boolean created = adService.update(ad);
 		if(!created) {
@@ -96,6 +99,7 @@ public class AdController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("删除广告")
+	@LogAnnotation(action="删除广告")
 	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = adService.deleteLogicById(id);
 		if(!created) {

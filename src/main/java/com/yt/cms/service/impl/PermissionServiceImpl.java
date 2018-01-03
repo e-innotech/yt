@@ -10,7 +10,8 @@ import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.common.Const;
 import com.yt.cms.mapper.PermissionMapper;
 import com.yt.cms.model.Button;
-import com.yt.cms.model.Menu;
+import com.yt.cms.model.MenuLeve1;
+import com.yt.cms.model.MenuLeve2;
 import com.yt.cms.model.Resource;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserGroup;
@@ -23,16 +24,16 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired
 	private PermissionMapper permissionDAO;
 	@Override
-	public List<Menu> queryMenu(User user) {
+	public List<MenuLeve1> queryMenu(User user) {
 		// 获取全部菜单数据
-		List<Menu> list = permissionDAO.queryMenu();
+		List<MenuLeve1> list = permissionDAO.queryMenu();
 		UserGroup ug = user.getUserGroup();
 		if(ug == null) {
 			// 跳转到固定页面，提示用户没有权限访问，需要配置权限
 			return null;
 		}
 		// 超级管理员组
-		if(ug.getId() == Const.SUPER_ADMIN_USER_GROUP) {
+		if(ug.getId().intValue() == Const.SUPER_ADMIN_USER_GROUP.intValue()) {
 			return list;
 		}
 		// 查询用户所配置的资源数据
@@ -44,7 +45,7 @@ public class PermissionServiceImpl implements PermissionService {
 
 	@Override
 	public List<Button> queryMenuButton(Integer userGroupId, Integer menuId) {
-		if(userGroupId == Const.SUPER_ADMIN_USER_GROUP) {
+		if(userGroupId.intValue() == Const.SUPER_ADMIN_USER_GROUP.intValue()) {
 			return  permissionDAO.queryMenuButton(menuId);
 		}
 		return permissionDAO.queryMenuButtonByUserGroupId(userGroupId, menuId);
@@ -83,15 +84,42 @@ public class PermissionServiceImpl implements PermissionService {
 		return null;
 	}
 
-	private void remove(List<Menu> list, List<Integer> userResource) {
-		Iterator<Menu> it = list.iterator();
+	private void remove3(List<Button> list, List<Integer> userResource) {
+		Iterator<Button> it = list.iterator();
 		while(it.hasNext()){
-			Menu m = it.next();
+			Button m = it.next();
+			if(m.getId() == null || !userResource.contains(m.getId())) {
+				it.remove();
+			}
+		}
+	}
+	
+	private void remove2(List<MenuLeve2> list, List<Integer> userResource) {
+		Iterator<MenuLeve2> it = list.iterator();
+		while(it.hasNext()){
+			MenuLeve2 m = it.next();
 			// 父节点匹配的上情况下，才会匹配孩子节点
 			if(m.getId() != null && userResource.contains(m.getId())) {
-				List<Menu> child = m.getNodes();
+				List<Button> child = m.getButtons();
 				if(CollectionUtils.isNotEmpty(child)) {
-					this.remove(child, userResource);
+					this.remove3(child, userResource);
+				}
+			}
+			if(m.getId() == null || !userResource.contains(m.getId())) {
+				it.remove();
+			}
+		}
+	}
+	private void remove(List<MenuLeve1> list, List<Integer> userResource) {
+		Iterator<MenuLeve1> it = list.iterator();
+		while(it.hasNext()){
+			MenuLeve1 m = it.next();
+			// 父节点匹配的上情况下，才会匹配孩子节点
+			if(m.getId() != null && userResource.contains(m.getId())) {
+				List<MenuLeve2> child = m.getNodes();
+				if(CollectionUtils.isNotEmpty(child)) {
+					//
+					this.remove2(child, userResource);
 				}
 			}
 			if(m.getId() == null || !userResource.contains(m.getId())) {

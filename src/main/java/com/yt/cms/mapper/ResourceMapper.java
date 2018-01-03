@@ -3,6 +3,7 @@ package com.yt.cms.mapper;
 import java.util.List;
 
 import com.yt.cms.model.Resource;
+import com.yt.cms.model.ResourceW;
 
 public interface ResourceMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +17,6 @@ public interface ResourceMapper {
     List<Resource> query(Resource record);
     
     int deleteLogicById(Integer id);
+    
+    List<ResourceW> queryResource_W();
 }

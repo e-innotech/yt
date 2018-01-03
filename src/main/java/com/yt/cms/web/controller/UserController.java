@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.model.Menu;
+import com.yt.cms.model.MenuLeve1;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserResponseBody;
 import com.yt.cms.model.UserUpdatePwd;
@@ -59,12 +56,11 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/user/id")
+	@GetMapping("/user/find/id")
 	@ApiOperation("按照id查询用户")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public User findById(@RequestParam Integer id) {
 		User result = userService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<User>(result, status);
+		return result;
 	}
 	
 	/**
@@ -72,9 +68,9 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/user/name")
+	@GetMapping("/user/find/name")
 	@ApiOperation("按照用户名查询用户")
-	public HttpEntity<?> findByUserName(@RequestParam String userName) {
+	public AjaxResponseBody findByUserName(@RequestParam String userName) {
 		boolean result = userService.findByUserName(userName);
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(result) {
@@ -84,7 +80,7 @@ public class UserController {
 			response.setMsg("该用户名可注册！");
 			response.setSuccess(true);
 		} 
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return response;
 	}
 	/**
 	 * 新增用户
@@ -93,7 +89,7 @@ public class UserController {
 	 */
 	@PostMapping("/user/add")
 	@ApiOperation("添加用户")
-	public HttpEntity<?> add(@RequestBody UserResponseBody userBody) {
+	public AjaxResponseBody add(@RequestBody UserResponseBody userBody) {
 		User user = new User();
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
@@ -102,11 +98,12 @@ public class UserController {
 		if(!created) {
 			response.setMsg(Const.FAILED);
 			response.setSuccess(false);
-			return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			response.setMsg(Const.SUCCESS);
+			response.setSuccess(true);
 		}
-		response.setMsg(Const.SUCCESS);
-		response.setSuccess(true);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return response;
+		
 	}
 	/**
 	 * 用户登录
@@ -114,7 +111,7 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	@ApiOperation("用户登陆")
-	public HttpEntity<?> login(@RequestBody UserResponseBody userBody, HttpServletRequest request) {
+	public AjaxResponseBody login(@RequestBody UserResponseBody userBody, HttpServletRequest request) {
 		User user = new User();
 		// TODO 用户名和密码不能为空
 		user.setPassWord(userBody.getPassWord());
@@ -127,18 +124,18 @@ public class UserController {
 			response.setMsg(Const.LOGIN_FAILED);
 			response.setSuccess(false);
 		} else {
-			session.setAttribute("_session_user", db_user);
+			session.setAttribute(Const.SESSION_USER_KEY, db_user);
 			response.setMsg(Const.LOGIN_SUCCESS);
 			response.setSuccess(true);
 			Map<String, Object> map = new HashMap<String, Object>();
-			List<Menu> menu = permissionService.queryMenu(db_user);
+			List<MenuLeve1> menu = permissionService.queryMenu(db_user);
 			String roleName = permissionService.queryRolesName(db_user.getUserGroup().getId());
 			map.put("userName", db_user.getUserName());
 			map.put("roleName", roleName);
 			map.put("menu", menu);
 			response.setData(map);
 		}
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return response;
 	}
 	/**
 	 * 用户退出
@@ -146,13 +143,13 @@ public class UserController {
 	 */
 	@PostMapping("/logout")
 	@ApiOperation("用户登陆")
-	public HttpEntity<?> logout(HttpServletRequest request) {
+	public AjaxResponseBody logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.removeAttribute("_session_user");
+		session.removeAttribute(Const.SESSION_USER_KEY);
 		AjaxResponseBody response = new AjaxResponseBody();
 		response.setMsg(Const.LOGOUT_SUCCESS);
 		response.setSuccess(true);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return response;
 	}
 	/**
 	 * 更新用户
@@ -160,17 +157,33 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/update")
+	@PutMapping("/user/update/pwd")
 	@ApiOperation("更新用户密码")
-	public HttpEntity<?> update(@RequestBody UserUpdatePwd user) {
-		if(StringUtils.isEmpty(user.getPassWord()) || StringUtils.isEmpty(user.getCurrentPwd())) {
-			return new ResponseEntity<String>(Const.FAILED,HttpStatus.BAD_REQUEST);
+	public AjaxResponseBody updatePwd(@RequestBody UserUpdatePwd user,  HttpServletRequest request) {
+		// TODO 公用的资源不属于菜单
+		HttpSession session = request.getSession();
+		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		AjaxResponseBody response = new AjaxResponseBody();
+		if(user_session == null || user_session.getId() == null) {
+			response.setMsg(Const.SESSION_TIMEOUT);
+			response.setSuccess(false);
+			return response;
 		}
+		if(StringUtils.isEmpty(user.getPassWord()) || StringUtils.isEmpty(user.getCurrentPwd())) {
+			response.setMsg(Const.PASSWORD_REQUIRED);
+			response.setSuccess(false);
+			return response;
+		}
+		user.setId(user_session.getId());
 		boolean flag = userService.update(user);
 		if(!flag) {
-			return new ResponseEntity<String>(Const.FAILED,HttpStatus.BAD_REQUEST);
+			response.setMsg(Const.FAILED);
+			response.setSuccess(false);
+		} else {
+			response.setMsg(Const.SUCCESS);
+			response.setSuccess(true);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return response;
 	}
 	
 	/**
@@ -178,32 +191,42 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/enableOrDisable")
+	@PutMapping("/user/update/status")
 	@ApiOperation("启停用户")
-	public HttpEntity<?> enableOrDisable(@RequestParam Integer id,@RequestParam Integer isUse) {
+	public AjaxResponseBody updateStatus(@RequestParam Integer id,@RequestParam Integer isUse) {
+		AjaxResponseBody response = new AjaxResponseBody();
 		User user = new User();
 		user.setId(id);
 		user.setIsUse(isUse);
 		boolean flag = userService.disableOrEnable(user);
 		if(!flag) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			response.setMsg(Const.FAILED);
+			response.setSuccess(false);
+		} else {
+			response.setMsg(Const.SUCCESS);
+			response.setSuccess(true);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return response;
 	}
 	
 	/**
-	 * 关联用户到用户组
+	 * 给用户授权
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/setUserGroup")
-	@ApiOperation("关联用户到用户组")
-	public HttpEntity<?> setUserGroup(@RequestParam Integer userId,@RequestParam Integer userGroupId) {
+	@PutMapping("/user/grant")
+	@ApiOperation("给用户授权")
+	public AjaxResponseBody grant(@RequestParam Integer userId,@RequestParam Integer userGroupId) {
+		AjaxResponseBody response = new AjaxResponseBody();
 		boolean flag = userService.setUserGroup4User(userId, userGroupId);
 		if(!flag) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			response.setMsg(Const.FAILED);
+			response.setSuccess(false);
+		} else {
+			response.setMsg(Const.SUCCESS);
+			response.setSuccess(true);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return response;
 	}
 	
 }

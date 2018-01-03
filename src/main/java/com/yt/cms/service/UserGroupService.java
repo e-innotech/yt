@@ -46,10 +46,5 @@ public interface UserGroupService {
 	 * @return
 	 */
 	public boolean deleteLogicById(Integer id);
-	/**
-	 * 按照用户组id，修改用户组角色
-	 * @param userGroupId
-	 * @return
-	 */
-	public boolean updateRolesByUserGroupId(Integer userGroupId, Integer rolesId);
+
 }

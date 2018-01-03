@@ -8,12 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserUpdatePwd implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 主键id
-	 */
-	@ApiModelProperty("id")
-	private Integer id;
 
+	private Integer id;
 	/**
 	 * 密码
 	 */
@@ -34,14 +30,6 @@ public class UserUpdatePwd implements Serializable{
 		this.passWord = passWord;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getCurrentPwd() {
 		return currentPwd;
 	}
@@ -57,5 +45,14 @@ public class UserUpdatePwd implements Serializable{
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 
 }

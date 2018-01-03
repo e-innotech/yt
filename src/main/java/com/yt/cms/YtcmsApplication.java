@@ -6,10 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 
 @SpringBootApplication
 @MapperScan("com.yt.cms.mapper")
+@EnableCaching
 public class YtcmsApplication implements CommandLineRunner{
 	private Logger logger = LoggerFactory.getLogger(YtcmsApplication.class);
 	

@@ -57,7 +57,7 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询系统资源")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		Resource result = resourceService.findById(id);

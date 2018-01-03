@@ -3,7 +3,7 @@ package com.yt.cms.service;
 import java.util.List;
 
 import com.yt.cms.model.Button;
-import com.yt.cms.model.Menu;
+import com.yt.cms.model.MenuLeve1;
 import com.yt.cms.model.Resource;
 import com.yt.cms.model.User;
 
@@ -20,7 +20,7 @@ public interface PermissionService {
 	 * @param user
 	 * @return
 	 */
-	public List<Menu> queryMenu(User user);
+	public List<MenuLeve1> queryMenu(User user);
 	/**
 	 * 查询用户角色名
 	 * @param UserGroupId

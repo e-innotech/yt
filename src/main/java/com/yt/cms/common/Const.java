@@ -20,6 +20,10 @@ public class Const {
 	
 	public static final String NOT_FOUND = "没有找到！";
 	
+	public static final String PASSWORD_REQUIRED = "新密码或者旧密码不能为空！";
+	
+	public static final String SESSION_TIMEOUT = "超时，请重新登录！";
+	
 	public static final Integer ADUIT_PASS = 1;
 	
 	public static final Integer ADUIT_NO_PASS = 2;
@@ -31,5 +35,7 @@ public class Const {
 	public static final Integer DELETE_FLAG = 1;
 	
 	public static final Integer SUPER_ADMIN_USER_GROUP = 999999;
+	
+	public static final String SESSION_USER_KEY = "_session_user";
 	
 }

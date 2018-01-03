@@ -41,22 +41,22 @@ public class UserGroupController {
 		List<UserGroup> list = userGroupService.query(groupName, page);
 		return new PageInfo<UserGroup>(list);
 	}
-	/**
+/*	*//**
 	 * 树形展现
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/queryAll")
 	@ApiOperation("查询用户组列表")
 	public List<UserGroup> queryAll(){
 		return userGroupService.queryAll();
-	}
+	}*/
 	/**
 	 * 按照id查询
 	 * 
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询用户组")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		UserGroup result = userGroupService.findById(id);
@@ -100,21 +100,6 @@ public class UserGroupController {
 	@ApiOperation("删除用户组")
 	public HttpEntity<?> delete(@RequestParam Integer id){
 		boolean created = userGroupService.deleteLogicById(id);
-		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
-	}
-	
-	/**
-	 * 修改用户组角色
-	 * @param rolesResource
-	 * @return
-	 */
-	@PutMapping("/updateRoles")
-	@ApiOperation("修改用户组角色")
-	public HttpEntity<?> updateRoles(@RequestParam Integer userGroupId,@RequestParam Integer rolesId){
-		boolean created = userGroupService.updateRolesByUserGroupId(userGroupId,rolesId);
 		if(!created) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

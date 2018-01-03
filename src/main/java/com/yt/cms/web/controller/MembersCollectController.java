@@ -64,7 +64,7 @@ public class MembersCollectController {
 	 * @param comment
 	 * @return
 	 */
-	@PutMapping("/cancel")
+	@PutMapping("/delete")
 	@ApiOperation("会员取消收藏")
 	public HttpEntity<?> cancel(@RequestParam Integer collectId){
 		boolean result = memberCollectService.cancelCollect(collectId);

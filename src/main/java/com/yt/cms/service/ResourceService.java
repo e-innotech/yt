@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yt.cms.common.Page;
 import com.yt.cms.model.Resource;
+import com.yt.cms.model.ResourceW;
 
 /**
  * 资源接口定义
@@ -43,5 +44,10 @@ public interface ResourceService {
 	 * @return
 	 */
 	public boolean deleteLogicById(Integer id);
+	/**
+	 * 程序启动加载数据
+	 * @return
+	 */
+	public List<ResourceW> queryResource_W();
 	
 }

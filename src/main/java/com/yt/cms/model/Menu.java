@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.List;
-
 public class Menu {
 	/**
 	 * 主键id
@@ -19,10 +17,6 @@ public class Menu {
      * 父id
      */
     private Integer parentId;
-    /**
-     * 子节点
-     */
-    private List<Menu> nodes;
     
     
     public Integer getId() {
@@ -55,14 +49,6 @@ public class Menu {
 
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
-	}
-
-	public List<Menu> getNodes() {
-		return nodes;
-	}
-
-	public void setNodes(List<Menu> nodes) {
-		this.nodes = nodes;
 	}
 
     

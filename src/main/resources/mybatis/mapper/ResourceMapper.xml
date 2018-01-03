@@ -10,6 +10,10 @@
 		<result column="isMenu" property="isMenu" jdbcType="INTEGER" />
 	</resultMap>
 	
+	<resultMap type="com.yt.cms.model.ResourceW" id="resourceW">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="uri" property="uri" jdbcType="VARCHAR" />
+	</resultMap>
 
 	<sql id="Base_Column_List">
 		id, resourceName, uri, parent_id, rw,isMenu
@@ -115,4 +119,9 @@
 				isDel = 1, del_date = now()
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	<select id="queryResource_W" resultMap="resourceW">
+		  select a.id,a.uri from resource a where a.parent_id !=0 and a.rw = 1 and a.isDel = 0
+	</select>
+	
 </mapper>

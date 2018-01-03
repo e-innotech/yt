@@ -22,6 +22,16 @@ public class UserGroup extends BaseVo{
      */
     private Roles roles;
 
+    private Integer rolesId;
+    
+	public Integer getRolesId() {
+		return rolesId;
+	}
+
+	public void setRolesId(Integer rolesId) {
+		this.rolesId = rolesId;
+	}
+
 	public Roles getRoles() {
 		return roles;
 	}

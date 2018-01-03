@@ -52,7 +52,7 @@ public class AdPositionsController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/find")
+	@GetMapping("/find/id")
 	@ApiOperation("按照id查询广告位")
 	public HttpEntity<?> findById(@RequestParam Integer id) {
 		AdPositions result = adPositionsService.findById(id);
