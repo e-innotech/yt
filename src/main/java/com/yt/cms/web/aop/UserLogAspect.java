@@ -2,24 +2,29 @@ package com.yt.cms.web.aop;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.Const;
 import com.yt.cms.mapper.UserLogsMapper;
+import com.yt.cms.model.ResourceW;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserLogs;
+import com.yt.cms.service.ResourceService;
 /**
  * 
  * 拦截 广告，广告位，channel，会员状态修改，
@@ -38,13 +43,16 @@ query 分页查询
  * @author admin
  *
  */
+@Aspect
+@Component
 public class UserLogAspect {
 
 	 private final Logger logger = LoggerFactory.getLogger(UserLogAspect.class);
 	 private final String LOG_ACTION = "action";
 	    @Autowired
 	    private UserLogsMapper logDAO;
-
+	    @Autowired
+		private ResourceService resourceService;
 	    @Pointcut("@annotation(com.yt.cms.annotations.LogAnnotation)")
 	    private void pointCutMethod(){}
 
@@ -62,6 +70,7 @@ public class UserLogAspect {
 	        }else{
 	        	userLog.setUsersId(user.getId());
 //	        	userLog.setResourceId(resourceId);
+	        	List<ResourceW> list = resourceService.queryResource_W();
 	        }
 	        //下面开始获取 ip，targetType，remark，action
 	        try {

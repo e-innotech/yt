@@ -42,12 +42,17 @@ public class UserController {
 	 */
 	@GetMapping("/user/query")
 	@ApiOperation("查询用户列表")
-	public PageInfo<User> query(@RequestParam(required=false) String userName,
+	public AjaxResponseBody query(@RequestParam(required=false) String userName,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			@RequestParam(defaultValue="1") Integer pageNum){
 		// 列表页面查出该用户在列表页面所有的按钮资源
 		List<User> list = userService.query(userName, pageSize, pageNum);
-		return new PageInfo<User>(list);
+		PageInfo<User> pageInfo =  new PageInfo<User>(list);
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		response.setSuccess(true);
+		response.setData(pageInfo);
+		return response;
 	}
 
 	/**
@@ -58,9 +63,13 @@ public class UserController {
 	 */
 	@GetMapping("/user/find/id")
 	@ApiOperation("按照id查询用户")
-	public User findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		User result = userService.findById(id);
-		return result;
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.SUCCESS);
+		response.setSuccess(true);
+		response.setData(result);
+		return response;
 	}
 	
 	/**

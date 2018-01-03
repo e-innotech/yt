@@ -65,7 +65,7 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	@Cacheable(value = "user", key = "userkey")
+	@Cacheable(value = "user")
 	public List<ResourceW> queryResource_W() {
 		logger.info("from db....");
 		return resourceDAO.queryResource_W();
