@@ -2,10 +2,8 @@ $(function () {
     console.log('nodeData::::'+nodeData.uri);
     console.log(nodeData.uri)
     var uname = '';
-    var ctrl_add = '';
-    var ctrl_add = '';
     var ctrl_status = '';
-    var userList = [];
+    var memberQueryList = [];
     const RW = ['只读','读写'];
     const MENU = ['否','是'];
 
@@ -16,7 +14,7 @@ $(function () {
         }
         $.ajax({
             type: 'get',//请求方式
-            url: 'http://123.59.156.27:8080/members/query',//请求路径
+            url: $query.members,//请求路径
             async: false,
             dataType: 'json', //数据格式
             xhrFields: {
@@ -79,7 +77,7 @@ $(function () {
     }
     var initTable = function(list){//初始化表格
         $('#member_query').empty();//进来之前清空body
-        userList = list;
+        memberQueryList = list;
         for(var i=0;i<list.length;i++){
             str = "<tr>" +
             "<td>" + list[i].id + "</td>" +
@@ -88,7 +86,6 @@ $(function () {
             "<td>" + list[i].regDate + "</td>" +
             '<td>'+MENU[list[i].isUse]+'</td>' +
             '<td>'+MENU[list[i].isGag]+'</td>' +
-            '<td>'+(ctrl_upate==1?'<button id="updataBtn_'+list[i].id+'">修改会员信息</button>':'')+(ctrl_upate==1?'<button id="updataBtn_'+list[i].id+'">修改会员密码</button>':'')+'</td>'+
             "</tr>";
             $('#member_query').append(str);//
         }
