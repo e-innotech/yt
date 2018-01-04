@@ -81,7 +81,7 @@ $(function(){
                 nodeData = data;
                 //console.log(getNote(data.href))
                 if(data.href!=null) {
-                    $.get($apiUrl+getNote(data.href), function (re) {
+                    $.get(getNote(data.href), function (re) {
                         $('#main').html(re);
                     });
                 }
