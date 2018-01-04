@@ -39,27 +39,27 @@ console.log(nodeData.uri)
 
         for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
             if(nodeData.buttons[i].uri.indexOf('add')){
-                ctrl_add = 1;
+                ctrl_add = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('find')){
-                ctrl_find = 1;
+                ctrl_find = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('delete')){
-                ctrl_delete = 1;
+                ctrl_delete = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('updata')){
-                ctrl_updata = 1;
+                ctrl_updata = nodeData.buttons[i].uri;
+            };
+            if(ctrl_add != '') {
+                $('#addUserBtn').show();
             };
         }
-        if(ctrl_add == 1) {$('#addUserBtn').show()};
-        getUserList();
-        $('#addUserBtn').click(function(){            //增加按钮的事件
-            $.get($components.pwdReset,function (result) {
+        $('#addUserBtn').click(function () {//增加按钮
+            $.get($components.userQuery,function (result) {
                 $('#popPanel').html(result);
                 $('#user_query_add').modal('show');
                 $('#user_query_addBtn').click(function () {
                     var add = JSON.stringify({'userName':$('#user_query_add_userName').val(),'passWord':$('#user_query_add_passWord').val()});
-                    console.log(99,$apiUrl+nodeData)
                     $.ajax({
                         type: 'POST',
                         url:'http://123.59.156.27:8080/user/add',
@@ -79,6 +79,8 @@ console.log(nodeData.uri)
                 });
             })
         });
+        getUserList();
+
 
     }
     var initTable = function(list){//初始化表格

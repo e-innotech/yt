@@ -15,7 +15,9 @@ var config ={
 
         $components = {
             'pwdReset':'components/pwdReset.html',
-            'resourceEdit':'components/resourceEdit.html'
+            'resourceEdit':'components/resourceEdit.html',
+            'userGroup':'components/userGroup.html',
+            'userQuery':'components/userQuery.html'
         }
     }
 }

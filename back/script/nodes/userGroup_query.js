@@ -48,6 +48,32 @@ $(function () {
         }
         if(ctrl_add == 1) {$('#addUserBtn').show()};
         getUserList();
+        $('#addUserBtn').click(function(){            //增加按钮的事件
+            $.get($components.userGroup,function (result) {
+                $('#popPanel').html(result);
+                $('#userGroup_add').modal('show');
+                $('#userGroup_addBtn').click(function () {
+                    var add = JSON.stringify({'userName':$('#userGroup_userName').val(),'passWord':$('#userGroup_passWord').val()});
+                    console.log(99,$apiUrl+nodeData)
+                    $.ajax({
+                        type: 'POST',
+                        url:'http://123.59.156.27:8080/userGroup/add',
+                        contentType:'application/json',//必须
+                        data: add,
+                        dataType: 'json',
+                        xhrFields: {//必须
+                            withCredentials: true
+                        },
+                        success: function(data) {
+                            alert(data.msg);
+                            if(data.success){
+                                $('#userGroup_add').modal('hide');
+                            }
+                        }
+                    });
+                });
+            })
+        });
     }
     var initTable = function(list){//初始化表格
         $('#userGroup_query').empty();//进来之前清空body
@@ -61,9 +87,6 @@ $(function () {
             "<td>" + list[i].user_group_id + "</td>" +
             '<td>'+(ctrl_find==1?'<button id="findBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete==1?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             "</tr>";
-
-
-
             $('#updataBtn_'+list[i].id).click(function () {
                 $.get($components.pwdReset,function (result) { //修改按钮的事件
                     $('#popPanel').html(result);
@@ -72,7 +95,7 @@ $(function () {
                         var add = JSON.stringify({'userName':$('#userGroup_updata_userName').val(),'passWord':$('#userGroup_updata_passWord').val()});
                         console.log(99,$apiUrl+nodeData)
                         $.ajax({
-                            type: 'POST',
+                            type: 'PUT',
                             url:'http://123.59.156.27:8080/userGroup/update',
                             contentType:'application/json',//必须
                             data: add,
@@ -91,7 +114,7 @@ $(function () {
                 })
             });
             $('#deleteBtn_'+list[i].id).click(function () {
-                //按钮的功能
+                //删除按钮的功能
             });
             $('#userGroup_query').append(str);//
         }
