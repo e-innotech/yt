@@ -15,7 +15,7 @@ $(function () {
         }
         $.ajax({
             type: 'get',//请求方式
-            url: $apiUrl+nodeData.uri,//请求路径
+            url: $query.userGroup,//请求路径
             async: false,
             dataType: 'json', //数据格式
             xhrFields: {
@@ -60,7 +60,7 @@ $(function () {
                     var add = JSON.stringify({'userName':$('#userGroup_add_userName').val(),'passWord':$('#userGroup_add_passWord').val()});
                     $.ajax({
                         type: 'POST',
-                        url:'http://123.59.156.27:8080/userGroup/add',
+                        url: $query.userGroup,
                         contentType:'application/json',//必须
                         data: add,
                         dataType: 'json',
@@ -99,7 +99,7 @@ $(function () {
                         console.log(99,$apiUrl+nodeData)
                         $.ajax({
                             type: 'PUT',
-                            url:$apiUrl+ctrl_updata,
+                            url:$query.userGroup,
                             contentType:'application/json',//必须
                             data: add,
                             dataType: 'json',
