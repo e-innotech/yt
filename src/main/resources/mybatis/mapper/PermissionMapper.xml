@@ -5,12 +5,12 @@
 	<resultMap id="ResultMap" type="com.yt.cms.model.MenuLeve1">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="resourceName" property="text" jdbcType="VARCHAR" />
-		<result column="uri" property="href" jdbcType="VARCHAR" />
+		<result column="uri" property="uri" jdbcType="VARCHAR" />
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
 		<collection property="nodes" ofType="com.yt.cms.model.MenuLeve2">
 			<id column="c_id" property="id" jdbcType="INTEGER" />
 			<result column="c_name" property="text" jdbcType="VARCHAR" />
-			<result column="c_uri" property="href" jdbcType="VARCHAR" />
+			<result column="c_uri" property="uri" jdbcType="VARCHAR" />
 			<result column="c_pid" property="parentId" jdbcType="INTEGER" />
 			<collection property="buttons" ofType="com.yt.cms.model.Button">
 				<id column="button_id" property="id" jdbcType="INTEGER"/>
@@ -50,11 +50,11 @@
 		, a.uname as userName, b.id as userGroupId, b.groupName , c.id as
 		rolesId, c.roleName, e.id as resourceId, e.resourceName,e.uri,e.rw
 		from users a
-		left join user_group b on a.user_group_id = b.id and b.isDel = 0
+		left join user_group b on a.user_group_id = b.id 
 		left join
-		roles c on b.roles_id = c.id and c.isDel = 0
+		roles c on b.roles_id = c.id 
 		left join roles_resource d on c.id = d.roles_id
-		left join resource e on d.resource_id = e.id and e.isDel = 0
+		left join resource e on d.resource_id = e.id 
 		where a.isUse = 1 and a.id = #{userId,jdbcType=INTEGER}
 	</select>
 
@@ -84,7 +84,7 @@
 		select e.id from user_group b
 		left join roles_resource d on b.roles_id = d.roles_id
 		left join resource e on e.id = d.resource_id
-		where b.id = #{userGroupId,jdbcType=INTEGER} and e.isDel =0
+		where b.id = #{userGroupId,jdbcType=INTEGER} 
 	</select>
 
 	<!-- 查询用户某个菜单资源下所分配的按钮资源 -->
@@ -94,7 +94,7 @@
 		left join roles_resource d on b.roles_id = d.roles_id
 		left join resource e on e.id = d.resource_id
 		where b.id = #{userGroupId,jdbcType=INTEGER} and e.parent_id =
-		#{menuId,jdbcType=INTEGER} and e.isMenu = 0 and e.isDel = 0
+		#{menuId,jdbcType=INTEGER} and e.isMenu = 0 
 	</select>
 
 	<!-- 查询某个菜单资源下所有按钮资源 -->
@@ -102,15 +102,13 @@
 		select e.id,e.resourceName,e.uri from user_group b
 		left join roles_resource d on b.roles_id = d.roles_id
 		left join resource e on e.id = d.resource_id
-		where e.parent_id = #{menuId,jdbcType=INTEGER} and e.isMenu = 0 and e.isDel
-		= 0
+		where e.parent_id = #{menuId,jdbcType=INTEGER} and e.isMenu = 0 
 	</select>
 
 	<select id="queryRolesName" resultType="java.lang.String"
 		parameterType="java.lang.Integer">
 		select b.roleName
 		from user_group a left join roles b on a.roles_id = b.id where a.isDel = 0
-		and b.isDel = 0
 		and a.id = #{id,jdbcType=INTEGER}
 	</select>
 

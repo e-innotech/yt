@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.NewsPublish;
 import com.yt.cms.model.NewsPublishLine;
 
@@ -40,9 +41,10 @@ public interface NewsPublishService {
 	/**
 	 * 稿件上下线管理列表
 	 * @param newsPublish
+	 * @param page
 	 * @return
 	 */
-	public List<NewsPublish> query(NewsPublish newsPublish);
+	public List<NewsPublish> query(NewsPublish newsPublish, Page page);
 	
 	
 	

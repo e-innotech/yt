@@ -31,12 +31,13 @@
     select 
     <include refid="Base_Column_List" />
     from websites where 1=1  and isDel = 0
-     <if test="isUse != null" >
+     <if test="isUse != null and isUse != -1" >
 	        and isUse = #{isUse,jdbcType=INTEGER}
 	      </if>
 	      <if test="siteName != null" >
 	       and siteName like concat('%', #{siteName}, '%')
 	      </if>
+	       order by id desc
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

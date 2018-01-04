@@ -39,8 +39,10 @@ public class AdPositionsServiceImpl implements AdPositionsService {
 	@Override
 	public boolean update(AdPositions adPositions) {
 		try {
-			adpositionDAO.updateByPrimaryKeySelective(adPositions);
-			return true;
+			int row = adpositionDAO.updateByPrimaryKeySelective(adPositions);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

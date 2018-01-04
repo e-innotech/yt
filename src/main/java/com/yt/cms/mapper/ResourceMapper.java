@@ -16,6 +16,8 @@ public interface ResourceMapper {
     
     List<Resource> query(Resource record);
     
+    List<Resource> queryAll();
+    
     int deleteLogicById(Integer id);
     
     List<ResourceW> queryResource_W();

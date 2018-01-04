@@ -3,9 +3,6 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.Websites;
@@ -38,12 +36,12 @@ public class WebsitesController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加网站")
-	public HttpEntity<?> add(@RequestBody Websites web) {
+	public AjaxResponseBody add(@RequestBody Websites web) {
 		boolean created = websitesService.save(web);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 按照id查询
@@ -53,10 +51,9 @@ public class WebsitesController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询网站")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		Websites result = websitesService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Websites>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 
 	/**
@@ -66,12 +63,12 @@ public class WebsitesController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改网站")
-	public HttpEntity<?> update(@RequestBody Websites web){
+	public AjaxResponseBody update(@RequestBody Websites web){
 		boolean created = websitesService.update(web);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 列表页面
@@ -79,13 +76,14 @@ public class WebsitesController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询网站列表")
-	public PageInfo<Websites> query(@RequestParam(required=false) String siteName,
+	public AjaxResponseBody query(@RequestParam(required=false) String siteName,
 			@RequestParam(required=false) Integer isUse,Page page){
 		Websites web = new Websites();
 		web.setIsUse(isUse);
 		web.setSiteName(siteName);
 		List<Websites> list = websitesService.queryAll(web,page);
-		return new PageInfo<Websites>(list);
+		PageInfo<Websites> pageInfo = new PageInfo<Websites>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 	/**
 	 * 删除网站
@@ -94,12 +92,12 @@ public class WebsitesController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("删除网站")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = websitesService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 }

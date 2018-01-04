@@ -50,8 +50,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean updateInfo(MemberInfos memberInfo) {
 		try {
-			memberInfoDAO.updateByPrimaryKeySelective(memberInfo);
-			return true;
+			int row = memberInfoDAO.updateByPrimaryKeySelective(memberInfo);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

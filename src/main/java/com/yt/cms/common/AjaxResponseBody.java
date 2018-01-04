@@ -40,6 +40,15 @@ public class AjaxResponseBody implements Serializable{
 	public void setData(Object data) {
 		this.data = data;
 	}
+	public AjaxResponseBody() {
+		super();
+	}
+	public AjaxResponseBody(boolean success,String msg, Object data) {
+		super();
+		this.success = success;
+		this.msg = msg;
+		this.data = data;
+	}
 
 /*	public String toString(){
         if(null == this.data){

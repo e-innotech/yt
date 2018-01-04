@@ -3,9 +3,6 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.MemberInfos;
@@ -38,12 +36,12 @@ public class MembersController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加会员")
-	public HttpEntity<?> add(@RequestBody Members members) {
+	public AjaxResponseBody add(@RequestBody Members members) {
 		boolean created = memberService.save(members);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	/**
@@ -54,10 +52,9 @@ public class MembersController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询会员")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		Members result = memberService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Members>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 	
 	/**
@@ -67,10 +64,9 @@ public class MembersController {
 	 */
 	@GetMapping("/find/name")
 	@ApiOperation("按照注册名查询会员")
-	public HttpEntity<?> findByUName(@RequestParam String uname) {
+	public AjaxResponseBody findByUName(@RequestParam String uname) {
 		boolean result = memberService.findByUname(uname);
-		HttpStatus status = result  ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Boolean>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 	
 	/**
@@ -79,7 +75,7 @@ public class MembersController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员列表")
-	public PageInfo<Members> query(@RequestParam(required=false) String uname,
+	public AjaxResponseBody query(@RequestParam(required=false) String uname,
 			@RequestParam(required=false) Integer isUse,
 			@RequestParam(required=false) Integer isGag,
 			Page page){
@@ -88,7 +84,8 @@ public class MembersController {
 		member.setIsUse(isUse);
 		member.setUname(uname);
 		List<Members> list = memberService.queryAll(member,page);
-		return new PageInfo<Members>(list);
+		PageInfo<Members> pageInfo = new PageInfo<Members>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
 	/**
@@ -98,12 +95,12 @@ public class MembersController {
 	 */
 	@PutMapping("/update/info")
 	@ApiOperation("修改会员信息")
-	public HttpEntity<?> update(@RequestBody MemberInfos info){
+	public AjaxResponseBody update(@RequestBody MemberInfos info){
 		boolean created = memberService.updateInfo(info);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 修改会员密码
@@ -112,12 +109,12 @@ public class MembersController {
 	 */
 	@PutMapping("/update/pwd")
 	@ApiOperation("修改会员密码")
-	public HttpEntity<?> updatePwd(@RequestBody Members member){
+	public AjaxResponseBody updatePwd(@RequestBody Members member){
 		boolean created = memberService.updatePwd(member);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	/**
@@ -127,12 +124,12 @@ public class MembersController {
 	 */
 	@PutMapping("/update/status")
 	@ApiOperation("启用、停用、禁言、取消禁言")
-	public HttpEntity<?> updateStatus(@RequestBody Members member){
+	public AjaxResponseBody updateStatus(@RequestBody Members member){
 		boolean created = memberService.update(member);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	

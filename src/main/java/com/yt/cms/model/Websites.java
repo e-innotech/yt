@@ -1,6 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.Date;
 import java.util.List;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,7 +18,7 @@ public class Websites extends BaseVo{
 
     private Integer isUse;
 
-    private Date createDate;
+    private String createDate;
 
     private String templteConfig;
 //    @JsonIgnore
@@ -65,11 +64,11 @@ public class Websites extends BaseVo{
 		this.isUse = isUse;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 

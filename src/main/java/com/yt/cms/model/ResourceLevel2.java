@@ -1,6 +1,6 @@
 package com.yt.cms.model;
 
-public class Resource extends BaseVo{
+public class ResourceLevel2 extends BaseVo{
 	/**
 	 * 
 	 */
@@ -34,7 +34,17 @@ public class Resource extends BaseVo{
      */
     private String pname;
     
-	public Resource() {
+    private ResourceLevel3 level3;
+    
+	public ResourceLevel3 getLevel3() {
+		return level3;
+	}
+
+	public void setLevel3(ResourceLevel3 level3) {
+		this.level3 = level3;
+	}
+
+	public ResourceLevel2() {
 		super();
 	}
 

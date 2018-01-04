@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UserLogs {
     private Integer id;
 
@@ -11,9 +13,49 @@ public class UserLogs {
 
     private String action;
 
-    private Date createdate;
+    private String createdate;
+    @JsonIgnore
+    private Date startDate;
+    @JsonIgnore
+    private Date endDate;
+    @JsonIgnore
+    private String userName;
+    @JsonIgnore
+    private String resourceName;
+    
+    public String getUserName() {
+		return userName;
+	}
 
-    public Integer getId() {
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getResourceName() {
+		return resourceName;
+	}
+
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -45,11 +87,11 @@ public class UserLogs {
         this.action = action == null ? null : action.trim();
     }
 
-    public Date getCreatedate() {
+    public String getCreatedate() {
         return createdate;
     }
 
-    public void setCreatedate(Date createdate) {
+    public void setCreatedate(String createdate) {
         this.createdate = createdate;
     }
 }

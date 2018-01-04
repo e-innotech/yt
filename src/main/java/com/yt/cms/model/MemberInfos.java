@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.Date;
-
 public class MemberInfos {
     private Integer id;
 
@@ -9,7 +7,7 @@ public class MemberInfos {
 
     private Integer sex;
 
-    private Date birth;
+    private String birth;
 
     private String phone;
 
@@ -45,11 +43,11 @@ public class MemberInfos {
         this.sex = sex;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 

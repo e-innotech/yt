@@ -31,7 +31,7 @@ public interface UserMapper {
 
 	int update(UserUpdatePwd user);
 
-	void disableOrEnable(User user);
+	int disableOrEnable(User user);
 	
 	void delete(Long id);
 	/**
@@ -39,5 +39,5 @@ public interface UserMapper {
 	 * @param id
 	 * @param userGroupId
 	 */
-	void setUserGroup4User(@Param("id")Integer id, @Param("userGroupId")Integer userGroupId);
+	int setUserGroup4User(@Param("id")Integer id, @Param("userGroupId")Integer userGroupId);
 }

@@ -18,7 +18,7 @@ public class MembersCommentsNews extends BaseVo{
     
     private News news;
 
-    private Date createDate;
+    private String createDate;
 
     private String content;
     @JsonIgnore
@@ -86,11 +86,11 @@ public class MembersCommentsNews extends BaseVo{
 		this.news = news;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 

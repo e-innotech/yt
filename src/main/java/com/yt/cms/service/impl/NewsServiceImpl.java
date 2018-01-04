@@ -39,8 +39,10 @@ public class NewsServiceImpl implements NewsService {
 	@Override
 	public boolean update(News news) {
 		try {
-			newsDAO.updateByPrimaryKeySelective(news);
-			return true;
+			int row = newsDAO.updateByPrimaryKeySelective(news);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

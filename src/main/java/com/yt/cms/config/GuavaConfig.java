@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * <p>guava缓存配置</p>
- * Created by zhezhiyong@163.com on 2017/9/22.
  */
 @Configuration
 @EnableCaching
@@ -37,12 +36,13 @@ public class GuavaConfig {
         return manager;
     }
 
+    
     /**
      * 定义cache名称、超时时长秒、最大个数
      * 每个cache缺省3600秒过期，最大个数1000
      */
     public enum Caches {
-        user(60, 2),
+        user(60, 20),
         info(5),
         role;
 

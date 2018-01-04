@@ -27,6 +27,7 @@
 	   <if test="_parameter != null">
                 and uname like concat('%', #{_parameter}, '%')
        </if>
+        order by id desc
     </select>
     
     <!-- 查询所有用户信息 -->

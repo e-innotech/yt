@@ -15,6 +15,10 @@ public class BaseVo implements Serializable{
 	@JsonIgnore
 	private Date delDate;
 
+	public BaseVo() {
+		
+	}
+
 	public Integer getIsDel() {
 		return isDel;
 	}

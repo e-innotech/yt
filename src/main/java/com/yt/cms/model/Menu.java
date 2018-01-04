@@ -12,7 +12,7 @@ public class Menu {
     /**
      * 资源uri
      */
-    private String href;
+    private String uri;
     /**
      * 父id
      */
@@ -34,13 +34,13 @@ public class Menu {
 	public void setText(String text) {
 		this.text = text;
 	}
-
-    public String getHref() {
-		return href;
+   
+	public String getUri() {
+		return uri;
 	}
 
-	public void setHref(String href) {
-		this.href = href;
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
 
 	public Integer getParentId() {

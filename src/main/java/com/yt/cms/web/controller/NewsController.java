@@ -3,11 +3,10 @@ package com.yt.cms.web.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,12 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.DateUtil;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.AduitNews;
 import com.yt.cms.model.News;
 import com.yt.cms.model.NewsLaunch;
 import com.yt.cms.model.NewsPublish;
 import com.yt.cms.model.NewsPublishLine;
+import com.yt.cms.model.User;
 import com.yt.cms.service.NewsLaunchService;
 import com.yt.cms.service.NewsPublishService;
 import com.yt.cms.service.NewsService;
@@ -49,7 +50,7 @@ public class NewsController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询稿件列表")
-	public PageInfo<News> query(@RequestParam(required=false) String newsTitle,
+	public AjaxResponseBody query(@RequestParam(required=false) String newsTitle,
 			@RequestParam(required=false) String source,
 			@RequestParam(required=false) Date startDate,
 			@RequestParam(required=false) Date endDate,
@@ -60,7 +61,8 @@ public class NewsController {
 		news.setStartDate(startDate);
 		news.setEndDate(endDate);
 		List<News> list = newsService.queryAll(news,page);
-		return new PageInfo<News>(list);
+		PageInfo<News> pageInfo = new PageInfo<News>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
 	/**
@@ -71,10 +73,9 @@ public class NewsController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询稿件")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		News result = newsService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<News>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 	/**
 	 * 新增稿件
@@ -83,12 +84,12 @@ public class NewsController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加稿件")
-	public HttpEntity<?> add(@RequestBody News News) {
+	public AjaxResponseBody add(@RequestBody News News) {
 		boolean created = newsService.save(News);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 修改稿件
@@ -97,12 +98,12 @@ public class NewsController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改稿件")
-	public HttpEntity<?> update(@RequestBody News News){
+	public AjaxResponseBody update(@RequestBody News News){
 		boolean created = newsService.update(News);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 删除稿件
@@ -111,12 +112,12 @@ public class NewsController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("删除稿件")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = newsService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	/**
@@ -125,12 +126,12 @@ public class NewsController {
 	 */
 	@PostMapping("/launch/add")
 	@ApiOperation("投放稿件到网站和栏目")
-	public HttpEntity<?> launch(@RequestBody NewsLaunch newsLaunch){
+	public AjaxResponseBody launch(@RequestBody NewsLaunch newsLaunch){
 		boolean release =  newsLaunchService.save(newsLaunch);
 		if(!release) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 
 
@@ -140,14 +141,14 @@ public class NewsController {
 	 */
 	@PutMapping("/launch/update")
 	@ApiOperation("编辑稿件投放网站与栏目")
-	public HttpEntity<?> updateLaunch(@RequestBody NewsLaunch newsLaunch){
+	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch){
 		// 从session中拿当前用户id
 //		news.setAduitUserId(aduitUserId);
 		boolean release =  newsLaunchService.update(newsLaunch);
 		if(!release) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	/**
@@ -156,16 +157,12 @@ public class NewsController {
 	 */
 	@GetMapping("/launch/find/id")
 	@ApiOperation("按照稿件投放id查询稿件投放详情")
-	public HttpEntity<?> findLaunch(@RequestParam Integer id){
+	public AjaxResponseBody findLaunch(@RequestParam Integer id){
 		NewsLaunch module =  newsLaunchService.findById(id);
-		AjaxResponseBody response = new AjaxResponseBody();
 		if(module == null) {
-			response.setMsg(Const.NOT_FOUND);
-			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		response.setMsg(Const.SUCCESS);
-		response.setData(module);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,module);
 	}
 	
 	/**
@@ -174,7 +171,7 @@ public class NewsController {
 	 */
 	@GetMapping("/launch/query")
 	@ApiOperation("查询稿件列表")
-	public PageInfo<NewsLaunch> queryLaunch(@RequestParam(required=false) String newsTitle,
+	public AjaxResponseBody queryLaunch(@RequestParam(required=false) String newsTitle,
 			@RequestParam(required=false) Date startDate,
 			@RequestParam(required=false) Date endDate,
 			Page page){
@@ -183,7 +180,8 @@ public class NewsController {
 		newsLaunch.setStartDate(startDate);
 		newsLaunch.setEndDate(endDate);
 		List<NewsLaunch> list = newsLaunchService.queryAll(newsLaunch,page);
-		return new PageInfo<NewsLaunch>(list);
+		PageInfo<NewsLaunch> pageInfo = new PageInfo<NewsLaunch>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 	/**
 	 * 按照稿件投放id删除
@@ -191,12 +189,12 @@ public class NewsController {
 	 */
 	@PutMapping("/launch/delete")
 	@ApiOperation("按照稿件投放id删除")
-	public HttpEntity<?> deleteLaunch(@RequestParam Integer id){
+	public AjaxResponseBody deleteLaunch(@RequestParam Integer id){
 		boolean release =  newsLaunchService.deleteLogicById(id);
 		if(!release) {
-			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 稿件审批
@@ -204,16 +202,20 @@ public class NewsController {
 	 */
 	@PostMapping("/launch/aduit")
 	@ApiOperation("稿件审批")
-	public HttpEntity<?> aduit(@RequestBody AduitNews aduit){
+	public AjaxResponseBody aduit(@RequestBody AduitNews aduit,HttpSession session){
 		NewsLaunch newsLaunch = new NewsLaunch();
 		BeanUtils.copyProperties(aduit, newsLaunch);
+		User user = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		if(user == null) {
+			return new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+		}
 		// 从session中拿当前用户id
-		newsLaunch.setAduitUserId(0);
+		newsLaunch.setAduitUserId(user.getId());
 		boolean release =  newsLaunchService.aduit(newsLaunch);
 		if(!release) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 按照稿件发布id查询稿件投放详情
@@ -221,16 +223,12 @@ public class NewsController {
 	 */
 	@GetMapping("/publish/find/id")
 	@ApiOperation("按照稿件发布id查询稿件投放详情")
-	public HttpEntity<?> findPublish(@RequestParam Integer id){
+	public AjaxResponseBody findPublish(@RequestParam Integer id){
 		NewsPublishLine module =  newsPublishService.findById(id);
-		AjaxResponseBody response = new AjaxResponseBody();
 		if(module == null) {
-			response.setMsg(Const.NOT_FOUND);
-			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		response.setMsg(Const.SUCCESS);
-		response.setData(module);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,module);
 	}
 	
 	/**
@@ -239,16 +237,22 @@ public class NewsController {
 	 */
 	@GetMapping("/publish/query")
 	@ApiOperation("查询所有稿件投放信息")
-	public HttpEntity<?> queryPublish(@RequestBody NewsPublish newsPublish){
-		List<NewsPublish> modules =  newsPublishService.query(newsPublish);
-		AjaxResponseBody response = new AjaxResponseBody();
-		if(modules == null || modules.isEmpty()) {
-			response.setMsg(Const.NOT_FOUND);
-			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
-		}
-		response.setMsg(Const.SUCCESS);
-		response.setData(modules);
-		return new ResponseEntity<AjaxResponseBody>(response,HttpStatus.OK);
+	public AjaxResponseBody queryPublish(@RequestParam(required=false) String websiteName,
+			@RequestParam(required=false) String channelName,
+			@RequestParam(required=false) Integer isline,
+			@RequestParam(required=false) Integer ishome,
+			Page page){
+		
+		NewsPublish newsPublish = new NewsPublish();
+		newsPublish.setChannelName(channelName);
+		newsPublish.setWebsiteName(websiteName);
+		newsPublish.setIshome(ishome);
+		newsPublish.setIsline(isline);
+		
+		List<NewsPublish> modules =  newsPublishService.query(newsPublish,page);
+		PageInfo<NewsPublish> pageInfo =  new PageInfo<NewsPublish>(modules);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
+	
 	}
 	/**
 	 * 稿件上下线
@@ -256,23 +260,21 @@ public class NewsController {
 	 */
 	@PutMapping("/publish/ofLine")
 	@ApiOperation("稿件上下线")
-	public HttpEntity<?> publishOfLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
+	public AjaxResponseBody publishOfLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态
 		publish.setIsline(lineStatus);
 		if(lineStatus == Const.OFF_LINE) {
-			publish.setOfflineDate(new Date());
+			publish.setOfflineDate(DateUtil.getDateStr(new Date()));
 		} else if(lineStatus == Const.ON_LINE){
-			publish.setOnlineDate(new Date());
+			publish.setOnlineDate(DateUtil.getDateStr(new Date()));
 		}
-		// 从session中拿当前用户id
-//		news.setStatus(aduit.getStatus());
 		boolean release =  newsPublishService.update(publish);
 		if(!release) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	/**
@@ -281,16 +283,16 @@ public class NewsController {
 	 */
 	@PutMapping("/publish/home")
 	@ApiOperation("设置首页")
-	public HttpEntity<?> setHome(@RequestParam Integer id, @RequestParam Integer homeWeight){
+	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer homeWeight){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态
 		publish.setHomeWeight(homeWeight);
 		boolean release =  newsPublishService.update(publish);
 		if(!release) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 }

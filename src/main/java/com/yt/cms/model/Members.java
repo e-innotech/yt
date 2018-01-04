@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.Date;
-
 public class Members {
     private Integer id;
 
@@ -9,7 +7,7 @@ public class Members {
 
     private String pwd;
 
-    private Date regDate;
+    private String regDate;
 
     private Integer isUse;
 
@@ -49,11 +47,11 @@ public class Members {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 

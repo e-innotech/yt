@@ -3,6 +3,7 @@ package com.yt.cms.mapper;
 import java.util.List;
 
 import com.yt.cms.model.Roles;
+import com.yt.cms.model.page.RolesPage;
 
 public interface RolesMapper {
     int deleteByPrimaryKey(Integer id);
@@ -13,7 +14,9 @@ public interface RolesMapper {
 
     int updateByPrimaryKeySelective(Roles record);
 
-    List<Roles> query(Roles record);
+    List<Roles> query(RolesPage record);
+    
+    int queryCount(RolesPage page);
     
     int deleteLogicById(Integer id);
 }

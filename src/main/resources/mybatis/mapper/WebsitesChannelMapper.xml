@@ -22,7 +22,7 @@
 		parameterType="com.yt.cms.model.WebsitesChannel">
 		select
 		<include refid="Base_Column_List" />
-		from websites_channel
+		from websites_channel  order by id desc
 	</select>
 
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

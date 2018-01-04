@@ -32,19 +32,20 @@
     a.id, a.ad_width, a.ad_height, a.ad_name, a.isUse,
     b.id as ad_id, b.source,b.beginDate, b.endDate, b.status, b.adName, b.adType, b.comment
     from adpositions a left join ad b on a.id = b.adPositions_id 
-    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 and b.isDel = 0
+    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0
   </select>
   
     <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.AdPositions" >
     select 
     <include refid="Base_Column_List" />
     from adpositions where 1=1 and isDel = 0
-	    <if test="isUse != null" >
+	    <if test="isUse != null and isUse != -1" >
 	        and isUse = #{isUse,jdbcType=INTEGER}
 	      </if>
 	      <if test="adName != null" >
 	       and adName like concat('%', #{adName}, '%')
 	      </if>
+	 order by id desc     
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

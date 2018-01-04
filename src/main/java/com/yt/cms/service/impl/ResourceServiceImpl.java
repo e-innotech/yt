@@ -36,8 +36,10 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public boolean update(Resource resource) {
 		try {
-			resourceDAO.updateByPrimaryKeySelective(resource);
-			return true;
+			int row = resourceDAO.updateByPrimaryKeySelective(resource);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,6 +50,11 @@ public class ResourceServiceImpl implements ResourceService {
 	public List<Resource> find(Resource resource,Page page) {
 		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return resourceDAO.query(resource);
+	}
+
+	@Override
+	public List<Resource> find() {
+		return resourceDAO.queryAll();
 	}
 
 	@Override
@@ -66,6 +73,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	@Cacheable(value = "user")
+//	@Cacheable(value = "user", key = "'user'.concat(#id.toString())")
 	public List<ResourceW> queryResource_W() {
 		logger.info("from db....");
 		return resourceDAO.queryResource_W();

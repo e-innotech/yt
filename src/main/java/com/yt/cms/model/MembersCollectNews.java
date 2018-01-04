@@ -1,7 +1,6 @@
 package com.yt.cms.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class MembersCollectNews implements Serializable{
     /**
@@ -17,7 +16,7 @@ public class MembersCollectNews implements Serializable{
     
     private News news;
 
-    private Date createdate;
+    private String createdate;
 
     private Integer status;
 
@@ -53,11 +52,11 @@ public class MembersCollectNews implements Serializable{
 		this.news = news;
 	}
 
-	public Date getCreatedate() {
+	public String getCreatedate() {
         return createdate;
     }
 
-    public void setCreatedate(Date createdate) {
+    public void setCreatedate(String createdate) {
         this.createdate = createdate;
     }
 

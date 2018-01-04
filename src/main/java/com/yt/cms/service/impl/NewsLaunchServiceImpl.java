@@ -41,8 +41,10 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	@Override
 	public boolean update(NewsLaunch newsLaunch) {
 		try {
-			newsLaunchDAO.updateByPrimaryKeySelective(newsLaunch);
-			return true;
+			int row = newsLaunchDAO.updateByPrimaryKeySelective(newsLaunch);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

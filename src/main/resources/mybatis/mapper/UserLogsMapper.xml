@@ -13,8 +13,27 @@
   </sql>
   
   <select id="query" parameterType="com.yt.cms.model.UserLogs" resultMap="BaseResultMap">
-  	select <include refid="Base_Column_List" />
-    from userlogs
+  	select a.id, a.users_id, a.resource_id, a.action, a.createDate, b.uname,c.resourceName
+    from userlogs a 
+    left join users b on a.users_id = b.id
+    left join resource c on a.resource_id = c.id
+     where 1=1
+    		<if test="startDate != null" >
+       		<![CDATA[ and a.createDate >= #{startDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+        <if test="endDate != null" >
+       		<![CDATA[ and a.createDate <= #{endDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+	      <if test="action != null" >
+	        and a.action = #{action,jdbcType=VARCHAR}
+	      </if>
+	      <if test="userName != null" >
+	       and b.uname like concat('%', #{userName}, '%')
+	      </if>
+	       <if test="resourceName != null" >
+	       and c.resourceName like concat('%', #{resourceName}, '%')
+	      </if>
+	       order by a.id desc
   </select>
   
   <insert id="insertSelective" parameterType="com.yt.cms.model.UserLogs" >

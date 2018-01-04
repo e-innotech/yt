@@ -69,10 +69,15 @@ public class UserLogAspect {
 	            logger.warn("user 信息为空");
 	        }else{
 	        	userLog.setUsersId(user.getId());
-//	        	userLog.setResourceId(resourceId);
 	        	List<ResourceW> list = resourceService.queryResource_W();
+	        	String uri = request.getRequestURI();
+	        	for(ResourceW w : list) {
+	        		if(uri.equals(w.getUri())) {
+	        			userLog.setResourceId(w.getId());
+	        			break;
+	        		}
+	        	}
 	        }
-	        //下面开始获取 ip，targetType，remark，action
 	        try {
 	            Map<String,String> map = getLogMark(joinPoint);
 	            userLog.setAction(map.get(LOG_ACTION));
@@ -96,6 +101,7 @@ public class UserLogAspect {
 	            if(method.getName().equals(methodName)){
 	                LogAnnotation logAnnotation = method.getAnnotation(LogAnnotation.class);
 	                map.put(LOG_ACTION,logAnnotation.action());
+	                break;
 	            }
 	        }
 	        return map;

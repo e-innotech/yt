@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.Date;
-
 public class YtcmsConfig {
     private Integer id;
 
@@ -11,7 +9,7 @@ public class YtcmsConfig {
 
     private Integer isUse;
 
-    private Date createDate;
+    private String createDate;
 
     public Integer getId() {
         return id;
@@ -45,11 +43,11 @@ public class YtcmsConfig {
 		this.isUse = isUse;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 

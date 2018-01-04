@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.NewsPublishMapper;
 import com.yt.cms.model.NewsPublish;
 import com.yt.cms.model.NewsPublishLine;
@@ -32,8 +34,10 @@ public class NewsPublishServiceImpl implements NewsPublishService {
 	@Override
 	public boolean update(NewsPublish newsPublish) {
 		try {
-			newsPublishDAO.updateByPrimaryKeySelective(newsPublish);
-			return true;
+			int row = newsPublishDAO.updateByPrimaryKeySelective(newsPublish);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,7 +45,8 @@ public class NewsPublishServiceImpl implements NewsPublishService {
 	}
 
 	@Override
-	public List<NewsPublish> query(NewsPublish newsPublish) {
+	public List<NewsPublish> query(NewsPublish newsPublish, Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return newsPublishDAO.query(newsPublish);
 	}
 

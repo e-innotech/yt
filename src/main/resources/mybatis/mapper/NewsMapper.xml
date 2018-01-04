@@ -34,10 +34,10 @@
     <include refid="Base_Column_List" />
     from news where 1=1 and isDel = 0
     <if test="startDate != null" >
-       		<![CDATA[ and create_date >= #{startDate,jdbcType=INTEGER}  ]]>
+       		<![CDATA[ and create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
         <if test="endDate != null" >
-       		<![CDATA[ and create_date <= #{endDate,jdbcType=INTEGER}  ]]>
+       		<![CDATA[ and create_date <= #{endDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
 	     <if test="newsTitle != null" >
 	       and news_title like concat('%', #{newsTitle}, '%')
@@ -45,6 +45,7 @@
 	    <if test="source != null" >
 	       and source = #{source}
 	    </if>
+	     order by id desc
   </select>
   
   <update id="deleteLogicById" parameterType="java.lang.Integer">

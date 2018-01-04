@@ -30,7 +30,7 @@
     select 
     a.id , a.uname, a.pwd, a.regDate, a.isUse, a.isGag, 
     b.id as infoId, b.nickName, b.sex, b.birth, b.phone, b.email, b.qq, b.address,b.icon
-    from members a left join memberinfos b on a.id = b.members_id
+    from members a left join memberinfos b on a.id = b.members_id 
     where a.id = #{id,jdbcType=INTEGER}
   </select>
   
@@ -45,15 +45,16 @@
     select 
     <include refid="Base_Column_List" />
     from members where 1=1
-    	<if test="isUse != null" >
+    	<if test="isUse != null and isUse != -1" >
 	        and isUse = #{isUse,jdbcType=INTEGER}
 	      </if>
-	      <if test="isGag != null" >
+	      <if test="isGag != null and isGag !=-1" >
 	        and isGag = #{isGag,jdbcType=INTEGER}
 	      </if>
 	      <if test="uname != null" >
 	       and uname like concat('%', #{uname}, '%')
 	      </if>
+	       order by id desc
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

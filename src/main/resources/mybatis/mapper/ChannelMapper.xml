@@ -21,13 +21,13 @@
     select 
     <include refid="Base_Column_List" />
     from channel where 1=1 and isDel = 0 
-	    <if test="isUse != null" >
+	    <if test="isUse != null and isUse != -1" >
 	        and isUse = #{isUse,jdbcType=INTEGER}
 	      </if>
 	      <if test="channelName != null" >
 	       and channelName like concat('%', #{channelName}, '%')
 	      </if>
-	 
+	 order by id desc
   </select>
   
   <select id="findChannelName" parameterType="java.lang.String" resultType="java.lang.Integer" >

@@ -3,6 +3,8 @@ package com.yt.cms.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,17 @@ import com.yt.cms.service.RolesResourceService;
 
 @Service
 public class RolesResourceServiceImpl implements RolesResourceService {
+	
+	private Logger logger = LoggerFactory.getLogger(RolesResourceServiceImpl.class);
+	
 	@Autowired
 	private RolesResourceMapper rolesResourceDAO;
 
 	@Override
 	public boolean save(List<RolesResource> rolesResource) {
 		try {
-			rolesResourceDAO.insertBatch(rolesResource);
+			int k = rolesResourceDAO.insertBatch(rolesResource);
+			logger.info("insertBatch count is :{}" + k );
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

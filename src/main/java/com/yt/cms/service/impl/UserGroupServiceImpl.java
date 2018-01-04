@@ -45,8 +45,10 @@ public class UserGroupServiceImpl implements UserGroupService {
 	@Override
 	public boolean update(UserGroup userGroup) {
 		try {
-			userGroupDAO.updateByPrimaryKeySelective(userGroup);
-			return true;
+			int row = userGroupDAO.updateByPrimaryKeySelective(userGroup);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,8 +58,10 @@ public class UserGroupServiceImpl implements UserGroupService {
 	@Override
 	public boolean deleteLogicById(Integer id) {
 		try {
-			userGroupDAO.deleteLogicById(id);
-			return true;
+			int row = userGroupDAO.deleteLogicById(id);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

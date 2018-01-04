@@ -39,8 +39,10 @@ public class ChannelServiceImpl implements ChannelService {
 	@Override
 	public boolean update(Channel bar) {
 		try {
-			channelDAO.updateByPrimaryKeySelective(bar);
-			return true;
+			int row = channelDAO.updateByPrimaryKeySelective(bar);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -4,9 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.MembersCommentsNews;
@@ -39,12 +37,12 @@ public class MembersCommentController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("会员写评论")
-	public HttpEntity<?> add(@RequestBody MembersCommentsNews comment) {
+	public AjaxResponseBody add(@RequestBody MembersCommentsNews comment) {
 		boolean created = memberCommentService.save(comment);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	
@@ -54,7 +52,7 @@ public class MembersCommentController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员评论列表")
-	public PageInfo<MembersCommentsNews> query(@RequestParam(required=false) String content, // 评论内容
+	public AjaxResponseBody query(@RequestParam(required=false) String content, // 评论内容
 			@RequestParam(required=false) Date startDate, // 评论日期
 			@RequestParam(required=false) Date endDate, // 评论日期
 			@RequestParam(required=false) String newsTitle, // 评论的新闻标题
@@ -72,7 +70,8 @@ public class MembersCommentController {
 		comment.setMemberUName(memberUName);
 		
 		List<MembersCommentsNews> list =  memberCommentService.queryAll(comment,page);
-		return new PageInfo<MembersCommentsNews>(list);
+		PageInfo<MembersCommentsNews> pageInfo = new PageInfo<MembersCommentsNews>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
 	/**
@@ -82,12 +81,12 @@ public class MembersCommentController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("管理员删除评论")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean result = memberCommentService.deleteLogical(id);
 		if(!result) {
-			return new ResponseEntity<String>(Const.DELETE_NO_FOUND,HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 
 	

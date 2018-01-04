@@ -38,6 +38,11 @@ public interface ResourceService {
 	 * @return
 	 */
 	public List<Resource> find(Resource resource,Page page);
+	
+	/**
+	 * @return
+	 */
+	public List<Resource> find();
 	/**
 	 * 按照资源id删除资源
 	 * @param id

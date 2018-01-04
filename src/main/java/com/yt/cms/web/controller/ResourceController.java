@@ -3,9 +3,6 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.Resource;
@@ -36,7 +34,12 @@ public class ResourceController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询系统资源列表")
-	public PageInfo<Resource> query(@RequestParam(required=false) String resourceName,
+	
+	public AjaxResponseBody query(){
+		List<Resource> list =  resourceService.find();
+		return new AjaxResponseBody(true,Const.SUCCESS,list);
+	}
+	/*public AjaxResponseBody query(@RequestParam(required=false) String resourceName,
 			@RequestParam(required=false) String uri,
 			@RequestParam(required=false) Integer rw,
 			@RequestParam(required=false) Integer isMenu,
@@ -48,8 +51,9 @@ public class ResourceController {
 		resource.setUri(uri);
 		
 		List<Resource> list =  resourceService.find(resource,page);
-		return new PageInfo<Resource>(list);
-	}
+		PageInfo<Resource> pageInfo =  new PageInfo<Resource>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
+	}*/
 
 	/**
 	 * 按照id查询
@@ -59,10 +63,9 @@ public class ResourceController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询系统资源")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		Resource result = resourceService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Resource>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 	/**
 	 * 新增系统资源
@@ -71,12 +74,12 @@ public class ResourceController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加系统资源")
-	public HttpEntity<?> add(@RequestBody Resource resource) {
+	public AjaxResponseBody add(@RequestBody Resource resource) {
 		boolean created = resourceService.save(resource);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 修改系统资源
@@ -85,12 +88,12 @@ public class ResourceController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改系统资源")
-	public HttpEntity<?> update(@RequestBody Resource resource){
+	public AjaxResponseBody update(@RequestBody Resource resource){
 		boolean created = resourceService.update(resource);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 	/**
@@ -100,12 +103,12 @@ public class ResourceController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("删除系统资源")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = resourceService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 }

@@ -39,8 +39,10 @@ public class AdServiceImpl implements AdService {
 	@Override
 	public boolean update(Ad ad) {
 		try {
-			adDAO.updateByPrimaryKeySelective(ad);
-			return true;
+			int row = adDAO.updateByPrimaryKeySelective(ad);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

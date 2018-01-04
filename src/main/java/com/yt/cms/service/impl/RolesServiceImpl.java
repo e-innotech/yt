@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
-import com.yt.cms.common.Page;
 import com.yt.cms.mapper.RolesMapper;
 import com.yt.cms.mapper.RolesResourceMapper;
 import com.yt.cms.model.Roles;
+import com.yt.cms.model.page.RolesPage;
 import com.yt.cms.service.RolesService;
 @Service
 public class RolesServiceImpl implements RolesService {
@@ -34,8 +33,10 @@ public class RolesServiceImpl implements RolesService {
 	@Override
 	public boolean update(Roles roles) {
 		try {
-			rolesDAO.updateByPrimaryKeySelective(roles);
-			return true;
+			int row = rolesDAO.updateByPrimaryKeySelective(roles);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,9 +45,13 @@ public class RolesServiceImpl implements RolesService {
 	}
 
 	@Override
-	public List<Roles> find(Roles roles, Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return rolesDAO.query(roles);
+	public List<Roles> find(RolesPage page) {
+		return rolesDAO.query(page);
+	}
+
+	@Override
+	public Integer findCount(RolesPage page) {
+		return rolesDAO.queryCount(page);
 	}
 
 	@Override

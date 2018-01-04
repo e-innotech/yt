@@ -22,11 +22,11 @@ public class NewsLaunch extends BaseVo{
 
     private String aduitDes;
 
-    private Date aduitDate;
+    private String aduitDate;
 
     private Integer createUserId;
 
-    private Date createDate;
+    private String createDate;
 
     private News news;
     
@@ -117,11 +117,11 @@ public class NewsLaunch extends BaseVo{
         this.aduitDes = aduitDes == null ? null : aduitDes.trim();
     }
 
-    public Date getAduitDate() {
+    public String getAduitDate() {
         return aduitDate;
     }
 
-    public void setAduitDate(Date aduitDate) {
+    public void setAduitDate(String aduitDate) {
         this.aduitDate = aduitDate;
     }
 
@@ -133,11 +133,11 @@ public class NewsLaunch extends BaseVo{
         this.createUserId = createUserId;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 }

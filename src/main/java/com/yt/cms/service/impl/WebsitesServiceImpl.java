@@ -37,8 +37,10 @@ public class WebsitesServiceImpl implements WebsitesService {
 	@Override
 	public boolean update(Websites web) {
 		try {
-			websitesDAO.updateByPrimaryKeySelective(web);
-			return true;
+			int row = websitesDAO.updateByPrimaryKeySelective(web);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +59,6 @@ public class WebsitesServiceImpl implements WebsitesService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return false;
 	}
 

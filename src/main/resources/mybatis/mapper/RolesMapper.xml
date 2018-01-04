@@ -11,9 +11,6 @@
     <collection property="resource" ofType="com.yt.cms.model.Resource">
 	    <id column="resource_id" property="id" jdbcType="INTEGER" />
 	    <result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
-	    <result column="uri" property="uri" jdbcType="VARCHAR" />
-	    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-	    <result column="rw" property="rw" jdbcType="INTEGER" />
     </collection>
   </resultMap>
   
@@ -23,17 +20,35 @@
   <!-- 查询单个角色下的所有资源列表 -->
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName, c.uri, c.parent_id, c.rw
+     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName
     from roles a
     left join roles_resource b on a.id = b.roles_id
     left join resource c on b.resource_id = c.id
-    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 and c.isDel = 0
+    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 
   </select>
   
-   <select id="query" resultMap="BaseResultMap" >
+   <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.page.RolesPage">
     select 
-    <include refid="Base_Column_List" />
-    from roles where 1=1 and isDel = 0
+     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName
+    from roles a
+    left join roles_resource b on a.id = b.roles_id
+    left join resource c on b.resource_id = c.id
+     where 1=1 and a.isDel = 0  
+    	<if test="roleName != null" >
+	       and roleName like concat('%', #{roleName}, '%')
+	      </if>
+    order by a.id desc limit #{pageLimit}, #{pageSize}
+  </select>
+  
+   <select id="queryCount" resultType="int" parameterType="com.yt.cms.model.page.RolesPage">
+    select count(1)
+    from roles a
+    left join roles_resource b on a.id = b.roles_id
+    left join resource c on b.resource_id = c.id
+     where 1=1 and a.isDel = 0  
+    	<if test="roleName != null" >
+	       and roleName like concat('%', #{roleName}, '%')
+	      </if>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

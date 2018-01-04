@@ -2,6 +2,7 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.UserLogs;
 
 /**
@@ -25,6 +26,6 @@ public interface UserLogsService {
 	 * 列表显示日志信息
 	 * @return
 	 */
-	public List<UserLogs> queryAll(UserLogs log);
+	public List<UserLogs> queryAll(UserLogs log, Page page);
 	
 }

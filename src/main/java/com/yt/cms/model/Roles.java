@@ -23,6 +23,10 @@ public class Roles extends BaseVo{
      * 角色对应的资源列表
      */
     private List<Resource> resource;
+    /**
+     * 角色对应的资源id
+     */
+    private List<Integer> resourceIds;
 
     public List<Resource> getResource() {
 		return resource;
@@ -54,6 +58,14 @@ public class Roles extends BaseVo{
 
 	public void setComment(String comment) {
 		this.comment = comment == null ? null : comment.trim();
+	}
+
+	public List<Integer> getResourceIds() {
+		return resourceIds;
+	}
+
+	public void setResourceIds(List<Integer> resourceIds) {
+		this.resourceIds = resourceIds;
 	}
 
  

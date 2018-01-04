@@ -90,19 +90,23 @@ public class UserServiceImpl implements UserService {
 			} else {
 				throw new Exception();
 			}
-			userDAO.disableOrEnable(user);
-			return true;
+			int row = userDAO.disableOrEnable(user);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
 		}
+		return false;
 	}
 
 	@Override
 	public boolean setUserGroup4User(int userId, int userGroupId) {
 		try {
-			userDAO.setUserGroup4User(userId,userGroupId);
-			return true;
+			int row = userDAO.setUserGroup4User(userId,userGroupId);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

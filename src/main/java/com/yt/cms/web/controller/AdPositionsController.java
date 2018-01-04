@@ -3,9 +3,6 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.AdPositions;
@@ -36,14 +34,15 @@ public class AdPositionsController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询广告位列表")
-	public PageInfo<AdPositions> query(@RequestParam(required=false) String adName, // 广告位名称
+	public AjaxResponseBody query(@RequestParam(required=false) String adName, // 广告位名称
 			@RequestParam(required=false) Integer isUse,
 			Page page){
 		AdPositions adPositions = new AdPositions();
 		adPositions.setAdName(adName);
 		adPositions.setIsUse(isUse);
 		List<AdPositions> list =  adPositionsService.queryAll(adPositions,page);
-		return new PageInfo<AdPositions>(list);
+		PageInfo<AdPositions> pageInfo = new PageInfo<AdPositions>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
 	/**
@@ -54,10 +53,9 @@ public class AdPositionsController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询广告位")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		AdPositions result = adPositionsService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<AdPositions>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 	/**
 	 * 新增广告位
@@ -66,12 +64,12 @@ public class AdPositionsController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加广告位")
-	public HttpEntity<?> add(@RequestBody AdPositions adPositions) {
+	public AjaxResponseBody add(@RequestBody AdPositions adPositions) {
 		boolean created = adPositionsService.save(adPositions);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 修改广告位
@@ -80,12 +78,12 @@ public class AdPositionsController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改广告位")
-	public HttpEntity<?> update(@RequestBody AdPositions adPositions){
+	public AjaxResponseBody update(@RequestBody AdPositions adPositions){
 		boolean created = adPositionsService.update(adPositions);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(true,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 删除广告位
@@ -94,12 +92,12 @@ public class AdPositionsController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("删除广告位")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = adPositionsService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 

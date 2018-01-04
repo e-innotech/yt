@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.Date;
-
 public class Ad extends BaseVo{
     /**
 	 * 
@@ -10,9 +8,9 @@ public class Ad extends BaseVo{
 
 	private Integer id;
 
-    private Date beginDate;
+    private String beginDate;
 
-    private Date endDate;
+    private String endDate;
 
     private Integer status;
 
@@ -34,19 +32,19 @@ public class Ad extends BaseVo{
 		this.id = id;
 	}
 
-	public Date getBeginDate() {
+	public String getBeginDate() {
 		return beginDate;
 	}
 
-	public void setBeginDate(Date beginDate) {
+	public void setBeginDate(String beginDate) {
 		this.beginDate = beginDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 

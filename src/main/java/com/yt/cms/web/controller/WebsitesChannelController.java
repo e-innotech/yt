@@ -3,15 +3,13 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.M2MUpdateBody;
 import com.yt.cms.model.WebsitesChannel;
@@ -35,12 +33,12 @@ public class WebsitesChannelController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加网站栏位关系")
-	public HttpEntity<?> add(@RequestBody List<WebsitesChannel> moduleList) {
+	public AjaxResponseBody add(@RequestBody List<WebsitesChannel> moduleList) {
 		boolean created = websitesChannelService.save(moduleList);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 
 
@@ -51,15 +49,15 @@ public class WebsitesChannelController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改网站栏位关系")
-	public HttpEntity<?> update(@RequestBody M2MUpdateBody body){
+	public AjaxResponseBody update(@RequestBody M2MUpdateBody body){
 		Integer websitesId = body.getMasterId();
 		Integer[] old_channelIds = body.getOld_slaveIds();
 		Integer[] new_channelIds = body.getNew_slaveIds();
 		boolean created = websitesChannelService.update(websitesId, old_channelIds, new_channelIds);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 
 	

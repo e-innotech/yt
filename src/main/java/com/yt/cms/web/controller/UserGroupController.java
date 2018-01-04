@@ -3,9 +3,6 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.UserGroup;
@@ -36,10 +34,11 @@ public class UserGroupController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询用户组列表")
-	public PageInfo<UserGroup> query(@RequestParam(required=false) String groupName,
+	public AjaxResponseBody query(@RequestParam(required=false) String groupName,
 		 Page page){
 		List<UserGroup> list = userGroupService.query(groupName, page);
-		return new PageInfo<UserGroup>(list);
+		PageInfo<UserGroup> pageInfo = new PageInfo<UserGroup>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 /*	*//**
 	 * 树形展现
@@ -58,10 +57,9 @@ public class UserGroupController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询用户组")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		UserGroup result = userGroupService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<UserGroup>(result, status);
+		return new AjaxResponseBody(true, Const.SUCCESS,result);
 	}
 	/**
 	 * 新增用户组
@@ -70,12 +68,12 @@ public class UserGroupController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加用户组")
-	public HttpEntity<?> add(@RequestBody UserGroup userGroup) {
+	public AjaxResponseBody add(@RequestBody UserGroup userGroup) {
 		boolean created = userGroupService.save(userGroup);
 		if(!created) {
-			return new ResponseEntity<String>(Const.FAILED,HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 修改用户组
@@ -84,12 +82,12 @@ public class UserGroupController {
 	 */
 	@PutMapping("/update")
 	@ApiOperation("修改用户组")
-	public HttpEntity<?> update(@RequestBody UserGroup userGroup){
+	public AjaxResponseBody update(@RequestBody UserGroup userGroup){
 		boolean created = userGroupService.update(userGroup);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 删除用户组
@@ -98,12 +96,12 @@ public class UserGroupController {
 	 */
 	@PutMapping("/delete")
 	@ApiOperation("删除用户组")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = userGroupService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 }

@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.Date;
-
 public class NewsPublishLine {
     private Integer id;
 
@@ -17,9 +15,9 @@ public class NewsPublishLine {
 
     private Integer homeWeight;
 
-    private Date onlineDate;
+    private String onlineDate;
 
-    private Date offlineDate;
+    private String offlineDate;
 
     private NewsLaunch newsLaunch;
     
@@ -79,19 +77,19 @@ public class NewsPublishLine {
         this.homeWeight = homeWeight;
     }
 
-    public Date getOnlineDate() {
+    public String getOnlineDate() {
         return onlineDate;
     }
 
-    public void setOnlineDate(Date onlineDate) {
+    public void setOnlineDate(String onlineDate) {
         this.onlineDate = onlineDate;
     }
 
-    public Date getOfflineDate() {
+    public String getOfflineDate() {
         return offlineDate;
     }
 
-    public void setOfflineDate(Date offlineDate) {
+    public void setOfflineDate(String offlineDate) {
         this.offlineDate = offlineDate;
     }
 

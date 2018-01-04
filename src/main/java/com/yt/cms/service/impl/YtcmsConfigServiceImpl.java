@@ -37,8 +37,10 @@ public class YtcmsConfigServiceImpl implements YtcmsConfigService {
 	@Override
 	public boolean update(YtcmsConfig config) {
 		 try {
-			configDAO.updateByPrimaryKeySelective(config);
-			return true;
+			int row = configDAO.updateByPrimaryKeySelective(config);
+			if(row == 1) {
+				return true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -18,7 +18,7 @@ public class AduitNews {
 	/**
 	 * 稿件审批时间
 	 */
-	private Date aduitDate;
+	private String aduitDate;
 	
 	public Integer getId() {
 		return id;
@@ -39,10 +39,10 @@ public class AduitNews {
 	public void setAduitDes(String aduitDes) {
 		this.aduitDes = aduitDes;
 	}
-	public Date getAduitDate() {
+	public String getAduitDate() {
 		return aduitDate;
 	}
-	public void setAduitDate(Date aduitDate) {
+	public void setAduitDate(String aduitDate) {
 		this.aduitDate = aduitDate;
 	}
 	

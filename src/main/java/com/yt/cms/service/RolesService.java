@@ -2,8 +2,8 @@ package com.yt.cms.service;
 
 import java.util.List;
 
-import com.yt.cms.common.Page;
 import com.yt.cms.model.Roles;
+import com.yt.cms.model.page.RolesPage;
 
 /**
  * 角色接口定义
@@ -36,7 +36,14 @@ public interface RolesService {
 	 * @param roles
 	 * @return
 	 */
-	public List<Roles> find(Roles roles,Page page);
+	public List<Roles> find(RolesPage page);
+	
+	/**
+	 * 按照Roles 参数查询
+	 * @param roles
+	 * @return
+	 */
+	public Integer findCount(RolesPage page);
 	/**
 	 * 删除角色id
 	 * @param id

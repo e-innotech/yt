@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.UserLogsMapper;
 import com.yt.cms.model.UserLogs;
 import com.yt.cms.service.UserLogsService;
@@ -23,7 +25,8 @@ public class UserLogsServiceImpl implements UserLogsService {
 
 
 	@Override
-	public List<UserLogs> queryAll(UserLogs log) {
+	public List<UserLogs> queryAll(UserLogs log, Page page) {
+		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return logDAO.query(log);
 	}
 

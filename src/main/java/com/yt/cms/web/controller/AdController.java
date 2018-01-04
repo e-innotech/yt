@@ -3,9 +3,6 @@ package com.yt.cms.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.yt.cms.annotations.LogAnnotation;
+import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.Ad;
@@ -37,7 +35,7 @@ public class AdController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询广告列表")
-	public PageInfo<Ad> query(@RequestParam(required=false) String adName, // 广告名称
+	public AjaxResponseBody query(@RequestParam(required=false) String adName, // 广告名称
 			@RequestParam(required=false) Integer status, // 广告上下 线状态
 			@RequestParam(required=false) Integer adType, // 广告类型  0 图片，1 ，视频 
 			Page page){
@@ -46,7 +44,8 @@ public class AdController {
 		ad.setStatus(status);
 		ad.setAdType(adType);
 		List<Ad> list = adService.queryAll(ad, page);
-		return new PageInfo<Ad>(list);
+		PageInfo<Ad> pageInfo =  new PageInfo<Ad>(list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
 	/**
@@ -57,10 +56,9 @@ public class AdController {
 	 */
 	@GetMapping("/find/id")
 	@ApiOperation("按照id查询广告")
-	public HttpEntity<?> findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam Integer id) {
 		Ad result = adService.findById(id);
-		HttpStatus status = result != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
-		return new ResponseEntity<Ad>(result, status);
+		return new AjaxResponseBody(true,Const.SUCCESS, result);
 	}
 	/**
 	 * 新增广告
@@ -70,12 +68,12 @@ public class AdController {
 	@PostMapping("/add")
 	@ApiOperation("添加广告")
 	@LogAnnotation(action="新增广告")
-	public HttpEntity<?> add(@RequestBody Ad Ad) {
+	public AjaxResponseBody add(@RequestBody Ad Ad) {
 		boolean created = adService.save(Ad);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.CREATED);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 修改广告
@@ -85,12 +83,12 @@ public class AdController {
 	@PutMapping("/update")
 	@ApiOperation("修改广告")
 	@LogAnnotation(action="修改广告")
-	public HttpEntity<?> update(@RequestBody Ad ad){
+	public AjaxResponseBody update(@RequestBody Ad ad){
 		boolean created = adService.update(ad);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
 	 * 删除广告
@@ -100,12 +98,12 @@ public class AdController {
 	@PutMapping("/delete")
 	@ApiOperation("删除广告")
 	@LogAnnotation(action="删除广告")
-	public HttpEntity<?> delete(@RequestParam Integer id){
+	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = adService.deleteLogicById(id);
 		if(!created) {
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
 }

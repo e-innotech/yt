@@ -6,18 +6,14 @@ public class Page implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Integer MIN_PAGE = 1;// 最小页数
-
-	private static final Integer DEFAULT_PAGE_SIZE = 10;// 默认每页显示10条数据
-
 	/**
 	 * limit的开始位置
 	 */
-	private Integer pageNum = 0;
+	private Integer pageNum;
 	/**
 	 * 每页显示数
 	 */
-	private Integer pageSize = DEFAULT_PAGE_SIZE;
+	private Integer pageSize;
 
 
 	public Page() {
@@ -34,7 +30,7 @@ public class Page implements Serializable {
 	}
 
 	public void setPageNum(Integer pageNum) {
-		this.pageNum = (pageNum-1)*pageSize;
+		this.pageNum = pageNum;
 	}
 
 	public Integer getPageSize() {
@@ -44,8 +40,5 @@ public class Page implements Serializable {
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
-
-	
-	
 
 }
