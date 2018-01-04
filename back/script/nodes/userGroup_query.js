@@ -49,16 +49,15 @@ $(function () {
             };
         }
         if(ctrl_add != '') {
-            $('#addUserBtn').show();
+            $('#addUserGroupBtn').show();
         };
         getUserList();
-        $('#addUserBtn').click(function(){            //增加按钮的事件
+        $('#addUserGroupBtn').click(function(){            //增加按钮的事件
             $.get($components.userGroup,function (result) {
                 $('#popPanel').html(result);
                 $('#userGroup_add').modal('show');
                 $('#userGroup_addBtn').click(function () {
-                    var add = JSON.stringify({'userName':$('#userGroup_userName').val(),'passWord':$('#userGroup_passWord').val()});
-                    console.log(99,$apiUrl+nodeData)
+                    var add = JSON.stringify({'userName':$('#userGroup_add_userName').val(),'passWord':$('#userGroup_add_passWord').val()});
                     $.ajax({
                         type: 'POST',
                         url:'http://123.59.156.27:8080/userGroup/add',
