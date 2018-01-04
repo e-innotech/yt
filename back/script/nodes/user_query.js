@@ -24,6 +24,7 @@ $(function () {
                     //renderList(re.data);
                     initTable(re.data.list);
                     initPage(re.data.total);
+                    console.log(111,re.data.total)
                 }else{
                     alert(re.msg);
                 }
@@ -33,14 +34,14 @@ $(function () {
     }
     var initialize = function(){
         getUserList();
-        for(var i=0;i<nodeData.buttons.length;i++){
+        for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
             if(nodeData.buttons[i].uri.indexOf('add')!=-1){
-                //$('#addUserBtn').show();
+                $('#addUserBtn').show();
             }
         }
     }
-    var initTable = function(list){
-        $('#userList').empty();
+    var initTable = function(list){//初始化表格
+        $('#userList').empty();//进来之前清空body
         userList = list;
         for(var i=0;i<list.length;i++){
             str = "<tr>" +
@@ -51,15 +52,16 @@ $(function () {
             "<td>" + list[i].createDate + "</td>" +
             "<td>" + list[i].user_group_id + "</td>" +
             "<td>" +
-            "<input type='button' value='删除' onclick='delanniu(this)'/>" +
-            "<input type='button' value='修改' onclick='reviselist(this)'/>" +
+            //"<input type='button' value='删除' onclick='delanniu(this)'/>" +
+            //"<input type='button' value='修改' onclick='reviselist(this)'/>" +
             "</td></tr>";
             $('#userList').append(str);//
         }
     }
-    var initPage = function(total){
+    var initPage = function(total){//初始化分页
+
     }
-    initialize();
+    initialize();//初始化
 
 
 
