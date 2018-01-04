@@ -15,7 +15,7 @@ console.log(nodeData.uri)
         }
         $.ajax({
             type: 'get',//请求方式
-            url: $apiUrl+nodeData.uri,//请求路径
+            url: $query.user,//请求路径
             async: false,
             dataType: 'json', //数据格式
             xhrFields: {

@@ -10,6 +10,22 @@ var config ={
         };
 
 
+        $query = {
+            'ad':$apiUrl+'/ad/query',
+            'adPositions':$apiUrl+'/adPositions/query',
+            'channel':$apiUrl+'/channel/query',
+            'members':$apiUrl+'/members/query',
+            'news':$apiUrl+'/news/query',
+
+            'resource':$apiUrl+'/resource/query',
+            'role':$apiUrl+'/resource/query',
+            'user':$apiUrl+'/user/query',
+            'userGroup':$apiUrl+'/userGroup/query',
+            'log':$apiUrl+'/log/query',
+            'websites':$apiUrl+'/websites/query',
+            'config':$apiUrl+'/config/query'
+        };
+
 
 
 
@@ -17,8 +33,11 @@ var config ={
             'pwdReset':'components/pwdReset.html',
             'userGroup':'components/userGroup.html',
             'userQuery':'components/userQuery.html',
+
             'resourceEdit':'components/resourceEdit.html',
-            'resourceList':'components/resourceList.html'
+            'resourceList':'components/resourceList.html',
+
+            'roleEdit':'components/roleEdit.html'
         }
     }
 }
