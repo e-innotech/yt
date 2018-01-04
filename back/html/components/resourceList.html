@@ -1,0 +1,36 @@
+<div class="modal fade" id="resourceListModal" tabindex="-1" role="dialog" aria-labelledby="resourceListModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="resourceListModalLabel">资源列表</h4>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input id="resourceListNameTxt" type="text" class="form-control" placeholder="联系人">
+                    </div>
+                    <button id="searchResourceBtn" type="submit" class="btn btn-default">查询</button>
+                </form>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="info">
+                            <th>资源名</th>
+                        </tr>
+                        </thead>
+                        <tbody id="resourceListT">
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <p id="totalPgResource"></p>
+                    <ul id="pgResouce" class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../script/components/resourceList.js"></script>

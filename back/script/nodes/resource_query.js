@@ -1,4 +1,6 @@
 $(function () {
+    pageNum = 1;
+    pageSize = 20;
 
     var resourceName = '';
     var resourceList = [];
@@ -12,7 +14,7 @@ $(function () {
     const MENU = ['否','是'];
 
     var getResourceList = function(){
-        var data = {pageNum:pageNum,pageSize:pageSize};
+        var data = {pageNum:pageNum,pageSize:pageSize,isMenu:$('#menuS').val(),rw:$('#rwS').val()};
         if(resourceName!=''){
             data.resourceName = resourceName;
         };
@@ -37,7 +39,11 @@ $(function () {
 
     };
     var addResource = function () {
-        var data = $('#resourceForm').serializeArray();
+        if($('input[name="resourceName"]').val() == ''){
+            alert('资源名不能为空');
+            return;
+        };
+        var data = $('#resourceForm').serializeObject();
         $.ajax({
             type: "post",//请求方式
             url: $apiUrl+ctrl_add,//请求路径
@@ -60,10 +66,44 @@ $(function () {
 
     };
     var editResource = function () {
-        var data = $('#resourceForm').serializeArray();
+        var data = $('#resourceForm').serializeObject();
+        data.id = selectResource.id;
+        $.ajax({
+            type: "put",//请求方式
+            url: $apiUrl+ctrl_upate,//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType:'application/json',
+            data:JSON.stringify(data),
+            success: function (re) {
+                if(re.success){
+                    getResourceList();
+                    $('#resourceEditModal').modal('hide');
+                }
+                alert(re.msg);
+            }
+        });
     };
     var deleteResource = function (id) {
-
+        $.ajax({
+            type: "put",//请求方式
+            url: $apiUrl+ctrl_delete,//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            xhrFields: {
+                withCredentials: true
+            },
+            data:{id:id},
+            success: function (re) {
+                if(re.success){
+                    getResourceList();
+                }
+                alert(re.msg);
+            }
+        });
     }
 
     var initialize = function () {
@@ -109,7 +149,7 @@ $(function () {
                 showResoureceEdit('edit');
             });
             $('#deleteBtn_'+list[i].id).click(function () {
-
+                deleteResource(this.id.split('_')[1]);
             });
         }
 
@@ -164,6 +204,13 @@ $(function () {
                     return;
                 };
                 addResource();
+            });
+            $('input[name="pname"]').click(function () {
+                $.get($components.resourceList,function (re) {
+                    $('#popPanel1').html(re);
+                    $('#resourceListModal').modal('show');
+
+                });
             });
         });
     };
