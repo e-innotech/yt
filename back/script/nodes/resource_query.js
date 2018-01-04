@@ -2,10 +2,12 @@ $(function () {
 
     var resourceName = '';
     var resourceList = [];
+    var selectResource;
 
-    var ctrl_add = 0;
-    var ctrl_upate = 0;
-    var ctrl_delete = 0;
+    var ctrl_add = '';
+    var ctrl_upate = '';
+    var ctrl_delete = '';
+
     const RW = ['只读','读写'];
     const MENU = ['否','是'];
 
@@ -34,20 +36,58 @@ $(function () {
         });
 
     };
+    var addResource = function () {
+        var data = $('#resourceForm').serializeArray();
+        $.ajax({
+            type: "post",//请求方式
+            url: $apiUrl+ctrl_add,//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType:'application/json',
+            data:JSON.stringify(data),
+            success: function (re) {
+                if(re.success){
+                    getResourceList();
+                    $('#resourceEditModal').modal('hide');
+                }
+                alert(re.msg);
+
+            }
+        });
+
+    };
+    var editResource = function () {
+        var data = $('#resourceForm').serializeArray();
+    };
+    var deleteResource = function (id) {
+
+    }
 
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
-            if(nodeData.buttons[i].uri.indexOf('add')){
-                ctrl_add = 1;
+            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
+                ctrl_add = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('update')){
-                ctrl_upate = 1;
+            if(nodeData.buttons[i].uri.indexOf('update')!=-1){
+                ctrl_upate = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('delete')){
-                ctrl_delete = 1;
+            if(nodeData.buttons[i].uri.indexOf('delete')!=-1){
+                ctrl_delete = nodeData.buttons[i].uri;
             };
         }
-        if(ctrl_add == 1) $('#addResourceBtn').show();
+        if(ctrl_add != '') {
+            $('#addResourceBtn').show();
+            $('#addResourceBtn').click(function () {
+                showResoureceEdit('add');
+            });
+        };
+        $('#searchBtn').click(function () {
+            resourceName = $('#resourceNameTxt').val();
+            getResourceList();
+        });
         getResourceList();
     };
     var initTable = function(list) {
@@ -56,16 +96,17 @@ $(function () {
         for(var i=0;i<list.length;i++){
             $('#resourceT').append('<tr>' +
                 '<td>'+list[i].id+'</td>' +
-                '<td>'+list[i].parentId+'</td>'+
                 '<td>'+list[i].resourceName+'</td>'+
                 '<td>'+list[i].uri+'</td>'+
                 '<td>'+RW[list[i].rw]+'</td>'+
                 '<td>'+MENU[list[i].isMenu]+'</td>'+
-                '<td>'+(ctrl_upate==1?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete==1?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+                '<td>'+list[i].pname+'</td>'+
+                '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
                 '</tr>');
 
-            $('#eidtBtn_'+list[i].id).click(function () {
-
+            $('#editBtn_'+list[i].id).click(function () {
+                selectResource = getResourceFromId(this.id.split('_')[1]);
+                showResoureceEdit('edit');
             });
             $('#deleteBtn_'+list[i].id).click(function () {
 
@@ -95,6 +136,35 @@ $(function () {
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
+        });
+    };
+    var getResourceFromId = function (id) {
+        for(var i=0;i<resourceList.length;i++){
+            if(id == resourceList[i].id){
+                return resourceList[i];
+            }
+        }
+    }
+    var showResoureceEdit = function (type) {
+        $.get($components.resourceEdit,function (re) {
+            $('#popPanel').html(re);
+            $('#resourceEditModal').modal('show');
+            if(type=='edit'){
+                $('#resourceEditModalLabel').html('编辑资源');
+                $('input[name="resourceName"]').val(selectResource.resourceName);
+                $('input[name="uri"]').val(selectResource.uri);
+                $('input[name="rw"]').val(RW[selectResource.rw]);
+                $('input[name="isMenu"]').val(MENU[selectResource.isMenu]);
+                $('input[name="pname"]').val(selectResource.pname);
+                $('input[name="parentId"]').val(selectResource.parentId);
+            };
+            $('#saveBtn').click(function () {
+                if(type == 'edit'){
+                    editResource();
+                    return;
+                };
+                addResource();
+            });
         });
     };
     initialize();

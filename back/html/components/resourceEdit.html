@@ -1,0 +1,53 @@
+<div class="modal fade" id="resourceEditModal" tabindex="-1" role="dialog" aria-labelledby="resourceEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="resourceEditModalLabel">新增资源</h4>
+            </div>
+            <div class="modal-body">
+                <form id="resourceForm" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">资源名：</span>
+                        <input type="text" name="resourceName" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">资源地址：</span>
+                        <input type="text" name="uri" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">读写权限：</span>
+                        <select name="rw"
+                                class="input-large form-control">
+                            <option value="0">只读</option>
+                            <option value="1">读写</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">是否菜单：</span>
+                        <select name="isMenu"
+                                class="input-large form-control">
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">父级资源：</span>
+                        <input type="text" name="pname" class="form-control" readonly="readonly" placeholder="无">
+                        <input type="hidden" name="parentId" placeholder="0">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
