@@ -1,5 +1,5 @@
 $(function () {
-    console.log('nodeData::::'+nodeData.href);
+    console.log('nodeData::::'+nodeData.uri);
 
     var userName = '';
     var userList = [];
@@ -12,7 +12,7 @@ $(function () {
         }
         $.ajax({
             type: "get",//请求方式
-            url: $apiUrl+nodeData.href,//请求路径
+            url: $apiUrl+nodeData.uri,//请求路径
             async: false,
             dataType: "json", //数据格式
             xhrFields: {
@@ -41,7 +41,7 @@ $(function () {
         }
     }
     var initTable = function(list){//初始化表格
-        $('#userList').empty();//进来之前清空body
+        $('#user_query').empty();//进来之前清空body
         userList = list;
         for(var i=0;i<list.length;i++){
             str = "<tr>" +
@@ -55,7 +55,7 @@ $(function () {
             //"<input type='button' value='删除' onclick='delanniu(this)'/>" +
             //"<input type='button' value='修改' onclick='reviselist(this)'/>" +
             "</td></tr>";
-            $('#userList').append(str);//
+            $('#user_query').append(str);//
         }
     }
     var initPage = function(total){//初始化分页

@@ -2,13 +2,12 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>用户列表</title>
+    <title>用户组列表</title>
 
-    <script src="../script/nodes/user_query.js"></script>
+    <script src="../script/nodes/userGroup_query.js"></script>
 
 </head>
 <body>
-
 
 <!--添加弹出框-->
 <div class="modal fade add" id="addmyModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -88,34 +87,30 @@
 
 <!--表格-->
 <div class="fl wrapper wrapper-content system" style="width: 100%">
-    <input id="addUserBtn" type="button" value="新增" class="add_btn" style="display: none"/>
-    <input type="text" class="text1_find" placeholder="用户名查找"/>
-    <select class="text2_find">
-        <option value ="0">0</option>
-        <option value ="1">1</option>
-
-    </select>
+    <input type="button" value="新增" class="add_btn"/>
+    <input type="text" class="text1_find" placeholder="id查找"/>
     <input type="button" value="查找" class="btn_find" onclick="find()"/>
 
     <div class="list_1 row">
-        <table  class="col-sm-12 table table-bordered table-hover">
+        <table class="col-sm-12 table table-bordered table-hover">
             <thead>
             <tr>
                 <th>id</th>
-                <th>用户名</th>
-                <th>密码</th>
+                <th>用户组</th>
+                <th>用户组描述</th>
                 <th>状态</th>
-                <th>时间</th>
                 <th>用户组</th>
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody id="user_query">
+            <tbody id="userGroup_query">
 
             </tbody>
         </table>
     </div>
+
 </div>
+
 
 
 </body>

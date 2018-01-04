@@ -79,7 +79,7 @@ $(function(){
                 // 事件代码...
                 console.log(data);
                 nodeData = data;
-                //console.log(getNote(data.href))
+                console.log(getNote(data.uri))
                 if(data.uri!=null) {
                     $.get(getNote(data.uri), function (re) {
                         $('#main').html(re);

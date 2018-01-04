@@ -409,9 +409,9 @@ function delanniu(obj) {
 
 }
 
-function getNote(href){
-    var arr  = href.split('/');
-    re = 'nodes/'+arr[1]+'_'+arr[2]+'.html';
+function getNote(uri) {
+    var arr = uri.split('/');
+    re = 'nodes/' + arr[1] + '_' + arr[2] + '.html';
     return re;
 }
 
