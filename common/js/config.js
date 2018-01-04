@@ -1,12 +1,12 @@
 var config ={
     init:function(){
-        $apiUrl = ' http://192.168.20.195:8080/';
+        $apiUrl = ' http://192.168.20.195:8080';
         $admin = {
-            'login':$apiUrl+'login',
-            'logout':$apiUrl+'logout'
+            'login':$apiUrl+'/login',
+            'logout':$apiUrl+'/logout'
         };
         $user = {
-            'update':$apiUrl+'user/update/pwd'
+            'update':$apiUrl+'/user/update/pwd'
         };
 
 
@@ -14,7 +14,8 @@ var config ={
 
 
         $components = {
-            'pwdReset':'components/pwdReset.html'
+            'pwdReset':'components/pwdReset.html',
+            'resourceEdit':'components/resourceEdit.html'
         }
     }
 }
