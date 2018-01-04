@@ -2,7 +2,7 @@ $(function(){
     config.init();
     var userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
     var treeData = JSON.parse(sessionStorage.getItem('permissons'));
-   console.log(treeData);
+   //console.log(treeData);
     var initHeader = function(){
         $('#userinfo').html(userinfo.roleName+':'+userinfo.userName);
         //修改密码
@@ -12,7 +12,7 @@ $(function(){
                 $('#popPanel').html(result);
 
                 $('#pwdResetModal').modal('show');
-                $('#pwdBtn').click(function () {
+                $('#pwdResetModalBtn').click(function () {
                     var pwd = JSON.stringify({'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()});
                     $.ajax({
                         type: 'PUT',

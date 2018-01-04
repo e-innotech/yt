@@ -1,9 +1,12 @@
 $(function () {
     console.log('nodeData::::'+nodeData.uri);
-
+console.log(nodeData.uri)
     var userName = '';
     var userList = [];
-    var permission = [];
+    var ctrl_add = 0;
+    var ctrl_find = 0;
+    var ctrl_delete = 0;
+    var ctrl_updata = 0;
 
     var getUserList = function(){
         var data = {pageSize:pageSize,pageNum:pageNum};
@@ -33,12 +36,50 @@ $(function () {
         })
     }
     var initialize = function(){
-        getUserList();
+
         for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
-            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
-                $('#addUserBtn').show();
-            }
+            if(nodeData.buttons[i].uri.indexOf('add')){
+                ctrl_add = 1;
+            };
+            if(nodeData.buttons[i].uri.indexOf('find')){
+                ctrl_find = 1;
+            };
+            if(nodeData.buttons[i].uri.indexOf('delete')){
+                ctrl_delete = 1;
+            };
+            if(nodeData.buttons[i].uri.indexOf('updata')){
+                ctrl_updata = 1;
+            };
         }
+        if(ctrl_add == 1) {$('#addUserBtn').show()};
+        getUserList();
+        $('#addUserBtn').click(function(){            //增加按钮的事件
+            $.get($components.pwdReset,function (result) {
+                $('#popPanel').html(result);
+                $('#user_query_add').modal('show');
+                $('#user_query_addBtn').click(function () {
+                    var add = JSON.stringify({'userName':$('#user_query_add_userName').val(),'passWord':$('#user_query_add_passWord').val()});
+                    console.log(99,$apiUrl+nodeData)
+                    $.ajax({
+                        type: 'POST',
+                        url:'http://123.59.156.27:8080/user/add',
+                        contentType:'application/json',//必须
+                        data: add,
+                        dataType: 'json',
+                        xhrFields: {//必须
+                            withCredentials: true
+                        },
+                        success: function(data) {
+                            alert(data.msg);
+                            if(data.success){
+                                $('#user_query_add').modal('hide');
+                            }
+                        }
+                    });
+                });
+            })
+        });
+
     }
     var initTable = function(list){//初始化表格
         $('#user_query').empty();//进来之前清空body
@@ -48,18 +89,38 @@ $(function () {
             "<td>" + list[i].id + "</td>" +
             "<td>" + list[i].userName + "</td>" +
             "<td>" + list[i].passWord + "</td>" +
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             "<td>" + list[i].createDate + "</td>" +
             "<td>" + list[i].user_group_id + "</td>" +
-            "<td>" +
-            //"<input type='button' value='删除' onclick='delanniu(this)'/>" +
-            //"<input type='button' value='修改' onclick='reviselist(this)'/>" +
-            "</td></tr>";
+            "</tr>";
+
             $('#user_query').append(str);//
         }
     }
     var initPage = function(total){//初始化分页
 
+        if(pageNum>1){
+            return;
+        }
+        $.jqPaginator('#pg', {
+            totalCounts:Number(total)==0?1:Number(total),
+            pageSize:pageSize,
+            visiblePages: 3,
+            currentPage: pageNum,
+            first: '<li class="first"><a href="javascript:;"><<</a></li>',
+            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+            last: '<li class="last"><a href="javascript:;">>></a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            onPageChange: function (num, type) {
+//	            alert(type + '：' + num);
+                if(type == 'change'){
+                    pageNum = num;
+                    getUserList();
+                }
+                $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
+            }
+        });
     }
     initialize();//初始化
 

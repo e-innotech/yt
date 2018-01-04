@@ -1,6 +1,10 @@
 var nodeData;
 var pageNum = 1;
-var pageSize = 20;
+var pageSize = 15;
+
+
+const RW = ['只读','读写'];
+const MENU = ['否','是'];
 /*
  通用的ajax请求函数
  @param type get、post
