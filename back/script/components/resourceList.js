@@ -1,13 +1,7 @@
 $(function () {
-
+    pageNum = 1;
+    pageSize = 20;
     var resourceName = '';
-    var resourceList = [];
-
-    var ctrl_add = 0;
-    var ctrl_upate = 0;
-    var ctrl_delete = 0;
-    const RW = ['只读','读写'];
-    const MENU = ['否','是'];
 
     var getResourceList = function(){
         var data = {pageNum:pageNum,pageSize:pageSize};
@@ -34,50 +28,42 @@ $(function () {
         });
 
     };
-
     var initialize = function () {
-        for(var i=0;i<nodeData.buttons.length;i++){
-            if(nodeData.buttons[i].uri.indexOf('add')){
-                ctrl_add = 1;
-            };
-            if(nodeData.buttons[i].uri.indexOf('update')){
-                ctrl_upate = 1;
-            };
-            if(nodeData.buttons[i].uri.indexOf('delete')){
-                ctrl_delete = 1;
-            };
-        }
-        if(ctrl_add == 1) $('#addResourceBtn').show();
+        $('#searchResourceBtn').click(function () {
+            resourceName = $('#resourceListNameTxt').val();
+            getResourceList();
+        });
         getResourceList();
     };
     var initTable = function(list) {
-        resourceList = list;
-        $('#resourceT').empty();
+        $('#resourceListT').empty();
         for(var i=0;i<list.length;i++){
-            $('#resourceT').append('<tr>' +
-                '<td>'+list[i].id+'</td>' +
-                '<td>'+list[i].parentId+'</td>'+
+            $('#resourceListT').append('<tr id="'+list[i].id+'">' +
                 '<td>'+list[i].resourceName+'</td>'+
-                '<td>'+list[i].uri+'</td>'+
-                '<td>'+RW[list[i].rw]+'</td>'+
-                '<td>'+MENU[list[i].isMenu]+'</td>'+
-                '<td>'+(ctrl_upate==1?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete==1?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
                 '</tr>');
 
-            $('#eidtBtn_'+list[i].id).click(function () {
 
-            });
-            $('#deleteBtn_'+list[i].id).click(function () {
+        };
+        $('#resourceListT tr').click(function(){
+            var id = this.id;
+            var resouce;
+            for(var j=0;j<list.length;j++){
+                if(id == list[j].id){
+                    resouce = list[j];
+                }
+            }
+            $('input[name="pname"]').val(resouce.resourceName);
+            $('input[name="parentId"]').val(resouce.id);
+            $('#resourceListModal').modal('hide');
+        });
 
-            });
-        }
 
     };
     var initPage = function (total) {
         if(pageNum>1){
             return;
         }
-        $.jqPaginator('#pg', {
+        $.jqPaginator('#pgResouce', {
             totalCounts:Number(total)==0?1:Number(total),
             pageSize:pageSize,
             visiblePages: 3,
@@ -93,7 +79,7 @@ $(function () {
                     pageNum = num;
                     getResourceList();
                 }
-                $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
+                $('#totalPgResource').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
         });
     };

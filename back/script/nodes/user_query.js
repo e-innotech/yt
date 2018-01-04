@@ -3,10 +3,10 @@ $(function () {
 console.log(nodeData.uri)
     var userName = '';
     var userList = [];
-    var ctrl_add = 0;
-    var ctrl_find = 0;
-    var ctrl_delete = 0;
-    var ctrl_updata = 0;
+    var ctrl_add = '';
+    var ctrl_find = '';
+    var ctrl_delete = '';
+    var ctrl_updata = '';
 
     var getUserList = function(){
         var data = {pageSize:pageSize,pageNum:pageNum};
@@ -14,10 +14,10 @@ console.log(nodeData.uri)
             data.userName = userName;
         }
         $.ajax({
-            type: "get",//请求方式
+            type: 'get',//请求方式
             url: $apiUrl+nodeData.uri,//请求路径
             async: false,
-            dataType: "json", //数据格式
+            dataType: 'json', //数据格式
             xhrFields: {
                 withCredentials: true
             },

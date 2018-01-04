@@ -2,9 +2,11 @@ $(function () {
     console.log('nodeData::::'+nodeData.uri);
     var groupName = '';
     var userList = [];
-    var ctrl_add = 0;
-    var ctrl_find = 0;
-    var ctrl_delete = 0;
+    var ctrl_add = '';
+    var ctrl_find = '';
+    var ctrl_delete = '';
+    var ctrl_updata = '';
+
 
     var getUserList = function(){
         var data = {pageSize:pageSize,pageNum:pageNum};
@@ -12,10 +14,10 @@ $(function () {
             data.groupName = groupName;
         }
         $.ajax({
-            type: "get",//请求方式
+            type: 'get',//请求方式
             url: $apiUrl+nodeData.uri,//请求路径
             async: false,
-            dataType: "json", //数据格式
+            dataType: 'json', //数据格式
             xhrFields: {
                 withCredentials: true
             },
@@ -33,20 +35,22 @@ $(function () {
             }
         })
     }
-    var initialize = function(){
 
+    var initialize = function(){
         for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
             if(nodeData.buttons[i].uri.indexOf('add')){
-                ctrl_add = 1;
+                ctrl_add = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('find')){
-                ctrl_find = 1;
+              ctrl_find = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('delete')){
-                ctrl_delete = 1;
+                ctrl_delete = nodeData.buttons[i].uri;
             };
         }
-        if(ctrl_add == 1) {$('#addUserBtn').show()};
+        if(ctrl_add != '') {
+            $('#addUserBtn').show();
+        };
         getUserList();
         $('#addUserBtn').click(function(){            //增加按钮的事件
             $.get($components.userGroup,function (result) {
@@ -96,7 +100,7 @@ $(function () {
                         console.log(99,$apiUrl+nodeData)
                         $.ajax({
                             type: 'PUT',
-                            url:'http://123.59.156.27:8080/userGroup/update',
+                            url:$apiUrl+ctrl_updata,
                             contentType:'application/json',//必须
                             data: add,
                             dataType: 'json',
@@ -115,6 +119,7 @@ $(function () {
             });
             $('#deleteBtn_'+list[i].id).click(function () {
                 //删除按钮的功能
+                deleteResource(this.id.split('_')[1]);
             });
             $('#userGroup_query').append(str);//
         }
