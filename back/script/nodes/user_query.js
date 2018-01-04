@@ -61,7 +61,7 @@ console.log(nodeData.uri)
                 $('#user_query_addBtn').click(function () {
                     var add = JSON.stringify({'userName':$('#user_query_add_userName').val(),'passWord':$('#user_query_add_passWord').val()});
                     $.ajax({
-                        type: 'POST',
+                        type: 'post',
                         url:'http://123.59.156.27:8080/user/add',
                         contentType:'application/json',//必须
                         data: add,
@@ -87,16 +87,15 @@ console.log(nodeData.uri)
         $('#user_query').empty();//进来之前清空body
         userList = list;
         for(var i=0;i<list.length;i++){
-            str = "<tr>" +
+            $('#user_query').append('<tr>' +
             "<td>" + list[i].id + "</td>" +
             "<td>" + list[i].userName + "</td>" +
             "<td>" + list[i].passWord + "</td>" +
             '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             "<td>" + list[i].createDate + "</td>" +
             "<td>" + list[i].user_group_id + "</td>" +
-            "</tr>";
+            '</tr>');
 
-            $('#user_query').append(str);//
         }
     }
     var initPage = function(total){//初始化分页

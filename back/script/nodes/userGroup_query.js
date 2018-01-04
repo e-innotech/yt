@@ -1,6 +1,7 @@
 $(function () {
     console.log('nodeData::::'+nodeData.uri);
     var groupName = '';
+    var isUse = 0;
     var userList = [];
     var ctrl_add = '';
     var ctrl_find = '';
@@ -8,7 +9,7 @@ $(function () {
     var ctrl_updata = '';
 
 
-    var getUserList = function(){
+    var getuserGroupList = function(){
         var data = {pageSize:pageSize,pageNum:pageNum};
         if(groupName!=''){
             data.groupName = groupName;
@@ -35,6 +36,27 @@ $(function () {
             }
         })
     }
+    var deleteuserGroup = function (id) {//删除
+        $.ajax({
+            type: "put",//请求方式
+            url: $apiUrl+ctrl_delete,//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            xhrFields: {
+                withCredentials: true
+            },
+            data:{id:id},
+            success: function (re) {
+                if(re.success){
+                    deleteuserGroup();
+                }
+                alert(re.msg);
+            }
+        });
+    }
+
+
+
 
     var initialize = function(){
         for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
@@ -47,20 +69,28 @@ $(function () {
             if(nodeData.buttons[i].uri.indexOf('delete')){
                 ctrl_delete = nodeData.buttons[i].uri;
             };
+            if(nodeData.buttons[i].uri.indexOf('updata')){
+                ctrl_updata = nodeData.buttons[i].uri;
+            };
         }
         if(ctrl_add != '') {
             $('#addUserGroupBtn').show();
         };
-        getUserList();
-        $('#addUserGroupBtn').click(function(){            //增加按钮的事件
+        getuserGroupList();
+        $('#addUserGroupBtn').click(function(){
+                //增加按钮的事件
+            if($('#userGroup_add_userName').val() == ''){
+                alert('资源名不能为空');
+                return;
+            };
             $.get($components.userGroup,function (result) {
                 $('#popPanel').html(result);
                 $('#userGroup_add').modal('show');
                 $('#userGroup_addBtn').click(function () {
                     var add = JSON.stringify({'userName':$('#userGroup_add_userName').val(),'passWord':$('#userGroup_add_passWord').val()});
                     $.ajax({
-                        type: 'POST',
-                        url: $query.userGroup,
+                        type: 'post',
+                        url:$apiUrl+ctrl_add,
                         contentType:'application/json',//必须
                         data: add,
                         dataType: 'json',
@@ -82,24 +112,23 @@ $(function () {
         $('#userGroup_query').empty();//进来之前清空body
         userList = list;
         for(var i=0;i<list.length;i++){
-            str = "<tr>" +
+            $('#userGroup_query').append('<tr>' +
             "<td>" + list[i].id + "</td>" +
             "<td>" + list[i].groupName + "</td>" +
             "<td>" + list[i].desc + "</td>" +
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             "<td>" + list[i].user_group_id + "</td>" +
-            '<td>'+(ctrl_find==1?'<button id="findBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete==1?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
-            "</tr>";
+            '<td>'+(ctrl_updata!=''?'<button id="updataBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            '</tr>');
             $('#updataBtn_'+list[i].id).click(function () {
-                $.get($components.pwdReset,function (result) { //修改按钮的事件
+                $.get($components.userGroup,function (result) { //修改按钮的事件
                     $('#popPanel').html(result);
                     $('#userGroup_updata').modal('show');
                     $('#userGroup_updataBtn').click(function () {
-                        var add = JSON.stringify({'userName':$('#userGroup_updata_userName').val(),'passWord':$('#userGroup_updata_passWord').val()});
-                        console.log(99,$apiUrl+nodeData)
+                        var add = JSON.stringify({'userName':$('#userGroup_updata_userName').val(),'passWord':$('#userGroup_updata_passWord').val(),id:id});
                         $.ajax({
                             type: 'PUT',
-                            url:$query.userGroup,
+                            url:$apiUrl+ctrl_updata,
                             contentType:'application/json',//必须
                             data: add,
                             dataType: 'json',
@@ -118,9 +147,8 @@ $(function () {
             });
             $('#deleteBtn_'+list[i].id).click(function () {
                 //删除按钮的功能
-                deleteResource(this.id.split('_')[1]);
+                deleteuserGroup(this.id.split('_')[1]);
             });
-            $('#userGroup_query').append(str);//
         }
     }
     var initPage = function(total){//初始化分页
@@ -142,7 +170,7 @@ $(function () {
 //	            alert(type + '：' + num);
                 if(type == 'change'){
                     pageNum = num;
-                    getUserList();
+                    getuserGroupList();
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }

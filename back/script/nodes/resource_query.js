@@ -20,7 +20,7 @@ $(function () {
         };
         $.ajax({
             type: "get",//请求方式
-            url: $apiUrl+nodeData.uri,//请求路径
+            url: $query.resource,//请求路径
             async: false,
             dataType: "json", //数据格式
             xhrFields: {
@@ -44,6 +44,7 @@ $(function () {
             return;
         };
         var data = $('#resourceForm').serializeObject();
+        console.log(11111111111111111111111,data.id)
         $.ajax({
             type: "post",//请求方式
             url: $apiUrl+ctrl_add,//请求路径
