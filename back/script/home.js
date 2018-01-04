@@ -80,8 +80,8 @@ $(function(){
                 console.log(data);
                 nodeData = data;
                 //console.log(getNote(data.href))
-                if(data.href!=null) {
-                    $.get(getNote(data.href), function (re) {
+                if(data.uri!=null) {
+                    $.get(getNote(data.uri), function (re) {
                         $('#main').html(re);
                     });
                 }
