@@ -16,9 +16,10 @@ var config ={
             'channel':$apiUrl+'/channel/query',
             'members':$apiUrl+'/members/query',
             'news':$apiUrl+'/news/query',
-
+            'newsLaunch':$apiUrl+'/news/launch/query',
+            'newsPublish':$apiUrl+'/news/publish/query',
             'resource':$apiUrl+'/resource/query',
-            'role':$apiUrl+'/resource/query',
+            'role':$apiUrl+'/role/query',
             'user':$apiUrl+'/user/query',
             'userGroup':$apiUrl+'/userGroup/query',
             'log':$apiUrl+'/log/query',
