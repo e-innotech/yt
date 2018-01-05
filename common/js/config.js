@@ -6,7 +6,7 @@ var config ={
             'logout':$apiUrl+'/logout'
         };
         $user = {
-            'update':$apiUrl+'/user/update/pwd'
+            'pwd':$apiUrl+'/user/pwd'
         };
 
 
@@ -42,6 +42,7 @@ var config ={
 
             'roleEdit':'components/roleEdit.html',
 
+            'adEdit':'components/adEdit.html',
             'adPositionsEdit':'components/adPositionsEdit.html'
         };
 
