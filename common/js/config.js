@@ -31,6 +31,8 @@ var config ={
 
 
         $components = {
+            'confirm':'components/confirm.html',
+
             'pwdReset':'components/pwdReset.html',
             'userGroup':'components/userGroup.html',
             'userQuery':'components/userQuery.html',
@@ -39,7 +41,8 @@ var config ={
             'resourceList':'components/resourceList.html',
 
             'roleEdit':'components/roleEdit.html'
-        }
+        };
+
     }
 }
 
