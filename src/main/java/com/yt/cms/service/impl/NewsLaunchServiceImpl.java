@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.NewsLaunchMapper;
@@ -67,8 +66,12 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	
 	@Override
 	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return newsLaunchDAO.query(newsLaunch);
+		return newsLaunchDAO.query(newsLaunch,page);
+	}
+
+	@Override
+	public long queryCount(NewsLaunch newsLaunch) {
+		return newsLaunchDAO.queryCount(newsLaunch);
 	}
 
 	@Override

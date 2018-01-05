@@ -2,6 +2,9 @@ package com.yt.cms.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.yt.cms.common.Page;
 import com.yt.cms.model.Members;
 
 public interface MembersMapper {
@@ -15,7 +18,8 @@ public interface MembersMapper {
     
     int updateByPrimaryKeySelective(Members record);
 
-    List<Members> query(Members record);
+    List<Members> query(@Param("record") Members record, @Param("page") Page page);
     
-    int updatePwd(Members record);
+    long queryCount(Members record);
+    
 }

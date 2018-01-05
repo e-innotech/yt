@@ -8,7 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
-
+/**
+ * 去掉find 的接口，并入query
+ * 分页自己实现
+ * @author admin
+ *
+ */
 @SpringBootApplication
 @MapperScan("com.yt.cms.mapper")
 @EnableCaching

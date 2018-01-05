@@ -43,6 +43,12 @@ public class AjaxResponseBody implements Serializable{
 	public AjaxResponseBody() {
 		super();
 	}
+	
+	public AjaxResponseBody(boolean success,String msg) {
+		super();
+		this.msg = msg;
+		this.success = success;
+	}
 	public AjaxResponseBody(boolean success,String msg, Object data) {
 		super();
 		this.success = success;

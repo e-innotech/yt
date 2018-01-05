@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.UserLogs;
 import com.yt.cms.service.UserLogsService;
 
@@ -38,15 +38,18 @@ public class UserLogController {
 			@RequestParam(required=false) String action,
 			@RequestParam(required=false) Date startDate,
 			@RequestParam(required=false) Date endDate,
-			Page page){
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		UserLogs log = new UserLogs();
 		log.setAction(action);
 		log.setEndDate(endDate);
 		log.setStartDate(startDate);
 		log.setResourceName(resourceName);
 		log.setUserName(userName);
+		Page page = new Page(pageNum,pageSize);
+		long total = userLogService.queryCount(log);
 		List<UserLogs> logList = userLogService.queryAll(log,page);
-		PageInfo<UserLogs> pageInfo = new PageInfo<UserLogs>(logList);
+		PageInfo<UserLogs> pageInfo = new PageInfo<UserLogs>(pageNum,pageSize, total,logList);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 

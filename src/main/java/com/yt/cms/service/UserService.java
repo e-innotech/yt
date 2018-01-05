@@ -2,7 +2,9 @@ package com.yt.cms.service;
 
 import java.util.List;
 
+import com.yt.cms.common.Page;
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserInfoUpdate;
 import com.yt.cms.model.UserUpdatePwd;
 
 /**
@@ -36,31 +38,20 @@ public interface UserService {
 	 * @return 如果找到返回 true，否则返回false
 	 */
 	public boolean findByUserName(String userName);
-	/**
-	 * 批量查询，可以是分页查询
-	 * @return
-	 */
-//	public PageInfo query(User user);
+
 	
-	public List<User> query(String userName, Integer pageSize, Integer pageNum);
-	/**
-	 * 更新用户 密码
-	 * @param user
-	 * @return
-	 */
-	public boolean update(UserUpdatePwd user);
-	/**
-	 * 对用户的启用或者禁用
-	 * 逻辑删除
-	 * @param user
-	 * @return
-	 */
-	public boolean disableOrEnable(User user);
+	public List<User> query(String userName, Page page);
+	
+	public long queryCount(String userName);
+
+	public boolean updatePwd(UserUpdatePwd user);
+	public boolean update(UserInfoUpdate user);
+	
 	/**
 	 * 设置用户组id
 	 * @param userId
 	 * @param userGroupId
 	 * @return
 	 */
-	public boolean setUserGroup4User(int userId, int userGroupId);
+//	public boolean setUserGroup4User(int userId, int userGroupId);
 }

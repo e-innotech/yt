@@ -24,11 +24,17 @@ public interface UserGroupService {
 	 */
 	public UserGroup findById(Integer id);
 	/**
-	 * 批量查询，可以是分页查询
+	 * 分页查询
 	 * @return
 	 */
 	
 	public List<UserGroup> query(String groupName, Page page);
+	/**
+	 * 查询count
+	 * @param groupName
+	 * @return
+	 */
+	public long queryCount(String groupName);
 	/**
 	 * 查询所有，树形展现
 	 * @return

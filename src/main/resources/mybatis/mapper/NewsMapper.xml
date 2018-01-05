@@ -29,9 +29,30 @@
     where id = #{id,jdbcType=INTEGER} and isDel = 0
   </select>
   
-  <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.News" >
+  <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
+    from news where 1=1 and isDel = 0
+    <if test="news.startDate != null" >
+       		<![CDATA[ and create_date >= #{news.startDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+        <if test="news.endDate != null" >
+       		<![CDATA[ and create_date <= #{news.endDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+	     <if test="news.newsTitle != null" >
+	       and news_title like concat('%', #{news.newsTitle}, '%')
+	    </if>
+	    <if test="news.source != null" >
+	       and source = #{news.source}
+	    </if>
+	     order by id desc
+	      <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.News" >
+    select count(1)
     from news where 1=1 and isDel = 0
     <if test="startDate != null" >
        		<![CDATA[ and create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
@@ -45,7 +66,6 @@
 	    <if test="source != null" >
 	       and source = #{source}
 	    </if>
-	     order by id desc
   </select>
   
   <update id="deleteLogicById" parameterType="java.lang.Integer">
@@ -113,7 +133,7 @@
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} 
   </update>
 
 

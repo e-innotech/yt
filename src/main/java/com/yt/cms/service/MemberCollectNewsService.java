@@ -28,6 +28,13 @@ public interface MemberCollectNewsService {
 	public List<MembersCollectNews> queryAll(MembersCollectNews collect,Page page);
 	
 	/**
+	 * 按照collect 参数查询
+	 * @param collect
+	 * @return
+	 */
+	public long queryCount(MembersCollectNews collect);
+	
+	/**
 	 * 取消收藏
 	 * @param collectId
 	 * @return

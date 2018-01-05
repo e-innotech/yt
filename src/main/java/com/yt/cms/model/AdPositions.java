@@ -16,8 +16,8 @@ public class AdPositions extends BaseVo{
 
     private String adName;
 
-    private Integer isUse;
-
+    private String remark;
+    
     private List<Ad> ads;
     
 	public List<Ad> getAds() {
@@ -60,12 +60,12 @@ public class AdPositions extends BaseVo{
         this.adName = adName == null ? null : adName.trim();
     }
 
-    public Integer getIsUse() {
-		return isUse;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setIsUse(Integer isUse) {
-		this.isUse = isUse;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

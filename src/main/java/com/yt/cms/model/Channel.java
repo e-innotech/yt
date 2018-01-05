@@ -12,7 +12,7 @@ public class Channel extends BaseVo{
 
     private Integer isUse;
 
-    private String comment;
+    private String remark;
 
 	public Integer getId() {
         return id;
@@ -38,12 +38,14 @@ public class Channel extends BaseVo{
 		this.isUse = isUse;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment == null ? null : comment.trim();
+	public void setRemark(String remark) {
+		this.remark = remark == null ? null : remark.trim();
 	}
+
+
 
 }

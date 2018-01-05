@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.AdPositions;
 import com.yt.cms.service.AdPositionsService;
 
@@ -34,14 +33,16 @@ public class AdPositionsController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询广告位列表")
-	public AjaxResponseBody query(@RequestParam(required=false) String adName, // 广告位名称
-			@RequestParam(required=false) Integer isUse,
-			Page page){
+	public AjaxResponseBody query(
+			@RequestParam(required=false) String adName, // 广告位名称
+			@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+		
 		AdPositions adPositions = new AdPositions();
 		adPositions.setAdName(adName);
-		adPositions.setIsUse(isUse);
+		long total = adPositionsService.queryCount(adPositions);
+		Page page = new Page(pageNum,pageSize);
 		List<AdPositions> list =  adPositionsService.queryAll(adPositions,page);
-		PageInfo<AdPositions> pageInfo = new PageInfo<AdPositions>(list);
+		PageInfo<AdPositions> pageInfo = new PageInfo<AdPositions>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
@@ -76,7 +77,7 @@ public class AdPositionsController {
 	 * @param Ad
 	 * @return
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation("修改广告位")
 	public AjaxResponseBody update(@RequestBody AdPositions adPositions){
 		boolean created = adPositionsService.update(adPositions);
@@ -90,7 +91,7 @@ public class AdPositionsController {
 	 * @param id
 	 * @return
 	 */
-	@PutMapping("/delete")
+	@GetMapping("/delete")
 	@ApiOperation("删除广告位")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = adPositionsService.deleteLogicById(id);

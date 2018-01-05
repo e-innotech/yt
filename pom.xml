@@ -93,11 +93,11 @@
             <version>3.3.7</version>
         </dependency>
           <!--pagehelper-->
-        <dependency>
+       <!--  <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>RELEASE</version>
-        </dependency>
+        </dependency> -->
         <!-- AOP -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

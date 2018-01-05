@@ -30,6 +30,12 @@ public interface ChannelService {
 	 * @return
 	 */
 	public List<Channel> queryAll(Channel bar,Page page);
+	
+	/**
+	 * 按照Channel 参数查询
+	 * @return
+	 */
+	public long queryCount(Channel bar);
 	/**
 	 * 更新栏位信息
 	 * @param Channel

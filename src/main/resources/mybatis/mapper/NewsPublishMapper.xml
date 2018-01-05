@@ -9,7 +9,6 @@
     <result column="isLine" property="isline" jdbcType="INTEGER" />
     <result column="isHome" property="ishome" jdbcType="INTEGER" />
     <result column="home_weight" property="homeWeight" jdbcType="INTEGER" />
-    <result column="onLine_date" property="onlineDate" jdbcType="TIMESTAMP" />
     <result column="offLine_date" property="offlineDate" jdbcType="TIMESTAMP" />
   </resultMap>
   
@@ -18,7 +17,6 @@
 	    <result column="isLine" property="isline" jdbcType="INTEGER" />
 	    <result column="isHome" property="ishome" jdbcType="INTEGER" />
 	    <result column="home_weight" property="homeWeight" jdbcType="INTEGER" />
-	    <result column="onLine_date" property="onlineDate" jdbcType="TIMESTAMP" />
 	    <result column="offLine_date" property="offlineDate" jdbcType="TIMESTAMP" />
     	<association property="news" javaType="com.yt.cms.model.News">
     		<id column="news_id" property="id" jdbcType="INTEGER" />
@@ -49,19 +47,44 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, news_id, website_id, channel_id, isLine, isHome, home_weight, onLine_date, offLine_date
+    id, news_id, website_id, channel_id, isLine, isHome, home_weight, offLine_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="findNewsWebChannelResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.news_id, a.website_id, a.channel_id,a.isLine, a.isHome, a.home_weight, a.onLine_date, a.offLine_date,b.news_title,c.siteName,d.channelName
+    a.id, a.news_id, a.website_id, a.channel_id,a.isLine, a.isHome, a.home_weight, a.offLine_date,b.news_title,c.siteName,d.channelName
     from news_publish a, news b, websites c, channel d
     where a.id = #{id,jdbcType=INTEGER} and a.news_id = b.id and a.website_id = c.id and a.channel_id = d.id and d.isDel = 0 and b.isDel = 0 and c.isDel = 0
   </select>
   
-    <select id="query" resultMap="findNewsWebChannelResultMap" parameterType="com.yt.cms.model.NewsPublish" >
+    <select id="query" resultMap="findNewsWebChannelResultMap" parameterType="map" >
     select 
-     a.id, a.news_id, a.website_id, a.channel_id, a.isLine, a.isHome, a.home_weight, a.onLine_date, a.offLine_date,
+     a.id, a.news_id, a.website_id, a.channel_id, a.isLine, a.isHome, a.home_weight, a.offLine_date,
       b.siteName  c.channelName,d.news_title as newsTitle
+    from news_publish a 
+    left join websites b on a.website_id = b.id 
+    left join channel c on a.channel_id = c.id 
+    left join news d on a.news_id = d.id 
+     where 1= 1 
+    	<if test="record.isline != null and record.isline != -1" >
+	        and a.isLine = #{record.isline,jdbcType=INTEGER}
+	      </if>
+	      <if test="record.ishome != null and record.ishome != -1" >
+	        and a.isHome = #{record.ishome,jdbcType=INTEGER}
+	      </if>
+	      <if test="record.channelName != null" >
+	       and c.channelName like concat('%', #{record.channelName}, '%')
+	      </if>
+	       <if test="record.websiteName != null" >
+	       and b.siteName like concat('%', #{record.websiteName}, '%')
+	      </if>
+	       order by a.id desc
+	      <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 	  </if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.NewsPublish" >
+    select count(1)
     from news_publish a 
     left join websites b on a.website_id = b.id 
     left join channel c on a.channel_id = c.id 
@@ -79,7 +102,6 @@
 	       <if test="websiteName != null" >
 	       and b.siteName like concat('%', #{websiteName}, '%')
 	      </if>
-	       order by a.id desc
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -122,9 +144,7 @@
       <if test="homeWeight != null" >
         home_weight,
       </if>
-      <if test="onlineDate != null" >
-        onLine_date,
-      </if>
+     
       <if test="offlineDate != null" >
         offLine_date,
       </if>
@@ -149,9 +169,7 @@
       <if test="homeWeight != null" >
         #{homeWeight,jdbcType=INTEGER},
       </if>
-      <if test="onlineDate != null" >
-        #{onlineDate,jdbcType=TIMESTAMP},
-      </if>
+   
       <if test="offlineDate != null" >
         #{offlineDate,jdbcType=TIMESTAMP},
       </if>
@@ -178,9 +196,7 @@
       <if test="homeWeight != null" >
         home_weight = #{homeWeight,jdbcType=INTEGER},
       </if>
-      <if test="onlineDate != null" >
-        onLine_date = #{onlineDate,jdbcType=TIMESTAMP},
-      </if>
+   
       <if test="offlineDate != null" >
         offLine_date = #{offlineDate,jdbcType=TIMESTAMP},
       </if>

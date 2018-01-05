@@ -1,7 +1,9 @@
 package com.yt.cms.model;
-
-import java.util.Date;
-
+/**
+ * 稿件审批
+ * @author admin
+ *
+ */
 public class AduitNews {
 	/**
 	 * 投放id

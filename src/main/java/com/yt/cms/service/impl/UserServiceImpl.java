@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
+import com.yt.cms.common.Page;
 import com.yt.cms.mapper.UserMapper;
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserInfoUpdate;
 import com.yt.cms.model.UserUpdatePwd;
 import com.yt.cms.service.UserService;
 @Service
@@ -62,15 +63,19 @@ public class UserServiceImpl implements UserService {
 
 	
 	@Override
-	public List<User> query(String userName, Integer pageSize, Integer pageNum) {
-		PageHelper.startPage(pageNum, pageSize);
-		return userDAO.query(userName);
+	public List<User> query(String userName, Page page) {
+		return userDAO.query(userName, page);
 	}
 
 	@Override
-	public boolean update(UserUpdatePwd user) {
+	public long queryCount(String userName) {
+		return userDAO.queryCount(userName);
+	}
+
+	@Override
+	public boolean update(UserInfoUpdate user) {
 		try {
-			int row = userDAO.update(user);
+			int row = userDAO.updateByPrimaryKeySelective(user);
 			if(row == 1) {
 				return true;
 			}
@@ -81,16 +86,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean disableOrEnable(User user) {
+	public boolean updatePwd(UserUpdatePwd user) {
 		try {
-			if(user.getIsUse() == 0) {
-				user.setIsUse(1);
-			} else if(user.getIsUse() == 1) {
-				user.setIsUse(0);
-			} else {
-				throw new Exception();
-			}
-			int row = userDAO.disableOrEnable(user);
+			int row = userDAO.updatePwd(user);
 			if(row == 1) {
 				return true;
 			}
@@ -100,7 +98,7 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
-	@Override
+/*	@Override
 	public boolean setUserGroup4User(int userId, int userGroupId) {
 		try {
 			int row = userDAO.setUserGroup4User(userId,userGroupId);
@@ -111,7 +109,7 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return false;
-	}
+	}*/
 
 	
 }

@@ -39,6 +39,13 @@ public interface MemberService {
 	 * @return
 	 */
 	public List<Members> queryAll(Members member,Page page);
+	
+	/**
+	 * 按照member 参数查询
+	 * @param member
+	 * @return
+	 */
+	public long queryCount(Members member);
 	/**
 	 * 更新会员信息
 	 * @param memberInfo
@@ -52,12 +59,6 @@ public interface MemberService {
 	 * @return
 	 */
 	public boolean update(Members members);
-	/**
-	 * 会员密码修改
-	 * @param members
-	 * @return
-	 */
-	public boolean updatePwd(Members members);
 	
 	
 }

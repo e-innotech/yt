@@ -31,6 +31,12 @@ public interface YtcmsConfigService {
 	 * @return
 	 */
 	public List<YtcmsConfig> queryAll(YtcmsConfig config,Page page);
+	
+	/**
+	 * 按照config 参数查询
+	 * @return
+	 */
+	public long queryCount(YtcmsConfig config);
 	/**
 	 * 更新配置信息
 	 * @param config

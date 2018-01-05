@@ -10,24 +10,43 @@
     <result column="adPositions_id" property="adPositionsId" jdbcType="INTEGER" />
     <result column="adName" property="adName" jdbcType="VARCHAR" />
     <result column="adType" property="adType" jdbcType="INTEGER" />
-    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="off_line_date" property="offLineDate" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, source,beginDate, endDate, status, adPositions_id, adName, adType, comment
+    id, source,beginDate, endDate, status, adPositions_id, adName, adType, remark,off_line_date
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from ad
-    where id = #{id,jdbcType=INTEGER} and isDel = 0
+    where id = #{id,jdbcType=INTEGER} 
   </select>
   
-   <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Ad" >
+   <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
-    from ad where 1=1 and isDel = 0
+    from ad where 1=1 
+	    <if test="ad.status != null and ad.status != -1" >
+			 and status = #{ad.status,jdbcType=INTEGER}
+	    </if>
+	      <if test="ad.adName != null" >
+	       and adName like concat('%', #{ad.adName}, '%')
+	      </if>
+	      <if test="ad.adType != null and ad.adType != -1">
+	       and adType = #{ad.adType,jdbcType=INTEGER}
+	      </if>
+      order by id desc
+       <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.Ad" >
+    select count(1)
+    from ad where 1=1 
 	    <if test="status != null and status != -1" >
 			 and status = #{status,jdbcType=INTEGER}
 	    </if>
@@ -37,7 +56,6 @@
 	      <if test="adType != null and adType != -1">
 	       and adType = #{adType,jdbcType=INTEGER}
 	      </if>
-      order by id desc
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -70,8 +88,8 @@
       <if test="adType != null" >
         adType,
       </if>
-      <if test="comment != null" >
-        comment,
+      <if test="remark != null" >
+        remark,
       </if>
       <if test="source != null" >
         source,
@@ -97,11 +115,11 @@
       <if test="adType != null" >
         #{adType,jdbcType=INTEGER},
       </if>
-      <if test="comment != null" >
-        #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
       <if test="source != null" >
-        #{source,jdbcType=LONGVARCHAR},
+        #{source,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -114,9 +132,7 @@
       <if test="endDate != null" >
         endDate = #{endDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
-      </if>
+      
       <if test="adPositionsId != null" >
         adPositions_id = #{adPositionsId,jdbcType=INTEGER},
       </if>
@@ -126,20 +142,34 @@
       <if test="adType != null" >
         adType = #{adType,jdbcType=INTEGER},
       </if>
-      <if test="comment != null" >
-        comment = #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
       <if test="source != null" >
-        source = #{source,jdbcType=LONGVARCHAR},
+        source = #{source,jdbcType=VARCHAR},
       </if>
-      <if test="isDel != null" >
+   
+     <!--  <if test="isDel != null" >
         isDel = #{isDel,jdbcType=INTEGER},
       </if>
       <if test="delDate != null" >
         del_date = #{delDate,jdbcType=TIMESTAMP},
-      </if>
+      </if> -->
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and status = 0
   </update>
 
+
+<update id="offLine" parameterType="com.yt.cms.model.AdOffLine" >
+    update ad
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="offLineDate != null" >
+        off_line_date = #{offLineDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} 
+  </update>
 </mapper>

@@ -7,20 +7,22 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
+import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MenuLeve1;
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserInfoUpdate;
 import com.yt.cms.model.UserResponseBody;
 import com.yt.cms.model.UserUpdatePwd;
 import com.yt.cms.service.PermissionService;
@@ -36,6 +38,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private PermissionService permissionService;
+/*	@Autowired
+	private MessageSource messageSource;*/
 	/**
 	 * 列表页面
 	 * @return
@@ -45,10 +49,31 @@ public class UserController {
 	public AjaxResponseBody query(@RequestParam(required=false) String userName,
 			@RequestParam(defaultValue="10") Integer pageSize,
 			@RequestParam(defaultValue="1") Integer pageNum){
-		// 列表页面查出该用户在列表页面所有的按钮资源
-		List<User> list = userService.query(userName, pageSize, pageNum);
-		PageInfo<User> pageInfo =  new PageInfo<User>(list);
 		AjaxResponseBody response = new AjaxResponseBody();
+		/*if(result.hasErrors()) {
+			StringBuffer msg = new StringBuffer();
+			// 获取错误字段集合
+			List<FieldError> fieldErrors = result.getFieldErrors();
+			// 获取本地locale,zh_CN
+			Locale currentLocale = LocaleContextHolder.getLocale();
+			// 遍历错误字段获取错误消息
+			for (FieldError fieldError : fieldErrors) {
+				// 获取错误信息
+				String errorMessage = messageSource.getMessage(fieldError, currentLocale);
+				// 添加到错误消息集合内
+				msg.append(fieldError.getField() + "：" + errorMessage + " , ");
+			}
+			response.setMsg(Const.FAILED);
+			response.setSuccess(false);
+			response.setData(msg.toString());
+			return response;
+		}*/
+		// 列表页面查出该用户在列表页面所有的按钮资源
+		long total = userService.queryCount(userName);
+		Page page = new Page(pageNum,pageSize);
+		List<User> list = userService.query(userName, page);
+		PageInfo<User> pageInfo =  new PageInfo<User>(pageNum,pageSize,total,list);
+		
 		response.setMsg(Const.SUCCESS);
 		response.setSuccess(true);
 		response.setData(pageInfo);
@@ -63,7 +88,7 @@ public class UserController {
 	 */
 	@GetMapping("/user/find/id")
 	@ApiOperation("按照id查询用户")
-	public AjaxResponseBody findById(@RequestParam Integer id) {
+	public AjaxResponseBody findById(@RequestParam @NotEmpty Integer id) {
 		User result = userService.findById(id);
 		AjaxResponseBody response = new AjaxResponseBody();
 		response.setMsg(Const.SUCCESS);
@@ -99,6 +124,9 @@ public class UserController {
 	@PostMapping("/user/add")
 	@ApiOperation("添加用户")
 	public AjaxResponseBody add(@RequestBody UserResponseBody userBody) {
+		if(StringUtils.isEmpty(userBody.getUserName()) || StringUtils.isEmpty(userBody.getPassWord())) {
+			return new AjaxResponseBody(false,Const.LOGIN_INFO_NOT_EMPTY);
+		}
 		User user = new User();
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
@@ -150,7 +178,7 @@ public class UserController {
 	 * 用户退出
 	 * @param userId
 	 */
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	@ApiOperation("用户登陆")
 	public AjaxResponseBody logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -166,7 +194,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/update/pwd")
+	@PostMapping("/user/pwd")
 	@ApiOperation("更新用户密码")
 	public AjaxResponseBody updatePwd(@RequestBody UserUpdatePwd user,  HttpServletRequest request) {
 		// TODO 公用的资源不属于菜单
@@ -184,7 +212,8 @@ public class UserController {
 			return response;
 		}
 		user.setId(user_session.getId());
-		boolean flag = userService.update(user);
+		
+		boolean flag = userService.updatePwd(user);
 		if(!flag) {
 			response.setMsg(Const.FAILED);
 			response.setSuccess(false);
@@ -200,14 +229,22 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/update/status")
-	@ApiOperation("启停用户")
-	public AjaxResponseBody updateStatus(@RequestParam Integer id,@RequestParam Integer isUse) {
+	@PostMapping("/user/update")
+	@ApiOperation("更新用户信息")
+	public AjaxResponseBody update(@RequestBody UserInfoUpdate user,  HttpServletRequest request) {
+		// TODO 公用的资源不属于菜单
+		HttpSession session = request.getSession();
+		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		AjaxResponseBody response = new AjaxResponseBody();
-		User user = new User();
-		user.setId(id);
-		user.setIsUse(isUse);
-		boolean flag = userService.disableOrEnable(user);
+		if(user_session == null || user_session.getId() == null) {
+			response.setMsg(Const.SESSION_TIMEOUT);
+			response.setSuccess(false);
+			return response;
+		}
+	
+		user.setId(user_session.getId());
+		
+		boolean flag = userService.update(user);
 		if(!flag) {
 			response.setMsg(Const.FAILED);
 			response.setSuccess(false);
@@ -223,7 +260,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@PutMapping("/user/grant")
+/*	@GetMapping("/user/grant")
 	@ApiOperation("给用户授权")
 	public AjaxResponseBody grant(@RequestParam Integer userId,@RequestParam Integer userGroupId) {
 		AjaxResponseBody response = new AjaxResponseBody();
@@ -236,6 +273,6 @@ public class UserController {
 			response.setSuccess(true);
 		}
 		return response;
-	}
+	}*/
 	
 }

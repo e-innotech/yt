@@ -18,9 +18,28 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
  
-   <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.YtcmsConfig" >
+   <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
+    from ytcms_config where 1=1
+    
+    	<if test="config.isUse != null" >
+	        and isUse = #{config.isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="config.name != null" >
+	       and name like concat('%', #{config.name}, '%')
+	      </if>
+	        <if test="config.value != null" >
+	       and value like concat('%', #{config.value}, '%')
+	      </if>
+	       order by id desc
+	        <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 		</if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.YtcmsConfig" >
+    select count(1)
     from ytcms_config where 1=1
     
     	<if test="isUse != null" >
@@ -32,7 +51,6 @@
 	        <if test="value != null" >
 	       and value like concat('%', #{value}, '%')
 	      </if>
-	       order by id desc
   </select>
   
   <insert id="insertSelective" parameterType="com.yt.cms.model.YtcmsConfig" >

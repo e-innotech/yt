@@ -29,10 +29,19 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   
-   <select id="query" parameterType="com.yt.cms.model.MembersCollectNews" resultMap="ResultMap">
+   <select id="query" parameterType="map" resultMap="ResultMap">
     select a.id, a.createDate,b.id as news_id,b.news_title, b.staticUrl
     from members_collect_news a, news b where a.news_id = b.id and a.status = 0 and b.isDel = 0
-     and a.members_id =  #{membersId,jdbcType=INTEGER}  order by a.id desc
+     and a.members_id =  #{record.membersId,jdbcType=INTEGER}  order by a.id desc
+      <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
+  </select>
+  
+  <select id="queryCount" parameterType="com.yt.cms.model.MembersCollectNews" resultType="long">
+  	 select count(1)
+    from members_collect_news a, news b where a.news_id = b.id and a.status = 0 and b.isDel = 0
+     and a.members_id =  #{membersId,jdbcType=INTEGER} 
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

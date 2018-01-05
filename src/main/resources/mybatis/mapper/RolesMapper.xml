@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.yt.cms.model.Roles" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="roleName" property="roleName" jdbcType="VARCHAR" />
-    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   
    <resultMap id="ResultMap" type="com.yt.cms.model.Roles" extends="BaseResultMap">
@@ -15,12 +15,12 @@
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, roleName, comment
+    id, roleName, remark
   </sql>
   <!-- 查询单个角色下的所有资源列表 -->
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName
+     a.id, a.roleName, a.remark, c.id as resource_id, c.resourceName
     from roles a
     left join roles_resource b on a.id = b.roles_id
     left join resource c on b.resource_id = c.id
@@ -29,23 +29,22 @@
   
    <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.page.RolesPage">
     select 
-     a.id, a.roleName, a.comment, c.id as resource_id, c.resourceName
-    from roles a
-    left join roles_resource b on a.id = b.roles_id
-    left join resource c on b.resource_id = c.id
-     where 1=1 and a.isDel = 0  
+     a.id, a.roleName, a.remark, c.id as resource_id, c.resourceName
+    from (
+     select * from roles where isDel = 0  
     	<if test="roleName != null" >
 	       and roleName like concat('%', #{roleName}, '%')
 	      </if>
-    order by a.id desc limit #{pageLimit}, #{pageSize}
+	      order by id desc 
+	      limit #{pageLimit}, #{pageSize}
+    ) a
+    left join roles_resource b on a.id = b.roles_id
+    left join resource c on b.resource_id = c.id
+    
   </select>
   
    <select id="queryCount" resultType="int" parameterType="com.yt.cms.model.page.RolesPage">
-    select count(1)
-    from roles a
-    left join roles_resource b on a.id = b.roles_id
-    left join resource c on b.resource_id = c.id
-     where 1=1 and a.isDel = 0  
+    select count(1) from roles a where  a.isDel = 0  
     	<if test="roleName != null" >
 	       and roleName like concat('%', #{roleName}, '%')
 	      </if>
@@ -66,8 +65,8 @@
       <if test="roleName != null" >
         roleName,
       </if>
-      <if test="comment != null" >
-        comment,
+      <if test="remark != null" >
+        remark,
       </if>
      
     </trim>
@@ -76,8 +75,8 @@
       <if test="roleName != null" >
         #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="comment != null" >
-        #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     
     </trim>
@@ -88,8 +87,8 @@
       <if test="roleName != null" >
         roleName = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="comment != null" >
-        comment = #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

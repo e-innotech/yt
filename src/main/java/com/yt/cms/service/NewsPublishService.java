@@ -47,5 +47,10 @@ public interface NewsPublishService {
 	public List<NewsPublish> query(NewsPublish newsPublish, Page page);
 	
 	
-	
+	/**
+	 * 稿件上下线管理列表
+	 * @param newsPublish
+	 * @return
+	 */
+	public long queryCount(NewsPublish newsPublish);
 }

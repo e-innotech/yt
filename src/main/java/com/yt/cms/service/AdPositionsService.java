@@ -30,6 +30,13 @@ public interface AdPositionsService {
 	 * @return
 	 */
 	public List<AdPositions> queryAll(AdPositions adPositions,Page page);
+	
+	/**
+	 * 按照AdPositions 参数查询
+	 * 列表显示广告位信息
+	 * @return
+	 */
+	public long queryCount(AdPositions adPositions);
 	/**
 	 * 更新广告位信息
 	 * @param adPositions

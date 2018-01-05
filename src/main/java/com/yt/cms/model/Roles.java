@@ -18,7 +18,7 @@ public class Roles extends BaseVo{
     /**
      * 角色说明
      */
-    private String comment;
+    private String remark;
     /**
      * 角色对应的资源列表
      */
@@ -52,12 +52,12 @@ public class Roles extends BaseVo{
         this.roleName = roleName == null ? null : roleName.trim();
     }
 
-	public String getComment() {
-		return comment;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment == null ? null : comment.trim();
+	public void setRemark(String remark) {
+		this.remark = remark == null ? null : remark.trim();;
 	}
 
 	public List<Integer> getResourceIds() {

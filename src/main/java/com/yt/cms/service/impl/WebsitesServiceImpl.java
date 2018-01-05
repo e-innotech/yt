@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.WebsitesMapper;
 import com.yt.cms.model.Websites;
@@ -30,8 +29,12 @@ public class WebsitesServiceImpl implements WebsitesService {
 
 	@Override
 	public List<Websites> queryAll(Websites web, Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return websitesDAO.query(web);
+		return websitesDAO.query(web,page);
+	}
+
+	@Override
+	public long queryCount(Websites web) {
+		return websitesDAO.queryCount(web);
 	}
 
 	@Override

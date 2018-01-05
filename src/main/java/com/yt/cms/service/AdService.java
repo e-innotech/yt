@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yt.cms.common.Page;
 import com.yt.cms.model.Ad;
+import com.yt.cms.model.AdOffLine;
 
 /**
  * 广告接口定义
@@ -32,11 +33,24 @@ public interface AdService {
 	 */
 	public List<Ad> queryAll(Ad ad, Page page);
 	/**
+	 * 查询count
+	 * @param ad
+	 * @return
+	 */
+	public long queryCount(Ad ad);
+	/**
 	 * 更新广告信息
 	 * @param Ad
 	 * @return
 	 */
 	public boolean update(Ad ad);
+	
+	/**
+	 * 更新广告信息
+	 * @param line
+	 * @return
+	 */
+	public boolean offLine(AdOffLine line);
 	/**
 	 * 按照广告id删除广告
 	 * @param id

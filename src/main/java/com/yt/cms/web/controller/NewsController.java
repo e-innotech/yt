@@ -9,17 +9,16 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.DateUtil;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.AduitNews;
 import com.yt.cms.model.News;
 import com.yt.cms.model.NewsLaunch;
@@ -54,14 +53,17 @@ public class NewsController {
 			@RequestParam(required=false) String source,
 			@RequestParam(required=false) Date startDate,
 			@RequestParam(required=false) Date endDate,
-			Page page){
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		News news = new News();
 		news.setNewsTitle(newsTitle);
 		news.setSource(source);
 		news.setStartDate(startDate);
 		news.setEndDate(endDate);
+		Page page = new Page(pageNum,pageSize);
+		long total = newsService.queryCount(news);
 		List<News> list = newsService.queryAll(news,page);
-		PageInfo<News> pageInfo = new PageInfo<News>(list);
+		PageInfo<News> pageInfo = new PageInfo<News>(pageNum, pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
@@ -96,9 +98,10 @@ public class NewsController {
 	 * @param News
 	 * @return
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation("修改稿件")
 	public AjaxResponseBody update(@RequestBody News News){
+		// TODO 稿件上线状态不可修改，需要关联publish，launch 表拿到状态
 		boolean created = newsService.update(News);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -106,11 +109,11 @@ public class NewsController {
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
-	 * 删除稿件
+	 * 不能删除稿件
 	 * @param id
 	 * @return
 	 */
-	@PutMapping("/delete")
+/*	@GetMapping("/delete")
 	@ApiOperation("删除稿件")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = newsService.deleteLogicById(id);
@@ -118,7 +121,7 @@ public class NewsController {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
-	}
+	}*/
 	
 	/**
 	 * 投放稿件到网站和栏目
@@ -139,7 +142,7 @@ public class NewsController {
 	 * 编辑稿件投放网站与栏目
 	 * @return
 	 */
-	@PutMapping("/launch/update")
+	@PostMapping("/launch/update")
 	@ApiOperation("编辑稿件投放网站与栏目")
 	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch){
 		// 从session中拿当前用户id
@@ -174,20 +177,23 @@ public class NewsController {
 	public AjaxResponseBody queryLaunch(@RequestParam(required=false) String newsTitle,
 			@RequestParam(required=false) Date startDate,
 			@RequestParam(required=false) Date endDate,
-			Page page){
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		NewsLaunch newsLaunch = new NewsLaunch();
 		newsLaunch.setNewsTitle(newsTitle);
 		newsLaunch.setStartDate(startDate);
 		newsLaunch.setEndDate(endDate);
+		Page page = new Page(pageNum,pageSize);
+		long total = newsLaunchService.queryCount(newsLaunch);
 		List<NewsLaunch> list = newsLaunchService.queryAll(newsLaunch,page);
-		PageInfo<NewsLaunch> pageInfo = new PageInfo<NewsLaunch>(list);
+		PageInfo<NewsLaunch> pageInfo = new PageInfo<NewsLaunch>(pageNum,pageSize, total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 	/**
-	 * 按照稿件投放id删除
+	 * 不能删除稿件投放
 	 * @return
 	 */
-	@PutMapping("/launch/delete")
+	/*@GetMapping("/launch/delete")
 	@ApiOperation("按照稿件投放id删除")
 	public AjaxResponseBody deleteLaunch(@RequestParam Integer id){
 		boolean release =  newsLaunchService.deleteLogicById(id);
@@ -195,7 +201,7 @@ public class NewsController {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
-	}
+	}*/
 	/**
 	 * 稿件审批
 	 * @return
@@ -241,16 +247,18 @@ public class NewsController {
 			@RequestParam(required=false) String channelName,
 			@RequestParam(required=false) Integer isline,
 			@RequestParam(required=false) Integer ishome,
-			Page page){
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		
 		NewsPublish newsPublish = new NewsPublish();
 		newsPublish.setChannelName(channelName);
 		newsPublish.setWebsiteName(websiteName);
 		newsPublish.setIshome(ishome);
 		newsPublish.setIsline(isline);
-		
+		Page page = new Page(pageNum,pageSize);
+		long total = newsPublishService.queryCount(newsPublish);
 		List<NewsPublish> modules =  newsPublishService.query(newsPublish,page);
-		PageInfo<NewsPublish> pageInfo =  new PageInfo<NewsPublish>(modules);
+		PageInfo<NewsPublish> pageInfo =  new PageInfo<NewsPublish>(pageNum,pageSize, total,modules);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	
 	}
@@ -258,9 +266,9 @@ public class NewsController {
 	 * 稿件上下线
 	 * @return
 	 */
-	@PutMapping("/publish/ofLine")
+	@GetMapping("/publish/offLine")
 	@ApiOperation("稿件上下线")
-	public AjaxResponseBody publishOfLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
+	public AjaxResponseBody publishOffLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态
@@ -268,7 +276,7 @@ public class NewsController {
 		if(lineStatus == Const.OFF_LINE) {
 			publish.setOfflineDate(DateUtil.getDateStr(new Date()));
 		} else if(lineStatus == Const.ON_LINE){
-			publish.setOnlineDate(DateUtil.getDateStr(new Date()));
+			publish.setOfflineDate(DateUtil.getDateStr(new Date()));
 		}
 		boolean release =  newsPublishService.update(publish);
 		if(!release) {
@@ -281,13 +289,14 @@ public class NewsController {
 	 * 设置首页
 	 * @return
 	 */
-	@PutMapping("/publish/home")
+	@GetMapping("/publish/setHome")
 	@ApiOperation("设置首页")
-	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer homeWeight){
+	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer isHome,@RequestParam Integer homeWeight){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态
 		publish.setHomeWeight(homeWeight);
+		publish.setIshome(isHome);
 		boolean release =  newsPublishService.update(publish);
 		if(!release) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

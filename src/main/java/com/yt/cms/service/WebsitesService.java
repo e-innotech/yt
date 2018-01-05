@@ -30,6 +30,12 @@ public interface WebsitesService {
 	 * @return
 	 */
 	public List<Websites> queryAll(Websites web, Page page);
+	
+	/**
+	 * 按照Websites 参数查询
+	 * @return
+	 */
+	public long queryCount(Websites web);
 	/**
 	 * 更新网站信息
 	 * @param Websites

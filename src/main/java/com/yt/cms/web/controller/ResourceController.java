@@ -5,16 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
-import com.yt.cms.common.Page;
 import com.yt.cms.model.Resource;
 import com.yt.cms.service.ResourceService;
 
@@ -86,7 +83,7 @@ public class ResourceController {
 	 * @param resource
 	 * @return
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation("修改系统资源")
 	public AjaxResponseBody update(@RequestBody Resource resource){
 		boolean created = resourceService.update(resource);
@@ -101,7 +98,7 @@ public class ResourceController {
 	 * @param id
 	 * @return
 	 */
-	@PutMapping("/delete")
+	@GetMapping("/delete")
 	@ApiOperation("删除系统资源")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = resourceService.deleteLogicById(id);

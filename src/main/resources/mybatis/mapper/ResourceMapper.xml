@@ -11,24 +11,29 @@
 	</resultMap>
 	
 	
-		<resultMap id="ResourceResultMap" type="com.yt.cms.model.ResourceLevel1" extends="BaseResultMap">
-		
-		<collection property="level2" ofType="com.yt.cms.model.ResourceLevel2">
-			<id column="l2_id" property="id" jdbcType="INTEGER" />
-			<result column="l2_name" property="resourceName" jdbcType="VARCHAR" />
-			<result column="l2_uri" property="uri" jdbcType="VARCHAR" />
-			<result column="l2_parent_id" property="parentId" jdbcType="INTEGER" />
-			<result column="l2_rw" property="rw" jdbcType="INTEGER" />
-			<result column="l2_isMenu" property="isMenu" jdbcType="INTEGER" />
-			<collection property="level3" ofType="com.yt.cms.model.ResourceLevel3">
-				<id column="l3_id" property="id" jdbcType="INTEGER" />
-				<result column="l3_name" property="resourceName" jdbcType="VARCHAR" />
-				<result column="l3_uri" property="uri" jdbcType="VARCHAR" />
-				<result column="l3_parent_id" property="parentId" jdbcType="INTEGER" />
-				<result column="l3_rw" property="rw" jdbcType="INTEGER" />
-				<result column="l3_isMenu" property="isMenu" jdbcType="INTEGER" />
+		<resultMap id="ResourceResultMap" type="com.yt.cms.model.ResourceLevel1">
+			<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
+			<result column="uri" property="uri" jdbcType="VARCHAR" />
+			<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+			<result column="rw" property="rw" jdbcType="INTEGER" />
+			<result column="isMenu" property="isMenu" jdbcType="INTEGER" />
+			<collection property="level2" ofType="com.yt.cms.model.ResourceLevel2">
+				<id column="l2_id" property="id" jdbcType="INTEGER" />
+				<result column="l2_name" property="resourceName" jdbcType="VARCHAR" />
+				<result column="l2_uri" property="uri" jdbcType="VARCHAR" />
+				<result column="l2_parent_id" property="parentId" jdbcType="INTEGER" />
+				<result column="l2_rw" property="rw" jdbcType="INTEGER" />
+				<result column="l2_isMenu" property="isMenu" jdbcType="INTEGER" />
+				<collection property="level3" ofType="com.yt.cms.model.ResourceLevel3">
+					<id column="l3_id" property="id" jdbcType="INTEGER" />
+					<result column="l3_name" property="resourceName" jdbcType="VARCHAR" />
+					<result column="l3_uri" property="uri" jdbcType="VARCHAR" />
+					<result column="l3_parent_id" property="parentId" jdbcType="INTEGER" />
+					<result column="l3_rw" property="rw" jdbcType="INTEGER" />
+					<result column="l3_isMenu" property="isMenu" jdbcType="INTEGER" />
+				</collection>
 			</collection>
-		</collection>
 	</resultMap>
 	
 	<resultMap id="ResultMap" type="com.yt.cms.model.Resource" extends="BaseResultMap">

@@ -19,6 +19,9 @@ public interface ResourceMapper {
     List<Resource> queryAll();
     
     int deleteLogicById(Integer id);
-    
+    /**
+     * 查出所有写的资源，即相对于数据库的写操作
+     * @return
+     */
     List<ResourceW> queryResource_W();
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.ChannelMapper;
@@ -32,8 +31,12 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Override
 	public List<Channel> queryAll(Channel bar,Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return channelDAO.query(bar);
+		return channelDAO.query(bar,page);
+	}
+
+	@Override
+	public long queryCount(Channel bar) {
+		return channelDAO.queryCount(bar);
 	}
 
 	@Override

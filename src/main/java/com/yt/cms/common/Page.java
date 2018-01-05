@@ -15,7 +15,8 @@ public class Page implements Serializable {
 	 */
 	private Integer pageSize;
 
-
+	private Integer pageLimit;
+	
 	public Page() {
 	}
 
@@ -40,5 +41,15 @@ public class Page implements Serializable {
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
+
+	public Integer getPageLimit() {
+		pageLimit = (pageNum-1) * pageSize;
+		return pageLimit;
+	}
+
+	public void setPageLimit(Integer pageLimit) {
+		this.pageLimit = pageLimit;
+	}
+	
 
 }

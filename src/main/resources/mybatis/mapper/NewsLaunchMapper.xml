@@ -32,13 +32,33 @@
     where id = #{id,jdbcType=INTEGER} and isDel = 0
   </select>
   
-  <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.NewsLaunch" >
+  <select id="query" resultMap="ResultMap" parameterType="map" >
     select 
    a.id, b.id as news_id, a.news_launch_config, a.status, a.aduit_user_id, a.aduit_des, a.aduit_date, a.create_user_id, 
     a.create_date,b.news_title
     from news_launch a left join news b on a.news_id = b.id 
     where a.isDel = 0 
-    <if test="startDate != null" >
+    <if test="record.startDate != null" >
+       		<![CDATA[ and a.create_date >= #{record.startDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+        <if test="record.endDate != null" >
+       		<![CDATA[ and a.create_date <= #{record.endDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+      	
+	     <if test="record.newsTitle != null" >
+	       and b.news_title like concat('%', #{record.newsTitle}, '%')
+	    </if>
+	  order by a.id desc
+	   <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.NewsLaunch" >
+    select count(1)
+    from news_launch a left join news b on a.news_id = b.id 
+    where a.isDel = 0 
+    	<if test="startDate != null" >
        		<![CDATA[ and a.create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
         <if test="endDate != null" >
@@ -48,7 +68,6 @@
 	     <if test="newsTitle != null" >
 	       and b.news_title like concat('%', #{newsTitle}, '%')
 	    </if>
-	  order by a.id desc
   </select>
   
   

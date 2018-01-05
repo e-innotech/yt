@@ -4,38 +4,51 @@
   <resultMap id="BaseResultMap" type="com.yt.cms.model.UserGroup" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="groupName" property="groupName" jdbcType="VARCHAR" />
-    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   
   <resultMap id="ResultMap" type="com.yt.cms.model.UserGroup" extends="BaseResultMap">
     	<association property="roles" javaType="com.yt.cms.model.Roles">
             <id column="roles_id" property="id"/>
             <result column="roleName" property="roleName" jdbcType="VARCHAR" />
-    		<result column="roles_comment" property="comment" jdbcType="VARCHAR" />
+    		<result column="roles_remark" property="remark" jdbcType="VARCHAR" />
         </association>
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, groupName, comment
+    id, groupName, remark
   </sql>
   <!-- 查询单个用户组的角色信息 -->
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.groupName, a.comment, b.id as roles_id, b.roleName, b.comment as roles_comment
+    a.id, a.groupName, a.remark, b.id as roles_id, b.roleName, b.remark as roles_remark
     from user_group a 
     left join roles b on a.roles_id = b.id
     where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 
   </select>
   <!-- 分页或者多条件查询 -->
-  <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+  <select id="query" resultMap="ResultMap" parameterType="map">
     select 
-    <include refid="Base_Column_List" />
-    from user_group where 1=1  and isDel = 0
-    <if test="_parameter != null">
-                and groupName like concat('%', #{_parameter}, '%')
+   a.id, a.groupName, a.remark, b.id as roles_id, b.roleName, b.remark as roles_remark
+    from user_group a left join roles b on a.roles_id = b.id 
+    where 1=1  and a.isDel = 0 and a.id != 999999
+    <if test="groupName != null">
+                and groupName like concat('%', #{groupName}, '%')
        </if>
         order by id desc
+        <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
   </select>
+  
+  <select id="queryCount" parameterType="java.lang.String" resultType="long">
+  	 select count(1)
+    from user_group where 1=1  and isDel = 0 and id != 999999
+    	<if test="groupName != null">
+                and groupName like concat('%', #{groupName}, '%')
+       </if>
+  </select>
+  
   <!-- 树形展现 -->
   <select id="queryAll" resultMap="BaseResultMap" >
     select 
@@ -58,8 +71,8 @@
       <if test="groupName != null" >
         groupName,
       </if>
-      <if test="comment != null" >
-        comment,
+      <if test="remark != null" >
+        remark,
       </if>
        <if test="rolesId != null" >
         roles_id,
@@ -70,8 +83,8 @@
       <if test="groupName != null" >
         #{groupName,jdbcType=VARCHAR},
       </if>
-      <if test="comment != null" >
-        #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
        <if test="rolesId != null" >
         #{rolesId,jdbcType=INTEGER},
@@ -84,8 +97,8 @@
       <if test="groupName != null" >
         groupName = #{groupName,jdbcType=VARCHAR},
       </if>
-      <if test="comment != null" >
-        comment = #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
        <if test="rolesId != null" >
         roles_id = #{rolesId,jdbcType=INTEGER},

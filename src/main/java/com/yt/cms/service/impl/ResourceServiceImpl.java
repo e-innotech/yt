@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.ResourceMapper;
 import com.yt.cms.model.Resource;
@@ -48,7 +47,6 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<Resource> find(Resource resource,Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		return resourceDAO.query(resource);
 	}
 

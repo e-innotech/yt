@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.NewsMapper;
 import com.yt.cms.model.News;
@@ -32,8 +31,12 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	public List<News> queryAll(News news, Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return newsDAO.query(news);
+		return newsDAO.query(news,page);
+	}
+	
+	@Override
+	public long queryCount(News news) {
+		return newsDAO.queryCount(news);
 	}
 
 	@Override

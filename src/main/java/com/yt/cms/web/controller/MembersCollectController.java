@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MembersCollectNews;
 import com.yt.cms.service.MemberCollectNewsService;
 
@@ -49,12 +48,15 @@ public class MembersCollectController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员收藏列表")
-	public AjaxResponseBody query(@RequestParam Integer memberId, Page page){
+	public AjaxResponseBody query(@RequestParam Integer memberId,
+			@RequestParam Integer pageNum, 
+			@RequestParam Integer pageSize){
 		MembersCollectNews collect = new MembersCollectNews();
 		collect.setMembersId(memberId);
-		collect.setStatus(0);
+		Page page = new Page(pageNum,pageSize);
+		long total = memberCollectService.queryCount(collect);
 		List<MembersCollectNews> list = memberCollectService.queryAll(collect,page);
-		PageInfo<MembersCollectNews> pageInfo = new PageInfo<MembersCollectNews>(list);
+		PageInfo<MembersCollectNews> pageInfo = new PageInfo<MembersCollectNews>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
@@ -63,7 +65,7 @@ public class MembersCollectController {
 	 * @param comment
 	 * @return
 	 */
-	@PutMapping("/delete")
+	@GetMapping("/delete")
 	@ApiOperation("会员取消收藏")
 	public AjaxResponseBody cancel(@RequestParam Integer collectId){
 		boolean result = memberCollectService.cancelCollect(collectId);

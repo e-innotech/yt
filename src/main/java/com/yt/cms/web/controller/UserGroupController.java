@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.UserGroup;
 import com.yt.cms.service.UserGroupService;
 
@@ -35,9 +34,11 @@ public class UserGroupController {
 	@GetMapping("/query")
 	@ApiOperation("查询用户组列表")
 	public AjaxResponseBody query(@RequestParam(required=false) String groupName,
-		 Page page){
+			@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+		long total = userGroupService.queryCount(groupName);
+		Page page = new Page(pageNum,pageSize);
 		List<UserGroup> list = userGroupService.query(groupName, page);
-		PageInfo<UserGroup> pageInfo = new PageInfo<UserGroup>(list);
+		PageInfo<UserGroup> pageInfo = new PageInfo<UserGroup>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 /*	*//**
@@ -80,7 +81,7 @@ public class UserGroupController {
 	 * @param userGroup
 	 * @return
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation("修改用户组")
 	public AjaxResponseBody update(@RequestBody UserGroup userGroup){
 		boolean created = userGroupService.update(userGroup);
@@ -94,7 +95,7 @@ public class UserGroupController {
 	 * @param userGroup
 	 * @return
 	 */
-	@PutMapping("/delete")
+	@GetMapping("/delete")
 	@ApiOperation("删除用户组")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = userGroupService.deleteLogicById(id);

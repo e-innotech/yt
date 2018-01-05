@@ -6,16 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MembersCommentsNews;
 import com.yt.cms.model.News;
 import com.yt.cms.service.MemberCommentsNewsService;
@@ -57,7 +56,8 @@ public class MembersCommentController {
 			@RequestParam(required=false) Date endDate, // 评论日期
 			@RequestParam(required=false) String newsTitle, // 评论的新闻标题
 			@RequestParam(required=false) String memberUName, //评论用户名
-			Page page){
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		MembersCommentsNews comment = new MembersCommentsNews();
 		comment.setContent(content);
 		comment.setStartDate(startDate);
@@ -66,11 +66,12 @@ public class MembersCommentController {
 		News news = new News();
 		news.setNewsTitle(newsTitle);
 		comment.setNews(news);
-		
 		comment.setMemberUName(memberUName);
 		
+		Page page = new Page(pageNum,pageSize);
+		long total = memberCommentService.queryCount(comment);
 		List<MembersCommentsNews> list =  memberCommentService.queryAll(comment,page);
-		PageInfo<MembersCommentsNews> pageInfo = new PageInfo<MembersCommentsNews>(list);
+		PageInfo<MembersCommentsNews> pageInfo = new PageInfo<MembersCommentsNews>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
@@ -79,7 +80,7 @@ public class MembersCommentController {
 	 * @param comment
 	 * @return
 	 */
-	@PutMapping("/delete")
+	@GetMapping("/delete")
 	@ApiOperation("管理员删除评论")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean result = memberCommentService.deleteLogical(id);

@@ -1,5 +1,11 @@
 package com.yt.cms.model;
 
+import java.util.List;
+/**
+ * 资源列表层次展现使用
+ * @author admin
+ *
+ */
 public class ResourceLevel2 extends BaseVo{
 	/**
 	 * 
@@ -34,13 +40,13 @@ public class ResourceLevel2 extends BaseVo{
      */
     private String pname;
     
-    private ResourceLevel3 level3;
+    private List<ResourceLevel3> level3;
     
-	public ResourceLevel3 getLevel3() {
+	public List<ResourceLevel3> getLevel3() {
 		return level3;
 	}
 
-	public void setLevel3(ResourceLevel3 level3) {
+	public void setLevel3(List<ResourceLevel3> level3) {
 		this.level3 = level3;
 	}
 

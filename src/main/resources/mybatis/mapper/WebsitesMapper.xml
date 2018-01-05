@@ -14,7 +14,7 @@
    		<collection property="channels" ofType="com.yt.cms.model.Channel">
             <id column="channel_id" property="id" jdbcType="INTEGER" />
 		    <result column="channelName" property="channelName" jdbcType="VARCHAR" />
-		    <result column="comment" property="comment" jdbcType="VARCHAR" />
+		    <result column="remark" property="remark" jdbcType="VARCHAR" />
         </collection>
   </resultMap>
   
@@ -23,21 +23,34 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templteConfig,b.id as channel_id,  b.channelName, b.comment
+    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templteConfig,b.id as channel_id,  b.channelName, b.remark
     from websites a, channel b, websites_channel c 
     where a.id = #{id,jdbcType=INTEGER} and a.id = c.websites_id and c.channel_id = b.id and a.isUse = 1 and b.isUse = 1 and b.isDel = 0 and a.isDel = 0
   </select>
-  <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Websites" >
+  <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
     from websites where 1=1  and isDel = 0
-     <if test="isUse != null and isUse != -1" >
-	        and isUse = #{isUse,jdbcType=INTEGER}
+     <if test="web.isUse != null and web.isUse != -1" >
+	        and isUse = #{web.isUse,jdbcType=INTEGER}
 	      </if>
-	      <if test="siteName != null" >
-	       and siteName like concat('%', #{siteName}, '%')
+	      <if test="web.siteName != null" >
+	       and siteName like concat('%', #{web.siteName}, '%')
 	      </if>
 	       order by id desc
+	     <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 	</if>
+  </select>
+  
+  <select id="queryCount" parameterType="com.yt.cms.model.Websites" resultType="long">
+  	  select count(1) from websites where 1=1  and isDel = 0
+     	<if test="isUse != null and isUse != -1" >
+	        and isUse = #{isUse,jdbcType=INTEGER}
+	    </if>
+	    <if test="siteName != null" >
+	       and siteName like concat('%', #{siteName}, '%')
+	    </if>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -110,7 +123,7 @@
   </update>
   
   <update id="deleteLogicById" parameterType="java.lang.Integer" >
-    update websites set isDel = 1, delDate = now() where id = #{id,jdbcType=INTEGER}
+    update websites set isDel = 1, del_date = now() where id = #{id,jdbcType=INTEGER}
   </update>
   
  

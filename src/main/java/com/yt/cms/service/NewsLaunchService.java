@@ -56,4 +56,11 @@ public interface NewsLaunchService {
 	 */
 	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page);
 	
+	/**
+	 * 分页查询投放列表
+	 * @param newsLaunch
+	 * @return
+	 */
+	public long queryCount(NewsLaunch newsLaunch);
+	
 }

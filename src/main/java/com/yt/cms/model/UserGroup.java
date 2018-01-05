@@ -16,7 +16,7 @@ public class UserGroup extends BaseVo{
     /**
      * 用户组描述
      */
-    private String comment;
+    private String remark;
     /**
      * 用户组角色列表
      */
@@ -56,12 +56,13 @@ public class UserGroup extends BaseVo{
         this.groupName = groupName == null ? null : groupName.trim();
     }
     
-    public String getComment() {
-		return comment;
+    public String getRemark() {
+		return remark;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment == null ? null : comment.trim();
+	public void setRemark(String remark) {
+		this.remark = remark == null ? null : remark.trim();
 	}
+
 
 }

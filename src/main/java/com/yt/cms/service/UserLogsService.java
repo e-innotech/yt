@@ -28,4 +28,9 @@ public interface UserLogsService {
 	 */
 	public List<UserLogs> queryAll(UserLogs log, Page page);
 	
+	/**
+	 * 按照log 参数查询
+	 * @return
+	 */
+	public long queryCount(UserLogs log);
 }

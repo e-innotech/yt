@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import java.util.Date;
+
 public class Ad extends BaseVo{
     /**
 	 * 
@@ -20,9 +22,19 @@ public class Ad extends BaseVo{
 
     private Integer adType;
 
-    private String comment;
+    private String remark;
 
     private String source;
+
+    private Date offLineDate;
+    
+	public Date getOffLineDate() {
+		return offLineDate;
+	}
+
+	public void setOffLineDate(Date offLineDate) {
+		this.offLineDate = offLineDate;
+	}
 
 	public Integer getId() {
 		return id;
@@ -80,12 +92,12 @@ public class Ad extends BaseVo{
 		this.adType = adType;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment == null ? null : comment.trim();
+	public void setRemark(String remark) {
+		this.remark =  remark == null ? null : remark.trim();
 	}
 
 	public String getSource() {

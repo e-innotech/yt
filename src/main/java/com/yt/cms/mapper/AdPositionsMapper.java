@@ -2,6 +2,9 @@ package com.yt.cms.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.yt.cms.common.Page;
 import com.yt.cms.model.AdPositions;
 
 public interface AdPositionsMapper {
@@ -17,6 +20,8 @@ public interface AdPositionsMapper {
 
     int updateByPrimaryKeySelective(AdPositions record);
 
-    List<AdPositions> query(AdPositions record);
+    List<AdPositions> query(@Param("record") AdPositions record, @Param("page") Page page);
+    
+    long queryCount(AdPositions record);
     
 }

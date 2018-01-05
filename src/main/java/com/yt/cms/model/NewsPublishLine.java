@@ -15,7 +15,7 @@ public class NewsPublishLine {
 
     private Integer homeWeight;
 
-    private String onlineDate;
+//    private String onlineDate;
 
     private String offlineDate;
 
@@ -77,13 +77,13 @@ public class NewsPublishLine {
         this.homeWeight = homeWeight;
     }
 
-    public String getOnlineDate() {
-        return onlineDate;
-    }
-
-    public void setOnlineDate(String onlineDate) {
-        this.onlineDate = onlineDate;
-    }
+//    public String getOnlineDate() {
+//        return onlineDate;
+//    }
+//
+//    public void setOnlineDate(String onlineDate) {
+//        this.onlineDate = onlineDate;
+//    }
 
     public String getOfflineDate() {
         return offlineDate;

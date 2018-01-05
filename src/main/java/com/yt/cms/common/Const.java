@@ -12,11 +12,19 @@ public class Const {
 	
 	public static final String DELETE_NO_FOUND = "没有找到要删除的行！";
 	
+	/**************登录相关常量************************/
+	
+	public static final String LOGIN_INFO_NOT_EMPTY = "登陆用户名或者密码不能为空！";
+	
 	public static final String LOGIN_SUCCESS = "登陆成功！";
 	
 	public static final String LOGIN_FAILED = "登陆失败！账号或者密码错误。";
 	
 	public static final String LOGOUT_SUCCESS = "成功退出!";
+	
+	
+	/**************登录相关常量************************/
+	
 	
 	public static final String NOT_FOUND = "没有找到！";
 	

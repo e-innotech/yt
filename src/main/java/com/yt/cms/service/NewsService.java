@@ -31,6 +31,13 @@ public interface NewsService {
 	 * @return
 	 */
 	public List<News> queryAll(News news, Page page);
+	
+	/**
+	 * 按照News 参数查询
+	 * @param news
+	 * @return
+	 */
+	public long queryCount(News news);
 	/**
 	 * 更新稿件信息
 	 * @param news

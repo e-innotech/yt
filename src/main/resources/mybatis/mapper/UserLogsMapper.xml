@@ -12,8 +12,36 @@
     id, users_id, resource_id, action, createDate
   </sql>
   
-  <select id="query" parameterType="com.yt.cms.model.UserLogs" resultMap="BaseResultMap">
+  <select id="query" parameterType="map" resultMap="BaseResultMap">
   	select a.id, a.users_id, a.resource_id, a.action, a.createDate, b.uname,c.resourceName
+    from userlogs a 
+    left join users b on a.users_id = b.id
+    left join resource c on a.resource_id = c.id
+     where 1=1
+    		<if test="logs.startDate != null" >
+       		<![CDATA[ and a.createDate >= #{logs.startDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+        <if test="logs.endDate != null" >
+       		<![CDATA[ and a.createDate <= #{logs.endDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+	      <if test="logs.action != null" >
+	        and a.action = #{logs.action,jdbcType=VARCHAR}
+	      </if>
+	      <if test="logs.userName != null" >
+	       and b.uname like concat('%', #{logs.userName}, '%')
+	      </if>
+	       <if test="logs.resourceName != null" >
+	       and c.resourceName like concat('%', #{logs.resourceName}, '%')
+	      </if>
+	       order by a.id desc
+	        <if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 		</if>
+  </select>
+  
+  
+  <select id="queryCount" parameterType="com.yt.cms.model.UserLogs" resultType="long">
+  	select count(1)
     from userlogs a 
     left join users b on a.users_id = b.id
     left join resource c on a.resource_id = c.id
@@ -33,7 +61,6 @@
 	       <if test="resourceName != null" >
 	       and c.resourceName like concat('%', #{resourceName}, '%')
 	      </if>
-	       order by a.id desc
   </select>
   
   <insert id="insertSelective" parameterType="com.yt.cms.model.UserLogs" >

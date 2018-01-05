@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.Websites;
 import com.yt.cms.service.WebsitesService;
 
@@ -61,7 +60,7 @@ public class WebsitesController {
 	 * @param userGroup
 	 * @return
 	 */
-	@PutMapping("/update")
+	@PostMapping("/update")
 	@ApiOperation("修改网站")
 	public AjaxResponseBody update(@RequestBody Websites web){
 		boolean created = websitesService.update(web);
@@ -77,12 +76,16 @@ public class WebsitesController {
 	@GetMapping("/query")
 	@ApiOperation("查询网站列表")
 	public AjaxResponseBody query(@RequestParam(required=false) String siteName,
-			@RequestParam(required=false) Integer isUse,Page page){
+			@RequestParam(required=false) Integer isUse,
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		Websites web = new Websites();
 		web.setIsUse(isUse);
 		web.setSiteName(siteName);
+		Page page = new Page(pageNum,pageSize);
+		long total = websitesService.queryCount(web);
 		List<Websites> list = websitesService.queryAll(web,page);
-		PageInfo<Websites> pageInfo = new PageInfo<Websites>(list);
+		PageInfo<Websites> pageInfo = new PageInfo<Websites>(pageNum,pageSize, total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 	/**
@@ -90,7 +93,7 @@ public class WebsitesController {
 	 * @param id
 	 * @return
 	 */
-	@PutMapping("/delete")
+	@GetMapping("/delete")
 	@ApiOperation("删除网站")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = websitesService.deleteLogicById(id);

@@ -29,6 +29,7 @@ public class User implements Serializable{
 	@JsonIgnore
 	private String passWord;
 	
+	
 	/**
 	 * 用户状态是否可用
 	 */
@@ -97,6 +98,7 @@ public class User implements Serializable{
 	public String getCreateDate() {
 		return createDate;
 	}
+
 
 	public void setCreateDate(String createDate) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

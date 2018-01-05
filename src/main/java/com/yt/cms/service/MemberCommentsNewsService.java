@@ -28,6 +28,13 @@ public interface MemberCommentsNewsService {
 	public List<MembersCommentsNews> queryAll(MembersCommentsNews comment,Page page);
 	
 	/**
+	 * 按照comment 参数查询
+	 * 列表显示会员评论信息
+	 * @param comment
+	 * @return
+	 */
+	public long queryCount(MembersCommentsNews comment);
+	/**
 	 * 逻辑删除评论
 	 * @param id
 	 * @return

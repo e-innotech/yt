@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.AdPositionsMapper;
@@ -32,8 +31,12 @@ public class AdPositionsServiceImpl implements AdPositionsService {
 
 	@Override
 	public List<AdPositions> queryAll(AdPositions adPositions,Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return adpositionDAO.query(adPositions);
+		return adpositionDAO.query(adPositions,page);
+	}
+
+	@Override
+	public long queryCount(AdPositions adPositions) {
+		return adpositionDAO.queryCount(adPositions);
 	}
 
 	@Override

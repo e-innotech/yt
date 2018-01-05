@@ -5,10 +5,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="channelName" property="channelName" jdbcType="VARCHAR" />
     <result column="isUse" property="isUse" jdbcType="INTEGER" />
-    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, channelName, isUse, comment
+    id, channelName, isUse, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -17,9 +17,24 @@
     where id = #{id,jdbcType=INTEGER} and isDel = 0 
   </select>
   
-   <select id="query" resultMap="BaseResultMap" parameterType="com.yt.cms.model.Channel" >
+   <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
     <include refid="Base_Column_List" />
+    from channel where 1=1 and isDel = 0 
+	    <if test="record.isUse != null and record.isUse != -1" >
+	        and isUse = #{record.isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="record.channelName != null" >
+	       and channelName like concat('%', #{record.channelName}, '%')
+	      </if>
+	 order by id desc
+	 	<if test="page.pageLimit != null and page.pageSize != null" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 	</if>
+  </select>
+  
+  <select id="queryCount" parameterType="com.yt.cms.model.Channel" resultType="long">
+  	select count(1)
     from channel where 1=1 and isDel = 0 
 	    <if test="isUse != null and isUse != -1" >
 	        and isUse = #{isUse,jdbcType=INTEGER}
@@ -27,7 +42,6 @@
 	      <if test="channelName != null" >
 	       and channelName like concat('%', #{channelName}, '%')
 	      </if>
-	 order by id desc
   </select>
   
   <select id="findChannelName" parameterType="java.lang.String" resultType="java.lang.Integer" >
@@ -52,8 +66,8 @@
       <if test="isUse != null" >
         isUse,
       </if>
-      <if test="comment != null" >
-        comment,
+      <if test="remark != null" >
+        remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -64,8 +78,8 @@
       <if test="isUse != null" >
         #{isUse,jdbcType=INTEGER},
       </if>
-      <if test="comment != null" >
-        #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -78,8 +92,8 @@
       <if test="isUse != null" >
         isUse = #{isUse,jdbcType=INTEGER},
       </if>
-      <if test="comment != null" >
-        comment = #{comment,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
         <if test="isDel != null" >
         isDel = #{isDel,jdbcType=INTEGER},

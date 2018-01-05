@@ -1,5 +1,9 @@
 package com.yt.cms.model;
-
+/**
+ * 资源列表层次展现使用
+ * @author admin
+ *
+ */
 public class ResourceLevel3 extends BaseVo{
 	/**
 	 * 

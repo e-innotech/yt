@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.UserGroupMapper;
 import com.yt.cms.model.UserGroup;
@@ -32,10 +31,14 @@ public class UserGroupServiceImpl implements UserGroupService {
 
 	@Override
 	public List<UserGroup> query(String groupName, Page page) {
-		PageHelper.startPage(page.getPageNum(), page.getPageSize());
-		return userGroupDAO.query(groupName);
+		return userGroupDAO.query(groupName,page);
 	}
 	
+
+	@Override
+	public long queryCount(String groupName) {
+		return userGroupDAO.queryCount(groupName);
+	}
 
 	@Override
 	public List<UserGroup> queryAll() {

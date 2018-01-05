@@ -5,16 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
 import com.yt.cms.service.MemberService;
@@ -78,13 +77,16 @@ public class MembersController {
 	public AjaxResponseBody query(@RequestParam(required=false) String uname,
 			@RequestParam(required=false) Integer isUse,
 			@RequestParam(required=false) Integer isGag,
-			Page page){
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
 		Members member = new Members();
 		member.setIsGag(isGag);
 		member.setIsUse(isUse);
 		member.setUname(uname);
+		Page page = new Page(pageNum,pageSize);
+		long total = memberService.queryCount(member);
 		List<Members> list = memberService.queryAll(member,page);
-		PageInfo<Members> pageInfo = new PageInfo<Members>(list);
+		PageInfo<Members> pageInfo = new PageInfo<Members>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
 
@@ -93,24 +95,10 @@ public class MembersController {
 	 * @param Ad
 	 * @return
 	 */
-	@PutMapping("/update/info")
+	@PostMapping("/update/info")
 	@ApiOperation("修改会员信息")
 	public AjaxResponseBody update(@RequestBody MemberInfos info){
 		boolean created = memberService.updateInfo(info);
-		if(!created) {
-			return new AjaxResponseBody(false,Const.FAILED,null);
-		}
-		return new AjaxResponseBody(true,Const.SUCCESS,null);
-	}
-	/**
-	 * 修改会员密码
-	 * @param member
-	 * @return
-	 */
-	@PutMapping("/update/pwd")
-	@ApiOperation("修改会员密码")
-	public AjaxResponseBody updatePwd(@RequestBody Members member){
-		boolean created = memberService.updatePwd(member);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
@@ -122,9 +110,9 @@ public class MembersController {
 	 * @param
 	 * @return
 	 */
-	@PutMapping("/update/status")
-	@ApiOperation("启用、停用、禁言、取消禁言")
-	public AjaxResponseBody updateStatus(@RequestBody Members member){
+	@PostMapping("/update")
+	@ApiOperation("启用、停用、禁言、取消禁言、修改密码")
+	public AjaxResponseBody update(@RequestBody Members member){
 		boolean created = memberService.update(member);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

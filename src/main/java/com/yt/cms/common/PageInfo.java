@@ -24,7 +24,15 @@ public class  PageInfo<T> implements Serializable  {
     public PageInfo() {
     }
 
-    public int getPageNum() {
+    public PageInfo(int pageNum, int pageSize, long total, List<T> list) {
+		super();
+		this.pageNum = pageNum;
+		this.pageSize = pageSize;
+		this.total = total;
+		this.list = list;
+	}
+
+	public int getPageNum() {
         return pageNum;
     }
 

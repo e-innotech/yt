@@ -2,6 +2,9 @@ package com.yt.cms.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.yt.cms.common.Page;
 import com.yt.cms.model.NewsPublish;
 import com.yt.cms.model.NewsPublishLine;
 
@@ -21,6 +24,8 @@ public interface NewsPublishMapper {
 
     int deleteByPrimaryKey(Integer id);
     
-    List<NewsPublish> query(NewsPublish record);
+    List<NewsPublish> query(@Param("record") NewsPublish record, @Param("page") Page page);
+    
+    long queryCount(NewsPublish record);
     
 }

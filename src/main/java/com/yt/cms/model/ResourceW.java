@@ -1,7 +1,11 @@
 package com.yt.cms.model;
 
 import java.io.Serializable;
-
+/**
+ * 系统日志使用需要查询所有系统的可写资源
+ * @author admin
+ *
+ */
 public class ResourceW implements Serializable{
 	
 	/**
