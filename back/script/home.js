@@ -7,28 +7,17 @@ $(function(){
         $('#userinfo').html(userinfo.roleName+':'+userinfo.userName);
         //修改密码
         $('#changepwd').click(function(){
-            console.log('pwd');
+            // console.log('pwd');
             $.get($components.pwdReset,function (result) {
                 $('#popPanel').html(result);
 
                 $('#pwdResetModal').modal('show');
                 $('#pwdResetModalBtn').click(function () {
-                    var pwd = JSON.stringify({'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()});
-                    $.ajax({
-                        type: 'PUT',
-                        url:$user.update,
-                        contentType:'application/json',//必须
-                        data: pwd,
-                        dataType: 'json',
-                        xhrFields: {//必须
-                            withCredentials: true
-                        },
-                        success: function(data) {
-                            alert(data.msg);
-                            if(data.success){
-                                $('#pwdResetModal').modal('hide');
-                            }
-
+                    var pwd = {'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()};
+                    AjaxFunc($user.update,'put',pwd,function (data) {
+                        alert(data.msg);
+                        if(data.success){
+                            $('#pwdResetModal').modal('hide');
                         }
                     });
                 });
@@ -38,21 +27,15 @@ $(function(){
 
         //登出
         $('#out').click(function(){
-            $.ajax({
-                type: 'post',
-                url: $admin.logout,
-                contentType:'application/json',
-                dataType: 'json',
-                success: function(data) {
-                    if(data.success) {
-                        sessionStorage.removeItem('userinfo');
-                        sessionStorage.removeItem('permissons');
-                        location.replace('login.html');
-                    }else{
-                        alert(data.msg);
-                    }
-                }
-            })
+            AjaxFunc($admin.logout,'get',null,function (data) {
+                if(data.success) {
+                    sessionStorage.removeItem('userinfo');
+                    sessionStorage.removeItem('permissons');
+                    location.replace('login.html');
+                }else{
+                    alert(data.msg);
+                };
+            });
         })
 
     }
