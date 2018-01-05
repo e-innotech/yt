@@ -2,23 +2,23 @@ $(function () {
     pageNum = 1;
     pageSize = 15;
 
-    var siteName = '';
+    var channelName = '';
     var id = '';
-    var route = '';
-    var roleList = [];
+    var remark = '';
+    var List = [];
 
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-    var getWebsitesQueryList = function () {
+    var getList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
-        if(id!=''){
-            data.id = id;
+        if(channelName!=''){
+            data.channelName = channelName;
         };
         $.ajax({
             type: "get",//请求方式
-            url: $query.websites,//请求路径
+            url: $query.channel,//请求路径
             async: false,
             dataType: "json", //数据格式
             xhrFields: {
@@ -37,11 +37,11 @@ $(function () {
 
     };
     var addRole = function () {
-        if($('input[name="siteName"]').val() == ''){
-            alert('网站名不能为空');
+        if($('input[name="channelName"]').val() == ''){
+            alert('栏目名不能为空');
             return;
         };
-        var data = $('#websitesAddForm').serializeObject();
+        var data = $('#AddForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
         $.ajax({
             type: "post",//请求方式
@@ -55,8 +55,8 @@ $(function () {
             data:JSON.stringify(data),
             success: function (re) {
                 if(re.success){
-                    getWebsitesQueryList();
-                    $('#websites_query_add').modal('hide');
+                    getList();
+                    $('#addModal').modal('hide');
                 }
                 alert(re.msg);
 
@@ -65,7 +65,7 @@ $(function () {
 
     };
     var editRole = function () {
-        var data = $('#websitesUpateForm').serializeObject();
+        var data = $('#UpateForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
         data.id = selectRole.id;
         $.ajax({
@@ -80,8 +80,8 @@ $(function () {
             data:JSON.stringify(data),
             success: function (re) {
                 if(re.success){
-                    getWebsitesQueryList();
-                    $('#websites_query_upate').modal('hide');
+                    getList();
+                    $('#upateModal').modal('hide');
                 }
                 alert(re.msg);
             }
@@ -99,7 +99,7 @@ $(function () {
             data:{id:id},
             success: function (re) {
                 if(re.success){
-                    getWebsitesQueryList();
+                    getList();
                 }
                 alert(re.msg);
             }
@@ -118,28 +118,26 @@ $(function () {
             };
         }
         if(ctrl_add != '') {
-            $('#addWebsitesQueryBtn').show();
-            $('#addWebsitesQueryBtn').click(function () {
+            $('#addBtn').show();
+            $('#addBtn').click(function () {
                 showRoleAdd('add');
             });
         };
         $('#searchBtn').click(function () {
-            id = $('#idVue').val();
-            getWebsitesQueryList();
+            channelName = $('#queryText').val();
+            getList();
         });
-        getWebsitesQueryList();
+        getList();
     };
     var initTable = function(list) {
-        roleList = list;
-        $('#websites_query').empty();
+        List = list;
+        $('#channel').empty();
         for(var i=0;i<list.length;i++){
-            $('#websites_query').append('<tr>' +
+            $('#channel').append('<tr>' +
             '<td>'+list[i].id+'</td>' +
-            '<td>'+list[i].siteName+'</td>'+
-            '<td>'+list[i].route+'</td>'+
-            '<td>'+list[i].createDate+'</td>'+
+            '<td>'+list[i].channelName+'</td>'+
             '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-            '<td>'+list[i].templteConfig+'</td>'+
+            '<td>'+list[i].remark+'</td>'+
             '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
@@ -176,24 +174,24 @@ $(function () {
 //	            alert(type + '：' + num);
                 if(type == 'change'){
                     pageNum = num;
-                    getWebsitesQueryList();
+                    getList();
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
         });
     };
     var getRoleFromId = function (id) {
-        for(var i=0;i<roleList.length;i++){
-            if(id == roleList[i].id){
-                return roleList[i];
+        for(var i=0;i<List.length;i++){
+            if(id == List[i].id){
+                return List[i];
             }
         }
     };
     var showRoleAdd = function (type) {
-        $.get($components.websiteQuery,function (re) {
+        $.get($components.channelQuery,function (re) {
             $('#popPanel').html(re);
-            $('#websites_query_add').modal('show');
-            $('#websites_query_addBtn').click(function () {
+            $('#addModal').modal('show');
+            $('#addBtn').click(function () {
                 if(type == 'edit'){
                     editRole();
                     return;
@@ -204,14 +202,14 @@ $(function () {
         });
     };
     var showRoleEdit = function (type) {
-        $.get($components.websiteQuery,function (re) {
+        $.get($components.channelQuery,function (re) {
             $('#popPanel').html(re);
-            $('#websites_query_upate').modal('show');
+            $('#upateModal').modal('show');
             if(type=='edit'){
                 $('input[name="siteName"]').val(selectRole.siteName);
                 $('input[name="route"]').val(selectRole.route);
             };
-            $('#websites_query_upateBtn').click(function () {
+            $('#upateBtn').click(function () {
                 if(type == 'edit'){
                     editRole();
                     return;

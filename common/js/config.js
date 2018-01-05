@@ -37,13 +37,13 @@ var config ={
             'userGroup':'components/userGroup.html',
             'userQuery':'components/userQuery.html',
 
-            'websiteQuery':'components/websiteQuery.html',
-
-
             'resourceEdit':'components/resourceEdit.html',
             'resourceList':'components/resourceList.html',
 
-            'roleEdit':'components/roleEdit.html'
+            'roleEdit':'components/roleEdit.html',
+
+            'websiteQuery':'components/websiteQuery.html',
+            'channelQuery':'components/channelQuery.html'
         };
 
     }

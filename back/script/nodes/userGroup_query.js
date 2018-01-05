@@ -116,9 +116,8 @@ $(function () {
             $('#userGroup_query').append('<tr>' +
             "<td>" + list[i].id + "</td>" +
             "<td>" + list[i].groupName + "</td>" +
-            "<td>" + list[i].desc + "</td>" +
+            "<td>" + list[i].remark + "</td>" +
             '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-            "<td>" + list[i].user_group_id + "</td>" +
             '<td>'+(ctrl_edit!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
             $('#editBtn_'+list[i].id).click(function () {
@@ -126,7 +125,7 @@ $(function () {
                     $('#popPanel').html(result);
                     $('#userGroup_updata').modal('show');
                     $('#userGroup_updataBtn').click(function () {
-                        var add = JSON.stringify({'groupName':$('#userGroup_edit_groupName').val(),'comment':$('#userGroup_edit_comment').val(),'id':id});
+                        var add = JSON.stringify({'groupName':$('#userGroup_edit_groupName').val(),'remark':$('#userGroup_edit_comment').val(),'id':id});
                         $.ajax({
                             type: 'PUT',
                             url:$apiUrl+ctrl_edit,

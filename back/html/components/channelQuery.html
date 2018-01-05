@@ -1,8 +1,8 @@
 <!--
-网站列表添加
-调用id=websites_query的add
+栏目列表添加
+调用id=channel_query的add
 -->
-<div class="modal fade" id="websites_query_add" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
      style="top: 20%;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -13,20 +13,20 @@
                 <h4 class="modal-title">新增</h4>
             </div>
             <div class="modal-body" style="overflow: hidden;">
-                <form id="websitesAddForm" websites="form">
+                <form id="AddForm">
 
                     <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">网站名</label>
+                        <label class="col-sm-3 control-label">栏目名</label>
 
                         <div class="col-sm-7">
-                            <input type="text" name="siteName" class="form-websites_siteName">
+                            <input type="text" name="channelName" class="form_channelName">
                         </div>
                     </div>
                     <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">网站地址</label>
+                        <label class="col-sm-3 control-label">栏目描述</label>
 
                         <div class="col-sm-7">
-                            <input type="text" name="route" class="form-websites_route">
+                            <input type="text" name="comment" class="form_comment">
 
                         </div>
                     </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="websites_query_addBtn">确认</button>
+                <button type="button" class="btn btn-primary" id="addBtn">确认</button>
             </div>
         </div>
     </div>
@@ -43,10 +43,10 @@
 
 
 <!--
-网站列表修改
-调用id=websites_query的upate
+栏目列表修改
+调用id=channel_query的upate
 -->
-<div class="modal fade" id="websites_query_upate" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
+<div class="modal fade" id="channel_query_upate" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
      style="top: 20%;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -57,17 +57,17 @@
                 <h4 class="modal-title">修改</h4>
             </div>
             <div class="modal-body" style="overflow: hidden;">
-                <form id="websitesUpateForm" websites="form">
+                <form id="UpateForm">
 
                     <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">网站名</label>
+                        <label class="col-sm-3 control-label">栏目名</label>
 
                         <div class="col-sm-7">
-                            <input type="text" name="siteName" class="form-websites_siteName">
+                            <input type="text" name="channelName" class="form-websites_siteName">
                         </div>
                     </div>
                     <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">网站地址</label>
+                        <label class="col-sm-3 control-label">栏目描述</label>
 
                         <div class="col-sm-7">
                             <input type="text" name="route" class="form-websites_route">
@@ -78,7 +78,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="websites_query_upateBtn">确认</button>
+                <button type="button" class="btn btn-primary" id="upateBtn">确认</button>
             </div>
         </div>
     </div>

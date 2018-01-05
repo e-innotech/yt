@@ -2,9 +2,9 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>网站列表</title>
+    <title>栏目列表</title>
 
-    <script src="../script/nodes/websites_query.js"></script>
+    <script src="../script/nodes/channel_query.js"></script>
 
 </head>
 <body>
@@ -14,8 +14,8 @@
 
 <!--表格-->
 <div class="fl wrapper wrapper-content system" style="width: 100%">
-    <input type="button" value="新增" id="addWebsitesQueryBtn"/>
-    <input type="text" placeholder="id查询" id="idVue"/>
+    <input type="button" value="新增" id="addBtn"/>
+    <input type="text" placeholder="栏目名查询" id="queryText"/>
     <button id="searchBtn" type="button" class="btn btn-default">查询</button>
 
     <div class="list_1 row">
@@ -23,15 +23,13 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>网站名</th>
-                <th>地址</th>
-                <th>注册时间</th>
+                <th>栏目名</th>
                 <th>状态</th>
-                <th>模板路径</th>
+                <th>导航栏描述</th>
                 <th>操作</th>
             </tr>
             </thead>
-            <tbody id="websites_query">
+            <tbody id="channel">
 
             </tbody>
         </table>
