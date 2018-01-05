@@ -2,7 +2,6 @@ $(function () {
     pageNum = 1;
     pageSize = 15;
 
-
     var channelName = '';
     var id = '';
     var remark = '';
@@ -55,8 +54,9 @@ $(function () {
             data:JSON.stringify(data),
             success: function (re) {
                 if(re.success){
-                    getList();
                     $('#addModal').modal('hide');
+                    getList();
+
                 }
                 alert(re.msg);
 

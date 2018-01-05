@@ -6,12 +6,11 @@ $(function () {
     var id = '';
     var route = '';
     var roleList = [];
-
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-    var getWebsitesQueryList = function () {
+    var getList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
         if(id!=''){
             data.id = id;
@@ -36,7 +35,7 @@ $(function () {
         });
 
     };
-    var addRole = function () {
+    var addBtn = function () {
         if($('input[name="siteName"]').val() == ''){
             alert('网站名不能为空');
             return;
@@ -55,7 +54,7 @@ $(function () {
             data:JSON.stringify(data),
             success: function (re) {
                 if(re.success){
-                    getWebsitesQueryList();
+                    getList();
                     $('#websites_query_add').modal('hide');
                 }
                 alert(re.msg);
@@ -64,7 +63,7 @@ $(function () {
         });
 
     };
-    var editRole = function () {
+    var editBtn = function () {
         var data = $('#websitesUpateForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
         data.id = selectRole.id;
@@ -80,14 +79,14 @@ $(function () {
             data:JSON.stringify(data),
             success: function (re) {
                 if(re.success){
-                    getWebsitesQueryList();
+                    getList();
                     $('#websites_query_upate').modal('hide');
                 }
                 alert(re.msg);
             }
         });
     };
-    var deleteRole = function (id) {
+    var deleteBtn = function (id) {
         $.ajax({
             type: "get",//请求方式
             url: $apiUrl+ctrl_delete,//请求路径
@@ -99,7 +98,7 @@ $(function () {
             data:{id:id},
             success: function (re) {
                 if(re.success){
-                    getWebsitesQueryList();
+                    getList();
                 }
                 alert(re.msg);
             }
@@ -120,14 +119,14 @@ $(function () {
         if(ctrl_add != '') {
             $('#addWebsitesQueryBtn').show();
             $('#addWebsitesQueryBtn').click(function () {
-                showRoleAdd('add');
+                showAdd('add');
             });
         };
         $('#searchBtn').click(function () {
             id = $('#idVue').val();
-            getWebsitesQueryList();
+            getList();
         });
-        getWebsitesQueryList();
+        getList();
     };
     var initTable = function(list) {
         roleList = list;
@@ -144,15 +143,15 @@ $(function () {
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {
-                selectRole = getRoleFromId(this.id.split('_')[1]);
-                showRoleEdit('edit');
+                selectRole = getId(this.id.split('_')[1]);
+                showEdit('edit');
             });
             $('#deleteBtn_'+list[i].id).click(function () {
                 var id = this.id.split('_')[1];
                 $.get($components.confirm,function (re) {
                     $('#popPanel1').html(re);
                     $('#confirmModal').modal('show');
-                    confirm.initialize(id,deleteRole);
+                    confirm.initialize(id,deleteBtn);
                 });
             });
         }
@@ -176,34 +175,34 @@ $(function () {
 //	            alert(type + '：' + num);
                 if(type == 'change'){
                     pageNum = num;
-                    getWebsitesQueryList();
+                    getList();
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
         });
     };
-    var getRoleFromId = function (id) {
+    var getId = function (id) {
         for(var i=0;i<roleList.length;i++){
             if(id == roleList[i].id){
                 return roleList[i];
             }
         }
     };
-    var showRoleAdd = function (type) {
+    var showAdd = function (type) {
         $.get($components.websiteQuery,function (re) {
             $('#popPanel').html(re);
             $('#websites_query_add').modal('show');
             $('#websites_query_addBtn').click(function () {
                 if(type == 'edit'){
-                    editRole();
+                    editBtn();
                     return;
                 };
-                addRole();
+                addBtn();
             });
 
         });
     };
-    var showRoleEdit = function (type) {
+    var showEdit = function (type) {
         $.get($components.websiteQuery,function (re) {
             $('#popPanel').html(re);
             $('#websites_query_upate').modal('show');
@@ -213,10 +212,10 @@ $(function () {
             };
             $('#websites_query_upateBtn').click(function () {
                 if(type == 'edit'){
-                    editRole();
+                    editBtn();
                     return;
                 };
-                addRole();
+                addBtn();
             });
 
         });
