@@ -14,13 +14,13 @@
 <!--表格-->
 <div class="fl wrapper wrapper-content system" style="width: 100%">
     <input id="addUserBtn" type="button" value="新增" style="display: none"/>
-    <input type="text" class="text1_find" placeholder="用户名查找"/>
-    <select class="text2_find">
+    <input type="text" id="userNameText" placeholder="用户名查询"/>
+    <select>
         <option value ="0">0</option>
         <option value ="1">1</option>
 
     </select>
-    <input type="button" value="查找" class="btn_find" onclick="find()"/>
+    <button id="searchBtn" type="button" class="btn btn-default">查询</button>
 
     <div class="list_1 row">
         <table  class="col-sm-12 table table-bordered table-hover">
