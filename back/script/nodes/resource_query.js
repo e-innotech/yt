@@ -1,8 +1,5 @@
 $(function () {
-    pageNum = 1;
-    pageSize = 20;
 
-    var resourceName = '';
     var resourceList = [];
     var selectResource;
 
@@ -10,14 +7,8 @@ $(function () {
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-    const RW = ['只读','读写'];
-    const MENU = ['否','是'];
 
     var getResourceList = function(){
-        var data = {pageNum:pageNum,pageSize:pageSize,isMenu:$('#menuS').val(),rw:$('#rwS').val()};
-        if(resourceName!=''){
-            data.resourceName = resourceName;
-        };
         $.ajax({
             type: "get",//请求方式
             url: $query.resource,//请求路径
@@ -26,11 +17,9 @@ $(function () {
             xhrFields: {
                 withCredentials: true
             },
-            data:data,
             success: function (re) {
                 if(re.success){
-                    initTable(re.data.list);
-                    initPage(re.data.total);
+                    initResource(re.data);
                 }else{
                     alert(re.msg);
                 }
@@ -124,64 +113,53 @@ $(function () {
                 showResoureceEdit('add');
             });
         };
-        $('#searchBtn').click(function () {
-            resourceName = $('#resourceNameTxt').val();
-            getResourceList();
-        });
         getResourceList();
     };
-    var initTable = function(list) {
+    var initResource = function(list){
         resourceList = list;
-        $('#resourceT').empty();
-        for(var i=0;i<list.length;i++){
-            $('#resourceT').append('<tr>' +
-            '<td>'+list[i].id+'</td>' +
-            '<td>'+list[i].resourceName+'</td>'+
-            '<td>'+list[i].uri+'</td>'+
-            '<td>'+RW[list[i].rw]+'</td>'+
-            '<td>'+MENU[list[i].isMenu]+'</td>'+
-            '<td>'+list[i].pname+'</td>'+
-            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
-            '</tr>');
-
-            $('#editBtn_'+list[i].id).click(function () {
-                selectResource = getResourceFromId(this.id.split('_')[1]);
-                showResoureceEdit('edit');
-            });
-            $('#deleteBtn_'+list[i].id).click(function () {
-                deleteResource(this.id.split('_')[1]);
-            });
-        }
-
-    };
-    var initPage = function (total) {
-        if(pageNum>1){
-            return;
-        }
-        $.jqPaginator('#pg', {
-            totalCounts:Number(total)==0?1:Number(total),
-            pageSize:pageSize,
-            visiblePages: 3,
-            currentPage: pageNum,
-            first: '<li class="first"><a href="javascript:;"><<</a></li>',
-            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-            last: '<li class="last"><a href="javascript:;">>></a></li>',
-            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-            onPageChange: function (num, type) {
-//	            alert(type + '：' + num);
-                if(type == 'change'){
-                    pageNum = num;
-                    getResourceList();
+        $('#resourceBox').empty();
+        for(var i=0;i<resourceList.length;i++){
+            $('#resourceBox').append('<div style="border: 1px solid #000000"><div style="padding-left: 30px;padding-top: 5px;padding-bottom: 5px;" id="level1_'+resourceList[i].id+'"></div></div>');
+            renderButton($('#level1_'+resourceList[i].id),resourceList[i].id,resourceList[i].resourceName,false);
+            for(var j=0;j<resourceList[i].level2.length;j++){
+                $('#level1_'+resourceList[i].id).append('<div><div style="padding-left: 30px;padding-top: 5px;padding-bottom: 5px;" id="level2_'+resourceList[i].level2[j].id+'"></div></div>');
+                renderButton($('#level2_'+resourceList[i].level2[j].id),resourceList[i].level2[j].id,resourceList[i].level2[j].resourceName,false);
+                for(var k=0;k<resourceList[i].level2[j].level3.length;k++){
+                    renderButton($('#level2_'+resourceList[i].level2[j].id),resourceList[i].level2[j].level3[k].id,resourceList[i].level2[j].level3[k].resourceName,true);
                 }
-                $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
+        }
+    };
+    var renderButton = function (obj,id,name,bol) {
+        var btn = '<button class="btn btn-default" style="margin-left: 10px;" id="edit_'+id+'">'+name+'</button><button class="btn btn-default" id="delete_'+id+'">X</button>';
+        if(bol){
+            obj.append(btn);
+        }else {
+            obj.before(btn);
+        }
+        $('#edit_'+id).click(function () {
+            selectResource = getResourceFromId(id);
+            showResoureceEdit('edit');
+        });
+        $('#delete_'+id).click(function () {
+            deleteResource(id);
         });
     };
+
     var getResourceFromId = function (id) {
         for(var i=0;i<resourceList.length;i++){
             if(id == resourceList[i].id){
                 return resourceList[i];
+            }
+            for(var j=0;j<resourceList[i].level2.length;j++){
+                if(id == resourceList[i].level2[j].id){
+                    return resourceList[i].level2[j];
+                }
+                for(var k=0;k<resourceList[i].level2[j].level3.length;k++){
+                    if(id == resourceList[i].level2[j].level3[k].id){
+                        return resourceList[i].level2[j].level3[k];
+                    }
+                }
             }
         }
     }
