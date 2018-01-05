@@ -1,48 +1,95 @@
-
-
 $(function () {
-    console.log('nodeData::::'+nodeData.uri);
+    pageNum = 1;
+    pageSize = 15;
+
     var siteName = '';
+    var id = '';
     var isUse = '';
-    var pageNum = 1;
-    var pageSize = 15;
+    var route = '';
+    var roleList = [];
+    var selectRole;
 
     var ctrl_add = '';
-    var ctrl_find = '';
+    var ctrl_upate = '';
     var ctrl_delete = '';
-    var ctrl_updata = '';
-    var websitesQueryList = [];
 
-
-
-    var getwebsitesQueryList = function(){
-        var data = {'pageSize':pageSize,'pageNum':pageNum};
-        if(siteName!=''){
-            data.siteName = siteName;
-        }
+    var getWebsitesQueryList = function () {
+        var data = {pageNum:pageNum,pageSize:pageSize};
+        if(id!=''){
+            data.id = id;
+        };
         $.ajax({
-            type: 'get',//请求方式
+            type: "get",//请求方式
             url: $query.websites,//请求路径
             async: false,
-            dataType: 'json', //数据格式
+            dataType: "json", //数据格式
             xhrFields: {
                 withCredentials: true
             },
             data:data,
             success: function (re) {
                 if(re.success){
-                    //renderList(re.data);
                     initTable(re.data.list);
                     initPage(re.data.total);
-                    //console.log(111,re.data.total)
                 }else{
                     alert(re.msg);
                 }
-                //ergodic(data.list.);
             }
-        })
-    }
-    var deletewebsites = function (id) {
+        });
+
+    };
+    var addRole = function () {
+        if($('input[name="siteName"]').val() == ''){
+            alert('网站名不能为空');
+            return;
+        };
+        var data = $('#websitesForm').serializeObject();
+        data.resourceIds = resourceListSelectIds;
+        $.ajax({
+            type: "post",//请求方式
+            url: $apiUrl+ctrl_add,//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType:'application/json',
+            data:JSON.stringify(data),
+            success: function (re) {
+                if(re.success){
+                    getWebsitesQueryList();
+                    $('#websites_query_add').modal('hide');
+                }
+                alert(re.msg);
+
+            }
+        });
+
+    };
+    var editRole = function () {
+        var data = $('#roleForm').serializeObject();
+        data.resourceIds = resourceListSelectIds;
+        data.id = selectRole.id;
+        $.ajax({
+            type: "put",//请求方式
+            url: $apiUrl+ctrl_upate,//请求路径
+            async: false,
+            dataType: "json", //数据格式
+            xhrFields: {
+                withCredentials: true
+            },
+            contentType:'application/json',
+            data:JSON.stringify(data),
+            success: function (re) {
+                if(re.success){
+                    getWebsitesQueryList();
+                    $('#websites_query_add').modal('hide');
+                }
+                alert(re.msg);
+            }
+        });
+    };
+    var deleteRole = function (id) {
         $.ajax({
             type: "put",//请求方式
             url: $apiUrl+ctrl_delete,//请求路径
@@ -54,113 +101,66 @@ $(function () {
             data:{id:id},
             success: function (re) {
                 if(re.success){
-                    deletewebsites();
+                    getWebsitesQueryList();
                 }
                 alert(re.msg);
             }
         });
     }
-
-    var initialize = function(){
-        for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
-            if(nodeData.buttons[i].uri.indexOf('add')){
+    var initialize = function () {
+        for(var i=0;i<nodeData.buttons.length;i++){
+            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
                 ctrl_add = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('find')){
-                ctrl_find = nodeData.buttons[i].uri;
+            if(nodeData.buttons[i].uri.indexOf('update')!=-1){
+                ctrl_upate = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('delete')){
+            if(nodeData.buttons[i].uri.indexOf('delete')!=-1){
                 ctrl_delete = nodeData.buttons[i].uri;
-            };
-            if(nodeData.buttons[i].uri.indexOf('updata')){
-                ctrl_updata = nodeData.buttons[i].uri;
             };
         }
         if(ctrl_add != '') {
-            $('#websitesQueryBtn').show();
+            $('#addWebsitesQueryBtn').show();
+            $('#addWebsitesQueryBtn').click(function () {
+                showRoleEdit('add');
+            });
         };
-        getwebsitesQueryList();
-        $('#websitesQueryBtn').click(function(){
-            //增加按钮的事件
-            if($('#userGroup_add_userName').val() == ''){
-                alert('不能为空');
-                return;
-            };
-            $.get($components.websiteQuery,function (result) {
-                $('#popPanel').html(result);
-                $('#websites_query_add').modal('show');
-                $('#websites_query_addBtn').click(function () {
-                    var add = JSON.stringify({'userName':$('#userGroup_add_userName').val(),'passWord':$('#userGroup_add_passWord').val()});
-                    $.ajax({
-                        type: 'post',
-                        url:$apiUrl+ctrl_add,
-                        contentType:'application/json',//必须
-                        data: add,
-                        dataType: 'json',
-                        xhrFields: {//必须
-                            withCredentials: true
-                        },
-                        success: function(data) {
-                            alert(data.msg);
-                            if(data.success){
-                                $('#websites_query_add').modal('hide');
-                            }
-                        }
-                    });
-                });
-            })
+        $('#searchBtn').click(function () {
+            id = $('#idVue').val();
+            getWebsitesQueryList();
         });
-    }
-    var initTable = function(list){//初始化表格
-        $('#websites_query').empty();//进来之前清空body
-        websitesQueryList = list;
+        getWebsitesQueryList();
+    };
+    var initTable = function(list) {
+        roleList = list;
+        $('#websites_query').empty();
         for(var i=0;i<list.length;i++){
             $('#websites_query').append('<tr>' +
-            "<td>" + list[i].id + "</td>" +
-            "<td>" + list[i].siteName + "</td>" +
-            "<td>" + list[i].route + "</td>" +
-            "<td>" + list[i].createDate + "</td>" +
-            '<td><p list="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
-            "<td>" + list[i].templteRoute + "</td>" +
-            '<td>'+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+(ctrl_updata!=''?'<button id="updataBtn_'+list[i].id+'">修改</button>':'')+'</td>'+
+            '<td>'+list[i].id+'</td>' +
+            '<td>'+list[i].siteName+'</td>'+
+            '<td>'+list[i].route+'</td>'+
+            '<td>'+list[i].createDate+'</td>'+
+            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
+            '<td>'+list[i].templteConfig+'</td>'+
+            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
+            $('#editBtn_'+list[i].id).click(function () {
+                selectRole = getRoleFromId(this.id.split('_')[1]);
+                showRoleEdit('edit');
+            });
             $('#deleteBtn_'+list[i].id).click(function () {
-                deletewebsites(this.id.split('_')[1]);
+                var id = this.id.split('_')[1];
+                $.get($components.websiteQuery,function (re) {
+                    $('#popPanel1').html(re);
+                    $('#websites_query_add').modal('show');
+                    websiteQuery.initialize(id,deleteRole);
+                });
             });
-
-            $('#updataBtn_'+list[i].id).click(function () {
-                $.get($components.websiteQuery,function (result) { //修改按钮的事件
-                    $('#popPanel').html(result);
-                    $('#website_updata').modal('show');
-                    $('#website_updataBtn').click(function (id) {
-                        var add = JSON.stringify({'siteName':groupName,'route':id,'templteConfig':id});
-                        $.ajax({
-                            type: 'PUT',
-                            url:$apiUrl+ctrl_updata,
-                            contentType:'application/json',//必须
-                            data: add,
-                            dataType: 'json',
-                            xhrFields: {//必须
-                                withCredentials: true
-                            },
-                            success: function(data) {
-                                alert(data.msg);
-                                if(data.success){
-                                    $('#website_updata').modal('hide');
-                                }
-                            }
-                        });
-                    });
-                })
-            });
-
-
         }
 
-    }
-    var initPage = function(total){//初始化分页
-
+    };
+    var initPage = function (total) {
         if(pageNum>1){
             return;
         }
@@ -178,17 +178,51 @@ $(function () {
 //	            alert(type + '：' + num);
                 if(type == 'change'){
                     pageNum = num;
-                    getwebsitesQueryList();
+                    getWebsitesQueryList();
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
         });
-    }
+    };
+    var getRoleFromId = function (id) {
+        for(var i=0;i<roleList.length;i++){
+            if(id == roleList[i].id){
+                return roleList[i];
+            }
+        }
+    };
+    var getResourceNames = function () {
+        var re = '无';
+        var names = [];
+        for(var i=0;i<selectRole.resource.length;i++){
+            names.push(selectRole.resource[i].resourceName);
+        }
+        if(names.length>0){
+            re = names.toString();
+        }
+        return re;
+    };
+    var getResourceIds = function () {
+        var ids = [];
+        for(var i=0;i<selectRole.resource.length;i++){
+            ids.push(selectRole.resource[i].id);
+        }
+        return ids;
+    };
+    var showRoleEdit = function (type) {
+        $.get($components.websiteQuery,function (re) {
+            $('#popPanel').html(re);
+            $('#websites_query_add').modal('show');
 
+            $('#websites_query_addBtn').click(function () {
+                if(type == 'edit'){
+                    editRole();
+                    return;
+                };
+                addRole();
+            });
 
-
-    initialize();//初始化
-
-
-
-});
+        });
+    };
+    initialize();
+})
