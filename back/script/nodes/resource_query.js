@@ -142,7 +142,12 @@ $(function () {
             showResoureceEdit('edit');
         });
         $('#delete_'+id).click(function () {
-            deleteResource(id);
+            $.get($components.confirm,function (re) {
+                $('#popPanel1').html(re);
+                $('#confirmModal').modal('show');
+                confirm.initialize(id,deleteResource);
+            });
+            // deleteResource(id);
         });
     };
 
@@ -185,6 +190,7 @@ $(function () {
             });
             $('input[name="pname"]').click(function () {
                 $.get($components.resourceList,function (re) {
+                    resourceListType = 'parent';
                     $('#popPanel1').html(re);
                     $('#resourceListModal').modal('show');
 

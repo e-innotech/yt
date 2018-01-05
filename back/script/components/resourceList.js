@@ -55,7 +55,7 @@ $(function () {
         if(resourceListType != 'parent'){
             $('#resourceListFooter').show();
             $('#resourceListBtn').click(function () {
-                
+
             });
         }
         getResourceList();
