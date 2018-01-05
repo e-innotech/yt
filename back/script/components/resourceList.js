@@ -5,23 +5,13 @@ $(function () {
 
 
     var getResourceList = function(){
-        $.ajax({
-            type: "get",//请求方式
-            url: $query.resource,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (re) {
-                if(re.success){
-                    initResource(re.data);
-                }else{
-                    alert(re.msg);
-                }
+        AjaxFunc($query.resource,'get',null,function (re) {
+            if(re.success){
+                initResource(re.data);
+            }else{
+                alert(re.msg);
             }
         });
-
     };
     var initResource = function(list){
         resourceList = list;

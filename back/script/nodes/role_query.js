@@ -15,25 +15,14 @@ $(function () {
         if(roleName!=''){
             data.roleName = roleName;
         };
-        $.ajax({
-            type: "get",//请求方式
-            url: $query.role,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:data,
-            success: function (re) {
-                if(re.success){
-                    initTable(re.data.list);
-                    initPage(re.data.total);
-                }else{
-                    alert(re.msg);
-                }
+        AjaxFunc($query.role,'get',data,function (re) {
+            if(re.success){
+                initTable(re.data.list);
+                initPage(re.data.total);
+            }else{
+                alert(re.msg);
             }
         });
-
     };
     var addRole = function () {
         if($('input[name="roleName"]').val() == ''){
@@ -42,66 +31,34 @@ $(function () {
         };
         var data = $('#roleForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
-        $.ajax({
-            type: "post",//请求方式
-            url: $apiUrl+ctrl_add,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getRoleList();
-                    $('#roleEditModal').modal('hide');
-                }
-                alert(re.msg);
 
+        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
+            if(re.success){
+                getRoleList();
+                $('#roleEditModal').modal('hide');
             }
+            alert(re.msg);
         });
-
     };
     var editRole = function () {
         var data = $('#roleForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
         data.id = selectRole.id;
-        $.ajax({
-            type: "put",//请求方式
-            url: $apiUrl+ctrl_upate,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getRoleList();
-                    $('#roleEditModal').modal('hide');
-                }
-                alert(re.msg);
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            if(re.success){
+                getRoleList();
+                $('#roleEditModal').modal('hide');
             }
+            alert(re.msg);
         });
     };
     var deleteRole = function (id) {
-        $.ajax({
-            type: "put",//请求方式
-            url: $apiUrl+ctrl_delete,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:{id:id},
-            success: function (re) {
-                if(re.success){
-                    getRoleList();
-                }
-                alert(re.msg);
+        var data = {id:id};
+        AjaxFunc($apiUrl+ctrl_delete,'get',data,function (re) {
+            if(re.success){
+                getRoleList();
             }
+            alert(re.msg);
         });
     }
     var initialize = function () {

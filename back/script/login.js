@@ -12,18 +12,18 @@ $(function () {
 
     $("#login").click(function (){
         var user = {'userName':$('input[name="username"]').val(),'passWord':$('input[name="password"]').val()};
-        AjaxFunc($admin.login,'post',user,function (data) {
-            if(data.success){
+        AjaxFunc($admin.login,'post',user,function (re) {
+            if(re.success){
                 if($('input[name="remember"]').is(':checked')){
                     // console.log('remember')
                     sessionStorage.setItem('user',user);
                 }
-                var userinfo = {'userName':data.data.userName,'roleName':data.data.roleName};
+                var userinfo = {'userName':re.data.userName,'roleName':re.data.roleName};
                 sessionStorage.setItem('userinfo',JSON.stringify(userinfo));
-                sessionStorage.setItem('permissons',JSON.stringify(data.data.menu));
+                sessionStorage.setItem('permissons',JSON.stringify(re.data.menu));
                 location.replace('home.html');
             }else{
-                alert(data.msg);
+                alert(re.msg);
             }
         });
     });

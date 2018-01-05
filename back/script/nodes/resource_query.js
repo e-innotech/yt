@@ -9,23 +9,13 @@ $(function () {
 
 
     var getResourceList = function(){
-        $.ajax({
-            type: "get",//请求方式
-            url: $query.resource,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (re) {
-                if(re.success){
-                    initResource(re.data);
-                }else{
-                    alert(re.msg);
-                }
+        AjaxFunc($query.resource,'get',null,function (re) {
+            if(re.success){
+                initResource(re.data);
+            }else{
+                alert(re.msg);
             }
         });
-
     };
     var addResource = function () {
         if($('input[name="resourceName"]').val() == ''){
@@ -33,65 +23,33 @@ $(function () {
             return;
         };
         var data = $('#resourceForm').serializeObject();
-        $.ajax({
-            type: "post",//请求方式
-            url: $apiUrl+ctrl_add,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getResourceList();
-                    $('#resourceEditModal').modal('hide');
-                }
-                alert(re.msg);
-
+        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
+            if(re.success){
+                getResourceList();
+                $('#resourceEditModal').modal('hide');
             }
+            alert(re.msg);
         });
 
     };
     var editResource = function () {//编辑
         var data = $('#resourceForm').serializeObject();
         data.id = selectResource.id;
-        $.ajax({
-            type: "put",//请求方式
-            url: $apiUrl+ctrl_upate,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getResourceList();
-                    $('#resourceEditModal').modal('hide');
-                }
-                alert(re.msg);
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            if(re.success){
+                getResourceList();
+                $('#resourceEditModal').modal('hide');
             }
+            alert(re.msg);
         });
     };
     var deleteResource = function (id) {
-        $.ajax({
-            type: "put",//请求方式
-            url: $apiUrl+ctrl_delete,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:{id:id},
-            success: function (re) {
-                if(re.success){
-                    getResourceList();
-                }
-                alert(re.msg);
+        var data = {id:id};
+        AjaxFunc($apiUrl+ctrl_delete,'get',data,function (re) {
+            if(re.success){
+                getResourceList();
             }
+            alert(re.msg);
         });
     }
 
