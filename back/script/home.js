@@ -14,14 +14,13 @@ $(function(){
                 $('#pwdResetModal').modal('show');
                 $('#pwdResetModalBtn').click(function () {
                     var pwd = {'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()};
-                    AjaxFunc($user.update,'post',pwd,function (re) {
+                    AjaxFunc($user.pwd,'post',pwd,function (re) {
                         alert(re.msg);
                         if(re.success){
                             $('#pwdResetModal').modal('hide');
                         }
                     });
                 });
-
             })
         })
 

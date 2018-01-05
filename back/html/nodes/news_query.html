@@ -2,9 +2,54 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>稿件列表</title>
+
+    <script src="../script/nodes/news_query.js"></script>
+
 </head>
 <body>
 
+
+
+
+<!--表格-->
+<div class="fl wrapper wrapper-content system" style="width: 100%">
+    <input type="button" value="新增" id="addBtn"/>
+    <input type="text" placeholder="稿件名查询" id="queryText"/>
+    <input type="text" placeholder="稿件名查询" id="queryText2"/>
+    <input type="text" placeholder="稿件名查询" id="queryText3"/>
+    <button id="searchBtn" type="button" class="btn btn-default">查询</button>
+
+    <div class="list_1 row">
+        <table class="col-sm-12 table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>来源</th>
+                <th>开始时间</th>
+                <th>发稿人</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="news">
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p id="totalPg"></p>
+        <ul id="pg" class="pagination"></ul>
+    </div>
+</div>
+
+<div id="popPanel"></div>
+<div id="popPanel1"></div>
+
 </body>
+<script>
+
+</script>
+
+
 </html>
