@@ -44,7 +44,6 @@ $(function () {
             return;
         };
         var data = $('#resourceForm').serializeObject();
-        console.log(11111111111111111111111,data.id)
         $.ajax({
             type: "post",//请求方式
             url: $apiUrl+ctrl_add,//请求路径
@@ -66,7 +65,7 @@ $(function () {
         });
 
     };
-    var editResource = function () {
+    var editResource = function () {//编辑
         var data = $('#resourceForm').serializeObject();
         data.id = selectResource.id;
         $.ajax({

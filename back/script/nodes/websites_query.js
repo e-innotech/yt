@@ -2,23 +2,27 @@
 
 $(function () {
     console.log('nodeData::::'+nodeData.uri);
-    var groupName = '';
+    var siteName = '';
+    var isUse = '';
+    var pageNum = 1;
+    var pageSize = 15;
+
     var ctrl_add = '';
     var ctrl_find = '';
     var ctrl_delete = '';
     var ctrl_updata = '';
-    var userGroupList = [];
+    var websitesQueryList = [];
 
 
 
-    var getuserGroupList = function(){
-        var data = {pageSize:pageSize,pageNum:pageNum};
-        if(groupName!=''){
-            data.groupName = groupName;
+    var getwebsitesQueryList = function(){
+        var data = {'pageSize':pageSize,'pageNum':pageNum};
+        if(siteName!=''){
+            data.siteName = siteName;
         }
         $.ajax({
             type: 'get',//请求方式
-            url: $query.userGroup,//请求路径
+            url: $query.websites,//请求路径
             async: false,
             dataType: 'json', //数据格式
             xhrFields: {
@@ -38,7 +42,7 @@ $(function () {
             }
         })
     }
-    var deleteuserGroup = function (id) {//删除
+    var deletewebsites = function (id) {
         $.ajax({
             type: "put",//请求方式
             url: $apiUrl+ctrl_delete,//请求路径
@@ -47,22 +51,23 @@ $(function () {
             xhrFields: {
                 withCredentials: true
             },
-            data:{'id':id},
+            data:{id:id},
             success: function (re) {
                 if(re.success){
-                    deleteuserGroup();
+                    deletewebsites();
                 }
                 alert(re.msg);
             }
         });
     }
+
     var initialize = function(){
         for(var i=0;i<nodeData.buttons.length;i++){//渲染按钮等功能的
             if(nodeData.buttons[i].uri.indexOf('add')){
                 ctrl_add = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('find')){
-              ctrl_find = nodeData.buttons[i].uri;
+                ctrl_find = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('delete')){
                 ctrl_delete = nodeData.buttons[i].uri;
@@ -72,20 +77,19 @@ $(function () {
             };
         }
         if(ctrl_add != '') {
-            $('#addUserGroupBtn').show();
+            $('#websitesQueryBtn').show();
         };
-        getuserGroupList();
-        $('#addUserGroupBtn').click(function(){
-                //增加按钮的事件
-
+        getwebsitesQueryList();
+        $('#websitesQueryBtn').click(function(){
+            //增加按钮的事件
             if($('#userGroup_add_userName').val() == ''){
-                alert('资源名不能为空');
+                alert('不能为空');
                 return;
             };
-            $.get($components.userGroup,function (result) {
+            $.get($components.websiteQuery,function (result) {
                 $('#popPanel').html(result);
-                $('#userGroup_add').modal('show');
-                $('#userGroup_addBtn').click(function () {
+                $('#websites_query_add').modal('show');
+                $('#websites_query_addBtn').click(function () {
                     var add = JSON.stringify({'userName':$('#userGroup_add_userName').val(),'passWord':$('#userGroup_add_passWord').val()});
                     $.ajax({
                         type: 'post',
@@ -99,7 +103,7 @@ $(function () {
                         success: function(data) {
                             alert(data.msg);
                             if(data.success){
-                                $('#userGroup_add').modal('hide');
+                                $('#websites_query_add').modal('hide');
                             }
                         }
                     });
@@ -108,23 +112,29 @@ $(function () {
         });
     }
     var initTable = function(list){//初始化表格
-        $('#userGroup_query').empty();//进来之前清空body
-        userGroupList = list;
+        $('#websites_query').empty();//进来之前清空body
+        websitesQueryList = list;
         for(var i=0;i<list.length;i++){
-            $('#userGroup_query').append('<tr>' +
+            $('#websites_query').append('<tr>' +
             "<td>" + list[i].id + "</td>" +
-            "<td>" + list[i].groupName + "</td>" +
-            "<td>" + list[i].desc + "</td>" +
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-            "<td>" + list[i].user_group_id + "</td>" +
-            '<td>'+(ctrl_updata!=''?'<button id="updataBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            "<td>" + list[i].siteName + "</td>" +
+            "<td>" + list[i].route + "</td>" +
+            "<td>" + list[i].createDate + "</td>" +
+            '<td><p list="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" onclick="anniu(this)"><span> </span></p></td>' +  //+ resultdata[i].isUse +
+            "<td>" + list[i].templteRoute + "</td>" +
+            '<td>'+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+(ctrl_updata!=''?'<button id="updataBtn_'+list[i].id+'">修改</button>':'')+'</td>'+
             '</tr>');
+
+            $('#deleteBtn_'+list[i].id).click(function () {
+                deletewebsites(this.id.split('_')[1]);
+            });
+
             $('#updataBtn_'+list[i].id).click(function () {
-                $.get($components.userGroup,function (result) { //修改按钮的事件
+                $.get($components.websiteQuery,function (result) { //修改按钮的事件
                     $('#popPanel').html(result);
-                    $('#userGroup_updata').modal('show');
-                    $('#userGroup_updataBtn').click(function (id) {
-                        var add = JSON.stringify({'groupName':groupName,'id':id});
+                    $('#website_updata').modal('show');
+                    $('#website_updataBtn').click(function (id) {
+                        var add = JSON.stringify({'siteName':groupName,'route':id,'templteConfig':id});
                         $.ajax({
                             type: 'PUT',
                             url:$apiUrl+ctrl_updata,
@@ -137,18 +147,17 @@ $(function () {
                             success: function(data) {
                                 alert(data.msg);
                                 if(data.success){
-                                    $('#userGroup_updata').modal('hide');
+                                    $('#website_updata').modal('hide');
                                 }
                             }
                         });
                     });
                 })
             });
-            $('#deleteBtn_'+list[i].id).click(function () {
-                //删除按钮的功能
-                deleteuserGroup(this.id.split('_')[1]);
-            });
+
+
         }
+
     }
     var initPage = function(total){//初始化分页
 
@@ -169,12 +178,15 @@ $(function () {
 //	            alert(type + '：' + num);
                 if(type == 'change'){
                     pageNum = num;
-                    getuserGroupList();
+                    getwebsitesQueryList();
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
         });
     }
+
+
+
     initialize();//初始化
 
 
