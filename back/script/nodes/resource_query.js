@@ -1,6 +1,5 @@
 $(function () {
 
-    var resourceName = '';
     var resourceList = [];
     var selectResource;
 
@@ -8,13 +7,8 @@ $(function () {
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-    const RW = ['只读','读写'];
-    const MENU = ['否','是'];
 
     var getResourceList = function(){
-        if(resourceName!=''){
-            data.resourceName = resourceName;
-        };
         $.ajax({
             type: "get",//请求方式
             url: $query.resource,//请求路径
@@ -119,10 +113,6 @@ $(function () {
                 showResoureceEdit('add');
             });
         };
-        $('#searchBtn').click(function () {
-            resourceName = $('#resourceNameTxt').val();
-            getResourceList();
-        });
         getResourceList();
     };
     var initResource = function(list){

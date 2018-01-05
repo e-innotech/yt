@@ -1,17 +1,18 @@
-var nodeData;
-var pageNum = 1;
-var pageSize = 15;
-
+/**
+ * 全局变量
+ */
+var nodeData;//选择菜单后的数据
+var pageNum = 1;//翻页：页数
+var pageSize = 15;//翻页：数量
+var resourceListType = 'parent';//资源列表选择类型
 
 const RW = ['只读','读写'];
 const MENU = ['否','是'];
-/*
- 通用的ajax请求函数
- @param type get、post
- @param url
- @param isAsync true false
- @param data  object
- @param callback function
+
+
+/**
+ * 扩展jquery form序列化成json对象
+ * @returns {{}|*}
  */
 jQuery.prototype.serializeObject=function(){
     var a,o,h,i,e;
@@ -28,6 +29,17 @@ jQuery.prototype.serializeObject=function(){
 };
 
 
+
+
+
+/*
+ 通用的ajax请求函数
+ @param type get、post
+ @param url
+ @param isAsync true false
+ @param data  object
+ @param callback function
+ */
 function doAjax(type, url, isAsync, data, callback) {
     //创建通信对象
     var xhr = createXhr();

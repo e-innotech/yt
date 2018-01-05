@@ -6,29 +6,13 @@
                     <span aria-hidden="true">×</span>
                 </button>
                 <h4 class="modal-title" id="resourceListModalLabel">资源列表</h4>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input id="resourceListNameTxt" type="text" class="form-control" placeholder="联系人">
-                    </div>
-                    <button id="searchResourceBtn"  class="btn btn-default">查询</button>
-                </form>
             </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                        <tr class="info">
-                            <th>资源名</th>
-                        </tr>
-                        </thead>
-                        <tbody id="resourceListT">
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <p id="totalPgResource"></p>
-                    <ul id="pgResouce" class="pagination"></ul>
-                </div>
+            <div class="modal-body" id="resourceListBox">
+
+            </div>
+            <div id="resourceListFooter" class="modal-footer" style="display: none;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="resourceListBtn" type="button" class="btn btn-primary">确认</button>
             </div>
         </div>
     </div>
