@@ -36,11 +36,12 @@ $(function () {
 
     };
     var addRole = function () {
-        if($('input[name="resourceName"]').val() == ''){
-            alert('资源名不能为空');
+        if($('input[name="roleName"]').val() == ''){
+            alert('角色名不能为空');
             return;
         };
-        var data = $('#resourceForm').serializeObject();
+        var data = $('#roleForm').serializeObject();
+        data.resourceIds = resourceListSelectIds;
         $.ajax({
             type: "post",//请求方式
             url: $apiUrl+ctrl_add,//请求路径
@@ -54,7 +55,7 @@ $(function () {
             success: function (re) {
                 if(re.success){
                     getRoleList();
-                    $('#resourceEditModal').modal('hide');
+                    $('#roleEditModal').modal('hide');
                 }
                 alert(re.msg);
 
@@ -63,8 +64,9 @@ $(function () {
 
     };
     var editRole = function () {
-        var data = $('#resourceForm').serializeObject();
-        data.id = selectResource.id;
+        var data = $('#roleForm').serializeObject();
+        data.resourceIds = resourceListSelectIds;
+        data.id = selectRole.id;
         $.ajax({
             type: "put",//请求方式
             url: $apiUrl+ctrl_upate,//请求路径
@@ -78,7 +80,7 @@ $(function () {
             success: function (re) {
                 if(re.success){
                     getRoleList();
-                    $('#resourceEditModal').modal('hide');
+                    $('#roleEditModal').modal('hide');
                 }
                 alert(re.msg);
             }
@@ -142,7 +144,13 @@ $(function () {
                 showRoleEdit('edit');
             });
             $('#deleteBtn_'+list[i].id).click(function () {
-                deleteRole(this.id.split('_')[1]);
+                var id = this.id.split('_')[1];
+                $.get($components.confirm,function (re) {
+                    $('#popPanel1').html(re);
+                    $('#confirmModal').modal('show');
+                    confirm.initialize(id,deleteRole);
+                });
+                // deleteRole(this.id.split('_')[1]);
             });
         }
 
@@ -190,15 +198,11 @@ $(function () {
         return re;
     };
     var getResourceIds = function () {
-        var re = '';
         var ids = [];
         for(var i=0;i<selectRole.resource.length;i++){
             ids.push(selectRole.resource[i].id);
         }
-        if(ids.length>0){
-            re = ids.toString();
-        }
-        return re;
+        return ids;
     };
     var showRoleEdit = function (type) {
         $.get($components.roleEdit,function (re) {
@@ -209,22 +213,23 @@ $(function () {
                 $('input[name="roleName"]').val(selectRole.roleName);
                 $('input[name="comment"]').val(selectRole.comment);
                 $('textarea[name="resourceNames"]').val(getResourceNames());
-                $('input[name="resourceIds"]').val(getResourceIds());
+                resourceListSelectIds = getResourceIds();
             };
-            // $('#saveBtn').click(function () {
-            //     if(type == 'edit'){
-            //         editResource();
-            //         return;
-            //     };
-            //     addResource();
-            // });
-            // $('input[name="pname"]').click(function () {
-            //     $.get($components.resourceList,function (re) {
-            //         $('#popPanel1').html(re);
-            //         $('#resourceListModal').modal('show');
-            //
-            //     });
-            // });
+            $('#saveBtn').click(function () {
+                if(type == 'edit'){
+                    editRole();
+                    return;
+                };
+                addRole();
+            });
+            $('textarea[name="resourceNames"]').click(function () {
+                $.get($components.resourceList,function (re) {
+                    resourceListType = 'connect';
+                    $('#popPanel1').html(re);
+                    $('#resourceListModal').modal('show');
+
+                });
+            });
         });
     };
     initialize();

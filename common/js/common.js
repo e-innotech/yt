@@ -5,6 +5,7 @@ var nodeData;//选择菜单后的数据
 var pageNum = 1;//翻页：页数
 var pageSize = 15;//翻页：数量
 var resourceListType = 'parent';//资源列表选择类型
+var resourceListSelectIds = [];//角色资源选择id集合
 
 const RW = ['只读','读写'];
 const MENU = ['否','是'];
