@@ -67,7 +67,6 @@ function AjaxFunc(url,type,data,callBack) {
             }
             break;
         case 'post':
-        case 'put':
             obj.contentType = 'application/json';
             obj.data = JSON.stringify(data);
             break;

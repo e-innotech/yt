@@ -14,9 +14,9 @@ $(function(){
                 $('#pwdResetModal').modal('show');
                 $('#pwdResetModalBtn').click(function () {
                     var pwd = {'currentPwd':$('#oldPwd').val(),'passWord':$('#newPwd').val()};
-                    AjaxFunc($user.update,'put',pwd,function (data) {
-                        alert(data.msg);
-                        if(data.success){
+                    AjaxFunc($user.update,'post',pwd,function (re) {
+                        alert(re.msg);
+                        if(re.success){
                             $('#pwdResetModal').modal('hide');
                         }
                     });
@@ -27,13 +27,13 @@ $(function(){
 
         //登出
         $('#out').click(function(){
-            AjaxFunc($admin.logout,'get',null,function (data) {
-                if(data.success) {
+            AjaxFunc($admin.logout,'get',null,function (re) {
+                if(re.success) {
                     sessionStorage.removeItem('userinfo');
                     sessionStorage.removeItem('permissons');
                     location.replace('login.html');
                 }else{
-                    alert(data.msg);
+                    alert(re.msg);
                 };
             });
         })
