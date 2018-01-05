@@ -90,9 +90,8 @@ $(function () {
         $('#roleT').empty();
         for(var i=0;i<list.length;i++){
             $('#roleT').append('<tr>' +
-                '<td>'+list[i].id+'</td>' +
                 '<td>'+list[i].roleName+'</td>'+
-                '<td>'+list[i].comment+'</td>'+
+                '<td>'+list[i].remark+'</td>'+
                 '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
                 '</tr>');
 
@@ -109,7 +108,7 @@ $(function () {
                 });
                 // deleteRole(this.id.split('_')[1]);
             });
-        }
+        };
 
     };
     var initPage = function (total) {
@@ -168,7 +167,7 @@ $(function () {
             if(type=='edit'){
                 $('#roleEditModalLabel').html('编辑资源');
                 $('input[name="roleName"]').val(selectRole.roleName);
-                $('input[name="comment"]').val(selectRole.comment);
+                $('input[name="remark"]').val(selectRole.remark);
                 $('textarea[name="resourceNames"]').val(getResourceNames());
                 resourceListSelectIds = getResourceIds();
             };

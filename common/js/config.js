@@ -40,7 +40,9 @@ var config ={
             'resourceEdit':'components/resourceEdit.html',
             'resourceList':'components/resourceList.html',
 
-            'roleEdit':'components/roleEdit.html'
+            'roleEdit':'components/roleEdit.html',
+
+            'adPositionsEdit':'components/adPositionsEdit.html'
         };
 
     }
