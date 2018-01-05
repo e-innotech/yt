@@ -43,7 +43,7 @@ $(function () {
             alert('网站名不能为空');
             return;
         };
-        var data = $('#websitesForm').serializeObject();
+        var data = $('#websitesAddForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
         $.ajax({
             type: "post",//请求方式
