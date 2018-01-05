@@ -43,7 +43,11 @@ var config ={
             'roleEdit':'components/roleEdit.html',
 
             'websiteQuery':'components/websiteQuery.html',
-            'channelQuery':'components/channelQuery.html'
+            'channelQuery':'components/channelQuery.html',
+
+            'adPositionsEdit':'components/adPositionsEdit.html',
+
+            'newsQuery':'components/newsQuery.html'
         };
 
     }

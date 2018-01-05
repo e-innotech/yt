@@ -2,11 +2,11 @@ $(function () {
     pageNum = 1;
     pageSize = 15;
 
+
     var channelName = '';
     var id = '';
     var remark = '';
     var List = [];
-
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
@@ -136,8 +136,8 @@ $(function () {
             $('#channel').append('<tr>' +
             '<td>'+list[i].id+'</td>' +
             '<td>'+list[i].channelName+'</td>'+
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             '<td>'+list[i].remark+'</td>'+
+            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
@@ -206,8 +206,8 @@ $(function () {
             $('#popPanel').html(re);
             $('#upateModal').modal('show');
             if(type=='edit'){
-                $('input[name="siteName"]').val(selectRole.siteName);
-                $('input[name="route"]').val(selectRole.route);
+                $('input[name="channelName"]').val(selectRole.channelName);
+                $('input[name="remark"]').val(selectRole.remark);
             };
             $('#upateBtn').click(function () {
                 if(type == 'edit'){

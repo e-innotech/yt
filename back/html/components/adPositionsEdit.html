@@ -1,0 +1,39 @@
+<div class="modal fade" id="adPositionsEditModal" tabindex="-1" role="dialog" aria-labelledby="adPositionsEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="adPositionsEditModalLabel">新增广告位</h4>
+            </div>
+            <div class="modal-body">
+                <form id="adPositionsForm" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">广告位名：</span>
+                        <input type="text" name="adName" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">宽度：</span>
+                        <input type="text" name="adWidth" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">高度：</span>
+                        <input type="text" name="adHeight" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">描述：</span>
+                        <textarea name="remark" class="form-control" rows="10" style="resize: none"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
