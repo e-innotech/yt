@@ -50,15 +50,14 @@ console.log(nodeData.uri)
             if(nodeData.buttons[i].uri.indexOf('updata')){
                 ctrl_updata = nodeData.buttons[i].uri;
             };
-            if(ctrl_add != '') {
-                $('#addUserBtn').show();
-            };
-            $('#searchBtn').click(function () {//查询
-                userName = $('#userNameText').val();
-                getUserList();
-            });
-
         }
+        if(ctrl_add != '') {
+            $('#addUserBtn').show();
+        };
+        $('#searchBtn').click(function () {//查询
+            userName = $('#userNameText').val();
+            getUserList();
+        });
         $('#addUserBtn').click(function () {//增加按钮
             $.get($components.userQuery,function (result) {
                 $('#popPanel').html(result);
@@ -67,7 +66,7 @@ console.log(nodeData.uri)
                     var add = JSON.stringify({'userName':$('#user_query_add_userName').val(),'passWord':$('#user_query_add_passWord').val()});
                     $.ajax({
                         type: 'post',
-                        url:'http://123.59.156.27:8080/user/add',
+                        url:$apiUrl+ctrl_add,
                         contentType:'application/json',//必须
                         data: add,
                         dataType: 'json',

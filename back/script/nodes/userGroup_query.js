@@ -4,10 +4,11 @@ $(function () {
     console.log('nodeData::::'+nodeData.uri);
     var groupName = '';
     var ctrl_add = '';
-    var ctrl_find = '';
     var ctrl_delete = '';
+    var ctrl_edit = '';
     var ctrl_updata = '';
     var userGroupList = [];
+    var id='';
 
 
 
@@ -34,7 +35,6 @@ $(function () {
                 }else{
                     alert(re.msg);
                 }
-                //ergodic(data.list.);
             }
         })
     }
@@ -61,8 +61,8 @@ $(function () {
             if(nodeData.buttons[i].uri.indexOf('add')){
                 ctrl_add = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('find')){
-              ctrl_find = nodeData.buttons[i].uri;
+            if(nodeData.buttons[i].uri.indexOf('edit')){
+                ctrl_edit = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('delete')){
                 ctrl_delete = nodeData.buttons[i].uri;
@@ -74,10 +74,12 @@ $(function () {
         if(ctrl_add != '') {
             $('#addUserGroupBtn').show();
         };
+        $('#searchBtn').click(function () {//查询
+            id  = $('#IdText').val();
+            getuserGroupList();
+        });
         getuserGroupList();
-        $('#addUserGroupBtn').click(function(){
-                //增加按钮的事件
-
+        $('#addUserGroupBtn').click(function(){//增加按钮的事件
             if($('#userGroup_add_userName').val() == ''){
                 alert('资源名不能为空');
                 return;
@@ -117,17 +119,17 @@ $(function () {
             "<td>" + list[i].desc + "</td>" +
             '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             "<td>" + list[i].user_group_id + "</td>" +
-            '<td>'+(ctrl_updata!=''?'<button id="updataBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            '<td>'+(ctrl_edit!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
-            $('#updataBtn_'+list[i].id).click(function () {
+            $('#editBtn_'+list[i].id).click(function () {
                 $.get($components.userGroup,function (result) { //修改按钮的事件
                     $('#popPanel').html(result);
                     $('#userGroup_updata').modal('show');
-                    $('#userGroup_updataBtn').click(function (id) {
-                        var add = JSON.stringify({'groupName':groupName,'id':id});
+                    $('#userGroup_updataBtn').click(function () {
+                        var add = JSON.stringify({'groupName':$('#userGroup_edit_groupName').val(),'comment':$('#userGroup_edit_comment').val(),'id':id});
                         $.ajax({
                             type: 'PUT',
-                            url:$apiUrl+ctrl_updata,
+                            url:$apiUrl+ctrl_edit,
                             contentType:'application/json',//必须
                             data: add,
                             dataType: 'json',
