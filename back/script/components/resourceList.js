@@ -41,16 +41,36 @@ $(function () {
         }
     };
     var renderButton = function (obj,id,name,bol) {
-        var btn = '<button class="btn btn-default" style="margin-left: 10px;" id="edit_'+id+'">'+name+'</button>';
+        var btn = '<button class="btn btn-default" style="margin-left: 10px;" id="editList_'+id+'">'+name+'</button>';
         if(bol){
             obj.append(btn);
         }else {
             obj.before(btn);
         }
-        $('#edit_'+id).click(function () {
-            selectResource = getResourceFromId(id);
+        $('#editList_'+id).click(function () {
+            var resource = getResourceFromId(id);
+            $('input[name="pname"]').val(resource.resourceName);
+            $('input[name="parentId"]').val(id);
+            $('#resourceListModal').modal('hide');
         });
     };
+    var getResourceFromId = function (id) {
+        for(var i=0;i<resourceList.length;i++){
+            if(id == resourceList[i].id){
+                return resourceList[i];
+            }
+            for(var j=0;j<resourceList[i].level2.length;j++){
+                if(id == resourceList[i].level2[j].id){
+                    return resourceList[i].level2[j];
+                }
+                for(var k=0;k<resourceList[i].level2[j].level3.length;k++){
+                    if(id == resourceList[i].level2[j].level3[k].id){
+                        return resourceList[i].level2[j].level3[k];
+                    }
+                }
+            }
+        }
+    }
     var initialize = function () {
         if(resourceListType != 'parent'){
             $('#resourceListFooter').show();

@@ -167,7 +167,7 @@ $(function () {
                 }
             }
         }
-    }
+    };
     var showResoureceEdit = function (type) {
         $.get($components.resourceEdit,function (re) {
             $('#popPanel').html(re);
