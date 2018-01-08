@@ -17,7 +17,7 @@ public class MembersCommentsNews extends BaseVo{
     private Integer newsId;
     
     private News news;
-
+    private Members members;
     private String createDate;
 
     private String content;
@@ -108,6 +108,14 @@ public class MembersCommentsNews extends BaseVo{
 
 	public void setNewsId(Integer newsId) {
 		this.newsId = newsId;
+	}
+
+	public Members getMembers() {
+		return members;
+	}
+
+	public void setMembers(Members members) {
+		this.members = members;
 	}
     
     

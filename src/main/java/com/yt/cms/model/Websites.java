@@ -20,7 +20,11 @@ public class Websites extends BaseVo{
 
     private String createDate;
 
-    private String templteConfig;
+    private String templateConfig;
+    /**
+     * 网站首页权重最大值
+     */
+    private Integer homeWeightMax;
 //    @JsonIgnore
     private List<Channel> channels;
     
@@ -72,12 +76,20 @@ public class Websites extends BaseVo{
 		this.createDate = createDate;
 	}
 
-	public String getTemplteConfig() {
-		return templteConfig;
+	public String getTemplateConfig() {
+		return templateConfig;
 	}
 
-	public void setTemplteConfig(String templteConfig) {
-		this.templteConfig = templteConfig == null ? null : templteConfig.trim();;
+	public void setTemplateConfig(String templateConfig) {
+		this.templateConfig = templateConfig == null ? null : templateConfig.trim();
+	}
+
+	public Integer getHomeWeightMax() {
+		return homeWeightMax;
+	}
+
+	public void setHomeWeightMax(Integer homeWeightMax) {
+		this.homeWeightMax = homeWeightMax;
 	}
 
 	

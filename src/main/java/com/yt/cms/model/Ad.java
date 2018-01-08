@@ -18,6 +18,8 @@ public class Ad extends BaseVo{
 
     private AdPositions adPositions;
 
+    private Integer adPositionsId;
+    
     private String adName;
 
     private Integer adType;
@@ -107,4 +109,14 @@ public class Ad extends BaseVo{
     public void setSource(String source) {
         this.source = source == null ? null : source.trim();
     }
+
+	public Integer getAdPositionsId() {
+		return adPositionsId;
+	}
+
+	public void setAdPositionsId(Integer adPositionsId) {
+		this.adPositionsId = adPositionsId;
+	}
+    
+    
 }

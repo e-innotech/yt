@@ -30,7 +30,7 @@ public class UserResponseBody implements Serializable {
 		this.userName = userName;
 	}
 	public String getPassWord() {
-		return passWord;
+		return passWord == null ? "888888" : passWord.trim();
 	}
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;

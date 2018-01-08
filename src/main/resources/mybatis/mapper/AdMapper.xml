@@ -89,7 +89,7 @@
       <if test="status != null" >
         status,
       </if>
-      <if test="adPositions.id != null" >
+      <if test="adPositionsId != null" >
         adPositions_id,
       </if>
       <if test="adName != null" >
@@ -116,8 +116,8 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="adPositions.id != null" >
-        #{adPositions.id,jdbcType=INTEGER},
+      <if test="adPositionsId != null" >
+        #{adPositionsId,jdbcType=INTEGER},
       </if>
       <if test="adName != null" >
         #{adName,jdbcType=VARCHAR},
@@ -143,8 +143,8 @@
         endDate = #{endDate,jdbcType=TIMESTAMP},
       </if>
       
-      <if test="adPositions.id != null" >
-        adPositions_id = #{adPositions.id,jdbcType=INTEGER},
+      <if test="adPositionsId != null" >
+        adPositions_id = #{adPositionsId,jdbcType=INTEGER},
       </if>
       <if test="adName != null" >
         adName = #{adName,jdbcType=VARCHAR},

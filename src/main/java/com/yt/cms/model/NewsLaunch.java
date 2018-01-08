@@ -94,7 +94,7 @@ public class NewsLaunch extends BaseVo{
 	}
 
 	public void setNewsLaunchConfig(String newsLaunchConfig) {
-		this.newsLaunchConfig = newsLaunchConfig == null ? null : newsLaunchConfig.trim();;
+		this.newsLaunchConfig = newsLaunchConfig == null ? null : newsLaunchConfig.trim();
 	}
 
     public Integer getStatus() {

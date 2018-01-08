@@ -27,7 +27,7 @@ public class Channel extends BaseVo{
 	}
 
 	public void setChannelName(String channelName) {
-		this.channelName = channelName == null ? null : channelName.trim();;
+		this.channelName = channelName == null ? null : channelName.trim();
 	}
 
 	public Integer getIsUse() {

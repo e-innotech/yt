@@ -19,14 +19,14 @@
     </sql>
  	
     <!-- 查询所有用户信息 -->
-    <select id="query" resultMap="BaseResultMap"  parameterType="map">
+    <select id="query" resultMap="ResultMap"  parameterType="map">
        SELECT 
-       id, uname, createDate,isUse
-	   FROM users where isUse = 1
+       a.id, a.uname, a.createDate,a.isUse,b.id user_group_id, b.groupName
+	   FROM (select * from users where user_group_id != 999999 or user_group_id is null) a left join user_group b on a.user_group_id = b.id and b.id != 999999 where a.isUse = 1 
 	   <if test="userName != null">
-                and uname like concat('%', #{userName}, '%')
+                and a.uname like concat('%', #{userName}, '%')
        </if>
-        order by id desc
+        order by a.id desc
         <if test="page.pageLimit != null and page.pageSize != null" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 	</if>
@@ -35,7 +35,7 @@
     <!-- 查询所有用户信息 -->
     <select id="queryCount" resultType="long"  parameterType="java.lang.String">
        SELECT count(1)
-	   FROM users where isUse = 1
+	   FROM (select * from users where user_group_id != 999999 or user_group_id is null) a left join user_group b on a.user_group_id = b.id  and b.id != 999999  where a.isUse = 1 
             <if test="userName!=null and userName!=''">
                 and uname like concat('%', #{userName}, '%')
             </if>

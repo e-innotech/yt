@@ -13,9 +13,12 @@
 
 <resultMap id="ResultMap" type="com.yt.cms.model.MembersCommentsNews" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="members_id" property="membersId" jdbcType="INTEGER" />
     <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
     <result column="content" property="content" jdbcType="VARCHAR" />
+		<association property="members" javaType="com.yt.cms.model.Members">
+			 <id column="members_id" property="id" jdbcType="INTEGER" />
+			<result column="uname" property="uname" jdbcType="VARCHAR"/>
+		</association>
 	    <association property="news" javaType="com.yt.cms.model.News">
 	    	 <id column="news_id" property="id" jdbcType="INTEGER" />
 		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />

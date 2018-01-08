@@ -43,7 +43,7 @@ public class User implements Serializable{
 	/**
 	 * 用户组
 	 */
-	@JsonIgnore
+//	@JsonIgnore
 	private UserGroup userGroup;
 	public User() {
 		super();

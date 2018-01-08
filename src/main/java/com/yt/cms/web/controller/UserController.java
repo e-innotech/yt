@@ -166,6 +166,9 @@ public class UserController {
 			response.setSuccess(true);
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<MenuLeve1> menu = permissionService.queryMenu(db_user);
+			if(menu == null ||  db_user.getUserGroup() == null) {
+				return new AjaxResponseBody(false,"没有权限！");
+			}
 			String roleName = permissionService.queryRolesName(db_user.getUserGroup().getId());
 			map.put("userName", db_user.getUserName());
 			map.put("roleName", roleName);
@@ -233,16 +236,7 @@ public class UserController {
 	@ApiOperation("更新用户信息")
 	public AjaxResponseBody update(@RequestBody UserInfoUpdate user,  HttpServletRequest request) {
 		// TODO 公用的资源不属于菜单
-		HttpSession session = request.getSession();
-		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		AjaxResponseBody response = new AjaxResponseBody();
-		if(user_session == null || user_session.getId() == null) {
-			response.setMsg(Const.SESSION_TIMEOUT);
-			response.setSuccess(false);
-			return response;
-		}
-	
-		user.setId(user_session.getId());
 		
 		boolean flag = userService.update(user);
 		if(!flag) {
