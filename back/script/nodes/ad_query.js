@@ -30,10 +30,40 @@ $(function () {
       });
    };
    var addAd = function () {
+       if($('input[name="adName"]').val()==''||$('input[name="adPositionsId"]').val()==''||$('input[name="beginDate"]').val()==''||$('input[name="endDate"]').val()==''){
+           alert('参数不能为空');
+           return;
+       }
+       var data = $('#adForm').serializeObject();
+       AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
+          if(re.success){
+              $('#adEditModal').modal('hide');
+              getAdList();
+          }
+          alert(re.msg);
 
+       });
    };
-   var eidtAd = function () {
+   var editAd = function () {
+       var data = $('#adForm').serializeObject();
+       data.id = selectAd.id;
+       AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+           if(re.success){
+               $('#adEditModal').modal('hide');
+               getAdList();
+           }
+           alert(re.msg);
 
+       });
+   };
+   var offOnLineAd = function (id,status) {
+        var data = {id:id,status:status};
+        AjaxFunc($apiUrl+ctrl_offLine,'post',data,function (re) {
+            if(re.success){
+                getAdList();
+            }
+            alert(re.msg);
+        })
    };
 
 
@@ -73,8 +103,19 @@ $(function () {
                 '<td>'+list[i].beginDate+'</td>'+
                 '<td>'+list[i].endDate+'</td>'+
                 '<td>'+OFFONLINE[list[i].status]+'</td>'+
-                // '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_launch_add!=''?'<button id="launchBtn_'+list[i].id+'">投放</button>':'')+'</td>'+
+                '<td>'+getCtrl(list[i].id,list[i].status)+'</td>'+
                 '</tr>');
+            
+            $('#editBtn_'+list[i].id).click(function () {
+                selectAd = getAdFromId(this.id.split('_')[1]);
+                showAdEdit('edit');
+            });
+            $('#onLineBtn_'+list[i].id).click(function () {
+                offOnLineAd(this.id.split('_')[1],1);
+            });
+            $('#offLineBtn_'+list[i].id).click(function () {
+                offOnLineAd(this.id.split('_')[1],0);
+            });
        };
    };
    var initPage = function (total) {
@@ -101,6 +142,20 @@ $(function () {
            }
        });
    };
+   var getAdFromId = function (id) {
+        for(var i=0;i<adList.length;i++){
+            if(id == adList[i].id){
+                return adList[i];
+            }
+        }
+   };
+   var getCtrl = function (id,status) {
+        if(status == 1){
+            return (ctrl_offLine!=''?'<button id="offLineBtn_'+id+'">↓</button>':'');
+        };
+        return (ctrl_upate!=''?'<button id="editBtn_'+id+'">编辑</button>':'')+(ctrl_offLine!=''?'<button id="onLineBtn_'+id+'">↑</button>':'');
+
+   };
 
    var showAdEdit = function (type) {
        $.get($components.adEdit,function (re) {
@@ -108,26 +163,57 @@ $(function () {
            $('#adEditModal').modal('show');
            if(type=='edit'){
                $('#adEditModalLabel').html('编辑广告');
-               //     $('input[name="roleName"]').val(selectRole.roleName);
-               //     $('input[name="remark"]').val(selectRole.remark);
-               //     $('textarea[name="resourceNames"]').val(getResourceNames());
-               //     resourceListSelectIds = getResourceIds();
+                   $('input[name="adName"]').val(selectAd.adName);
+                   $('#adPositionsInfo').val(selectAd.adPositions.adName+"："+selectAd.adPositions.adWidth+"X"+selectAd.adPositions.adHeight);
+                   $('input[name="adPositionsId"]').val(selectAd.adPositions.id);
+                   $('input[name="source"]').val(selectAd.source);
+                   $('input[name="remark"]').val(selectAd.remark);
+                   $('input[name="beginDate"]').val(selectAd.beginDate);
+                   $('input[name="endDate"]').val(selectAd.endDate);
            };
-           // $('#saveBtn').click(function () {
-           //     if(type == 'edit'){
-           //         editRole();
-           //         return;
-           //     };
-           //     addRole();
-           // });
-           // $('textarea[name="resourceNames"]').click(function () {
-           //     $.get($components.resourceList,function (re) {
-           //         resourceListType = 'connect';
-           //         $('#popPanel1').html(re);
-           //         $('#resourceListModal').modal('show');
-           //
-           //     });
-           // });
+           $('#adPositionsInfo').click(function () {
+               $.get($components.adPositionsList,function (re) {
+                   $('#popPanel1').html(re);
+                   $('#adPositionsListModal').modal('show');
+               });
+           });
+           $('input[type="file"]').change(function(){
+               var files = $('#upload_file').prop('files');
+               var data = new FormData();
+               data.append('upload_file',files[0]);
+               data.append('fileDirectory','ad/');
+               AjaxUpload($uploadUrl,data,function (re) {
+                  // console.log(re);
+                   alert(re.msg);
+                   if(re.success){
+                       $('input[name="source"]').val(re.data);
+                   }
+               });
+           });
+           $('input[name="beginDate"]').datetimepicker({
+               format:'yyyy-mm-dd',
+               language:'zh-CN',
+               autoclose:true,
+               todayBtn:true,
+               todayHighlight:true,
+               minView:'month'
+           });
+           $('input[name="endDate"]').datetimepicker({
+               format:'yyyy-mm-dd',
+               language:'zh-CN',
+               autoclose:true,
+               todayBtn:true,
+               todayHighlight:true,
+               minView:'month'
+           });
+           
+           $('#saveBtn').click(function () {
+               if(type == 'edit'){
+                   editAd();
+                   return;
+               };
+               addAd();
+           });
        });
    };
 

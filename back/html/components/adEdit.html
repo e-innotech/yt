@@ -8,15 +8,22 @@
                 <h4 class="modal-title" id="adEditModalLabel">新增广告</h4>
             </div>
             <div class="modal-body">
-                <form id="roleForm" role="form" >
+                <form id="adForm" role="form" >
                     <div class="input-group">
                         <span class="input-group-addon">广告名：</span>
                         <input type="text" name="adName" class="form-control">
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">素材类型：</span>
-                        <input type="text" name="adType" class="form-control">
+                        <span class="input-group-addon">广告位信息：</span>
+                        <input type="text" id="adPositionsInfo" class="form-control" readonly="readonly" placeholder="请选择">
+                        <input type="hidden" name="adPositionsId">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">内容：</span>
+                        <input id="upload_file" type="file" accept=".jpg,.jpeg,.png" name="upload_file" class="form-control">
+                        <input type="hidden" name="source">
                     </div>
                     <br>
                     <div class="input-group">
@@ -25,9 +32,9 @@
                     </div>
                     <br>
                     <div class="input-group">
-                        <input id="datetimepicker_begin" size="16" type="text" value="" class="form-control" placeholder="起始时间">
-                        <span>至</span>
-                        <input id="datetimepicker_end" size="16" type="text" value="" class="form-control" placeholder="结束时间">
+                        <span class="input-group-addon">时间：</span>
+                        <input type="text" name="beginDate" class="form-control" placeholder="开始时间">
+                        <input type="text" name="endDate" class="form-control" placeholder="结束时间">
                     </div>
                     <br>
                 </form>
