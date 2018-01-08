@@ -19,6 +19,14 @@
                 <div class="form-group">
                     <input id="adNameTxt" type="text" class="form-control" placeholder="广告名">
                 </div>
+                <div class="form-group">
+                    <span>状态</span>
+                    <select class="input-large form-control" id="statusSelect">
+                        <option value="-1">全部</option>
+                        <option value="0">下线</option>
+                        <option value="1">上线</option>
+                    </select>
+                </div>
                 <button id="searchBtn" type="button" class="btn btn-default">查询</button>
             </form>
 
@@ -31,7 +39,6 @@
         <tr class="info">
             <th>广告名</th>
             <th>内容</th>
-            <th>素材类型</th>
             <th>描述</th>
             <th>开始时间</th>
             <th>结束时间</th>

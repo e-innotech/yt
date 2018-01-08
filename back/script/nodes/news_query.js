@@ -48,7 +48,7 @@ $(function () {
                 ctrl_upate = nodeData.buttons[i].uri;
             };
 
-        }
+        };
         if(ctrl_add != '') {
             $('#addNewsBtn').show();
             $('#addNewsBtn').click(function () {
@@ -141,9 +141,9 @@ $(function () {
     var showNewsEdit = function (type) {
         $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
-            $('#newsEditModal').modal('show');
+            $('#adEditModal').modal('show');
             if(type=='edit'){
-                $('#newsEditModalLabel').html('编辑稿件');
+                $('#adsEditModalLabel').html('编辑稿件');
             //     $('input[name="roleName"]').val(selectRole.roleName);
             //     $('input[name="remark"]').val(selectRole.remark);
             //     $('textarea[name="resourceNames"]').val(getResourceNames());

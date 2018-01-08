@@ -1,7 +1,11 @@
 var config ={
     init:function(){
-        // $apiUrl = ' http://192.168.20.195:8080';
-        $apiUrl = ' http://123.59.156.27:8080';
+        $apiUrl = ' http://192.168.20.195:8080';
+        // $apiUrl = ' http://123.59.156.27:8080';
+
+
+        $uploadUrl = 'http://192.168.20.195:8888/yy/upload';
+
         $admin = {
             'login':$apiUrl+'/login',
             'logout':$apiUrl+'/logout'
@@ -49,8 +53,12 @@ var config ={
             'channelQuery':'components/channelQuery.html',
 
             'newsEdit':'components/newsEdit.html',
+
+
             'adEdit':'components/adEdit.html',
-            'adPositionsEdit':'components/adPositionsEdit.html'
+            'adPositionsEdit':'components/adPositionsEdit.html',
+            'adPositionsList':'components/adPositionsList.html'
+
         };
 
     }

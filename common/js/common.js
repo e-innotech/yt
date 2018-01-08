@@ -9,7 +9,7 @@ var resourceListSelectIds = [];//角色资源选择id集合
 
 const RW = ['只读','读写'];
 const MENU = ['否','是'];
-
+const OFFONLINE = ['下线','上线'];
 
 /**
  * 扩展jquery form序列化成json对象
@@ -49,7 +49,8 @@ function getNote(uri) {
  * @constructor
  */
 function AjaxFunc(url,type,data,callBack) {
-    var obj = {type:type,
+    var obj = {
+        type:type,
         url:url,
         async: false,
         dataType: "json",
@@ -59,7 +60,7 @@ function AjaxFunc(url,type,data,callBack) {
         success:function (result) {
             callBack(result)
         }
-        };
+    };
     switch (type){
         case 'get':
             if(data){
@@ -70,6 +71,31 @@ function AjaxFunc(url,type,data,callBack) {
             obj.contentType = 'application/json';
             obj.data = JSON.stringify(data);
             break;
+    };
+    $.ajax(obj);
+};
+
+/**
+ * 上传
+ * @param url
+ * @param type
+ * @param data
+ * @param callBack
+ * @constructor
+ */
+function AjaxUpload(url,data,callBack) {
+    var obj = {
+        url:url,
+        type:'post',
+        dataType: "json",
+        data:data,
+        cache:false,
+        processData:false,
+        contentType:false,
+        mimeType:"multipart/form-data",
+        success:function (result) {
+            callBack(result)
+        }
     };
     $.ajax(obj);
 }
