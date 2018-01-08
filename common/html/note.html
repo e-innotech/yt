@@ -29,163 +29,152 @@
     </style>
 </head>
 <body>
+<div class="panel-body">
+    <table id="tbList" class="table footable" data-sort="false" >
+        <thead>
+        <tr class="primary">
+            <th class="tar">序号</th>
+            <th>类型</th>
+            <th>商品显示名称</th>
+            <th>商品编码</th>
+            <th>规格</th>
+            <th>生产厂商</th>
+            <th>限购个数</th>
+            <th>原价</th>
+            <th>优惠价</th>
+            <th>特价</th>
+            <th>所属药店</th>
+            <th>选择</th>
+            <th>操作</th>
+            <th class="hidden">特价ID</th>
+        </tr>
+        </thead>
 
-<div>
-    <p> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-</div>
-<div class="panel-body" style="padding-bottom:0px;">
-    <div class="panel panel-default">
-        <!--<div class="panel-heading">查询条件</div>-->
-        <div class="panel-body">
-            <form id="formSearch" class="form-horizontal">
-                <div class="form-group" style="margin-top:15px">
-                    <label class="control-label col-sm-1" for="txt_search_departmentname">网站名</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" id="txt_search_departmentname">
-                    </div>
-                    <label class="control-label col-sm-1" for="txt_search_statu">地址</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" id="txt_search_statu">
-                    </div>
-                    <div class="col-sm-4" style="text-align:left;">
-                        <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+        <tbody id="tabproInfo"></tbody>
+        <script id="tmidtabproduct" type="text/x-jsrender">
+        {{for thproductlist}}
+        <tr id="tabpro" >
+            <td class="tar"><lable id="idindex">{{>#index+1}}</lable></td>
+            <td id="{{>tabtype}}"><lable id="idtabtype" value="{{>tabtype}}">{{tabTypeText:tabtype}}</lable></td>
+            <td><lable id="iddispname">{{>dispName}}</lable></td>
+            <td><lable id="idproductCode">{{>productCode}}</lable></td>
+            <td><lable id="idspec">{{>spec}}</lable></td>
+            <td><lable id="idmanufactor">{{>manufactor}}</lable></td>
+            <td><lable id="idinta">{{>inta}}</lable></td>
+            <td><lable id="idprice">{{>price}}</lable></td>
+            <td><lable id="idyhprice">{{>yhprice}}</lable></td>
+            <td><lable id="idthprice">{{>thprice}}</lable></td>
+            <td><lable id="idsupplierName">{{>supplierName}}</lable></td>
+             <td>
+              <div class="col-xs-3"  >
+                    <input type="radio" id="idradio" name="radiobutton"  value="{{>idproductTab}}">
+                   </div>
+                 </td>
+            <td><a href="#" onClick="deletetabpro2()">删除</a>
+               <a href="#"  onClick="modifytabpro2({{>#index+1}},'pop-div')">修改</a>
+            </td>
+            <td class="hidden"><lable id="ididproductTab">{{>idproductTab}}</lable></td>
+        </tr>
+        {{/for}}
 
-    <div id="toolbar" class="btn-group">
-        <button id="btn_add" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true" id="addTable"></span>新增
-        </button>
-        <button id="btn_edit" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true" id="reviseTable"></span>修改
-        </button>
-        <button id="btn_delete" type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true" id="delTable"></span>删除
-        </button>
-    </div>
-    <table id="tb_departments"></table>
+        </script>
+    </table>
 </div>
+
+<!--<input type="button" id="btnPopup" onclick="popupDiv('pop-div')" class="btnPopup" value="PopupDiv">-->
+<div  class="pop-box " style="width: 350px" id="pop-div">
+    <span class="panel-title ml5 mt10">你修改商品的是:</span>
+    <b class="ml20"><lable id="idnewdispname3" value=""></lable></b>
+    <table class="style1 mt10 ml10">
+        <tr class=" mt10 ">
+            <td class="style2 ">请选择特惠类型:</td>
+            <td>
+                <select class="form-control mt10 mr10" id="tabtypeSelect3" style="width:190px">
+                    <option value="0">(请选择)</option>
+                    <option value="1">特惠</option>
+                    <option value="2">商家推荐</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="mt10  ">
+            <td class="style2">请输入限购数量:</td>
+            <td>
+                <input type="text" placeholder="不填默认为1" style="height:38px" class="mt10 mr10"
+                       onkeyup="clearNoNum2(this)" id="idnewinta3" size="24" value="">
+            </td>
+        </tr>
+        <tr class="mt10  ">
+            <td class="style2"> 请输入新的特价:</td>
+            <td>
+                <input type="text"  style="height:38px" class="mt10 mr10" onkeyup="clearNoNum(this)"
+                       id="idnewthprice3"  size="24" value="">
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input class="ml10 pull-left" value="保存" id="btnsave" onClick="savetabpro('pop-div');" type="button"/>
+    <input class="mr20 pull-right" value="取消" id="btnClose" onClick="hideDiv('pop-div');" type="button"/>
+</div>
+
+
 </body>
 </html>
 
 <script>
-    $(function () {
+    /**修改按钮，弹出div
+     * */
+    function modifytabpro2(index, div_id) {
+        var idproductTab = $('input:radio:checked').val();
+        if (idproductTab == null || idproductTab == "") {
+            alert("请选择一个特价商品！");
+            return;
+        }
+//获取表格里的值
+        var _tab = document.getElementById('tbList');// 获取table对象
+        var _row = _tab.rows; //获取选中table的行
+        var _cell = _row[index].cells; //获取选中列
+        var tabtype = _cell[1].id;
+        var xiangounum = _cell[6].innerText; //获取第7列的限购数量
+        var thprice = _cell[9].innerText; //获取第10列的特价
+        var dispname = _cell[2].innerText;
+//alert(_cell[6].innerText);
+//alert(_cell[9].innerText);
 
-        //1.初始化Table
-        var oTable = new TableInit();
-        oTable.Init();
+//值传递
+//$("[id*=idnewdispname3]").attr("value", dispname);//原来的写法
+//$("[id*=idnewthprice3]").attr("value", thprice);
+        document.getElementById('idnewdispname3').innerText=dispname;
+        $("#idnewthprice3").attr("value", thprice);
+// $("#tabtypeSelect3").val("tabtype");
+        $("#tabtypeSelect3").find('option[value="' + tabtype + '"]').attr("selected", true);
+        $("#idnewinta3").val(xiangounum);
 
-        //2.初始化Button的点击事件
-        var oButtonInit = new ButtonInit();
-        oButtonInit.Init();
+//$("[id*=idnewdispname]").attr("value",$("[id*=iddispname]").html());
+//$("[id*=idnewinta3]").attr("value",$("[id*=idinta]").html());
+//$("[id*=idnewthprice3]").attr("value",$("[id*=idthprice]").html());
+//$("[id*=tabtypeSelect3]").attr("value",$("[id*=idtabtype]").html());
 
+        var div_obj = $("#" + div_id);
+        var windowWidth = document.documentElement.clientWidth;
+        var windowHeight = document.documentElement.clientHeight;
+        var popupHeight = div_obj.height();
+        var popupWidth = div_obj.width();
+        div_obj.css({"position": "absolute"})
+                .animate({
+                    left: windowWidth / 2 - popupWidth / 2,
+                    top: windowHeight / 2 - popupHeight / 2,
+                    opacity: "show"
+                }, "show");
 
-    });
+// $('#inputthprice2').removeClass('hidden');
 
+    }
 
-    var $table = $('#table'), $button = $('#addTable');
+    //关闭弹出的DIV
+    function hideDiv(div_id) {
 
-    $(function () {
-        $button.click(function () {
-            var randomId = 100 + ~~(Math.random() * 100);
-            $table.bootstrapTable('insertRow', {
-                index: 1,
-                row: {
-                    id: randomId,
-                    name: 'Item ' + randomId,
-                    price: '$' + randomId
-                }
-            });
-        });
-    });
-    $('#addTable').bootstrapTable('insertRow', {
-        index:0,
-        row: {siteName: 'siteName', route: 'route', templteRoute: 'templteRoute'}
-    });
-
-    var TableInit = function () {
-        var oTableInit = new Object();
-        //初始化Table
-        oTableInit.Init = function () {
-            $('#tb_departments').bootstrapTable({
-                url: '../../data/note.json',         //请求后台的URL（*）
-                method: 'get',                      //请求方式（*）
-                toolbar: '#toolbar',                //工具按钮用哪个容器
-                striped: true,                      //是否显示行间隔色
-                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                pagination: true,                   //是否显示分页（*）
-                sortable: false,                     //是否启用排序
-                sortOrder: "asc",                   //排序方式
-                queryParams: oTableInit.queryParams,//传递参数（*）
-                sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                pageNumber:1,                       //初始化加载第一页，默认第一页
-                pageSize: 10,                       //每页的记录行数（*）
-                pageList: [10, 20, 30, 50],        //可供选择的每页的行数（*）
-                search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-                strictSearch: true,
-                showColumns: true,                  //是否显示所有的列
-                showRefresh: true,                  //是否显示刷新按钮
-                minimumCountColumns: 2,             //最少允许的列数
-                clickToSelect: true,                //是否启用点击选中行
-                height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-                showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
-                cardView: false,                    //是否显示详细视图
-                detailView: false,                   //是否显示父子表
-                columns: [{
-                    checkbox: true
-                }, {
-                    field: 'id',
-                    title: 'ID'
-                }, {
-                    field: 'siteName',
-                    title: '网站名'
-                }, {
-                    field: 'route',
-                    title: '地址'
-                }, {
-                    field: 'createDate',
-                    title: '时间'
-                }, {
-                    field: 'isUse',
-                    title: '状态'
-                },{
-                    field: 'templteRoute',
-                    title: '地址22'
-                } ]
-            });
-        };
-
-        //得到查询的参数
-        oTableInit.queryParams = function (params) {
-            var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-                limit: params.limit,   //页面大小
-                offset: params.offset,  //页码
-                departmentname: $("#txt_search_departmentname").val(),
-                statu: $("#txt_search_statu").val()
-            };
-            return temp;
-        };
-        return oTableInit;
-    };
-
-
-    var ButtonInit = function () {
-        var oInit = new Object();
-        var postdata = {};
-
-        oInit.Init = function () {
-            //初始化页面上面的按钮事件
-        };
-
-        return oInit;
-    };
-
-
-
+        $("#" + div_id).animate({left: 0, top: 0, opacity: "hide"}, "slow");
+    }
 
 
 </script>

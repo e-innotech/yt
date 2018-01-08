@@ -118,8 +118,8 @@ $(function () {
             };
         }
         if(ctrl_add != '') {
-            $('#addBtn').show();
-            $('#addBtn').click(function () {
+            $('#addUserBtn').show();
+            $('#addUserBtn').click(function () {
                 showRoleAdd('add');
             });
         };
@@ -134,11 +134,10 @@ $(function () {
         $('#channel').empty();
         for(var i=0;i<list.length;i++){
             $('#channel').append('<tr>' +
-            '<td>'+list[i].id+'</td>' +
             '<td>'+list[i].channelName+'</td>'+
             '<td>'+list[i].remark+'</td>'+
             '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {
