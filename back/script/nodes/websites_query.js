@@ -139,7 +139,7 @@ $(function () {
             '<td>'+list[i].createDate+'</td>'+
             '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
             '<td>'+list[i].templteConfig+'</td>'+
-            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {

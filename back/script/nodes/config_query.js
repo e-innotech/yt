@@ -1,27 +1,25 @@
 
-
 $(function () {
-    console.log('nodeData::::'+nodeData.uri);
-    var groupName = '';
+    pageNum = 1;
+    pageSize = 15;
 
-    var id='';
-    var rolesId='';
+    var name = '';
+    var id = '';
+    var isUse = '';
+    var value = '';
     var roleList = [];
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-
-
-
     var getList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
-        if(groupName!=''){
-            data.groupName = groupName;
+        if(name!=''){
+            data.name = name;
         };
         $.ajax({
             type: "get",//请求方式
-            url: $query.userGroup,//请求路径
+            url: $query.config,//请求路径
             async: false,
             dataType: "json", //数据格式
             xhrFields: {
@@ -40,13 +38,12 @@ $(function () {
 
     };
     var addBtn = function () {
-        if($('input[name="groupName"]').val() == ''){
-            alert('用户组名称不能为空');
+        if($('input[name="name"]').val() == ''){
+            alert('网站名不能为空');
             return;
         };
         var data = $('#AddForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
-        console.log(data)
         $.ajax({
             type: "post",//请求方式
             url: $apiUrl+ctrl_add,//请求路径
@@ -68,11 +65,6 @@ $(function () {
         });
 
     };
-
-
-
-
-
     var editBtn = function () {
         var data = $('#UpateForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
@@ -140,13 +132,14 @@ $(function () {
     };
     var initTable = function(list) {
         roleList = list;
-        $('#userGroup_query').empty();
+        $('#config_query').empty();
         for(var i=0;i<list.length;i++){
-            $('#userGroup_query').append('<tr>' +
-            '<td>'+list[i].groupName+'</td>'+
-            '<td>'+list[i].remark+'</td>'+
-            '<td>'+list[i].roles.roleName+'</td>'+
-            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            $('#config_query').append('<tr>' +
+            '<td>'+list[i].name+'</td>'+
+            '<td>'+list[i].value+'</td>'+
+            '<td>'+list[i].createDate+'</td>'+
+            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
+            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+'</td>'+
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {
@@ -188,8 +181,6 @@ $(function () {
             }
         });
     };
-
-
     var getId = function (id) {
         for(var i=0;i<roleList.length;i++){
             if(id == roleList[i].id){
@@ -197,9 +188,8 @@ $(function () {
             }
         }
     };
-
     var showAdd = function (type) {
-        $.get($components.userGroup,function (re) {
+        $.get($components.configQuery,function (re) {
             $('#popPanel').html(re);
             $('#addModal').modal('show');
             $('#addBtn').click(function () {
@@ -213,13 +203,12 @@ $(function () {
         });
     };
     var showEdit = function (type) {
-        $.get($components.userGroup,function (re) {
+        $.get($components.configQuery,function (re) {
             $('#popPanel').html(re);
             $('#upateModal').modal('show');
             if(type=='edit'){
-                $('input[name="groupName"]').val(selectRole.groupName);
-                $('input[name="remark"]').val(selectRole.remark);
-                $('input[name="rolesId"]').val(selectRole.rolesId);
+                $('input[name="name"]').val(selectRole.name);
+                $('input[name="value"]').val(selectRole.value);
             };
             $('#upateBtn').click(function () {
                 if(type == 'edit'){
@@ -231,8 +220,5 @@ $(function () {
 
         });
     };
-    initialize();//初始化
-
-
-
-});
+    initialize();
+})
