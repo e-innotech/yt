@@ -1,226 +1,165 @@
+$(function () {
+    pageNum = 1;
+    pageSize = 20;
 
+    var userName = ''
+    var userList = [];
+    var selectUser;
 
+    var ctrl_add = '';
+    var ctrl_upate = '';
 
-    $(function () {
+    var getUserList = function () {
+        var data = {pageNum:pageNum,pageSize:pageSize};
+        if(userName!=''){
+            data.userName = userName;
+        };
+        AjaxFunc($query.user,'get',data,function (re) {
+            if(re.success){
+                initTable(re.data.list);
+                initPage(re.data.total);
+            }else{
+                alert(re.msg);
+            }
+        });
+    };
+    var addUser = function () {
+        if($('input[name="userName"]').val() == ''){
+            alert('角色名不能为空');
+            return;
+        };
+        var data = $('#roleForm').serializeObject();
+        data.resourceIds = resourceListSelectIds;
 
-
-        var userName = '';
-        var id = '';
-        var roleList = [];
-        var ctrl_add = '';
-        var ctrl_upate = '';
-        var ctrl_delete = '';
-
-        var getList = function () {
-            var data = {pageNum:pageNum,pageSize:pageSize};
-            if(userName!=''){
-                data.userName = userName;
+        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
+            if(re.success){
+                getUserList();
+                $('#userEditModal').modal('hide');
+            }
+            alert(re.msg);
+        });
+    };
+    var editUser = function () {
+        var data = $('#roleForm').serializeObject();
+        data.resourceIds = resourceListSelectIds;
+        data.id = selectRole.id;
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            if(re.success){
+                getRoleList();
+                $('#roleEditModal').modal('hide');
+            }
+            alert(re.msg);
+        });
+    };
+    var statusUser = function (id,status) {
+        var data = {id:id,isUse:status};
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            if(re.success){
+                getUserList();
+            }
+            alert(re.msg);
+        });
+    };
+    var initialize = function () {
+        for(var i=0;i<nodeData.buttons.length;i++){
+            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
+                ctrl_add = nodeData.buttons[i].uri;
             };
-            $.ajax({
-                type: "get",//请求方式
-                url: $query.user,//请求路径
-                async: false,
-                dataType: "json", //数据格式
-                xhrFields: {
-                    withCredentials: true
-                },
-                data:data,
-                success: function (re) {
-                    if(re.success){
-                        initTable(re.data.list);
-                        initPage(re.data.total);
-                    }else{
-                        alert(re.msg);
-                    }
-                }
-            });
-
-        };
-        var addBtn = function () {
-            if($('input[name="userName"]').val() == ''){
-                alert('用户名不能为空');
-                return;
+            if(nodeData.buttons[i].uri.indexOf('update')!=-1){
+                ctrl_upate = nodeData.buttons[i].uri;
             };
-            var data = $('#AddForm').serializeObject();
-            data.resourceIds = resourceListSelectIds;
-            console.log(data)
-            $.ajax({
-                type: "post",//请求方式
-                url: $apiUrl+ctrl_add,//请求路径
-                async: false,
-                dataType: "json", //数据格式
-                xhrFields: {
-                    withCredentials: true
-                },
-                contentType:'application/json',
-                data:JSON.stringify(data),
-                success: function (re) {
-                    if(re.success){
-                        getList();
-                        $('#addModal').modal('hide');
-                    }
-                    alert(re.msg);
 
-                }
-            });
-
-        };
-        var editBtn = function () {
-            var data = $('#UpateForm').serializeObject();
-            data.resourceIds = resourceListSelectIds;
-            data.id = selectRole.id;
-            $.ajax({
-                type: "post",//请求方式
-                url: $apiUrl+ctrl_upate,//请求路径
-                async: false,
-                dataType: "json", //数据格式
-                xhrFields: {
-                    withCredentials: true
-                },
-                contentType:'application/json',
-                data:JSON.stringify(data),
-                success: function (re) {
-                    if(re.success){
-                        getList();
-                        $('#upateModal').modal('hide');
-                    }
-                    alert(re.msg);
-                }
-            });
-        };
-        var deleteBtn = function (id) {
-            $.ajax({
-                type: "get",//请求方式
-                url: $apiUrl+ctrl_delete,//请求路径
-                async: false,
-                dataType: "json", //数据格式
-                xhrFields: {
-                    withCredentials: true
-                },
-                data:{id:id},
-                success: function (re) {
-                    if(re.success){
-                        getList();
-                    }
-                    alert(re.msg);
-                }
-            });
         }
-        var initialize = function () {
-            for(var i=0;i<nodeData.buttons.length;i++){
-                if(nodeData.buttons[i].uri.indexOf('add')!=-1){
-                    ctrl_add = nodeData.buttons[i].uri;
-                };
-                if(nodeData.buttons[i].uri.indexOf('update')!=-1){
-                    ctrl_upate = nodeData.buttons[i].uri;
-                };
-                if(nodeData.buttons[i].uri.indexOf('delete')!=-1){
-                    ctrl_delete = nodeData.buttons[i].uri;
-                };
-            }
-            if(ctrl_add != '') {
-                $('#addUserBtn').show();
-                $('#addUserBtn').click(function () {
-                    showAdd('add');
-                });
-            };
-            $('#searchBtn').click(function () {
-                userName = $('#userNameText').val();
-                getList();
+        if(ctrl_add != '') {
+            $('#addUserBtn').show();
+            $('#addUserBtn').click(function () {
+                showUserEdit('add');
             });
-            getList();
         };
-        var initTable = function(list) {
-            roleList = list;
-            $('#user_query').empty();
-            for (var i = 0; i < list.length; i++) {
-                for (var i = 0; i < list.length; i++) {
-                    $('#user_query').append('<tr>' +
-                    "<td>" + list[i].userName + "</td>" +
-                    "<td>" + list[i].createDate + "</td>" +
-                    '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-                    '<td>' + (ctrl_upate != '' ? '<button id="editBtn_' + list[i].id + '">编辑</button>' : '') + '</td>' +
-                    '</tr>');
-                    $('#editBtn_' + list[i].id).click(function () {
-                        selectRole = getId(this.id.split('_')[1]);
-                        showEdit('edit');
-                    });
-                    $('#deleteBtn_' + list[i].id).click(function () {
-                        var id = this.id.split('_')[1];
-                        $.get($components.confirm, function (re) {
-                            $('#popPanel1').html(re);
-                            $('#confirmModal').modal('show');
-                            confirm.initialize(id, deleteBtn);
-                        });
-                    });
-                }
+        $('#searchBtn').click(function () {
+            userName = $('#userTxt').val();
+            getUserList();
+        });
+        getUserList();
+    };
+    var initTable = function(list) {
+        userList = list;
+        $('#userT').empty();
+        for(var i=0;i<list.length;i++){
+            $('#userT').append('<tr>' +
+            '<td>'+list[i].userName+'</td>'+
+            '<td>' + isUserGroup(list[i].userGroup) + '</td>' +
+            '<td>'+list[i].createDate+'</td>'+
+            '<td><p id="statusBtn_'+list[i].id+'" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
+            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+'</td>'+
+            '</tr>');
 
-            }
-            ;
+            $('#editBtn_'+list[i].id).click(function () {
+                selectUser = getUserFromId(this.id.split('_')[1]);
+                showUserEdit('edit');
+            });
+            $('#statusBtn_'+list[i].id).click(function () {
+                //console.log($(this).attr('class'));
+                var isUse = 0;
+                if($(this).attr('class') == 'anniu'){
+                    isUse =1;
+                }else{
+                    isUse =0;
+                };
+                statusUser(this.id.split('_')[1],isUse)
+            });
+        };
+    };
+
+
+    var isUserGroup = function(userGroup){
+        if(userGroup){
+            return userGroup.groupName;
         }
-        var initPage = function (total) {
-            if(pageNum>1){
-                return;
-            }
-            $.jqPaginator('#pg', {
-                totalCounts:Number(total)==0?1:Number(total),
-                pageSize:pageSize,
-                visiblePages: 3,
-                currentPage: pageNum,
-                first: '<li class="first"><a href="javascript:;"><<</a></li>',
-                prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-                next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-                last: '<li class="last"><a href="javascript:;">>></a></li>',
-                page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-                onPageChange: function (num, type) {
+        return '';
+    }
+    var initPage = function (total) {
+        if(pageNum>1){
+            return;
+        }
+        $.jqPaginator('#pg', {
+            totalCounts:Number(total)==0?1:Number(total),
+            pageSize:pageSize,
+            visiblePages: 3,
+            currentPage: pageNum,
+            first: '<li class="first"><a href="javascript:;"><<</a></li>',
+            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+            last: '<li class="last"><a href="javascript:;">>></a></li>',
+            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+            onPageChange: function (num, type) {
 //	            alert(type + '：' + num);
-                    if(type == 'change'){
-                        pageNum = num;
-                        getList();
-                    }
-                    $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
+                if(type == 'change'){
+                    pageNum = num;
+                    getUserList();
                 }
-            });
-        };
-        var getId = function (id) {
-            for(var i=0;i<roleList.length;i++){
-                if(id == roleList[i].id){
-                    return roleList[i];
-                }
+                $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
-        };
-        var showAdd = function (type) {
-            $.get($components.userQuery,function (re) {
-                $('#popPanel').html(re);
-                $('#addModal').modal('show');
-                $('#addBtn').click(function () {
-                    if(type == 'edit'){
-                        editBtn();
-                        return;
-                    };
-                    addBtn();
-                });
+        });
+    };
+    var getUserFromId = function (id) {
+        for(var i=0;i<userList.length;i++){
+            if(id == userList[i].id){
+                return userList[i];
+            }
+        }
+    };
 
+
+    var showUserEdit = function (type) {
+        $.get($components.userQuery,function (re) {
+            $('#popPanel').html(re);
+            $('#userEditModal').modal('show');
+            $('#saveBtn').click(function () {
+                addUser();
             });
-        };
-        var showEdit = function (type) {
-            $.get($components.userQuery,function (re) {
-                $('#popPanel').html(re);
-                $('#upateModal').modal('show');
-                if(type=='edit'){
-                    $('input[name="userName"]').val(selectRole.userName);
-                };
-                $('#upateBtn').click(function () {
-                    if(type == 'edit'){
-                        editBtn();
-                        return;
-                    };
-                    addBtn();
-                });
 
-            });
-        };
-        initialize();
-    })
-
-
+        });
+    };
+    initialize();
+})
