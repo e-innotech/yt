@@ -9,22 +9,20 @@ import java.util.List;
 public class NewsLaunchConfig {
 	
 	private List<Integer> channelId;
-	private int webId;
-
-	public void setChannelId(List<Integer> channelId) {
-		this.channelId = channelId;
-	}
-
+	private Integer websiteId;
 	public List<Integer> getChannelId() {
 		return channelId;
 	}
-
-	public void setWebId(Integer webId) {
-		this.webId = webId;
+	public void setChannelId(List<Integer> channelId) {
+		this.channelId = channelId;
+	}
+	public Integer getWebsiteId() {
+		return websiteId;
+	}
+	public void setWebsiteId(Integer websiteId) {
+		this.websiteId = websiteId;
 	}
 
-	public Integer getWebId() {
-		return webId;
-	}
+	
 
 }

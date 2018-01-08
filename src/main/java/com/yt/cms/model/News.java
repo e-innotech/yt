@@ -24,6 +24,8 @@ public class News extends BaseVo{
     
     private String createDate;
     
+    private Integer status;
+    
     @JsonIgnore
     private Date startDate;
     @JsonIgnore
@@ -101,4 +103,13 @@ public class News extends BaseVo{
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+    
 }

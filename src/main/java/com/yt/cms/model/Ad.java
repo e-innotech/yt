@@ -16,7 +16,7 @@ public class Ad extends BaseVo{
 
     private Integer status;
 
-    private Integer adPositionsId;
+    private AdPositions adPositions;
 
     private String adName;
 
@@ -68,12 +68,12 @@ public class Ad extends BaseVo{
 		this.status = status;
 	}
 
-	public Integer getAdPositionsId() {
-		return adPositionsId;
+	public AdPositions getAdPositions() {
+		return adPositions;
 	}
 
-	public void setAdPositionsId(Integer adPositionsId) {
-		this.adPositionsId = adPositionsId;
+	public void setAdPositions(AdPositions adPositions) {
+		this.adPositions = adPositions;
 	}
 
 	public String getAdName() {

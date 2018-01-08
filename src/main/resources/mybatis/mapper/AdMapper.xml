@@ -7,12 +7,21 @@
     <result column="beginDate" property="beginDate" jdbcType="TIMESTAMP" />
     <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="adPositions_id" property="adPositionsId" jdbcType="INTEGER" />
     <result column="adName" property="adName" jdbcType="VARCHAR" />
     <result column="adType" property="adType" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="off_line_date" property="offLineDate" jdbcType="VARCHAR" />
   </resultMap>
+  
+    <resultMap id="ResultMap" type="com.yt.cms.model.Ad" extends="BaseResultMap">
+   		<association property="adPositions" javaType="com.yt.cms.model.AdPositions">
+   			 <id column="adPositions_id" property="id" jdbcType="INTEGER" />
+		    <result column="ad_width" property="adWidth" jdbcType="INTEGER" />
+		    <result column="ad_height" property="adHeight" jdbcType="INTEGER" />
+		    <result column="postitionsName" property="adName" jdbcType="VARCHAR" />
+		    <result column="positionsRemark" property="remark" jdbcType="VARCHAR" />
+   		</association>	
+  	</resultMap>
   
   <sql id="Base_Column_List" >
     id, source,beginDate, endDate, status, adPositions_id, adName, adType, remark,off_line_date
@@ -25,20 +34,21 @@
     where id = #{id,jdbcType=INTEGER} 
   </select>
   
-   <select id="query" resultMap="BaseResultMap" parameterType="map" >
+   <select id="query" resultMap="ResultMap" parameterType="map" >
     select 
-    <include refid="Base_Column_List" />
-    from ad where 1=1 
+    a.id, a.source,a.beginDate, a.endDate, a.status, a.adName, a.adType, a.remark,a.off_line_date,
+    b.id as adPositions_id, b.ad_width, b.ad_height, b.ad_name as postitionsName,b.remark as positionsRemark
+    from ad a left join adpositions b on a.adPositions_id = b.id where 1=1 
 	    <if test="ad.status != null and ad.status != -1" >
-			 and status = #{ad.status,jdbcType=INTEGER}
+			 and a.status = #{ad.status,jdbcType=INTEGER}
 	    </if>
 	      <if test="ad.adName != null" >
-	       and adName like concat('%', #{ad.adName}, '%')
+	       and a.adName like concat('%', #{ad.adName}, '%')
 	      </if>
 	      <if test="ad.adType != null and ad.adType != -1">
-	       and adType = #{ad.adType,jdbcType=INTEGER}
+	       and a.adType = #{ad.adType,jdbcType=INTEGER}
 	      </if>
-      order by id desc
+      order by a.id desc
        <if test="page.pageLimit != null and page.pageSize != null" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 </if>
@@ -46,15 +56,15 @@
   
   <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.Ad" >
     select count(1)
-    from ad where 1=1 
+    from ad a left join adpositions b on a.adPositions_id = b.id  where 1=1 
 	    <if test="status != null and status != -1" >
-			 and status = #{status,jdbcType=INTEGER}
+			 and a.status = #{status,jdbcType=INTEGER}
 	    </if>
 	      <if test="adName != null" >
-	       and adName like concat('%', #{adName}, '%')
+	       and a.adName like concat('%', #{adName}, '%')
 	      </if>
 	      <if test="adType != null and adType != -1">
-	       and adType = #{adType,jdbcType=INTEGER}
+	       and a.adType = #{adType,jdbcType=INTEGER}
 	      </if>
   </select>
   
@@ -79,7 +89,7 @@
       <if test="status != null" >
         status,
       </if>
-      <if test="adPositionsId != null" >
+      <if test="adPositions.id != null" >
         adPositions_id,
       </if>
       <if test="adName != null" >
@@ -106,8 +116,8 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="adPositionsId != null" >
-        #{adPositionsId,jdbcType=INTEGER},
+      <if test="adPositions.id != null" >
+        #{adPositions.id,jdbcType=INTEGER},
       </if>
       <if test="adName != null" >
         #{adName,jdbcType=VARCHAR},
@@ -133,8 +143,8 @@
         endDate = #{endDate,jdbcType=TIMESTAMP},
       </if>
       
-      <if test="adPositionsId != null" >
-        adPositions_id = #{adPositionsId,jdbcType=INTEGER},
+      <if test="adPositions.id != null" >
+        adPositions_id = #{adPositions.id,jdbcType=INTEGER},
       </if>
       <if test="adName != null" >
         adName = #{adName,jdbcType=VARCHAR},

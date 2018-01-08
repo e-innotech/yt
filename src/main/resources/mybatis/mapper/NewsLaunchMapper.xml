@@ -37,7 +37,7 @@
    a.id, b.id as news_id, a.news_launch_config, a.status, a.aduit_user_id, a.aduit_des, a.aduit_date, a.create_user_id, 
     a.create_date,b.news_title
     from news_launch a left join news b on a.news_id = b.id 
-    where a.isDel = 0 
+    where a.isDel = 0 and a.status in (0,2)
     <if test="record.startDate != null" >
        		<![CDATA[ and a.create_date >= #{record.startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
@@ -57,7 +57,7 @@
   <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.NewsLaunch" >
     select count(1)
     from news_launch a left join news b on a.news_id = b.id 
-    where a.isDel = 0 
+    where a.isDel = 0  and a.status in (0,2)
     	<if test="startDate != null" >
        		<![CDATA[ and a.create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
@@ -149,6 +149,15 @@
       <if test="newsLaunchConfig != null" >
         news_launch_config = #{newsLaunchConfig,jdbcType=VARCHAR},
       </if>
+     
+    </set>
+    where id = #{id,jdbcType=INTEGER} and status = 2
+  </update>
+  
+  
+  <update id="updateStatusByPrimaryKey" parameterType="com.yt.cms.model.NewsLaunch" >
+    update news_launch
+    <set >
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -161,14 +170,7 @@
       <if test="aduitDate != null" >
         aduit_date = #{aduitDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUserId != null" >
-        create_user_id = #{createUserId,jdbcType=INTEGER},
-      </if>
-      <if test="createDate != null" >
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  
 </mapper>

@@ -10,12 +10,13 @@
     <result column="create_date" property="createDate" jdbcType="VARCHAR" />
     <result column="isDel" property="isDel" jdbcType="INTEGER" />
     <result column="del_date" property="delDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.model.News" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, news_title, source, staticUrl, submit_user_id,create_date,isDel,del_date
+    id, news_title, source, staticUrl, submit_user_id,create_date,isDel,del_date,status
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -31,8 +32,9 @@
   
   <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
-    <include refid="Base_Column_List" />
-    from news where 1=1 and isDel = 0
+    <include refid="Base_Column_List" /> ,
+    <include refid="Blob_Column_List" />
+    from news where 1=1 and isDel = 0 and status = 0
     <if test="news.startDate != null" >
        		<![CDATA[ and create_date >= #{news.startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
@@ -53,7 +55,7 @@
   
   <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.News" >
     select count(1)
-    from news where 1=1 and isDel = 0
+    from news where 1=1 and isDel = 0 and status = 0
     <if test="startDate != null" >
        		<![CDATA[ and create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
@@ -98,6 +100,11 @@
       <if test="content != null" >
         content,
       </if>
+       <if test="status != null" >
+        status,
+      </if>
+      
+      
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="newsTitle != null" >
@@ -114,6 +121,9 @@
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -132,9 +142,21 @@
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
+      
+      <if test="status != null" >
+       status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER} 
+    where id = #{id,jdbcType=INTEGER} and status in (0,2)
   </update>
 
-
+<update id="updateStatusByPrimaryKey" parameterType="com.yt.cms.model.News" >
+    update news
+    <set >
+      <if test="status != null" >
+       status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

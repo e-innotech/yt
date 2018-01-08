@@ -9,29 +9,13 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   
-    <resultMap id="ResultMap" type="com.yt.cms.model.AdPositions" extends="BaseResultMap">
-    	<collection property="ads" ofType="com.yt.cms.model.Ad">
-    		<id column="ad_id" property="id" jdbcType="INTEGER" />
-		    <result column="source" property="source" jdbcType="VARCHAR" />
-		    <result column="beginDate" property="beginDate" jdbcType="TIMESTAMP" />
-		    <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
-		    <result column="status" property="status" jdbcType="INTEGER" />
-		    <result column="adName" property="adName" jdbcType="VARCHAR" />
-		    <result column="adType" property="adType" jdbcType="INTEGER" />
-		    <result column="remark" property="remark" jdbcType="VARCHAR" />	
-    	</collection>
-    
-  </resultMap>
-  
   <sql id="Base_Column_List" >
     id, ad_width, ad_height, ad_name,remark
   </sql>
-  <!--  级联查询广告位下的所有广告 -->
-  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.ad_width, a.ad_height, a.ad_name,
-    b.id as ad_id, b.source,b.beginDate, b.endDate, b.status, b.adName, b.adType, b.remark
-    from adpositions a left join ad b on a.id = b.adPositions_id 
+    a.id, a.ad_width, a.ad_height, a.ad_name
+    from adpositions a 
     where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0
   </select>
   

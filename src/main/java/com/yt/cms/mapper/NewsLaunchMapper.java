@@ -22,4 +22,10 @@ public interface NewsLaunchMapper {
     
     long queryCount(NewsLaunch record);
 
+    /**
+     * 更新status
+     * @param record
+     * @return
+     */
+    int updateStatusByPrimaryKey(NewsLaunch record);
 }

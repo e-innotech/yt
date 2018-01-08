@@ -1,7 +1,5 @@
 package com.yt.cms.model;
 
-import java.util.List;
-
 public class AdPositions extends BaseVo{
     /**
 	 * 
@@ -17,16 +15,6 @@ public class AdPositions extends BaseVo{
     private String adName;
 
     private String remark;
-    
-    private List<Ad> ads;
-    
-	public List<Ad> getAds() {
-		return ads;
-	}
-
-	public void setAds(List<Ad> ads) {
-		this.ads = ads;
-	}
 
 	public Integer getId() {
         return id;

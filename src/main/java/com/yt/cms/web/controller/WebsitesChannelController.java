@@ -27,6 +27,7 @@ public class WebsitesChannelController {
 
 	/**
 	 * 新增网站栏位关系
+	 * 网站id和栏目id 联合唯一键
 	 * @param moduleList
 	 * @return
 	 */

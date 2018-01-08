@@ -35,6 +35,10 @@ public class Const {
 	public static final Integer ADUIT_PASS = 1;
 	
 	public static final Integer ADUIT_NO_PASS = 2;
+	//已投放但不通过
+	public static final Integer LAUNCH_PASS = 1;
+	//已投放但不通过
+	public static final Integer LAUNCH_NO_PASS = 2;
 	
 	public static final Integer ON_LINE = 1;
 	

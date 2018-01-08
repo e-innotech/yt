@@ -3,6 +3,7 @@ package com.yt.cms.web.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
@@ -44,7 +45,7 @@ public class NewsController {
 	private NewsPublishService newsPublishService;
 	
 	/**
-	 * 列表页面
+	 * 列表页面，只可查询status=0 未投放的稿件
 	 * @return
 	 */
 	@GetMapping("/query")
@@ -86,23 +87,28 @@ public class NewsController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加稿件")
-	public AjaxResponseBody add(@RequestBody News News) {
-		boolean created = newsService.save(News);
+	public AjaxResponseBody add(@RequestBody News news,  HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		if(user_session == null || user_session.getId() == null) {
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+		} 
+		news.setSubmitUserId(user_session.getId());
+		boolean created = newsService.save(news);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
-	 * 修改稿件
+	 * 修改稿件,status = 0才可修改
 	 * @param News
 	 * @return
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改稿件")
-	public AjaxResponseBody update(@RequestBody News News){
-		// TODO 稿件上线状态不可修改，需要关联publish，launch 表拿到状态
-		boolean created = newsService.update(News);
+	public AjaxResponseBody update(@RequestBody News news){
+		boolean created = newsService.update(news);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
@@ -129,7 +135,14 @@ public class NewsController {
 	 */
 	@PostMapping("/launch/add")
 	@ApiOperation("投放稿件到网站和栏目")
-	public AjaxResponseBody launch(@RequestBody NewsLaunch newsLaunch){
+	public AjaxResponseBody launch(@RequestBody NewsLaunch newsLaunch, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		if(user_session == null || user_session.getId() == null) {
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+		} 
+		newsLaunch.setCreateUserId(user_session.getId());
 		boolean release =  newsLaunchService.save(newsLaunch);
 		if(!release) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -140,13 +153,21 @@ public class NewsController {
 
 	/**
 	 * 编辑稿件投放网站与栏目
+	 * 只有审批状态是审批不通过的才可以修改 投放网站与稿件信息
 	 * @return
 	 */
 	@PostMapping("/launch/update")
 	@ApiOperation("编辑稿件投放网站与栏目")
-	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch){
+	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch, HttpServletRequest request){
+		
+		HttpSession session = request.getSession();
+		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		if(user_session == null || user_session.getId() == null) {
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+		} 
 		// 从session中拿当前用户id
-//		news.setAduitUserId(aduitUserId);
+		newsLaunch.setAduitUserId(user_session.getId());
+		//  可以修改news 表的内容
 		boolean release =  newsLaunchService.update(newsLaunch);
 		if(!release) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -217,6 +238,7 @@ public class NewsController {
 		}
 		// 从session中拿当前用户id
 		newsLaunch.setAduitUserId(user.getId());
+		newsLaunch.setAduitDate(new Date());
 		boolean release =  newsLaunchService.aduit(newsLaunch);
 		if(!release) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -273,11 +295,8 @@ public class NewsController {
 		publish.setId(id);
 		// 前端传递要修改的状态
 		publish.setIsline(lineStatus);
-		if(lineStatus == Const.OFF_LINE) {
-			publish.setOfflineDate(DateUtil.getDateStr(new Date()));
-		} else if(lineStatus == Const.ON_LINE){
-			publish.setOfflineDate(DateUtil.getDateStr(new Date()));
-		}
+		publish.setOfflineDate(DateUtil.getDateStr(new Date()));
+		
 		boolean release =  newsPublishService.update(publish);
 		if(!release) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class NewsLaunch extends BaseVo{
     /**
 	 * 
@@ -13,7 +15,7 @@ public class NewsLaunch extends BaseVo{
 	private Integer id;
 
     private Integer newsId;
-
+    @ApiModelProperty("投放配置-json字符串")
     private String newsLaunchConfig;
 
     private Integer status;
@@ -22,7 +24,7 @@ public class NewsLaunch extends BaseVo{
 
     private String aduitDes;
 
-    private String aduitDate;
+    private Date aduitDate;
 
     private Integer createUserId;
 
@@ -36,6 +38,7 @@ public class NewsLaunch extends BaseVo{
     private Date startDate;
     @JsonIgnore
     private Date endDate;
+//    private JSONArray config;
     
     public News getNews() {
 		return news;
@@ -86,6 +89,7 @@ public class NewsLaunch extends BaseVo{
     }
 
     public String getNewsLaunchConfig() {
+//    	newsLaunchConfig = this.getConfig().toJSONString();
 		return newsLaunchConfig;
 	}
 
@@ -117,11 +121,11 @@ public class NewsLaunch extends BaseVo{
         this.aduitDes = aduitDes == null ? null : aduitDes.trim();
     }
 
-    public String getAduitDate() {
+    public Date getAduitDate() {
         return aduitDate;
     }
 
-    public void setAduitDate(String aduitDate) {
+    public void setAduitDate(Date aduitDate) {
         this.aduitDate = aduitDate;
     }
 
@@ -140,4 +144,15 @@ public class NewsLaunch extends BaseVo{
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
+
+//	public JSONArray getConfig() {
+//		return config;
+//	}
+//
+//	public void setConfig(JSONArray config) {
+//		this.config = config;
+//	}
+
+
+    
 }

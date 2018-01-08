@@ -25,4 +25,10 @@ public interface NewsMapper {
     long queryCount(News news);
     
     int deleteLogicById(Integer id);
+    /**
+     * 更新status
+     * @param record
+     * @return
+     */
+    int updateStatusByPrimaryKey(News record);
 }
