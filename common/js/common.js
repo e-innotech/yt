@@ -9,7 +9,7 @@ var resourceListSelectIds = [];//角色资源选择id集合
 
 const RW = ['只读','读写'];
 const MENU = ['否','是'];
-
+const OFFONLINE = ['下线','上线'];
 
 /**
  * 扩展jquery form序列化成json对象

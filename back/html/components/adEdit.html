@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="modal fade" id="adEditModal" tabindex="-1" role="dialog" aria-labelledby="adEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="adEditModalLabel">新增广告</h4>
+            </div>
+            <div class="modal-body">
+                <form id="roleForm" role="form" >
+                    <div class="input-group">
+                        <span class="input-group-addon">广告名：</span>
+                        <input type="text" name="adName" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">素材类型：</span>
+                        <input type="text" name="adType" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">描述：</span>
+                        <input type="text" name="remark" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <input id="datetimepicker_begin" size="16" type="text" value="" class="form-control" placeholder="起始时间">
+                        <span>至</span>
+                        <input id="datetimepicker_end" size="16" type="text" value="" class="form-control" placeholder="结束时间">
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
