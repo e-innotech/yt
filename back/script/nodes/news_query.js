@@ -1,165 +1,116 @@
 $(function () {
     pageNum = 1;
-    pageSize = 15;
+    pageSize = 20;
 
 
     var newsTitle = '';
-    var id = '';
-    var startDate = '';
+    var beginDate = '';
+    var endDate = '';
     var source = '';
-    var List = [];
-    var ctrl_add = '';
-    var ctrl_upate = '';
-    var ctrl_delete = '';
 
-    var getList = function () {
+    var newsList = [];
+    var selectNews;
+
+    var ctrl_add = '';
+    var ctrl_launch_add = '';
+    var ctrl_upate = '';
+
+    var getNewsList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
         if(newsTitle!=''){
             data.newsTitle = newsTitle;
         };
-        if(startDate!=''){
-            data.startDate = startDate;
-        };
         if(source!=''){
             data.source = source;
         };
-        $.ajax({
-            type: "get",//请求方式
-            url: $query.channel,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:data,
-            success: function (re) {
-                if(re.success){
-                    initTable(re.data.list);
-                    initPage(re.data.total);
-                }else{
-                    alert(re.msg);
-                }
-            }
-        });
-
-    };
-    var addRole = function () {
-        if($('input[name="channelName"]').val() == ''){
-            alert('栏目名不能为空');
-            return;
+        if(beginDate!='' && endDate!=''){
+            data.beginDate = beginDate;
+            data.endDate = endDate;
         };
-        var data = $('#AddForm').serializeObject();
-        data.resourceIds = resourceListSelectIds;
-        $.ajax({
-            type: "post",//请求方式
-            url: $apiUrl+ctrl_add,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getList();
-                    $('#addModal').modal('hide');
-                }
-                alert(re.msg);
-
-            }
-        });
-
-    };
-    var editRole = function () {
-        var data = $('#UpateForm').serializeObject();
-        data.resourceIds = resourceListSelectIds;
-        data.id = selectRole.id;
-        $.ajax({
-            type: "post",//请求方式
-            url: $apiUrl+ctrl_upate,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getList();
-                    $('#upateModal').modal('hide');
-                }
+        AjaxFunc($query.news,'get',data,function (re) {
+            if(re.success){
+                initTable(re.data.list);
+                initPage(re.data.total);
+            }else{
                 alert(re.msg);
             }
         });
     };
-    var deleteRole = function (id) {
-        $.ajax({
-            type: "get",//请求方式
-            url: $apiUrl+ctrl_delete,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:{id:id},
-            success: function (re) {
-                if(re.success){
-                    getList();
-                }
-                alert(re.msg);
-            }
-        });
-    }
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
-            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
+            if(nodeData.buttons[i].uri.indexOf('news/add')!=-1){
                 ctrl_add = nodeData.buttons[i].uri;
+            };
+            if(nodeData.buttons[i].uri.indexOf('launch/add')!=-1){
+                ctrl_launch_add = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('update')!=-1){
                 ctrl_upate = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('delete')!=-1){
-                ctrl_delete = nodeData.buttons[i].uri;
-            };
+
         }
         if(ctrl_add != '') {
-            $('#addBtn').show();
-            $('#addBtn').click(function () {
-                showRoleAdd('add');
+            $('#addNewsBtn').show();
+            $('#addNewsBtn').click(function () {
+                showNewsEdit('add');
             });
         };
-        $('#searchBtn').click(function () {
-            channelName = $('#queryText').val();
-            getList();
+        $('#datetimepicker_begin').datetimepicker({
+            format:'yyyy-mm-dd',
+            language:'zh-CN',
+            autoclose:true,
+            todayBtn:true,
+            todayHighlight:true,
+            minView:'month'
         });
-        getList();
+        $('#datetimepicker_end').datetimepicker({
+            format:'yyyy-mm-dd',
+            language:'zh-CN',
+            autoclose:true,
+            todayBtn:true,
+            todayHighlight:true,
+            minView:'month'
+        });
+        $('#searchBtn').click(function () {
+            newsTitle = $('#newsTitleTxt').val();
+            source = $('#sourceTxt').val();
+            beginDate = $('#datetimepicker_begin').val();
+            endDate = $('#datetimepicker_end').val();
+            getNewsList();
+        });
+        getNewsList();
     };
+    var getNewsFromId = function (id) {
+        for(var i=0;i<newsList.length;i++){
+            if(id == newsList[i].id){
+                return newsList[i];
+            }
+        }
+    }
     var initTable = function(list) {
-        List = list;
-        $('#channel').empty();
+        newsList = list;
+        $('#newsT').empty();
         for(var i=0;i<list.length;i++){
-            $('#channel').append('<tr>' +
-            '<td>'+list[i].id+'</td>' +
-            '<td>'+list[i].channelName+'</td>'+
-            '<td>'+list[i].remark+'</td>'+
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-            '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">修改</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
+            $('#newsT').append('<tr>' +
+                '<td>'+list[i].newsTitle+'</td>' +
+                '<td>'+list[i].source+'</td>'+
+                '<td>'+list[i].content+'</td>'+
+                '<td>'+list[i].createDate+'</td>'+
+                '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_launch_add!=''?'<button id="launchBtn_'+list[i].id+'">投放</button>':'')+'</td>'+
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {
-                selectRole = getRoleFromId(this.id.split('_')[1]);
-                showRoleEdit('edit');
+                selectNews = getNewsFromId(this.id.split('_')[1]);
+                showNewsEdit('edit');
             });
-            $('#deleteBtn_'+list[i].id).click(function () {
-                var id = this.id.split('_')[1];
-                $.get($components.confirm,function (re) {
-                    $('#popPanel1').html(re);
-                    $('#confirmModal').modal('show');
-                    confirm.initialize(id,deleteRole);
-                });
-            });
+            // $('#deleteBtn_'+list[i].id).click(function () {
+            //     var id = this.id.split('_')[1];
+            //     $.get($components.confirm,function (re) {
+            //         $('#popPanel1').html(re);
+            //         $('#confirmModal').modal('show');
+            //         confirm.initialize(id,deleteRole);
+            //     });
+            // });
         }
 
     };
@@ -181,49 +132,38 @@ $(function () {
 //	            alert(type + '：' + num);
                 if(type == 'change'){
                     pageNum = num;
-                    getList();
+                    getNewsList();
                 }
                 $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
             }
         });
     };
-    var getRoleFromId = function (id) {
-        for(var i=0;i<List.length;i++){
-            if(id == List[i].id){
-                return List[i];
-            }
-        }
-    };
-    var showRoleAdd = function (type) {
-        $.get($components.channelQuery,function (re) {
+    var showNewsEdit = function (type) {
+        $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
-            $('#addModal').modal('show');
-            $('#addBtn').click(function () {
-                if(type == 'edit'){
-                    editRole();
-                    return;
-                };
-                addRole();
-            });
-
-        });
-    };
-    var showRoleEdit = function (type) {
-        $.get($components.channelQuery,function (re) {
-            $('#popPanel').html(re);
-            $('#upateModal').modal('show');
+            $('#newsEditModal').modal('show');
             if(type=='edit'){
-                $('input[name="channelName"]').val(selectRole.channelName);
-                $('input[name="remark"]').val(selectRole.remark);
+                $('#newsEditModalLabel').html('编辑稿件');
+            //     $('input[name="roleName"]').val(selectRole.roleName);
+            //     $('input[name="remark"]').val(selectRole.remark);
+            //     $('textarea[name="resourceNames"]').val(getResourceNames());
+            //     resourceListSelectIds = getResourceIds();
             };
-            $('#upateBtn').click(function () {
-                if(type == 'edit'){
-                    editRole();
-                    return;
-                };
-                addRole();
-            });
-
+            // $('#saveBtn').click(function () {
+            //     if(type == 'edit'){
+            //         editRole();
+            //         return;
+            //     };
+            //     addRole();
+            // });
+            // $('textarea[name="resourceNames"]').click(function () {
+            //     $.get($components.resourceList,function (re) {
+            //         resourceListType = 'connect';
+            //         $('#popPanel1').html(re);
+            //         $('#resourceListModal').modal('show');
+            //
+            //     });
+            // });
         });
     };
     initialize();
