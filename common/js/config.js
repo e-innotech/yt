@@ -20,6 +20,7 @@ var config ={
             'adPositions':$apiUrl+'/adPositions/query',
             'channel':$apiUrl+'/channel/query',
             'members':$apiUrl+'/members/query',
+            'membersComment':$apiUrl+'/member/comment/query',
             'news':$apiUrl+'/news/query',
             'newsLaunch':$apiUrl+'/news/launch/query',
             'newsPublish':$apiUrl+'/news/publish/query',

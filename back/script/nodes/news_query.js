@@ -4,7 +4,7 @@ $(function () {
 
 
     var newsTitle = '';
-    var beginDate = '';
+    var startDate = '';
     var endDate = '';
     var source = '';
 
@@ -23,8 +23,8 @@ $(function () {
         if(source!=''){
             data.source = source;
         };
-        if(beginDate!='' && endDate!=''){
-            data.beginDate = beginDate;
+        if(startDate!='' && endDate!=''){
+            data.startDate = startDate;
             data.endDate = endDate;
         };
         AjaxFunc($query.news,'get',data,function (re) {
@@ -74,7 +74,7 @@ $(function () {
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
             source = $('#sourceTxt').val();
-            beginDate = $('#datetimepicker_begin').val();
+            startDate = $('#datetimepicker_begin').val();
             endDate = $('#datetimepicker_end').val();
             getNewsList();
         });

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评论列表</title>
+    <script src="../script/nodes/member_comment_query.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">评论列表</a>
+        </div>
+        <div>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input id="memberUNameTxt" type="text" class="form-control" placeholder="会员用户名">
+                </div>
+                <div class="form-group">
+                    <input id="newsTitleTxt" type="text" class="form-control" placeholder="稿件标题">
+                </div>
+                <div class="form-group">
+                    <input id="contentTxt" type="text" class="form-control" placeholder="评论内容">
+                </div>
+                <input id="startDate" size="16" type="text" value="" class="form-control" placeholder="起始时间">
+                <span>至</span>
+                <input id="endDate" size="16" type="text" value="" class="form-control" placeholder="结束时间">
+                <button id="searchBtn" type="button" class="btn btn-default">查询</button>
+            </form>
+
+        </div>
+    </div>
+</nav>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>稿件标题</th>
+            <th>评论内容</th>
+            <th>评论用户</th>
+            <th>评论时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="commentT">
+        </tbody>
+    </table>
+</div>
+<div>
+    <p id="totalPg"></p>
+    <ul id="pg" class="pagination"></ul>
+</div>
+</body>
+</html>
