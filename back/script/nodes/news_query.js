@@ -9,6 +9,7 @@ $(function () {
     var source = '';
 
     var newsList = [];
+    var selectNews;
 
     var ctrl_add = '';
     var ctrl_launch_add = '';
@@ -79,6 +80,13 @@ $(function () {
         });
         getNewsList();
     };
+    var getNewsFromId = function (id) {
+        for(var i=0;i<newsList.length;i++){
+            if(id == newsList[i].id){
+                return newsList[i];
+            }
+        }
+    }
     var initTable = function(list) {
         newsList = list;
         $('#newsT').empty();
@@ -92,7 +100,7 @@ $(function () {
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {
-                selectRole = getRoleFromId(this.id.split('_')[1]);
+                selectNews = getNewsFromId(this.id.split('_')[1]);
                 showNewsEdit('edit');
             });
             // $('#deleteBtn_'+list[i].id).click(function () {
@@ -131,7 +139,32 @@ $(function () {
         });
     };
     var showNewsEdit = function (type) {
-
+        $.get($components.newsEdit,function (re) {
+            $('#popPanel').html(re);
+            $('#newsEditModal').modal('show');
+            if(type=='edit'){
+                $('#newsEditModalLabel').html('编辑稿件');
+            //     $('input[name="roleName"]').val(selectRole.roleName);
+            //     $('input[name="remark"]').val(selectRole.remark);
+            //     $('textarea[name="resourceNames"]').val(getResourceNames());
+            //     resourceListSelectIds = getResourceIds();
+            };
+            // $('#saveBtn').click(function () {
+            //     if(type == 'edit'){
+            //         editRole();
+            //         return;
+            //     };
+            //     addRole();
+            // });
+            // $('textarea[name="resourceNames"]').click(function () {
+            //     $.get($components.resourceList,function (re) {
+            //         resourceListType = 'connect';
+            //         $('#popPanel1').html(re);
+            //         $('#resourceListModal').modal('show');
+            //
+            //     });
+            // });
+        });
     };
     initialize();
 })
