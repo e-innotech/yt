@@ -46,7 +46,7 @@ var config ={
             'websiteQuery':'components/websiteQuery.html',
             'channelQuery':'components/channelQuery.html',
 
-            'newsQuery':'components/newsQuery.html',
+            'newsEdit':'components/newsEdit.html',
             'adEdit':'components/adEdit.html',
             'adPositionsEdit':'components/adPositionsEdit.html'
         };
