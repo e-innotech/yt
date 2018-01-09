@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>稿件上下线管理列表</title>
+    <script src="../script/nodes/news_publish_query.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">稿件上下线管理列表</a>
+        </div>
+        <div>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input id="websiteNameTxt" type="text" class="form-control" placeholder="网站名">
+                </div>
+                <div class="form-group">
+                    <input id="channelNameTxt" type="text" class="form-control" placeholder="栏目名">
+                </div>
+                <div class="form-group">
+                    <span>是否上线</span>
+                    <select class="input-large form-control" id="islineSelect">
+                        <option value="-1">全部</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>是否首页</span>
+                    <select class="input-large form-control" id="ishomeSelect">
+                        <option value="-1">全部</option>
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+                <button id="searchBtn" type="button" class="btn btn-default">查询</button>
+            </form>
+
+        </div>
+    </div>
+</nav>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>稿件标题</th>
+            <th>稿件内容</th>
+            <th>网站名</th>
+            <th>栏目名</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="newsPublishT">
+        </tbody>
+    </table>
+</div>
+<div>
+    <p id="totalPg"></p>
+    <ul id="pg" class="pagination"></ul>
+</div>
+</body>
+</html>
