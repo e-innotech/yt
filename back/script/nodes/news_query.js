@@ -118,9 +118,9 @@ $(function () {
     var showNewsEdit = function (type) {
         $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
-            $('#adEditModal').modal('show');
+            $('#newsEditModal').modal('show');
             if(type=='edit'){
-                $('#adsEditModalLabel').html('编辑稿件');
+                $('#newsEditModalLabel').html('编辑稿件');
             //     $('input[name="roleName"]').val(selectRole.roleName);
             //     $('input[name="remark"]').val(selectRole.remark);
             //     $('textarea[name="resourceNames"]').val(getResourceNames());
