@@ -54,7 +54,7 @@ var config ={
             'roleEdit':'components/roleEdit.html',
 
             'websiteQuery':'components/websiteQuery.html',
-            'channelQuery':'components/channelQuery.html',
+            'channelEdit':'components/channelEdit.html',
 
             'newsEdit':'components/newsEdit.html',
 
@@ -62,6 +62,9 @@ var config ={
             'adEdit':'components/adEdit.html',
             'adPositionsEdit':'components/adPositionsEdit.html',
             'adPositionsList':'components/adPositionsList.html',
+
+
+            'homeCtrl':'components/homeCtrl.html',
 
             'configQuery':'components/configQuery.html'
 

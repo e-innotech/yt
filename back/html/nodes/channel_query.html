@@ -1,51 +1,55 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>栏目列表</title>
-
     <script src="../script/nodes/channel_query.js"></script>
-
 </head>
 <body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">栏目列表</a>
+        </div>
+        <div>
+            <button id="addChannelBtn" type="button" class="btn btn-default navbar-btn" style="display: none">
+                新增栏目
+            </button>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input id="channelNameTxt" type="text" class="form-control" placeholder="栏目名">
+                </div>
+                <div class="form-group">
+                    <span>状态</span>
+                    <select class="input-large form-control" id="isUseSelect">
+                        <option value="-1">全部</option>
+                        <option value="0">停用</option>
+                        <option value="1">启用</option>
+                    </select>
+                </div>
+                <button id="searchBtn" type="button" class="btn btn-default">查询</button>
+            </form>
 
-
-
-
-<!--表格-->
-<div class="fl wrapper wrapper-content system" style="width: 100%">
-    <input type="button" value="新增" id="addUserBtn"/>
-    <input type="text" placeholder="栏目名查询" id="queryText"/>
-    <button id="searchBtn" type="button" class="btn btn-default">查询</button>
-
-    <div class="list_1 row">
-        <table class="col-sm-12 table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th>栏目名</th>
-                <th>导航栏描述</th>
-                <th>状态</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody id="channel">
-
-            </tbody>
-        </table>
+        </div>
     </div>
-    <div>
-        <p id="totalPg"></p>
-        <ul id="pg" class="pagination"></ul>
-    </div>
+</nav>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="info">
+            <th>栏目名</th>
+            <th>描述</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="channelT">
+        </tbody>
+    </table>
 </div>
-
-<div id="popPanel"></div>
-<div id="popPanel1"></div>
-
+<div>
+    <p id="totalPg"></p>
+    <ul id="pg" class="pagination"></ul>
+</div>
 </body>
-<script>
-
-</script>
-
-
 </html>
