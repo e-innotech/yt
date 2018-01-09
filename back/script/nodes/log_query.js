@@ -19,19 +19,17 @@ $(function () {
         if (resourceName != '') {
             data.resourceName = resourceName;
         };
-        if (startDate != '') {
-            data.startDate = startDate;
-        };
-        if (endDate != '') {
-            data.endDate = endDate;
-        };
         if (action != '') {
             data.action = action;
+        };
+        if(startDate!='' && endDate!=''){
+            data.startDate = startDate;
+            data.endDate = endDate;
         };
         AjaxFunc($query.log, 'get', data, function (re) {
             if (re.success) {
                 initTable(re.data.list);
-                initPage(re.data.total);
+                initPage('pg',$('#totalPg'),re.data.total,getUserList);
             } else {
                 alert(re.msg);
             }
@@ -81,8 +79,8 @@ $(function () {
         $('#searchBtn').click(function () {
             userName = $('#userNameTxt').val();
             resourceName = $('#resourceNameTxt').val();
-            startDate = $('#datetimepicker_begin').val();
-            endDate = $('#datetimepicker_end').val();
+            startDate = $('#startDate').val();
+            endDate = $('#endDate').val();
             getUserList();
         });
         getUserList();
@@ -95,8 +93,7 @@ $(function () {
             $('#userT').append('<tr>' +
             '<td>' + list[i].userName + '</td>' +
             '<td>' + list[i].resourceName + '</td>' +
-            '<td>' + list[i].startDate + '</td>' +
-            '<td>' + list[i].endDate + '</td>' +
+            '<td>' + list[i].createdate + '</td>' +
             '<td>' + list[i].action + '</td>' +
             '</tr>');
         };
@@ -109,29 +106,6 @@ $(function () {
         }
         return '';
     }
-    var initPage = function (total) {
-        if (pageNum > 1) {
-            return;
-        }
-        $.jqPaginator('#pg', {
-            totalCounts: Number(total) == 0 ? 1 : Number(total),
-            pageSize: pageSize,
-            visiblePages: 3,
-            currentPage: pageNum,
-            first: '<li class="first"><a href="javascript:;"><<</a></li>',
-            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-            last: '<li class="last"><a href="javascript:;">>></a></li>',
-            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-            onPageChange: function (num, type) {
-//	            alert(type + '：' + num);
-                if (type == 'change') {
-                    pageNum = num;
-                    getUserList();
-                }
-                $('#totalPg').text('当前第' + pageNum + '页 共' + Math.ceil(total / pageSize) + '页（每页' + pageSize + '条 共：' + total + '条）');
-            }
-        });
-    };
+
     initialize();
 })
