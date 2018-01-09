@@ -31,7 +31,7 @@ $(function () {
             if(re.success){
                 initTable(re.data.list);
                 // initPage(re.data.total);
-                initPage('pg',$('#totalPg'),pageNum,pageSize,re.data.total,getNewsList);
+                initPage('pg',$('#totalPg'),re.data.total,getNewsList);
             }else{
                 alert(re.msg);
             }
