@@ -2,7 +2,8 @@ $(function () {
     pageNum = 1;
     pageSize = 20;
 
-    var groupName = ''
+    var name = ''
+    var value = ''
     var userList = [];
     var selectUser;
 
@@ -12,10 +13,10 @@ $(function () {
 
     var getUserList = function () {
         var data = {pageNum: pageNum, pageSize: pageSize};
-        if (groupName != '') {
-            data.groupName = groupName;
+        if (name != '') {
+            data.name = name;
         };
-        AjaxFunc($query.userGroup, 'get', data, function (re) {
+        AjaxFunc($query.config, 'get', data, function (re) {
             if (re.success) {
                 initTable(re.data.list);
                 initPage(re.data.total);
@@ -93,7 +94,8 @@ $(function () {
             });
         };
         $('#searchBtn').click(function () {
-            groupName = $('#userTxt').val();
+            value = $('#valueTxt').val();
+            name = $('#nameTxt').val();
             getUserList();
         });
         getUserList();
@@ -103,10 +105,10 @@ $(function () {
         $('#userT').empty();
         for (var i = 0; i < list.length; i++) {
             $('#userT').append('<tr>' +
-            '<td>' + list[i].groupName + '</td>' +
-            '<td>' + list[i].remark + '</td>' +
-            '<td>' + list[i].roles.roleName + '</td>' +
-                //'<td><p id="statusBtn_' + list[i].id + '" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
+            '<td>' + list[i].name + '</td>' +
+            '<td>' + list[i].value + '</td>' +
+            '<td>' + list[i].createDate + '</td>' +
+            '<td><p id="statusBtn_' + list[i].id + '" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
             '<td>' + (ctrl_upate != '' ? '<button id="editBtn_' + list[i].id + '">编辑</button>' : '') + (ctrl_delete != '' ? '<button id="deleteBtn_'+list[i].id+'">删除</button>' : '') +'</td>' +
             '</tr>');
 
@@ -178,15 +180,14 @@ $(function () {
 
 
     var showUserEdit = function (type) {
-        $.get($components.userGroupQuery, function (re) {
+        $.get($components.configQuery, function (re) {
             $('#popPanel').html(re);
             $('#editModal').modal('show');
             if (type == 'edit') {
-                $('#EditModalLabel').html('编辑用户组');
-                $('input[name="groupName"]').val(selectUser.groupName);
-                $('input[name="remark"]').val(selectUser.remark);
+                $('#EditModalLabel').html('编辑配置');
+                $('input[name="name"]').val(selectUser.name);
+                $('input[name="value"]').val(selectUser.value);
                 //$('input[name="roleName"]').val(selectUser.roles.roleName);
-                $('input[name="rolesId"]').val(selectUser.rolesId);
             };
             $('#userGroupBtn').click(function () {
                 $.get($components.addRole, function (re) {

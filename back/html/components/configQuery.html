@@ -1,4 +1,4 @@
-<!--用户组列表的一级弹出-->
+<!--用系统配置列表的一级弹出-->
 
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="roleEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
@@ -8,26 +8,21 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="EditModalLabel">新增用户组</h4>
+                <h4 class="modal-title" id="EditModalLabel">新增配置</h4>
             </div>
             <div class="modal-body">
                 <form id="roleForm" role="form">
                     <div class="input-group">
-                        <span class="input-group-addon">用户组：</span>
-                        <input type="text" name="groupName" class="form-control">
+                        <span class="input-group-addon">配置名称：</span>
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <br>
                     <div class="input-group wmspwd">
-                        <span class="input-group-addon">描述：</span>
-                        <input type="text" name="remark" class="form-control">
+                        <span class="input-group-addon">配置值：</span>
+                        <input type="text" name="value" class="form-control">
                     </div>
                     <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">角色：</span>
 
-                        <input id="userGroupBtn" type="text" class="btn btn-default navbar-btn" placeholder="点击选择"/>
-                        <input type="hidden" name="rolesId" class="btn btn-default navbar-btn"/>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer">
