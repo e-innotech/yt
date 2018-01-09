@@ -30,7 +30,8 @@ $(function () {
         AjaxFunc($query.news,'get',data,function (re) {
             if(re.success){
                 initTable(re.data.list);
-                initPage(re.data.total);
+                // initPage(re.data.total);
+                initPage('pg',$('#totalPg'),pageNum,pageSize,re.data.total,getNewsList);
             }else{
                 alert(re.msg);
             }
@@ -114,36 +115,12 @@ $(function () {
         }
 
     };
-    var initPage = function (total) {
-        if(pageNum>1){
-            return;
-        }
-        $.jqPaginator('#pg', {
-            totalCounts:Number(total)==0?1:Number(total),
-            pageSize:pageSize,
-            visiblePages: 3,
-            currentPage: pageNum,
-            first: '<li class="first"><a href="javascript:;"><<</a></li>',
-            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-            last: '<li class="last"><a href="javascript:;">>></a></li>',
-            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-            onPageChange: function (num, type) {
-//	            alert(type + '：' + num);
-                if(type == 'change'){
-                    pageNum = num;
-                    getNewsList();
-                }
-                $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
-            }
-        });
-    };
     var showNewsEdit = function (type) {
         $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
-            $('#adEditModal').modal('show');
+            $('#newsEditModal').modal('show');
             if(type=='edit'){
-                $('#adsEditModalLabel').html('编辑稿件');
+                $('#newsEditModalLabel').html('编辑稿件');
             //     $('input[name="roleName"]').val(selectRole.roleName);
             //     $('input[name="remark"]').val(selectRole.remark);
             //     $('textarea[name="resourceNames"]').val(getResourceNames());

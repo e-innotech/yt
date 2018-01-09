@@ -27,6 +27,15 @@
     var ue = UE.getEditor('editor');
 
 
+    UE.Editor.prototype._bkGetActionUrl=UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl=function(action){
+        if (action == 'uploadimage'){
+            return $uploadUrl;    /* 这里填上你自己的上传图片的action */
+        }else{
+            return this._bkGetActionUrl.call(this, action);
+        }
+    };
+
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());
         UE.dom.domUtils.preventDefault(e)
