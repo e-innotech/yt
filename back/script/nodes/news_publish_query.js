@@ -3,13 +3,14 @@ $(function () {
     pageSize = 20;
 
     var newsPublishList = [];
+    var selectNewsPublish;
 
     var websiteName = '';
     var channelName = '';
 
 
     var ctrl_offLine = '';
-    var ctrl_home = '';
+    var ctrl_setHome = '';
 
     var getNewsPublishList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize,isline:$('#islineSelect').val(),ishome:$('#ishomeSelect').val()};
@@ -37,13 +38,22 @@ $(function () {
             }
         })
     };
+    var homeNewsPublish = function (id,isHome,homeWeight) {
+        var data = {id:id,isHome:isHome,homeWeight:homeWeight};
+        AjaxFunc($apiUrl+ctrl_setHome,'get',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                getNewsPublishList();
+            }
+        });
+    }
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('offLine')!=-1){
                 ctrl_offLine = nodeData.buttons[i].uri;
             };
-            if(nodeData.buttons[i].uri.indexOf('home')!=-1){
-                ctrl_home = nodeData.buttons[i].uri;
+            if(nodeData.buttons[i].uri.indexOf('setHome')!=-1){
+                ctrl_setHome = nodeData.buttons[i].uri;
             };
         }
         getNewsPublishList();
@@ -67,8 +77,20 @@ $(function () {
             $('#offLineBtn_'+list[i].id).click(function () {
                 offOnLineNewsPublish(this.id.split('_')[1],0);
             });
-            $('#honeBtn_'+list[i].id).click(function () {
-
+            $('#upHomeBtn_'+list[i].id).click(function () {
+                selectNewsPublish = getNewsPublishFromId(this.id.split('_')[1]);
+                $.get($components.homeCtrl,function (re) {
+                    $('#popPanel').html(re);
+                    $('#homeCtrlModal').modal('show');
+                    $('input[name="siteName"]').val(selectNewsPublish.websites.siteName);
+                    $('#saveBtn').click(function () {
+                        homeNewsPublish(selectNewsPublish.id,1,$('input[name="homeWeight"]').val());
+                        $('#homeCtrlModal').modal('hide');
+                    });
+                });
+            });
+            $('#downHomeBtn_'+list[i].id).click(function () {
+                homeNewsPublish(this.id.split('_')[1],0,0);
             });
         };
     };
@@ -81,12 +103,21 @@ $(function () {
                 re += '<button id="onLineBtn_'+obj.id+'">↑</button>';
             };
         };
-        if(ctrl_home!=''){
+        if(ctrl_setHome!=''){
             if(obj.ishome == 0){
-                re += '<button id="honeBtn_'+obj.id+'">置首页</button>';
+                re += '<button id="upHomeBtn_'+obj.id+'">上首页</button>';
+            }else{
+                re += '<button id="downHomeBtn_'+obj.id+'">下首页</button>';
             }
         };
         return re;
+    };
+    var getNewsPublishFromId = function (id) {
+        for(var i=0;i<newsPublishList.length;i++){
+            if(id == newsPublishList[i].id){
+                return newsPublishList[i];
+            }
+        }
     };
     initialize();
 });

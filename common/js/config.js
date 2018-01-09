@@ -61,7 +61,10 @@ var config ={
 
             'adEdit':'components/adEdit.html',
             'adPositionsEdit':'components/adPositionsEdit.html',
-            'adPositionsList':'components/adPositionsList.html'
+            'adPositionsList':'components/adPositionsList.html',
+
+
+            'homeCtrl':'components/homeCtrl.html'
 
         };
 
