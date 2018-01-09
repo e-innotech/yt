@@ -2,7 +2,7 @@ $(function () {
     pageNum = 1;
     pageSize = 20;
 
-    var userName = ''
+    var userName = '';
     var userList = [];
     var selectUser;
 
@@ -11,13 +11,13 @@ $(function () {
 
     var getUserList = function () {
         var data = {pageNum: pageNum, pageSize: pageSize};
-        if (userName != '') {
+        if ( userName != '') {
             data.userName = userName;
         };
         AjaxFunc($query.user, 'get', data, function (re) {
             if (re.success) {
                 initTable(re.data.list);
-                initPage(re.data.total);
+                initPage('pg',$('#totalPg'),re.data.total,getUserList);
             } else {
                 alert(re.msg);
             }
@@ -120,30 +120,6 @@ $(function () {
         }
         return '';
     }
-    var initPage = function (total) {
-        if (pageNum > 1) {
-            return;
-        }
-        $.jqPaginator('#pg', {
-            totalCounts: Number(total) == 0 ? 1 : Number(total),
-            pageSize: pageSize,
-            visiblePages: 3,
-            currentPage: pageNum,
-            first: '<li class="first"><a href="javascript:;"><<</a></li>',
-            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-            last: '<li class="last"><a href="javascript:;">>></a></li>',
-            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-            onPageChange: function (num, type) {
-//	            alert(type + '：' + num);
-                if (type == 'change') {
-                    pageNum = num;
-                    getUserList();
-                }
-                $('#totalPg').text('当前第' + pageNum + '页 共' + Math.ceil(total / pageSize) + '页（每页' + pageSize + '条 共：' + total + '条）');
-            }
-        });
-    };
     var getUserFromId = function (id) {
         for (var i = 0; i < userList.length; i++) {
             if (id == userList[i].id) {
