@@ -7,6 +7,8 @@
     <result column="resource_id" property="resourceId" jdbcType="INTEGER" />
     <result column="action" property="action" jdbcType="VARCHAR" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="uname" property="userName" jdbcType="VARCHAR" />
+    <result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, users_id, resource_id, action, createDate

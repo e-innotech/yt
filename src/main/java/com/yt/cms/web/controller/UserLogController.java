@@ -37,8 +37,8 @@ public class UserLogController {
 	public AjaxResponseBody query(@RequestParam(required=false) String userName,
 			@RequestParam(required=false) String resourceName,
 			@RequestParam(required=false) String action,
-			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date startDate,
-			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date endDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
 		UserLogs log = new UserLogs();

@@ -11,6 +11,12 @@
     <result column="home_weight_max" property="homeWeightMax" jdbcType="INTEGER" />
   </resultMap>
   
+  <resultMap id="ResultMapByids" type="com.yt.cms.model.Websites" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="siteName" property="siteName" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
    <resultMap id="ResultMap" type="com.yt.cms.model.Websites" extends="BaseResultMap">
    		<collection property="channels" ofType="com.yt.cms.model.Channel">
             <id column="channel_id" property="id" jdbcType="INTEGER" />
@@ -59,6 +65,14 @@
 	    <if test="siteName != null" >
 	       and siteName like concat('%', #{siteName}, '%')
 	    </if>
+  </select>
+  
+  <select id="queryByIds" resultMap="ResultMapByids" parameterType="list">
+  	select id,siteName from websites where isDel = 0 and id in 
+  	<foreach collection="ids" item="item" index="index"
+			open="(" close=")" separator=",">
+			#{item}
+	</foreach>
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

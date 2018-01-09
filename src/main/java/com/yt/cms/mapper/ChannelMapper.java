@@ -25,4 +25,6 @@ public interface ChannelMapper {
      * @return
      */
     int findChannelName(String channelName);
+    
+    List<Channel> queryByIds(@Param("ids") List<Integer> ids);
 }

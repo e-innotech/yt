@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -41,6 +42,15 @@ public class CollectionUtils<T> {
 	}
 	public static boolean isEmpty(Collection<?> c) {
 		return !isNotEmpty(c);
+	}
+	
+	public static<T> List<T> changeForSet(Set<T> set){
+		if(isEmpty(set)) {
+			return new ArrayList<>();
+		}
+		List<T> list = new ArrayList<>();
+		list.addAll(set);
+		return list;
 	}
 	
 	static class Web {

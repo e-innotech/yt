@@ -25,4 +25,6 @@ public interface WebsitesMapper {
     long queryCount(Websites web);
     
     int deleteLogicById(Integer id);
+    
+    List<Websites> queryByIds(@Param("ids") List<Integer> ids);
 }

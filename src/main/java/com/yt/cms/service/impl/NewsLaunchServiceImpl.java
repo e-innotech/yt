@@ -1,23 +1,29 @@
 package com.yt.cms.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
+import com.yt.cms.mapper.ChannelMapper;
 import com.yt.cms.mapper.NewsLaunchMapper;
 import com.yt.cms.mapper.NewsMapper;
 import com.yt.cms.mapper.NewsPublishMapper;
+import com.yt.cms.mapper.WebsitesMapper;
+import com.yt.cms.model.Channel;
 import com.yt.cms.model.News;
 import com.yt.cms.model.NewsLaunch;
 import com.yt.cms.model.NewsLaunchConfig;
 import com.yt.cms.model.NewsLaunchWebChannelConfig;
 import com.yt.cms.model.NewsPublish;
+import com.yt.cms.model.Websites;
 import com.yt.cms.service.NewsLaunchService;
 @Service
 public class NewsLaunchServiceImpl implements NewsLaunchService {
@@ -28,6 +34,11 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	private NewsPublishMapper newsPublishDAO;
 	@Autowired
 	private NewsMapper newsDAO;
+	@Autowired
+	private ChannelMapper channelDAO;
+	@Autowired
+	private WebsitesMapper websiteDAO;
+	
 	@Override
 	public boolean save(NewsLaunch newsLaunch) {
 		// 新增launch表
@@ -77,18 +88,52 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	
 	@Override
 	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page) {
-		
+
 		List<NewsLaunch> list = newsLaunchDAO.query(newsLaunch,page);
+		Set<Integer> webIds = new HashSet<>();
+		Set<Integer> channelIds = new HashSet<>();
+		List<Websites> websites = null;
+		List<Channel> channels = null;
+		for(NewsLaunch launch : list) {
+			// 初始化网站名和栏目名，但还没有赋值
+			List<NewsLaunchWebChannelConfig> webChannelConfig = null;
+			String json = launch.getNewsLaunchConfig();
+			// 将json 转map
+			try {
+				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
+				for(NewsLaunchConfig config : config_list) {
+					webChannelConfig = new ArrayList<>();
+					// 网站id
+					Integer webId = config.getWebsiteId();
+					List<Integer> channel = config.getChannelId();
+					webIds.add(webId);
+					channelIds.addAll(channel);
+				}
+			} catch (Exception e) {
+				// 此数据配置错误，忽略
+				e.printStackTrace();
+			}
+			launch.setWebChannelConfig(webChannelConfig);
+		}
+		if(CollectionUtils.isNotEmpty(webIds)) {
+			websites = websiteDAO.queryByIds(CollectionUtils.changeForSet(webIds));
+		}
+		if(CollectionUtils.isNotEmpty(channelIds)) {
+			channels = channelDAO.queryByIds(CollectionUtils.changeForSet(channelIds));
+		}
+		// 找投放对应的网站和栏目
 		for(NewsLaunch launch : list) {
 			String json = launch.getNewsLaunchConfig();
 			// 将json 转map
 			try {
-				NewsLaunchConfig config = JSON.parseObject(json, NewsLaunchConfig.class);
-				// 网站id
-				Integer webId = config.getWebsiteId();
-				List<Integer> channelId = config.getChannelId();
-				List<NewsLaunchWebChannelConfig> webChannelConfig = new ArrayList<NewsLaunchWebChannelConfig>();
-				launch.setWebChannelConfig(webChannelConfig);
+				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
+				for(NewsLaunchConfig config : config_list) {
+					// 网站id
+					Integer webId = config.getWebsiteId();
+					List<Integer> channel = config.getChannelId();
+					webIds.add(webId);
+					channelIds.addAll(channel);
+				}
 			} catch (Exception e) {
 				// 此数据配置错误，忽略
 				e.printStackTrace();

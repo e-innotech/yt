@@ -18,9 +18,7 @@ public class UserLogs {
     private Date startDate;
     @JsonIgnore
     private Date endDate;
-    @JsonIgnore
     private String userName;
-    @JsonIgnore
     private String resourceName;
     
     public String getUserName() {

@@ -1,13 +1,18 @@
 package com.yt.cms.model;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * 稿件投放网站，栏目配置关系model
  * @author admin
  *
  */
-public class NewsLaunchConfig {
+public class NewsLaunchConfig implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Integer> channelId;
 	private Integer websiteId;
 	public List<Integer> getChannelId() {
