@@ -11,14 +11,14 @@ $(function () {
 
 
     $("#login").click(function (){
-        var user = {'userName':$('input[name="username"]').val(),'passWord':$('input[name="password"]').val()};
+        var user = {userName:$('input[name="username"]').val(),passWord:$('input[name="password"]').val()};
         AjaxFunc($admin.login,'post',user,function (re) {
             if(re.success){
                 if($('input[name="remember"]').is(':checked')){
                     // console.log('remember')
-                    sessionStorage.setItem('user',user);
+                    sessionStorage.setItem('user',JSON.stringify(user));
                 }
-                var userinfo = {'userName':re.data.userName,'roleName':re.data.roleName};
+                var userinfo = {userName:re.data.userName,roleName:re.data.roleName};
                 sessionStorage.setItem('userinfo',JSON.stringify(userinfo));
                 sessionStorage.setItem('permissons',JSON.stringify(re.data.menu));
                 location.replace('home.html');

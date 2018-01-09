@@ -101,6 +101,7 @@ function AjaxUpload(url,data,callBack) {
     $.ajax(obj);
 };
 
+
 /**
  * 翻页
  * @param total

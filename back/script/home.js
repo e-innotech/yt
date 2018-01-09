@@ -44,7 +44,7 @@ $(function(){
             data: treeData,
             showTags: true,
             text: "resourceName",
-            levels:2,//折叠
+            levels:1,//折叠
             color: "#000000",
             backColor: "#FFFFFF",
             selectable: true,
@@ -62,7 +62,7 @@ $(function(){
                 console.log(data);
                 nodeData = data;
                 console.log(getNote(data.uri))
-                if(data.uri!=null) {
+                if(data.uri) {
                     $.get(getNote(data.uri), function (re) {
                         $('#main').html(re);
                     });
