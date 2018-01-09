@@ -133,7 +133,6 @@ $(function () {
         $('#websites_query').empty();
         for(var i=0;i<list.length;i++){
             $('#websites_query').append('<tr>' +
-            '<td>'+list[i].id+'</td>' +
             '<td>'+list[i].siteName+'</td>'+
             '<td>'+list[i].route+'</td>'+
             '<td>'+list[i].createDate+'</td>'+

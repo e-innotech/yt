@@ -40,8 +40,10 @@ var config ={
             'confirm':'components/confirm.html',
 
             'pwdReset':'components/pwdReset.html',
+
             'userGroup':'components/userGroup.html',
             'userQuery':'components/userQuery.html',
+            'userGroup_rolesId':'components/userGroup_rolesId.html',
 
             'resourceEdit':'components/resourceEdit.html',
             'resourceList':'components/resourceList.html',

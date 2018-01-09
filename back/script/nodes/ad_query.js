@@ -41,7 +41,6 @@ $(function () {
               getAdList();
           }
           alert(re.msg);
-
        });
    };
    var editAd = function () {
@@ -156,7 +155,6 @@ $(function () {
         return (ctrl_upate!=''?'<button id="editBtn_'+id+'">编辑</button>':'')+(ctrl_offLine!=''?'<button id="onLineBtn_'+id+'">↑</button>':'');
 
    };
-
    var showAdEdit = function (type) {
        $.get($components.adEdit,function (re) {
            $('#popPanel').html(re);

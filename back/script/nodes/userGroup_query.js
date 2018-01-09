@@ -37,7 +37,6 @@ $(function () {
                 }
             }
         });
-
     };
     var addBtn = function () {
         if($('input[name="groupName"]').val() == ''){
@@ -209,9 +208,18 @@ $(function () {
                 };
                 addBtn();
             });
+            $('input[name="rolesId"]').click(function () {
+                $.get($components.userGroup_rolesId,function (re) {
+                    userGroupListType = 'parent';
+                    $('#popPanel1').html(re);
+                    $('#ListModal').modal('show');
+
+                });
+            });
 
         });
     };
+
     var showEdit = function (type) {
         $.get($components.userGroup,function (re) {
             $('#popPanel').html(re);
@@ -228,7 +236,14 @@ $(function () {
                 };
                 addBtn();
             });
+            $('input[name="rolesId"]').click(function () {
+                $.get($components.userGroup_rolesId,function (re) {
+                    userGroupListType = 'parent';
+                    $('#popPanel1').html(re);
+                    $('#ListModal').modal('show');
 
+                });
+            });
         });
     };
     initialize();//初始化
