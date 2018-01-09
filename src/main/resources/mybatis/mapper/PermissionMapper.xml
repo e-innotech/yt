@@ -7,6 +7,7 @@
 		<result column="resourceName" property="text" jdbcType="VARCHAR" />
 		<result column="uri" property="uri" jdbcType="VARCHAR" />
 		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="selectable" property="selectable" jdbcType="VARCHAR" />
 		<collection property="nodes" ofType="com.yt.cms.model.MenuLeve2">
 			<id column="c_id" property="id" jdbcType="INTEGER" />
 			<result column="c_name" property="text" jdbcType="VARCHAR" />
@@ -61,10 +62,10 @@
 	<!-- 查询所有的左侧菜单，只做到2级菜单，多于2级需要修改代码，目前系统只有2级菜单,并查询二级菜单下的所有按钮资源 -->
 	<select id="queryMenu" resultMap="ResultMap">
 		select
-		d.id,d.resourceName,d.uri,d.parent_id,c.id as c_id,c.resourceName as
+		d.id,d.resourceName,d.uri,d.parent_id,d.selectable,c.id as c_id,c.resourceName as
 		c_name,c.uri c_uri,c.parent_id as c_pid,n.id button_id,n.uri as button_uri from
 		(select b.id
-		,b.resourceName ,b.uri,b.parent_id from resource b where
+		,b.resourceName ,b.uri,b.parent_id,case when b.uri = '' then 'false' else 'true' end as selectable from resource b where
 		b.parent_id =
 		0  and b.isDel = 0) d
 		left join

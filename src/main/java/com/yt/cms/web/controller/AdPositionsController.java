@@ -91,7 +91,7 @@ public class AdPositionsController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/delete")
+/*	@GetMapping("/delete")
 	@ApiOperation("删除广告位")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = adPositionsService.deleteLogicById(id);
@@ -99,7 +99,7 @@ public class AdPositionsController {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
-	}
+	}*/
 	
 
 	

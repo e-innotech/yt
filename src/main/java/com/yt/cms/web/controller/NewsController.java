@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,8 +53,8 @@ public class NewsController {
 	@ApiOperation("查询稿件列表")
 	public AjaxResponseBody query(@RequestParam(required=false) String newsTitle,
 			@RequestParam(required=false) String source,
-			@RequestParam(required=false) Date startDate,
-			@RequestParam(required=false) Date endDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
 		News news = new News();
@@ -153,20 +154,13 @@ public class NewsController {
 
 	/**
 	 * 编辑稿件投放网站与栏目
-	 * 只有审批状态是审批不通过的才可以修改 投放网站与稿件信息
+	 * 只有审批状态是审批不通过的才可以修改 投放的网站
 	 * @return
 	 */
 	@PostMapping("/launch/update")
 	@ApiOperation("编辑稿件投放网站与栏目")
-	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch, HttpServletRequest request){
+	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch){
 		
-		HttpSession session = request.getSession();
-		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
-		if(user_session == null || user_session.getId() == null) {
-			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
-		} 
-		// 从session中拿当前用户id
-		newsLaunch.setAduitUserId(user_session.getId());
 		//  可以修改news 表的内容
 		boolean release =  newsLaunchService.update(newsLaunch);
 		if(!release) {
@@ -196,8 +190,8 @@ public class NewsController {
 	@GetMapping("/launch/query")
 	@ApiOperation("查询稿件列表")
 	public AjaxResponseBody queryLaunch(@RequestParam(required=false) String newsTitle,
-			@RequestParam(required=false) Date startDate,
-			@RequestParam(required=false) Date endDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date startDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate,
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
 		NewsLaunch newsLaunch = new NewsLaunch();
@@ -306,8 +300,10 @@ public class NewsController {
 	
 	/**
 	 * 设置首页
+	 * 
 	 * @return
 	 */
+	// TODO 判断是否超过网站的首页权重值
 	@GetMapping("/publish/setHome")
 	@ApiOperation("设置首页")
 	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer isHome,@RequestParam Integer homeWeight){

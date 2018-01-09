@@ -25,7 +25,14 @@ public class News extends BaseVo{
     private String createDate;
     
     private Integer status;
-    
+    /**
+     * 是否可编辑标记
+     * 一个稿件可以同时投放多次，稿件的编辑状态是要看是否投放
+     * 如果没有一次投放，则可编辑
+     * 如果有1次以上投放，且投放状态都是审批不通过则可编辑
+     * 此字段是关联投放表计算出来
+     */
+    private Integer isEdit;
     @JsonIgnore
     private Date startDate;
     @JsonIgnore
@@ -111,5 +118,15 @@ public class News extends BaseVo{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
+	public Integer getIsEdit() {
+		return isEdit;
+	}
+
+	public void setIsEdit(Integer isEdit) {
+		this.isEdit = isEdit;
+	}
+
+	
     
 }

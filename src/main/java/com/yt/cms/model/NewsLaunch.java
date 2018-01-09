@@ -1,6 +1,7 @@
 package com.yt.cms.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -39,8 +40,29 @@ public class NewsLaunch extends BaseVo{
     @JsonIgnore
     private Date endDate;
 //    private JSONArray config;
-    
-    public News getNews() {
+    // 解析newsLaunchConfig 到网站和栏目
+    @JsonIgnore
+    private List<NewsLaunchConfig> webChannelIdConfig;
+
+    private List<NewsLaunchWebChannelConfig> webChannelConfig;
+
+	public List<NewsLaunchConfig> getWebChannelIdConfig() {
+		return webChannelIdConfig;
+	}
+
+	public void setWebChannelIdConfig(List<NewsLaunchConfig> webChannelIdConfig) {
+		this.webChannelIdConfig = webChannelIdConfig;
+	}
+
+	public List<NewsLaunchWebChannelConfig> getWebChannelConfig() {
+		return webChannelConfig;
+	}
+
+	public void setWebChannelConfig(List<NewsLaunchWebChannelConfig> webChannelConfig) {
+		this.webChannelConfig = webChannelConfig;
+	}
+
+	public News getNews() {
 		return news;
 	}
 

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +37,8 @@ public class UserLogController {
 	public AjaxResponseBody query(@RequestParam(required=false) String userName,
 			@RequestParam(required=false) String resourceName,
 			@RequestParam(required=false) String action,
-			@RequestParam(required=false) Date startDate,
-			@RequestParam(required=false) Date endDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date startDate,
+			@RequestParam(required=false) @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date endDate,
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
 		UserLogs log = new UserLogs();

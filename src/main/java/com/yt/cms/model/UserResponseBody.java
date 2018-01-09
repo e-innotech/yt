@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-@ApiModel("UserResponseBody(用户模型)")
+@ApiModel("UserResponseBody(新增用户模型)")
 public class UserResponseBody implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +23,16 @@ public class UserResponseBody implements Serializable {
 	@ApiModelProperty("密码")
 	@NotBlank
 	private String passWord;
+	
+	
+	private Integer userGroupId;
+	
+	public Integer getUserGroupId() {
+		return userGroupId;
+	}
+	public void setUserGroupId(Integer userGroupId) {
+		this.userGroupId = userGroupId;
+	}
 	public String getUserName() {
 		return userName;
 	}

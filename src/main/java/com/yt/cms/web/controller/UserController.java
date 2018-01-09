@@ -22,6 +22,7 @@ import com.yt.cms.common.Page;
 import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MenuLeve1;
 import com.yt.cms.model.User;
+import com.yt.cms.model.UserGroup;
 import com.yt.cms.model.UserInfoUpdate;
 import com.yt.cms.model.UserResponseBody;
 import com.yt.cms.model.UserUpdatePwd;
@@ -130,6 +131,9 @@ public class UserController {
 		User user = new User();
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
+		UserGroup group = new UserGroup();
+		group.setId(userBody.getUserGroupId());
+		user.setUserGroup(group);
 		boolean created = userService.save(user);
 		AjaxResponseBody response = new AjaxResponseBody();
 		if(!created) {

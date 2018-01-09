@@ -143,13 +143,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.NewsLaunch" >
     update news_launch
     <set >
-      <if test="newsId != null" >
-        news_id = #{newsId,jdbcType=INTEGER},
-      </if>
       <if test="newsLaunchConfig != null" >
         news_launch_config = #{newsLaunchConfig,jdbcType=VARCHAR},
       </if>
-     
     </set>
     where id = #{id,jdbcType=INTEGER} and status = 2
   </update>

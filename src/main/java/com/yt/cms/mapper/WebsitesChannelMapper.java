@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.yt.cms.model.WebsitesChannel;
 
 public interface WebsitesChannelMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByWebId(Integer id);
 
     int insertSelective(WebsitesChannel record);
     /**

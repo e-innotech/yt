@@ -19,13 +19,23 @@ public class Websites extends BaseVo{
     private Integer isUse;
 
     private String createDate;
-
+    /**
+     * 配置网站[首页模板路径,首页广告位id;栏目页模板路径,栏目页广告位id;详情页模板路径,详情页广告位id] 数据格式如下：
+     * [{'homeTemplateURL':'a/index.html','adpositionsId':[1,3]},{'channelTemplateURL':'b/channel.html','adpositionsId':[1]},{'detailTemplateURL':'b/detail.html','adpositionsId':[1]}]
+     */
     private String templateConfig;
     /**
      * 网站首页权重最大值
      */
     private Integer homeWeightMax;
-//    @JsonIgnore
+    /**
+     * 网站栏目关系
+     * 新增网站填写网站栏目关系需要
+     */
+    private List<Integer> channelIds;
+    /**
+     * 列表页显示
+     */
     private List<Channel> channels;
     
 	public List<Channel> getChannels() {
@@ -91,6 +101,16 @@ public class Websites extends BaseVo{
 	public void setHomeWeightMax(Integer homeWeightMax) {
 		this.homeWeightMax = homeWeightMax;
 	}
+
+	public List<Integer> getChannelIds() {
+		return channelIds;
+	}
+
+	public void setChannelIds(List<Integer> channelIds) {
+		this.channelIds = channelIds;
+	}
+
+
 
 	
 }

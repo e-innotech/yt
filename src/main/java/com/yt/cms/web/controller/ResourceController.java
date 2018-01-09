@@ -31,7 +31,7 @@ public class ResourceController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询系统资源列表")
-	
+	// TODO 资源需要加上pname
 	public AjaxResponseBody query(){
 		List<Resource> list =  resourceService.find();
 		return new AjaxResponseBody(true,Const.SUCCESS,list);

@@ -25,9 +25,9 @@
 		from websites_channel  order by id desc
 	</select>
 
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	<delete id="deleteByWebId" parameterType="java.lang.Integer">
 		delete from websites_channel
-		where id = #{id,jdbcType=INTEGER}
+		where websites_id = #{webId,jdbcType=INTEGER}
 	</delete>
 
 	<insert id="insertSelective" parameterType="com.yt.cms.model.WebsitesChannel">

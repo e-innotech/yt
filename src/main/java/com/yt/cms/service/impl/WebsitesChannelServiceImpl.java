@@ -13,12 +13,12 @@ import com.yt.cms.service.WebsitesChannelService;
 @Service
 public class WebsitesChannelServiceImpl implements WebsitesChannelService {
 	@Autowired
-	private WebsitesChannelMapper websitesBarDAO;
+	private WebsitesChannelMapper websitesChannelDAO;
 	
 	@Override
 	public boolean save(List<WebsitesChannel> moduleList) {
 		try {
-			websitesBarDAO.insertBatch(moduleList);
+			websitesChannelDAO.insertBatch(moduleList);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class WebsitesChannelServiceImpl implements WebsitesChannelService {
 					
 			// 删除解除关系的数据
 			if(CollectionUtils.isNotEmpty(delList)) {
-				websitesBarDAO.deleteByWebsitesId(websitesId, delList);
+				websitesChannelDAO.deleteByWebsitesId(websitesId, delList);
 			}
 			// 新增新建立关系的数据
 			List<WebsitesChannel> moduleList = new ArrayList<WebsitesChannel>();
@@ -47,7 +47,7 @@ public class WebsitesChannelServiceImpl implements WebsitesChannelService {
 				moduleList.add(bar);
 			}
 			if(CollectionUtils.isNotEmpty(moduleList)) {
-				websitesBarDAO.insertBatch(moduleList);
+				websitesChannelDAO.insertBatch(moduleList);
 			}
 			return true;
 		} catch (Exception e) {

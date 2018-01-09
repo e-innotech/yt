@@ -64,9 +64,29 @@
       </selectKey>
        INSERT INTO 
        		users
-       		(uname,pwd) 
-       	VALUES
-       		(#{userName}, #{passWord})
+	     <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="userName != null" >
+	        uname,
+	      </if>
+	      <if test="passWord != null" >
+	        pwd,
+	      </if>
+	      <if test="userGroup != null and userGroup.id != null" >
+	        user_group_id,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="userName != null" >
+	        #{userName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="passWord != null" >
+	        #{passWord,jdbcType=VARCHAR},
+	      </if>
+	      <if test="userGroup != null and userGroup.id != null" >
+	        #{userGroup.id,jdbcType=INTEGER},
+	      </if>
+	      
+	    </trim>
     </insert>
     <!-- 更新用户密码，注意用户名不许更新 -->
     <update id="updatePwd" parameterType="com.yt.cms.model.UserUpdatePwd" >
