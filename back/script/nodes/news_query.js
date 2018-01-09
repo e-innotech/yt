@@ -12,7 +12,6 @@ $(function () {
     var selectNews;
 
     var ctrl_add = '';
-    var ctrl_launch_add = '';
     var ctrl_upate = '';
 
     var getNewsList = function () {
@@ -39,11 +38,8 @@ $(function () {
     };
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
-            if(nodeData.buttons[i].uri.indexOf('news/add')!=-1){
+            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
                 ctrl_add = nodeData.buttons[i].uri;
-            };
-            if(nodeData.buttons[i].uri.indexOf('launch/add')!=-1){
-                ctrl_launch_add = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('update')!=-1){
                 ctrl_upate = nodeData.buttons[i].uri;
@@ -56,7 +52,7 @@ $(function () {
                 showNewsEdit('add');
             });
         };
-        $('#datetimepicker_begin').datetimepicker({
+        $('#startDate').datetimepicker({
             format:'yyyy-mm-dd',
             language:'zh-CN',
             autoclose:true,
@@ -64,7 +60,7 @@ $(function () {
             todayHighlight:true,
             minView:'month'
         });
-        $('#datetimepicker_end').datetimepicker({
+        $('#endDate').datetimepicker({
             format:'yyyy-mm-dd',
             language:'zh-CN',
             autoclose:true,
@@ -75,8 +71,8 @@ $(function () {
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
             source = $('#sourceTxt').val();
-            startDate = $('#datetimepicker_begin').val();
-            endDate = $('#datetimepicker_end').val();
+            startDate = $('#startDate').val();
+            endDate = $('#endDate').val();
             getNewsList();
         });
         getNewsList();
@@ -97,24 +93,21 @@ $(function () {
                 '<td>'+list[i].source+'</td>'+
                 '<td>'+list[i].content+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
-                '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_launch_add!=''?'<button id="launchBtn_'+list[i].id+'">投放</button>':'')+'</td>'+
+                '<td>'+getCtrlEdit(list[i].id,list[i].isEdit)+'</td>'+
             '</tr>');
 
             $('#editBtn_'+list[i].id).click(function () {
                 selectNews = getNewsFromId(this.id.split('_')[1]);
                 showNewsEdit('edit');
             });
-            // $('#deleteBtn_'+list[i].id).click(function () {
-            //     var id = this.id.split('_')[1];
-            //     $.get($components.confirm,function (re) {
-            //         $('#popPanel1').html(re);
-            //         $('#confirmModal').modal('show');
-            //         confirm.initialize(id,deleteRole);
-            //     });
-            // });
         }
-
     };
+    var getCtrlEdit = function(id,isEdit){
+        if(ctrl_upate && isEdit==0){
+            return  '<button id="editBtn_'+id+'">编辑</button>';
+        };
+        return '已投放或上线';
+    }
     var showNewsEdit = function (type) {
         $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
