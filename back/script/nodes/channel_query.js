@@ -1,107 +1,70 @@
 $(function () {
     pageNum = 1;
-    pageSize = 15;
+    pageSize = 20;
 
     var channelName = '';
-    var id = '';
-    var remark = '';
-    var List = [];
+    var channelList = [];
+    var selectChannel;
+
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-    var getList = function () {
-        var data = {pageNum:pageNum,pageSize:pageSize};
+    var getChannelList = function () {
+        var data = {pageNum:pageNum,pageSize:pageSize,isUse:$('#isUseSelect').val()};
         if(channelName!=''){
             data.channelName = channelName;
         };
-        $.ajax({
-            type: "get",//请求方式
-            url: $query.channel,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:data,
-            success: function (re) {
-                if(re.success){
-                    initTable(re.data.list);
-                    initPage(re.data.total);
-                }else{
-                    alert(re.msg);
-                }
+        AjaxFunc($query.channel,'get',data,function (re) {
+            if(re.success){
+                initTable(re.data.list);
+                initPage('pg',$('#totalPg'),re.data.total,getChannelList);
+            }else{
+                alert(re.msg);
             }
         });
 
     };
-    var addRole = function () {
+    var isUseChanel = function (id,isUse) {
+        var data = {id:id,isUse:isUse};
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                getChannelList();
+            }
+        });
+    };
+    var addChannel = function () {
         if($('input[name="channelName"]').val() == ''){
             alert('栏目名不能为空');
             return;
         };
-        var data = $('#AddForm').serializeObject();
-        data.resourceIds = resourceListSelectIds;
-        $.ajax({
-            type: "post",//请求方式
-            url: $apiUrl+ctrl_add,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    $('#addModal').modal('hide');
-                    getList();
-
-                }
-                alert(re.msg);
-
-            }
-        });
-
-    };
-    var editRole = function () {
-        var data = $('#UpateForm').serializeObject();
-        data.resourceIds = resourceListSelectIds;
-        data.id = selectRole.id;
-        $.ajax({
-            type: "post",//请求方式
-            url: $apiUrl+ctrl_upate,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (re) {
-                if(re.success){
-                    getList();
-                    $('#upateModal').modal('hide');
-                }
-                alert(re.msg);
+        var data = $('#channelForm').serializeObject();
+        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#channelEditModal').modal('hide');
+                getChannelList();
             }
         });
     };
-    var deleteRole = function (id) {
-        $.ajax({
-            type: "get",//请求方式
-            url: $apiUrl+ctrl_delete,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:{id:id},
-            success: function (re) {
-                if(re.success){
-                    getList();
-                }
-                alert(re.msg);
+    var editChannel = function () {
+        var data = $('#channelForm').serializeObject();
+        data.id = selectChannel.id;
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#channelEditModal').modal('hide');
+                getChannelList();
+            }
+        });
+    };
+    var deleteChannel = function (id) {
+        var data = {id:id};
+        AjaxFunc($apiUrl+ctrl_delete,'get',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                getChannelList();
             }
         });
     }
@@ -118,105 +81,73 @@ $(function () {
             };
         }
         if(ctrl_add != '') {
-            $('#addUserBtn').show();
-            $('#addUserBtn').click(function () {
-                showRoleAdd('add');
+            $('#addChannelBtn').show();
+            $('#addChannelBtn').click(function () {
+                showChannelEdit('add');
             });
         };
         $('#searchBtn').click(function () {
-            channelName = $('#queryText').val();
-            getList();
+            channelName = $('#channelNameTxt').val();
+            getChannelList();
         });
-        getList();
+        getChannelList();
     };
     var initTable = function(list) {
-        List = list;
-        $('#channel').empty();
+        channelList = list;
+        $('#channelT').empty();
         for(var i=0;i<list.length;i++){
-            $('#channel').append('<tr>' +
+            $('#channelT').append('<tr>' +
             '<td>'+list[i].channelName+'</td>'+
             '<td>'+list[i].remark+'</td>'+
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
+            '<td><p id="isUseBtn_'+list[i].id+'" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" ><span> </span></p></td>' +
             '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
+
+            $('#isUseBtn_'+list[i].id).click(function () {
+                if(ctrl_upate!=''){
+                    isUseChanel(this.id.split('_')[1],($(this).attr('class')=='aniu'?0:1));
+                };
+            });
             $('#editBtn_'+list[i].id).click(function () {
-                selectRole = getRoleFromId(this.id.split('_')[1]);
-                showRoleEdit('edit');
+                selectChannel = getChannelFromId(this.id.split('_')[1]);
+                showChannelEdit('edit');
             });
             $('#deleteBtn_'+list[i].id).click(function () {
                 var id = this.id.split('_')[1];
                 $.get($components.confirm,function (re) {
                     $('#popPanel1').html(re);
                     $('#confirmModal').modal('show');
-                    confirm.initialize(id,deleteRole);
+                    confirm.initialize(id,deleteChannel);
                 });
             });
         }
 
     };
-    var initPage = function (total) {
-        if(pageNum>1){
-            return;
-        }
-        $.jqPaginator('#pg', {
-            totalCounts:Number(total)==0?1:Number(total),
-            pageSize:pageSize,
-            visiblePages: 3,
-            currentPage: pageNum,
-            first: '<li class="first"><a href="javascript:;"><<</a></li>',
-            prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
-            next: '<li class="next"><a href="javascript:;">下一页</a></li>',
-            last: '<li class="last"><a href="javascript:;">>></a></li>',
-            page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
-            onPageChange: function (num, type) {
-//	            alert(type + '：' + num);
-                if(type == 'change'){
-                    pageNum = num;
-                    getList();
-                }
-                $('#totalPg').text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
-            }
-        });
-    };
-    var getRoleFromId = function (id) {
-        for(var i=0;i<List.length;i++){
-            if(id == List[i].id){
-                return List[i];
+    var getChannelFromId = function (id) {
+        for(var i=0;i<channelList.length;i++){
+            if(id == channelList[i].id){
+                return channelList[i];
             }
         }
     };
-    var showRoleAdd = function (type) {
-        $.get($components.channelQuery,function (re) {
+    var showChannelEdit = function (type) {
+        $.get($components.channelEdit,function (re) {
             $('#popPanel').html(re);
-            $('#addModal').modal('show');
-            $('#addBtn').click(function () {
-                if(type == 'edit'){
-                    editRole();
-                    return;
-                };
-                addRole();
-            });
-
-        });
-    };
-    var showRoleEdit = function (type) {
-        $.get($components.channelQuery,function (re) {
-            $('#popPanel').html(re);
-            $('#upateModal').modal('show');
-            if(type=='edit'){
-                $('input[name="channelName"]').val(selectRole.channelName);
-                $('input[name="remark"]').val(selectRole.remark);
+            $('#channelEditModal').modal('show');
+            if(type == 'edit'){
+                $('input[name="channelName"]').val(selectChannel.channelName);
+                $('input[name="remark"]').val(selectChannel.remark);
             };
-            $('#upateBtn').click(function () {
-                if(type == 'edit'){
-                    editRole();
+            $('#saveBtn').click(function () {
+                if(type=='edit'){
+                    editChannel();
                     return;
                 };
-                addRole();
+                addChannel();
             });
-
         });
+
     };
     initialize();
 })
