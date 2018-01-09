@@ -1,7 +1,7 @@
 var config ={
     init:function(){
         $apiUrl = ' http://192.168.20.195:8080';
-        // $apiUrl = ' http://123.59.156.27:8080';
+        //$apiUrl = ' http://123.59.156.27:8080';
 
 
         $uploadUrl = 'http://192.168.20.195:8888/yy/upload';
@@ -43,6 +43,7 @@ var config ={
 
             'userGroup':'components/userGroup.html',
             'userQuery':'components/userQuery.html',
+            'adduserGroup':'components/userGroup.html',
             'userGroup_rolesId':'components/userGroup_rolesId.html',
 
             'resourceEdit':'components/resourceEdit.html',

@@ -229,6 +229,7 @@ $(function () {
                 $('input[name="remark"]').val(selectRole.remark);
                 $('input[name="rolesId"]').val(selectRole.rolesId);
             };
+
             $('#upateBtn').click(function () {
                 if(type == 'edit'){
                     editBtn();
@@ -244,6 +245,11 @@ $(function () {
 
                 });
             });
+
+
+
+
+
         });
     };
     initialize();//初始化
