@@ -33,7 +33,7 @@ $(function () {
 
     };
     var editResource = function () {//编辑
-        var data = $('#Form').serializeObject();
+        var data = $('#resourceForm').serializeObject();
         data.id = selectResource.id;
         AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
             if(re.success){
