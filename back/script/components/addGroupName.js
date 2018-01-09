@@ -2,16 +2,16 @@
 $(function () {
 
 
-    var roleName = '';
+    var userGroup = '';
     var getList = [];
     var selectUser;
 
     var getUserList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
-        if(roleName!=''){
-            data.roleName = roleName;
+        if(userGroup!=''){
+            data.userGroup = userGroup;
         };
-        AjaxFunc($query.role,'get',data,function (re) {
+        AjaxFunc($query.userGroup,'get',data,function (re) {
             if(re.success){
                 initTable(re.data.list);
             }else{
@@ -26,12 +26,12 @@ $(function () {
         $('#addGroupNameT').empty();
         for(var i=0;i<list.length;i++){
             console.log(111111,list[i])
-            $('#addGroupNameT').append('<button id="btn_'+list[i].id+'" style="margin: 5px 10px">'+  list[i].roleName +'</button>');
+            $('#addGroupNameT').append('<button id="btn_'+list[i].id+'" style="margin: 5px 10px">'+  isUserGroup(list[i].groupName) +'</button>');
             $('#btn_'+list[i].id).click(function () {
                 selectUser = getFromId(this.id.split('_')[1]);
-                $('#userGroupBtn').val(selectUser.roleName);
+                $('#userGroupBtn').val(selectUser.groupName);
                 //console.log(selectUser.id)userGroupId:$('input[name="groupName"]').val()
-                $('input[name="rolesId"]').val(selectUser.id);
+                $('input[name="userGroupId"]').val(selectUser.id);
                 //console.log(77777,$('input[name="groupName"]').val())
                 $('#userGroupModal').modal('hide');
             });

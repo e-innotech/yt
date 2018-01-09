@@ -35,6 +35,7 @@ $(function () {
            return;
        }
        var data = $('#adForm').serializeObject();
+
        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
           if(re.success){
               $('#adEditModal').modal('hide');

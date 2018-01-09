@@ -1,75 +1,36 @@
-<!--
-用户列表 添加
-调用id=user_query的add
--->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="resourceEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+<!--用列表頁面新增修改彈出頁面-->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="roleEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="resourceEditModalLabel">新增</h4>
+                <h4 class="modal-title" id="EditModalLabel">新增用户</h4>
             </div>
-            <div class="modal-body" style="overflow: hidden;">
-                <form id="AddForm">
-                    <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">用户名</label>
-
-                        <div class="col-sm-7">
-                            <input type="text" name="userName" class="form_userName">
-                        </div>
+            <div class="modal-body">
+                <form id="roleForm" role="form">
+                    <div class="input-group">
+                        <span class="input-group-addon">用户名：</span>
+                        <input type="text" name="userName" class="form-control">
                     </div>
-
-
-
+                    <br>
+                    <div class="input-group wmspwd">
+                        <span class="input-group-addon">密码：</span>
+                        <input type="text" name="passWord" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">用户组：</span>
+                        <input id="userGroupBtn" type="text" class="btn btn-default navbar-btn" placeholder="点击选择"/>
+                        <input type="hidden" name="userGroupId" class="btn btn-default navbar-btn"/>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="addBtn">确认</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<!--
-用户列表修改
-调用id=websites_query的upate
--->
-<div class="modal fade" id="upateModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
-     style="top: 20%;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <h4 class="modal-title">修改</h4>
-            </div>
-            <div class="modal-body" style="overflow: hidden;">
-                <form id="UpateForm">
-                    <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">当前密码</label>
-                        <div class="col-sm-7">
-                            <input type="text" name="currentPwd" class="form_currentPwd">
-                        </div>
-                    </div>
-                    <div class="form-group modal_conment">
-                        <label class="col-sm-3 control-label">新密码</label>
-                        <div class="col-sm-7">
-                            <input type="text" name="passWord" class="form_passWord">
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="upateBtn">确认</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
             </div>
         </div>
     </div>
