@@ -35,7 +35,6 @@ $(function () {
            return;
        }
        var data = $('#adForm').serializeObject();
-       console.log(data)
 
        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
           if(re.success){

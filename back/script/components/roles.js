@@ -1,11 +1,12 @@
+
 $(function () {
 
-    var roleList = [];
-    var selectList = [];
+
     var roleName = '';
+    var getList = [];
+    var selectUser;
 
-
-    var getRoleList = function () {
+    var getUserList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
         if(roleName!=''){
             data.roleName = roleName;
@@ -18,36 +19,38 @@ $(function () {
             }
         });
     };
-    var initTable = function(list) {
-        roleList = list;
-        $('#ListBox').empty();
-        for(var i=0;i<list.length;i++){//多选<label class="btn btn-default" style="margin-left: 10px;" ><input type="checkbox" >' + list[i].roleName + '</label>
-            $('#ListBox').append('<button id="btn_'+list[i].id+'" style="margin: 5px 10px">'+  list[i].roleName +'</button>');
+    var initialize = function () {getUserList()}
+
+    var initTable = function (list) {
+        getList = list;
+        $('#addGroupNameT').empty();
+        for(var i=0;i<list.length;i++){
+            console.log(111111,list[i])
+            $('#addGroupNameT').append('<button id="btn_'+list[i].id+'" style="margin: 5px 10px">'+  list[i].roleName +'</button>');
             $('#btn_'+list[i].id).click(function () {
-                selectAdPositions = getAdPositionsFromId(this.id.split('_')[1]);
-                $('#adPositionsInfo').val(selectAdPositions.roleName);
-                $('input[name="adPositionsId"]').val(selectAdPositions.id);
-                $('#adPositionsListModal').modal('hide');
-            });
-        };
-
-    };
-
-
-
-    var initialize = function () {
-        if (userGroupListType = 'parent') {
-            $('#resourceListFooter').show();
-            $('#resourceListBtn').click(function () {
-
-                $('#resourceListModal').modal('hide');
+                selectUser = getFromId(this.id.split('_')[1]);
+                $('#userGroupBtn').val(selectUser.roleName);
+                //console.log(selectUser.id)userGroupId:$('input[name="groupName"]').val()
+                $('input[name="rolesId"]').val(selectUser.id);
+                //console.log(77777,$('input[name="groupName"]').val())
+                $('#userGroupModal').modal('hide');
             });
         }
-        ;
-        getRoleList();
     };
+    var isUserGroup = function(groupName){
+        if(groupName){
+            return groupName;
+        }
+        return '';
+    }
 
-
-
+    var getFromId = function (id) {
+        for(var i=0;i<getList.length;i++){
+            if(id == getList[i].id){
+                return getList[i];
+            }
+        }
+    };
     initialize();
-})
+});
+

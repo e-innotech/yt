@@ -44,6 +44,8 @@ var config ={
             'userGroup':'components/userGroup.html',
             'userQuery':'components/userQuery.html',
             'adduserGroup':'components/userGroup.html',
+            'addRole':'components/addroles.html',
+            'userGroupQuery':'components/userGroupQuery.html',
             'userGroup_rolesId':'components/userGroup_rolesId.html',
 
             'resourceEdit':'components/resourceEdit.html',
@@ -65,7 +67,6 @@ var config ={
 
     }
 }
-
 
 
 

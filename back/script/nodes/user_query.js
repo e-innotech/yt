@@ -158,7 +158,7 @@ $(function () {
             $('#popPanel').html(re);
             $('#editModal').modal('show');
             if (type == 'edit') {
-                $('#EditModalLabel').html('编辑用户组');
+                $('#EditModalLabel').html('编辑用户');
                 $('input[name="userName"]').val(selectUser.userName);
                 $('.wmspwd').css('display','none');
                 $('input[name="groupName"]').val(selectUser.groupName);
