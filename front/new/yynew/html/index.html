@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鹰眼新闻</title>
+    <link rel="stylesheet" href="../css/top.css">
+    <link rel="stylesheet" href="../css/bottom.css">
+    <link rel="stylesheet" type="text/css" href="../css/contentright.css"/>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../script/unslider.min.js"></script>
+
+ 
+</head>
+<body>
+<!-- 以下为头部 -->
+<div id="top"></div>
+
+<!-- 以下为左侧的悬浮广告 -->
+<div class="advertising">
+    <img src="../images/adv.png" class="Imgtop"/>
+    <img src="../images/adv.png"/>
+</div>
+<!-- 以下为主体内容 -->
+<div class="contentbg">
+   <div class="content">
+       <!-- 主体内容左边 -->
+       <div class="content-left">
+           <div class="content-left-t">
+               <div class="content-left-l" id="carousel">
+                  <ul id="slide">
+                      <li><img class="picture" alt="" src="../images/bannerone.png"/></li>
+                      <li><img class="picture" alt="" src="../images/bannertwo.png"/ ></li> 
+                      <li><img class="picture" alt="" src="../images/bannerthree.png"/></li>
+                  </ul>
+                  <!-- 轮播图上的箭头 -->
+                  <a href="javascript:void(0);" class="unslider-arrow04 prev"><img id="next" src="../images/arrows-l.png" class="arrows-l unslider-arrow04"/></a>
+                  <a href="javascript:void(0);" class="unslider-arrow04 next"><img id="previous" src="../images/arrows-r.png" class="arrows-r unslider-arrow04"/></a>
+                  <div class="bgcolor">
+                      <p><a href="#">卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</a></p>
+                  </div>
+               </div>
+               <div class="content-left-r">
+                   <div class="top">
+                      <img src="../images/bannertwo.png"/>
+                      <div class="bgcolortwo">
+                          <p><a href>卡乐芙电视里的咖啡机案件辅导老师发生大幅度安抚辅导老师发生大幅度安抚辅导老师发生大幅度安抚</a></p>
+                      </div>
+                   </div>
+                   <div class="bottom">
+                      <img src="../images/bannertwo.png"/>
+                      <div class="bgcolortwo">
+                         <p><a href>卡乐芙电视里的咖啡机案件辅导老师发生大幅度安抚辅导老师发生大幅度安抚辅导老师发生大幅度安抚</a></p>
+                      </div>
+                   </div>
+               </div>
+           </div>
+         <!-- 以下为新闻列表盒子 -->
+           <div class="listbox">
+              <!-- <div class="list" id="list"> 
+                       <img src="../images/wenhao.png" id="listImg"/> 
+                       <div class="list-rbox">
+                           <h2 class="subhead">阿卡萨斯电费卡是否对卡双离合按时付款函数否对卡双离合按时付款函数否对卡双离合按时付款</h2>
+                           <div class="center">
+                             <div class="center-l">
+                                 <span><img src="../images/tou.png" class="portrait"/>大是大非发多少</span>
+                                 <span class="time">2016-3-17</span>
+                              </div>
+                              <div class="center-r">
+                                 <p>
+                                    <img src="../images/zan.png"/>
+                                    <span>0</span>
+                                 </p>
+                                 <p class="collect">
+                                  <img src="../images/cang.png"/>
+                                  <span>0</span>
+                                 </p>
+                                 <p>
+                                  <img src="../images/ping.png" style="margin-top:6px;"/>
+                                  <span>0</span>
+                                 </p>
+                              </div>
+                           </div>
+                           <p class="newsdetail">拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克斯垃圾收费啊，四大发明拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克斯垃圾收费啊拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克斯垃圾收费啊</p>
+                        </div> 
+                  </div>  -->
+           </div>
+            
+          <!-- 以下为点击加载更多 -->
+           <div class="more">点击加载更多</div>
+       </div>
+         <!-- 以下为内容右侧 -->
+       <div id="content-right">
+          
+       </div>
+   </div>
+</div>
+
+<!-- 以下为footer -->
+<div id="bottom"></div>
+
+
+
+</body>
+   <script type="text/javascript" src="../script/js/index.js"></script>
+       <!-- <script type="text/javascript" src="../script/js/indextwo.js"></script> -->
+<script>
+  //轮播图
+$(document).ready(function(e) {
+    var unslider04 = $('#carousel').unslider({
+        dots: true
+    }),
+    data04 = unslider04.data('unslider');
+     
+    $('.unslider-arrow04').click(function() {
+        var fn = this.className.split(' ')[1];
+        data04[fn]();
+    });
+});
+
+//点那个li  给那个li添加下边框
+$(".nav").on("click","li",function(){
+    $(this).addClass("active").siblings().removeClass("active")
+})
+// 页面一打开就加载右侧
+// window.onload=function(){ 
+  
+
+//     $('#content-right').load('right.html .content-right');
+    
+// }
+
+window.onload=function(){
+  $("#top").load("top.html")
+  $("#bottom").load("bottom.html");
+  $("#content-right").load('right.html .content-right')
+
+
+}
+
+</script>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>头部</title>
+        <link rel="stylesheet" href="../css/top.css">
+        <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+        <!-- <script type="text/javascript" src="../script/js/indextwo.js"></script> -->
+
+    </head>
+    <body>
+       <!-- 以下为头部 -->
+     <div class="headerbg">
+         <div class="header">
+             <img src="../images/logo.png"/>
+             <ul class="nav">
+
+             </ul>
+             <div class="header-right">
+               <div class="header-right-l">
+                  <form>
+                      <input type="text" placeholder="搜索"/>
+                      <a href="#"><img src="../images/search.png" id="search"/></a>
+                  </form>
+               </div>
+               <div class="header-right-r">
+                  <img src="../images/ren.png" id="userAvatar"/>
+               </div>
+             </div>
+         </div>
+     </div>
+     <div class="blank"></div>
+
+       
+    </body>
+</html>
+
+<script>
+
+//导航栏的数据
+$(document).ready(function(){
+     $.ajax({
+          url:"../data/nav.json",
+          dataType:"json",
+          async:true,
+          type:"get",
+          success:function(navData){
+              var listdata=navData.data.channels;
+              str=" ";
+              for(var i=0;i<listdata.length;i++){
+                // $(".header .nav").append('<li><a>'+listdata[i].channelName+'</a></li>')
+                var creattagLI = $("<li></li>");
+                var creattagA = $("<a></a>");
+                creattagA.appendTo(creattagLI);
+                creattagA.text(listdata[i].channelName);
+                switch (creattagA.text()){
+                        case "国内新闻":
+                          creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynew/html/nav.html');
+                          if (location.href=='http://localhost:63342/yt/front/new/yynew/html/nav.html') {
+                            creattagA.css("border-bottom","2px solid #206491");
+                          }
+                            break;
+                        case "首页":
+                        creattagA.attr('href', 'http://localhost/new/yynew/html/index.html');
+                        if (location.href=='http://localhost/new/yynew/html/index.html') {
+                          creattagA.css("border-bottom","2px solid #206491");
+                        }
+                        
+
+                            break;
+                        case "财经新闻":
+                          creattagA.attr('href', 'localhost:63342/yt/front/new/yynew/html/detail.html');
+                          if (location.href=='localhost:63342/yt/front/new/yynew/html/detail.html') {
+                            creattagA.css("border-bottom","2px solid #206491");
+                          }
+                             
+                            break;
+                        case "汽车1":
+                        creattagA.attr('href', 'localhost:63342/yt/front/new/yynew/html/nav.html');
+                       if (location.href=='localhost:63342/yt/front/new/yynew/html/nav.html') {
+                          creattagA.css("border-bottom","2px solid #206491");
+                        }
+
+                            break;
+                        
+                    }
+                creattagLI.appendTo($(".header .nav"));
+
+              }
+             
+          }
+        })
+ });
+
+//点那个li  给那个li添加下边框
+$(".nav").on("click","li",function(){
+    $(this).addClass("active").siblings().removeClass("active")
+})
+
+</script>
