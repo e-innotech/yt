@@ -58,6 +58,8 @@ var config ={
             'channelEdit':'components/channelEdit.html',
 
             'newsEdit':'components/newsEdit.html',
+            'newsLaunchEdit':'components/newsLaunchEdit.html',
+            'newsList':'components/newsList.html',
 
 
             'adEdit':'components/adEdit.html',
