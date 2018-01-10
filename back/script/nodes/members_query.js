@@ -14,9 +14,7 @@ $(function () {
         if (uname != '') {
             data.uname = uname;
         };
-        if (isGag != '') {
-            data.isGag = isGag;
-        };
+
         AjaxFunc($query.members, 'get', data, function (re) {
             if (re.success) {
                 initTable(re.data.list);
@@ -31,7 +29,7 @@ $(function () {
 
 
 
-
+    /*状态*/
     var statusUser = function (id, status) {
         var data = {id: id, isUse: status};
         AjaxFunc($apiUrl + ctrl_upate, 'post', data, function (re) {
@@ -41,6 +39,19 @@ $(function () {
             alert(re.msg);
         });
     };
+    /*禁言*/
+    var getisGag = function (id, gag) {
+        var data = {id: id, isGag: gag};
+        AjaxFunc($apiUrl + ctrl_upate, 'post', data, function (re) {
+            if (re.success) {
+                getUserList();
+            }
+            alert(re.msg);
+        });
+    };
+
+
+
     var initialize = function () {
         for (var i = 0; i < nodeData.buttons.length; i++) {
 
@@ -62,7 +73,7 @@ $(function () {
             '<td>' + list[i].uname + '</td>' +
             '<td>' + list[i].regDate + '</td>' +
             '<td><p id="statusBtn_' + list[i].id + '" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
-            '<td><p id="GagBtn_' + list[i].id + '" class="' + (list[i].isGag == 0 ? 'anniu1' : 'anniu1 wactive') + '"><span></span></p></td>' +
+            '<td><p id="GagBtn_' + list[i].id + '" class="' + (list[i].isGag == 0 ? 'isGag' : 'isGag active') + '"><span></span></p></td>' +
             '</tr>');
 
 
@@ -79,13 +90,13 @@ $(function () {
             $('#GagBtn_' + list[i].id).click(function () {
                 //console.log($(this).attr('class'));
                 var isGag = 0;
-                if ($(this).attr('class') == 'anniu') {
+                if ($(this).attr('class') == 'isGag') {
                     isGag = 1;
                 } else {
                     isGag = 0;
                 }
                 ;
-                statusUser(this.id.split('_')[1], isGag)
+                getisGag(this.id.split('_')[1], isGag)
             });
         };
     };
