@@ -7,7 +7,6 @@ $(function () {
     var userList = [];
     var selectUser;
 
-    var ctrl_add = '';
     var ctrl_upate = '';
 
     var getUserList = function () {
@@ -44,9 +43,7 @@ $(function () {
     };
     var initialize = function () {
         for (var i = 0; i < nodeData.buttons.length; i++) {
-            if (nodeData.buttons[i].uri.indexOf('add') != -1) {
-                ctrl_add = nodeData.buttons[i].uri;
-            };
+
             if (nodeData.buttons[i].uri.indexOf('update') != -1) {
                 ctrl_upate = nodeData.buttons[i].uri;
             };
@@ -65,7 +62,7 @@ $(function () {
             '<td>' + list[i].uname + '</td>' +
             '<td>' + list[i].regDate + '</td>' +
             '<td><p id="statusBtn_' + list[i].id + '" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
-            //'<td><p id="GagBtn_' + list[i].id + '" class="' + (list[i].isGag == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
+            '<td><p id="GagBtn_' + list[i].id + '" class="' + (list[i].isGag == 0 ? 'anniu1' : 'anniu1 wactive') + '"><span></span></p></td>' +
             '</tr>');
 
 
