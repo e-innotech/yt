@@ -30,6 +30,7 @@ var config ={
             'userGroup':$apiUrl+'/userGroup/query',
             'log':$apiUrl+'/log/query',
             'websites':$apiUrl+'/websites/query',
+            'websitesTemplate':$apiUrl+'/websites/template/query',
             'config':$apiUrl+'/config/query'
         };
 
@@ -62,6 +63,8 @@ var config ={
             'adEdit':'components/adEdit.html',
             'adPositionsEdit':'components/adPositionsEdit.html',
             'adPositionsList':'components/adPositionsList.html',
+
+            'webTemplateList':'components/webTemplateList.html',
 
 
             'homeCtrl':'components/homeCtrl.html',

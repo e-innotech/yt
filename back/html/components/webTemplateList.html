@@ -1,0 +1,46 @@
+<div class="modal fade" id="webTemplateListModal" tabindex="-1" role="dialog" aria-labelledby="webTemplateListModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="webTemplateListModalLabel">网站模板列表</h4>
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input id="siteNameWebTxt" type="text" class="form-control" placeholder="网站名">
+                    </div>
+                    <div class="form-group">
+                        <span>模板类型</span>
+                        <select class="input-large form-control" id="templateTypeSelect">
+                            <option value="-1">全部</option>
+                            <option value="0">首页模板</option>
+                            <option value="1">栏目模板</option>
+                            <option value="2">详页模板</option>
+                        </select>
+                    </div>
+                    <button id="searchWebBtn" type="button" class="btn btn-default">查询</button>
+                </form>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="info">
+                            <th>网站名</th>
+                            <th>模板类型</th>
+                        </tr>
+                        </thead>
+                        <tbody id="webTemplateListT">
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <p id="totalPgWeb"></p>
+                    <ul id="pgWeb" class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../script/components/webTemplateList.js"></script>
