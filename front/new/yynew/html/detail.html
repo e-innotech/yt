@@ -123,22 +123,25 @@
                  <h2>最新评论</h2>
                  <span>9条评论</span>
              </div>
-              <div class="commentCon">
-                <div class="commentCon-l">
-                      <img src="../images/sha.png" class="small"/>
-                      <img src="../images/girl.png" class="big"/>
-                      <p class="call">139****8850</p>
-                      <p class="date">注册时间:2017-01-12</p>
-                </div>
-                <div class="commentCon-r">
-                   <p>2017-01-12 15:03:31 <span>一楼</span></p>
-                   <div class="commentbox">
-                       路人
-                   </div>
+             <div id="commentCon-box">
+                <div class="commentCon">
+                    <div class="commentCon-l">
+                        <img src="../images/sha.png" class="small"/>
+                        <img src="../images/girl.png" class="big"/>
+                        <p class="call">139****8850</p>
+                        <p class="date">注册时间:2017-01-12</p>
+                    </div>
+                    <div class="commentCon-r">
+                        <p>2017-01-12 15:03:31 <span>一楼</span></p>
+                        <div class="commentbox">
+                            路人
+                        </div>
+                    </div>
                 </div>
              </div>
-            <div class="more">点击查看更多评论</div>
-            </div>
+              
+             <div class="more">点击查看更多评论</div>
+          </div>
        </div>
 
        <!-- 主体内容右边 -->
@@ -206,7 +209,7 @@
   }
 var textarea = document.getElementById('textarea');
 var commitBtn = document.getElementById('Commit');
-var commentReview = document.getElementById('commentReview');
+var commentReview = document.getElementById('commentCon-box');
 commitBtn.onclick = function () {
   var textValue = textarea.value;
    textarea.value = "";
