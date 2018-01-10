@@ -9,36 +9,63 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
   </resultMap>
   
+    <resultMap id="ResultMap" type="com.yt.cms.model.AdPositions" extends="BaseResultMap">
+   		<association property="webTemplate" javaType="com.yt.cms.model.WebsiteTemplate">
+   			 <id column="website_template_id" property="id" jdbcType="INTEGER" />
+    		<result column="template_type" property="templateType" jdbcType="INTEGER" />
+    		<association property="websites" javaType="com.yt.cms.model.Websites">
+    			<id column="website_id" property="id" jdbcType="INTEGER" />
+    			<result column="siteName" property="siteName" jdbcType="VARCHAR" />
+    		</association>
+   		</association>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
-    id, ad_width, ad_height, ad_name,remark
+    id, ad_width, ad_height, ad_name,remark,website_template_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.ad_width, a.ad_height, a.ad_name
+    a.id, a.ad_width, a.ad_height, a.ad_name,a.remark,a.website_template_id
     from adpositions a 
     where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0
   </select>
   
-    <select id="query" resultMap="BaseResultMap" parameterType="map" >
+    <select id="query" resultMap="ResultMap" parameterType="map" >
     select 
-    <include refid="Base_Column_List" />
-    from adpositions where 1=1 and isDel = 0
+   	a.id, a.ad_width, a.ad_height, a.ad_name,a.remark,b.id website_template_id,b.template_type,c.id website_id,c.siteName
+    from adpositions a left join website_template b on a.website_template_id = b.id
+    left join websites c on c.id = b.websites_id
+     where 1=1 and a.isDel = 0
 
 	      <if test="record.adName != null" >
-	       and ad_name like concat('%', #{record.adName}, '%')
+	       and a.ad_name like concat('%', #{record.adName}, '%')
 	      </if>
-	 order by id desc 
-	 <if test="page.pageLimit != null and page.pageSize != null" >
+	       <if test="record.webTemplate != null and record.webTemplate.websites != null and record.webTemplate.websites.siteName != null" >
+	       and c.siteName like concat('%', #{record.webTemplate.websites.siteName}, '%')
+	      </if>
+	       <if test="record.webTemplate != null and record.webTemplate.templateType != null and record.webTemplate.templateType != -1" >
+	       and b.template_type = #{record.webTemplate.templateType,jdbcType=INTEGER}
+	      </if>
+	 order by a.id desc 
+	 <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 </if>
 	 
   </select>
   
   <select id="queryCount" parameterType="com.yt.cms.model.AdPositions" resultType="long">
-  	select count(1) from adpositions where 1=1 and isDel = 0
+  	select count(1) from adpositions a left join website_template b on a.website_template_id = b.id
+    left join websites c on c.id = b.websites_id
+     where 1=1 and a.isDel = 0
 	   
       <if test="adName != null" >
-       and ad_name like concat('%', #{adName}, '%')
+       and a.ad_name like concat('%', #{adName}, '%')
+      </if>
+      <if test="webTemplate != null and webTemplate.websites != null and webTemplate.websites.siteName != null" >
+	       and c.siteName like concat('%', #{webTemplate.websites.siteName}, '%')
+      </if>
+       <if test="webTemplate != null and webTemplate.templateType != null and webTemplate.templateType != -1" >
+       and b.template_type = #{webTemplate.templateType,jdbcType=INTEGER}
       </if>
   </select>
   
@@ -66,7 +93,9 @@
       <if test="remark != null" >
         remark,
       </if>
-   
+     <if test="webTemplateId != null" >
+        website_template_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       
@@ -82,7 +111,9 @@
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
-    
+     <if test="webTemplateId != null" >
+        #{webTemplateId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.AdPositions" >
@@ -105,6 +136,9 @@
       </if>
       <if test="delDate != null" >
         del_date = #{delDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="webTemplateId != null" >
+        website_template_id = #{webTemplateId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

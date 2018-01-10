@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
@@ -111,7 +112,8 @@ public class MembersController {
 	 * @return
 	 */
 	@PostMapping("/update")
-	@ApiOperation("启用、停用、禁言、取消禁言、修改密码")
+	@ApiOperation("启用、停用、禁言、取消禁言")
+	@LogAnnotation(action="修改会员[启用、停用、禁言、取消禁言]状态")
 	public AjaxResponseBody update(@RequestBody Members member){
 		boolean created = memberService.update(member);
 		if(!created) {

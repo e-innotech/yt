@@ -22,23 +22,31 @@
     <select id="query" resultMap="ResultMap"  parameterType="map">
        SELECT 
        a.id, a.uname, a.createDate,a.isUse,b.id user_group_id, b.groupName
-	   FROM (select * from users where user_group_id != 999999 or user_group_id is null) a left join user_group b on a.user_group_id = b.id and b.id != 999999  
-	   <if test="userName != null">
-                and a.uname like concat('%', #{userName}, '%')
+	   FROM 
+	   (select * from users where (user_group_id != 999999 or user_group_id is null) 
+	    <if test="userName != null">
+                and uname like concat('%', #{userName}, '%')
        </if>
+	   ) a
+	    left join 
+	    (select * from user_group where id != 999999 ) b on a.user_group_id = b.id 	  
         order by a.id desc
-        <if test="page.pageLimit != null and page.pageSize != null" >
+        <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 	</if>
     </select>
     
     <!-- 查询所有用户信息 -->
     <select id="queryCount" resultType="long"  parameterType="java.lang.String">
-       SELECT count(1)
-	   FROM (select * from users where user_group_id != 999999 or user_group_id is null) a left join user_group b on a.user_group_id = b.id  and b.id != 999999 
-            <if test="userName!=null and userName!=''">
+          SELECT count(1) FROM 
+	   (select * from users where (user_group_id != 999999 or user_group_id is null) 
+	    <if test="userName != null">
                 and uname like concat('%', #{userName}, '%')
-            </if>
+       </if>
+	   ) a
+	    left join 
+	    (select * from user_group where id != 999999 ) b on a.user_group_id = b.id 	  
+     
     </select>
     
 	<!-- 主键id查找用户信息,用户组 -->

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.DateUtil;
@@ -88,6 +89,7 @@ public class NewsController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加稿件")
+	@LogAnnotation(action="新增稿件")
 	public AjaxResponseBody add(@RequestBody News news,  HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
@@ -108,6 +110,7 @@ public class NewsController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改稿件")
+	@LogAnnotation(action="修改稿件")
 	public AjaxResponseBody update(@RequestBody News news){
 		boolean created = newsService.update(news);
 		if(!created) {
@@ -136,6 +139,7 @@ public class NewsController {
 	 */
 	@PostMapping("/launch/add")
 	@ApiOperation("投放稿件到网站和栏目")
+	@LogAnnotation(action="投放稿件")
 	public AjaxResponseBody launch(@RequestBody NewsLaunch newsLaunch, HttpServletRequest request){
 		
 		HttpSession session = request.getSession();
@@ -159,6 +163,7 @@ public class NewsController {
 	 */
 	@PostMapping("/launch/update")
 	@ApiOperation("编辑稿件投放网站与栏目")
+	@LogAnnotation(action="编辑稿件投放")
 	public AjaxResponseBody updateLaunch(@RequestBody NewsLaunch newsLaunch){
 		
 		//  可以修改news 表的内容
@@ -222,7 +227,8 @@ public class NewsController {
 	 * @return
 	 */
 	@PostMapping("/launch/aduit")
-	@ApiOperation("稿件审批")
+	@ApiOperation("审批稿件")
+	@LogAnnotation(action="审批稿件")
 	public AjaxResponseBody aduit(@RequestBody AduitNews aduit,HttpSession session){
 		NewsLaunch newsLaunch = new NewsLaunch();
 		BeanUtils.copyProperties(aduit, newsLaunch);
@@ -284,6 +290,7 @@ public class NewsController {
 	 */
 	@GetMapping("/publish/offLine")
 	@ApiOperation("稿件上下线")
+	@LogAnnotation(action="稿件上下线")
 	public AjaxResponseBody publishOffLine(@RequestParam Integer id, @RequestParam Integer lineStatus){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
@@ -306,6 +313,7 @@ public class NewsController {
 	// TODO 判断是否超过网站的首页权重值
 	@GetMapping("/publish/setHome")
 	@ApiOperation("设置首页")
+	@LogAnnotation(action="设置首页")
 	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer isHome,@RequestParam Integer homeWeight){
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);

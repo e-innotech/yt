@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.cms.common.Page;
 import com.yt.cms.mapper.UserMapper;
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userDAO;
 	
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public boolean save(User user) {
 		userDAO.insert(user);
         if (user.getId() > 0) {

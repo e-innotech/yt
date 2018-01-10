@@ -1,12 +1,15 @@
 package com.yt.cms.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yt.cms.common.CollectionUtils;
@@ -40,6 +43,7 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	private WebsitesMapper websiteDAO;
 	
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public boolean save(NewsLaunch newsLaunch) {
 		// 新增launch表
 		newsLaunchDAO.insertSelective(newsLaunch);
@@ -88,56 +92,78 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	
 	@Override
 	public List<NewsLaunch> queryAll(NewsLaunch newsLaunch, Page page) {
-
 		List<NewsLaunch> list = newsLaunchDAO.query(newsLaunch,page);
 		Set<Integer> webIds = new HashSet<>();
 		Set<Integer> channelIds = new HashSet<>();
 		List<Websites> websites = null;
 		List<Channel> channels = null;
+		// 存储数据库中查询到的网站信息 key:website.id value:website
+		Map<Integer, Websites> websitesMap = new HashMap<Integer, Websites>();
+		// 存储数据库中查询到的栏目信息 key:channel.id value:channel
+		Map<Integer, Channel> channelMap = new HashMap<Integer, Channel>();
 		for(NewsLaunch launch : list) {
-			// 初始化网站名和栏目名，但还没有赋值
-			List<NewsLaunchWebChannelConfig> webChannelConfig = null;
 			String json = launch.getNewsLaunchConfig();
-			// 将json 转map
 			try {
 				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
 				for(NewsLaunchConfig config : config_list) {
-					webChannelConfig = new ArrayList<>();
 					// 网站id
 					Integer webId = config.getWebsiteId();
 					List<Integer> channel = config.getChannelId();
 					webIds.add(webId);
 					channelIds.addAll(channel);
+				}
+			} catch (Exception e) {
+				// 此数据配置错误，忽略
+				e.printStackTrace();
+			}
+		}
+		if(CollectionUtils.isNotEmpty(webIds)) {
+			websites = websiteDAO.queryByIds(CollectionUtils.changeForSet(webIds));
+			// 将数据库中的数据存入 websiteMap
+			if(CollectionUtils.isNotEmpty(websites)) {
+				for(Websites w : websites) {
+					websitesMap.put(w.getId(), w);
+				}
+			}
+		}
+		if(CollectionUtils.isNotEmpty(channelIds)) {
+			channels = channelDAO.queryByIds(CollectionUtils.changeForSet(channelIds));
+			// 将数据库中的数据存入 websiteMap
+			if(CollectionUtils.isNotEmpty(channels)) {
+				for(Channel c : channels) {
+					channelMap.put(c.getId(), c);
+				}
+			}
+		}
+		// 找投放对应的网站和栏目
+		for(NewsLaunch launch : list) {
+			// 初始化稿件投放关系网站名和栏目名，但还没有赋值
+			List<NewsLaunchWebChannelConfig> webChannelConfig = new ArrayList<>();
+			String json = launch.getNewsLaunchConfig();
+			try {
+				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
+				for(NewsLaunchConfig config : config_list) {
+					NewsLaunchWebChannelConfig configvo = new NewsLaunchWebChannelConfig();
+					// 网站id
+					Integer webId = config.getWebsiteId();
+					List<Integer> channel = config.getChannelId();
+					Websites web = websitesMap.get(webId);
+					configvo.setWebsite(web);
+					if(CollectionUtils.isNotEmpty(channel)) {
+						List<Channel> webchannels = new ArrayList<>(); 
+						for(Integer i : channel) {
+							Channel c = channelMap.get(i);
+							webchannels.add(c);
+						}
+						configvo.setChannels(webchannels);
+					}
+					webChannelConfig.add(configvo);
 				}
 			} catch (Exception e) {
 				// 此数据配置错误，忽略
 				e.printStackTrace();
 			}
 			launch.setWebChannelConfig(webChannelConfig);
-		}
-		if(CollectionUtils.isNotEmpty(webIds)) {
-			websites = websiteDAO.queryByIds(CollectionUtils.changeForSet(webIds));
-		}
-		if(CollectionUtils.isNotEmpty(channelIds)) {
-			channels = channelDAO.queryByIds(CollectionUtils.changeForSet(channelIds));
-		}
-		// 找投放对应的网站和栏目
-		for(NewsLaunch launch : list) {
-			String json = launch.getNewsLaunchConfig();
-			// 将json 转map
-			try {
-				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
-				for(NewsLaunchConfig config : config_list) {
-					// 网站id
-					Integer webId = config.getWebsiteId();
-					List<Integer> channel = config.getChannelId();
-					webIds.add(webId);
-					channelIds.addAll(channel);
-				}
-			} catch (Exception e) {
-				// 此数据配置错误，忽略
-				e.printStackTrace();
-			}
 		}
 		return list;
 	}
@@ -148,6 +174,7 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public boolean aduit(NewsLaunch newsLaunch) {
 		try {
 //			News record = new News();

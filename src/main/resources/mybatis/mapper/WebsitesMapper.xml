@@ -7,14 +7,13 @@
     <result column="route" property="route" jdbcType="VARCHAR" />
     <result column="isUse" property="isUse" jdbcType="INTEGER" />
     <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
-    <result column="templateConfig" property="templateConfig" jdbcType="VARCHAR" />
     <result column="home_weight_max" property="homeWeightMax" jdbcType="INTEGER" />
+    <result column="domain" property="domain" jdbcType="VARCHAR" />
   </resultMap>
   
   <resultMap id="ResultMapByids" type="com.yt.cms.model.Websites" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="siteName" property="siteName" jdbcType="VARCHAR" />
-    
   </resultMap>
   
    <resultMap id="ResultMap" type="com.yt.cms.model.Websites" extends="BaseResultMap">
@@ -23,28 +22,35 @@
 		    <result column="channelName" property="channelName" jdbcType="VARCHAR" />
 		    <result column="remark" property="remark" jdbcType="VARCHAR" />
         </collection>
+        <collection property="webTemplates" ofType="com.yt.cms.model.WebsiteTemplate">
+             <id column="template_id" property="id" jdbcType="INTEGER" />
+		    <result column="template_path" property="templatePath" jdbcType="VARCHAR" />
+		    <result column="template_type" property="templateType" jdbcType="INTEGER" />
+        </collection>
+        
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, siteName, route, isUse, createDate, templateConfig,home_weight_max
+    id, siteName, route, isUse, createDate,home_weight_max,domain
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templateConfig,a.home_weight_max,b.id as channel_id,  b.channelName, b.remark
+    a.id, a.siteName, a.route, a.isUse, a.createDate,a.home_weight_max,a.domain,b.id as channel_id,  b.channelName, b.remark
     from websites a, channel b, websites_channel c 
     where a.id = #{id,jdbcType=INTEGER} and a.id = c.websites_id and c.channel_id = b.id and a.isUse = 1 and b.isUse = 1 and b.isDel = 0 and a.isDel = 0
   </select>
   <select id="query" resultMap="ResultMap" parameterType="map" >
     select 
-    a.id, a.siteName, a.route, a.isUse, a.createDate, a.templateConfig,a.home_weight_max,c.id as channel_id,  c.channelName, c.remark
+    a.id, a.siteName, a.route, a.isUse, a.createDate,a.home_weight_max,a.domain,c.id as channel_id,  c.channelName, c.remark, d.id template_id,d.template_path, d.template_type
     from ( select * from  websites t where t.isDel = 0
     	order by id desc
-     <if test="page.pageLimit != null and page.pageSize != null" >
+     <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 	</if>
     ) a
     left join websites_channel b on  a.id = b.websites_id 
     left join  channel c on c.id = b.channel_id and c.isDel =0
+    left join website_template d on a.id = d.websites_id
     where 1=1 
      <if test="web.isUse != null and web.isUse != -1" >
 	        and a.isUse = #{web.isUse,jdbcType=INTEGER}
@@ -99,11 +105,12 @@
       <if test="createDate != null" >
         createDate,
       </if>
-      <if test="templateConfig != null" >
-        templateConfig,
-      </if>
+    
       <if test="homeWeightMax != null" >
         home_weight_max,
+      </if>
+      <if test="domain != null" >
+        domain,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -120,11 +127,12 @@
       <if test="createDate != null" >
         #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="templateConfig != null" >
-        #{templateConfig,jdbcType=VARCHAR},
-      </if>
+
       <if test="homeWeightMax != null" >
          #{homeWeightMax,jdbcType=INTEGER},
+      </if>
+      <if test="domain != null" >
+         #{domain,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -143,11 +151,12 @@
       <if test="createDate != null" >
         createDate = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="templateConfig != null" >
-        templateConfig = #{templateConfig,jdbcType=VARCHAR},
-      </if>
+  
       <if test="homeWeightMax != null" >
         home_weight_max = #{homeWeightMax,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null" >
+         domain = #{domain,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

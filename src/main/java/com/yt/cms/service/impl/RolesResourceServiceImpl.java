@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.mapper.RolesResourceMapper;
@@ -36,6 +37,7 @@ public class RolesResourceServiceImpl implements RolesResourceService {
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public boolean update(Integer rolesId, Integer[] old_resourceIds, Integer[] new_resourceIds) {
 
 		// 在old中找出不在new 中的元素

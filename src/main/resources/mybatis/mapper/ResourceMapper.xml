@@ -18,6 +18,7 @@
 			<result column="parent_id" property="parentId" jdbcType="INTEGER" />
 			<result column="rw" property="rw" jdbcType="INTEGER" />
 			<result column="isMenu" property="isMenu" jdbcType="INTEGER" />
+			<result column="pname" property="pname" jdbcType="VARCHAR" />
 			<collection property="level2" ofType="com.yt.cms.model.ResourceLevel2">
 				<id column="l2_id" property="id" jdbcType="INTEGER" />
 				<result column="l2_name" property="resourceName" jdbcType="VARCHAR" />
@@ -25,6 +26,7 @@
 				<result column="l2_parent_id" property="parentId" jdbcType="INTEGER" />
 				<result column="l2_rw" property="rw" jdbcType="INTEGER" />
 				<result column="l2_isMenu" property="isMenu" jdbcType="INTEGER" />
+				<result column="l2_pname" property="pname" jdbcType="VARCHAR" />
 				<collection property="level3" ofType="com.yt.cms.model.ResourceLevel3">
 					<id column="l3_id" property="id" jdbcType="INTEGER" />
 					<result column="l3_name" property="resourceName" jdbcType="VARCHAR" />
@@ -32,6 +34,7 @@
 					<result column="l3_parent_id" property="parentId" jdbcType="INTEGER" />
 					<result column="l3_rw" property="rw" jdbcType="INTEGER" />
 					<result column="l3_isMenu" property="isMenu" jdbcType="INTEGER" />
+					<result column="l3_pname" property="pname" jdbcType="VARCHAR" />
 				</collection>
 			</collection>
 	</resultMap>
@@ -56,8 +59,56 @@
 		from resource
 		where id = #{id,jdbcType=INTEGER} and isDel = 0
 	</select>
+	
+	<select id="queryAll" resultMap="ResourceResultMap">
+		SELECT 
+    a1.id,
+    a1.resourceName,
+    a1.uri,
+    a1.parent_id,
+    a1.rw,
+    a1.isMenu,
+    case when a1.parent_id =0 THEN '无'  end as pname,
+    b1.id AS l2_id,
+    b1.resourceName AS l2_name,
+    b1.uri l2_uri,
+    b1.parent_id AS l2_parent_id,
+	b1.rw l2_rw,
+    b1.isMenu l2_isMenu,
+    (select d.resourceName from resource d where d.id = b1.parent_id) as l2_pname,
+    
+    c1.id l3_id,
+	c1.resourceName l3_name,
+    c1.uri l3_uri,
+    c1.parent_id l3_parent_id,
+    c1.rw l3_rw,
+    c1.isMenu l3_isMenu,
+    (select e.resourceName from resource e where e.id = c1.parent_id) as l3_pname
+FROM
+    (SELECT 
+        a.*
+    FROM
+        resource a
+    WHERE
+        a.parent_id = 0 AND a.isDel = 0) a1
+        LEFT JOIN
+    (SELECT 
+        b.*
+    FROM
+        resource b
+    WHERE
+        b.parent_id != 0 AND b.isDel = 0) b1 ON b1.parent_id = a1.id
+        LEFT JOIN
+    (SELECT 
+        c.*
+    FROM
+        resource c
+    WHERE
+        c.parent_id != 0 AND c.isDel = 0) c1 ON b1.id = c1.parent_id
+	
+	</select>
 
-	<select id="queryAll" resultMap="ResourceResultMap" >
+	<!-- <select id="queryAll" resultMap="ResourceResultMap" >
 	SELECT 
     d.id,
     d.resourceName,
@@ -98,7 +149,7 @@ FROM
         resource m
     WHERE
         m.parent_id != 0 AND m.isDel = 0) n ON c.id = n.parent_id
-	</select>
+	</select> -->
 
 	<select id="query" resultMap="BaseResultMap" >
 		select

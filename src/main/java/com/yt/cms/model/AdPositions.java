@@ -15,6 +15,12 @@ public class AdPositions extends BaseVo{
     private String adName;
 
     private String remark;
+    /**
+     * 添加使用
+     */
+    private Integer webTemplateId;
+    
+    private WebsiteTemplate webTemplate;
 
 	public Integer getId() {
         return id;
@@ -56,4 +62,21 @@ public class AdPositions extends BaseVo{
 		this.remark = remark;
 	}
 
+	public WebsiteTemplate getWebTemplate() {
+		return webTemplate;
+	}
+
+	public void setWebTemplate(WebsiteTemplate webTemplate) {
+		this.webTemplate = webTemplate;
+	}
+
+	public Integer getWebTemplateId() {
+		return webTemplateId;
+	}
+
+	public void setWebTemplateId(Integer webTemplateId) {
+		this.webTemplateId = webTemplateId;
+	}
+
+	
 }

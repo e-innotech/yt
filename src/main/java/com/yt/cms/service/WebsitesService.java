@@ -3,6 +3,7 @@ package com.yt.cms.service;
 import java.util.List;
 
 import com.yt.cms.common.Page;
+import com.yt.cms.model.WebsiteTemplate;
 import com.yt.cms.model.Websites;
 
 /**
@@ -50,10 +51,16 @@ public interface WebsitesService {
 	public boolean deleteLogicById(Integer id);
 	
 	/**
-	 * 查询网站id下所有的栏位数据
-	 * @param WebsitesId
+	 * 查询网站模板数据
+	 * @param webTemplate
 	 * @return
 	 */
-//	public List<NavigationBar> queryNavigationBarByWebsitesId(Integer WebsitesId);
-	
+	public List<WebsiteTemplate> queryWebsiteTemplate(WebsiteTemplate webTemplate, Page page);
+	/**
+	 * 查询数量
+	 * @param webTemplate
+	 * @return
+	 */
+	public long queryWebsiteTemplateCount(WebsiteTemplate webTemplate);
+
 }

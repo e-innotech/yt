@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.model.Resource;
@@ -70,7 +71,8 @@ public class ResourceController {
 	 * @return
 	 */
 	@PostMapping("/add")
-	@ApiOperation("添加系统资源")
+	@ApiOperation("新增系统资源")
+	@LogAnnotation(action="新增系统资源")
 	public AjaxResponseBody add(@RequestBody Resource resource) {
 		boolean created = resourceService.save(resource);
 		if(!created) {
@@ -85,6 +87,7 @@ public class ResourceController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改系统资源")
+	@LogAnnotation(action="修改系统资源")
 	public AjaxResponseBody update(@RequestBody Resource resource){
 		boolean created = resourceService.update(resource);
 		if(!created) {
@@ -100,6 +103,7 @@ public class ResourceController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation("删除系统资源")
+	@LogAnnotation(action="删除系统资源")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = resourceService.deleteLogicById(id);
 		if(!created) {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
@@ -69,6 +70,7 @@ public class UserGroupController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加用户组")
+	@LogAnnotation(action="新增用户组")
 	public AjaxResponseBody add(@RequestBody UserGroup userGroup) {
 		boolean created = userGroupService.save(userGroup);
 		if(!created) {
@@ -83,6 +85,7 @@ public class UserGroupController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改用户组")
+	@LogAnnotation(action="修改用户组")
 	public AjaxResponseBody update(@RequestBody UserGroup userGroup){
 		boolean created = userGroupService.update(userGroup);
 		if(!created) {
@@ -97,6 +100,7 @@ public class UserGroupController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation("删除用户组")
+	@LogAnnotation(action="删除用户组")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = userGroupService.deleteLogicById(id);
 		if(!created) {

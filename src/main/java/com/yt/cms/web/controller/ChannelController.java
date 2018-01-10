@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
@@ -35,6 +36,7 @@ public class ChannelController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加栏位")
+	@LogAnnotation(action="新增栏位")
 	public AjaxResponseBody add(@RequestBody Channel bar) {
 		boolean created = channelService.save(bar);
 		if(!created) {
@@ -62,6 +64,7 @@ public class ChannelController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改栏位")
+	@LogAnnotation(action="修改栏位")
 	public AjaxResponseBody update(@RequestBody Channel bar){
 		boolean created = channelService.update(bar);
 		if(!created) {
@@ -96,6 +99,7 @@ public class ChannelController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation("删除栏位")
+	@LogAnnotation(action="删除栏位")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = channelService.deleteLogicById(id);
 		if(!created) {

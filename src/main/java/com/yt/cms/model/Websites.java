@@ -23,11 +23,20 @@ public class Websites extends BaseVo{
      * 配置网站[首页模板路径,首页广告位id;栏目页模板路径,栏目页广告位id;详情页模板路径,详情页广告位id] 数据格式如下：
      * [{'homeTemplateURL':'a/index.html','adpositionsId':[1,3]},{'channelTemplateURL':'b/channel.html','adpositionsId':[1]},{'detailTemplateURL':'b/detail.html','adpositionsId':[1]}]
      */
-    private String templateConfig;
+//    private String templateConfig;
     /**
      * 网站首页权重最大值
      */
     private Integer homeWeightMax;
+    /**
+     * 网站域名
+     */
+    private String domain;
+    /**
+     * 网站模板
+     * 新增网站、编辑网站、列表查询时需要
+     */
+    private List<WebsiteTemplate> webTemplates;
     /**
      * 网站栏目关系
      * 新增网站填写网站栏目关系需要
@@ -86,13 +95,13 @@ public class Websites extends BaseVo{
 		this.createDate = createDate;
 	}
 
-	public String getTemplateConfig() {
-		return templateConfig;
-	}
-
-	public void setTemplateConfig(String templateConfig) {
-		this.templateConfig = templateConfig == null ? null : templateConfig.trim();
-	}
+//	public String getTemplateConfig() {
+//		return templateConfig;
+//	}
+//
+//	public void setTemplateConfig(String templateConfig) {
+//		this.templateConfig = templateConfig == null ? null : templateConfig.trim();
+//	}
 
 	public Integer getHomeWeightMax() {
 		return homeWeightMax;
@@ -110,7 +119,21 @@ public class Websites extends BaseVo{
 		this.channelIds = channelIds;
 	}
 
+	public String getDomain() {
+		return domain;
+	}
 
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
+	public List<WebsiteTemplate> getWebTemplates() {
+		return webTemplates;
+	}
+
+	public void setWebTemplates(List<WebsiteTemplate> webTemplates) {
+		this.webTemplates = webTemplates;
+	}
 
 	
 }

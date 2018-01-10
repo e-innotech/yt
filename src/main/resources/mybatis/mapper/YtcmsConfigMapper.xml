@@ -33,7 +33,7 @@
 	       and value like concat('%', #{config.value}, '%')
 	      </if>
 	       order by id desc
-	        <if test="page.pageLimit != null and page.pageSize != null" >
+	        <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 		</if>
   </select>

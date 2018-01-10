@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.common.PageInfo;
+import com.yt.cms.model.WebsiteTemplate;
 import com.yt.cms.model.Websites;
 import com.yt.cms.service.WebsitesService;
 
@@ -35,6 +37,7 @@ public class WebsitesController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加网站")
+	@LogAnnotation(action="新增网站")
 	public AjaxResponseBody add(@RequestBody Websites web) {
 		boolean created = websitesService.save(web);
 		if(!created) {
@@ -62,6 +65,7 @@ public class WebsitesController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改网站")
+	@LogAnnotation(action="修改网站")
 	public AjaxResponseBody update(@RequestBody Websites web){
 		boolean created = websitesService.update(web);
 		if(!created) {
@@ -88,6 +92,29 @@ public class WebsitesController {
 		PageInfo<Websites> pageInfo = new PageInfo<Websites>(pageNum,pageSize, total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
+	
+	/**
+	 * 列表页面
+	 * @return
+	 */
+	@GetMapping("/template/query")
+	@ApiOperation("查询网站列表")
+	public AjaxResponseBody queryWebTemplate(@RequestParam(required=false) String siteName,
+			@RequestParam(required=false) Integer templateType,
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
+		WebsiteTemplate webTemplate = new WebsiteTemplate();
+		webTemplate.setTemplateType(templateType);
+		Websites web = new Websites();
+		web.setSiteName(siteName);
+		webTemplate.setWebsites(web);
+		Page page = new Page(pageNum,pageSize);
+		long total = websitesService.queryWebsiteTemplateCount(webTemplate);
+		List<WebsiteTemplate> list = websitesService.queryWebsiteTemplate(webTemplate, page);
+		PageInfo<WebsiteTemplate> pageInfo = new PageInfo<WebsiteTemplate>(pageNum,pageSize, total,list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
+	}
+	
 	/**
 	 * 删除网站
 	 * @param id
@@ -95,6 +122,7 @@ public class WebsitesController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation("删除网站")
+	@LogAnnotation(action="删除网站")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = websitesService.deleteLogicById(id);
 		if(!created) {

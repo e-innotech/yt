@@ -33,7 +33,7 @@
     select a.id, a.createDate,b.id as news_id,b.news_title, b.staticUrl
     from members_collect_news a, news b where a.news_id = b.id and a.status = 0 and b.isDel = 0
      and a.members_id =  #{record.membersId,jdbcType=INTEGER}  order by a.id desc
-      <if test="page.pageLimit != null and page.pageSize != null" >
+      <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 </if>
   </select>

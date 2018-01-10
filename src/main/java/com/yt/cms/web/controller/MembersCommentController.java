@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
@@ -83,6 +84,7 @@ public class MembersCommentController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation("管理员删除评论")
+	@LogAnnotation(action="删除会员评论")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean result = memberCommentService.deleteLogical(id);
 		if(!result) {

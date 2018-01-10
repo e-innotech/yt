@@ -12,12 +12,13 @@
     <result column="del_date" property="delDate" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="is_edit" property="isEdit" jdbcType="INTEGER" />
+    <result column="top_image_path" property="topImagePath" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.model.News" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, news_title, source, staticUrl, submit_user_id,create_date,isDel,del_date,status
+    id, news_title, source, staticUrl, submit_user_id,create_date,isDel,del_date,status,top_image_path
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -50,7 +51,7 @@
 	       and a.source = #{news.source}
 	    </if>
 	     order by a.id desc
-	      <if test="page.pageLimit != null and page.pageSize != null" >
+	      <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
 	 </if>
   </select>
@@ -99,6 +100,9 @@
       <if test="content != null" >
         content,
       </if>
+      <if test="topImagePath != null" >
+        top_image_path,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="newsTitle != null" >
@@ -114,7 +118,9 @@
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
-
+   	  <if test="topImagePath != null" >
+        #{topImagePath,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.News" >
@@ -132,7 +138,9 @@
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
-
+	  <if test="topImagePath != null" >
+        top_image_path = #{topImagePath,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER} and status = 0
   </update>

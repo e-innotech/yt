@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.common.Page;
+import com.yt.cms.mapper.WebsiteTemplateMapper;
 import com.yt.cms.mapper.WebsitesChannelMapper;
 import com.yt.cms.mapper.WebsitesMapper;
+import com.yt.cms.model.WebsiteTemplate;
 import com.yt.cms.model.Websites;
 import com.yt.cms.model.WebsitesChannel;
 import com.yt.cms.service.WebsitesService;
@@ -19,12 +22,21 @@ public class WebsitesServiceImpl implements WebsitesService {
 	private WebsitesMapper websitesDAO;
 	@Autowired
 	private WebsitesChannelMapper websitesChannelDAO;
+	@Autowired
+	private WebsiteTemplateMapper websiteTemplateDAO;
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public boolean save(Websites web) {
 		// 新增网站数据
 		websitesDAO.insertSelective(web);
 		// 新增网站栏目关系表数据
 		insertBatchWebChannel(web);
+		// 新增网站模板数据
+		List<WebsiteTemplate> webTemplates = web.getWebTemplates();
+		for(WebsiteTemplate template : webTemplates) {
+			template.setWebsites(web);
+		}
+		websiteTemplateDAO.insertBatch(webTemplates);
 		if(web.getId() > 0) {
 			return true;
 		}
@@ -32,9 +44,10 @@ public class WebsitesServiceImpl implements WebsitesService {
 	}
 
 	private void insertBatchWebChannel(Websites web) {
-		// 新增网站栏目关系表数据
 		List<Integer> channelIds =  web.getChannelIds();
 		if(CollectionUtils.isNotEmpty(channelIds)) {
+			// 先删除网站栏目关系数据
+			websitesChannelDAO.deleteByWebId(web.getId());
 			List<WebsitesChannel> moduleList = new ArrayList<>();
 			for(Integer channelid : channelIds) {
 				WebsitesChannel webChannel = new WebsitesChannel();
@@ -42,6 +55,7 @@ public class WebsitesServiceImpl implements WebsitesService {
 				webChannel.setWebsitesId(web.getId());
 				moduleList.add(webChannel);
 			}
+			// 新增网站栏目关系表数据
 			websitesChannelDAO.insertBatch(moduleList);
 		}
 	}
@@ -62,15 +76,17 @@ public class WebsitesServiceImpl implements WebsitesService {
 	}
 
 	@Override
-	// 事务管理,最后一个表有外键，最后执行失败，但是其他2个执行成功，
-	// TODO
+	@Transactional(rollbackFor=Exception.class)
 	public boolean update(Websites web) {
 		try {
 			int row = websitesDAO.updateByPrimaryKeySelective(web);
-			// 先删除网站栏目关系数据
-			websitesChannelDAO.deleteByWebId(web.getId());
-			// 新增网站栏目关系表数据
+			// 网站栏目关系表数据
 			insertBatchWebChannel(web);
+			// 修改模板路径，也只能修改模板路径
+			List<WebsiteTemplate> webTemplates = web.getWebTemplates();
+			if(CollectionUtils.isNotEmpty(webTemplates)) {
+				websiteTemplateDAO.updateBatch(webTemplates);
+			}
 			if(row == 1) {
 				return true;
 			}
@@ -93,6 +109,16 @@ public class WebsitesServiceImpl implements WebsitesService {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public List<WebsiteTemplate> queryWebsiteTemplate(WebsiteTemplate webTemplate, Page page) {
+		return websiteTemplateDAO.query(webTemplate, page);
+	}
+
+	@Override
+	public long queryWebsiteTemplateCount(WebsiteTemplate webTemplate) {
+		return websiteTemplateDAO.queryCount(webTemplate);
 	}
 
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
@@ -124,6 +125,7 @@ public class UserController {
 	 */
 	@PostMapping("/user/add")
 	@ApiOperation("添加用户")
+	@LogAnnotation(action="新增用户")
 	public AjaxResponseBody add(@RequestBody UserResponseBody userBody) {
 		if(StringUtils.isEmpty(userBody.getUserName()) || StringUtils.isEmpty(userBody.getPassWord())) {
 			return new AjaxResponseBody(false,Const.LOGIN_INFO_NOT_EMPTY);
@@ -134,8 +136,15 @@ public class UserController {
 		UserGroup group = new UserGroup();
 		group.setId(userBody.getUserGroupId());
 		user.setUserGroup(group);
-		boolean created = userService.save(user);
+		// 检查当前用户是否已经注册
+		boolean is_exist = userService.findByUserName(userBody.getUserName());
 		AjaxResponseBody response = new AjaxResponseBody();
+		if(is_exist) {
+			response.setMsg("该用户名已被注册，请使用其他用户名！！！");
+			response.setSuccess(false);
+			return response;
+		}
+		boolean created = userService.save(user);
 		if(!created) {
 			response.setMsg(Const.FAILED);
 			response.setSuccess(false);

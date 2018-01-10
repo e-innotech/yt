@@ -36,7 +36,9 @@
 	       and roleName like concat('%', #{roleName}, '%')
 	      </if>
 	      order by id desc 
-	      limit #{pageLimit}, #{pageSize}
+	       <if test="pageLimit != null and pageSize != null and pageSize != 0" >
+	        LIMIT #{pageLimit},#{pageSize}  
+	 	  </if>
     ) a
     left join roles_resource b on a.id = b.roles_id
     left join resource c on b.resource_id = c.id

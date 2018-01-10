@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.common.Const;
@@ -39,7 +40,8 @@ public class RoleController {
 	 * @return
 	 */
 	@PostMapping("/add")
-	@ApiOperation("添加角色")
+	@ApiOperation("新增角色")
+	@LogAnnotation(action="新增角色")
 	public AjaxResponseBody add(@RequestBody Roles roles) {
 		try {
 			rolesService.save(roles);
@@ -70,6 +72,7 @@ public class RoleController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改角色")
+	@LogAnnotation(action="修改角色")
 	public AjaxResponseBody update(@RequestBody Roles roles){
 		try {
 			rolesService.update(roles);
@@ -127,6 +130,7 @@ public class RoleController {
 	 */
 	@GetMapping("/delete")
 	@ApiOperation("删除角色")
+	@LogAnnotation(action="删除角色")
 	public AjaxResponseBody delete(@RequestParam Integer id){
 		boolean created = rolesService.deleteLogicById(id);
 		if(!created) {

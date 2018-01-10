@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.AdPositions;
+import com.yt.cms.model.WebsiteTemplate;
+import com.yt.cms.model.Websites;
 import com.yt.cms.service.AdPositionsService;
 
 import io.swagger.annotations.Api;
@@ -35,10 +38,18 @@ public class AdPositionsController {
 	@ApiOperation("查询广告位列表")
 	public AjaxResponseBody query(
 			@RequestParam(required=false) String adName, // 广告位名称
+			@RequestParam(required=false) String websiteName, // 网站名称
+			@RequestParam(required=false) Integer templateType, // 模板类型
 			@RequestParam Integer pageNum, @RequestParam Integer pageSize){
 		
 		AdPositions adPositions = new AdPositions();
 		adPositions.setAdName(adName);
+		WebsiteTemplate webTemplate = new WebsiteTemplate();
+		webTemplate.setTemplateType(templateType);
+		Websites web = new Websites();
+		web.setSiteName(websiteName);
+		webTemplate.setWebsites(web);
+		adPositions.setWebTemplate(webTemplate);
 		long total = adPositionsService.queryCount(adPositions);
 		Page page = new Page(pageNum,pageSize);
 		List<AdPositions> list =  adPositionsService.queryAll(adPositions,page);
@@ -65,6 +76,7 @@ public class AdPositionsController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("添加广告位")
+	@LogAnnotation(action="新增广告位")
 	public AjaxResponseBody add(@RequestBody AdPositions adPositions) {
 		boolean created = adPositionsService.save(adPositions);
 		if(!created) {
@@ -79,6 +91,7 @@ public class AdPositionsController {
 	 */
 	@PostMapping("/update")
 	@ApiOperation("修改广告位")
+	@LogAnnotation(action="修改广告位")
 	public AjaxResponseBody update(@RequestBody AdPositions adPositions){
 		boolean created = adPositionsService.update(adPositions);
 		if(!created) {

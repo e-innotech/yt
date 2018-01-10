@@ -26,6 +26,10 @@ public class News extends BaseVo{
     
     private Integer status;
     /**
+     * 首页稿件头图，非首页展示的稿件不需要头图
+     */
+    private String topImagePath;
+    /**
      * 是否可编辑标记
      * 一个稿件可以同时投放多次，稿件的编辑状态是要看是否投放
      * 如果没有一次投放，则可编辑
@@ -125,6 +129,14 @@ public class News extends BaseVo{
 
 	public void setIsEdit(Integer isEdit) {
 		this.isEdit = isEdit;
+	}
+
+	public String getTopImagePath() {
+		return topImagePath;
+	}
+
+	public void setTopImagePath(String topImagePath) {
+		this.topImagePath = topImagePath;
 	}
 
 	

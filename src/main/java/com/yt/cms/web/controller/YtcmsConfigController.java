@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
@@ -22,17 +23,18 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/config")
-@Api(value = "配置服务")
+@Api(value = "系统配置服务")
 public class YtcmsConfigController {
 	@Autowired
 	private YtcmsConfigService configService;
 	/**
-	 * 新增配置
-	 * @param module
+	 * 新增系统配置
+	 * @param config
 	 * @return
 	 */
 	@PostMapping("/add")
-	@ApiOperation("添加配置")
+	@ApiOperation("添加系统配置")
+	@LogAnnotation(action="新增系统配置")
 	public AjaxResponseBody add(@RequestBody YtcmsConfig config) {
 		boolean created = configService.save(config);
 		if(!created) {
@@ -49,7 +51,7 @@ public class YtcmsConfigController {
 	 * @return
 	 */
 	@GetMapping("/find/id")
-	@ApiOperation("按照id查询配置")
+	@ApiOperation("按照id查询系统配置")
 	public AjaxResponseBody findById(@RequestParam Integer id) {
 		YtcmsConfig result = configService.findById(id);
 		return new AjaxResponseBody(true,Const.SUCCESS,result);
@@ -79,12 +81,13 @@ public class YtcmsConfigController {
 
 	
 	/**
-	 * 修改配置
-	 * @param module
+	 * 修改系统配置
+	 * @param config
 	 * @return
 	 */
 	@PostMapping("/update")
-	@ApiOperation("修改配置")
+	@ApiOperation("修改系统配置")
+	@LogAnnotation(action="修改系统配置")
 	public AjaxResponseBody update(@RequestBody YtcmsConfig config){
 		boolean created = configService.update(config);
 		if(!created) {
