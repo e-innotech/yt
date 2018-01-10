@@ -26,6 +26,16 @@ $(function () {
         });
 
     };
+    var getChannelList = function () {
+        var data = {pageNum:1,pageSize:0};
+        AjaxFunc($query.channel,'get',data,function (re) {
+            if(re.success){
+                renderChannelEdit(re.data.list);
+            }else{
+                alert(re.msg);
+            }
+        });
+    };
     var addBtn = function () {
         if($('input[name="siteName"]').val() == ''){
             alert('网站名不能为空');
@@ -155,6 +165,12 @@ $(function () {
         }
 
     };
+    var renderChannelEdit = function (list) {
+        // $('#channelIds').empty();
+        // for(var i=0;i<list.length;i++){
+        //     $('#channelIds').append('<label class="btn btn-default" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" id="channelCB_'+list[i].id+'" >' + list[i].channelName + '</label>')
+        // }
+    };
     var getWebsitesFromId = function (id) {
         for(var i=0;i<websitesList.length;i++){
             if(id == websitesList[i].id){
@@ -166,6 +182,8 @@ $(function () {
         $.get($components.websitesEdit,function (re) {
             $('#popPanel').html(re);
             $('#websitesEditModal').modal('show');
+
+            getChannelList();
             if(type == 'edit'){
                 $('#websitesEditModalLabel').html('编辑网站');
             }
