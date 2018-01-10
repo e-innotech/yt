@@ -1,36 +1,27 @@
 $(function () {
     pageNum = 1;
-    pageSize = 15;
+    pageSize = 20;
 
     var siteName = '';
-    var id = '';
-    var route = '';
-    var roleList = [];
+
+    var websitesList = [];
+    var selectWebsites;
+
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
 
-    var getList = function () {
-        var data = {pageNum:pageNum,pageSize:pageSize};
-        if(id!=''){
-            data.id = id;
-        };
-        $.ajax({
-            type: "get",//请求方式
-            url: $query.websites,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:data,
-            success: function (re) {
-                if(re.success){
-                    initTable(re.data.list);
-                    initPage('pg',$('#totalPg'),re.data.total,getList);
-                }else{
-                    alert(re.msg);
-                }
+    var getWebsitesList = function () {
+        var data = {pageNum:pageNum,pageSize:pageSize,isUse:$('#isUseSelect').val()};
+        if(siteName!=''){
+            data.siteName = siteName;
+        }
+        AjaxFunc($query.websites,'get',data,function (re) {
+            if(re.success){
+                initTable(re.data.list);
+                initPage('pg',$('#totalPg'),re.data.total,getWebsitesList);
+            }else{
+                alert(re.msg);
             }
         });
 
@@ -86,24 +77,25 @@ $(function () {
             }
         });
     };
-    var deleteBtn = function (id) {
-        $.ajax({
-            type: "get",//请求方式
-            url: $apiUrl+ctrl_delete,//请求路径
-            async: false,
-            dataType: "json", //数据格式
-            xhrFields: {
-                withCredentials: true
-            },
-            data:{id:id},
-            success: function (re) {
-                if(re.success){
-                    getList();
-                }
-                alert(re.msg);
+    var deleteWebsites = function (id) {
+        var data = {id:id};
+        AjaxFunc($apiUrl+ctrl_delete,'get',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#confirmModal').modal('hide');
+                getWebsitesList();
+            };
+        });
+    };
+    var isUseWebsites = function (id,isUse) {
+        var data = {id:id,isUse:isUse};
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                getWebsitesList();
             }
         });
-    }
+    };
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('add')!=-1){
@@ -117,82 +109,66 @@ $(function () {
             };
         }
         if(ctrl_add != '') {
-            $('#addWebsitesQueryBtn').show();
-            $('#addWebsitesQueryBtn').click(function () {
-                showAdd('add');
+            $('#addWebsitesBtn').show();
+            $('#addWebsitesBtn').click(function () {
+                showWebsitesEdit('add');
             });
         };
         $('#searchBtn').click(function () {
-            id = $('#idVue').val();
-            getList();
+            siteName = $('#siteNameTxt').val();
+            getWebsitesList();
         });
-        getList();
+        getWebsitesList();
     };
     var initTable = function(list) {
-        roleList = list;
-        $('#websites_query').empty();
+        websitesList = list;
+        $('#websitesT').empty();
         for(var i=0;i<list.length;i++){
-            $('#websites_query').append('<tr>' +
+            $('#websitesT').append('<tr>' +
             '<td>'+list[i].siteName+'</td>'+
+            '<td>'+list[i].domain+'</td>'+
             '<td>'+list[i].route+'</td>'+
             '<td>'+list[i].createDate+'</td>'+
-            '<td><p class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '" style="margin: 0 auto;" onclick="anniu(this)"><span> </span></p></td>' +
-            '<td>'+list[i].templteConfig+'</td>'+
+            '<td>'+list[i].createDate+'</td>'+
+            '<td><p id="isUseBtn_'+list[i].id+'" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span> </span></p></td>' +
             '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
             '</tr>');
 
+
+            $('#isUseBtn_'+list[i].id).click(function () {
+                if(ctrl_upate!=''){
+                    isUseWebsites(this.id.split('_')[1],($(this).attr('class')=='aniu'?0:1));
+                };
+            });
             $('#editBtn_'+list[i].id).click(function () {
-                selectRole = getId(this.id.split('_')[1]);
-                showEdit('edit');
+                selectWebsites = getWebsitesFromId(this.id.split('_')[1]);
+                showWebsitesEdit('edit');
             });
             $('#deleteBtn_'+list[i].id).click(function () {
                 var id = this.id.split('_')[1];
                 $.get($components.confirm,function (re) {
                     $('#popPanel1').html(re);
                     $('#confirmModal').modal('show');
-                    confirm.initialize(id,deleteBtn);
+                    confirm.initialize(id,deleteWebsites);
                 });
             });
         }
 
     };
-    var getId = function (id) {
-        for(var i=0;i<roleList.length;i++){
-            if(id == roleList[i].id){
-                return roleList[i];
+    var getWebsitesFromId = function (id) {
+        for(var i=0;i<websitesList.length;i++){
+            if(id == websitesList[i].id){
+                return websitesList[i];
             }
         }
     };
-    var showAdd = function (type) {
-        $.get($components.websiteQuery,function (re) {
+    var showWebsitesEdit = function (type) {
+        $.get($components.websitesEdit,function (re) {
             $('#popPanel').html(re);
-            $('#websites_query_add').modal('show');
-            $('#websites_query_addBtn').click(function () {
-                if(type == 'edit'){
-                    editBtn();
-                    return;
-                };
-                addBtn();
-            });
-
-        });
-    };
-    var showEdit = function (type) {
-        $.get($components.websiteQuery,function (re) {
-            $('#popPanel').html(re);
-            $('#websites_query_upate').modal('show');
-            if(type=='edit'){
-                $('input[name="siteName"]').val(selectRole.siteName);
-                $('input[name="route"]').val(selectRole.route);
-            };
-            $('#websites_query_upateBtn').click(function () {
-                if(type == 'edit'){
-                    editBtn();
-                    return;
-                };
-                addBtn();
-            });
-
+            $('#websitesEditModal').modal('show');
+            if(type == 'edit'){
+                $('#websitesEditModalLabel').html('编辑网站');
+            }
         });
     };
     initialize();
