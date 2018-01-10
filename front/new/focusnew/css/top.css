@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"微软雅黑";
+}
+h2{
+    margin:0;
+    padding:0;
+}
+img {
+    display:block;
+}
+body{
+    font-family: 微软雅黑;
+    background: #f4f4f4;
+}
+ul,ol{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+input{
+    outline:none;
+}
+.headerbg{
+    width:100%;
+    background:#ffffff;
+    border-bottom:1px solid #cdcdcd;
+}
+.header ,.content ,.footer{
+    width:1200px;
+    margin:0 auto;
+}
+.header{
+    height:100px;
+    background:#fff;
+    overflow: hidden;
+
+}
+.header>img{
+    float:left;
+    margin-top:25px;
+
+}
+.header .nav{
+    float:left;
+    margin-left:90px;
+    margin-top:34px;
+
+}
+.header .nav li{
+    float:left;
+    width:90px;
+    height:32px;
+    text-align:center;
+    line-height:32px;
+    font-size:20px;
+    color:#000;
+
+}
+.header .nav li:hover{
+    background:#fe0100;
+
+}
+.header .nav li:hover a{
+    color:#f8fbfa;
+}
+
+
+.header .header-r{
+    float:right;
+    width:232px;
+    height:37px;
+    background:#ebebeb;
+    margin-top:31px;
+    border-radius: 2px ;
+
+
+}
+
+.header .header-r form{
+    position:relative;
+}
+
+.header .header-r form #search{
+    position:absolute;
+    top:5px;
+    left:202px;
+}
+
+.header .header-r input{
+    width:232px;
+    height:37px;
+    background:none;
+    border:none;
+
+
+}

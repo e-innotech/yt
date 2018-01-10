@@ -145,48 +145,9 @@
        </div>
 
        <!-- 主体内容右边 -->
-       <div class="content-right">
-          <!-- <div class="content-right-top"> -->
-          <img src="../images/timg.png" class="right-banner"/>
-          <!-- </div> -->
-          <div class="content-right-center">
-              <h2>独家标题 <span>更多...</span></h2>
-                <div class="imgnewlist">
-                    <img src="../images/cai.png"/>
-                    <p class="textone">
-                      发送到申达股份付暗室逢灯发多少发发发送到发的而发生多少飞啊啊啊啊啊
-                    </p>
-                    <p class="texttwo">
-                      咖啡店啥框架安徽省的卡就是卡视角阿康师傅
-                    </p>
-                </div>
-                <ul>
-                    <li><a href="#">咖啡店啥框架安徽省的卡就是卡视角阿康师傅啡框架安</a></li>
-                    <li><a href="#">咖啡店啥框架安徽省的卡就是卡视角阿康师傅啡店啥框架安啡店啥框架安啡店啥框框架安</a></li>
-                    <li><a href="#">咖啡店啥框架安徽省的卡就是卡视角阿康师傅啡店啥框架安啡店啥框架安</a></li>
-                    <li><a href="#">咖啡店啥框架安徽省的卡就是卡视角阿康师傅啡店啥框架安</a></li>
-                    <li><a href="#">咖啡店啥框架安徽省的卡就是卡视角阿康师傅啡店啥框架安</a></li>
-                </ul>
-          </div>
+       <div class="content-right" id="content-right">
 
-          <div class="content-right-bottom">
-              <h2>热门文章</h2>
-               <div class="textpicBox">
-                  <img src="../images/top1.png" class="smallimg"/>
-                  <img src="../images/rong.png" class="bigimg"/>
-                  <div class="bg">
-                      <p>开发刻录机费劲拉法基俩法师拉开 劲拉法基俩法师拉开始放大啊看见开发刻录机费劲拉法基俩法师拉开始放大啊看见</p>
-                  </div>
-               </div>
 
-                <div class="textpicBox">
-                  <img src="../images/top2.png" class="smallimg"/>
-                  <img src="../images/mao.png" class="bigimg"/>
-                  <div class="bg">
-                     <p>开发刻录机费劲拉法基俩法师拉开 劲拉法基俩法师拉开始放大啊看见开发刻录机费劲拉法基俩法师拉开始放大啊看见</p>
-                  </div>
-               </div>
-          </div>
        </div>
 
       
@@ -281,6 +242,7 @@ function get_firstChild (n) {
 window.onload=function(){ 
     $('.top').load('top.html');
     $('.bottom').load('bottom.html');
+    $("#content-right").load('right.html');
 }
 
 console.log(location.pathname)

@@ -4,6 +4,15 @@
 	padding-bottom: 112px;
 
 }
+.content-left{
+	width:858px;
+}
+.content-right{
+	width:311px;
+}
+
+
+
 .content-left .banner{
 	height:350px;
 	position:relative;
@@ -104,6 +113,25 @@
 	color:#010101;
 	background:#fafafa;
 	text-align:center;
+
+}
+/*以下为左侧广告*/
+.advertising{
+	width:200px;
+	position:fixed;
+	top:121px;
+	left:0;
+	z-index:1000;
+
+}
+.advertising .advone{
+	width:100%;
+	height:160px;
+	margin-bottom:30px;
+}
+.advertising .advtwo{
+	width:100%;
+	height:260px;
 
 }
 
