@@ -1,0 +1,51 @@
+<div class="modal fade" id="websitesEditModal" tabindex="-1" role="dialog" aria-labelledby="websitesEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="websitesEditModalLabel">新增网站</h4>
+            </div>
+            <div class="modal-body">
+                <form id="websitesForm" role="form" >
+                    <div class="input-group">
+                        <span class="input-group-addon">网站名：</span>
+                        <input type="text" name="siteName" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">域名：</span>
+                        <input type="text" name="domain" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">路径：</span>
+                        <input type="text" name="route" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">首页权重最大值：</span>
+                        <input type="text" name="homeWeightMax" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">模板：</span>
+                        <input type="text" class="form-control" placeholder="首页模板路径" id="template_0">
+                        <input type="text" class="form-control" placeholder="栏目模板路径" id="template_1">
+                        <input type="text" class="form-control" placeholder="详页模板路径" id="template_2">
+                    </div>
+                    <br>
+                    <div class="input-group" id="channelIds">
+                        <span class="input-group-addon">频道：</span>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

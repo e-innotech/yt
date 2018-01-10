@@ -13,6 +13,7 @@ $(function () {
 
     var ctrl_add = '';
     var ctrl_upate = '';
+    var ctrl_launch_add = ''
 
     var getNewsList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
@@ -29,7 +30,6 @@ $(function () {
         AjaxFunc($query.news,'get',data,function (re) {
             if(re.success){
                 initTable(re.data.list);
-                // initPage(re.data.total);
                 initPage('pg',$('#totalPg'),re.data.total,getNewsList);
             }else{
                 alert(re.msg);
@@ -38,13 +38,15 @@ $(function () {
     };
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
-            if(nodeData.buttons[i].uri.indexOf('add')!=-1){
+            if(nodeData.buttons[i].uri.indexOf('/news/add')!=-1){
                 ctrl_add = nodeData.buttons[i].uri;
             };
             if(nodeData.buttons[i].uri.indexOf('update')!=-1){
                 ctrl_upate = nodeData.buttons[i].uri;
             };
-
+            if(nodeData.buttons[i].uri.indexOf('/news/launch/add')!=-1){
+                ctrl_launch_add = nodeData.buttons[i].uri;
+            };
         };
         if(ctrl_add != '') {
             $('#addNewsBtn').show();
@@ -100,13 +102,22 @@ $(function () {
                 selectNews = getNewsFromId(this.id.split('_')[1]);
                 showNewsEdit('edit');
             });
+
+            $('#launchBtn_'+list[i].id).click(function () {
+                selectNews = getNewsFromId(this.id.split('_')[1]);
+                showNewsLaunchEdit('edit');
+            });
         }
     };
     var getCtrlEdit = function(id,isEdit){
-        if(ctrl_upate && isEdit==0){
-            return  '<button id="editBtn_'+id+'">编辑</button>';
+        var re = '';
+        if(ctrl_upate!='' && isEdit==0){
+            re += '<button id="editBtn_'+id+'">编辑</button>';
         };
-        return '已投放或上线';
+        if(ctrl_launch_add!=''){
+            re += '<button id="launchBtn_'+id+'">投放</button>';
+        }
+        return re;
     }
     var showNewsEdit = function (type) {
         $.get($components.newsEdit,function (re) {
@@ -135,6 +146,12 @@ $(function () {
             //     });
             // });
         });
+    };
+    var showNewsLaunchEdit = function(type){
+        $.get($components.newsLaunchEdit,function (re) {
+            $('#popPanel').html(re);
+            $('#newsLaunchEditModal').modal('show');
+        })
     };
     initialize();
 })

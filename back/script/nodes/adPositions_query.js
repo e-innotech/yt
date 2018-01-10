@@ -90,6 +90,7 @@ $(function () {
                '<td>'+list[i].adName+'</td>'+
                '<td>'+list[i].adWidth+'</td>'+
                '<td>'+list[i].adHeight+'</td>'+
+               '<td>'+list[i].webTemplate.websites.siteName+':'+TEMPLATE[list[i].webTemplate.templateType]+'</td>'+
                '<td>'+list[i].remark+'</td>'+
                '<td>'+(ctrl_upate!=''?'<button id="editBtn_'+list[i].id+'">编辑</button>':'')+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
                '</tr>');
@@ -124,8 +125,16 @@ $(function () {
                 $('input[name="adName"]').val(selectAdPositions.adName);
                 $('input[name="adWidth"]').val(selectAdPositions.adWidth);
                 $('input[name="adHeight"]').val(selectAdPositions.adHeight);
+                $('input[name="webTemplateId"]').val(selectAdPositions.webTemplate.id);
+                $('#webTemplateInfo').val(selectAdPositions.webTemplate.websites.siteName+':'+TEMPLATE[selectAdPositions.webTemplate.templateType]);
                 $('textarea[name="remark"]').val(selectAdPositions.remark);
             };
+            $('#webTemplateInfo').click(function () {
+                $.get($components.webTemplateList,function (re) {
+                    $('#popPanel1').html(re);
+                    $('#webTemplateListModal').modal('show');
+                });
+            });
             $('#saveBtn').click(function () {
                 if(type == 'edit'){
                     editAdPositions();

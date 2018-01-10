@@ -1,7 +1,7 @@
 var config ={
     init:function(){
-        // $apiUrl = ' http://192.168.20.195:8080';//本地
-       $apiUrl = ' http://123.59.156.27:8080';//测试
+        $apiUrl = ' http://192.168.20.195:8080';//本地
+        // $apiUrl = ' http://123.59.156.27:8080';//测试
 
 
         $uploadUrl = 'http://192.168.20.195:8888/yy/upload';
@@ -30,6 +30,7 @@ var config ={
             'userGroup':$apiUrl+'/userGroup/query',
             'log':$apiUrl+'/log/query',
             'websites':$apiUrl+'/websites/query',
+            'websitesTemplate':$apiUrl+'/websites/template/query',
             'config':$apiUrl+'/config/query'
         };
 
@@ -53,15 +54,19 @@ var config ={
 
             'roleEdit':'components/roleEdit.html',
 
-            'websiteQuery':'components/websiteQuery.html',
+            'websitesEdit':'components/websitesEdit.html',
             'channelEdit':'components/channelEdit.html',
 
             'newsEdit':'components/newsEdit.html',
+            'newsLaunchEdit':'components/newsLaunchEdit.html',
+            'newsList':'components/newsList.html',
 
 
             'adEdit':'components/adEdit.html',
             'adPositionsEdit':'components/adPositionsEdit.html',
             'adPositionsList':'components/adPositionsList.html',
+
+            'webTemplateList':'components/webTemplateList.html',
 
 
             'homeCtrl':'components/homeCtrl.html',

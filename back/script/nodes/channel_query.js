@@ -136,6 +136,7 @@ $(function () {
             $('#popPanel').html(re);
             $('#channelEditModal').modal('show');
             if(type == 'edit'){
+                $('#channelEditModalLabel').html('编辑栏目');
                 $('input[name="channelName"]').val(selectChannel.channelName);
                 $('input[name="remark"]').val(selectChannel.remark);
             };

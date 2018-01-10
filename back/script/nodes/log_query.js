@@ -8,6 +8,7 @@ $(function () {
     var endDate = ''
     var action = ''
     var userList = [];
+    var ctrl_upate = '';
     var selectUser;
 
 
@@ -52,9 +53,6 @@ $(function () {
     };
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
-            if(nodeData.buttons[i].uri.indexOf('ctrl_aduit')!=-1){
-                ctrl_aduit = nodeData.buttons[i].uri;
-            };
             if(nodeData.buttons[i].uri.indexOf('update')!=-1){
                 ctrl_upate = nodeData.buttons[i].uri;
             };

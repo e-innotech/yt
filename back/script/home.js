@@ -57,6 +57,12 @@ $(function(){
                 expanded: true,
                 selected: true
             },
+            onNodeExpanded: function (event,data) {
+                var brothers = $('#tree').treeview('getSiblings', data);
+                for(var i=0;i<brothers.length;i++){
+                    $('#tree').treeview('collapseNode',brothers[i]);
+                }
+            },
             onNodeSelected: function (event, data) {
                 // 事件代码...
                 console.log(data);
@@ -67,7 +73,6 @@ $(function(){
                         $('#main').html(re);
                     });
                 }
-
             }
         })
 

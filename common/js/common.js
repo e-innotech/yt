@@ -11,7 +11,7 @@ const RW = ['只读','读写'];
 const MENU = ['否','是'];
 const OFFONLINE = ['下线','上线'];
 const HOME = ['','（首页）'];
-
+const TEMPLATE = ['首页','栏目','详页'];
 /**
  * 扩展jquery form序列化成json对象
  * @returns {{}|*}
