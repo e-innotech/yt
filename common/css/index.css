@@ -95,11 +95,10 @@ a {
 }
 
 .navbar > .container-fluid .navbar-brand {
-    padding: 0;
-    width: 175px;
+    width: 140px;
     height: 26px;
     position: absolute;
-    top: 0;
+    top: -20px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -129,7 +128,7 @@ a {
 }
 
 .container-fluid > .navbar-header {
-    width: 240px;
+    width: 140px;
     position: relative;
     height: 50px;
     margin: 0;
@@ -446,7 +445,10 @@ a:hover {
     background-color: #1cbb95;
     /*margin-left:0;*/
 }
-
+/*单独长的导航文字*/
+.navbar > .container-fluid .longNavbar{
+    width: 195px;
+}
 .anniu > span {
     position: absolute;
     width: 25px;
@@ -499,23 +501,26 @@ tbody button {
     display: inline-block;
     font-size: 14px;
     margin: 0 10px;
-    width: 50px;
-    height: 25px;
+    padding: 2px 15px;
 }
 table thead th:last-child{text-align: center;}
-#resourceBox .btn-default {
-    background: #80d3fe;
-    border: none;
-    color: #fff
+/*#resourceBox .btn-default {*/
+    /*background: #80d3fe;*/
+    /*border: none;*/
+    /*color: #fff*/
+/*}*/
+#newsLaunchT input[type="checkbox"]{
+   margin: 0 2px 1px 10px;
 }
-
 #tel2,#tel1{background: #fff}
 
 /*分页*/
 #totalPg {
     float: left;
 }
-
+#pgAdPositionsList,#pgWeb,#pgNewsLaunch{
+    margin-top: -25px;
+}
 .pagination {
     float: right;
     margin: 0;
