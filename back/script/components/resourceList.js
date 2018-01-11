@@ -17,13 +17,13 @@ $(function () {
         resourceList = list;
         $('#resourceListBox').empty();
         for(var i=0;i<resourceList.length;i++){
-            $('#resourceListBox').append('<div style="border: 1px solid #000000"><div style="padding-left: 30px;padding-top: 5px;padding-bottom: 5px;" id="levelList1_'+resourceList[i].id+'"></div></div>');
+            $('#resourceListBox').append('<div style="border: 1px solid #ccc"><div style="padding-left: 30px;padding-bottom: 5px;" id="levelList1_'+resourceList[i].id+'"></div></div>');
             renderButton($('#levelList1_'+resourceList[i].id),resourceList[i].id,resourceList[i].resourceName,false);
             for(var j=0;j<resourceList[i].level2.length;j++){
                 if(resourceListType == 'parent'){
                     renderButton($('#levelList1_'+resourceList[i].id),resourceList[i].level2[j].id,resourceList[i].level2[j].resourceName,true);
                 }else{
-                    $('#levelList1_'+resourceList[i].id).append('<div><div style="padding-left: 30px;padding-top: 5px;padding-bottom: 5px;" id="levelList2_'+resourceList[i].level2[j].id+'"></div></div>');
+                    $('#levelList1_'+resourceList[i].id).append('<div><div style="padding-left: 30px;padding-bottom: 5px;" id="levelList2_'+resourceList[i].level2[j].id+'"></div></div>');
                     renderButton($('#levelList2_'+resourceList[i].level2[j].id),resourceList[i].level2[j].id,resourceList[i].level2[j].resourceName,false);
                     for (var k = 0; k < resourceList[i].level2[j].level3.length; k++) {
                         renderButton($('#levelList2_' + resourceList[i].level2[j].id), resourceList[i].level2[j].level3[k].id, resourceList[i].level2[j].level3[k].resourceName, true);
@@ -34,9 +34,9 @@ $(function () {
     };
     var renderButton = function (obj,id,name,bol) {
         if(resourceListType == 'parent') {
-            var btn = '<button class="btn btn-default" style="margin-left: 10px;" id="editList_' + id + '">' + name + '</button>';
+            var btn = '<button class="btn btn-default" style="margin:5px 10px;" id="editList_' + id + '">' + name + '</button>';
         }else{
-            var btn = '<label class="btn btn-default" style="margin-left: 10px;" ><input type="checkbox" id="check_'+id+'" >' + name + '</label>';
+            var btn = '<label class="btn btn-default" style="margin:5px 10px;" ><input type="checkbox" id="check_'+id+'" >' + name + '</label>';
         }
         if(bol){
             obj.append(btn);

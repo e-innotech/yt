@@ -165,23 +165,23 @@ $(function () {
                    }
                });
            });
-           $('input[name="beginDate"]').datetimepicker({
-               format:'yyyy-mm-dd',
-               language:'zh-CN',
-               autoclose:true,
-               todayBtn:true,
-               todayHighlight:true,
-               minView:'month'
-           });
-           $('input[name="endDate"]').datetimepicker({
-               format:'yyyy-mm-dd',
-               language:'zh-CN',
-               autoclose:true,
-               todayBtn:true,
-               todayHighlight:true,
-               minView:'month'
-           });
-           
+           //$('input[name="beginDate"]').datetimepicker({
+           //    format:'yyyy-mm-dd',
+           //    language:'zh-CN',
+           //    autoclose:true,
+           //    todayBtn:true,
+           //    todayHighlight:true,
+           //    minView:'month'
+           //});
+           //$('input[name="endDate"]').datetimepicker({
+           //    format:'yyyy-mm-dd',
+           //    language:'zh-CN',
+           //    autoclose:true,
+           //    todayBtn:true,
+           //    todayHighlight:true,
+           //    minView:'month'
+           //});
+           //
            $('#saveBtn').click(function () {
                if(type == 'edit'){
                    editAd();
