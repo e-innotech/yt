@@ -11,9 +11,10 @@ $(function () {
     var newsList = [];
     var selectNews;
 
+
     var ctrl_add = '';
     var ctrl_upate = '';
-    var ctrl_launch_add = ''
+    var ctrl_launch_add = '';
 
     var getNewsList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
@@ -36,6 +37,12 @@ $(function () {
             }
         });
     };
+    var addNewsLaunch = function () {
+        var data = {newsId:selectNews.id,newsLaunchConfig:$('#newsLaunchConfig').val()};
+        AjaxFunc($apiUrl+ctrl_launch_add,'post',data,function (re) {
+            alert(re.msg);
+        })
+    }
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('/news/add')!=-1){
@@ -151,6 +158,9 @@ $(function () {
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');
+            $('#newsLaunchEditModal').on('hide.bs.modal',function () {
+                addNewsLaunch();
+            });
         })
     };
     initialize();
