@@ -1,6 +1,4 @@
 /*以下为左侧广告*/
-
-@media screen and (min-width: 1680px) {
 	/*以下为左侧广告*/
 		.advertising{
 			position:fixed;
@@ -18,30 +16,6 @@
 			width:230px;
 			height:320px;
 		}
-
-}
-
-
-@media screen and (max-width: 1680px) {
-   .advertising{
-			position:fixed;
-			top:130px;
-			left:44px;
-			width:230px;
-			height:808px;
-			z-index:100;
-			display:none;
-		}
-
-		.advertising .Imgtop{
-			margin-bottom:40px;
-		}
-		.advertising img{
-			width:230px;
-			height:320px;
-		}
-
-}
 
 /*以下为主体内容*/
  .contentbg{
@@ -72,10 +46,9 @@
 .content-left .content-left-l{
 	width:552px;
 	height:306px;
-	/*background:pink;*/
     float:left;
     position:relative;
-    overflow: auto;
+
 
 }
 .content-left-l li{
@@ -84,28 +57,25 @@
 	list-style: none;
 	float: left;
 }
-/*.content-left .content-left-l .arrows-l{*/
-	/*position:absolute;*/
-	/*top:131px;*/
-	/*left:0;*/
-/*}*/
+
 #carousel .prev{
 	position:absolute;
 	top:131px;
 	left:0;
 }
 #carousel .next{
-	display:inline-block;
+	display:inline-block;t:0px;
 	position:absolute;
 	top:131px;
 	right:0;
 }
+#swiper-button-prev{
+	left:0;
+}
+#swiper-button-next{
+	right:0;
+}
 
-/*.content-left .content-left-l .arrows-r{*/
-	/*position:absolute;*/
-	/*top:131px;*/
-	/*right:0;*/
-/*}*/
 .content-left .content-left-l .picture{
    width:100%;
    height:100%;
@@ -118,8 +88,6 @@
 	border-bottom:2px solid #206491;
 }
 
-
-
 .bgcolor{
 	width:552px;
 	height:55px;
@@ -131,18 +99,13 @@
 	width:377px;
 	line-height:55px;
     padding-left:15px;
-    
-}
-
-.bgcolor p a{
-	width:377px;
-	display: inline-block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
 	color:#fbf9fc;
 	font-size:17px;
-	white-space:nowrap; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
 }
+
 .content-left-r .top{
 	width:278px;
 	height:148px;

@@ -14,9 +14,9 @@
 
 
 .content-left .banner{
+	width:858px;
 	height:350px;
 	position:relative;
-	overflow: auto;
 
 }
 .content-left .banner li{
@@ -29,18 +29,23 @@
 	width:100%;
 	height:100%;
 }
-.content-left .banner .prev{
+.content-left .banner .swiper-button-prev{
 	position:absolute;
 	left:0;
 	top:151px;
 
 }
-.content-left .banner .next{
+.content-left .banner .swiper-button-next{
 	position:absolute;
 	right:0;
 	top:151px;
 }
-.banner .bannerinfo{
+.content-left .banner .picture{
+	width:100%;
+	height:100%;
+
+}
+.banner .bgcolor{
 	width:100%;
 	height:55px;
 	font-size:20px;
@@ -53,6 +58,17 @@
 	background: rgba(63,83,94,.4);
 
 }
+.banner .bgcolor{
+	text-overflow: ellipsis;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+
+}
+
+
 .bannersmall{
 	height:80px;
 	margin-top:30px;
