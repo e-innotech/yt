@@ -41,6 +41,9 @@ $(function () {
         var data = {newsId:selectNews.id,newsLaunchConfig:$('#newsLaunchConfig').val()};
         AjaxFunc($apiUrl+ctrl_launch_add,'post',data,function (re) {
             alert(re.msg);
+            if(re.success){
+                getNewsList();
+            }
         })
     }
     var initialize = function () {
@@ -159,7 +162,9 @@ $(function () {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');
             $('#newsLaunchEditModal').on('hide.bs.modal',function () {
-                addNewsLaunch();
+                if($('#newsLaunchConfig').val()!='') {
+                    addNewsLaunch();
+                }
             });
         })
     };

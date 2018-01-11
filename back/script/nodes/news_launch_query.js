@@ -74,10 +74,21 @@ $(function () {
                 '<td>'+list[i].news.content+'</td>'+
                 '<td>'+list[i].news.content+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
-
+                '<td>'+ADUIT[list[i].status]+'</td>'+
+                '<td>'+getCtrl([list[i].status])+'</td>'+
                 '</tr>');
         }
     };
+    var getCtrl = function (status) {
+        var re = '';
+        if(ctrl_upate!='' && status == 2){
+            re += '<button>编辑</button>';
+        };
+        if(ctrl_aduit && status == 0){
+
+        };
+
+    }
     var showNewsLaunchEdit = function (type) {
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
