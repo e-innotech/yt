@@ -72,22 +72,36 @@ $(function () {
                 '<td>'+list[i].news.newsTitle+'</td>'+
                 '<td>'+list[i].news.source+'</td>'+
                 '<td>'+list[i].news.content+'</td>'+
-                '<td>'+list[i].news.content+'</td>'+
+                '<td>'+getWC(list[i].webChannelConfig)+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
                 '<td>'+ADUIT[list[i].status]+'</td>'+
-                '<td>'+getCtrl([list[i].status])+'</td>'+
+                '<td>'+getCtrl([list[i].id,[list[i].status])+'</td>'+
                 '</tr>');
+
+
         }
     };
-    var getCtrl = function (status) {
+    var getWC = function (list) {
+        var re='';
+        for(var i=0;i<list.length;i++){
+            re += list[i].website.siteName+'【';
+            var c = [];
+            for(var j=0;j<list[i].channels.length;j++){
+                c.push(list[i].channels[j].channelName);
+            }
+            re += c.toString()+'】';
+        };
+        return re;
+    };
+    var getCtrl = function (id,status) {
         var re = '';
         if(ctrl_upate!='' && status == 2){
-            re += '<button>编辑</button>';
+            re += '<button id="editBtn_'+id+'">编辑</button>';
         };
         if(ctrl_aduit && status == 0){
-
+            re += '<button id="aduitBtn_'+id+'">审核</button>';
         };
-
+        return re;
     }
     var showNewsLaunchEdit = function (type) {
         $.get($components.newsLaunchEdit,function (re) {
