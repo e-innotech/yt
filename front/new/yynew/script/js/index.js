@@ -1,5 +1,5 @@
 
-// 以下为新闻列表
+// 以下为中间部分新闻列表
 $(document).ready(function(){
      $.ajax({
             url:"../data/newlist.json",
@@ -7,15 +7,15 @@ $(document).ready(function(){
             async:true,
             type:"get",
             success:function(newlistData){
-              // console.log(22,newlistData.data.list)
+              //console.log(22,newlistData.data.list)
               var newlist = newlistData.data.list;
-              console.log(111,newlist);
+            //  console.log(111,newlist);
               for(var i=0;i<newlist.length;i++){
                   // 创建一个放新闻的容器
                   var list= $("<div class='list' id='list'></div>");
                 //创建图片
                   var creatImgbig=$("<img />");
-                  creatImgbig.attr("src",newlist[i].Img);
+                  creatImgbig.attr("src",newlist[i].staticUrl);
                   creatImgbig.appendTo(list);
                   
                   //创建右侧列表
@@ -23,7 +23,8 @@ $(document).ready(function(){
                   
                  //创建右侧列表的h2标签
                   var createH2= $("<h2 class='subhead'></h2>");
-                      createH2.text(newlist[i].title)
+                    //右侧列表
+                      createH2.text(newlist[i].news_title)
                       createH2.appendTo(createlistrbox)
                   //右侧中间的用户信息和时间
                   var creatcenter=$("<div class='center'></div>");
@@ -35,19 +36,22 @@ $(document).ready(function(){
 
                   //创建头像
                   var createportrait=$("<img class='portrait' />");
-                  createportrait.attr("src","http://cdn.yemacaijing.com/Uploads/Pic/2016-08-22/57ba714e93e6c.jpg!w60");
-                   creatsource.text("人人人人");
+                   //头像
+                  createportrait.attr("src",newlist[i].portrait);
+                  //来源
+                   creatsource.text(newlist[i].source);
                    creatsource.append(createportrait);
 
                    //创建时间
                    var time=$("<span class='time'></span>");
                    //获取时间 时间先写死
-                   time.text("2017-03-27");
-                   createleft.append(creatsource)
+                   time.text(newlist[i].create_date);
+                   createleft.append(creatsource);
                    createleft.append(time);
 
 
-                  //右侧的点赞 收藏 和评论
+                  //中间右侧的点赞 收藏 和评论
+                  //点赞
                   var creatp=$("<p></p>");
                   var creatImg=$("<img />");
                   creatImg.attr("src","../images/zan.png");
@@ -75,7 +79,7 @@ $(document).ready(function(){
                   var commentImg=$("<img />");
                   commentImg.attr("src","../images/ping.png");
                   var commentspan=$("<span></span>");
-                  //给收藏的span赋值
+                  //给评论的span赋值
                   commentspan.text(0);
                   commentp.append(commentImg);
                   commentp.append(commentspan);
@@ -83,22 +87,48 @@ $(document).ready(function(){
 
                    creatcenter.append(createleft);
                    creatcenter.append(createright);
-                   list.append(creatcenter) 
+                   list.append(creatcenter);
 
                     creatcenter.appendTo(createlistrbox)
                   //创建文章内容
                   var creatnewsdetail=$("<p class='newsdetail'></p>");
-                      creatnewsdetail.text(newlist[i].article)
-                      creatnewsdetail.appendTo(createlistrbox)
+                      creatnewsdetail.text(newlist[i].content);
+                      creatnewsdetail.appendTo(createlistrbox);
 
                       list.append(createlistrbox);
                       $(".listbox").append(list);
-
               }
-
-               
             }
         })
  });
+
+
+$(document).ready(function(){
+    $.ajax({
+        url:"../data/slideshow.json",
+        dataType:"json",
+        async:true,
+        type:"get",
+        success:function(slideshowData){
+            //console.log(65666,slideshowData);
+            var slide=slideshowData.data.slider
+            console.log(111,slide)
+            for(var i=0;i<slide.length;i++){
+                var creatLi=$("<li></li>");
+
+                var createImg=$("<img class='picture'/>");
+                  createImg.attr("src",slide[i].staticUrl);
+                  creatLi.append(createImg);
+                $("#slide").append(creatLi);
+
+            }
+
+        }
+
+    })
+});
+
+
+
 
 
