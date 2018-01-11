@@ -28,24 +28,22 @@
        <div class="content-left">
            <div class="content-left-t">
                <div class="content-left-l swiper-container" id="carousel">
+                   <!--放轮播图的盒子-->
                   <ul class="swiper-wrapper" id="slide">
-                      <!--<li class="swiper-slide"><img class="picture" alt="" src="../images/bannerone.png"/></li>-->
-                      <!--<li class="swiper-slide"><img class="picture" alt="" src="../images/bannertwo.png"/></li>-->
-                      <!--<li class="swiper-slide"><img class="picture" alt="" src="../images/bannerthree.png"/></li>-->
+                      <!--<li class="swiper-slide">-->
+                          <!--<a href="https://www.baidu.com/">-->
+                              <!--<img class="picture" alt="" src="../images/bannerone.png"/>-->
+                              <!--<div class="bgcolor">-->
+                                 <!--<p>卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</p>-->
+                              <!--</div>-->
+                          <!--</a>-->
+                      <!--</li>-->
                   </ul>
-                   <div class="swiper-button-prev"><img  src="../images/arrows-l.png" class="arrows-l"/></div>
-                   <div class="swiper-button-next"><img  src="../images/arrows-r.png" class="arrows-r"/></div>
 
-                  <!-- 轮播图上的箭头 -->
-                  <!--<a href="#" class="unslider-arrow prev">-->
-                       <!--<img id="next" src="../images/arrows-l.png" class="arrows-l"/>-->
-                  <!--</a>-->
-                  <!--<a href="#" class="unslider-arrow next">-->
-                       <!--<img id="previous" src="../images/arrows-r.png" class="arrows-r"/>-->
-                  <!--</a>-->
-                  <!--<div class="bgcolor">-->
-                      <!--<p><a href="#">卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</a></p>-->
-                  <!--</div>-->
+                   <!--轮播上的箭头-->
+                   <div class="swiper-button-prev" id="swiper-button-prev"><img  src="../images/arrows-l.png" class="arrows-l"/></div>
+                   <div class="swiper-button-next" id="swiper-button-next"><img  src="../images/arrows-r.png" class="arrows-r"/></div>
+
                </div>
                <div class="content-left-r">
                    <div class="top">
@@ -107,20 +105,27 @@
 <div id="bottom"></div>
 
 <script>
+    //轮播图
     var mySwiper = new Swiper ('.swiper-container', {
+        //轮播图滚动的方向
         direction: 'horizontal',
+        //整个图片是循环的
         loop: true,
+        //自动播放
+        autoplay:true,
 
         // 如果需要前进后退按钮
-        navigation: {
+        navigation:{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
-        }
+        },
 
-//        // 如果需要滚动条
-//        scrollbar: {
-//            el: '.swiper-scrollbar'
-//        }
+
+        initialSlide :0,
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true//修改swiper的父元素时，自动初始化swiper
+
+
     })
 </script>
 
@@ -130,15 +135,6 @@
    <script type="text/javascript" src="../script/js/right.js"></script>
        <!-- <script type="text/javascript" src="../script/js/indextwo.js"></script> -->
 <script>
-  //轮播图
-//$(document).ready(function() {
-//    var unslider=$("#carousel").unslider();
-//    $(".unslider-arrow").click(function(){
-//        var fn=this.className.split(' ')[1];
-//        unslider.data('unslider')[fn]();
-//    })
-//
-//});
 
 //点那个li  给那个li添加下边框
 $(".nav").on("click","li",function(){
