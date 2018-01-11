@@ -24470,6 +24470,7 @@ UE.plugin.register('simpleupload', function (){
             btnIframe = document.createElement('iframe'),
             btnStyle = 'display:block;width:' + w + 'px;height:' + h + 'px;overflow:hidden;border:0;margin:0;padding:0;position:absolute;top:0;left:0;filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity: 0;opacity: 0;cursor:pointer;';
 
+        // top.postMessage('hello','*');
         domUtils.on(btnIframe, 'load', function(){
 
             var timestrap = (+new Date()).toString(36),
@@ -24503,7 +24504,6 @@ UE.plugin.register('simpleupload', function (){
             var form = btnIframeDoc.getElementById('edui_form_' + timestrap);
             var input = btnIframeDoc.getElementById('edui_input_' + timestrap);
             var iframe = btnIframeDoc.getElementById('edui_iframe_' + timestrap);
-
             domUtils.on(input, 'change', function(){
                 if(!input.value) return;
                 var loadingId = 'loading_' + (+new Date()).toString(36);
@@ -24516,7 +24516,8 @@ UE.plugin.register('simpleupload', function (){
                 me.execCommand('inserthtml', '<img class="loadingclass" id="' + loadingId + '" src="' + me.options.themePath + me.options.theme +'/images/spacer.gif" title="' + (me.getLang('simpleupload.loading') || '') + '" >');
 
                 function callback(){
-                    try{
+                    // try{
+                    //     console.log(iframe.prop('contentWindow').document);
                         var link, json, loader,
                             body = (iframe.contentDocument || iframe.contentWindow.document).body,
                             result = body.innerText || body.textContent || '';
@@ -24533,9 +24534,9 @@ UE.plugin.register('simpleupload', function (){
                         } else {
                             showErrorLoader && showErrorLoader(json.state);
                         }
-                    }catch(er){
-                        showErrorLoader && showErrorLoader(me.getLang('simpleupload.loadError'));
-                    }
+                    // }catch(er){
+                    //     showErrorLoader && showErrorLoader(me.getLang('simpleupload.loadError'));
+                    // }
                     form.reset();
                     domUtils.un(iframe, 'load', callback);
                 }
