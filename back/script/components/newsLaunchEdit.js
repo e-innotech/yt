@@ -45,7 +45,7 @@ $(function () {
             for(var j=0;j<list[i].channels.length;j++){
                 $('#wcCB_'+list[i].id+'_'+list[i].channels[j].id).change(function () {
                     var ids = this.id.split('_');
-                    updateSelectLaunch(ids[0],ids[1],this.checked);
+                    updateSelectLaunch(ids[1],ids[2],this.checked);
                 });
             }
         };
@@ -58,24 +58,25 @@ $(function () {
         return re;
     };
     var updateSelectLaunch = function (wid,cid,bol) {
-        for (var i = 0; i < newsLaunchConfig.length; i++) {
-            if (wid == newsLaunchConfig[i].websiteId) {
-                for (var j = 0; j < newsLaunchConfig[i].channelId.length; j++) {
-                    if (cid == newsLaunchConfig[i].channelId[j]) {
-                        newsLaunchConfig[i].channelId.splice(j, 1);
-                        return;
-                    }
+        console.log(wid,cid,bol);
+        if(bol){
+            for (var i = 0; i < newsLaunchConfig.length; i++) {
+                if (wid == newsLaunchConfig[i].websiteId && jQuery.inArray(cid,newsLaunchConfig[i].channelId) == -1) {
+                    newsLaunchConfig[i].channelId.push(cid);
+                    return;
                 }
-                if(bol){
-
+            }
+            newsLaunchConfig.push({websiteId: wid, channelId: [cid]});
+        }else{
+            for (var j = 0; j < newsLaunchConfig.length; j++) {
+                var index = jQuery.inArray(cid,newsLaunchConfig[j].channelId);
+                if(index!=-1){
+                    newsLaunchConfig[j].channelId.splice(index,1);
+                    return;
                 }
-            }else{
-                newsLaunchConfig.push({websiteId:wid,channelId:[cid]});
             }
         }
-        if(bol) {
-            newsLaunchConfig.push({websiteId: wid, channelId: [cid]});
-        }
+        console.log('newsLaunchConfig=='+JSON.stringify(newsLaunchConfig));
     }
     initialize();
 })
