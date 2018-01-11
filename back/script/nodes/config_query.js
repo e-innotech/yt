@@ -16,6 +16,9 @@ $(function () {
         if (name != '') {
             data.name = name;
         };
+        if (value != '') {
+            data.value = value;
+        };
         AjaxFunc($query.config, 'get', data, function (re) {
             if (re.success) {
                 initTable(re.data.list);
@@ -26,8 +29,8 @@ $(function () {
         });
     };
     var addUser = function () {
-        if($('input[name="groupName"]').val()==''){
-            alert('参数不sf能为空');
+        if($('input[name="name"]').val()==''){
+            alert('参数不能为空');
             return;
         }
         //var data={rolesId:selectUser.rolesId};

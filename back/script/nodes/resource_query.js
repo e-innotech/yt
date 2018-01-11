@@ -77,10 +77,10 @@ $(function () {
         resourceList = list;
         $('#resourceBox').empty();
         for(var i=0;i<resourceList.length;i++){
-            $('#resourceBox').append('<div style="border: 1px solid #000000"><div style="padding-left: 30px;padding-top: 5px;padding-bottom: 5px;" id="level1_'+resourceList[i].id+'"></div></div>');
+            $('#resourceBox').append('<div style="border: 1px solid #ccc"><div style="padding-left: 30px;padding-bottom: 5px;" id="level1_'+resourceList[i].id+'"></div></div>');
             renderButton($('#level1_'+resourceList[i].id),resourceList[i].id,resourceList[i].resourceName,false);
             for(var j=0;j<resourceList[i].level2.length;j++){
-                $('#level1_'+resourceList[i].id).append('<div><div style="padding-left: 30px;padding-top: 5px;padding-bottom: 5px;" id="level2_'+resourceList[i].level2[j].id+'"></div></div>');
+                $('#level1_'+resourceList[i].id).append('<div><div style="padding-left: 30px;padding-bottom: 5px;" id="level2_'+resourceList[i].level2[j].id+'"></div></div>');
                 renderButton($('#level2_'+resourceList[i].level2[j].id),resourceList[i].level2[j].id,resourceList[i].level2[j].resourceName,false);
                 for(var k=0;k<resourceList[i].level2[j].level3.length;k++){
                     renderButton($('#level2_'+resourceList[i].level2[j].id),resourceList[i].level2[j].level3[k].id,resourceList[i].level2[j].level3[k].resourceName,true);
@@ -89,7 +89,7 @@ $(function () {
         }
     };
     var renderButton = function (obj,id,name,bol) {
-        var btn = '<button class="btn btn-default" style="margin-left: 10px;" id="edit_'+id+'">'+name+'</button><button class="btn btn-default" id="delete_'+id+'">X</button>';
+        var btn = '<button class="btn btn-default" style="margin:5px 10px;" id="edit_'+id+'">'+name+'</button><button class="glyphicon glyphicon-remove" style="background:#fff;border: none;top: -5px;left:-10px;" id="delete_'+id+'"></button>';
         if(bol){
             obj.append(btn);
         }else {

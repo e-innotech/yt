@@ -1,0 +1,33 @@
+<div class="modal fade" id="newsLaunchAduitModal" tabindex="-1" role="dialog" aria-labelledby="newsLaunchAduitModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="newsLaunchAduitModalLabel">稿件审核</h4>
+            </div>
+            <div class="modal-body">
+                <form id="newsLaunchAduitForm" role="form" >
+                    <div class="input-group">
+                        <span class="input-group-addon">审核意见：</span>
+                        <select name="status" class="form-control">
+                            <option value="1">通过</option>
+                            <option value="2">拒绝</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">拒绝理由：</span>
+                        <textarea name="aduitDes" class="form-control" rows="10" style="resize: none" placeholder="拒绝时填写"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>

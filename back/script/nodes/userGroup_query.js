@@ -133,8 +133,7 @@ $(function () {
                 ;
                 statusUser(this.id.split('_')[1], isUse)
             });
-        }
-        ;
+        };
     };
 
 
@@ -162,7 +161,7 @@ $(function () {
                 $('input[name="groupName"]').val(selectUser.groupName);
                 $('input[name="remark"]').val(selectUser.remark);
                 //$('input[name="roleName"]').val(selectUser.roles.roleName);
-                $('input[name="rolesId"]').val(selectUser.rolesId);
+                $('input[name="pname"]').val(selectUser.roles.roleName);
             };
             $('#userGroupBtn').click(function () {
                 $.get($components.addRole, function (re) {
