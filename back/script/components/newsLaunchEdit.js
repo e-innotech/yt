@@ -38,9 +38,9 @@ $(function () {
     };
     var initTable = function(list) {
         websitesList = list;
-        $('#newsLaunchT').empty();
+        $('#newsLaunchEditT').empty();
         for (var i = 0; i < list.length; i++) {
-            $('#newsLaunchT').append('<tr>' +
+            $('#newsLaunchEditT').append('<tr>' +
                 '<td>'+list[i].siteName+'</td>'+
                 '<td>'+getChannels(list[i].id,list[i].channels)+'</td>'+
                 '</tr>');

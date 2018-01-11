@@ -31,6 +31,27 @@ $(function () {
            }
         });
     };
+    var aduitNewsLaunch = function () {
+        var data = $('#newsLaunchAduitForm').serializeObject();
+        data.id = selectNewsLaunch.id;
+        AjaxFunc($apiUrl+ctrl_aduit,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#newsLaunchAduitModal').modal('hide');
+                getNewsLaunchList();
+            }
+        })
+    }
+    var editNewsLaunch = function () {
+        var data = {id:selectNewsLaunch.id,newsLaunchConfig:$('#newsLaunchConfig').val()};
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                getNewsLaunchList();
+                $('#newsLaunchConfig').val('');
+            }
+        })
+    }
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('aduit')!=-1){
@@ -75,10 +96,25 @@ $(function () {
                 '<td>'+getWC(list[i].webChannelConfig)+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
                 '<td>'+ADUIT[list[i].status]+'</td>'+
-                '<td>'+getCtrl([list[i].id,[list[i].status])+'</td>'+
+                '<td>'+getCtrl(list[i].id,list[i].status)+'</td>'+
                 '</tr>');
 
 
+            $('#editBtn_'+list[i].id).click(function () {
+                selectNewsLaunch = getNewsLaunchFromId(this.id.split('_')[1]);
+                showNewsLaunchEdit();
+            });
+            $('#aduitBtn_'+list[i].id).click(function () {
+                selectNewsLaunch = getNewsLaunchFromId(this.id.split('_')[1]);
+                showNewsLaunchAduit();
+            });
+        }
+    };
+    var getNewsLaunchFromId = function (id) {
+        for(var i=0;i<newsLaunchList.length;i++){
+            if(id == newsLaunchList[i].id){
+                return newsLaunchList[i];
+            }
         }
     };
     var getWC = function (list) {
@@ -98,28 +134,28 @@ $(function () {
         if(ctrl_upate!='' && status == 2){
             re += '<button id="editBtn_'+id+'">编辑</button>';
         };
-        if(ctrl_aduit && status == 0){
+        if(ctrl_aduit!='' && status == 0){
             re += '<button id="aduitBtn_'+id+'">审核</button>';
         };
         return re;
     }
-    var showNewsLaunchEdit = function (type) {
+    var showNewsLaunchEdit = function(){
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');
-
-            if(type == 'edit'){
-
-            };
-            $('#newsTitle').click(function () {
-                // $.get();
-            });
-            $('#saveBtn').click(function () {
-                if(type == 'edit'){
+            $('#newsLaunchEditModal').on('hide.bs.modal',function () {
+                if($('#newsLaunchConfig').val()!='') {
                     editNewsLaunch();
-                    return;
                 }
-                addNewsLaunch();
+            });
+        })
+    };
+    var showNewsLaunchAduit = function () {
+        $.get($components.newsLaunchAduit,function (re) {
+            $('#popPanel').html(re);
+            $('#newsLaunchAduitModal').modal('show');
+            $('#saveBtn').click(function () {
+                aduitNewsLaunch();
             });
         });
     }

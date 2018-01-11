@@ -43,6 +43,7 @@ $(function () {
             alert(re.msg);
             if(re.success){
                 getNewsList();
+                $('#newsLaunchConfig').val('');
             }
         })
     }
@@ -115,7 +116,7 @@ $(function () {
 
             $('#launchBtn_'+list[i].id).click(function () {
                 selectNews = getNewsFromId(this.id.split('_')[1]);
-                showNewsLaunchEdit('edit');
+                showNewsLaunchEdit();
             });
         }
     };
@@ -157,7 +158,7 @@ $(function () {
             // });
         });
     };
-    var showNewsLaunchEdit = function(type){
+    var showNewsLaunchEdit = function(){
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');

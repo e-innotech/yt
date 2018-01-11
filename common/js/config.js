@@ -59,6 +59,7 @@ var config ={
 
             'newsEdit':'components/newsEdit.html',
             'newsLaunchEdit':'components/newsLaunchEdit.html',
+            'newsLaunchAduit':'components/newsLaunchAduit.html',
             'newsList':'components/newsList.html',
 
 
