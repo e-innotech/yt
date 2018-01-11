@@ -46,7 +46,8 @@
     height:156px;
 }
 .imgnewlist .textone{
-
+    font-size:16px;
+    color:#101010;
     margin-top:7px;
     line-height:28px;
     text-overflow: ellipsis;
@@ -57,14 +58,15 @@
     -webkit-box-orient: vertical;
 }
 
-.imgnewlist .textone a{
-     font-size:16px;
-    color:#101010;
-}
+/*.imgnewlist .textone a{*/
+
+/*}*/
 
 .imgnewlist .texttwo{
     line-height:25px;
     margin-left:11px;
+    font-size:14px;
+    color:#6d6d6d;
     white-space: nowrap;
      text-overflow: ellipsis;
     overflow: hidden;
@@ -73,10 +75,9 @@
     -webkit-box-orient: vertical;
 */
 }
-.imgnewlist .texttwo a{
-      font-size:14px;
-    color:#6d6d6d;
-}
+/*.imgnewlist .texttwo a{*/
+  /**/
+/*}*/
 
 
 .content-right-center ul li{
@@ -138,6 +139,12 @@
     border-bottom-left-radius:8px;
     font-size:14px;
     color:#fafafa;
+    /*text-overflow: ellipsis;*/
+    /*text-overflow: -o-ellipsis-lastline;*/
+    /*overflow: hidden;*/
+    /*display: -webkit-box;*/
+    /*-webkit-line-clamp: 2;*/
+    /*-webkit-box-orient: vertical;*/
 }
 .textpicBox .bg p{
     text-overflow: ellipsis;

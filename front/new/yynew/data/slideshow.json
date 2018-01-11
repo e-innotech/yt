@@ -1,0 +1,39 @@
+{
+  "msg": "操作成功！",
+  "data": {
+    "id": 1,
+    "siteName": "123",
+    "route": "http://www.123.com",
+    "isUse": 1,
+    "createDate": "2017-12-20 18:50:30.0",
+    "templteConfig": "/ab/c/1.html",
+    "slider": [
+      {
+        "id": 1,
+        "staticUrl":"http://www.upchina.com/upload/recommend/2018-01-09/1515481371806.jpg"
+
+      },
+      {
+        "id": 2,
+        "staticUrl":"http://www.upchina.com/upload/recommend/2018-01-09/1515480209294.jpg"
+
+      },
+      {
+        "id": 3,
+        "staticUrl":"http://www.upchina.com/upload/recommend/2018-01-09/1515478851598.jpg"
+
+      },
+      {
+        "id": 4,
+        "staticUrl":"http://www.upchina.com/upload/recommend/2018-01-09/1515478313661.jpg"
+
+      },
+      {
+        "id": 5,
+        "staticUrl":"http://www.upchina.com/upload/recommend/2018-01-09/1515478032118.jpg"
+
+      }
+    ]
+  },
+  "success": true
+}

@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="../css/bottom.css">
     <link rel="stylesheet" type="text/css" href="../css/contentright.css"/>
     <link rel="stylesheet" href="../css/index.css">
-    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="../script/unslider.min.js"></script>
-
- 
+    <link rel="stylesheet" href="../css/swiper.min.css"/>
+    <script src="../script/jquery.min.js"></script>
+    <script src="../script/swiper.min.js"></script>
+    <!--<script type="text/javascript" src="../script/unslider.min.js"></script>-->
 </head>
 <body>
 <!-- 以下为头部 -->
@@ -27,18 +27,25 @@
        <!-- 主体内容左边 -->
        <div class="content-left">
            <div class="content-left-t">
-               <div class="content-left-l" id="carousel">
-                  <ul id="slide">
-                      <li><img class="picture" alt="" src="../images/bannerone.png"/></li>
-                      <li><img class="picture" alt="" src="../images/bannertwo.png"/ ></li> 
-                      <li><img class="picture" alt="" src="../images/bannerthree.png"/></li>
+               <div class="content-left-l swiper-container" id="carousel">
+                  <ul class="swiper-wrapper" id="slide">
+                      <!--<li class="swiper-slide"><img class="picture" alt="" src="../images/bannerone.png"/></li>-->
+                      <!--<li class="swiper-slide"><img class="picture" alt="" src="../images/bannertwo.png"/></li>-->
+                      <!--<li class="swiper-slide"><img class="picture" alt="" src="../images/bannerthree.png"/></li>-->
                   </ul>
+                   <div class="swiper-button-prev"><img  src="../images/arrows-l.png" class="arrows-l"/></div>
+                   <div class="swiper-button-next"><img  src="../images/arrows-r.png" class="arrows-r"/></div>
+
                   <!-- 轮播图上的箭头 -->
-                  <a href="javascript:void(0);" class="unslider-arrow04 prev"><img id="next" src="../images/arrows-l.png" class="arrows-l unslider-arrow04"/></a>
-                  <a href="javascript:void(0);" class="unslider-arrow04 next"><img id="previous" src="../images/arrows-r.png" class="arrows-r unslider-arrow04"/></a>
-                  <div class="bgcolor">
-                      <p><a href="#">卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</a></p>
-                  </div>
+                  <!--<a href="#" class="unslider-arrow prev">-->
+                       <!--<img id="next" src="../images/arrows-l.png" class="arrows-l"/>-->
+                  <!--</a>-->
+                  <!--<a href="#" class="unslider-arrow next">-->
+                       <!--<img id="previous" src="../images/arrows-r.png" class="arrows-r"/>-->
+                  <!--</a>-->
+                  <!--<div class="bgcolor">-->
+                      <!--<p><a href="#">卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</a></p>-->
+                  <!--</div>-->
                </div>
                <div class="content-left-r">
                    <div class="top">
@@ -90,7 +97,7 @@
            <div class="more">点击加载更多</div>
        </div>
          <!-- 以下为内容右侧 -->
-       <div id="content-right">
+       <div id="content-right" class="content-right">
           
        </div>
    </div>
@@ -99,44 +106,58 @@
 <!-- 以下为footer -->
 <div id="bottom"></div>
 
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        }
+
+//        // 如果需要滚动条
+//        scrollbar: {
+//            el: '.swiper-scrollbar'
+//        }
+    })
+</script>
 
 
 </body>
    <script type="text/javascript" src="../script/js/index.js"></script>
+   <script type="text/javascript" src="../script/js/right.js"></script>
        <!-- <script type="text/javascript" src="../script/js/indextwo.js"></script> -->
 <script>
   //轮播图
-$(document).ready(function(e) {
-    var unslider04 = $('#carousel').unslider({
-        dots: true
-    }),
-    data04 = unslider04.data('unslider');
-     
-    $('.unslider-arrow04').click(function() {
-        var fn = this.className.split(' ')[1];
-        data04[fn]();
-    });
-});
+//$(document).ready(function() {
+//    var unslider=$("#carousel").unslider();
+//    $(".unslider-arrow").click(function(){
+//        var fn=this.className.split(' ')[1];
+//        unslider.data('unslider')[fn]();
+//    })
+//
+//});
 
 //点那个li  给那个li添加下边框
 $(".nav").on("click","li",function(){
     $(this).addClass("active").siblings().removeClass("active")
 })
-// 页面一打开就加载右侧
-// window.onload=function(){ 
-  
 
-//     $('#content-right').load('right.html .content-right');
-    
-// }
 
+// 页面一打开就加载头部 尾部 右侧
 window.onload=function(){
-  $("#top").load("top.html")
+  $("#top").load("top.html");
   $("#bottom").load("bottom.html");
-  $("#content-right").load('right.html .content-right')
+  $("#content-right").load('right.html');
 
 
 }
+
+
+
+
 
 </script>
 </html>

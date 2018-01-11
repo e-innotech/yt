@@ -1,0 +1,146 @@
+
+.contentbg{
+    width:100%;
+    background:#f0f0f0;
+    padding-top:20px;
+    position:relative;
+
+}
+.contentbg>a{
+    position:absolute;
+    right:306px;
+    bottom:10px;
+
+}
+.content-leftbox{
+    width:858px;
+    float:left;
+
+}
+.content-leftbox>div{
+    display: none;
+}
+.content{
+    clear:both;
+    overflow:hidden;
+
+}
+.content .content-left{
+    width:858px;
+    float:left;
+}
+ .content-right{
+    width:308px;
+    float:right;
+
+}
+
+.content-right .border{
+    height:37px;
+    border-bottom:1px solid #dfdfdf;
+
+}
+.content-right .border h3{
+    width:58px;
+    height:26px;
+    line-height: 26px;
+    text-align: center;
+    background:#fd0000;
+    font-size:22px;
+    color:#fafafa;
+    font-weight: normal;
+
+}
+.right-listbox{
+    position:relative;
+    background:url("../images/xing.png")no-repeat center 0px;
+
+}
+.content-right .right-list{
+    overflow:hidden;
+}
+
+
+.right-list .left{
+    width:166px;
+    height:99px;
+    margin-top:26px;
+    border-bottom:1px solid #d7d7d7;
+    float:left;
+}
+
+.right-list p{
+
+    line-height:22px;
+    color:#333;
+    font-size:12px;
+    width:166px;
+    text-overflow: ellipsis;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+}
+
+.right-list img{
+    float:right;
+    width:129px;
+    height:94px;
+    margin-top:30px;
+}
+.newslistbox{
+    background:url("../images/xing.png") no-repeat center 56px;
+
+}
+.newslistbox h2{
+    width:308px;
+    height:36px;
+    background:#fff;
+    margin-top:22px;
+    font-size:16px;
+    color:#111111;
+    text-align: center;
+    line-height: 36px;
+    font-weight:normal;
+
+}
+.newslist{
+    width:200px;
+    margin-top:35px;
+    margin-left:58px;
+
+
+
+}
+.newslist ul li{
+    height:56px;
+    line-height:22px;
+
+    font-size:12px;
+    border-bottom:1px solid #999999;
+}
+.newslist ul li a{
+    width:184px;
+    color:#333333;
+    float:right;
+
+}
+.newslist ul li .red{
+    background:#e9382b;
+}
+.newslist ul li span{
+    float:left;
+    display: inline-block;
+    width:12px;
+    height:12px;
+    line-height: 12px;
+    text-align: center;
+    background:#999999;
+    border-radius: 50%;
+    font-size:10px;
+    color:#fafafa;
+    margin-top:5px;
+
+
+}
