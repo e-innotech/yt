@@ -136,8 +136,9 @@ $(function () {
             if (type == 'edit') {
                 $('#EditModalLabel').html('编辑用户');
                 $('input[name="userName"]').val(selectUser.userName);
-                $('.wmspwd').css('display','none');
-                $('input[name="groupName"]').val(selectUser.groupName);
+                $('#tel1').attr("disabled","false")
+                $('#tel2').css('display','none');
+                $('input[name="pname"]').val(selectUser.userGroup.groupName);
             };
             $('#userGroupBtn').click(function () {
                 $.get($components.adduserGroup, function (re) {
