@@ -29,13 +29,13 @@
 	width:100%;
 	height:100%;
 }
-.content-left .banner .left{
+.content-left .banner .prev{
 	position:absolute;
 	left:0;
 	top:151px;
 
 }
-.content-left .banner .right{
+.content-left .banner .next{
 	position:absolute;
 	right:0;
 	top:151px;

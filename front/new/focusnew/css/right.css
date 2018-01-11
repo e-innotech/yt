@@ -51,6 +51,11 @@
     font-weight: normal;
 
 }
+.right-listbox{
+    position:relative;
+    background:url("../images/xing.png")no-repeat center 0px;
+
+}
 .content-right .right-list{
     overflow:hidden;
 }

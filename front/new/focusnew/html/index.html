@@ -26,14 +26,19 @@
 <div class="contentbg">
 	 <div class="content">
 		 	<div class="content-left">
-		 		<div class="banner" id="b04">
+		 		<div class="banner">
 		 			<ul id="slide">
                        	<li><img src="../images/banner.png" alt="" class="bannerImg"/></li>
                     	<li><img src="../images/banner.png" alt="" class="bannerImg"/></li> 
                     	<li><img src="../images/banner.png" alt="" class="bannerImg"/></li>
                     </ul>
-		 			<a href="javascript:void(0);" class="unslider-arrow04 prev"><img src="../images/left.png" class="left"/></a>
-		 			<a href="javascript:void(0);" class="unslider-arrow04 prev"><img src="../images/right.png" class="right"/></a>
+					<!--轮播图上的左右箭头-->
+		 			<a href="#" class="unslider-arrow prev">
+						<img src="../images/left.png" class="left"/>
+					</a>
+		 			<a href="#" class="unslider-arrow next">
+						<img src="../images/right.png" class="right"/>
+					</a>
 		 			<div class="bannerinfo">
 		 				埃里克健身房的阿拉斯加快递费发生科技垃圾收费的家咯发
 		 				埃里克健身房的阿拉斯加快递费发生科技垃圾收费的家咯发
@@ -137,16 +142,16 @@
 <div class="bottom"></div>
 </body>
 <script type="text/javascript">
-$(document).ready(function(e) {
-    var unslider04 = $('#b04').unslider({
-        dots: true
-    }),
-    data04 = unslider04.data('unslider');
-     
-    $('.unslider-arrow04').click(function() {
-        var fn = this.className.split(' ')[1];
-        data04[fn]();
-    });
+$(document).ready(function() {
+//	放轮播图的盒子
+   var unslider = $(".banner").unslider();
+	//点击轮播图的左右箭头
+   $(".unslider-arrow").click(function(){
+	   var fn = this.className.split(' ')[1];
+	   unslider.data('unslider')[fn]();
+
+   })
+
 });
 
 window.onload=function(){

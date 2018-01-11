@@ -11,16 +11,16 @@ $(document).ready(function(){
             $(".imgnewlist .textone").text(rightnewData.data.secondarylist);
             $(".imgnewlist .texttwo").text(rightnewData.data.second_con);
             var rightnewdata=rightnewData.data.rightnewlists;
-            console.log(33,rightnewdata);
+            //console.log(33,rightnewdata);
             for(var i=0;i<rightnewdata.length;i++){
                 //$(".header .nav").append('<li><a>'+listdata[i].channelName+'</a></li>')
                 $(".rightnewlist").append('<li><a>'+rightnewdata[i].rightnewlist+'</a></li>')
             }
 
-            console.log(44,rightnewData.data.topArticle);
+            //console.log(44,rightnewData.data.topArticle);
             var topArticle=rightnewData.data.topArticle
-            console.log(77,topArticle);
-            console.log(88,topArticle[0].urls)
+            //console.log(77,topArticle);
+            //console.log(88,topArticle[0].urls)
           for(var n=0;n<topArticle.length;n++){
                 //创建一个容器
                 var textpicBox=$("<div class='textpicBox'></div>");

@@ -7,9 +7,9 @@ $(document).ready(function(){
             async:true,
             type:"get",
             success:function(newlistData){
-              // console.log(22,newlistData.data.list)
+              //console.log(22,newlistData.data.list)
               var newlist = newlistData.data.list;
-              console.log(111,newlist);
+            //  console.log(111,newlist);
               for(var i=0;i<newlist.length;i++){
                   // 创建一个放新闻的容器
                   var list= $("<div class='list' id='list'></div>");
@@ -97,11 +97,37 @@ $(document).ready(function(){
 
                       list.append(createlistrbox);
                       $(".listbox").append(list);
-
               }
             }
         })
  });
+
+
+$(document).ready(function(){
+    $.ajax({
+        url:"../data/slideshow.json",
+        dataType:"json",
+        async:true,
+        type:"get",
+        success:function(slideshowData){
+            //console.log(65666,slideshowData);
+            var slide=slideshowData.data.slider
+            console.log(111,slide)
+            for(var i=0;i<slide.length;i++){
+                var creatLi=$("<li></li>");
+
+                var createImg=$("<img class='picture'/>");
+                  createImg.attr("src",slide[i].staticUrl);
+                  creatLi.append(createImg);
+                $("#slide").append(creatLi);
+
+            }
+
+        }
+
+    })
+});
+
 
 
 
