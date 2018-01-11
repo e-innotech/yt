@@ -7,30 +7,29 @@
     "isUse": 1,
     "createDate": "2017-12-20 18:50:30.0",
     "templteConfig": "/ab/c/1.html",
-    "channels": [
+    "hotnews": [
       {
         "id": 1,
-        "channelName": "首页",
-        "isUse": null,
-        "remark": "头条"
+        "hotnew_list": "问答app走红受关注，宣亚国际受益涨停问答app走红受关注，宣亚国际受益涨停问答app走红受关注，宣亚国际受益涨停",
+        "isUse": null
+
       },
       {
         "id": 2,
-        "channelName": "国内新闻",
-        "isUse": null,
-        "remark": "头条"
+        "channelName": "在全球新能源汽车大势所趋的形势下，大众、宝马、丰田等全球各大车企巨头纷纷涉及新能源汽车产业链上游",
+        "isUse": null
+
       },
       {
         "id": 3,
-        "channelName": "财经新闻",
-        "isUse": null,
-        "remark": "经济"
+        "channelName": "商务部新闻发言人高峰在今天的例行发布会上表示，截至目前，我国已生效实施的自贸协定",
+        "isUse": null
+
       },
       {
-        "id": 5,
-        "channelName": "汽车1",
-        "isUse": null,
-        "remark": "汽车"
+        "id": 4,
+        "channelName": "中国外汇储备始终按照多元化、分散化原则进行投资管理，保障外汇资产总体安全和保值增值。与其它投资一样，",
+        "isUse": null
       }
     ]
   },

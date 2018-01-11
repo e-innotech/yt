@@ -13,7 +13,8 @@
 	height:465px;
 	border-radius:6px;
 	background:#fafafa;
-	margin-top:80px;
+	/*margin-top:80px;*/
+	margin:80px auto 0 auto;
 
 }
 
