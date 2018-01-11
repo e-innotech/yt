@@ -40,22 +40,22 @@ $(function () {
                 ctrl_upate = nodeData.buttons[i].uri;
             };
         };
-        $('#startDate').datetimepicker({
-            format:'yyyy-mm-dd',
-            language:'zh-CN',
-            autoclose:true,
-            todayBtn:true,
-            todayHighlight:true,
-            minView:'month'
-        });
-        $('#endDate').datetimepicker({
-            format:'yyyy-mm-dd',
-            language:'zh-CN',
-            autoclose:true,
-            todayBtn:true,
-            todayHighlight:true,
-            minView:'month'
-        });
+        //$('#startDate').datetimepicker({
+        //    format:'yyyy-mm-dd',
+        //    language:'zh-CN',
+        //    autoclose:true,
+        //    todayBtn:true,
+        //    todayHighlight:true,
+        //    minView:'month'
+        //});
+        //$('#endDate').datetimepicker({
+        //    format:'yyyy-mm-dd',
+        //    language:'zh-CN',
+        //    autoclose:true,
+        //    todayBtn:true,
+        //    todayHighlight:true,
+        //    minView:'month'
+        //});
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
             startDate = $('#startDate').val();

@@ -54,22 +54,22 @@ $(function () {
                 showNewsEdit('add');
             });
         };
-        $('#startDate').datetimepicker({
-            format:'yyyy-mm-dd',
-            language:'zh-CN',
-            autoclose:true,
-            todayBtn:true,
-            todayHighlight:true,
-            minView:'month'
-        });
-        $('#endDate').datetimepicker({
-            format:'yyyy-mm-dd',
-            language:'zh-CN',
-            autoclose:true,
-            todayBtn:true,
-            todayHighlight:true,
-            minView:'month'
-        });
+        //$('#startDate').datetimepicker({
+        //    format:'yyyy-mm-dd',
+        //    language:'zh-CN',
+        //    autoclose:true,
+        //    todayBtn:true,
+        //    todayHighlight:true,
+        //    minView:'month'
+        //});
+        //$('#endDate').datetimepicker({
+        //    format:'yyyy-mm-dd',
+        //    language:'zh-CN',
+        //    autoclose:true,
+        //    todayBtn:true,
+        //    todayHighlight:true,
+        //    minView:'month'
+        //});
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
             source = $('#sourceTxt').val();
