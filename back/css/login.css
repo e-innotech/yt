@@ -101,3 +101,55 @@ body{
 form>span{
     margin-left:120px;
 }
+/*状态*/
+.anniu{
+    position: relative;
+    width: 50px;
+    height: 25px;
+    border-radius: 30px;
+    border: none;
+    padding: 0;
+    background: #cccccc;
+    margin: 0 auto;
+}
+.anniu.active{
+    background-color: #1cbb95;
+    /*margin-left:0;*/
+}
+.anniu>span{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    left: 2px;
+    top: 0;
+    background: #fff;
+}
+.active>span{
+    left: 24px;
+}
+
+/*禁言*/
+.isGag{
+    position: relative;
+    width: 50px;
+    height: 25px;
+    border-radius: 30px;
+    border: none;
+    padding: 0;
+    background: #cccccc;
+    margin: 0 auto;
+}
+.isGag.active{
+    background-color: #1cbb95;
+    /*margin-left:0;*/
+}
+.isGag>span{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    left: 2px;
+    top: 0;
+    background: #fff;
+}
