@@ -31,6 +31,27 @@ $(function () {
            }
         });
     };
+    var aduitNewsLaunch = function () {
+        var data = $('#newsLaunchAduitForm').serializeObject();
+        data.id = selectNewsLaunch.id;
+        AjaxFunc($apiUrl+ctrl_aduit,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#newsLaunchAduitModal').modal('hide');
+                getNewsLaunchList();
+            }
+        })
+    }
+    var editNewsLaunch = function () {
+        var data = {id:selectNewsLaunch.id,newsLaunchConfig:$('#newsLaunchConfig').val()};
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                getNewsLaunchList();
+                $('#newsLaunchConfig').val('');
+            }
+        })
+    }
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('aduit')!=-1){
@@ -72,29 +93,69 @@ $(function () {
                 '<td>'+list[i].news.newsTitle+'</td>'+
                 '<td>'+list[i].news.source+'</td>'+
                 '<td>'+list[i].news.content+'</td>'+
-                '<td>'+list[i].news.content+'</td>'+
+                '<td>'+getWC(list[i].webChannelConfig)+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
-
+                '<td>'+ADUIT[list[i].status]+'</td>'+
+                '<td>'+getCtrl(list[i].id,list[i].status)+'</td>'+
                 '</tr>');
+
+
+            $('#editBtn_'+list[i].id).click(function () {
+                selectNewsLaunch = getNewsLaunchFromId(this.id.split('_')[1]);
+                showNewsLaunchEdit();
+            });
+            $('#aduitBtn_'+list[i].id).click(function () {
+                selectNewsLaunch = getNewsLaunchFromId(this.id.split('_')[1]);
+                showNewsLaunchAduit();
+            });
         }
     };
-    var showNewsLaunchEdit = function (type) {
+    var getNewsLaunchFromId = function (id) {
+        for(var i=0;i<newsLaunchList.length;i++){
+            if(id == newsLaunchList[i].id){
+                return newsLaunchList[i];
+            }
+        }
+    };
+    var getWC = function (list) {
+        var re='';
+        for(var i=0;i<list.length;i++){
+            re += list[i].website.siteName+'【';
+            var c = [];
+            for(var j=0;j<list[i].channels.length;j++){
+                c.push(list[i].channels[j].channelName);
+            }
+            re += c.toString()+'】';
+        };
+        return re;
+    };
+    var getCtrl = function (id,status) {
+        var re = '';
+        if(ctrl_upate!='' && status == 2){
+            re += '<button id="editBtn_'+id+'">编辑</button>';
+        };
+        if(ctrl_aduit!='' && status == 0){
+            re += '<button id="aduitBtn_'+id+'">审核</button>';
+        };
+        return re;
+    }
+    var showNewsLaunchEdit = function(){
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');
-
-            if(type == 'edit'){
-
-            };
-            $('#newsTitle').click(function () {
-                // $.get();
-            });
-            $('#saveBtn').click(function () {
-                if(type == 'edit'){
+            $('#newsLaunchEditModal').on('hide.bs.modal',function () {
+                if($('#newsLaunchConfig').val()!='') {
                     editNewsLaunch();
-                    return;
                 }
-                addNewsLaunch();
+            });
+        })
+    };
+    var showNewsLaunchAduit = function () {
+        $.get($components.newsLaunchAduit,function (re) {
+            $('#popPanel').html(re);
+            $('#newsLaunchAduitModal').modal('show');
+            $('#saveBtn').click(function () {
+                aduitNewsLaunch();
             });
         });
     }
