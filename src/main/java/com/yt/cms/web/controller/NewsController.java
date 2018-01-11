@@ -230,7 +230,8 @@ public class NewsController {
 	@ApiOperation("审批稿件")
 	@LogAnnotation(action="审批稿件")
 	public AjaxResponseBody aduit(@RequestBody AduitNews aduit,HttpSession session){
-		NewsLaunch newsLaunch = new NewsLaunch();
+		// 从数据库中拿newsId 和 NewsLaunchConfig
+		NewsLaunch newsLaunch = newsLaunchService.findById(aduit.getId());
 		BeanUtils.copyProperties(aduit, newsLaunch);
 		User user = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		if(user == null) {

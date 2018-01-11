@@ -5,7 +5,7 @@ import java.util.List;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserInfoUpdate;
-import com.yt.cms.model.UserUpdatePwd;
+import com.yt.cms.model.UpdatePwd;
 
 /**
  * 用户接口定义
@@ -44,7 +44,7 @@ public interface UserService {
 	
 	public long queryCount(String userName);
 
-	public boolean updatePwd(UserUpdatePwd user);
+	public boolean updatePwd(UpdatePwd user);
 	public boolean update(UserInfoUpdate user);
 	
 	/**

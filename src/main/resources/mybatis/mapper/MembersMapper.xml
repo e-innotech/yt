@@ -40,7 +40,21 @@
     where uname = #{uname,jdbcType=VARCHAR}
   </select>
   
+  	<!-- 会员登录 -->
+	<select id="login" parameterType="com.yt.cms.model.Members" resultMap="BaseResultMap" >
+        SELECT id, uname,isUse, isGag user_group_id FROM members WHERE uname = #{uname} and pwd = #{pwd}
+    </select>
   
+     <!-- 更新用户密码，注意用户名不许更新 -->
+    <update id="updatePwd" parameterType="com.yt.cms.model.UpdatePwd" >
+       UPDATE 
+       		members 
+       SET 
+       	pwd = #{passWord}
+       WHERE 
+       		id = #{id} and pwd = #{currentPwd}
+    </update>
+    
     <select id="query" resultMap="BaseResultMap" parameterType="map" >
     select 
     id, uname, regDate, isUse, isGag

@@ -23,13 +23,13 @@
        SELECT 
        a.id, a.uname, a.createDate,a.isUse,b.id user_group_id, b.groupName
 	   FROM 
-	   (select * from users where (user_group_id != 999999 or user_group_id is null) 
+	   (select * from users where (user_group_id != 0 or user_group_id is null) 
 	    <if test="userName != null">
                 and uname like concat('%', #{userName}, '%')
        </if>
 	   ) a
 	    left join 
-	    (select * from user_group where id != 999999 ) b on a.user_group_id = b.id 	  
+	    (select * from user_group where id != 0 ) b on a.user_group_id = b.id 	  
         order by a.id desc
         <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
@@ -39,13 +39,13 @@
     <!-- 查询所有用户信息 -->
     <select id="queryCount" resultType="long"  parameterType="java.lang.String">
           SELECT count(1) FROM 
-	   (select * from users where (user_group_id != 999999 or user_group_id is null) 
+	   (select * from users where (user_group_id != 0 or user_group_id is null) 
 	    <if test="userName != null">
                 and uname like concat('%', #{userName}, '%')
        </if>
 	   ) a
 	    left join 
-	    (select * from user_group where id != 999999 ) b on a.user_group_id = b.id 	  
+	    (select * from user_group where id != 0 ) b on a.user_group_id = b.id 	  
      
     </select>
     
@@ -97,7 +97,7 @@
 	    </trim>
     </insert>
     <!-- 更新用户密码，注意用户名不许更新 -->
-    <update id="updatePwd" parameterType="com.yt.cms.model.UserUpdatePwd" >
+    <update id="updatePwd" parameterType="com.yt.cms.model.UpdatePwd" >
        UPDATE 
        		users 
        SET 

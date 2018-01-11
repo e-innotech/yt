@@ -2,7 +2,11 @@ package com.yt.cms.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +21,8 @@ import com.yt.cms.common.Page;
 import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
+import com.yt.cms.model.User;
+import com.yt.cms.model.UpdatePwd;
 import com.yt.cms.service.MemberService;
 
 import io.swagger.annotations.Api;
@@ -29,13 +35,16 @@ public class MembersController {
 	@Autowired
 	private MemberService memberService;
 
+	/***********************前端接口***************************************/
+	 
+	
 	/**
 	 * 会员注册
 	 * @param Ad
 	 * @return
 	 */
 	@PostMapping("/add")
-	@ApiOperation("添加会员")
+	@ApiOperation("会员注册")
 	public AjaxResponseBody add(@RequestBody Members members) {
 		boolean created = memberService.save(members);
 		if(!created) {
@@ -46,12 +55,12 @@ public class MembersController {
 	
 	/**
 	 * 按照id查询
-	 * 
+	 * 个人资料页面接口
 	 * @param id
 	 * @return
 	 */
 	@GetMapping("/find/id")
-	@ApiOperation("按照id查询会员")
+	@ApiOperation("按照id查询会员以及会员信息")
 	public AjaxResponseBody findById(@RequestParam Integer id) {
 		Members result = memberService.findById(id);
 		return new AjaxResponseBody(true,Const.SUCCESS,result);
@@ -68,6 +77,95 @@ public class MembersController {
 		boolean result = memberService.findByUname(uname);
 		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
+	
+	
+	/**
+	 * 修改会员信息
+	 * @param Ad
+	 * @return
+	 */
+	@PostMapping("/update/info")
+	@ApiOperation("修改会员信息")
+	public AjaxResponseBody update(@RequestBody MemberInfos info){
+		boolean created = memberService.updateInfo(info);
+		if(!created) {
+			return new AjaxResponseBody(false,Const.FAILED,null);
+		}
+		return new AjaxResponseBody(true,Const.SUCCESS,null);
+	}
+	
+	/**
+	 * 会员登录
+	 * @param member
+	 */
+	@PostMapping("/login")
+	@ApiOperation("会员登陆")
+	public AjaxResponseBody login(@RequestBody Members member, HttpServletRequest request) {
+		// TODO 用户名和密码不能为空
+		// 停用的会员是否可登录？ 
+		Members db_member = memberService.login(member);
+		HttpSession session = request.getSession();
+		AjaxResponseBody response = new AjaxResponseBody();
+		if(db_member == null) {
+			response.setMsg(Const.LOGIN_FAILED);
+			response.setSuccess(false);
+		} else {
+			session.setAttribute(Const.SESSION_MEMBERS_KEY, db_member);
+			response.setMsg(Const.LOGIN_SUCCESS);
+			response.setSuccess(true);
+		}
+		return response;
+	}
+	/**
+	 * 会员退出
+	 */
+	@GetMapping("/logout")
+	@ApiOperation("会员退出")
+	public AjaxResponseBody logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute(Const.SESSION_MEMBERS_KEY);
+		AjaxResponseBody response = new AjaxResponseBody();
+		response.setMsg(Const.LOGOUT_SUCCESS);
+		response.setSuccess(true);
+		return response;
+	}
+	
+	/**
+	 * 还需要验证新旧密码是否相同
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("/pwd")
+	@ApiOperation("更新会员密码")
+	public AjaxResponseBody updatePwd(@RequestBody UpdatePwd user,  HttpServletRequest request) {
+		// TODO 公用的资源不属于菜单
+		HttpSession session = request.getSession();
+		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		AjaxResponseBody response = new AjaxResponseBody();
+		if(user_session == null || user_session.getId() == null) {
+			response.setMsg(Const.SESSION_TIMEOUT);
+			response.setSuccess(false);
+			return response;
+		}
+		if(StringUtils.isEmpty(user.getPassWord()) || StringUtils.isEmpty(user.getCurrentPwd())) {
+			response.setMsg(Const.PASSWORD_REQUIRED);
+			response.setSuccess(false);
+			return response;
+		}
+		user.setId(user_session.getId());
+		
+		boolean flag = memberService.updatePwd(user);
+		if(!flag) {
+			response.setMsg(Const.FAILED);
+			response.setSuccess(false);
+		} else {
+			response.setMsg(Const.SUCCESS);
+			response.setSuccess(true);
+		}
+		return response;
+	}
+	
+	/***********************后台接口***************************************/
 	
 	/**
 	 * 列表页面
@@ -90,21 +188,6 @@ public class MembersController {
 		PageInfo<Members> pageInfo = new PageInfo<Members>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}
-
-	/**
-	 * 修改会员信息
-	 * @param Ad
-	 * @return
-	 */
-	@PostMapping("/update/info")
-	@ApiOperation("修改会员信息")
-	public AjaxResponseBody update(@RequestBody MemberInfos info){
-		boolean created = memberService.updateInfo(info);
-		if(!created) {
-			return new AjaxResponseBody(false,Const.FAILED,null);
-		}
-		return new AjaxResponseBody(true,Const.SUCCESS,null);
-	}
 	
 	/**
 	 * 启用、停用、禁言、取消禁言
@@ -121,6 +204,8 @@ public class MembersController {
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
+	
+	
 	
 	
 }

@@ -31,7 +31,7 @@
     select 
    a.id, a.groupName, a.remark, b.id as roles_id, b.roleName, b.remark as roles_remark
     from user_group a left join roles b on a.roles_id = b.id 
-    where 1=1  and a.isDel = 0 and a.id != 999999
+    where 1=1  and a.isDel = 0 and a.id != -1
     <if test="groupName != null">
                 and groupName like concat('%', #{groupName}, '%')
        </if>
@@ -43,7 +43,7 @@
   
   <select id="queryCount" parameterType="java.lang.String" resultType="long">
   	 select count(1)
-    from user_group where 1=1  and isDel = 0 and id != 999999
+    from user_group where 1=1  and isDel = 0 and id != 0
     	<if test="groupName != null">
                 and groupName like concat('%', #{groupName}, '%')
        </if>

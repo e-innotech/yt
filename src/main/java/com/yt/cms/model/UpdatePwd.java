@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-@ApiModel("UserUpdatePwd(用户修改密码模型)")
-public class UserUpdatePwd implements Serializable{
+@ApiModel("UpdatePwd(修改密码模型)")
+public class UpdatePwd implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,11 +20,11 @@ public class UserUpdatePwd implements Serializable{
 	 */
 	private String currentPwd;
 	
-	public UserUpdatePwd() {
+	public UpdatePwd() {
 		super();
 	}
 
-	public UserUpdatePwd(String currentPwd, String passWord) {
+	public UpdatePwd(String currentPwd, String passWord) {
 		super();
 		this.currentPwd = currentPwd;
 		this.passWord = passWord;

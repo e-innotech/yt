@@ -9,10 +9,7 @@ public class AduitNews {
 	 * 投放id
 	 */
 	private Integer id;
-	/**
-	 * 稿件id
-	 */
-	private Integer newsId;
+
 	/**
 	 * 稿件审批状态
 	 */
@@ -21,10 +18,7 @@ public class AduitNews {
 	 * 稿件审批意见
 	 */
 	private String aduitDes;
-	/**
-	 * 稿件投放情况，审批通过时使用
-	 */
-	private String newsLaunchConfig;
+
 	
 	public Integer getId() {
 		return id;
@@ -46,18 +40,7 @@ public class AduitNews {
 		this.aduitDes = aduitDes;
 	}
 
-	public Integer getNewsId() {
-		return newsId;
-	}
-	public void setNewsId(Integer newsId) {
-		this.newsId = newsId;
-	}
-	public String getNewsLaunchConfig() {
-		return newsLaunchConfig;
-	}
-	public void setNewsLaunchConfig(String newsLaunchConfig) {
-		this.newsLaunchConfig = newsLaunchConfig;
-	}
+
 	
 	
 }

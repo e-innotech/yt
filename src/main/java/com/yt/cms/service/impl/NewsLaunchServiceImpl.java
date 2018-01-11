@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yt.cms.common.CollectionUtils;
@@ -104,14 +105,17 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 		for(NewsLaunch launch : list) {
 			String json = launch.getNewsLaunchConfig();
 			try {
-				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
-				for(NewsLaunchConfig config : config_list) {
-					// 网站id
-					Integer webId = config.getWebsiteId();
-					List<Integer> channel = config.getChannelId();
-					webIds.add(webId);
-					channelIds.addAll(channel);
+				if(!StringUtils.isEmpty(json)) {
+					List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
+					for(NewsLaunchConfig config : config_list) {
+						// 网站id
+						Integer webId = config.getWebsiteId();
+						List<Integer> channel = config.getChannelId();
+						webIds.add(webId);
+						channelIds.addAll(channel);
+					}
 				}
+			
 			} catch (Exception e) {
 				// 此数据配置错误，忽略
 				e.printStackTrace();
@@ -141,24 +145,27 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 			List<NewsLaunchWebChannelConfig> webChannelConfig = new ArrayList<>();
 			String json = launch.getNewsLaunchConfig();
 			try {
-				List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
-				for(NewsLaunchConfig config : config_list) {
-					NewsLaunchWebChannelConfig configvo = new NewsLaunchWebChannelConfig();
-					// 网站id
-					Integer webId = config.getWebsiteId();
-					List<Integer> channel = config.getChannelId();
-					Websites web = websitesMap.get(webId);
-					configvo.setWebsite(web);
-					if(CollectionUtils.isNotEmpty(channel)) {
-						List<Channel> webchannels = new ArrayList<>(); 
-						for(Integer i : channel) {
-							Channel c = channelMap.get(i);
-							webchannels.add(c);
+				if(!StringUtils.isEmpty(json)) {
+					List<NewsLaunchConfig> config_list = JSONObject.parseArray(json, NewsLaunchConfig.class);
+					for(NewsLaunchConfig config : config_list) {
+						NewsLaunchWebChannelConfig configvo = new NewsLaunchWebChannelConfig();
+						// 网站id
+						Integer webId = config.getWebsiteId();
+						List<Integer> channel = config.getChannelId();
+						Websites web = websitesMap.get(webId);
+						configvo.setWebsite(web);
+						if(CollectionUtils.isNotEmpty(channel)) {
+							List<Channel> webchannels = new ArrayList<>(); 
+							for(Integer i : channel) {
+								Channel c = channelMap.get(i);
+								webchannels.add(c);
+							}
+							configvo.setChannels(webchannels);
 						}
-						configvo.setChannels(webchannels);
+						webChannelConfig.add(configvo);
 					}
-					webChannelConfig.add(configvo);
 				}
+				
 			} catch (Exception e) {
 				// 此数据配置错误，忽略
 				e.printStackTrace();
@@ -179,7 +186,6 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 		try {
 //			News record = new News();
 			if(newsLaunch.getStatus() == Const.ADUIT_PASS) {
-				// 上线
 				// json 转数组
 				List<NewsPublish> newsLaunchs = new ArrayList<NewsPublish>();
 				// json string
@@ -196,6 +202,7 @@ public class NewsLaunchServiceImpl implements NewsLaunchService {
 						newsLaunchs.add(news);
 					}
 				}
+				// 上线
 				newsPublishDAO.insertBatch(newsLaunchs);
 //				record.setId(newsLaunch.getNewsId());
 //				record.setStatus(Const.LAUNCH_PASS);

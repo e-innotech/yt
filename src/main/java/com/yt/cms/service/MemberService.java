@@ -5,6 +5,7 @@ import java.util.List;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
+import com.yt.cms.model.UpdatePwd;
 /**
  * 会员服务接口
  * @author admin
@@ -60,5 +61,13 @@ public interface MemberService {
 	 */
 	public boolean update(Members members);
 	
+	/**
+	 * 会员登录
+	 * 输入的密码是加密处理的
+	 * @param member
+	 * @return 如果会员输入的用户名和密码在数据库中验证通过返回Members
+	 */
+	public Members login(Members member);
 	
+	public boolean updatePwd(UpdatePwd user);
 }

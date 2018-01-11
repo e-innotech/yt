@@ -30,24 +30,28 @@ public class WebsitesServiceImpl implements WebsitesService {
 		// 新增网站数据
 		websitesDAO.insertSelective(web);
 		// 新增网站栏目关系表数据
-		insertBatchWebChannel(web);
+		insertBatchWebChannel(web,false);
 		// 新增网站模板数据
 		List<WebsiteTemplate> webTemplates = web.getWebTemplates();
-		for(WebsiteTemplate template : webTemplates) {
-			template.setWebsites(web);
+		if(CollectionUtils.isNotEmpty(webTemplates)) {
+			for(WebsiteTemplate template : webTemplates) {
+				template.setWebsites(web);
+			}
+			websiteTemplateDAO.insertBatch(webTemplates);
 		}
-		websiteTemplateDAO.insertBatch(webTemplates);
 		if(web.getId() > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	private void insertBatchWebChannel(Websites web) {
+	private void insertBatchWebChannel(Websites web, boolean isUpdate) {
 		List<Integer> channelIds =  web.getChannelIds();
 		if(CollectionUtils.isNotEmpty(channelIds)) {
 			// 先删除网站栏目关系数据
-			websitesChannelDAO.deleteByWebId(web.getId());
+			if(isUpdate) {
+				websitesChannelDAO.deleteByWebId(web.getId());
+			}
 			List<WebsitesChannel> moduleList = new ArrayList<>();
 			for(Integer channelid : channelIds) {
 				WebsitesChannel webChannel = new WebsitesChannel();
@@ -81,7 +85,7 @@ public class WebsitesServiceImpl implements WebsitesService {
 		try {
 			int row = websitesDAO.updateByPrimaryKeySelective(web);
 			// 网站栏目关系表数据
-			insertBatchWebChannel(web);
+			insertBatchWebChannel(web,true);
 			// 修改模板路径，也只能修改模板路径
 			List<WebsiteTemplate> webTemplates = web.getWebTemplates();
 			if(CollectionUtils.isNotEmpty(webTemplates)) {

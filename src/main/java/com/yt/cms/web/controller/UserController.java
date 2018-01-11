@@ -26,7 +26,7 @@ import com.yt.cms.model.User;
 import com.yt.cms.model.UserGroup;
 import com.yt.cms.model.UserInfoUpdate;
 import com.yt.cms.model.UserResponseBody;
-import com.yt.cms.model.UserUpdatePwd;
+import com.yt.cms.model.UpdatePwd;
 import com.yt.cms.service.PermissionService;
 import com.yt.cms.service.UserService;
 
@@ -195,7 +195,7 @@ public class UserController {
 	 * @param userId
 	 */
 	@GetMapping("/logout")
-	@ApiOperation("用户登陆")
+	@ApiOperation("用户退出")
 	public AjaxResponseBody logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute(Const.SESSION_USER_KEY);
@@ -212,7 +212,7 @@ public class UserController {
 	 */
 	@PostMapping("/user/pwd")
 	@ApiOperation("更新用户密码")
-	public AjaxResponseBody updatePwd(@RequestBody UserUpdatePwd user,  HttpServletRequest request) {
+	public AjaxResponseBody updatePwd(@RequestBody UpdatePwd user,  HttpServletRequest request) {
 		// TODO 公用的资源不属于菜单
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);

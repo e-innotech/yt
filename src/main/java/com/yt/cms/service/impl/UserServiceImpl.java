@@ -10,7 +10,7 @@ import com.yt.cms.common.Page;
 import com.yt.cms.mapper.UserMapper;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserInfoUpdate;
-import com.yt.cms.model.UserUpdatePwd;
+import com.yt.cms.model.UpdatePwd;
 import com.yt.cms.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean updatePwd(UserUpdatePwd user) {
+	public boolean updatePwd(UpdatePwd user) {
 		try {
 			int row = userDAO.updatePwd(user);
 			if(row == 1) {

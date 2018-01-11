@@ -146,6 +146,7 @@
       <if test="newsLaunchConfig != null" >
         news_launch_config = #{newsLaunchConfig,jdbcType=VARCHAR},
       </if>
+        status = 0,
     </set>
     where id = #{id,jdbcType=INTEGER} and status = 2
   </update>

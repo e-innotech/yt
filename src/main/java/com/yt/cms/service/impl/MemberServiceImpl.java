@@ -10,6 +10,7 @@ import com.yt.cms.mapper.MemberInfosMapper;
 import com.yt.cms.mapper.MembersMapper;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
+import com.yt.cms.model.UpdatePwd;
 import com.yt.cms.service.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -68,6 +69,24 @@ public class MemberServiceImpl implements MemberService {
 	public boolean update(Members members) {
 		try {
 			int row = membersDAO.updateByPrimaryKeySelective(members);
+			if(row == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public Members login(Members member) {
+		return membersDAO.login(member);
+	}
+
+	@Override
+	public boolean updatePwd(UpdatePwd user) {
+		try {
+			int row = membersDAO.updatePwd(user);
 			if(row == 1) {
 				return true;
 			}

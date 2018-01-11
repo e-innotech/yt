@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.yt.cms.common.Page;
 import com.yt.cms.model.User;
 import com.yt.cms.model.UserInfoUpdate;
-import com.yt.cms.model.UserUpdatePwd;
+import com.yt.cms.model.UpdatePwd;
 
 public interface UserMapper {
 	
@@ -48,6 +48,6 @@ public interface UserMapper {
 	 * @param user
 	 * @return
 	 */
-	int updatePwd(UserUpdatePwd user);
+	int updatePwd(UpdatePwd user);
 	int updateByPrimaryKeySelective(UserInfoUpdate user);
 }

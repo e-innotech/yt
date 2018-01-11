@@ -1,6 +1,5 @@
 package com.yt.cms.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.annotations.LogAnnotation;
 import com.yt.cms.common.AjaxResponseBody;
-import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.common.Const;
 import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.Roles;
-import com.yt.cms.model.RolesResource;
 import com.yt.cms.model.page.RolesPage;
-import com.yt.cms.service.RolesResourceService;
 import com.yt.cms.service.RolesService;
 
 import io.swagger.annotations.Api;
@@ -31,8 +27,6 @@ import io.swagger.annotations.ApiOperation;
 public class RoleController {
 	@Autowired
 	private RolesService rolesService;
-	@Autowired
-	private RolesResourceService rolesResourceService;
 
 	/**
 	 * 新增角色
@@ -45,7 +39,6 @@ public class RoleController {
 	public AjaxResponseBody add(@RequestBody Roles roles) {
 		try {
 			rolesService.save(roles);
-			addRolesResource(roles);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -76,10 +69,7 @@ public class RoleController {
 	public AjaxResponseBody update(@RequestBody Roles roles){
 		try {
 			rolesService.update(roles);
-			// 删除角色资源关系
-			rolesService.removeRolesResource(roles.getId());
-			// 新增角色资源关系
-			addRolesResource(roles);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -87,20 +77,7 @@ public class RoleController {
 		
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
-	private void addRolesResource(Roles roles) {
-		List<Integer> resourceIds = roles.getResourceIds();
-		if(CollectionUtils.isNotEmpty(resourceIds)) {
-			// 角色资源关系
-			List<RolesResource> rolesResource = new ArrayList<>();
-			for(Integer resourceId : resourceIds) {
-				RolesResource rr = new RolesResource();
-				rr.setResourceId(resourceId);
-				rr.setRolesId(roles.getId());
-				rolesResource.add(rr);
-			}
-			rolesResourceService.save(rolesResource);
-		}
-	}
+	
 	/**
 	 * 原始分页写法，mybatis resultMap 有折叠情况分页也不对
 	 * 列表页面
