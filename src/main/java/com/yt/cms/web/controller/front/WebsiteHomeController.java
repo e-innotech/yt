@@ -17,7 +17,7 @@ public class WebsiteHomeController {
 	String index(Model model) {
 		model.addAttribute("msg", "Spring Boot AJAX Example,hhhhh");
 //		return "yynews/html/index";
-		return "/yynews/html/index";
+		return "/yynews1/html/index";
 	}
 	
 }

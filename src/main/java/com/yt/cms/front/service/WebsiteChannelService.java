@@ -16,7 +16,9 @@ import com.yt.cms.model.Channel;
 public interface WebsiteChannelService {
 	
 	
-	
+	// 详情页页面接口      
+	// 首页页面接口（后台置首页，取消置首页触发，下线如果在首页也需要触发）
+	// 提供给前端使用的首页页面接口（手动触发上传到7牛）
 	
 	
 	/**
