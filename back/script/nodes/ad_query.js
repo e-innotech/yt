@@ -156,12 +156,12 @@ $(function () {
                var files = $('#upload_file').prop('files');
                var data = new FormData();
                data.append('upload_file',files[0]);
-               data.append('fileDirectory','ad/');
+               data.append('fileDirectory','ad');
                AjaxUpload($uploadUrl,data,function (re) {
                   // console.log(re);
                    alert(re.msg);
                    if(re.success){
-                       $('input[name="source"]').val(re.data);
+                       $('input[name="source"]').val(re.data[0]);
                    }
                });
            });
