@@ -16,12 +16,12 @@ $(function () {
            var files = $('#upload_file').prop('files');
            var data = new FormData();
            data.append('upload_file',files[0]);
-           data.append('fileDirectory','news/top/');
+           data.append('fileDirectory','news/top');
            AjaxUpload($uploadUrl,data,function (re) {
                // console.log(re);
                alert(re.msg);
                if(re.success){
-                   $('input[name="topImagePath"]').val(re.data);
+                   $('input[name="topImagePath"]').val(re.data[0]);
                }
            });
        });
