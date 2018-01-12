@@ -1,9 +1,9 @@
 $(function () {
 
 
-    var uname = ''
-    var isGag = ''
-    var isUse = ''
+    var uname = '';
+    var isGag = '';
+    var isUse = '';
     var userList = [];
     var selectUser;
 
@@ -13,6 +13,13 @@ $(function () {
         var data = {pageNum: pageNum, pageSize: pageSize};
         if (uname != '') {
             data.uname = uname;
+        };
+        if (isUse != '') {
+            data.isUse = isUse;
+        };
+;
+        if (isGag != '') {
+            data.isGag = isGag;
         };
 
         AjaxFunc($query.members, 'get', data, function (re) {
@@ -24,9 +31,6 @@ $(function () {
             }
         });
     };
-
-
-
 
 
     /*状态*/
