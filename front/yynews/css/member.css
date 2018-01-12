@@ -30,7 +30,7 @@
 	float:left;
 }
 .content-right{
-	width:900px;
+	width:902px;
 	background:#fff;
 	float:right;
 	padding:0 22px;
@@ -80,6 +80,17 @@
 
 
 }
+.content-rightinside .title{
+	border-bottom:1px solid #e7e7e7;
+	height:65px;
+
+}
+.content-rightinside .title h2{
+	width:162px;
+	line-height:64px;
+	border-bottom:1px solid #fe0100;
+
+}
 .details{
 	padding-bottom:544px;
 	font-size:16px;
@@ -113,7 +124,7 @@
 
 	position:absolute;
 	bottom:302px;
-	right:22px;
+	right:0px;
 
 }
 .material input{
@@ -132,18 +143,19 @@
 	position:relative;
 }
 .content-rightinside{
-	width:902px;
+	/*width:902px;*/
 	height:604px
 
 }
-#content-rightinside h2{
-	width:840px;
-	height:60px;
-	font-size:20px;
-	line-height:60px;
-	border-bottom:1px solid #e7e7e7;
-	font-weight: normal;
-}
+
+/*#content-rightinside h2{*/
+	/*width:840px;*/
+	/*height:60px;*/
+	/*font-size:20px;*/
+	/*line-height:60px;*/
+	/*border-bottom:1px solid #e7e7e7;*/
+	/*font-weight: normal;*/
+/*}*/
 /*.content-rightinside h2{*/
 	/*height:60px;*/
 	/*font-size:20px;*/
@@ -159,7 +171,7 @@
 
 }
 .formbox{
-	border-top:1px solid #e8e8e8;
+	/*border-top:1px solid #e8e8e8;*/
 	padding-bottom:282px;
 }
 .password{
@@ -207,7 +219,7 @@
 	padding-top:24px;
 	padding-bottom:68px;
 	border-bottom:1px dashed #e7e7e7;
-	border-top:1px dashed #e7e7e7;
+	/*border-top:1px dashed #e7e7e7;*/
 }
 .commentlist .left{
 	float:left;
@@ -285,7 +297,7 @@
 	padding-top:29px;
 	padding-bottom:29px;
 	border-bottom:1px dashed #e7e7e7;
-	border-top:1px dashed #e7e7e7;
+	/*border-top:1px dashed #e7e7e7;*/
 
 }
 
@@ -333,17 +345,17 @@
 
 /*以下为修改个人资料*/
 
-.content-rightinside h2{
-	width:170px;
-	height:56px;
-	line-height:60px;
-	border-bottom:1px solid #ec201f;
-	font-size:20px;
-	color:#000;
-	font-weight:normal;
+/*.content-rightinside h2{*/
+	/*width:170px;*/
+	/*height:56px;*/
+	/*line-height:60px;*/
+	/*border-bottom:1px solid #ec201f;*/
+	/*font-size:20px;*/
+	/*color:#000;*/
+	/*font-weight:normal;*/
 
 
-}
+/*}*/
 .info{
 	margin-left:33px;
 	margin-top:22px;
@@ -422,10 +434,10 @@
 	border: none;
 }
 
-.formbox{
-	border-top:1px solid #e8e8e8;
-	padding-bottom:282px;
-}
+/*.formbox{*/
+	/*border-top:1px solid #e8e8e8;*/
+	/*padding-bottom:282px;*/
+/*}*/
 .password{
 	margin-top:32px;
 
@@ -464,18 +476,18 @@
 }
 
 /*以下为隐私安全*/
-.content-rightinside h2{
-	width:170px;
-	height:56px;
-	line-height:60px;
-	border-bottom:1px solid #ec201f;
-	font-size:20px;
-	color:#000;
+/*.content-rightinside h2{*/
+	/*width:170px;*/
+	/*height:56px;*/
+	/*line-height:60px;*/
+	/*border-bottom:1px solid #ec201f;*/
+	/*font-size:20px;*/
+	/*color:#000;*/
 
 
-}
+/*}*/
 .formbox{
-	border-top:1px solid #e8e8e8;
+	/*border-top:1px solid #e8e8e8;*/
 	padding-bottom:282px;
 }
 .password{
