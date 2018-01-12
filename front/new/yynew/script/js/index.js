@@ -24,8 +24,8 @@ $(document).ready(function(){
                  //创建右侧列表的h2标签
                   var createH2= $("<h2 class='subhead'></h2>");
                     //右侧列表
-                      createH2.text(newlist[i].news_title)
-                      createH2.appendTo(createlistrbox)
+                      createH2.text(newlist[i].news_title);
+                      createH2.appendTo(createlistrbox);
                   //右侧中间的用户信息和时间
                   var creatcenter=$("<div class='center'></div>");
                   var createleft=$("<div class='center-l'></div>");
