@@ -319,11 +319,11 @@
 	width:105px;
 	height:34px;
 	line-height:34px;
-	font-size:18;
+	font-size:18px;
 	color:#fafafa;
 	text-align:center;
 	background:#c9c9c9;
-
+	margin-bottom: 20px;
 }
 .bottompages{
 	margin-left:40px;
