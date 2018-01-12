@@ -48,27 +48,27 @@
                 var listdata=navData.data.channels;
                 str=" ";
                 for(var i=0;i<listdata.length;i++){
-                    // $(".header .nav").append('<li><a>'+listdata[i].channelName+'</a></li>')
-                    var creattagLI = $("<li></li>");
-                    var creattagA = $("<a></a>");
-                    creattagA.appendTo(creattagLI);
-                    creattagA.text(listdata[i].channelName);
-                    switch (creattagA.text()){
-                        case "国内新闻":
-                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynew/html/nav.html');
-                            break;
-                        case "首页":
-                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynew/html/index.html');
-                             break;
-                        case "财经新闻":
-                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynew/html/nav.html');
-                            break;
-                       case "汽车1":
-                           creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynew/html/nav.html');
-                          break;
-
-                }
-                creattagLI.appendTo($(".header .nav"));
+                    $(".header .nav").append('<li><a> '+listdata[i].channelName+' </a></li>')
+//                    var creattagLI = $("<li></li>");
+//                    var creattagA = $("<a></a>");
+//                    creattagA.appendTo(creattagLI);
+//                    creattagA.text(listdata[i].channelName);
+//                    switch (creattagA.text()){
+//                        case "国内新闻":
+//                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/nav.html');
+//                            break;
+//                        case "首页":
+//                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/index.html');
+//                             break;
+//                        case "财经新闻":
+//                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/nav.html');
+//                            break;
+//                       case "汽车1":
+//                           creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/nav.html');
+//                          break;
+//
+//                }
+//                creattagLI.appendTo($(".header .nav"));
 
             }
 

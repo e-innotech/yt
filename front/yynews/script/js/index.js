@@ -15,17 +15,21 @@ $(document).ready(function(){
                   var list= $("<div class='list' id='list'></div>");
                 //创建图片
                   var creatImgbig=$("<img />");
-                  creatImgbig.attr("src",newlist[i].staticUrl);
-                  creatImgbig.appendTo(list);
+                  var creatImga=$("<a href='https://www.baidu.com/'></a>");
+                      creatImgbig.attr("src",newlist[i].staticUrl);
+                      creatImga.append(creatImgbig);
+                      creatImga.appendTo(list);
                   
                   //创建右侧列表
                   var createlistrbox=$("<div class='list-rbox'></div>");
                   
                  //创建右侧列表的h2标签
                   var createH2= $("<h2 class='subhead'></h2>");
-                    //右侧列表
-                      createH2.text(newlist[i].news_title)
-                      createH2.appendTo(createlistrbox)
+                  var createtaga=$("<a href='https://www.baidu.com/'></a>");
+                      createtaga.text(newlist[i].news_title);
+                      createH2.append(createtaga);
+                  //右侧列表
+                      createH2.appendTo(createlistrbox);
                   //右侧中间的用户信息和时间
                   var creatcenter=$("<div class='center'></div>");
                   var createleft=$("<div class='center-l'></div>");
