@@ -1,8 +1,6 @@
 $(function () {
-
     pageNum = 1;
     pageSize = 10;
-
 
     var adName = '';
     var adPositionsList = [];
@@ -22,7 +20,6 @@ $(function () {
             }
         });
     };
-
     var initialize = function () {
         $('#searchAdPositionsListBtn').click(function () {
             adName = $('#adPositionsListNameTxt').val();

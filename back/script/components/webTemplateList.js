@@ -22,7 +22,6 @@ $(function () {
             }
         });
     };
-
     var initialize =function () {
         $('#searchWebBtn').click(function () {
             siteName = $('#siteNameWebTxt').val();

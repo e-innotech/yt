@@ -1,6 +1,7 @@
 
-// 以下为中间部分新闻列表
+
 $(document).ready(function(){
+    // 以下为中间部分新闻列表
      $.ajax({
             url:"../data/newlist.json",
             dataType:"json",
@@ -104,11 +105,10 @@ $(document).ready(function(){
               }
             }
         })
- });
 
 
-//轮播图请求的数据
-$(document).ready(function(){
+
+    //轮播图请求的数据
     $.ajax({
         url:"../data/slideshow.json",
         dataType:"json",
@@ -135,7 +135,8 @@ $(document).ready(function(){
             }
         }
     })
-});
+ });
+
 
 
 
