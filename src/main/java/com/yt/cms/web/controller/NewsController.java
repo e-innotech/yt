@@ -84,7 +84,7 @@ public class NewsController {
 	}
 	/**
 	 * 新增稿件
-	 * @param News
+	 * @param Article
 	 * @return
 	 */
 	@PostMapping("/add")
@@ -105,7 +105,7 @@ public class NewsController {
 	}
 	/**
 	 * 修改稿件,status = 0才可修改
-	 * @param News
+	 * @param Article
 	 * @return
 	 */
 	@PostMapping("/update")

@@ -12,13 +12,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 去掉find 的接口，并入query
- * 分页自己实现
  * @author admin
  *
  */
 @SpringBootApplication
-@MapperScan("com.yt.cms.mapper")
+@MapperScan(value= {"com.yt.cms.mapper","com.yt.cms.front.mapper"})
 @EnableCaching
 @EnableTransactionManagement
 public class YtcmsApplication implements CommandLineRunner{

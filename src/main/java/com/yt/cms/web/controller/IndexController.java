@@ -13,10 +13,6 @@ public class IndexController {
 		return "ajax";
 	}
 
-	@GetMapping("/list")
-	String list(Model model) {
-		model.addAttribute("msg", "Spring Boot AJAX Example");
-		return "list";
-	}
+	
 	
 }

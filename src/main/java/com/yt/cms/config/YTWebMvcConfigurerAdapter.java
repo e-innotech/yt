@@ -3,6 +3,7 @@ package com.yt.cms.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.yt.cms.web.interceptor.PermissionInterceptor;
@@ -40,6 +41,11 @@ public class YTWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
         super.addViewControllers(registry);
     }*/
 
+	 @Override  
+	    public void configurePathMatch(PathMatchConfigurer configurer) {  
+	        super.configurePathMatch(configurer);  
+	        configurer.setUseSuffixPatternMatch(false);  
+	    }
     /**
      * 拦截器
      * @param registry

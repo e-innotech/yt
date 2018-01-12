@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.front.mapper.AdvertMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.front.model.Ad" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+   <select id="getWebsiteTemplateAds" resultMap="BaseResultMap" parameterType="map" >
+    SELECT 
+    c.id, c.source
+FROM
+    ytcms.website_template a,
+    adpositions b,
+    ad c
+WHERE
+    a.id = b.website_template_id
+        AND b.id = c.adPositions_id
+        and a.websites_id = #{websiteId}
+        and a.template_type = #{templateType}
+  </select>
+  
+</mapper>
