@@ -31,8 +31,12 @@ $(function () {
             getWebsitesList();
         });
         $('#saveBtn').click(function () {
-            $('#newsLaunchConfig').val(JSON.stringify(newsLaunchConfig));
-            $('#newsLaunchEditModal').modal('hide');
+            if(newsLaunchConfig.length>0) {
+                $('#newsLaunchConfig').val(JSON.stringify(newsLaunchConfig));
+                $('#newsLaunchEditModal').trigger('save');
+            }else{
+                alert('请选择栏目投放');
+            }
         });
         getWebsitesList();
     };

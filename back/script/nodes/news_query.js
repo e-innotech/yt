@@ -37,12 +37,44 @@ $(function () {
             }
         });
     };
+    var addNews = function () {
+        var data = $('#newsForm').serializeObject();
+        data.content = newsContent;
+        if(data.newsTitle == ''){
+            alert('标题不能为空');
+            return;
+        }
+        if(data.content == ''){
+            alert('内容不能为空');
+            return;
+        }
+        AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#newsEditModal').modal('hide');
+                getNewsList();
+            }
+        });
+    };
+    var editNews = function () {
+        var data = $('#newsForm').serializeObject();
+        data.content = newsContent;
+        data.id = selectNews.id;
+        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
+            alert(re.msg);
+            if(re.success){
+                $('#newsEditModal').modal('hide');
+                getNewsList();
+            }
+        });
+    };
     var addNewsLaunch = function () {
         var data = {newsId:selectNews.id,newsLaunchConfig:$('#newsLaunchConfig').val()};
         AjaxFunc($apiUrl+ctrl_launch_add,'post',data,function (re) {
             alert(re.msg);
             if(re.success){
                 getNewsList();
+                $('#newsLaunchEditModal').modal('hide');
                 $('#newsLaunchConfig').val('');
             }
         })
@@ -131,54 +163,36 @@ $(function () {
         return re;
     }
     var showNewsEdit = function (type) {
+        if(type == 'edit'){
+            newsContent = selectNews.content;
+        }else{
+            newsContent = '';
+        }
         $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsEditModal').modal('show');
             if(type=='edit'){
                 $('#newsEditModalLabel').html('编辑稿件');
-            //     $('input[name="roleName"]').val(selectRole.roleName);
-            //     $('input[name="remark"]').val(selectRole.remark);
-            //     $('textarea[name="resourceNames"]').val(getResourceNames());
-            //     resourceListSelectIds = getResourceIds();
+                $('input[name="newsTitle"]').val(selectNews.newsTitle);
+                $('input[name="source"]').val(selectNews.source);
+                $('input[name="topImagePath"]').val(selectNews.topImagePath);
             };
-            $('input[type="file"]').change(function(){
-                var files = $('#upload_file').prop('files');
-                var data = new FormData();
-                data.append('upload_file',files[0]);
-                data.append('fileDirectory','news/top/');
-                AjaxUpload($uploadUrl,data,function (re) {
-                    // console.log(re);
-                    alert(re.msg);
-                    if(re.success){
-                        $('input[name="topImagePath"]').val(re.data);
-                    }
-                });
+            $('#newsEditModal').on('save',function () {
+                if(type=='edit'){
+                    editNews();
+                    return;
+                }
+                addNews();
             });
-            // $('#saveBtn').click(function () {
-            //     if(type == 'edit'){
-            //         editRole();
-            //         return;
-            //     };
-            //     addRole();
-            // });
-            // $('textarea[name="resourceNames"]').click(function () {
-            //     $.get($components.resourceList,function (re) {
-            //         resourceListType = 'connect';
-            //         $('#popPanel1').html(re);
-            //         $('#resourceListModal').modal('show');
-            //
-            //     });
-            // });
         });
     };
     var showNewsLaunchEdit = function(){
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');
-            $('#newsLaunchEditModal').on('hide.bs.modal',function () {
-                if($('#newsLaunchConfig').val()!='') {
-                    addNewsLaunch();
-                }
+
+            $('#newsLaunchEditModal').on('save',function () {
+                addNewsLaunch();
             });
         })
     };
