@@ -4,7 +4,7 @@
 window.onload=function(){
 	$('#top').load('top.html');
 	$("#content-rightinside").load("peopleinfo.html");
-    $('.footer-bg').load('bottom.html');
+    $('#bottom').load('bottom.html');
 	$("#personData").addClass("actives");
 }	
 

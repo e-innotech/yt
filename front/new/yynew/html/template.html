@@ -7,40 +7,15 @@
     <link rel="stylesheet" type="text/css" href="../css/top.css"/>
 
     <link rel="stylesheet" href="../css/nav.css"/>
+     <link rel="stylesheet" href="../css/style.css"/>
      <link rel="stylesheet" type="text/css" href="../css/signIn.css"/>
-
      <script type="text/javascript" src="../script/jquery.min.js"> </script>
      <script type="text/javascript" src="../script/js/sign.js"></script>
  
 </head>
 <body>
     <!-- 以下为头部 -->
-<div class="headerbg">
-   <div class="header">
-       <img src="../images/logo.png"/>
-        <ul class="nav">
-          <li><a href="#">首页</a></li>
-          <li><a href="#">互联网金融</a></li>
-          <li><a href="#">体育</a></li>
-          <li><a href="#">财经</a></li>
-          <li><a href="#">娱乐</a></li>
-          <li><a href="#">教育</a></li>
-          <li><a href="#">财经</a></li>
-        </ul>
-       <div class="header-right">
-           <div class="header-right-l">
-               <form>
-                   <input type="text" value="搜索"/>
-                   <a href=""><img src="../images/search.png" id="search"/></a>
-               </form>
-           </div>
-           <div class="header-right-r">
-               <img src="../images/ren.png" id="userAvatar"/>
-           </div>
-
-       </div>
-   </div>
-</div>
+<div class="top"></div>
 
 <!-- 以下为内容区域 -->
 <div class="contentbg" id="logincontent">
@@ -50,25 +25,19 @@
 </div>
   
    <!-- 以下为footer -->
-<div class="footerbg">
-    <div class="ewm">
-        <img src="../images/ewm.jpg"/>
-        <p>微信关注,鹰眼新闻</p>
-    </div>
-   <div class="footer">
-      <div class="footer-center">
-          <p class="smallnav">
-             <a href="#">关于我们</a>
-             <a href="#">关于我们</a>
-             <a href="#">关于我们</a>
-             <a href="#">关于我们</a>
-             <a href="#">关于我们</a>
-             <a href="#">关于我们</a>
-          </p>
-          <p class="text2">京ICP备05028939号京公安备11010802014778号</p>
-          <p class="text3"> 微信关注，鹰眼新闻</p>
-      </div>
-   </div>
-</div>  
+<div class="bottom"></div>
+
+<script>
+    window.onload=function(){
+        $(".top").load("top.html");
+        $(".bottom").load("bottom.html");
+        $(".content").load("signIn.html")
+    }
+
+
+</script>
+
+
+
 </body>
 </html>

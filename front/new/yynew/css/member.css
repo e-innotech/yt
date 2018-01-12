@@ -131,6 +131,11 @@
 #content-rightinside{
 	position:relative;
 }
+.content-rightinside{
+	width:902px;
+	height:604px
+
+}
 #content-rightinside h2{
 	width:840px;
 	height:60px;
@@ -139,15 +144,15 @@
 	border-bottom:1px solid #e7e7e7;
 	font-weight: normal;
 }
-.content-rightinside h2{
-	height:60px;
-	font-size:20px;
-	line-height:60px;
-	border-bottom:1px solid #e7e7e7;
-	font-weight: normal;
-	
+/*.content-rightinside h2{*/
+	/*height:60px;*/
+	/*font-size:20px;*/
+	/*line-height:60px;*/
+	/*border-bottom:1px solid #e7e7e7;*/
+	/*font-weight: normal;*/
+	/**/
 
-}
+/*}*/
 .content-rightinside .details{
 	height:100px;
 
@@ -197,31 +202,25 @@
 
 /*以下我的评论*/
 
-/*.content-rightinside h2{
-	width:170px;
-	height:56px;
-	line-height:60px;
-	border-bottom:1px solid #ec201f;
-	font-size:20px;
-	color:#000;
 
-
-}*/
-#content-rightinside-list{
+.commentlist{
 	padding-top:24px;
 	padding-bottom:68px;
+	border-bottom:1px dashed #e7e7e7;
+	border-top:1px dashed #e7e7e7;
 }
-
-/*.content-rightinside .left{
-	width:13px;
-	height:16px;
+.commentlist .left{
 	float:left;
+
 }
-.content-rightinside .center{
+.commentlist .center{
 	margin-left:16px;
 	float:left;
+}
+.commentlist .right{
+	float:right;
+}
 
-}*/
 .content-rightinside .center p{
 	font-size:14px;
 	color:#999999;
@@ -282,7 +281,7 @@
 
 
 }*/
-.content-rightinside-list{
+.collectlist{
 	padding-top:29px;
 	padding-bottom:29px;
 	border-bottom:1px dashed #e7e7e7;
@@ -290,12 +289,12 @@
 
 }
 
-.content-rightinside-list .left{
+.collectlist .left{
 	width:13px;
 	height:16px;
 	float:left;
 }
-.content-rightinside-list .center{
+.collectlist .center{
   margin-left:16px;
   float:left;
 
@@ -303,7 +302,7 @@
 
 
 
-.content-rightinside-list .right{
+.collectlist .right{
 	width:15px;
 	float:right;
 
