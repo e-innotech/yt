@@ -5,7 +5,7 @@
     <title>头部</title>
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/top.css">
-    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="../script/jquery.min.js"></script>
     <script src="../../script/common.js"></script>
 
 
@@ -40,54 +40,49 @@
 
 <script>
 
-    //导航栏的数据
-    $(document).ready(function(){
-        $.ajax({
-            url:"../data/nav.json",
-            dataType:"json",
-            async:true,
-            type:"get",
-            success:function(navData){
-                var listdata=navData.data.channels;
-                str="";
-                for(var i=0;i<listdata.length;i++){
-                    $(".header .nav").append('<li><a> '+listdata[i].channelName+' </a></li>');
-//                    var creattagLI = $("<li></li>");
-//                    var creattagA = $("<a></a>");
-//                    creattagA.appendTo(creattagLI);
-//                    creattagA.text(listdata[i].channelName);
-//                    switch (creattagA.text()){
-//                        case "国内新闻":
-//                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/nav.html');
-//                            break;
-//                        case "首页":
-//                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/index.html');
-//                             break;
-//                        case "财经新闻":
-//                            creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/nav.html');
-//                            break;
-//                       case "汽车1":
-//                           creattagA.attr('href', 'http://localhost:63342/yt/front/new/yynews/html/nav.html');
-//                          break;
-//
-//                }
-//                creattagLI.appendTo($(".header .nav"));
+//    //导航栏的数据
+//判断是不是首次进入，如果是发送ajax请求，请求数据且渲染页面，并存在session中 否则不是首次就调用缓存里的数据
+    if(typeof(JSON.parse(sessionStorage.getItem("channel")))=="undefined"){
+      console.log(22222);
+//       var channels= JSON.parse(localStorage.getItem("channel"));
+//        console.log(2222222,channels);
+//        console.log(5555555,typeof(channels))
+//        for(var i=0;i<channels.length;i++){
+//            $(".header .nav").append('<li><a> ' + channels[i].channelName + ' </a></li>');
+//        }
+    }else{
+        console.log(1111111111)
+            $.ajax({
+                url:"../data/nav.json",
+                dataType:"json",
+                async:true,
+                type:"get",
+                success:function(navData){
+                    var navdata=navData.data.channels;
+                    for(var i=0;i<navdata.length;i++) {
+                        $(".header .nav").append('<li><a>'+navdata[i].channelName +
+                        ' </a></li>');
+                    }
+                    sessionStorage.setItem("channel",JSON.stringify(navdata));
+                    var channels= JSON.parse(sessionStorage.getItem("channel"));
+                    console.log(2222222,channels)
+                }
+            })
+    }
 
-            }
-
-//            $(".nav a").each(function(){
-//                $this = $(this);
-//                if($this[0].href==String(window.location)){
-//                    $this.addClass("active");  //hover表示被选中效果的类名
-//                }
-//
-//            })
-
-        }
+window.onload=function() {
+    $(".nav").on("click", "li", function () {
+        $(this).addClass("active").siblings().removeClass("active")
     })
-    });
+}
 
-    //点那个li  给那个li添加下边框
+
+
+
+
+
+
+
 
 
 </script>
