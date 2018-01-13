@@ -1,5 +1,4 @@
 config.init();
-console.log(1111,$members.logadd);
 function AjaxFunc(url, type, data, callBack) {
     var obj = {
         type: type,
@@ -32,7 +31,7 @@ function memberslogadd() {
 
         if (re.success) {
 
-            location.replace('signin.html');
+            location.replace('template.html');
         } else {
             alert(re.msg);
         }
@@ -46,9 +45,9 @@ function memberslogin() {
                 // console.log('remember')
                 sessionStorage.setItem('user', JSON.stringify(data));
             }
-            var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
-            sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
-            sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
+            //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
+            //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
+            //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
             location.replace('index.html');
         } else {
             alert(re.msg);
@@ -67,3 +66,20 @@ function memberslogout() {
     });
 }
 
+function indexHtml(){
+    var data = {id: '网站id', channelIds:'栏目id' };
+    AjaxFunc($members.index, 'post', data, function (re) {
+        if (re.success) {
+            if ($('input[name="remember"]').is(':checked')) {
+                // console.log('remember')
+                sessionStorage.setItem('user', JSON.stringify(data));
+            }
+            //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
+            //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
+            //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
+            location.replace('index.html');
+        } else {
+            alert(re.msg);
+        }
+    });
+}
