@@ -18,32 +18,26 @@ $(document).ready(function () {
 		success: function (detailData) {
 			var slide = detailData.data.list;
 			for (var i = 0; i < slide.length; i++) {
-				$('.content-left').append('<div class="news-top">' +
-				'<h2>'+ slide[i].news_title +'</h2>' +
+				$('#content').append('<div class="news-top">' +
+					'<h2>'+ slide[i].news_title +'</h2>' +
 					'<div class="dateinfo">' +
-						'<div class="time">'+
-						'+ 发布时间 +' +
-						'<span>'+ slide[i].create_date +'</span>' +
-						'</div>' +
-						'<div class="info">' +
-						'<p class="review">' +
-						'<img src="../../images/ping.png"/>' +
-						'<span>' + slide[i].comment +'</span>' +
-						'</p>' +
-						'<p class="read">' +
-						'<img src="../../images/yan.jpg"/>' +
-						'<span>' + slide[i].read +'</span>' +
-						'</p>' +
-						'</div>' +
+					'<div class="time">'+
+					'发布时间:' +
+					'<span>'+ slide[i].create_date +'</span>' +
 					'</div>' +
-				'</div>' +
-				'<div class="news-list">' +
-					'<h2>'+ 应该是导读给我一个故还你一百亿价值 +'</h2>' +
-					'<div class="news">' +
-						'<img src=" '+ slide[i].content.img+' "/>' +
-						'<p></p>' +
+					'<div class="info">' +
+					'<p class="review">' +
+					'<img src="../../images/ping.png"/>' +
+					'<span>' + slide[i].comment +'</span>' +
+					'</p>' +
+					'<p class="read">' +
+					'<img src="../../images/yan.jpg"/>' +
+					'<span>' + slide[i].read +'</span>' +
+					'</p>' +
 					'</div>' +
-				'</div>');
+					'</div>' +
+					'</div>');
+
 			}
 		}
 	})

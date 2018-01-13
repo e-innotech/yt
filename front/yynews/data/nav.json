@@ -12,25 +12,30 @@
         "id": 1,
         "channelName": "首页",
         "isUse": null,
-        "remark": "头条"
+        "remark": "头条",
+        "url":"http://localhost:63342/yt/front/yynews/html/index.html"
+
       },
       {
         "id": 2,
         "channelName": "国内新闻",
         "isUse": null,
-        "remark": "头条"
+        "remark": "头条",
+        "url":"http://localhost:63342/yt/front/yynews/html/detail.html"
       },
       {
         "id": 3,
         "channelName": "财经新闻",
         "isUse": null,
-        "remark": "经济"
+        "remark": "经济",
+        "url":"http://localhost:63342/yt/front/yynews/html/detail.html"
       },
       {
         "id": 5,
         "channelName": "汽车1",
         "isUse": null,
-        "remark": "汽车"
+        "remark": "汽车",
+        "url":"http://localhost:63342/yt/front/yynews/html/detail.html"
       }
     ]
   },
