@@ -67,7 +67,7 @@ function memberslogout() {
 }
 
 function indexHtml(){
-    var data = {id: '网站id', channelIds:'栏目id' };
+    var data = {id: '网站id', channelIds:'栏目id' ,channelName:'栏目名称'};
     AjaxFunc($members.index, 'post', data, function (re) {
         if (re.success) {
             if ($('input[name="remember"]').is(':checked')) {

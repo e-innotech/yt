@@ -13,8 +13,11 @@ var config ={
             'login':$apiUrl+'/members/login',
             'logout':$apiUrl+'/members/logout',
             'logadd':$apiUrl+'/members/add'
-
         };
+        $yynews = {
+            'index':$apiUrl+'/members/'
+
+        }
 
         $user = {
             'pwd':$apiUrl+'/user/pwd'
