@@ -116,28 +116,28 @@ $(document).ready(function () {
             console.log(111, slide);
 
             for (var i = 0; i < slide.length; i++) {
-                //$('#slide').append('<li class="swiper-slide">' +
-                //'<a href="' +slide[i].staticUrl +'">' +
-                //'<img class="picture" src="'+ slide[i].staticUrl +'"/>' +
-                //'<div class="bgcolor">' +
-                //'<p> '+ slide[i].pic_des +'</p>' +
-                //'</div>' +
-                //'</a>' +
-                //'</li>');
-
-                var creatLi=$("<li class='swiper-slide'></li>");
-                var createa=$("<a href=''></a>");
-                creatLi.append(createa)
-                var createImg=$("<img class='picture'/>");
-                createImg.attr("src",slide[i].staticUrl);
-                createa.append(createImg);
-                var creatediv=$("<div class='bgcolor'></div>");
-                createa.append(creatediv);
-                var creatp=$("<p></p>");
-                creatp.text(slide[i].pic_des);
-                creatediv.append(creatp);
-
-                $("#slide").append(creatLi);
+                $('#slide').append('<li class="swiper-slide">' +
+                '<a href="' + slide[i].staticA + '">' +
+                '<img class="picture" src="'+ slide[i].staticUrl +'"/>' +
+                '<div class="bgcolor">' +
+                '<p> '+ slide[i].pic_des +'</p>' +
+                '</div>' +
+                '</a>' +
+                '</li>');
+                //
+                //var creatLi=$("<li class='swiper-slide'></li>");
+                //var createa=$("<a href=''></a>");
+                //creatLi.append(createa)
+                //var createImg=$("<img class='picture'/>");
+                //createImg.attr("src",slide[i].staticUrl);
+                //createa.append(createImg);
+                //var creatediv=$("<div class='bgcolor'></div>");
+                //createa.append(creatediv);
+                //var creatp=$("<p></p>");
+                //creatp.text(slide[i].pic_des);
+                //creatediv.append(creatp);
+                //
+                //$("#slide").append(creatLi);
 
             }
         }

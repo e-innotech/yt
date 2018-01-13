@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/top.css">
     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="../../script/common.js"></script>
+
 
 </head>
 <body>
@@ -24,7 +26,7 @@
                 </form>
             </div>
             <div class="header-right-r">
-                <a href="https://www.baidu.com/"><img src="../images/ren.png" id="userAvatar"/></a>
+                <a href="template.html"><img src="../images/ren.png" id="userAvatar"/></a>
             </div>
         </div>
     </div>
@@ -46,9 +48,9 @@
             type:"get",
             success:function(navData){
                 var listdata=navData.data.channels;
-                str=" ";
+                str="";
                 for(var i=0;i<listdata.length;i++){
-                    $(".header .nav").append('<li><a> '+listdata[i].channelName+' </a></li>')
+                    $(".header .nav").append('<li><a> '+listdata[i].channelName+' </a></li>');
 //                    var creattagLI = $("<li></li>");
 //                    var creattagA = $("<a></a>");
 //                    creattagA.appendTo(creattagLI);
