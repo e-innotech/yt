@@ -19,7 +19,7 @@ $(document).ready(function () {
 			var slide = detailData.data.list;
 			for (var i = 0; i < slide.length; i++) {
 				$('#content').append('<div class="news-top">' +
-					'<h2>'+ slide[i].news_title +'</h2>' +
+				'<h2>'+ slide[i].news_title +'</h2>' +
 					'<div class="dateinfo">' +
 					'<div class="time">'+
 					'发布时间:' +

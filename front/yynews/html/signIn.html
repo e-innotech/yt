@@ -5,8 +5,11 @@
     <title>登录</title>
      <link rel="stylesheet" href="../css/style.css"/>
      <link rel="stylesheet" type="text/css" href="../css/signIn.css"/>
-     <script type="text/javascript" src="../script/js/sign.js"></script>
      <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script src="../../../common/js/config.js"></script>
+     <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/sign.js"></script>
+
 </head>
 <body>
     <div class="content">
@@ -21,16 +24,14 @@
               </div>
           </div>
           <p class="nextbox">
-            <input type="checkbox"/>
+            <input type="checkbox" name="remember"/>
             <span class="nextlogin">下次自动登录</span>
             <span class="forget">忘记密码</span>
           </p>
-          <input type="button" value="登录">
+          <input type="button" value="登录" onclick="memberslogin()">
           <p class="signIn">还没有账号，<span onclick="signUp()">立即注册</span></p>
         </div>
-    </div> 
- 
-	    
+    </div>
 </body>
  <script type="text/javascript">
 
