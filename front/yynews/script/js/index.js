@@ -145,6 +145,34 @@ $(document).ready(function () {
 });
 
 
+//右侧列表的数据
+$(document).ready(function() {
+    $.ajax({
+        url: "../data/bannerright.json",
+        dataType: "json",
+        async: true,
+        type: "get",
+        success: function (rightData) {
+            console.log(2222222222222);
+            var banner_r = rightData.data.banner_r
+            console.log(11111, banner_r)
+            for (var i = 0; i <banner_r.length; i++) {
+                $(".content-left-r").append('<div class="top">' +
+                '<a href="https://www.baidu.com/">' +
+                '<img src="' + banner_r[i].Url + '"/>' +
+                '<div class="bgcolortwo">' +
+                '<p>' + banner_r[i].con + '</p>' +
+                '</div>' +
+                '</a>' +
+                '</div>')
+
+            }
+        }
+    })
+})
+
+
+
 
 
 

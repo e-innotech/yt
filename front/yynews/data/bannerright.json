@@ -1,0 +1,26 @@
+{
+  "msg": "操作成功！",
+  "data": {
+    "id": 1,
+    "siteName": "123",
+    "route": "http://www.123.com",
+    "isUse": 1,
+    "createDate": "2017-12-20 18:50:30.0",
+    "templteConfig": "/ab/c/1.html",
+    "banner_r": [
+      {
+        "id": 1,
+        "Url":"http://www.upchina.com/upload/recommend/2018-01-09/1515481371806.jpg",
+        "con":"1沪深两市股指集体小幅低开，沪指整体上处于震荡整固的状态"
+
+      },
+      {
+        "id": 2,
+        "Url":"http://www.upchina.com/upload/recommend/2018-01-09/1515480209294.jpg",
+        "con":"2在全球新能源汽车大势所趋的形势下，大众、宝马、丰田等全球各大车企巨头纷纷涉及新能源汽车产业链上游钴资源端以来保"
+
+      }
+    ]
+  },
+  "success": true
+}

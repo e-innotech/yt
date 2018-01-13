@@ -23,7 +23,6 @@
 /*以下为主体左边内容*/
 .content-left{
 	width:820px;
-	/*height:5000px;*/
 	background:#fafafa;
     float:left;
 
@@ -31,8 +30,9 @@
 .content-left .news-top{
 	/*height:187px;*/
 	background:#fafafa;
-	/*padding-bottom: 42px;*/
+	padding-bottom: 42px;
 	overflow: hidden;
+	/*border-bottom:1px solid #e9e9e9;*/
 
 }
 .content-left .news-top h2{
@@ -92,48 +92,17 @@
 	font-size:14px;
 	color:#4c4c4c;
 }
-
 .news-list{
-	width:820px;
+	background:#fafafa;
 	padding:0 10px;
-
-
 }
-.newsbox{
-	width:100%;
-	height:100%;
+.news-list .news{
+	width:820px;
+	min-height:684px;
+
 	border-top:1px solid #e9e9e9;
-	overflow: hidden;
 }
-.newsbox h2{
-	margin-top:23px;
-	background:#f2f2f2;
-	padding-top:5px;
-	line-height:44px;
-	border-left:6px solid #e90325;
-	text-indent: 21px;
-	font-size:14px;
-	font-weight: normal;
-}
-.news img{
-	width:800px;
-	height:403px;
-	margin-bottom:7px;
-}
-.news ul li{
-	width:800px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	text-overflow: -o-ellipsis-lastline;
-	overflow: hidden;
-	line-height:40px;
-	font-size:16px;
 
-}
-.news ul li a{
-	color:#000;
-
-}
 
 /*以下为版权*/
 .copyright{
@@ -143,7 +112,6 @@
 	overflow: hidden;
 	font-size:15px;
 	color:#ababab;
-	/*padding:0 10px;*/
 	margin-left:10px;
 	margin-right:10px;
 	
