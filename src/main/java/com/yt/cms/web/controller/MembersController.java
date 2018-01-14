@@ -46,6 +46,14 @@ public class MembersController {
 	@PostMapping("/add")
 	@ApiOperation("会员注册")
 	public AjaxResponseBody add(@RequestBody Members members) {
+		// 检查当前会员名是否已经注册
+		boolean is_exist = memberService.findByUname(members.getUname());
+		AjaxResponseBody response = new AjaxResponseBody();
+		if(is_exist) {
+			response.setMsg("该名称已被注册，请使用其他名称！！！");
+			response.setSuccess(false);
+			return response;
+		}		
 		boolean created = memberService.save(members);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -66,17 +74,17 @@ public class MembersController {
 		return new AjaxResponseBody(true,Const.SUCCESS,result);
 	}
 	
-	/**
-	 * 按照会员注册名查询
-	 * @param id
-	 * @return
-	 */
-	@GetMapping("/find/name")
-	@ApiOperation("按照注册名查询会员")
-	public AjaxResponseBody findByUName(@RequestParam String uname) {
-		boolean result = memberService.findByUname(uname);
-		return new AjaxResponseBody(true,Const.SUCCESS,result);
-	}
+//	/**
+//	 * 按照会员注册名查询
+//	 * @param id
+//	 * @return
+//	 */
+//	@GetMapping("/find/name")
+//	@ApiOperation("按照注册名查询会员")
+//	public AjaxResponseBody findByUName(@RequestParam String uname) {
+//		boolean result = memberService.findByUname(uname);
+//		return new AjaxResponseBody(true,Const.SUCCESS,result);
+//	}
 	
 	
 	/**

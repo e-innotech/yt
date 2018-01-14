@@ -35,6 +35,17 @@
     from news
     where id = #{id,jdbcType=INTEGER} and isDel = 0
   </select>
+  
+    <!-- 获取文章详情 -->
+  <select id="getWebsiteChannelNewsDetail" resultMap="ResultMapWithBLOBs" parameterType="map" >
+	  select b.id,b.news_title,b.content,b.source,b.staticUrl,b.create_date,b.submit_user_id
+	  from news_publish a , news b 
+	  where  a.news_id = b.id and a.isLine = 1 
+	  and a.website_id = #{websiteId}
+	  and a.channel_id = #{channelId}
+	  and b.id = #{articleId}
+  </select>
+  
   <!-- 获取栏目文章列表 -->
   <select id="getWebsiteChannelNews" resultMap="BaseResultMap" parameterType="map" >
 	  select b.id,b.news_title,left(b.content,50) sub_content,b.source,b.staticUrl,b.create_date,b.submit_user_id
@@ -70,6 +81,7 @@ WHERE
     a.members_id = b.members_id
         AND b.members_id = c.id
         and a.news_id = #{articleId}
+        and a.website_id = #{websiteId}
 	  order by a.id desc 
 	  <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 		        LIMIT #{page.pageLimit},#{page.pageSize}
@@ -86,11 +98,12 @@ WHERE
     a.members_id = b.members_id
         AND b.members_id = c.id
         and a.news_id = #{articleId}
+        and a.website_id = #{websiteId}
   </select>
   
   <!-- 获取文章的评论总数 -->
-  <select id="getArticleCommentsTotal" resultType="long" parameterType="java.lang.Integer" >
-     SELECT count(1) FROM members_comments_news a WHERE a.news_id = #{articleId}
+  <select id="getArticleCommentsTotal" resultType="long" parameterType="map" >
+     SELECT count(1) FROM members_comments_news a WHERE a.news_id = #{articleId} and a.website_id = #{websiteId}
   </select>
   
   <!-- 获取文章评论 -->

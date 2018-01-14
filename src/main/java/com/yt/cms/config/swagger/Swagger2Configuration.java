@@ -21,7 +21,8 @@ public class Swagger2Configuration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yt.cms.web.controller"))//要扫描的API(Controller)基础包
+                .apis(RequestHandlerSelectors.basePackage("com.yt.cms"))//要扫描的API(Controller)基础包
+//                .apis(RequestHandlerSelectors.basePackage("com.yt.cms.front.web.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

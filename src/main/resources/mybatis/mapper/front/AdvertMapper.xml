@@ -11,7 +11,7 @@
     SELECT 
     c.id, c.source
 FROM
-    ytcms.website_template a,
+    website_template a,
     adpositions b,
     ad c
 WHERE

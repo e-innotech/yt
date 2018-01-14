@@ -10,15 +10,32 @@ import com.yt.cms.front.model.Comments;
 
 public interface ArticleMapper {
     
+	/**
+	 * 栏目页列表
+	 * @param websiteId
+	 * @param channelId
+	 * @param page
+	 * @return
+	 */
 	List<Article> getWebsiteChannelNews(@Param("websiteId") Integer websiteId,@Param("channelId") Integer channelId, @Param("page")  Page page);
-	
+	/**
+	 * 栏目页列表
+	 * @param websiteId
+	 * @param channelId
+	 * @return
+	 */
     long getWebsiteChannelNewsCount(@Param("websiteId") Integer websiteId,@Param("channelId") Integer channelId);
 	
-    List<Comments> getArticleComments(Integer articleId,Page page);
-	
-    long getArticleCommentsCount(Integer articleId);
     
-    long getArticleCommentsTotal(Integer articleId);
+    
+	
+	Article getWebsiteChannelNewsDetail(@Param("websiteId") Integer websiteId,@Param("channelId") Integer channelId, @Param("articleId")  Integer articleId);
+	
+    List<Comments> getArticleComments(@Param("websiteId") Integer websiteId,@Param("articleId") Integer articleId,Page page);
+	
+    long getArticleCommentsCount(@Param("websiteId") Integer websiteId,@Param("articleId") Integer articleId);
+    
+    long getArticleCommentsTotal(@Param("websiteId") Integer websiteId,@Param("articleId") Integer articleId);
     // 未实现
 	long getArticlePV(Integer articleId);
 }
