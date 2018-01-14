@@ -37,8 +37,8 @@ public class WebsiteCommonController {
 	@GetMapping("/common/ad/{websiteId}/{templateType}")
 	@ApiOperation("通用接口-广告")
 	public AjaxResponseBody queryCommonAd(@PathVariable Integer websiteId,
-			@PathVariable Integer homeWeight){
-		List<Ad> ads = websiteCommonService.getWebsiteTemplateAds(websiteId, homeWeight);
+			@PathVariable Integer templateType){
+		List<Ad> ads = websiteCommonService.getWebsiteTemplateAds(websiteId, templateType);
 		return new AjaxResponseBody(true,Const.SUCCESS,ads);
 	}
 	

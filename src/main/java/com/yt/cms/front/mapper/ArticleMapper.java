@@ -31,7 +31,7 @@ public interface ArticleMapper {
 	
 	Article getWebsiteChannelNewsDetail(@Param("websiteId") Integer websiteId,@Param("channelId") Integer channelId, @Param("articleId")  Integer articleId);
 	
-    List<Comments> getArticleComments(@Param("websiteId") Integer websiteId,@Param("articleId") Integer articleId,Page page);
+    List<Comments> getArticleComments(@Param("websiteId") Integer websiteId,@Param("articleId") Integer articleId,@Param("page") Page page);
 	
     long getArticleCommentsCount(@Param("websiteId") Integer websiteId,@Param("articleId") Integer articleId);
     

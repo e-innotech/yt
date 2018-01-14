@@ -11,7 +11,7 @@
     <result column="top_image_path" property="topImagePath" jdbcType="VARCHAR" />
     <result column="sub_content" property="subContent" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.model.News" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.front.model.Article" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
  
@@ -25,16 +25,6 @@
     <result column="icon" property="membersPic" jdbcType="VARCHAR" />
     <result column="regDate" property="membersRegtime" jdbcType="TIMESTAMP" />
   </resultMap>
-  
- 
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from news
-    where id = #{id,jdbcType=INTEGER} and isDel = 0
-  </select>
   
     <!-- 获取文章详情 -->
   <select id="getWebsiteChannelNewsDetail" resultMap="ResultMapWithBLOBs" parameterType="map" >
@@ -88,7 +78,7 @@ WHERE
 	  </if>
   </select>
   
-  <select id="getArticleCommentsCount" resultType="long" parameterType="java.lang.Integer" >
+  <select id="getArticleCommentsCount" resultType="long" parameterType="map" >
      SELECT count(1)
 	FROM
     members_comments_news a,

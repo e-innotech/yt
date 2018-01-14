@@ -11,7 +11,7 @@
     select 
     a.id, a.channelName,b.websites_id
     from channel a, websites_channel b where a.isDel = 0 and a.id = b.channel_id
-    and b.websites_id = #{id,jdbcType=INTEGER} 
+    and b.websites_id = #{websiteId,jdbcType=INTEGER} 
   </select>
    
 

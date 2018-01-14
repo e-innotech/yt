@@ -61,13 +61,12 @@ public class WebsiteDetailPageController {
 	/**
 	 * 查询网站详情页的评论总数
 	 * 评论表需要添加网站id字段
+	 * 已经删除的评论是否要记录
 	 * @return
 	 */
 	@GetMapping("/query/total/{websiteId}/{articleId}")
 	@ApiOperation("查询网站详情页的评论总数")
-	public AjaxResponseBody queryArticleCommentsTotal(@PathVariable Integer websiteId,@PathVariable Integer articleId,
-			@RequestParam Integer pageNum,
-			@RequestParam Integer pageSize){
+	public AjaxResponseBody queryArticleCommentsTotal(@PathVariable Integer websiteId,@PathVariable Integer articleId){
 		long total = websiteDetailPageService.getArticleCommentsTotal(websiteId, articleId);
 		return new AjaxResponseBody(true,Const.SUCCESS,total);
 	}
