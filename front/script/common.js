@@ -48,6 +48,8 @@ function memberslogin() {
             //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
             //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
             //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
+            var userName = $('input[name="userName"]').val();
+            sessionStorage.setItem('synUser',userName);
             location.replace('index.html');
         } else {
             alert(re.msg);

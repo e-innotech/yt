@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>个人资料</title>
     <link rel="stylesheet" href="../css/style.css"/>
-    <script type="text/javascript" src="../script/record.js"></script>
+    <!--<script type="text/javascript" src="../script/record.js"></script>-->
 </head>
 <body>
 
@@ -33,11 +33,11 @@
 
     //判断sessionStoeage是否为空，如果为空证明是第一次加载
     //如果不是空证明已经修改过个人资料
-    if (sessionStorage.length>0) {
-      $(".details-left .nickname").html(sessionStorage.getItem(1));
-      $(".details-left .emails").html(sessionStorage.getItem(2));
-      $(".details-right .address").html(sessionStorage.getItem(3));
-      $(".details-right .sex").html(sessionStorage.getItem(4));
+    if (sessionStorage.getItem("nickname")!==null) {
+      $(".details-left .nickname").html(sessionStorage.getItem("nickname"));
+      $(".details-left .emails").html(sessionStorage.getItem("email"));
+      $(".details-right .address").html(sessionStorage.getItem("addressbus"));
+      $(".details-right .sex").html(sessionStorage.getItem("sexuality"));
     }else{
       console.log("空")
     }
@@ -45,19 +45,19 @@
 //点击修改个人资料按钮时
 $(".material").on("click",function(){
     var nickName,
-        sexuality,
+        sexUality,
         eMail,
         addressBus;
 
     nickName = $(".details-left .nickname").html();
     eMail = $(".details-left .emails").html();
     addressBus= $(".details-right .address").html();
-    sexuality = $(".details-right .sex").html();
+    sexUality = $(".details-right .sex").html();
 
-    sessionStorage.setItem(1,nickName);
-    sessionStorage.setItem(2,eMail);
-    sessionStorage.setItem(3,addressBus);
-    sessionStorage.setItem(4,sexuality);
+    sessionStorage.setItem("nickname",nickName);
+    sessionStorage.setItem("email",eMail);
+    sessionStorage.setItem("addressbus",addressBus);
+    sessionStorage.setItem("sexuality",sexUality);
   $("#content-rightinside").load("repeopleinfo.html")
 
 })  

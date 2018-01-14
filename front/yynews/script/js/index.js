@@ -114,7 +114,6 @@ $(document).ready(function () {
         success: function (slideshowData) {
             var slide = slideshowData.data.slider;
             console.log(111, slide);
-
             for (var i = 0; i < slide.length; i++) {
                 $('#slide').append('<li class="swiper-slide">' +
                 '<a href="' + slide[i].staticA + '">' +

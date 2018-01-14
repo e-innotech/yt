@@ -48,7 +48,8 @@
 }
 
 .header-right{
-    width:250px;
+    /*width:250px;*/
+    /*width:330px;*/
     float:right;
     overflow: hidden;
     margin-top:18px;
@@ -85,9 +86,28 @@
 }
 
 .header .header-right-r{
-    width:30px;
+    width:115px;
     height:34px;
-    float:right; 
+    float:right;
+    display:none;
+}
+#loginbefore{
+    width:32px;
+    margin-left:20px;
+}
+#loginafter{
+    width:115px;
+    margin-left:20px;
+}
+
+
+.header .header-right-r a{
+    float:left;
+}
+.header-right-r p{
+   float:right;
+    color:#ff4243;
+    /*line-height:73px;*/
 }
 .active{
     border-bottom:2px solid #206491;
