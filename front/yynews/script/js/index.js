@@ -40,7 +40,7 @@ $(document).ready(function () {
                 //创建头像
                 var createportrait = $("<img class='portrait' />");
                 //头像
-                createportrait.attr("src", newlist[i].portrait);
+                createportrait.attr("src", "http://img2.touxiang.cn/file/20170425/33890a01d5fa359538c876dbf6c44fb1.jpg");
                 //来源
                 creatsource.text(newlist[i].source);
                 creatsource.append(createportrait);
