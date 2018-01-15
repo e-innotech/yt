@@ -57,50 +57,50 @@ function logout(){
 }
 //    //导航栏的数据
 //判断是不是首次进入，如果是发送ajax请求，请求数据且渲染页面，并存在session中 否则不是首次就调用缓存里的数据
-    if(sessionStorage.getItem("channel") !== null){
-      console.log(22222);
-       var channels= JSON.parse(sessionStorage.getItem("channel"));
-//        console.log(2222222,channels);
-//        console.log(5555555,typeof(channels))
-        for(var i=0;i<channels.length;i++){
-            $(".header .nav").append('<li><a> ' + channels[i].channelName + ' </a></li>');
-        }
-    }else{
-        console.log(1111111111)
-            $.ajax({
-                url:"http://127.0.0.1:8080/common/channel/3",
-                dataType:"json",
-                async:true,
-                type:"get",
-                success:function(navData){
-                    console.log(99999,navData.data)
-//                    var navdata=navData.data.channels;
-                    for(var i=0;i<navData.data.length;i++) {
-                        $(".header .nav").append('<li><a>'+navData.data[i].channelName +
-                        ' </a></li>');
-                    }
-//                    sessionStorage.setItem("channel",JSON.stringify(navdata));
-                //    var channels= JSON.parse(sessionStorage.getItem("channel"));
-//                    console.log(2222222,channels)
-                }
-            })
-    }
-$(document).ready(function(){
-    if(sessionStorage.getItem("synUser") !== null){
-        $("#loginafter").show();
-        console.log("ok")
-    }else{
-        $("#loginbefore").show();
-        console.log("no")
-
-    }
-})
-window.onload=function() {
-
-    $(".nav").on("click", "li", function () {
-        $(this).addClass("active").siblings().removeClass("active")
-    })
-}
+//    if(sessionStorage.getItem("channel") != null){
+//      console.log(22222);
+//       var channels= JSON.parse(sessionStorage.getItem("channel"));
+////        console.log(2222222,channels);
+////        console.log(5555555,typeof(channels))
+//        for(var i=0;i<channels.length;i++){
+//            $(".header .nav").append('<li><a> ' + channels[i].channelName + ' </a></li>');
+//        }
+//    }else{
+//        //console.log(1111111111)
+//            $.ajax({
+//                url:"http://127.0.0.1:8080/common/channel/3",
+//                dataType:"json",
+//                async:true,
+//                type:"get",
+//                success:function(navData){
+//                    console.log(99999,navData.data)
+////                    var navdata=navData.data.channels;
+//                    for(var i=0;i<navData.data.length;i++) {
+//                        $(".header .nav").append('<li><a>'+navData.data[i].channelName +
+//                        ' </a></li>');
+//                    }
+////                    sessionStorage.setItem("channel",JSON.stringify(navdata));
+//                //    var channels= JSON.parse(sessionStorage.getItem("channel"));
+////                    console.log(2222222,channels)
+//                }
+//            })
+//    }
+//$(document).ready(function(){
+//    if(sessionStorage.getItem("synUser") !== null){
+//        $("#loginafter").show();
+//        console.log("ok")
+//    }else{
+//        $("#loginbefore").show();
+//        console.log("no")
+//
+//    }
+//})
+//window.onload=function() {
+//
+//    $(".nav").on("click", "li", function () {
+//        $(this).addClass("active").siblings().removeClass("active")
+//    })
+//}
 
 
 
