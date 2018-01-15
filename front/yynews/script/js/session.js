@@ -15,4 +15,5 @@ $(".truerevise").on("click",function(){
     sessionStorage.setItem("addressbus",addressBus);
     sessionStorage.setItem("sexuality",sexuality);
     $("#content-rightinside").load("peopleinfo.html");
+   location.reload();
   })

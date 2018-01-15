@@ -15,9 +15,14 @@ var config ={
             'logadd':$apiUrl+'/members/add'
         };
         $yynews = {
-            'index':$apiUrl+'/members/'
-
-        }
+            'index':$apiUrl+'/home/',//首页
+            'top':$apiUrl+'/web/channel/query',//网站栏目页服务
+            'detail':$apiUrl+'/web/detail/query',//网站详情页面文章详情
+            'detailTotal':$apiUrl+'/web/detail/query/total',//详情页品论总数
+            'detailQuery':$apiUrl+'/web/detail/query', //评论内容
+            'channel':$apiUrl+'/common/channel', //网站栏目
+            'ad':$apiUrl+'/common/ad' //广告
+        };
 
         $user = {
             'pwd':$apiUrl+'/user/pwd'
