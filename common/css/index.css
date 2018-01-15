@@ -80,7 +80,7 @@ a {
 }
 
 .navbar-default {
-    background-color: #1cbb95;
+    background-color: #23ebb0;
 }
 
 .logo {
@@ -442,7 +442,7 @@ a:hover {
 }
 
 .anniu.active {
-    background-color: #1cbb95;
+    background-color: #23ebb0;
     /*margin-left:0;*/
 }
 /*单独长的导航文字*/
@@ -492,7 +492,7 @@ a:hover {
 
 /*表格里的按钮样式*/
 tbody button {
-    background-color: #2eb58c;
+    background-color: #23ebb0;
     border: none;
     border-radius: 5px;
     color: white;
@@ -533,7 +533,7 @@ table thead th:last-child{text-align: center;}
 #addGroupNameT button {
     width: 120px;
     height: 36px;
-    background: #2eb58c;
+    background: #23ebb0;
     border-radius: 5px;
     border: none;
     color: #fff;

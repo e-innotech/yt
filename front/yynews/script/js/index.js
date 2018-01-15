@@ -45,7 +45,7 @@ $(document).ready(function () {
         async: true,
         type: "get",
         success: function (newlistData) {
-            console.log(2111112,newlistData)
+            //console.log(22,newlistData.data.list)
             var newlist = newlistData.data.list;
             //  console.log(111,newlist);
             for (var i = 0; i < newlist.length; i++) {
@@ -143,7 +143,8 @@ $(document).ready(function () {
         }
     })
 
-    //右侧列表的数据
+
+    //轮播图请求的数据
     $.ajax({
         url: $yynews.index +"/3/4?pageNum=1&pageSize=20",
         dataType: "json",
