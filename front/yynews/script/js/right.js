@@ -11,7 +11,7 @@ $(document).ready(function(){
             $(".imgnewlist>img").attr("src",rightdata[1].topImagePath);
 
             $(".imgnewlist .textone").text(rightdata[1].newsTitle);
-            $(".imgnewlist .texttwo").text(rightdata[1].subContent);
+            $(".imgnewlist .texttwo").text(removeHTMLTag(rightdata[1].subContent));
             var rightnewdata=rightnewData.data.rightnewlists;
             //console.log(33,rightnewdata);
             for(var i=0;i<rightdata.length;i++){
@@ -35,7 +35,7 @@ $(document).ready(function(){
             var Article=rightnewData.data.list;
             //console.log(111111,Article)
             //var topArticle = rightnewData.data.topArticle
-            for (var n = 0; n < Article.length; n++) {
+            for (var n = 0; n < 1; n++) {
                 //创建一个容器
                 var textpicBox = $("<div class='textpicBox'></div>");
                 //把容器加进右下边的盒子中

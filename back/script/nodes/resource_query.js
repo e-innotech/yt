@@ -33,6 +33,10 @@ $(function () {
 
     };
     var editResource = function () {//编辑
+        if($('input[name="resourceName"]').val() == ''){
+            alert('资源名不能为空');
+            return;
+        };
         var data = $('#resourceForm').serializeObject();
         data.id = selectResource.id;
         AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {

@@ -39,6 +39,10 @@ $(function () {
        });
    };
    var editAdPositions = function () {
+       if($('input[name="adName"]').val() == ''){
+           alert('广告位名不能为空');
+           return;
+       };
        var data = $('#adPositionsForm').serializeObject();
        data.id = selectAdPositions.id;
        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {

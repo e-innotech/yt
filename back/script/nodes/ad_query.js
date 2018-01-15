@@ -45,6 +45,10 @@ $(function () {
        });
    };
    var editAd = function () {
+       if($('input[name="adName"]').val()==''||$('input[name="adPositionsId"]').val()==''||$('input[name="beginDate"]').val()==''||$('input[name="endDate"]').val()==''){
+           alert('参数不能为空');
+           return;
+       }
        var data = $('#adForm').serializeObject();
        data.id = selectAd.id;
        AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
