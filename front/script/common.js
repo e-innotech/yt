@@ -47,15 +47,15 @@ function memberslogadd() {
 }
 function memberslogin() {
     var data = {uname: $('input[name="userName"]').val(), pwd: $('input[name="password"]').val()};
-    console.log($members.login)
     AjaxFunc($members.login, 'post', data, function (re) {
         if (re.success) {
             if ($('input[name="remember"]').is(':checked')) {
                 // console.log('remember')
                 sessionStorage.setItem('data', JSON.stringify(data));
             }
-
-           location.replace('index.html');
+            sessionStorage.setItem('memberinfo', JSON.stringify(re.data));
+           // console.log("会员登陆:" + re.data.uname);
+          location.replace('index.html');
         } else {
             alert(re.msg);
         }

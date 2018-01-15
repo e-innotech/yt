@@ -11,7 +11,7 @@ $(document).ready(function () {
             console.log(111, slide);
             for (var i = 0; i < slide.length; i++) {
                 $('#slide').append('<li class="swiper-slide">' +
-                '<a href="' + slide[i].staticA + '">' +
+                '<a href="http://123.59.156.27:8080/web/detail/query/3/1/1">' +
                 '<img class="picture" src="'+ slide[i].topImagePath +'"/>' +
                 '<div class="bgcolor">' +
                 '<p> '+ slide[i].newsTitle +'</p>' +
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 var list = $("<div class='list' id='list'></div>");
                 //创建图片
                 var creatImgbig = $("<img />");
-                var creatImga = $("<a href='https://www.baidu.com/'></a>");
+                var creatImga = $("<a href='http://123.59.156.27:8080/web/detail/query/3/1/1'></a>");
                 creatImgbig.attr("src", newlist[i].topImagePath);
                 creatImga.append(creatImgbig);
                 creatImga.appendTo(list);
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
                 //创建右侧列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
-                var createtaga = $("<a href='https://www.baidu.com/'></a>");
+                var createtaga = $("<a href='http://123.59.156.27:8080/web/detail/query/3/1/1'></a>");
                 createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //右侧列表
@@ -155,7 +155,7 @@ $(document).ready(function () {
             console.log(11111, banner_r)
             for (var i = 0; i <banner_r.length; i++) {
                 $(".content-left-r").append('<div class="top">' +
-                '<a href="https://www.baidu.com/">' +
+                '<a href="http://123.59.156.27:8080/web/detail/query/3/1/1">' +
                 '<img src="' + banner_r[i].topImagePath + '"/>' +
                 '<div class="bgcolortwo">' +
                 '<p>' + banner_r[i].newsTitle + '</p>' +
@@ -174,11 +174,14 @@ $(document).ready(function () {
         async: true,
         type: "get",
         success: function (adList) {
-            var AdList = adList.data;
-            console.log(989898,adList)
+            for (var n = 0; n < 1; n++) {
+                var AdList = adList.data;
+                console.log(989898,adList)
                 $(".advertising").append('<img src="'+ AdList[0].source +'">' +
                 '<img src="'+ AdList[1].source +'">');
                 $(".content-right-top").append('<img src="'+ AdList[2].source +'" class="right-banner"/>');
+
+            }
 
         }
     })
