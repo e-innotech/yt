@@ -107,19 +107,19 @@ $(document).ready(function () {
 
     //轮播图请求的数据
     $.ajax({
-        url: "../../yynews/data/slideshow.json",
+        url: "http://123.59.156.27:8080/home/3/1?pageNum=1&pageSize=111",
         dataType: "json",
         async: true,
         type: "get",
         success: function (slideshowData) {
-            var slide = slideshowData.data.slider;
-            console.log(111, slide);
+            var slide = slideshowData.data.list;
+            console.log(1111111111, slide);
             for (var i = 0; i < slide.length; i++) {
                 $('#slide').append('<li class="swiper-slide">' +
                 '<a href="' + slide[i].staticA + '">' +
-                '<img class="picture" src="'+ slide[i].staticUrl +'"/>' +
+                '<img class="picture" src="'+ slide[i].topImagePath +'"/>' +
                 '<div class="bgcolor">' +
-                '<p> '+ slide[i].pic_des +'</p>' +
+                '<p> '+ slide[i].newsTitle +'</p>' +
                 '</div>' +
                 '</a>' +
                 '</li>');

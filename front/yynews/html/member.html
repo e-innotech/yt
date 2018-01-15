@@ -148,5 +148,16 @@
 
   <script type="text/javascript" src="../script/js/member.js"></script>
 
+<script>
+    if (sessionStorage.getItem("nickname")!==null) {
+        $("#namesss").html(sessionStorage.getItem("nickname"));
 
+    }else{
+        console.log("空空的");
+    }
+
+
+
+
+</script>
 </html>
