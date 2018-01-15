@@ -81,7 +81,6 @@
                      <div class="pages">
                          <ul id="pg" class="pagination"></ul>
                      </div>
-
                  </div>
 
             </div>
@@ -151,15 +150,20 @@
   <script type="text/javascript" src="../script/js/member.js"></script>
 
 <script>
-//    if (sessionStorage.getItem("nickname")!==null) {
-//        $("#namesss").html(sessionStorage.getItem("nickname"));
-//
-//    }else{
-//        console.log("空空的");
-//    }
-  console.log(9999999,sessionStorage.getItem("user"));
 
 
+    //进网站加载个人资料
+    window.onload=function(){
+        var meminfo= JSON.parse(sessionStorage.getItem('memberinfo'));
+        $('#top').load('top.html');
+        $("#content-rightinside").load("peopleinfo.html");
+        $('#bottom').load('bottom.html');
+        console.log(88888881111,meminfo);
+        $("#personData").addClass("actives");
+        $("#abcd").html(meminfo.uname);
+        console.log(88888881111,$("#abcd").html());
+
+    }
 
 
 </script>

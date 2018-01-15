@@ -54,6 +54,8 @@ function memberslogin() {
                 sessionStorage.setItem('data', JSON.stringify(data));
             }
             sessionStorage.setItem('memberinfo', JSON.stringify(re.data));
+            var userName=$('input[name="userName"]').val();
+            sessionStorage.setItem('synUser',userName);
            // console.log("会员登陆:" + re.data.uname);
           location.replace('index.html');
         } else {
