@@ -12,7 +12,8 @@ var config ={
         $members = {
             'login':$apiUrl+'/members/login',
             'logout':$apiUrl+'/members/logout',
-            'logadd':$apiUrl+'/members/add'
+            'logadd':$apiUrl+'/members/add',
+            'commentadd':$apiUrl+'/members/comment/add'
         };
         $yynews = {
             'index': $apiUrl + '/home/',//首页

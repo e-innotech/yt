@@ -49,6 +49,10 @@ $(function () {
         });
     };
     var editChannel = function () {
+        if($('input[name="channelName"]').val() == ''){
+            alert('栏目名不能为空');
+            return;
+        };
         var data = $('#channelForm').serializeObject();
         data.id = selectChannel.id;
         AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {

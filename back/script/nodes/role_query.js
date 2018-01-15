@@ -41,6 +41,10 @@ $(function () {
         });
     };
     var editRole = function () {
+        if($('input[name="roleName"]').val() == ''){
+            alert('角色名不能为空');
+            return;
+        };
         var data = $('#roleForm').serializeObject();
         data.resourceIds = resourceListSelectIds;
         data.id = selectRole.id;

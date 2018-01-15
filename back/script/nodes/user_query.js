@@ -25,7 +25,7 @@ $(function () {
     };
     var addUser = function () {
         if($('input[name="userName"]').val()==''){
-            alert('参数不能为空');
+            alert('用户名不能为空');
             return;
         }
         var data = $('#roleForm').serializeObject();
@@ -42,6 +42,10 @@ $(function () {
 
 
     var editUser = function () {
+        if($('input[name="userName"]').val()==''){
+            alert('用户名不能为空');
+            return;
+        }
         var data = $('#roleForm').serializeObject();
         data.id = selectUser.id;
         AjaxFunc($apiUrl + ctrl_upate, 'post', data, function (re) {

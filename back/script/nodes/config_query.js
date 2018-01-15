@@ -51,6 +51,10 @@ $(function () {
 
 
     var editUser = function () {
+        if($('input[name="name"]').val()==''){
+            alert('参数不能为空');
+            return;
+        }
         var data = $('#roleForm').serializeObject();
         data.id = selectUser.id;
         AjaxFunc($apiUrl + ctrl_upate, 'post', data, function (re) {

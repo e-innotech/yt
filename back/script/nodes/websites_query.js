@@ -58,6 +58,10 @@ $(function () {
 
     };
     var editWebsites = function () {
+        if($('input[name="siteName"]').val() == ''){
+            alert('网站名不能为空');
+            return;
+        };
         var data = $('#websitesForm').serializeObject();
         data.webTemplates = [{templateType:0,templatePath:$('#template_0').val()},
             {templateType:1,templatePath:$('#template_1').val()},
@@ -205,6 +209,7 @@ $(function () {
                 $('input[name="homeWeightMax"]').val(selectWebsites.homeWeightMax);
 
                 for(var i=0;i<selectWebsites.webTemplates.length;i++){
+                    console.log(1111111112222454,selectWebsites.webTemplates)
                     $('#template_'+selectWebsites.webTemplates[i].templateType).val(selectWebsites.webTemplates[i].templatePath);
                 }
             }

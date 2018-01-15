@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     //轮播图请求的数据
     $.ajax({
         url:  $yynews.index +"/3/1?pageNum=1&pageSize=20",
@@ -131,17 +130,18 @@ $(document).ready(function () {
                 creatcenter.append(createright);
                 list.append(creatcenter);
 
-                creatcenter.appendTo(createlistrbox)
+                creatcenter.appendTo(createlistrbox);
                 //创建文章内容
                 var creatnewsdetail = $("<p class='newsdetail'></p>");
-                creatnewsdetail.text(newlist[i].subContent);
+                creatnewsdetail.text(removeHTMLTag(newlist[i].subContent));
                 creatnewsdetail.appendTo(createlistrbox);
 
                 list.append(createlistrbox);
                 $(".listbox").append(list);
             }
         }
-    })
+    });
+
 
 
     //轮播图请求的数据
@@ -167,7 +167,21 @@ $(document).ready(function () {
         }
     })
 
+//左侧广告
+    $.ajax({
+        url: $yynews.ad +'/3/0',
+        dataType: "json",
+        async: true,
+        type: "get",
+        success: function (adList) {
+            var AdList = adList.data;
+            console.log(989898,adList)
+                $(".advertising").append('<img src="'+ AdList[0].source +'">' +
+                '<img src="'+ AdList[1].source +'">');
+                $(".content-right-top").append('<img src="'+ AdList[2].source +'" class="right-banner"/>');
 
+        }
+    })
 
 });
 
