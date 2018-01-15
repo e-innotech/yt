@@ -372,16 +372,19 @@
 .commentCon-l{
 	width:200px;
 	height:240px;
-	border:1px solid #e5e5e5;
+	/*border:1px solid #e5e5e5;*/
+	border-bottom:1px solid #e5e5e5;
+	border-left:solid #e5e5e5;
+	border-right:1px solid #e5e5e5;
 	float:left;
     text-align:center;
     position:relative;
 }
 .commentCon-r{
-	width:619px;
+	width:640px;
 	height:240px;
 	border-right:1px solid #e5e5e5;
-	border-top:1px solid #e5e5e5;
+	/*border-top:1px solid #e5e5e5;*/
 	border-bottom:1px solid #e5e5e5;
 	float:left;
 }

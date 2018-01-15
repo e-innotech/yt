@@ -44,6 +44,7 @@ $(document).ready(function () {
         async: true,
         type: "get",
         success: function (newlistData) {
+            console.log(666666666,newlistData)
             //console.log(22,newlistData.data.list)
             var newlist = newlistData.data.list;
             //  console.log(111,newlist);
