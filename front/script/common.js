@@ -39,18 +39,18 @@ function memberslogadd() {
 }
 function memberslogin() {
     var data = {uname: $('input[name="userName"]').val(), pwd: $('input[name="password"]').val()};
+    console.log($members.login)
     AjaxFunc($members.login, 'post', data, function (re) {
         if (re.success) {
             if ($('input[name="remember"]').is(':checked')) {
                 // console.log('remember')
                 sessionStorage.setItem('user', JSON.stringify(data));
             }
-            //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
-            //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
-            //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
-            var userName = $('input[name="userName"]').val();
-            sessionStorage.setItem('synUser',userName);
-            location.replace('index.html');
+            console.log(re)
+            var userinfo = {userName:re.data.userName,roleName:re.data.roleName};
+            sessionStorage.setItem('userinfo',JSON.stringify(userinfo));
+            sessionStorage.setItem('permissons',JSON.stringify(re.data.menu));
+           location.replace('index.html');
         } else {
             alert(re.msg);
         }
@@ -68,18 +68,52 @@ function memberslogout() {
     });
 }
 
-function indexHtml(){
-    var data = {id: '网站id', channelIds:'栏目id' ,channelName:'栏目名称'};
-    AjaxFunc($members.index, 'post', data, function (re) {
+function indexBanner(){
+    var data = {websiteId: '3', homeWeight:'1',pageSize:pageSize,pageNum:pageNum };
+    AjaxFunc($yynews.index, 'post', data, function (re) {
         if (re.success) {
-            if ($('input[name="remember"]').is(':checked')) {
-                // console.log('remember')
-                sessionStorage.setItem('user', JSON.stringify(data));
-            }
-            //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
-            //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
-            //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
-            location.replace('index.html');
+            alert(1)
+        } else {
+            alert(re.msg);
+        }
+    });
+}
+
+function indexBanner(){
+    var data = {websiteId: '3', homeWeight:'2',pageSize:pageSize,pageNum:pageNum };
+    AjaxFunc($yynews.index, 'post', data, function (re) {
+        if (re.success) {
+
+        } else {
+            alert(re.msg);
+        }
+    });
+}
+function indexBanner(){
+    var data = {websiteId: '3', homeWeight:'3',pageSize:pageSize,pageNum:pageNum };
+    AjaxFunc($yynews.index, 'post', data, function (re) {
+        if (re.success) {
+
+        } else {
+            alert(re.msg);
+        }
+    });
+}
+function indexBanner(){
+    var data = {websiteId: '3', homeWeight:'4',pageSize:pageSize,pageNum:pageNum };
+    AjaxFunc($yynews.index, 'post', data, function (re) {
+        if (re.success) {
+
+        } else {
+            alert(re.msg);
+        }
+    });
+}
+function indexBanner(){
+    var data = {websiteId: '3', homeWeight:'5',pageSize:pageSize,pageNum:pageNum };
+    AjaxFunc($yynews.index, 'post', data, function (re) {
+        if (re.success) {
+
         } else {
             alert(re.msg);
         }

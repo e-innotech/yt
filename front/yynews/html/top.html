@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/top.css">
     <script src="../script/jquery.min.js"></script>
+    <script src="../../../common/js/config.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
 </head>
 <body>
 <!-- 以下为头部 -->
@@ -41,6 +43,7 @@
 </html>
 
 <script>
+    config.init();
     var channeldata;
     //点击退出登录按钮时
 function logout(){
@@ -58,34 +61,34 @@ function logout(){
 }
 //    //导航栏的数据
 //判断是不是首次进入，如果是发送ajax请求，请求数据且渲染页面，并存在session中 否则不是首次就调用缓存里的数据
-    if(sessionStorage.getItem("channel") != null){
+    if(sessionStorage.getItem("channel") !== null){
       console.log(22222);
-        var channels= JSON.parse(sessionStorage.getItem("channel"));
+       var channels= JSON.parse(sessionStorage.getItem("channel"));
+//        console.log(2222222,channels);
+//        console.log(5555555,typeof(channels))
         for(var i=0;i<channels.length;i++){
-            $(".header .nav").append('<li><a>'+channels[i].channelName +
-            ' </a></li>');
+            $(".header .nav").append('<li><a> ' + channels[i].channelName + ' </a></li>');
         }
     }else{
         console.log(1111111111)
-        $.ajax({
-            url:"http://123.59.156.27:8080/common/channel/3",
-            dataType:"json",
-            async:true,
-            type:"get",
-            success:function(channelData){
-                  channeldata=channelData.data;
-                  console.log(1111,channeldata);
-                for(var i=0;i<channeldata.length;i++){
-                    $(".header .nav").append('<li><a>'+channeldata[i].channelName +
-                    ' </a></li>');
+            $.ajax({
+                url:"http://127.0.0.1:8080/common/channel/3",
+                dataType:"json",
+                async:true,
+                type:"get",
+                success:function(navData){
+                    console.log(99999,navData.data)
+//                    var navdata=navData.data.channels;
+                    for(var i=0;i<navData.data.length;i++) {
+                        $(".header .nav").append('<li><a>'+navData.data[i].channelName +
+                        ' </a></li>');
+                    }
+//                    sessionStorage.setItem("channel",JSON.stringify(navdata));
+                //    var channels= JSON.parse(sessionStorage.getItem("channel"));
+//                    console.log(2222222,channels)
                 }
-                sessionStorage.setItem("channel",JSON.stringify(channeldata));
-            }
-        })
+            })
     }
-
-
-
 $(document).ready(function(){
     if(sessionStorage.getItem("synUser") !== null){
         $("#loginafter").show();
