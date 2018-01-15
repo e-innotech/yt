@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class MembersCommentsNews extends BaseVo{
@@ -11,13 +13,19 @@ public class MembersCommentsNews extends BaseVo{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
+	
     private Integer membersId;
 
     private Integer newsId;
     
+    private Integer websiteId;
+    
     private News news;
+    
+    private Websites website;
+    
     private Members members;
+    
     private String createDate;
 
     private String content;
@@ -29,6 +37,8 @@ public class MembersCommentsNews extends BaseVo{
     private Date startDate;
     @JsonIgnore
     private Date endDate;
+    @JsonIgnore
+    private String siteName;
     
     public String getNewsTitle() {
 		return newsTitle;
@@ -116,6 +126,30 @@ public class MembersCommentsNews extends BaseVo{
 
 	public void setMembers(Members members) {
 		this.members = members;
+	}
+
+	public Integer getWebsiteId() {
+		return websiteId;
+	}
+
+	public void setWebsiteId(Integer websiteId) {
+		this.websiteId = websiteId;
+	}
+
+	public Websites getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(Websites website) {
+		this.website = website;
+	}
+
+	public String getSiteName() {
+		return siteName;
+	}
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
     
     

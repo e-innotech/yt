@@ -41,8 +41,10 @@
   </select>
   
   	<!-- 会员登录 -->
-	<select id="login" parameterType="com.yt.cms.model.Members" resultMap="BaseResultMap" >
-        SELECT id, uname,isUse, isGag user_group_id FROM members WHERE uname = #{uname} and pwd = #{pwd}
+	<select id="login" parameterType="com.yt.cms.model.Members" resultMap="ResultMap" >
+        SELECT a.id, a.uname,a.regDate,a.isUse,a.isGag,
+         b.id as infoId, b.nickName, b.sex, b.birth, b.phone, b.email, b.qq, b.address,b.icon user_group_id FROM members a
+         left join memberinfos b on a.id = b.members_id WHERE a.uname = #{uname} and a.pwd = #{pwd}
     </select>
   
      <!-- 更新用户密码，注意用户名不许更新 -->

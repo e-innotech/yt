@@ -2,7 +2,11 @@ package com.yt.cms.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +39,7 @@ public class UserGroupController {
 	@GetMapping("/query")
 	@ApiOperation("查询用户组列表")
 	public AjaxResponseBody query(@RequestParam(required=false) String groupName,
-			@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+			@NotNull @RequestParam Integer pageNum, @NotNull @RequestParam Integer pageSize){
 		long total = userGroupService.queryCount(groupName);
 		Page page = new Page(pageNum,pageSize);
 		List<UserGroup> list = userGroupService.query(groupName, page);
@@ -71,7 +75,7 @@ public class UserGroupController {
 	@PostMapping("/add")
 	@ApiOperation("添加用户组")
 	@LogAnnotation(action="新增用户组")
-	public AjaxResponseBody add(@RequestBody UserGroup userGroup) {
+	public AjaxResponseBody add(@Valid @RequestBody UserGroup userGroup,BindingResult result) {
 		boolean created = userGroupService.save(userGroup);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -86,7 +90,7 @@ public class UserGroupController {
 	@PostMapping("/update")
 	@ApiOperation("修改用户组")
 	@LogAnnotation(action="修改用户组")
-	public AjaxResponseBody update(@RequestBody UserGroup userGroup){
+	public AjaxResponseBody update(@Valid @RequestBody UserGroup userGroup,BindingResult result){
 		boolean created = userGroupService.update(userGroup);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

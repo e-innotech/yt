@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,6 @@ import com.yt.cms.common.Const;
 import com.yt.cms.common.Page;
 import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MembersCommentsNews;
-import com.yt.cms.model.News;
 import com.yt.cms.service.MemberCommentsNewsService;
 
 import io.swagger.annotations.Api;
@@ -39,6 +39,9 @@ public class MembersCommentController {
 	@PostMapping("/add")
 	@ApiOperation("会员写评论")
 	public AjaxResponseBody add(@RequestBody MembersCommentsNews comment) {
+		if(comment.getMembersId() == null || comment.getContent() == null || comment.getWebsiteId() == null ) {
+			return new AjaxResponseBody(false,Const.FAILED,"会员没有登陆，不能评论");
+		}
 		boolean created = memberCommentService.save(comment);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -58,17 +61,47 @@ public class MembersCommentController {
 			@RequestParam(required=false)@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date endDate, // 评论日期
 			@RequestParam(required=false) String newsTitle, // 评论的新闻标题
 			@RequestParam(required=false) String memberUName, //评论用户名
+			@RequestParam(required=false) String siteName, //评论网站名称
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
 		MembersCommentsNews comment = new MembersCommentsNews();
 		comment.setContent(content);
 		comment.setStartDate(startDate);
 		comment.setEndDate(endDate);
-		
-		News news = new News();
-		news.setNewsTitle(newsTitle);
-		comment.setNews(news);
+		comment.setSiteName(siteName);
+		comment.setNewsTitle(newsTitle);
 		comment.setMemberUName(memberUName);
+		
+		Page page = new Page(pageNum,pageSize);
+		long total = memberCommentService.queryCount(comment);
+		List<MembersCommentsNews> list =  memberCommentService.queryAll(comment,page);
+		PageInfo<MembersCommentsNews> pageInfo = new PageInfo<MembersCommentsNews>(pageNum,pageSize,total,list);
+		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
+	}
+	
+	
+	/**
+	 * 前端会员自己的评论列表页面
+	 * 网站id和会员id必传
+	 * @return
+	 */
+	@GetMapping("/personal/query")
+	@ApiOperation("查询会员自己的评论列表")
+	public AjaxResponseBody queryByMemberId(@RequestParam(required=false) String content, // 评论内容
+			@RequestParam(required=false)@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date startDate, // 评论日期
+			@RequestParam(required=false)@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date endDate, // 评论日期
+			@RequestParam(required=false) String newsTitle, // 评论的新闻标题
+			@RequestParam(required=true) Integer membersId, //评论用户
+			@RequestParam(required=true) String siteName, //评论网站名称
+			@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize){
+		MembersCommentsNews comment = new MembersCommentsNews();
+		comment.setContent(content);
+		comment.setStartDate(startDate);
+		comment.setEndDate(endDate);
+		comment.setSiteName(siteName);
+		comment.setNewsTitle(newsTitle);
+		comment.setMembersId(membersId);
 		
 		Page page = new Page(pageNum,pageSize);
 		long total = memberCommentService.queryCount(comment);

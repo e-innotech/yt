@@ -21,6 +21,7 @@
     	<association property="news" javaType="com.yt.cms.model.News">
     		<id column="news_id" property="id" jdbcType="INTEGER" />
 		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+		    <result column="content" property="content" jdbcType="LONGVARCHAR" />
     	</association>
     	<association property="websites" javaType="com.yt.cms.model.Websites">
     		<id column="website_id" property="id" jdbcType="INTEGER" />
@@ -59,7 +60,7 @@
     <select id="query" resultMap="findNewsWebChannelResultMap" parameterType="map" >
     select 
      a.id, a.news_id, a.website_id, a.channel_id, a.isLine, a.isHome, a.home_weight, a.offLine_date,
-      b.siteName , c.channelName,d.news_title 
+      b.siteName , c.channelName,d.news_title,d.content 
     from news_publish a 
     left join websites b on a.website_id = b.id 
     left join channel c on a.channel_id = c.id 

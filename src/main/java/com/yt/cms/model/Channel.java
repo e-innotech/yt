@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Channel extends BaseVo{
     /**
 	 * 
@@ -7,7 +9,7 @@ public class Channel extends BaseVo{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
+	@NotBlank(message = "栏目名不能为空")
     private String channelName;
 
     private Integer isUse;

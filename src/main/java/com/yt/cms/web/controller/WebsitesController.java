@@ -2,7 +2,10 @@ package com.yt.cms.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +24,7 @@ import com.yt.cms.service.WebsitesService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
+// TODO add update 关系表数据校验
 @RestController
 @RequestMapping("/websites")
 @Api(value = "网站服务")
@@ -38,7 +41,7 @@ public class WebsitesController {
 	@PostMapping("/add")
 	@ApiOperation("添加网站")
 	@LogAnnotation(action="新增网站")
-	public AjaxResponseBody add(@RequestBody Websites web) {
+	public AjaxResponseBody add(@Valid @RequestBody Websites web, BindingResult result) {
 		boolean created = websitesService.save(web);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -66,7 +69,7 @@ public class WebsitesController {
 	@PostMapping("/update")
 	@ApiOperation("修改网站")
 	@LogAnnotation(action="修改网站")
-	public AjaxResponseBody update(@RequestBody Websites web){
+	public AjaxResponseBody update(@Valid @RequestBody Websites web,BindingResult result){
 		boolean created = websitesService.update(web);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -74,7 +77,7 @@ public class WebsitesController {
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	/**
-	 * 列表页面
+	 * 查询网站列表
 	 * @return
 	 */
 	@GetMapping("/query")
@@ -94,11 +97,11 @@ public class WebsitesController {
 	}
 	
 	/**
-	 * 列表页面
+	 * 查询网站模板配置列表
 	 * @return
 	 */
 	@GetMapping("/template/query")
-	@ApiOperation("查询网站列表")
+	@ApiOperation("查询网站模板配置列表")
 	public AjaxResponseBody queryWebTemplate(@RequestParam(required=false) String siteName,
 			@RequestParam(required=false) Integer templateType,
 			@RequestParam Integer pageNum,

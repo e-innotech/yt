@@ -1,8 +1,10 @@
 package com.yt.cms.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class MemberInfos {
     private Integer id;
-
+    @NotBlank(message="会员昵称不能为空")
     private String nickName;
 
     private Integer sex;
@@ -16,7 +18,7 @@ public class MemberInfos {
     private String qq;
 
     private String address;
-
+    
     private String icon;
 
     public Integer getId() {

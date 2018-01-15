@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Roles extends BaseVo{
 	/**
 	 * 
@@ -14,6 +16,7 @@ public class Roles extends BaseVo{
     /**
      * 角色名称
      */
+    @NotBlank(message="角色名不能为空")
     private String roleName;
     /**
      * 角色说明

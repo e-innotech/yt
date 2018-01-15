@@ -1,10 +1,12 @@
 package com.yt.cms.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Members {
     private Integer id;
-
+    @NotBlank(message="会员名不能为空")
     private String uname;
-
+    @NotBlank(message="密码不能为空")
     private String pwd;
 
     private String regDate;

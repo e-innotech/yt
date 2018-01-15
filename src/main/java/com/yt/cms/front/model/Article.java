@@ -27,7 +27,7 @@ public class Article implements Serializable{
     private String subContent;
     
     private String createDate;
-    
+    private Integer channelId;
     /**
      * 首页稿件头图，非首页展示的稿件不需要头图
      */
@@ -135,11 +135,23 @@ public class Article implements Serializable{
 	}
 
 	public String getSubContent() {
+//		String regEx_html="<[^>]+>"; //定义HTML标签的正则表达式 
+//		Pattern p_html=Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE); 
+//	    Matcher m_html=p_html.matcher(subContent); 
+//	    subContent=m_html.replaceAll(""); //过滤html标签 
 		return subContent;
 	}
 
 	public void setSubContent(String subContent) {
 		this.subContent = subContent;
+	}
+
+	public Integer getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
 	}
 
 	

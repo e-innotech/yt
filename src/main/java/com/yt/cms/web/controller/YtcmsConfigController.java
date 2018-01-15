@@ -2,7 +2,10 @@ package com.yt.cms.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +38,7 @@ public class YtcmsConfigController {
 	@PostMapping("/add")
 	@ApiOperation("添加系统配置")
 	@LogAnnotation(action="新增系统配置")
-	public AjaxResponseBody add(@RequestBody YtcmsConfig config) {
+	public AjaxResponseBody add(@Valid @RequestBody YtcmsConfig config,BindingResult result) {
 		boolean created = configService.save(config);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -88,7 +91,7 @@ public class YtcmsConfigController {
 	@PostMapping("/update")
 	@ApiOperation("修改系统配置")
 	@LogAnnotation(action="修改系统配置")
-	public AjaxResponseBody update(@RequestBody YtcmsConfig config){
+	public AjaxResponseBody update(@Valid @RequestBody YtcmsConfig config,BindingResult result){
 		boolean created = configService.update(config);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

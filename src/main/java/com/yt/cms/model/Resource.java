@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Resource extends BaseVo{
 	/**
 	 * 
@@ -12,10 +14,12 @@ public class Resource extends BaseVo{
     /**
      * 资源名称
      */
+    @NotBlank(message="资源名不能为空")
     private String resourceName;
     /**
      * 资源uri
      */
+    @NotBlank(message="资源uri不能为空")
     private String uri;
     /**
      * 模块id

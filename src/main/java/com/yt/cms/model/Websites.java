@@ -2,6 +2,12 @@ package com.yt.cms.model;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
+
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Websites extends BaseVo{
@@ -11,9 +17,9 @@ public class Websites extends BaseVo{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
+	@NotBlank(message = "网站名不能为空")
     private String siteName;
-
+	@URL(message = "网站首页路径格式错误，请填写正确的网站首页路径")
     private String route;
 
     private Integer isUse;
@@ -27,15 +33,18 @@ public class Websites extends BaseVo{
     /**
      * 网站首页权重最大值
      */
+    @Min(value=1,message="网站首页权重最小值为{value}")
     private Integer homeWeightMax;
     /**
      * 网站域名
      */
+    @URL(message = "网站域名格式错误，请填写正确的网站域名")
     private String domain;
     /**
      * 网站模板
      * 新增网站、编辑网站、列表查询时需要
      */
+    @Valid
     private List<WebsiteTemplate> webTemplates;
     /**
      * 网站栏目关系

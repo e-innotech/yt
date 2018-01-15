@@ -1,10 +1,19 @@
 package com.yt.cms.model;
 
-public class YtcmsConfig {
-    private Integer id;
+import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+public class YtcmsConfig implements Serializable{
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
+    @NotBlank(message = "配置名不能为空")
     private String name;
-
+    @NotBlank(message = "配置值不能为空")
     private String value;
 
     private Integer isUse;

@@ -1,5 +1,9 @@
 package com.yt.cms.model;
 
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class UserGroup extends BaseVo{
 	/**
 	 * 
@@ -12,6 +16,7 @@ public class UserGroup extends BaseVo{
     /**
      * 用户组名称
      */
+    @NotBlank(message = "用户组名不能为空")
     private String groupName;
     /**
      * 用户组描述
@@ -21,7 +26,7 @@ public class UserGroup extends BaseVo{
      * 用户组角色列表
      */
     private Roles roles;
-
+    @Min(value=1,message="角色不能为空")
     private Integer rolesId;
     
 	public Integer getRolesId() {

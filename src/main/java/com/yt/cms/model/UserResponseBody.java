@@ -15,13 +15,13 @@ public class UserResponseBody implements Serializable {
 	 * 用户名
 	 */
 	@ApiModelProperty(notes = "Name of the User",name="userName",value="test name")
-	@NotBlank
+	@NotBlank(message="登陆用户名不能为空")
 	private String userName;
 	/**
 	 * 密码
 	 */
 	@ApiModelProperty("密码")
-	@NotBlank
+	@NotBlank(message="登陆密码不能为空")
 	private String passWord;
 	
 	

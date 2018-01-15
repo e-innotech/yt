@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 @ApiModel("UpdatePwd(修改密码模型)")
@@ -14,10 +16,12 @@ public class UpdatePwd implements Serializable{
 	 * 密码
 	 */
 	@ApiModelProperty("密码")
+	@NotBlank(message="新密码不能为空")
 	private String passWord;
 	/**
 	 * 当前密码，修改密码使用
 	 */
+	@NotBlank(message="旧密码不能为空")
 	private String currentPwd;
 	
 	public UpdatePwd() {

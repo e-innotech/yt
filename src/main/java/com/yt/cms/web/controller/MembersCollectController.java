@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/member/collect")
-@Api(value = "会员收藏服务")
+@Api(value = "会员收藏服务-前端接口")
 public class MembersCollectController {
 	@Autowired
 	private MemberCollectNewsService memberCollectService;

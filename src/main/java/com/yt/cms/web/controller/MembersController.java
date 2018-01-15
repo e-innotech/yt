@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +23,8 @@ import com.yt.cms.common.Page;
 import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
-import com.yt.cms.model.User;
 import com.yt.cms.model.UpdatePwd;
+import com.yt.cms.model.User;
 import com.yt.cms.service.MemberService;
 
 import io.swagger.annotations.Api;
@@ -45,7 +47,7 @@ public class MembersController {
 	 */
 	@PostMapping("/add")
 	@ApiOperation("会员注册")
-	public AjaxResponseBody add(@RequestBody Members members) {
+	public AjaxResponseBody add(@Valid @RequestBody Members members,BindingResult result) {
 		// 检查当前会员名是否已经注册
 		boolean is_exist = memberService.findByUname(members.getUname());
 		AjaxResponseBody response = new AjaxResponseBody();
@@ -94,7 +96,7 @@ public class MembersController {
 	 */
 	@PostMapping("/update/info")
 	@ApiOperation("修改会员信息")
-	public AjaxResponseBody update(@RequestBody MemberInfos info){
+	public AjaxResponseBody update(@Valid @RequestBody MemberInfos info,BindingResult result){
 		boolean created = memberService.updateInfo(info);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
@@ -103,12 +105,13 @@ public class MembersController {
 	}
 	
 	/**
+	 * TODO isuse 不可用的会员是否还可以登陆
 	 * 会员登录
 	 * @param member
 	 */
 	@PostMapping("/login")
 	@ApiOperation("会员登陆")
-	public AjaxResponseBody login(@RequestBody Members member, HttpServletRequest request) {
+	public AjaxResponseBody login(@Valid @RequestBody Members member, HttpServletRequest request,BindingResult result) {
 		// TODO 用户名和密码不能为空
 		// 停用的会员是否可登录？ 
 		Members db_member = memberService.login(member);
@@ -121,6 +124,7 @@ public class MembersController {
 			session.setAttribute(Const.SESSION_MEMBERS_KEY, db_member);
 			response.setMsg(Const.LOGIN_SUCCESS);
 			response.setSuccess(true);
+			response.setData(db_member);
 		}
 		return response;
 	}
@@ -145,7 +149,7 @@ public class MembersController {
 	 */
 	@PostMapping("/pwd")
 	@ApiOperation("更新会员密码")
-	public AjaxResponseBody updatePwd(@RequestBody UpdatePwd user,  HttpServletRequest request) {
+	public AjaxResponseBody updatePwd(@Valid @RequestBody UpdatePwd user,  HttpServletRequest request,BindingResult result) {
 		// TODO 公用的资源不属于菜单
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);

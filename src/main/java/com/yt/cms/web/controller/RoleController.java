@@ -2,7 +2,10 @@ package com.yt.cms.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +39,7 @@ public class RoleController {
 	@PostMapping("/add")
 	@ApiOperation("新增角色")
 	@LogAnnotation(action="新增角色")
-	public AjaxResponseBody add(@RequestBody Roles roles) {
+	public AjaxResponseBody add(@Valid @RequestBody Roles roles,BindingResult result) {
 		try {
 			rolesService.save(roles);
 		} catch (Exception e) {
@@ -66,7 +69,7 @@ public class RoleController {
 	@PostMapping("/update")
 	@ApiOperation("修改角色")
 	@LogAnnotation(action="修改角色")
-	public AjaxResponseBody update(@RequestBody Roles roles){
+	public AjaxResponseBody update(@Valid @RequestBody Roles roles,BindingResult result){
 		try {
 			rolesService.update(roles);
 		

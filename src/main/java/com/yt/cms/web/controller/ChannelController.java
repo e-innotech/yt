@@ -2,7 +2,10 @@ package com.yt.cms.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,8 +40,15 @@ public class ChannelController {
 	@PostMapping("/add")
 	@ApiOperation("添加栏位")
 	@LogAnnotation(action="新增栏位")
-	public AjaxResponseBody add(@RequestBody Channel bar) {
-		boolean created = channelService.save(bar);
+	public AjaxResponseBody add(@Valid @RequestBody Channel channel,BindingResult result) {
+		if(channel != null && channel.getChannelName() != null) {
+			boolean isExists = channelService.findByChannelName(channel.getChannelName());
+			if(isExists) {
+				return new AjaxResponseBody(false,Const.FAILED,"该栏目名已经存在");
+			}
+		}
+		
+		boolean created = channelService.save(channel);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
@@ -65,8 +75,14 @@ public class ChannelController {
 	@PostMapping("/update")
 	@ApiOperation("修改栏位")
 	@LogAnnotation(action="修改栏位")
-	public AjaxResponseBody update(@RequestBody Channel bar){
-		boolean created = channelService.update(bar);
+	public AjaxResponseBody update(@Valid @RequestBody Channel channel,BindingResult result){
+		if(channel != null && channel.getChannelName() != null) {
+			boolean isExists = channelService.findByChannelName(channel.getChannelName());
+			if(isExists) {
+				return new AjaxResponseBody(false,Const.FAILED,"该栏目名已经存在");
+			}
+		}
+		boolean created = channelService.update(channel);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
@@ -83,12 +99,12 @@ public class ChannelController {
 			@RequestParam(required=false) Integer isUse,
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
-		Channel bar = new Channel();
-		bar.setChannelName(channelName);
-		bar.setIsUse(isUse);
-		long total = channelService.queryCount(bar);
+		Channel channel = new Channel();
+		channel.setChannelName(channelName);
+		channel.setIsUse(isUse);
+		long total = channelService.queryCount(channel);
 		Page page = new Page(pageNum,pageSize);
-		List<Channel> list = channelService.queryAll(bar,page);
+		List<Channel> list = channelService.queryAll(channel,page);
 		PageInfo<Channel> pageInfo =  new PageInfo<Channel>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
 	}

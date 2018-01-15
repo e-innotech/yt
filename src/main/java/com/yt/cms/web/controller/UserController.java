@@ -6,10 +6,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -161,7 +163,7 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	@ApiOperation("用户登陆")
-	public AjaxResponseBody login(@RequestBody UserResponseBody userBody, HttpServletRequest request) {
+	public AjaxResponseBody login(@Valid @RequestBody UserResponseBody userBody, HttpServletRequest request,BindingResult result) {
 		User user = new User();
 		// TODO 用户名和密码不能为空
 		user.setPassWord(userBody.getPassWord());
@@ -212,7 +214,7 @@ public class UserController {
 	 */
 	@PostMapping("/user/pwd")
 	@ApiOperation("更新用户密码")
-	public AjaxResponseBody updatePwd(@RequestBody UpdatePwd user,  HttpServletRequest request) {
+	public AjaxResponseBody updatePwd(@Valid @RequestBody UpdatePwd user,  HttpServletRequest request,BindingResult result) {
 		// TODO 公用的资源不属于菜单
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
