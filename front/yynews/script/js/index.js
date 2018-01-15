@@ -45,6 +45,7 @@ $(document).ready(function () {
         async: true,
         type: "get",
         success: function (newlistData) {
+            console.log(666666666,newlistData)
             //console.log(22,newlistData.data.list)
             var newlist = newlistData.data.list;
             //  console.log(111,newlist);
@@ -63,7 +64,7 @@ $(document).ready(function () {
 
                 //创建右侧列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
-                var createtaga = $("<a href='https://www.baidu.com/'></a>");
+                var createtaga = $("<a href='http://123.59.156.27:8080/web/detail/query/3/1/1'></a>");
                 createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //右侧列表

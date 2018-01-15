@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../css/member.css"/>
     <script src="../script/jquery.min.js"></script>
     <!--<script src="../../../../libs/jqpage/jqPaginator.js"></script>-->
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <!--<script src=""></script>-->
 </head>
 <body>
     <!-- //头部 -->
@@ -121,7 +123,7 @@
                  <div class="title">
                      <h2>修改密码</h2>
                  </div>
-                  <div class="formbox">
+                 <div class="formbox">
                      <form>
                        <div class="password orginpassword">
                          <span>原始密码：</span>
@@ -137,7 +139,7 @@
                        </div>
                        <input type="button" class="affirmresive" value="确认修改"/>
                      </form>
-                  </div>
+                 </div>
             </div>
         </div>
       </div>
@@ -149,12 +151,13 @@
   <script type="text/javascript" src="../script/js/member.js"></script>
 
 <script>
-    if (sessionStorage.getItem("nickname")!==null) {
-        $("#namesss").html(sessionStorage.getItem("nickname"));
-
-    }else{
-        console.log("空空的");
-    }
+//    if (sessionStorage.getItem("nickname")!==null) {
+//        $("#namesss").html(sessionStorage.getItem("nickname"));
+//
+//    }else{
+//        console.log("空空的");
+//    }
+  console.log(9999999,sessionStorage.getItem("user"));
 
 
 
