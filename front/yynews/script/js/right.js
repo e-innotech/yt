@@ -9,14 +9,14 @@ $(document).ready(function(){
             //console.log(44333333,rightnewData);
             var rightdata=rightnewData.data.list;
             $(".imgnewlist>img").attr("src",rightdata[1].topImagePath);
-
             $(".imgnewlist .textone").text(rightdata[1].newsTitle);
             $(".imgnewlist .texttwo").text(removeHTMLTag(rightdata[1].subContent));
             var rightnewdata=rightnewData.data.rightnewlists;
             //console.log(33,rightnewdata);
             for(var i=0;i<rightdata.length;i++){
                 //$(".header .nav").append('<li><a>'+listdata[i].channelName+'</a></li>')
-                $(".rightnewlist").append('<li><a>'+rightdata[i].newsTitle+'</a></li>')
+            //'<a href='+'"detail.html?nav=' +newlist[i].channelId +'&id='+newlist[i].id+'"'+'></a>'
+                $(".rightnewlist").append('<li><a href="">'+rightdata[i].newsTitle+'</a></li>')
             }
 
         }
@@ -35,11 +35,13 @@ $(document).ready(function(){
             var Article=rightnewData.data.list;
             //console.log(111111,Article)
             //var topArticle = rightnewData.data.topArticle
-            for (var n = 0; n < 1; n++) {
+            for (var n = 0; n < 2; n++) {
+                //$(".content-right-bottom").html('');
+
                 //创建一个容器
                 var textpicBox = $("<div class='textpicBox'></div>");
                 //把容器加进右下边的盒子中
-                $(".content-right-bottom").append(textpicBox);
+
                 var creatImg = $("<img class='bigimg'/>");
                 creatImg.attr("src", Article[n].topImagePath);
                 textpicBox.append(creatImg);
@@ -54,6 +56,7 @@ $(document).ready(function(){
                 bg.append(creattagp)
                 textpicBox.append(bg);
                 $(".content-right-bottom").append(textpicBox);
+
 
             }
         }

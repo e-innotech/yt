@@ -79,8 +79,8 @@ function logout(){
                     console.log(99999,navData.data)
 //                    var navdata=navData.data.channels;
                     for(var i=0;i<navData.data.length;i++) {
-                        $(".header .nav").append('<li><a>'+navData.data[i].channelName +
-                        ' </a></li>');
+                       // var uri = $yynews.top+"/3/"+navData.data[i].id+"?pageNum=1&pageSize=10";
+                        $(".header .nav").append('<li><a href='+'"nav.html?nav=' +navData.data[i].id +'">'+navData.data[i].channelName + ' </a></li>');
                     }
 //                    sessionStorage.setItem("channel",JSON.stringify(navdata));
                 //    var channels= JSON.parse(sessionStorage.getItem("channel"));

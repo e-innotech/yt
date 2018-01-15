@@ -53,7 +53,7 @@ $(document).ready(function () {
                 var list = $("<div class='list' id='list'></div>");
                 //创建图片
                 var creatImgbig = $("<img />");
-                var creatImga = $("<a href='http://123.59.156.27:8080/web/detail/query/3/1/1'></a>");
+                var creatImga = $('<a href='+'"detail.html?nav=' +newlist[i].channelId +'&id='+newlist[i].id+'"'+'></a>');
                 creatImgbig.attr("src", newlist[i].topImagePath);
                 creatImga.append(creatImgbig);
                 creatImga.appendTo(list);
@@ -63,7 +63,8 @@ $(document).ready(function () {
 
                 //创建右侧列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
-                var createtaga = $("<a href='http://123.59.156.27:8080/web/detail/query/3/1/1'></a>");
+
+                var createtaga = $('<a href='+'"detail.html?nav=' +newlist[i].channelId +'&id='+newlist[i].id+'"'+'></a>');
                 createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //右侧列表
@@ -145,16 +146,16 @@ $(document).ready(function () {
 
 
 
-    //轮播图请求的数据
+    //轮播图右边请求的数据
     $.ajax({
-        url: $yynews.index +"/3/4?pageNum=1&pageSize=20",
+        url: $yynews.index +"/3/2?pageNum=1&pageSize=20",
         dataType: "json",
         async: true,
         type: "get",
         success: function (rightData) {
             var banner_r = rightData.data.list;
             console.log(11111, banner_r)
-            for (var i = 0; i <banner_r.length; i++) {
+            for (var i = 0; i <2; i++) {
                 $(".content-left-r").append('<div class="top">' +
                 '<a href="http://123.59.156.27:8080/web/detail/query/3/1/1">' +
                 '<img src="' + banner_r[i].topImagePath + '"/>' +

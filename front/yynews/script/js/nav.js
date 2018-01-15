@@ -2,14 +2,16 @@
  * Created by Administrator on 2018/1/14.
  */
 $(document).ready(function () {
+    config.init();
     // 以下为中间部分新闻列表
     $.ajax({
-        url: "../data/channel.json",
+
+        url: $yynews.top +"/3/"+Request["nav"]+"?pageNum=1&pageSize=10",
         dataType: "json",
         async: true,
         type: "get",
         success: function (newlistData) {
-            //console.log(22,newlistData.data.list)
+            console.log(2222222222222222222222222222,newlistData)
             var newlist = newlistData.data.list;
               console.log(111,newlist);
             for (var i = 0; i < newlist.length; i++) {
@@ -18,8 +20,9 @@ $(document).ready(function () {
 
                 //创建列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
-                var createtaga = $("<a href='https://www.baidu.com/'></a>");
-                createtaga.text(newlist[i].news_title);
+
+                var createtaga = $('<a href='+'"detail.html?nav=' +Request["nav"] +'&id='+newlist[i].id+'"'+'></a>');
+                createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //列表
                 createlistbox.append(createH2);
@@ -42,7 +45,7 @@ $(document).ready(function () {
                 ////创建时间
                 var time = $("<span class='time'></span>");
                 //获取时间
-                time.text(newlist[i].create_date);
+                time.text(newlist[i].createDate);
                 createleft.append(creatsource);
                 createleft.append(time);
 
@@ -89,7 +92,7 @@ $(document).ready(function () {
                 creatcenter.appendTo(createlistbox)
                 ////创建文章内容
                 var creatnewsdetail = $("<p ></p>");
-                creatnewsdetail.text(newlist[i].content);
+                creatnewsdetail.text(newlist[i].subContent);
                 creatnewsdetail.appendTo(createlistbox);
 
 
