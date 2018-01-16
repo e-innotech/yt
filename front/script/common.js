@@ -1,4 +1,5 @@
-config.init();
+var apiUrl = 'http://192.168.20.195:8080/';
+var websiteId = 3;
 function AjaxFunc(url, type, data, callBack) {
     var obj = {
         type: type,
@@ -25,11 +26,24 @@ function AjaxFunc(url, type, data, callBack) {
     };
     $.ajax(obj);
 };
+function homeList(homeWeight,pageNum,pageSize,callback){
+
+    var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'home','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data.list);
+                return;
+            }
+        }
+     });
+}
+
 function removeHTMLTag(str) {
-    str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+    str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
     str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
     str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
-    str=str.replace(/ /ig,'');//去掉
+    str=str.replace(/ /g,'');//去掉
     return str;
 }
 
@@ -74,3 +88,17 @@ function memberslogout() {
         };
     });
 }
+
+
+
+////添加收藏
+function collectAdd(publishId){
+    var memberinfo=JSON.parse(sessionStorage.getItem('memberinfo'));
+    console.log(11111,memberinfo.id)
+    var data={membersId:memberinfo.id,publishId:publishId};
+    AjaxFunc($members.collectAdd, 'post', data, function (re) {
+        //p[]
+    });
+}
+
+

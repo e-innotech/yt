@@ -92,7 +92,7 @@ $(document).ready(function () {
                 creatcenter.appendTo(createlistbox)
                 ////创建文章内容
                 var creatnewsdetail = $("<p ></p>");
-                creatnewsdetail.text(newlist[i].subContent);
+                creatnewsdetail.text(removeHTMLTag(newlist[i].subContent));
                 creatnewsdetail.appendTo(createlistbox);
 
 

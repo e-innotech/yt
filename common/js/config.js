@@ -1,6 +1,6 @@
 var config ={
     init:function(){
-        $apiUrl = ' http://192.168.20.195:8080';//本地
+         $apiUrl = ' http://192.168.20.195:8080';//本地
         // $apiUrl = ' http://123.59.156.27:8080';//测试
 
         $uploadUrl = 'http://192.168.20.195:8888/yy/upload';
@@ -13,9 +13,14 @@ var config ={
             'login':$apiUrl+'/members/login',
             'logout':$apiUrl+'/members/logout',
             'logadd':$apiUrl+'/members/add',
-            'commentadd':$apiUrl+'/members/comment/add',
+            'commentadd':$apiUrl+'/members/comment/add',//写评论
             'info':$apiUrl+'/members/update/info',
-            'infoQuery':$apiUrl+'/members/query'
+            'infoQuery':$apiUrl+'/members/query',
+            'collectQuery': $apiUrl + '/member/collect/query', //我的收藏
+            'collectAdd': $apiUrl + '/member/collect/add', //添加收藏
+            'collectDelete': $apiUrl + '/member/collect/delete', //取消收藏
+            'membersPwd': $apiUrl + '/members/pwd' //会员修改密码
+
         };
         $yynews = {
             'index': $apiUrl + '/home',//首页

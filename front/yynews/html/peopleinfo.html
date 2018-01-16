@@ -65,23 +65,23 @@ $(".material").on("click",function(){
 
 
 
-    $.ajax({
-        url: $members.infoQuery+"?pageNum=1&pageSize=20",
-        dataType: "json",
-        async: true,
-        type: "get",
-        success: function (infoQueryData) {
-            var infoQuery = infoQueryData.data.list;
-
-//            for (var i = 0; i <infoQuery.length; i++) {
-                console.log(infoQuery)
-                $(".details-left").append('<span class="nickname">' + infoQuery[1].uname + '</span>' +
-                '<span class="emails">' + infoQuery[1].info.email + '</span>');
-            $(".details-right").append('<span class="address">' + infoQuery[1].info.address + '</span>' +
-            '<span class="sex">' + infoQuery[1].info.sex + '</span>')
-//            }
-
-        }
-    })
+//    $.ajax({
+//        url: $members.infoQuery+"?pageNum=1&pageSize=20",
+//        dataType: "json",
+//        async: true,
+//        type: "get",
+//        success: function (infoQueryData) {
+//            var infoQuery = infoQueryData.data.list;
+//
+////            for (var i = 0; i <infoQuery.length; i++) {
+//                console.log("qqq",infoQuery)
+//                $(".details-left").append('<span class="nickname">' + infoQuery[1].uname + '</span>' +
+//                '<span class="emails">' + infoQuery[1].info.emails+ '</span>');
+//            $(".details-right").append('<span class="address">' + infoQuery[1].info.address + '</span>' +
+//            '<span class="sex">' + infoQuery[1].info.sex + '</span>')
+////            }
+//
+//        }
+//    })
 </script>
 </html>

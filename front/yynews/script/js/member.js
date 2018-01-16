@@ -10,6 +10,10 @@ $(".bottom ul").on("click", "li",function(){
    $(".content-right .content-rightinside").eq($(this).index()).show().siblings().hide()
 })
 
+
+
+
+
 var initPage = function (total) {
     if(pageNum>1){
         return;
