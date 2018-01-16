@@ -9,17 +9,18 @@
 
 $(document).ready(function () {
 	config.init();
+	console.log(123456,Request["id"]);
 	//新闻详情
 	$.ajax({
 
-		url: $yynews.detail +"/3/"+Request["nav"]+"/"+ Request["id"] ,
+		url: $yynews.detail + Request["id"] ,
 		dataType: "json",
 		async: true,
 		type: "get",
 		success: function (detailData) {
 
 			var slide = detailData.data;
-			console.log(111111111111111111111111111,slide);
+			console.log(666666666,slide)
 
 				$('#content_left').append('<div class="news-top">' +
 				'<h2>'+ slide.newsTitle +'</h2>' +
@@ -48,8 +49,19 @@ $(document).ready(function () {
 
 
 	});
+
+
+	var a={
+		"membersId": 13
+	}
+
+
+	//写品论
+	console.log(111001010101,Request["nav"])
+	console.log(98989898989898,Request["id"])
 	$.ajax({
-		url:$yynews.detailQuery + "/3/" + Request["id"]+"?pageNum=1&pageSize=10",
+		url:$members.commentadd + "/3/" + Request["id"] +"?pageNum=1&pageSize=10",
+		data:{content:$('#textarea').val()},
 		dataType: "json",
 		async: true,
 		type: "get",

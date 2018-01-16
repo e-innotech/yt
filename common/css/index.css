@@ -513,7 +513,20 @@ table thead th:last-child{text-align: center;}
    margin: 0 2px 1px 10px;
 }
 #tel2,#tel1{background: #fff}
-
+table{
+    width:100px;
+    table-layout:fixed;
+}
+th{
+    height: 42px;
+}
+td{
+    height: 42px;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
 /*分页*/
 #totalPg {
     float: left;

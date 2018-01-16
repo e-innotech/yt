@@ -11,9 +11,7 @@ $(document).ready(function () {
         async: true,
         type: "get",
         success: function (newlistData) {
-            console.log(2222222222222222222222222222,newlistData)
             var newlist = newlistData.data.list;
-              console.log(111,newlist);
             for (var i = 0; i < newlist.length; i++) {
                 //创建列表
                 var createlistbox = $("<div class='list' id='list'></div>");
@@ -21,7 +19,7 @@ $(document).ready(function () {
                 //创建列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
 
-                var createtaga = $('<a href='+'"detail.html?nav=' +Request["nav"] +'&id='+newlist[i].id+'"'+'></a>');
+                var createtaga = $('<a href='+'"detail.html?id='+newlist[i].publishId+'"'+'></a>');
                 createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //列表
