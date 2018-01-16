@@ -32,6 +32,13 @@ public interface NewsPublishService {
 	public NewsPublishLine findById(Integer id);
 	
 	/**
+	 * 按照发布id查询
+	 * @param id
+	 * @return
+	 */
+	public NewsPublish findByPublishId(Integer id);
+	
+	/**
 	 * 稿件下线以及网站首页稿件权重设置
 	 * @param newsPublish
 	 * @return

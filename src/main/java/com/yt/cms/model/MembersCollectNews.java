@@ -12,7 +12,7 @@ public class MembersCollectNews implements Serializable{
 
     private Integer membersId;
 
-    private Integer newsId;
+    private Integer publishId;
     
     private News news;
 
@@ -20,7 +20,7 @@ public class MembersCollectNews implements Serializable{
 
     private Integer status;
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 
@@ -28,12 +28,12 @@ public class MembersCollectNews implements Serializable{
         this.id = id;
     }
 
-    public Integer getNewsId() {
-		return newsId;
+	public Integer getPublishId() {
+		return publishId;
 	}
 
-	public void setNewsId(Integer newsId) {
-		this.newsId = newsId;
+	public void setPublishId(Integer publishId) {
+		this.publishId = publishId;
 	}
 
 	public Integer getMembersId() {

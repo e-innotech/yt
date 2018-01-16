@@ -2,6 +2,8 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class News extends BaseVo{
@@ -11,15 +13,15 @@ public class News extends BaseVo{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
+	@NotBlank(message="稿件标题不能为空")
     private String newsTitle;
-
+	@NotBlank(message="稿件来源不能为空")
     private String source;
 
     private String staticUrl;
 
     private Integer submitUserId;
-
+    @NotBlank(message="稿件内容不能为空")
     private String content;
     
     private String createDate;

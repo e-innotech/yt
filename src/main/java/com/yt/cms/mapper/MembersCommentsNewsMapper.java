@@ -10,8 +10,6 @@ import com.yt.cms.model.MembersCommentsNews;
 public interface MembersCommentsNewsMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(MembersCommentsNews record);
-
     List<MembersCommentsNews> query(@Param("record") MembersCommentsNews record, @Param("page") Page page);
     
     long queryCount(MembersCommentsNews record);

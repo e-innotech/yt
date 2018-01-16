@@ -69,15 +69,11 @@ public class RoleController {
 	@PostMapping("/update")
 	@ApiOperation("修改角色")
 	@LogAnnotation(action="修改角色")
-	public AjaxResponseBody update(@Valid @RequestBody Roles roles,BindingResult result){
-		try {
-			rolesService.update(roles);
-		
-		} catch (Exception e) {
-			e.printStackTrace();
+	public AjaxResponseBody update(@RequestBody Roles roles){
+		boolean flag = rolesService.update(roles);
+		if(!flag) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
 	
@@ -112,8 +108,8 @@ public class RoleController {
 	@ApiOperation("删除角色")
 	@LogAnnotation(action="删除角色")
 	public AjaxResponseBody delete(@RequestParam Integer id){
-		boolean created = rolesService.deleteLogicById(id);
-		if(!created) {
+		boolean flag = rolesService.deleteLogicById(id);
+		if(!flag) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
@@ -126,8 +122,8 @@ public class RoleController {
 /*	@DeleteMapping("/resource")
 	@ApiOperation("删除角色下的所有资源")
 	public HttpEntity<?> deleteRolesResource(@RequestParam Integer rolesId){
-		boolean created = rolesService.removeRolesResource(rolesId);
-		if(!created) {
+		boolean flag = rolesService.removeRolesResource(rolesId);
+		if(!flag) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>(Const.SUCCESS,HttpStatus.OK);

@@ -42,8 +42,7 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private PermissionService permissionService;
-/*	@Autowired
-	private MessageSource messageSource;*/
+
 	/**
 	 * 列表页面
 	 * @return
@@ -54,24 +53,6 @@ public class UserController {
 			@RequestParam(defaultValue="10") Integer pageSize,
 			@RequestParam(defaultValue="1") Integer pageNum){
 		AjaxResponseBody response = new AjaxResponseBody();
-		/*if(result.hasErrors()) {
-			StringBuffer msg = new StringBuffer();
-			// 获取错误字段集合
-			List<FieldError> fieldErrors = result.getFieldErrors();
-			// 获取本地locale,zh_CN
-			Locale currentLocale = LocaleContextHolder.getLocale();
-			// 遍历错误字段获取错误消息
-			for (FieldError fieldError : fieldErrors) {
-				// 获取错误信息
-				String errorMessage = messageSource.getMessage(fieldError, currentLocale);
-				// 添加到错误消息集合内
-				msg.append(fieldError.getField() + "：" + errorMessage + " , ");
-			}
-			response.setMsg(Const.FAILED);
-			response.setSuccess(false);
-			response.setData(msg.toString());
-			return response;
-		}*/
 		// 列表页面查出该用户在列表页面所有的按钮资源
 		long total = userService.queryCount(userName);
 		Page page = new Page(pageNum,pageSize);
@@ -128,7 +109,7 @@ public class UserController {
 	@PostMapping("/user/add")
 	@ApiOperation("添加用户")
 	@LogAnnotation(action="新增用户")
-	public AjaxResponseBody add(@RequestBody UserResponseBody userBody) {
+	public AjaxResponseBody add(@Valid @RequestBody UserResponseBody userBody,BindingResult result) {
 		if(StringUtils.isEmpty(userBody.getUserName()) || StringUtils.isEmpty(userBody.getPassWord())) {
 			return new AjaxResponseBody(false,Const.LOGIN_INFO_NOT_EMPTY);
 		}
@@ -165,7 +146,6 @@ public class UserController {
 	@ApiOperation("用户登陆")
 	public AjaxResponseBody login(@Valid @RequestBody UserResponseBody userBody, HttpServletRequest request,BindingResult result) {
 		User user = new User();
-		// TODO 用户名和密码不能为空
 		user.setPassWord(userBody.getPassWord());
 		user.setUserName(userBody.getUserName());
 		
@@ -263,25 +243,5 @@ public class UserController {
 		}
 		return response;
 	}
-	
-	/**
-	 * 给用户授权
-	 * @param user
-	 * @return
-	 */
-/*	@GetMapping("/user/grant")
-	@ApiOperation("给用户授权")
-	public AjaxResponseBody grant(@RequestParam Integer userId,@RequestParam Integer userGroupId) {
-		AjaxResponseBody response = new AjaxResponseBody();
-		boolean flag = userService.setUserGroup4User(userId, userGroupId);
-		if(!flag) {
-			response.setMsg(Const.FAILED);
-			response.setSuccess(false);
-		} else {
-			response.setMsg(Const.SUCCESS);
-			response.setSuccess(true);
-		}
-		return response;
-	}*/
 	
 }

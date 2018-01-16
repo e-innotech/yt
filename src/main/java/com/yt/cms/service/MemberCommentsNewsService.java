@@ -13,13 +13,6 @@ import com.yt.cms.model.MembersCommentsNews;
 public interface MemberCommentsNewsService {
 
 	/**
-	 * 会员填写评论
-	 * @param comment
-	 * @return
-	 */
-	public boolean save(MembersCommentsNews comment);
-	
-	/**
 	 * 按照comment 参数查询
 	 * 列表显示会员评论信息
 	 * @param comment

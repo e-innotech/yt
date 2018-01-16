@@ -27,11 +27,10 @@ import com.yt.cms.front.model.Comments;
 public interface WebsiteDetailPageService {
 	/**
 	 * 获取网站栏目文章列表
-	 * @param websiteId
-	 * @param channelId
+	 * @param publishId
 	 * @return [{id，标题，出处，发布时间，部分内容，链接地址，点赞数量，收藏数量，评论数}]
 	 */
-	public Article getWebsiteChannelNewsDetail(Integer websiteId,Integer channelId,Integer articleId);
+	public Article getWebsiteChannelNewsDetail(Integer publishId);
 	
 	/**
 	 * 获取文章评论数据
@@ -40,7 +39,7 @@ public interface WebsiteDetailPageService {
 	 * @param articleId
 	 * @return {评论人图像，评论人会员名、注册时间、评论内容、评论时间}、评论加载更多（在上一页评论数据中追加数据）
 	 */
-	public List<Comments> getArticleComments(Integer websiteId,Integer articleId,Page page);
+	public List<Comments> getArticleComments(Integer publishId,Page page);
 
 	/**
 	 * 获取文章评论数量
@@ -49,15 +48,7 @@ public interface WebsiteDetailPageService {
 	 * @param articleId
 	 * @return
 	 */
-	public long getArticleCommentNum(Integer websiteId,Integer articleId);
-	
-	/**
-	 * 获取文章访问量pv
-	 * 后期将文章评论数转移到redis
-	 * @param articleId
-	 * @return
-	 */
-	public long getArticleCommentsTotal(Integer websiteId,Integer articleId);
+	public long getArticleCommentNum(Integer publishId);
 	
 	/**
 	 * 获取文章访问量pv

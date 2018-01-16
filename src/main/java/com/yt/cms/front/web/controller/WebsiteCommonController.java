@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yt.cms.common.AjaxResponseBody;
@@ -34,10 +34,10 @@ public class WebsiteCommonController {
 	 * @param pageSize
 	 * @return
 	 */
-	@GetMapping("/common/ad/{websiteId}/{templateType}")
+	@GetMapping("/common/ad")
 	@ApiOperation("通用接口-广告")
-	public AjaxResponseBody queryCommonAd(@PathVariable Integer websiteId,
-			@PathVariable Integer templateType){
+	public AjaxResponseBody queryCommonAd(@RequestParam Integer websiteId,
+			@RequestParam Integer templateType){
 		List<Ad> ads = websiteCommonService.getWebsiteTemplateAds(websiteId, templateType);
 		return new AjaxResponseBody(true,Const.SUCCESS,ads);
 	}
@@ -50,9 +50,9 @@ public class WebsiteCommonController {
 	 * @param pageSize
 	 * @return
 	 */
-	@GetMapping("/common/channel/{websiteId}")
-	@ApiOperation("通用接口-网站栏目")
-	public AjaxResponseBody queryCommonChannel(@PathVariable Integer websiteId){
+	@GetMapping("/common/channel")
+	@ApiOperation("通用接口-网站栏目数")
+	public AjaxResponseBody queryCommonChannel(@RequestParam Integer websiteId){
 		List<Channel> channel = websiteCommonService.getWebsiteChannel(websiteId);
 		return new AjaxResponseBody(true,Const.SUCCESS,channel);
 	}

@@ -24,7 +24,6 @@ import com.yt.cms.common.PageInfo;
 import com.yt.cms.model.MemberInfos;
 import com.yt.cms.model.Members;
 import com.yt.cms.model.UpdatePwd;
-import com.yt.cms.model.User;
 import com.yt.cms.service.MemberService;
 
 import io.swagger.annotations.Api;
@@ -112,8 +111,6 @@ public class MembersController {
 	@PostMapping("/login")
 	@ApiOperation("会员登陆")
 	public AjaxResponseBody login(@Valid @RequestBody Members member, HttpServletRequest request,BindingResult result) {
-		// TODO 用户名和密码不能为空
-		// 停用的会员是否可登录？ 
 		Members db_member = memberService.login(member);
 		HttpSession session = request.getSession();
 		AjaxResponseBody response = new AjaxResponseBody();
@@ -150,11 +147,10 @@ public class MembersController {
 	@PostMapping("/pwd")
 	@ApiOperation("更新会员密码")
 	public AjaxResponseBody updatePwd(@Valid @RequestBody UpdatePwd user,  HttpServletRequest request,BindingResult result) {
-		// TODO 公用的资源不属于菜单
 		HttpSession session = request.getSession();
-		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
+		Members members_session = (Members) session.getAttribute(Const.SESSION_MEMBERS_KEY);
 		AjaxResponseBody response = new AjaxResponseBody();
-		if(user_session == null || user_session.getId() == null) {
+		if(members_session == null || members_session.getId() == null) {
 			response.setMsg(Const.SESSION_TIMEOUT);
 			response.setSuccess(false);
 			return response;
@@ -164,7 +160,7 @@ public class MembersController {
 			response.setSuccess(false);
 			return response;
 		}
-		user.setId(user_session.getId());
+		user.setId(members_session.getId());
 		
 		boolean flag = memberService.updatePwd(user);
 		if(!flag) {

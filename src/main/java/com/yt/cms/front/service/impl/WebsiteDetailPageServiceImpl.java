@@ -17,18 +17,18 @@ public class WebsiteDetailPageServiceImpl implements WebsiteDetailPageService {
 	@Autowired
 	private ArticleMapper articleDAO;
 	@Override
-	public Article getWebsiteChannelNewsDetail(Integer websiteId, Integer channelId, Integer articleId) {
-		return articleDAO.getWebsiteChannelNewsDetail(websiteId, channelId, articleId);
+	public Article getWebsiteChannelNewsDetail(Integer publishId) {
+		return articleDAO.getWebsiteChannelNewsDetail(publishId);
 	}
 
 	@Override
-	public List<Comments> getArticleComments(Integer websiteId,Integer articleId,Page page) {
-		return articleDAO.getArticleComments(websiteId,articleId, page);
+	public List<Comments> getArticleComments(Integer publishId,Page page) {
+		return articleDAO.getArticleComments(publishId, page);
 	}
 	
 	@Override
-	public long getArticleCommentNum(Integer websiteId,Integer articleId) {
-		return articleDAO.getArticleCommentsCount(websiteId,articleId);
+	public long getArticleCommentNum(Integer publishId) {
+		return articleDAO.getArticleCommentsCount(publishId);
 	}
 
 	@Override
@@ -37,9 +37,5 @@ public class WebsiteDetailPageServiceImpl implements WebsiteDetailPageService {
 		return 0;
 	}
 
-	@Override
-	public long getArticleCommentsTotal(Integer websiteId, Integer articleId) {
-		return articleDAO.getArticleCommentsTotal(websiteId, articleId);
-	}
 	
 }

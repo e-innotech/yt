@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.yt.cms.model.MembersCollectNews">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="members_id" jdbcType="INTEGER" property="membersId" />
-    <result column="news_id" jdbcType="INTEGER" property="newsId" />
+    <result column="news_publish_id" jdbcType="INTEGER" property="publishId" />
     <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
@@ -12,6 +12,8 @@
     <resultMap id="ResultMap" type="com.yt.cms.model.MembersCollectNews" >
     	<id column="id" jdbcType="INTEGER" property="id" />
 	    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+	    <result column="website_id" jdbcType="INTEGER" property="websiteId" />
+	    <result column="channel_id" jdbcType="INTEGER" property="channelId" />
     	<association property="news" javaType="com.yt.cms.model.News">
     		<id column="news_id" property="id" jdbcType="INTEGER" />
 		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
@@ -20,7 +22,7 @@
   </resultMap>
   
   <sql id="Base_Column_List">
-    id, members_id, news_id, createDate, status
+    id, members_id, news_publish_id, createDate, status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,8 +32,9 @@
   </select>
   
    <select id="query" parameterType="map" resultMap="ResultMap">
-    select a.id, a.createDate,b.id as news_id,b.news_title, b.staticUrl
-    from members_collect_news a, news b where a.news_id = b.id and a.status = 0 and b.isDel = 0
+    select a.id, a.createDate,b.website_id, b.channel_id,c.id as news_id ,c.news_title, c.staticUrl
+    from members_collect_news a, news_publish b, news c where a.news_publish_id = b.id and b.news_id = c.id
+     and a.status = 0 and c.isDel = 0
      and a.members_id =  #{record.membersId,jdbcType=INTEGER}  order by a.id desc
       <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
@@ -39,8 +42,8 @@
   </select>
   
   <select id="queryCount" parameterType="com.yt.cms.model.MembersCollectNews" resultType="long">
-  	 select count(1)
-    from members_collect_news a, news b where a.news_id = b.id and a.status = 0 and b.isDel = 0
+  	 select count(1) from members_collect_news a, news_publish b, news c where a.news_publish_id = b.id and b.news_id = c.id
+     and a.status = 0 and c.isDel = 0
      and a.members_id =  #{membersId,jdbcType=INTEGER} 
   </select>
   
@@ -59,8 +62,8 @@
       <if test="membersId != null">
         members_id,
       </if>
-      <if test="newsId != null">
-        news_id,
+      <if test="publishId != null">
+        news_publish_id,
       </if>
       <if test="createdate != null">
         createDate,
@@ -74,8 +77,8 @@
       <if test="membersId != null">
         #{membersId,jdbcType=INTEGER},
       </if>
-      <if test="newsId != null">
-        #{newsId,jdbcType=INTEGER},
+      <if test="publishId != null">
+        #{publishId,jdbcType=INTEGER},
       </if>
       <if test="createdate != null">
         #{createdate,jdbcType=TIMESTAMP},
@@ -85,24 +88,6 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.MembersCollectNews">
-    update members_collect_news
-    <set>
-      <if test="membersId != null">
-        members_id = #{membersId,jdbcType=INTEGER},
-      </if>
-      <if test="newsId != null">
-        news_id = #{newsId,jdbcType=INTEGER},
-      </if>
-      <if test="createdate != null">
-        createDate = #{createdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
   
   <update id="cancelCollect" parameterType="java.lang.Integer">
   	update members_collect_news set status = 1 where id = #{id,jdbcType=INTEGER}

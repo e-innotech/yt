@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.yt.cms.common.CollectionUtils;
 import com.yt.cms.mapper.RolesMapper;
@@ -58,12 +59,12 @@ public class RolesServiceImpl implements RolesService {
 	@Transactional(rollbackFor=Exception.class)
 	public boolean update(Roles roles) {
 		try {
-			int row = rolesDAO.updateByPrimaryKeySelective(roles);
+			if(StringUtils.hasText(roles.getRoleName()) || StringUtils.hasText(roles.getRemark())) {
+				rolesDAO.updateByPrimaryKeySelective(roles);
+			}
 			// 在重新写入角色资源关系数据
 			addRolesResource(roles,true);
-			if(row == 1) {
-				return true;
-			}
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -57,6 +57,13 @@
     where a.id = #{id,jdbcType=INTEGER} and a.news_id = b.id and a.website_id = c.id and a.channel_id = d.id and d.isDel = 0 and b.isDel = 0 and c.isDel = 0
   </select>
   
+    <select id="selectByPublishId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    a.id, a.news_id, a.website_id, a.channel_id,a.isLine, a.isHome, a.home_weight
+    from news_publish a
+    where a.id = #{id,jdbcType=INTEGER}
+  </select>
+  
     <select id="query" resultMap="findNewsWebChannelResultMap" parameterType="map" >
     select 
      a.id, a.news_id, a.website_id, a.channel_id, a.isLine, a.isHome, a.home_weight, a.offLine_date,

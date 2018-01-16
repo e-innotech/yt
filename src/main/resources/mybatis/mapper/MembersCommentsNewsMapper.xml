@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.yt.cms.model.MembersCommentsNews" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="members_id" property="membersId" jdbcType="INTEGER" />
-    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="news_publish_id" property="publishId" jdbcType="INTEGER" />
     <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
     <result column="isDel" property="isDel" jdbcType="INTEGER" />
     <result column="delDate" property="delDate" jdbcType="TIMESTAMP" />
@@ -31,13 +31,14 @@
 	    </association>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, members_id, news_id, createDate, content
+    id, members_id, news_publish_id, createDate, content
   </sql>
 
    <select id="query" resultMap="ResultMap" parameterType="map" >
-    select a.id, a.createDate, a.content, d.id as website_id , d.siteName ,b.id as news_id, b.news_title, c.id as members_id,c.uname
-    from members_comments_news a, news b ,members c, websites d where a.isDel = 0 and a.news_id = b.id and a.members_id = c.id and b.isDel =0
-    and a.website_id = d.id
+    select a.id, a.createDate, a.content, e.id as website_id , e.siteName ,c.id as news_id, c.news_title, d.id as members_id,d.uname
+    from members_comments_news a, news_publish b,news c ,members d, websites e where a.isDel = 0 and a.news_publish_id = b.id and b.news_id = c.id 
+    and a.members_id = d.id and c.isDel =0
+    and b.website_id = e.id
     	<if test="record.startDate != null" >
        		<![CDATA[ and a.createDate >= #{record.startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
@@ -45,21 +46,18 @@
        		<![CDATA[ and a.createDate <= #{record.endDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
       	 <if test="record.memberUName != null" >
-	       and c.uname like concat('%', #{record.memberUName}, '%')
+	       and d.uname like concat('%', #{record.memberUName}, '%')
 	    </if>
 	     <if test="record.newsTitle != null" >
-	       and b.news_title like concat('%', #{record.newsTitle}, '%')
+	       and c.news_title like concat('%', #{record.newsTitle}, '%')
 	    </if>
 	    <if test="record.content != null" >
 	       and a.content like concat('%', #{record.content}, '%')
 	    </if>
 	    <if test="record.siteName != null" >
-	       and d.siteName like concat('%', #{record.siteName}, '%')
+	       and e.siteName like concat('%', #{record.siteName}, '%')
 	    </if>
-	    <!-- 会员自己的，当会员查看自己的评论时，此参数必传 -->
-	    <if test="record.membersId != null" >
-	       and c.id = #{record.membersId,jdbcType=INTEGER}
-	    </if>
+	    
 	    
 	     order by a.id desc
 	    <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
@@ -68,9 +66,10 @@
   </select>
   
   <select id="queryCount" parameterType="com.yt.cms.model.MembersCommentsNews" resultType="long">
-  	 select count(1)
-    from members_comments_news a, news b ,members c, websites d where a.isDel = 0 and a.news_id = b.id and a.members_id = c.id and b.isDel =0
-    and a.website_id = d.id
+  	  select count(1)
+    from members_comments_news a, news_publish b,news c ,members d, websites e where a.isDel = 0 and a.news_publish_id = b.id and b.news_id = c.id 
+    and a.members_id = d.id and c.isDel =0
+    and b.website_id = e.id
     	<if test="startDate != null" >
        		<![CDATA[ and a.createDate >= #{startDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
@@ -78,22 +77,18 @@
        		<![CDATA[ and a.createDate <= #{endDate,jdbcType=TIMESTAMP}  ]]>
       	</if>
       	 <if test="memberUName != null" >
-	       and c.uname like concat('%', #{memberUName}, '%')
+	       and d.uname like concat('%', #{memberUName}, '%')
 	    </if>
 	     <if test="newsTitle != null" >
-	       and b.news_title like concat('%', #{newsTitle}, '%')
+	       and c.news_title like concat('%', #{newsTitle}, '%')
 	    </if>
 	    <if test="content != null" >
 	       and a.content like concat('%', #{content}, '%')
 	    </if>
 	    <if test="record.siteName != null" >
-	       and d.siteName like concat('%', #{record.siteName}, '%')
+	       and e.siteName like concat('%', #{record.siteName}, '%')
 	    </if>
-	       <!-- 会员自己的，当会员查看自己的评论时，此参数必传 -->
-	    <if test="record.membersId != null" >
-	       and c.id = #{record.membersId,jdbcType=INTEGER}
-	    </if>
-  
+	 
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -104,49 +99,5 @@
   <update id="deleteLogical" parameterType="java.lang.Integer">
   	update members_comments_news set isDel = 1, delDate = now() where id = #{id,jdbcType=INTEGER}
   </update>
-  
-  <insert id="insertSelective" parameterType="com.yt.cms.model.MembersCommentsNews" >
-     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
-          SELECT LAST_INSERT_ID()
-      	</selectKey>
-    insert into members_comments_news
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="membersId != null" >
-        members_id,
-      </if>
-      <if test="newsId != null" >
-        news_id,
-      </if>
-      <if test="createDate != null" >
-        createDate,
-      </if>
-  
-      <if test="content != null" >
-        content,
-      </if>
-      <if test="websiteId != null" >
-        website_id,
-      </if>
-      
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="membersId != null" >
-        #{membersId,jdbcType=INTEGER},
-      </if>
-      <if test="newsId != null" >
-        #{newsId,jdbcType=INTEGER},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-        <if test="websiteId != null" >
-        #{websiteId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
   
 </mapper>

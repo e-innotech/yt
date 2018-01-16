@@ -13,15 +13,7 @@ import com.yt.cms.service.MemberCommentsNewsService;
 public class MemberCommentsNewsServiceImpl implements MemberCommentsNewsService {
 	@Autowired
 	private MembersCommentsNewsMapper commentDAO;
-	
-	@Override
-	public boolean save(MembersCommentsNews comment) {
-		commentDAO.insertSelective(comment);
-		if(comment.getId()  > 0) {
-			return true;
-		}
-		return false;
-	}
+
 
 	@Override
 	public List<MembersCommentsNews> queryAll(MembersCommentsNews comment,Page page) {

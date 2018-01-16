@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/member/collect")
-@Api(value = "会员收藏服务-前端接口")
+@Api(value = "会员收藏服务-前端接口",description = "网站会员收藏服务")
 public class MembersCollectController {
 	@Autowired
 	private MemberCollectNewsService memberCollectService;
@@ -35,6 +35,12 @@ public class MembersCollectController {
 	@PostMapping("/add")
 	@ApiOperation("会员新增收藏")
 	public AjaxResponseBody add(@RequestBody MembersCollectNews collect) {
+		if(collect.getMembersId() == null ) {
+			return new AjaxResponseBody(false,Const.FAILED,"会员没有登陆，不能收藏");
+		}
+		if(collect.getPublishId() == null ) {
+			return new AjaxResponseBody(false,Const.FAILED,"文章不存在，收藏失败");
+		}
 		boolean created = memberCollectService.save(collect);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

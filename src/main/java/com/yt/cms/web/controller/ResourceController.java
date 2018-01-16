@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,9 +78,16 @@ public class ResourceController {
 	@ApiOperation("新增系统资源")
 	@LogAnnotation(action="新增系统资源")
 	public AjaxResponseBody add(@Valid @RequestBody Resource resource,BindingResult result) {
-		boolean created = resourceService.save(resource);
-		if(!created) {
-			return new AjaxResponseBody(false,Const.FAILED,null);
+		// 如果parentId 为最高级 资源url 必须不能为空
+		if(resource.getParentId() != 0 && StringUtils.hasText(resource.getUri())) {
+			return new AjaxResponseBody(false,Const.FAILED,"子资源的uri不能为空");
+		} else if (resource.getParentId() == 0 && !StringUtils.hasText(resource.getUri())) {
+			return new AjaxResponseBody(false,Const.FAILED,"顶层资源uri必须为空");
+		} else {
+			boolean created = resourceService.save(resource);
+			if(!created) {
+				return new AjaxResponseBody(false,Const.FAILED,null);
+			}
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
 	}
@@ -91,7 +99,8 @@ public class ResourceController {
 	@PostMapping("/update")
 	@ApiOperation("修改系统资源")
 	@LogAnnotation(action="修改系统资源")
-	public AjaxResponseBody update(@Valid @RequestBody Resource resource,BindingResult result){
+	public AjaxResponseBody update(@RequestBody Resource resource){
+	
 		boolean created = resourceService.update(resource);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

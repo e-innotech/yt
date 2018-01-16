@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,9 +33,9 @@ public class WebsiteChannelController {
 	 * 查询网站栏目
 	 * @return
 	 */
-	@GetMapping("/query/{websiteId}/{channelId}")
-	@ApiOperation("查询网站栏目")
-	public AjaxResponseBody query(@PathVariable Integer websiteId,@PathVariable Integer channelId,
+	@GetMapping("/query")
+	@ApiOperation("查询网站栏目列表页")
+	public AjaxResponseBody query(@RequestParam Integer websiteId,@RequestParam Integer channelId,
 			@RequestParam Integer pageNum, 
 			@RequestParam Integer pageSize){
 		long total = websiteChannelService.getWebsiteChannelNewsCount(websiteId, channelId);

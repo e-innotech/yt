@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,9 +30,11 @@ import com.yt.cms.model.NewsLaunch;
 import com.yt.cms.model.NewsPublish;
 import com.yt.cms.model.NewsPublishLine;
 import com.yt.cms.model.User;
+import com.yt.cms.model.Websites;
 import com.yt.cms.service.NewsLaunchService;
 import com.yt.cms.service.NewsPublishService;
 import com.yt.cms.service.NewsService;
+import com.yt.cms.service.WebsitesService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +49,8 @@ public class NewsController {
 	private NewsLaunchService newsLaunchService;
 	@Autowired
 	private NewsPublishService newsPublishService;
-	
+	@Autowired
+	private WebsitesService websitesService;
 	/**
 	 * 列表页面，只可查询status=0 未投放的稿件
 	 * @return
@@ -90,7 +95,7 @@ public class NewsController {
 	@PostMapping("/add")
 	@ApiOperation("添加稿件")
 	@LogAnnotation(action="新增稿件")
-	public AjaxResponseBody add(@RequestBody News news,  HttpServletRequest request) {
+	public AjaxResponseBody add(@Valid @RequestBody News news,  HttpServletRequest request,BindingResult result) {
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		if(user_session == null || user_session.getId() == null) {
@@ -135,6 +140,8 @@ public class NewsController {
 	
 	/**
 	 * 投放稿件到网站和栏目
+	 * 同一个稿件一次投放可以投放多个网站，每个网站可以选择多个栏目
+	 * TODO 如果再次投放是否还可以选择之前投放的网站和栏目？如果可以那么现在的表结构需要修改（不修改需要关联发布表来判断）
 	 * @return
 	 */
 	@PostMapping("/launch/add")
@@ -316,6 +323,15 @@ public class NewsController {
 	@ApiOperation("设置首页")
 	@LogAnnotation(action="设置首页")
 	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer isHome,@RequestParam Integer homeWeight){
+		NewsPublish db_publish = newsPublishService.findByPublishId(id);
+		// 先查询该网站设置的最大权重值
+		if(db_publish == null || db_publish.getWebsiteId() == null) {
+			return new AjaxResponseBody(false,Const.FAILED,"此发布信息的网站不存在，不能置首页");
+		}
+		Websites web = websitesService.findById(db_publish.getWebsiteId());
+		if(web == null || web.getHomeWeightMax() == null || web.getHomeWeightMax().intValue() < homeWeight.intValue()) {
+			return new AjaxResponseBody(false,Const.FAILED,"设置的权重值不能大于网站设置的最大权重值");
+		}
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);
 		// 前端传递要修改的状态

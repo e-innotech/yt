@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,19 +32,25 @@ public class MembersCommentController {
 	 * 会员写评论
 	 * @param comment
 	 * @return
-	 */
+	 *//*
 	@PostMapping("/add")
 	@ApiOperation("会员写评论")
 	public AjaxResponseBody add(@RequestBody MembersCommentsNews comment) {
-		if(comment.getMembersId() == null || comment.getContent() == null || comment.getWebsiteId() == null ) {
+		if(comment.getMembersId() == null ) {
 			return new AjaxResponseBody(false,Const.FAILED,"会员没有登陆，不能评论");
+		}
+		if(comment.getContent() == null ) {
+			return new AjaxResponseBody(false,Const.FAILED,"评论内容不能为空");
+		}
+		if(comment.getPublishId() == null ) {
+			return new AjaxResponseBody(false,Const.FAILED,"评论文章不存在，评论失败");
 		}
 		boolean created = memberCommentService.save(comment);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
 		return new AjaxResponseBody(true,Const.SUCCESS,null);
-	}
+	}*/
 	
 	
 	/**
@@ -84,22 +87,23 @@ public class MembersCommentController {
 	 * 前端会员自己的评论列表页面
 	 * 网站id和会员id必传
 	 * @return
-	 */
+	 *//*
 	@GetMapping("/personal/query")
 	@ApiOperation("查询会员自己的评论列表")
 	public AjaxResponseBody queryByMemberId(@RequestParam(required=false) String content, // 评论内容
 			@RequestParam(required=false)@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date startDate, // 评论日期
 			@RequestParam(required=false)@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") Date endDate, // 评论日期
 			@RequestParam(required=false) String newsTitle, // 评论的新闻标题
-			@RequestParam(required=true) Integer membersId, //评论用户
-			@RequestParam(required=true) String siteName, //评论网站名称
+			@NotNull(message="只有登陆之后才可以查看自己的评论内容") @RequestParam(required=true) Integer membersId, //评论用户
+			@NotBlank(message="评论的网站名不能为空") @RequestParam(required=true) Integer websiteId, //评论网站名称
 			@RequestParam Integer pageNum,
 			@RequestParam Integer pageSize){
+		
 		MembersCommentsNews comment = new MembersCommentsNews();
 		comment.setContent(content);
 		comment.setStartDate(startDate);
 		comment.setEndDate(endDate);
-		comment.setSiteName(siteName);
+		comment.setWebsiteId(websiteId);
 		comment.setNewsTitle(newsTitle);
 		comment.setMembersId(membersId);
 		
@@ -108,7 +112,7 @@ public class MembersCommentController {
 		List<MembersCommentsNews> list =  memberCommentService.queryAll(comment,page);
 		PageInfo<MembersCommentsNews> pageInfo = new PageInfo<MembersCommentsNews>(pageNum,pageSize,total,list);
 		return new AjaxResponseBody(true,Const.SUCCESS,pageInfo);
-	}
+	}*/
 
 	/**
 	 * 管理员删除评论

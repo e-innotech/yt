@@ -3,7 +3,10 @@ package com.yt.cms.web.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -71,7 +74,7 @@ public class AdController {
 	@PostMapping("/add")
 	@ApiOperation("添加广告")
 	@LogAnnotation(action="新增广告")
-	public AjaxResponseBody add(@RequestBody Ad Ad) {
+	public AjaxResponseBody add(@Valid @RequestBody Ad Ad,BindingResult result) {
 		boolean created = adService.save(Ad);
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);

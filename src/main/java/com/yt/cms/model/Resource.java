@@ -1,5 +1,7 @@
 package com.yt.cms.model;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Resource extends BaseVo{
@@ -19,19 +21,21 @@ public class Resource extends BaseVo{
     /**
      * 资源uri
      */
-    @NotBlank(message="资源uri不能为空")
     private String uri;
     /**
      * 模块id
      */
+    @NotNull(message="上级资源不能为空")
     private Integer parentId;
     /**
      * 资源读写标记
      */
+    @NotNull(message="读写标记不能为空")
     private Integer rw;
     /**
      * 是否菜单
      */
+    @NotNull(message="是否菜单不能为空")
     private Integer isMenu;
     /**
      * 父id的资源名

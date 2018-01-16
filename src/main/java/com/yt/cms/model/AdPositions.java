@@ -1,5 +1,9 @@
 package com.yt.cms.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class AdPositions extends BaseVo{
     /**
 	 * 
@@ -7,17 +11,18 @@ public class AdPositions extends BaseVo{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-
+	@NotNull(message="广告位宽度像素不能为空")
     private Integer adWidth;
-
+	@NotNull(message="广告位高度像素不能为空")
     private Integer adHeight;
-
+	@NotBlank(message="广告位名称不能为空")
     private String adName;
 
     private String remark;
     /**
      * 添加使用
      */
+    @NotNull(message="广告位关联的网站模板id不能为空")
     private Integer webTemplateId;
     
     private WebsiteTemplate webTemplate;

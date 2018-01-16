@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yt.cms.front.mapper.WebsiteHomeMapper" >
     <resultMap id="BaseResultMap" type="com.yt.cms.front.model.Article" >
-    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="publish_id" property="publishId" jdbcType="INTEGER" />
     <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="VARCHAR" />
     <result column="staticUrl" property="staticUrl" jdbcType="VARCHAR" />
@@ -10,14 +10,13 @@
     <result column="create_date" property="createDate" jdbcType="VARCHAR" />
     <result column="top_image_path" property="topImagePath" jdbcType="VARCHAR" />
     <result column="sub_content" property="subContent" jdbcType="VARCHAR" />
-    <result column="channel_id" property="channelId" jdbcType="INTEGER" />
   </resultMap>
   
    <!-- 获取网站首页数据 -->
    <!-- 获取首页其他非分页权重的文章数据,只有一页，指定返回个数-->
    <!-- 首页有分页的权重必须有分页 -->
   <select id="getWebsiteHomeByWeight" resultMap="BaseResultMap" parameterType="map" >
-	  select a.channel_id ,b.id,b.news_title,left(b.content,50) sub_content,b.top_image_path, b.source,b.staticUrl,b.create_date,b.submit_user_id
+	  select a.id as publish_id,a.channel_id ,b.id as news_id,b.news_title,left(b.content,50) sub_content,b.top_image_path, b.source,b.staticUrl,b.create_date,b.submit_user_id
 	  from news_publish a , news b 
 	  where  a.news_id = b.id and a.isLine = 1 and a.isHome = 1 
 	  and a.website_id = #{websiteId}

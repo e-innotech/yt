@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +17,7 @@ import com.yt.cms.front.service.WebsiteHomeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 /**
+ * TODO 网站显示时间格式 yyyy-MM-dd
  * 网站首页请求接口
  * @author admin
  *
@@ -41,10 +41,10 @@ public class WebsiteHomeController {
 	 * @param pageSize
 	 * @return
 	 */
-	@GetMapping("/home/{websiteId}/{homeWeight}")
+	@GetMapping("/home")
 	@ApiOperation("查询网站首页权重内容")
-	public AjaxResponseBody query(@PathVariable Integer websiteId,
-			@PathVariable Integer homeWeight,
+	public AjaxResponseBody query(@RequestParam Integer websiteId,
+			@RequestParam Integer homeWeight,
 			@RequestParam Integer pageNum, 
 			@RequestParam Integer pageSize){
 	

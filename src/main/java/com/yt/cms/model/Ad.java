@@ -2,6 +2,10 @@ package com.yt.cms.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Ad extends BaseVo{
     /**
 	 * 
@@ -13,19 +17,19 @@ public class Ad extends BaseVo{
     private String beginDate;
 
     private String endDate;
-
+    
     private Integer status;
 
     private AdPositions adPositions;
-
+    @NotNull(message="广告必须关联一个广告位")
     private Integer adPositionsId;
-    
+    @NotBlank(message="广告名称不能为空")
     private String adName;
 
     private Integer adType;
 
     private String remark;
-
+    @NotBlank(message="广告素材不能为空")
     private String source;
 
     private Date offLineDate;
