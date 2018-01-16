@@ -28,7 +28,7 @@
      height:73px;
     margin:0 auto;
 }
-.header>img{
+.header #homepage{
     float:left;
 }
 .header .nav{
@@ -56,7 +56,7 @@
 }
 .header-right .header-right-l{
     width:200px;
-
+    margin-right:20px;
     float:left;
 
 }
@@ -94,7 +94,11 @@
 .mine{
     margin-top:6px;
 }
-
+.userAvatar{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
 .header .header-right-r a{
     float:left;
 }
@@ -107,6 +111,8 @@
 .active{
     border-bottom:2px solid #206491;
 }
+.toptop{
 
+}
 
 

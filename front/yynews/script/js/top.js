@@ -24,7 +24,7 @@ $(function(){
             var user = JSON.parse(sessionStorage.getItem("user"));
             console.log(user);
             $('.userAvatar').attr('src',user.infos.icon!=null?user.infos.icon:'../images/ren.png');
-            $('.header-right-r').css('width','150px');
+            $('.header-right-r').css('width','115px');
             $('.header-right-r p').css('display','block');
             $('#logoutBtn').click(function(){
                 sessionStorage.setItem('currentUrl',location.href);
