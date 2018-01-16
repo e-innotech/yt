@@ -5,9 +5,6 @@
     <title>登录</title>
      <link rel="stylesheet" href="../css/style.css"/>
      <link rel="stylesheet" type="text/css" href="../css/signIn.css"/>
-     <script type="text/javascript" src="../script/jquery.min.js"></script>
-
-    <script type="text/javascript" src="../script/js/sign.js"></script>
 
 </head>
 <body>
@@ -27,12 +24,17 @@
             <span class="nextlogin">下次自动登录</span>
             <span class="forget">忘记密码</span>
           </p>
-          <input type="button" value="登录" onclick="memberslogin()">
+          <input type="button" value="登录" id="loginBtn">
           <p class="signIn">还没有账号，<span onclick="signUp()">立即注册</span></p>
         </div>
     </div>
 </body>
  <script type="text/javascript">
-
+     $('#loginBtn').click(function(){
+         var uname = $('input[name="userName"]').val();
+         var pwd = $('input[name="password"]').val();
+         //判断用户名密码的合法性，密码需要加密
+         memberslogin(uname,pwd);
+     });
 </script>
 </html>

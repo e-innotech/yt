@@ -86,19 +86,11 @@
 }
 
 .header .header-right-r{
-    width:115px;
+    width:32px;
     height:34px;
     float:right;
-    display:none;
 }
-#loginbefore{
-    width:32px;
-    margin-left:20px;
-}
-#loginafter{
-    width:150px;
-    margin-left:20px;
-}
+
 .mine{
     margin-top:6px;
 }
@@ -109,6 +101,7 @@
 .header-right-r p{
    float:right;
     color:#ff4243;
+    display: none;
     /*line-height:73px;*/
 }
 .active{

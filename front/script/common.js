@@ -1,4 +1,20 @@
-config.init();
+const apiUrl = 'http://192.168.20.195:8080';
+const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
+const websiteId = 3;
+const sex = ['女','男'];
+
+function serializeObject(a){
+    var o,h,i,e;
+    o={};
+    h=o.hasOwnProperty;
+    for(i=0;i<a.length;i++){
+        e=a[i];
+        if(!h.call(o,e.name)){
+            o[e.name]=e.value;
+        }
+    }
+    return o;
+}
 function AjaxFunc(url, type, data, callBack) {
     var obj = {
         type: type,
@@ -25,11 +41,153 @@ function AjaxFunc(url, type, data, callBack) {
     };
     $.ajax(obj);
 };
+function AjaxUpload(url,data,callBack) {
+    var obj = {
+        url:url,
+        type:'post',
+        dataType: "json",
+        data:data,
+        cache:false,
+        processData:false,
+        contentType:false,
+        mimeType:"multipart/form-data",
+        success:function (result) {
+            callBack(result)
+        }
+    };
+    $.ajax(obj);
+};
+function homeList(homeWeight,pageNum,pageSize,callback){
+
+    var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/home','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data.list);
+                return;
+            }
+        }
+     });
+};
+function adList(templateType,callback){
+    var data = {websiteId:websiteId,templateType:templateType};
+    AjaxFunc(apiUrl+'/common/ad','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function channelList(callback){
+    var data = {websiteId:websiteId};
+    AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function newsList(channelId,pageNum,pageSize,callback){
+    var data = {websiteId:websiteId,channelId:channelId,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data.list);
+                return;
+            }
+        }
+    });
+};
+function newsDetail(publishId,callback){
+    var data = {publishId:publishId};
+    AjaxFunc(apiUrl+'/web/detail','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function uploadIcon(data,callback){
+    AjaxUpload(uploadUrl,data,function (re) {
+        // console.log(re);
+        alert(re.msg);
+        if(re.success){
+            if(callback) {
+                callback(re.data[0]);
+            }
+        }
+    });
+};
+function membersEdit(data,callback){
+    AjaxFunc(apiUrl+'/members/update/info','post',data,function(re){
+        alert(re.msg);
+        if(re.success) {
+            if(callback) {
+                callback(re.data);
+            }
+        }
+    });
+};
+function membersPwd(data){
+    AjaxFunc(apiUrl+'/members/pwd','post',data,function(re){
+        alert(re.msg);
+    });
+}
+
+/**
+ * 获取文章评论列表
+ * @param publishId
+ * @param pageNum
+ * @param pageSize
+ * @param callback
+ */
+function commentList(publishId,pageNum,pageSize,callback){
+    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function addComment(publishId,content,callback){
+    var data = {publishId:publishId,content:content};
+    AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
+        callback(re);
+    });
+}
+
+
+function getIdFromUrl(){
+    var name = 'id';
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r!=null) return decodeURI(r[2]); return null;
+}
+function countCode(obj,count){
+    var str = obj.value;
+    if(str.length>count){
+        obj.value = str.substr(0,count);
+    }
+}
+
+
+
+
+
 function removeHTMLTag(str) {
-    str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+    str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
     str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
     str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
-    str=str.replace(/ /ig,'');//去掉
+    str=str.replace(/ /g,'');//去掉
     return str;
 }
 
@@ -45,32 +203,38 @@ function memberslogadd() {
         }
     });
 }
-function memberslogin() {
-    var data = {uname: $('input[name="userName"]').val(), pwd: $('input[name="password"]').val()};
-    AjaxFunc($members.login, 'post', data, function (re) {
+function memberslogin(uname,pwd) {
+    var data = {uname: uname, pwd: pwd};
+    AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
         if (re.success) {
-            if ($('input[name="remember"]').is(':checked')) {
-                // console.log('remember')
-                sessionStorage.setItem('data', JSON.stringify(data));
-            }
-            sessionStorage.setItem('memberinfo', JSON.stringify(re.data));
-            var userName=$('input[name="userName"]').val();
-            sessionStorage.setItem('synUser',userName);
-           // console.log("会员登陆:" + re.data.uname);
-          location.replace('index.html');
+            sessionStorage.setItem('user',JSON.stringify(re.data));
+            location.replace(sessionStorage.getItem('currentUrl'));
         } else {
             alert(re.msg);
         }
     });
 }
 function memberslogout() {
-    AjaxFunc($members.logout, 'get', null, function (re) {
+    AjaxFunc(apiUrl+'/members/logout', 'get', null, function (re) {
         if (re.success) {
-            sessionStorage.removeItem('userinfo');
-            sessionStorage.removeItem('permissons');
-            location.replace('index.html');
+            sessionStorage.removeItem('user');
+            location.replace(sessionStorage.getItem('currentUrl'));
         } else {
             alert(re.msg);
         };
     });
 }
+
+
+
+////添加收藏
+function collectAdd(publishId){
+    var memberinfo=JSON.parse(sessionStorage.getItem('memberinfo'));
+    console.log(11111,memberinfo.id)
+    var data={membersId:memberinfo.id,publishId:publishId};
+    AjaxFunc($members.collectAdd, 'post', data, function (re) {
+        //p[]
+    });
+}
+
+

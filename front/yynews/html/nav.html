@@ -2,12 +2,10 @@
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>导航页</title>
+        <title></title>
         <link rel="stylesheet" href="../css/style.css"/>
         <link rel="stylesheet" href="../css/nav.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/contentright.css"/>
-        <script type="text/javascript" src="../script/jquery.min.js"></script>
-        <script src="../../../common/js/config.js"></script>
+        <script type="text/javascript" src="../../script/jquery.min.js"></script>
         <script type="text/javascript" src="../../script/common.js"></script>
         <script src="../script/js/nav.js"></script>
     </head>
@@ -68,17 +66,7 @@ window.onload=function(){
   $(".bottom").load("bottom.html");
   $("#content-right").load('right.html');
 }
-var url=location.search;
 
-var Request = new Object();
- if(url.indexOf("?")!=-1) {
-    var str = url.substr(1)//去掉?号
-    strs = str.split("&");
-    for(var i=0;i<strs.length;i++) {
-        Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
-    }
- }
-//alert(Request["nav"]);
 
 
 

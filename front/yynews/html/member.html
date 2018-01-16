@@ -5,10 +5,9 @@
     <title>会员</title>
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/member.css"/>
-    <script src="../script/jquery.min.js"></script>
-    <!--<script src="../../../../libs/jqpage/jqPaginator.js"></script>-->
+    <script src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
-    <!--<script src=""></script>-->
+    <script type="text/javascript" src="../script/js/member.js"></script>
 </head>
 <body>
     <!-- //头部 -->
@@ -20,8 +19,8 @@
       <div class="content">
         <div class="content-left">
              <div class="top">
-                <img src="../images/header.png"/>
-                <p>小阿齐</p>
+                <img id="iconTop" src="../images/header.png"/>
+                <p id="nickName"></p>
              </div>
              <div class="bottom">
               <ul>
@@ -35,6 +34,66 @@
         <div class="content-right">
            <!-- 个人资料 -->
             <div class="content-rightinside" id="content-rightinside">
+                <div id="userInfo">
+                    <div class="title">
+                        <h2>个人资料</h2>
+                    </div>
+                    <div class="details">
+                        <div class="details-left">
+                            <p class="top">昵称： <span class="nickname"></span></p>
+                            <p class="bottoms">邮箱： <span class="emails"></span></p>
+                        </div>
+                        <div class="details-right">
+                            <p class="top">地址： <span class="address"></span></p>
+                            <p class="bottoms">性别：<span class="sex"></span></p>
+                        </div>
+                        <!-- 修改个人资料按钮 -->
+                        <div class="material">
+                            <input type="button" value="修改个人资料"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="editInfo" style="display: none">
+                    <div class="title">
+                        <h2>修改个人资料</h2>
+                    </div>
+                    <form id="userForm">
+                        <div class="listbottom">
+                            <div class="info" style="display: none ">
+                                <span>头像预览</span>
+                                <canvas id="cvs" width="88" height="88"></canvas>
+                            </div>
+                            <div class="replacetou">
+                                <span>更换头像：</span>
+                                <span id="btn"><input type="file" id="upload_file" class="upload_pic"/>浏览</span>
+                                <input type="hidden" name="icon">
+                            </div>
+                            <div class="listbox">
+                                <div class="list" id="list1">
+                                    <span>昵称：</span>
+                                    <input type="text" name="nickName"/>
+                                </div>
+                                <div class="list" id="list2">
+                                    <span>性别：</span>
+                                    <select name="sex">
+                                        <option value="0">女</option>
+                                        <option value="0">男</option>
+                                    </select>
+                                </div>
+                                <div class="list" id="list3">
+                                    <span>邮箱：</span>
+                                    <input type="text" name="email"/>
+                                </div>
+                                <div class="list" id="list4">
+                                    <span>地址：</span>
+                                    <input type="text" name="address"/>
+                                </div>
+                                <input type="button" value="确认修改" id="editBtn"   class="truerevise">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
             <!-- 我的收藏 -->
@@ -43,39 +102,17 @@
                      <h2>我的收藏<span>(12)</span></h2>
                  </div>
                  <div class="listbottom">
-                     <div class="collectlist">
-                         <div class="left">
-                             <input type="checkbox"/>
-                         </div>
-                         <div class="center">
-                             撒地方看看就是了登记卡是否阿里会计法alfaflj阿里交房贷那啥了空间的还是咖啡店
-                         </div>
-                         <div class="right">
-                             <img src="../images/del.png"/>
-                         </div>
-                     </div>
-                     <div class="collectlist">
-                         <div class="left">
-                             <input type="checkbox"/>
-                         </div>
-                         <div class="center">
-                             撒地方看看就是了登记卡是否阿里会计法alfaflj阿里交房贷那啥了空间的还是咖啡店
-                         </div>
-                         <div class="right">
-                             <img src="../images/del.png"/>
-                         </div>
-                     </div>
-                     <div class="collectlist">
-                         <div class="left">
-                             <input type="checkbox"/>
-                         </div>
-                         <div class="center">
-                             撒地方看看就是了登记卡是否阿里会计法alfaflj阿里交房贷那啥了空间的还是咖啡店
-                         </div>
-                         <div class="right">
-                             <img src="../images/del.png"/>
-                         </div>
-                     </div>
+                     <!--<div class="collectlist">-->
+                         <!--<div class="left">-->
+                             <!--<input type="checkbox"/>-->
+                         <!--</div>-->
+                         <!--<div class="center">-->
+                             <!--撒地方看看就是了登记卡是否阿里会计法alfaflj阿里交房贷那啥了空间的还是咖啡店-->
+                         <!--</div>-->
+                         <!--<div class="right">-->
+                             <!--<img src="../images/del.png"/>-->
+                         <!--</div>-->
+                     <!--</div>-->
 
                      <!--分页-->
                      <div class="pages">
@@ -123,20 +160,20 @@
                      <h2>修改密码</h2>
                  </div>
                  <div class="formbox">
-                     <form>
+                     <form id="pwdForm">
                        <div class="password orginpassword">
                          <span>原始密码：</span>
-                         <input type="text"/>
+                         <input type="password" name="currentPwd"/>
                        </div>
                        <div class="password newpassword">
                          <span>新密码：</span>
-                         <input type="text"/>
+                         <input type="password" name="passWord"/>
                        </div>
                        <div class="password truepassword">
                          <span>确认密码：</span>
-                         <input type="text"/>
+                         <input type="password"/>
                        </div>
-                       <input type="button" class="affirmresive" value="确认修改"/>
+                       <input type="button" class="affirmresive" id="pwdBtn" value="确认修改"/>
                      </form>
                  </div>
             </div>
@@ -147,23 +184,18 @@
     <div id="bottom"></div>
 </body>
 
-  <script type="text/javascript" src="../script/js/member.js"></script>
+
 
 <script>
 
 
     //进网站加载个人资料
     window.onload=function(){
-        var meminfo= JSON.parse(sessionStorage.getItem('memberinfo'));
         $('#top').load('top.html');
-        $("#content-rightinside").load("peopleinfo.html");
         $('#bottom').load('bottom.html');
-        console.log(88888881111,meminfo);
         $("#personData").addClass("actives");
-        $("#abcd").html(meminfo.uname);
-        console.log(88888881111,$("#abcd").html());
-
     }
+
 
 
 </script>

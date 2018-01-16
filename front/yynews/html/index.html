@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <title>鹰眼新闻</title>
     <link rel="stylesheet" href="../css/style.css"/>
-    <link rel="stylesheet" href="../css/top.css">
-    <link rel="stylesheet" href="../css/bottom.css">
-    <link rel="stylesheet" href="../css/contentright.css"/>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/swiper.min.css"/>
-    <script src="../script/jquery.min.js"></script>
-    <script src="../../../common/js/config.js"></script>
-    <script type="text/javascript" src="../../script/common.js"></script>
+    <script src="../../script/jquery.min.js"></script>
     <script src="../script/swiper.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/index.js"></script>
+
 </head>
 <body>
 <!-- 以下为头部 -->
@@ -59,8 +57,8 @@
            </div>
          <!-- 以下为新闻列表盒子 -->
            <div class="listbox">
-              <!-- <div class="list" id="list"> 
-                       <img src="../images/wenhao.png" id="listImg"/> 
+              <!-- <div class="list" id="list">
+                       <img src="../images/wenhao.png" id="listImg"/>
                        <div class="list-rbox">
                            <h2 class="subhead">阿卡萨斯电费卡是否对卡双离合按时付款函数否对卡双离合按时付款函数否对卡双离合按时付款</h2>
                            <div class="center">
@@ -84,7 +82,7 @@
                               </div>
                            </div>
                            <p class="newsdetail">拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克斯垃圾收费啊，四大发明拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克斯垃圾收费啊拉辅导老师贷款卡速度加快黄金卡加上卡死了回复海克斯垃圾收费啊</p>
-                        </div> 
+                        </div>
                   </div>  -->
            </div>
             
@@ -120,26 +118,21 @@
 
 
     })
+
+    // 页面一打开就加载头部 尾部 右侧
+    window.onload=function(){
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
+        $("#content-right").load('right.html');
+    }
+
+
+
+
+
 </script>
 
 
 </body>
-   <script type="text/javascript" src="../script/js/index.js"></script>
 
-
-<script>
-
-//点那个li  给那个li添加下边框
-$(".nav").on("click","li",function(){
-    $(this).addClass("active").siblings().removeClass("active")
-})
-
-
-// 页面一打开就加载头部 尾部 右侧
-window.onload=function(){
-  $("#top").load("top.html");
-  $("#bottom").load("bottom.html");
-  $("#content-right").load('right.html');
-}
-</script>
 </html>
