@@ -1,12 +1,6 @@
 
 
-//进网站加载个人资料
-window.onload=function(){
-	$('#top').load('top.html');
-	$("#content-rightinside").load("peopleinfo.html");
-    $('#bottom').load('bottom.html');
-	$("#personData").addClass("actives");
-}	
+
 
 
 //选项卡

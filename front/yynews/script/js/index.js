@@ -1,11 +1,50 @@
 $(document).ready(function () {
-    // 以下为中间部分新闻列表
+
+    //轮播图请求的数据
     $.ajax({
-        url: "../data/newlist.json",
+        url:  $yynews.index +"/3/1?pageNum=1&pageSize=20",
+        dataType: "json",
+        async: true,
+        type: "get",
+        success: function (slideshowData) {
+            var slide = slideshowData.data.list;
+            console.log(111, slide);
+            for (var i = 0; i < slide.length; i++) {
+                $('#slide').append('<li class="swiper-slide">' +
+                '<a href="http://123.59.156.27:8080/web/detail/query/3/1/1">' +
+                '<img class="picture" src="'+ slide[i].topImagePath +'"/>' +
+                '<div class="bgcolor">' +
+                '<p> '+ slide[i].newsTitle +'</p>' +
+                '</div>' +
+                '</a>' +
+                '</li>');
+                //
+                //var creatLi=$("<li class='swiper-slide'></li>");
+                //var createa=$("<a href=''></a>");
+                //creatLi.append(createa)
+                //var createImg=$("<img class='picture'/>");
+                //createImg.attr("src",slide[i].staticUrl);
+                //createa.append(createImg);
+                //var creatediv=$("<div class='bgcolor'></div>");
+                //createa.append(creatediv);
+                //var creatp=$("<p></p>");
+                //creatp.text(slide[i].pic_des);
+                //creatediv.append(creatp);
+                //
+                //$("#slide").append(creatLi);
+
+            }
+        }
+    })
+
+// 以下为中间部分新闻列表
+    $.ajax({
+        url:  $yynews.index +"/3/3?pageNum=1&pageSize=20",
         dataType: "json",
         async: true,
         type: "get",
         success: function (newlistData) {
+            console.log(666666666,newlistData)
             //console.log(22,newlistData.data.list)
             var newlist = newlistData.data.list;
             //  console.log(111,newlist);
@@ -14,8 +53,8 @@ $(document).ready(function () {
                 var list = $("<div class='list' id='list'></div>");
                 //创建图片
                 var creatImgbig = $("<img />");
-                var creatImga = $("<a href='https://www.baidu.com/'></a>");
-                creatImgbig.attr("src", newlist[i].staticUrl);
+                var creatImga = $('<a href='+'"detail.html?nav=' +newlist[i].channelId +'&id='+newlist[i].id+'"'+'></a>');
+                creatImgbig.attr("src", newlist[i].topImagePath);
                 creatImga.append(creatImgbig);
                 creatImga.appendTo(list);
 
@@ -24,8 +63,9 @@ $(document).ready(function () {
 
                 //创建右侧列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
-                var createtaga = $("<a href='https://www.baidu.com/'></a>");
-                createtaga.text(newlist[i].news_title);
+
+                var createtaga = $('<a href='+'"detail.html?nav=' +newlist[i].channelId +'&id='+newlist[i].id+'"'+'></a>');
+                createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //右侧列表
                 createH2.appendTo(createlistrbox);
@@ -48,7 +88,7 @@ $(document).ready(function () {
                 //创建时间
                 var time = $("<span class='time'></span>");
                 //获取时间 时间先写死
-                time.text(newlist[i].create_date);
+                time.text(newlist[i].createDate);
                 createleft.append(creatsource);
                 createleft.append(time);
 
@@ -92,75 +132,35 @@ $(document).ready(function () {
                 creatcenter.append(createright);
                 list.append(creatcenter);
 
-                creatcenter.appendTo(createlistrbox)
+                creatcenter.appendTo(createlistrbox);
                 //创建文章内容
                 var creatnewsdetail = $("<p class='newsdetail'></p>");
-                creatnewsdetail.text(newlist[i].content);
+                creatnewsdetail.text(removeHTMLTag(newlist[i].subContent));
                 creatnewsdetail.appendTo(createlistrbox);
 
                 list.append(createlistrbox);
                 $(".listbox").append(list);
             }
         }
-    })
+    });
 
 
-    //轮播图请求的数据
+
+    //轮播图右边请求的数据
     $.ajax({
-        url: "http://123.59.156.27:8080/home/3/1?pageNum=1&pageSize=111",
-        dataType: "json",
-        async: true,
-        type: "get",
-        success: function (slideshowData) {
-            var slide = slideshowData.data.list;
-            console.log(1111111111, slide);
-            for (var i = 0; i < slide.length; i++) {
-                $('#slide').append('<li class="swiper-slide">' +
-                '<a href="' + slide[i].staticA + '">' +
-                '<img class="picture" src="'+ slide[i].topImagePath +'"/>' +
-                '<div class="bgcolor">' +
-                '<p> '+ slide[i].newsTitle +'</p>' +
-                '</div>' +
-                '</a>' +
-                '</li>');
-                //
-                //var creatLi=$("<li class='swiper-slide'></li>");
-                //var createa=$("<a href=''></a>");
-                //creatLi.append(createa)
-                //var createImg=$("<img class='picture'/>");
-                //createImg.attr("src",slide[i].staticUrl);
-                //createa.append(createImg);
-                //var creatediv=$("<div class='bgcolor'></div>");
-                //createa.append(creatediv);
-                //var creatp=$("<p></p>");
-                //creatp.text(slide[i].pic_des);
-                //creatediv.append(creatp);
-                //
-                //$("#slide").append(creatLi);
-
-            }
-        }
-    })
-});
-
-
-//右侧列表的数据
-$(document).ready(function() {
-    $.ajax({
-        url: "../data/bannerright.json",
+        url: $yynews.index +"/3/2?pageNum=1&pageSize=20",
         dataType: "json",
         async: true,
         type: "get",
         success: function (rightData) {
-            console.log(2222222222222);
-            var banner_r = rightData.data.banner_r
+            var banner_r = rightData.data.list;
             console.log(11111, banner_r)
-            for (var i = 0; i <banner_r.length; i++) {
+            for (var i = 0; i <2; i++) {
                 $(".content-left-r").append('<div class="top">' +
-                '<a href="https://www.baidu.com/">' +
-                '<img src="' + banner_r[i].Url + '"/>' +
+                '<a href="http://123.59.156.27:8080/web/detail/query/3/1/1">' +
+                '<img src="' + banner_r[i].topImagePath + '"/>' +
                 '<div class="bgcolortwo">' +
-                '<p>' + banner_r[i].con + '</p>' +
+                '<p>' + banner_r[i].newsTitle + '</p>' +
                 '</div>' +
                 '</a>' +
                 '</div>')
@@ -168,7 +168,27 @@ $(document).ready(function() {
             }
         }
     })
-})
+
+//左侧广告
+    $.ajax({
+        url: $yynews.ad +'/3/0',
+        dataType: "json",
+        async: true,
+        type: "get",
+        success: function (adList) {
+            for (var n = 0; n < 1; n++) {
+                var AdList = adList.data;
+                console.log(989898,adList)
+                $(".advertising").append('<img src="'+ AdList[0].source +'">' +
+                '<img src="'+ AdList[1].source +'">');
+                $(".content-right-top").append('<img src="'+ AdList[2].source +'" class="right-banner"/>');
+
+            }
+
+        }
+    })
+
+});
 
 
 

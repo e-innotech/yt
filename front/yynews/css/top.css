@@ -96,10 +96,12 @@
     margin-left:20px;
 }
 #loginafter{
-    width:115px;
+    width:150px;
     margin-left:20px;
 }
-
+.mine{
+    margin-top:6px;
+}
 
 .header .header-right-r a{
     float:left;

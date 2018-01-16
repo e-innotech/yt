@@ -26,7 +26,7 @@ $(function () {
     };
     var addUser = function () {
         if($('input[name="groupName"]').val()==''){
-            alert('参数不能为空');
+            alert('用户组不能为空');
             return;
         }
         //var data={rolesId:selectUser.rolesId};
@@ -46,6 +46,10 @@ $(function () {
 
 
     var editUser = function () {
+        if($('input[name="groupName"]').val()==''){
+            alert('用户组不能为空');
+            return;
+        }
         var data = $('#roleForm').serializeObject();
         data.id = selectUser.id;
         AjaxFunc($apiUrl + ctrl_upate, 'post', data, function (re) {

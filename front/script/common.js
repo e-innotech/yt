@@ -25,6 +25,14 @@ function AjaxFunc(url, type, data, callBack) {
     };
     $.ajax(obj);
 };
+function removeHTMLTag(str) {
+    str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+    str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
+    str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
+    str=str.replace(/ /ig,'');//去掉
+    return str;
+}
+
 function memberslogadd() {
     var data = {uname: $('input[name="userName"]').val(), pwd: $('input[name="password"]').val()};
     AjaxFunc($members.logadd, 'post', data, function (re) {
@@ -43,14 +51,13 @@ function memberslogin() {
         if (re.success) {
             if ($('input[name="remember"]').is(':checked')) {
                 // console.log('remember')
-                sessionStorage.setItem('user', JSON.stringify(data));
+                sessionStorage.setItem('data', JSON.stringify(data));
             }
-            //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
-            //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
-            //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
-            var userName = $('input[name="userName"]').val();
+            sessionStorage.setItem('memberinfo', JSON.stringify(re.data));
+            var userName=$('input[name="userName"]').val();
             sessionStorage.setItem('synUser',userName);
-            location.replace('index.html');
+           // console.log("会员登陆:" + re.data.uname);
+          location.replace('index.html');
         } else {
             alert(re.msg);
         }
@@ -65,23 +72,5 @@ function memberslogout() {
         } else {
             alert(re.msg);
         };
-    });
-}
-
-function indexHtml(){
-    var data = {id: '网站id', channelIds:'栏目id' ,channelName:'栏目名称'};
-    AjaxFunc($members.index, 'post', data, function (re) {
-        if (re.success) {
-            if ($('input[name="remember"]').is(':checked')) {
-                // console.log('remember')
-                sessionStorage.setItem('user', JSON.stringify(data));
-            }
-            //var userinfo = {uname: re.data.uname, roleName: re.data.roleName};
-            //sessionStorage.setItem('userinfo', JSON.stringify(userinfo));
-            //sessionStorage.setItem('permissons', JSON.stringify(re.data.menu));
-            location.replace('index.html');
-        } else {
-            alert(re.msg);
-        }
     });
 }
