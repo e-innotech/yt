@@ -1,9 +1,16 @@
 package com.yt.cms.model;
 
+import java.io.Serializable;
+
 import org.hibernate.validator.constraints.NotBlank;
 
-public class MemberInfos {
-    private Integer id;
+public class MemberInfos implements Serializable{
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
     @NotBlank(message="会员昵称不能为空")
     private String nickName;
 
@@ -20,8 +27,17 @@ public class MemberInfos {
     private String address;
     
     private String icon;
+    private Integer memberId;
+    
+    public Integer getMemberId() {
+		return memberId;
+	}
 
-    public Integer getId() {
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+	public Integer getId() {
         return id;
     }
 

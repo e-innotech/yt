@@ -9,6 +9,6 @@ public interface MemberInfosMapper {
 
     MemberInfos selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(MemberInfos record);
+    int updateByMemberIdSelective(MemberInfos record);
 
 }

@@ -95,12 +95,20 @@ public class MembersController {
 	 */
 	@PostMapping("/update/info")
 	@ApiOperation("修改会员信息")
-	public AjaxResponseBody update(@Valid @RequestBody MemberInfos info,BindingResult result){
+	public AjaxResponseBody update(@Valid @RequestBody MemberInfos info,BindingResult result,HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Members members_session = (Members) session.getAttribute(Const.SESSION_MEMBERS_KEY);
+		
+		if(members_session == null || members_session.getId() == null) {
+			return new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+		}
+		info.setMemberId(members_session.getId());
 		boolean created = memberService.updateInfo(info);
+		Members new_members = memberService.findById(info.getMemberId());
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new AjaxResponseBody(true,Const.SUCCESS,null);
+		return new AjaxResponseBody(true,Const.SUCCESS,new_members);
 	}
 	
 	/**
@@ -110,7 +118,7 @@ public class MembersController {
 	 */
 	@PostMapping("/login")
 	@ApiOperation("会员登陆")
-	public AjaxResponseBody login(@Valid @RequestBody Members member, HttpServletRequest request,BindingResult result) {
+	public AjaxResponseBody login(@Valid @RequestBody Members member,BindingResult result, HttpServletRequest request) {
 		Members db_member = memberService.login(member);
 		HttpSession session = request.getSession();
 		AjaxResponseBody response = new AjaxResponseBody();

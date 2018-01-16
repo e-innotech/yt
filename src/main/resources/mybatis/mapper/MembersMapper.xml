@@ -28,7 +28,7 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id , a.uname, a.pwd, a.regDate, a.isUse, a.isGag, 
+    a.id , a.uname, a.regDate, a.isUse, a.isGag, 
     b.id as infoId, b.nickName, b.sex, b.birth, b.phone, b.email, b.qq, b.address,b.icon
     from members a left join memberinfos b on a.id = b.members_id 
     where a.id = #{id,jdbcType=INTEGER}

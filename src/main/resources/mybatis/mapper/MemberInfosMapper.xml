@@ -96,7 +96,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.MemberInfos" >
+  <update id="updateByMemberIdSelective" parameterType="com.yt.cms.model.MemberInfos" >
     update memberinfos
     <set >
       <if test="nickName != null" >
@@ -120,14 +120,11 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="membersId != null" >
-        members_id = #{membersId,jdbcType=INTEGER},
-      </if>
       <if test="icon != null" >
         icon = #{icon,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where members_id = #{memberId,jdbcType=INTEGER}
   </update>
   
 </mapper>

@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean updateInfo(MemberInfos memberInfo) {
 		try {
-			int row = memberInfoDAO.updateByPrimaryKeySelective(memberInfo);
+			int row = memberInfoDAO.updateByMemberIdSelective(memberInfo);
 			if(row == 1) {
 				return true;
 			}
