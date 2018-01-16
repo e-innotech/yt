@@ -154,16 +154,15 @@
 
     //进网站加载个人资料
     window.onload=function(){
+
         var meminfo= JSON.parse(sessionStorage.getItem('memberinfo'));
         $('#top').load('top.html');
         $("#content-rightinside").load("peopleinfo.html");
         $('#bottom').load('bottom.html');
-        console.log(88888881111,meminfo);
         $("#personData").addClass("actives");
         $("#abcd").html(meminfo.uname);
-        console.log(88888881111,$("#abcd").html());
-
     }
+
 
 
 </script>

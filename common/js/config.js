@@ -1,30 +1,13 @@
 var config ={
     init:function(){
-        $apiUrl = ' http://192.168.20.195:8080';//本地
-        // $apiUrl = ' http://123.59.156.27:8080';//测试
+        //$apiUrl = ' http://192.168.20.195:8080';//本地
+       $apiUrl = ' http://123.59.156.27:8080';//测试
 
         $uploadUrl = 'http://192.168.20.195:8888/yy/upload';
 
         $admin = {
             'login':$apiUrl+'/login',
             'logout':$apiUrl+'/logout'
-        };
-        $members = {
-            'login':$apiUrl+'/members/login',
-            'logout':$apiUrl+'/members/logout',
-            'logadd':$apiUrl+'/members/add',
-            'commentadd':$apiUrl+'/members/comment/add',
-            'info':$apiUrl+'/members/update/info',
-            'infoQuery':$apiUrl+'/members/query'
-        };
-        $yynews = {
-            'index': $apiUrl + '/home',//首页
-            'top': $apiUrl + '/web/channel/query',//网站栏目页服务
-            'detail': $apiUrl + '/web/detail/query',//网站详情页面文章详情
-            'detailTotal': $apiUrl + '/web/detail/query/total',//详情页品论总数
-            'detailQuery': $apiUrl + '/web/detail/query', //评论内容
-            'channel': $apiUrl + '/common/channel', //网站栏目
-            'ad': $apiUrl + '/common/ad' //广告
         };
 
         $user = {

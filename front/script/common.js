@@ -26,11 +26,13 @@ function AjaxFunc(url, type, data, callBack) {
     $.ajax(obj);
 };
 function removeHTMLTag(str) {
-    str = str.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+    str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
     str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
     str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
-    str=str.replace(/ /ig,'');//去掉
+    str=str.replace(/ /g,'');//去掉
     return str;
+
+
 }
 
 function memberslogadd() {
@@ -73,4 +75,12 @@ function memberslogout() {
             alert(re.msg);
         };
     });
+}
+
+
+function indexAjax(){
+    var data={}
+    AjaxFunc($yynews.index, 'post', data, function (re) {
+
+    })
 }

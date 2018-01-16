@@ -6,17 +6,14 @@ $(document).ready(function(){
         async:true,
         type:"get",
         success:function(rightnewData){
-            //console.log(44333333,rightnewData);
             var rightdata=rightnewData.data.list;
+
+                console.log(rightdata)
             $(".imgnewlist>img").attr("src",rightdata[1].topImagePath);
             $(".imgnewlist .textone").text(rightdata[1].newsTitle);
-            $(".imgnewlist .texttwo").text(removeHTMLTag(rightdata[1].subContent));
-            var rightnewdata=rightnewData.data.rightnewlists;
-            //console.log(33,rightnewdata);
+            $(".imgnewlist .texttwo").text(removeHTMLTag(removeHTMLTag(rightdata[1].subContent)));
             for(var i=0;i<rightdata.length;i++){
-                //$(".header .nav").append('<li><a>'+listdata[i].channelName+'</a></li>')
-            //'<a href='+'"detail.html?nav=' +newlist[i].channelId +'&id='+newlist[i].id+'"'+'></a>'
-                $(".rightnewlist").append('<li><a href="">'+rightdata[i].newsTitle+'</a></li>')
+                $(".rightnewlist").append("<li><a href="+'"detail.html?id='+rightdata[i].publishId+'"'+">"+ rightdata[i].newsTitle+"</a></li>")
             }
 
         }
