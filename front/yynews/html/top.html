@@ -5,14 +5,15 @@
     <title>头部</title>
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/top.css">
-    <script src="../../script/jquery.min.js"></script>
-    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/top.js"></script>
 </head>
 <body>
 <!-- 以下为头部 -->
 <div class="headerbg">
     <div class="header">
-        <img src="../images/logo.png"/>
+        <a href="index.html">
+            <img src="../images/logo.png"/>
+        </a>
         <ul class="nav">
 
         </ul>
@@ -24,13 +25,9 @@
                     <a href="#"><img src="../images/search.png" id="search"/></a>
                 </form>
             </div>
-            <div class="header-right-r" id="loginbefore">
-                <a href="template.html"><img src="../images/ren.png" class="userAvatar"/></a>
-            </div>
-            <div class="header-right-r" id="loginafter">
-                <a href="member.html" class="mine">我的资料</a>
-                <!--<a href="template.html"><img src="../images/ren.png" class="userAvatar"/></a>-->
-                <p onclick="logout()" id="logout" style="padding-top:5px;">退出登录</p>
+            <div class="header-right-r">
+                <a><img src="../images/ren.png" class="userAvatar"/></a>
+                <p id="logoutBtn" style="padding-top:5px;">退出登录</p>
             </div>
 
         </div>
@@ -57,32 +54,6 @@
 //
 //    }
 //}
-////    //导航栏的数据
-////判断是不是首次进入，如果是发送ajax请求，请求数据且渲染页面，并存在session中 否则不是首次就调用缓存里的数据
-//    if(sessionStorage.getItem("channel") !== null){
-//      console.log(22222);
-//       var channels= JSON.parse(sessionStorage.getItem("channel"));
-////        console.log(2222222,channels);
-////        console.log(5555555,typeof(channels))
-//        for(var i=0;i<channels.length;i++){
-//            $(".header .nav").append('<li><a> ' + channels[i].channelName + ' </a></li>');
-//        }
-//    }else{
-//        console.log(1111111111)
-//            $.ajax({
-//                url:$yynews.channel+"/3",
-//                dataType:"json",
-//                async:true,
-//                type:"get",
-//                success:function(navData){
-//                    for(var i=0;i<navData.data.length;i++) {
-//                       // var uri = $yynews.top+"/3/"+navData.data[i].id+"?pageNum=1&pageSize=10";
-//                        $(".header .nav").append('<li><a href='+'"nav.html?nav=' +navData.data[i].id +'">'+navData.data[i].channelName + ' </a></li>');
-//                    }
-//
-//                }
-//            })
-//    }
 //$(document).ready(function(){
 //    if(sessionStorage.getItem("synUser") !== null){
 //        $("#loginafter").show();

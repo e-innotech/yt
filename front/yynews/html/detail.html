@@ -5,9 +5,9 @@
 	<title>新闻详情</title>
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/detail.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/contentright.css"/>
-    <script type="text/javascript" src="../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/detail.js"></script>
 </head>
 <body>
     <!-- 以下为头部 -->
@@ -81,8 +81,8 @@
                   <img src="../images/xiang.png"/>
                   <span>qqqqq</span>
               </p>
-              <textarea id="textarea" placeholder="评论字数限50个以内" onkeyup ="countCode(this)"></textarea>
-              <input type="button" id="Commit"  value = "提交评论"  />
+              <textarea id="textarea" placeholder="评论字数限50个以内" onkeyup ="countCode(this,50)"></textarea>
+              <input type="button" id="commitBtn"  value = "提交评论"  />
           </div>
 
           <!-- 最新评论 -->
@@ -92,20 +92,20 @@
                  <span>9条评论</span>
              </div>
              <div id="commentCon-box">
-                <div class="commentCon">
-                    <div class="commentCon-l">
-                        <img src="../images/sha.png" class="small"/>
-                        <img src="../images/girl.png" class="big"/>
-                        <p class="call">139****8850</p>
-                        <p class="date">注册时间:2017-01-12</p>
-                    </div>
-                    <div class="commentCon-r">
-                        <p>2017-01-12 15:03:31 <span>一楼</span></p>
-                        <div class="commentbox">
-                            路人
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="commentCon">-->
+                    <!--<div class="commentCon-l">-->
+                        <!--<img src="../images/sha.png" class="small"/>-->
+                        <!--<img src="../images/girl.png" class="big"/>-->
+                        <!--<p class="call">139****8850</p>-->
+                        <!--<p class="date">注册时间:2017-01-12</p>-->
+                    <!--</div>-->
+                    <!--<div class="commentCon-r">-->
+                        <!--<p>2017-01-12 15:03:31 <span>一楼</span></p>-->
+                        <!--<div class="commentbox">-->
+                            <!--路人-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
              </div>
               
              <div class="more">点击查看更多评论</div>
@@ -127,128 +127,13 @@
 
 
 </body>
-  <script type="text/javascript" src="../script/js/detail.js"></script>
 <script type="text/javascript">
-  //用户只能输入50个字符
-  function countCode(obj){
-    var str = obj.value;
-    if(str.length>50){
-      obj.value = str.substr(0,50);
-    }
-  }
-var textarea = document.getElementById('textarea');
-var commitBtn = document.getElementById('Commit');
-var commentReview = document.getElementById('commentCon-box');
-commitBtn.onclick = function () {
-    if(sessionStorage.getItem("synUser") !== null){
-        $.ajax({
-            url:$members.commentadd ,
-            //上送数据 网站id 会员ID 新闻ID 输入框的内容
-            data:{"websiteId": 3,"membersId":1,"newsId": 0,"content": encodeURI(textValue)},
-            dataType: "json",
-            async: true,
-            type: "get",
-            success: function (datas) {
-                console.log(666,datas);
-//            var banner_r = rightData.data.list;
-//            console.log(11111, banner_r)
 
-            }
-        })
 
-    }else{
-      alert("请先登录后在进行评论")
-
-    }
-//    var textValue = textarea.value;
-//   console.log(111,$members.commentadd);
-//
-//
-//
-//
-//    alert(22222222)
-////  var textValue = textarea.value;
-//   textarea.value = "";
-//   // console.log(textValue);
-//   //判断输入框有没有输入内容
-//   if (textValue.length>0) {
-//      var divs = document.createElement("div");
-//      var divs_one = document.createElement("div");
-//      var divs_two = document.createElement("div");
-//      //第一个子DIV里的内容
-//      var divs_one_img1 = document.createElement("img");
-//      var divs_one_img2 = document.createElement("img");
-//      var divs_one_p1 = document.createElement("p");
-//      var divs_one_p2 = document.createElement("p");
-//      //第二个子DIV里的内容
-//      var divs_two_p = document.createElement("p");
-//      var divs_two_p_span = document.createElement("span");
-//      var divs_two_div = document.createElement("div");
-//
-//      divs.setAttribute("class","commentCon");
-//      divs_one.setAttribute("class","commentCon-l");
-//      divs_two.setAttribute("class","commentCon-r");
-//      divs_one_img1.setAttribute("class","small");
-//      divs_one_img2.setAttribute("class","big");
-//      divs_one_p1.setAttribute("class","call");
-//      divs_one_p2.setAttribute("class","date");
-//      // divs_two_p.setAttribute("class","commentCon");
-//      // divs_two_p_span.setAttribute("class","commentCon");
-//      divs_two_div.setAttribute("class","commentbox");
-//      divs_one_img1.src="../images/sha.png";
-//      divs_one_img2.src="../images/girl.png";
-//      divs_one_p1.innerHTML="139****8850";
-//      divs_one_p2.innerHTML="注册时间:2017-01-12";
-//      divs_two_p.innerHTML = "2017-01-12 15:03:31";
-//      divs_two_p_span.innerHTML = "一楼";
-//      divs_two_div.innerHTML = textValue;
-//      //把内容追加进盒子里面
-//      divs_one.appendChild(divs_one_img1);
-//      divs_one.appendChild(divs_one_img2);
-//      divs_one.appendChild(divs_one_p1);
-//      divs_one.appendChild(divs_one_p2);
-//
-//      divs_two_p.appendChild(divs_two_p_span);
-//      divs_two.appendChild(divs_two_p);
-//      divs_two.appendChild(divs_two_div);
-//
-//      divs.appendChild(divs_one);
-//      divs.appendChild(divs_two);
-//      //做一个判断，如果是第一次评论出现的盒子，就只放在大盒子里，如果不是就放在之前
-//      if (commentReview.children.length==0) {
-//        commentReview.appendChild(divs);
-//      }else{
-//        commentReview.insertBefore(divs,get_firstChild(commentReview))
-//      }
-//   }
-}
-
-function get_firstChild (n) {
-    y=n.firstChild;
-    while (y.nodeType!=1){
-        y=y.nextSibling;
-    }
-    return y;
-}
-
-// console.log(111,$(".read").html());
-
-    
 window.onload=function(){ 
     $('.top').load('top.html');
     $('.bottom').load('bottom.html');
     $("#content-right").load('right.html');
 }
-  var url=location.search;
-
-  var Request = new Object();
-  if(url.indexOf("?")!=-1) {
-      var str = url.substr(1)//去掉?号
-      strs = str.split("&");
-      for(var i=0;i<strs.length;i++) {
-          Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
-      }
-  }
-console.log(location.pathname)
 </script>
 </html>

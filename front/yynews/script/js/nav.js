@@ -2,16 +2,12 @@
  * Created by Administrator on 2018/1/14.
  */
 $(document).ready(function () {
-    config.init();
-    // 以下为中间部分新闻列表
-    $.ajax({
+    var page = 1;
+    var channelId = getIdFromUrl();
 
-        url: $yynews.top +"/3/"+Request["nav"]+"?pageNum=1&pageSize=10",
-        dataType: "json",
-        async: true,
-        type: "get",
-        success: function (newlistData) {
-            var newlist = newlistData.data.list;
+    console.log('channelId='+channelId);
+    var getNewsList = function(){
+        newsList(channelId,page,6,function callback(newlist){
             for (var i = 0; i < newlist.length; i++) {
                 //创建列表
                 var createlistbox = $("<div class='list' id='list'></div>");
@@ -19,12 +15,12 @@ $(document).ready(function () {
                 //创建列表的h2标签
                 var createH2 = $("<h2 class='subhead'></h2>");
 
-                var createtaga = $('<a href='+'"detail.html?id='+newlist[i].publishId+'"'+'></a>');
+                var createtaga = $('<a href="detail.html?id='+newlist[i].publishId+'"'+'></a>');
                 createtaga.text(newlist[i].newsTitle);
                 createH2.append(createtaga);
                 //列表
                 createlistbox.append(createH2);
-                $(".listbox").append(createlistbox)
+
                 //中间的用户信息和时间
                 var creatcenter = $("<div class='center'></div>");
                 var createleft = $("<div class='center-l'></div>");
@@ -93,8 +89,18 @@ $(document).ready(function () {
                 creatnewsdetail.text(removeHTMLTag(newlist[i].subContent));
                 creatnewsdetail.appendTo(createlistbox);
 
-
+                $(".listbox").append(createlistbox);
             }
-        }
+        })
+    };
+    $('.more').click(function(){
+        page++;
+        getNewsList();
     });
+
+
+    adList(1,function callback(list){
+
+    });
+    getNewsList();
 })
