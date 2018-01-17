@@ -11,10 +11,10 @@ $(document).ready(function () {
 	//用户只能输入50个字符
 	var publishId = getIdFromUrl();
 	newsDetail(publishId,function callback(data){
-		$('#content_left').append('<div class="news-top">' +
+		$('.titles').append('<div class="news-top">' +
 		'<h2>'+ data.newsTitle +'</h2>' +
 		'<div class="dateinfo">' +
-		'<div class="times">'+
+		'<div class="time">'+
 		'发布时间:' +
 		'<span>'+ data.createDate +'</span>' +
 		'</div>' +
@@ -33,7 +33,6 @@ $(document).ready(function () {
 
 		$('#content_center').append('<div class="news-top">' +data.content+'</div>');
 	});
-
 	//var getCommentList = function() {
 	//	commentList(publishId, pag, 5,function callback(data){
 	//		for(var i=0;i<data.list.length;i++){

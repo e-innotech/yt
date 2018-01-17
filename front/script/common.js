@@ -1,6 +1,6 @@
-const apiUrl = 'http://192.168.20.195:8080';
+//const apiUrl = 'http://192.168.20.195:8080';
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-//const apiUrl = 'http://123.59.156.27:8080';
+const apiUrl = 'http://123.59.156.27:8080';
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -89,7 +89,7 @@ function adList(templateType,callback){
 };
 function channelList(callback){
     var data = {websiteId:websiteId};
-    console.log(111111111111111)
+
     AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
         if(re.success){
             if(callback){
@@ -272,17 +272,17 @@ function deleteCollect(id){
 //添加评论
 
 //评论列表
-function commentList(pageNum,pageSize,callback){
-    var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
-};
+//function commentList(pageNum,pageSize,callback){
+//    var data = {pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data);
+//                return;
+//            }
+//        }
+//    });
+//};
 
 
 
