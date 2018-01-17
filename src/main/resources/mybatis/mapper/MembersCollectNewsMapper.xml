@@ -9,11 +9,8 @@
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   
-    <resultMap id="ResultMap" type="com.yt.cms.model.MembersCollectNews" >
-    	<id column="id" jdbcType="INTEGER" property="id" />
-	    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
-	    <result column="website_id" jdbcType="INTEGER" property="websiteId" />
-	    <result column="channel_id" jdbcType="INTEGER" property="channelId" />
+    <resultMap id="ResultMap" type="com.yt.cms.model.MembersCollectNews" extends="BaseResultMap">
+    	
     	<association property="news" javaType="com.yt.cms.model.News">
     		<id column="news_id" property="id" jdbcType="INTEGER" />
 		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
@@ -32,9 +29,9 @@
   </select>
   
    <select id="query" parameterType="map" resultMap="ResultMap">
-    select a.id, a.createDate,b.website_id, b.channel_id,c.id as news_id ,c.news_title, c.staticUrl
+    select a.id,a.members_id, a.createDate,a.news_publish_id,c.id as news_id ,c.news_title, c.staticUrl
     from members_collect_news a, news_publish b, news c where a.news_publish_id = b.id and b.news_id = c.id
-     and a.status = 0 and c.isDel = 0
+     and a.status = 0 
      and a.members_id =  #{record.membersId,jdbcType=INTEGER}  order by a.id desc
       <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  

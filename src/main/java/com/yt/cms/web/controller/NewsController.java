@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,6 @@ import com.yt.cms.model.Websites;
 import com.yt.cms.service.NewsLaunchService;
 import com.yt.cms.service.NewsPublishService;
 import com.yt.cms.service.NewsService;
-import com.yt.cms.service.WebsitesService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -49,8 +49,7 @@ public class NewsController {
 	private NewsLaunchService newsLaunchService;
 	@Autowired
 	private NewsPublishService newsPublishService;
-	@Autowired
-	private WebsitesService websitesService;
+
 	/**
 	 * 列表页面，只可查询status=0 未投放的稿件
 	 * @return
@@ -99,7 +98,7 @@ public class NewsController {
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		if(user_session == null || user_session.getId() == null) {
-			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,Const.SESSION_TIMEOUT_ERROR_CODE);
 		} 
 		news.setSubmitUserId(user_session.getId());
 		boolean created = newsService.save(news);
@@ -152,7 +151,7 @@ public class NewsController {
 		HttpSession session = request.getSession();
 		User user_session = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		if(user_session == null || user_session.getId() == null) {
-			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,Const.SESSION_TIMEOUT_ERROR_CODE);
 		} 
 		newsLaunch.setCreateUserId(user_session.getId());
 		boolean release =  newsLaunchService.save(newsLaunch);
@@ -242,7 +241,7 @@ public class NewsController {
 		BeanUtils.copyProperties(aduit, newsLaunch);
 		User user = (User) session.getAttribute(Const.SESSION_USER_KEY);
 		if(user == null) {
-			return new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+			return new AjaxResponseBody(false,Const.SESSION_TIMEOUT,Const.SESSION_TIMEOUT_ERROR_CODE);
 		}
 		// 从session中拿当前用户id
 		newsLaunch.setAduitUserId(user.getId());
@@ -275,6 +274,7 @@ public class NewsController {
 	@ApiOperation("查询所有稿件投放信息")
 	public AjaxResponseBody queryPublish(@RequestParam(required=false) String websiteName,
 			@RequestParam(required=false) String channelName,
+			@RequestParam(required=false) String newsTitle,
 			@RequestParam(required=false) Integer isline,
 			@RequestParam(required=false) Integer ishome,
 			@RequestParam Integer pageNum,
@@ -285,6 +285,7 @@ public class NewsController {
 		newsPublish.setWebsiteName(websiteName);
 		newsPublish.setIshome(ishome);
 		newsPublish.setIsline(isline);
+		newsPublish.setNewsTitle(newsTitle);
 		Page page = new Page(pageNum,pageSize);
 		long total = newsPublishService.queryCount(newsPublish);
 		List<NewsPublish> modules =  newsPublishService.query(newsPublish,page);
@@ -318,19 +319,22 @@ public class NewsController {
 	 * 
 	 * @return
 	 */
-	// TODO 判断是否超过网站的首页权重值
 	@GetMapping("/publish/setHome")
 	@ApiOperation("设置首页")
 	@LogAnnotation(action="设置首页")
 	public AjaxResponseBody setHome(@RequestParam Integer id, @RequestParam Integer isHome,@RequestParam Integer homeWeight){
-		NewsPublish db_publish = newsPublishService.findByPublishId(id);
+		NewsPublishLine db_publish = newsPublishService.findById(id);
 		// 先查询该网站设置的最大权重值
-		if(db_publish == null || db_publish.getWebsiteId() == null) {
+		if(db_publish == null || db_publish.getWebsites() == null || db_publish.getWebsites().getId() == null) {
 			return new AjaxResponseBody(false,Const.FAILED,"此发布信息的网站不存在，不能置首页");
 		}
-		Websites web = websitesService.findById(db_publish.getWebsiteId());
-		if(web == null || web.getHomeWeightMax() == null || web.getHomeWeightMax().intValue() < homeWeight.intValue()) {
+		Websites web = db_publish.getWebsites();
+		if(web.getHomeWeightMax() == null || web.getHomeWeightMax().intValue() < homeWeight.intValue()) {
 			return new AjaxResponseBody(false,Const.FAILED,"设置的权重值不能大于网站设置的最大权重值");
+		}
+		News news = db_publish.getNews();
+		if(news == null || !StringUtils.hasText(news.getTopImagePath())) {
+			return new AjaxResponseBody(false,Const.FAILED,"此发布信息没有头图，不能置首页");
 		}
 		NewsPublish publish = new NewsPublish();
 		publish.setId(id);

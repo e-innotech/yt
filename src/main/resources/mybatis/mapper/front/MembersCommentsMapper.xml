@@ -8,19 +8,15 @@
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="news_publish_id" property="publishId" jdbcType="INTEGER" />
     <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="members_id" jdbcType="INTEGER" property="membersId" />
   </resultMap>
 
    <select id="query" resultMap="ResultMap" parameterType="map" >
-    select a.id, a.createDate, a.content, a.news_publish_id, c.news_title
+    select a.id, a.members_id,a.createDate, a.content, a.news_publish_id, c.news_title
     from members_comments_news a, news_publish b,news c  where a.isDel = 0 and a.news_publish_id = b.id and b.news_id = c.id 
-   	and c.isDel =0
 	    <!-- 会员自己的，当会员查看自己的评论时，此参数必传 -->
 	    <if test="record.membersId != null" >
 	       and a.members_id = #{record.membersId,jdbcType=INTEGER}
-	    </if>
-	     <!-- 前端会员试用，当会员查看自己的评论时，此参数必传 -->
-	    <if test="record.websiteId != null" >
-	       and b.website_id = #{record.websiteId,jdbcType=INTEGER}
 	    </if>
 	     order by a.id desc
 	    <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
@@ -33,12 +29,12 @@
     from members_comments_news a, news_publish b,news c  where a.isDel = 0 and a.news_publish_id = b.id and b.news_id = c.id 
    	and c.isDel =0
 	     <!-- 会员自己的，当会员查看自己的评论时，此参数必传 -->
-	    <if test="record.membersId != null" >
-	       and a.members_id = #{record.membersId,jdbcType=INTEGER}
+	    <if test="membersId != null" >
+	       and a.members_id = #{membersId,jdbcType=INTEGER}
 	    </if>
 	     <!-- 前端会员试用，当会员查看自己的评论时，此参数必传 -->
-	    <if test="record.websiteId != null" >
-	       and b.website_id = #{record.websiteId,jdbcType=INTEGER}
+	    <if test="websiteId != null" >
+	       and b.website_id = #{websiteId,jdbcType=INTEGER}
 	    </if>
   </select>
   

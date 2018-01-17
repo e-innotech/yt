@@ -100,7 +100,7 @@ public class MembersController {
 		Members members_session = (Members) session.getAttribute(Const.SESSION_MEMBERS_KEY);
 		
 		if(members_session == null || members_session.getId() == null) {
-			return new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+			return new AjaxResponseBody(false,Const.SESSION_TIMEOUT,Const.SESSION_TIMEOUT_ERROR_CODE);
 		}
 		info.setMemberId(members_session.getId());
 		boolean created = memberService.updateInfo(info);
@@ -161,6 +161,7 @@ public class MembersController {
 		if(members_session == null || members_session.getId() == null) {
 			response.setMsg(Const.SESSION_TIMEOUT);
 			response.setSuccess(false);
+			response.setErrCode(Const.SESSION_TIMEOUT_ERROR_CODE);
 			return response;
 		}
 		if(StringUtils.isEmpty(user.getPassWord()) || StringUtils.isEmpty(user.getCurrentPwd())) {

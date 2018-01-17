@@ -30,10 +30,6 @@ public class NewsPublishServiceImpl implements NewsPublishService {
 		return newsPublishDAO.selectByPrimaryKey(id);
 	}
 
-	@Override
-	public NewsPublish findByPublishId(Integer id) {
-		return newsPublishDAO.selectByPublishId(id);
-	}
 
 	@Override
 	public boolean update(NewsPublish newsPublish) {

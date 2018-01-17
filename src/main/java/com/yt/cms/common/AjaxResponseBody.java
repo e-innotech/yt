@@ -18,8 +18,10 @@ public class AjaxResponseBody implements Serializable{
     private String msg;
     //业务数据
     private Object data;
-	// 状态码
+	// 成功标记
     private boolean success;
+    // 错误码
+    private String errCode;
     
 
 	public boolean isSuccess() {
@@ -44,6 +46,12 @@ public class AjaxResponseBody implements Serializable{
 		super();
 	}
 	
+	public String getErrCode() {
+		return errCode;
+	}
+	public void setErrCode(String errCode) {
+		this.errCode = errCode;
+	}
 	public AjaxResponseBody(boolean success,String msg) {
 		super();
 		this.msg = msg;
@@ -54,6 +62,13 @@ public class AjaxResponseBody implements Serializable{
 		this.success = success;
 		this.msg = msg;
 		this.data = data;
+	}
+	
+	public AjaxResponseBody(boolean success,String msg, String errCode) {
+		super();
+		this.success = success;
+		this.msg = msg;
+		this.errCode = errCode;
 	}
 
 /*	public String toString(){

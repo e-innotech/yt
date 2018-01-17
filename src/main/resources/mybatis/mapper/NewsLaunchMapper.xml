@@ -19,6 +19,8 @@
     	<association property="news" javaType="com.yt.cms.model.News">
     		<id column="news_id" property="id" jdbcType="INTEGER" />
 		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+		     <result column="source" property="source" jdbcType="VARCHAR" />
+		    <result column="content" property="content" jdbcType="LONGVARCHAR" />
     	</association>
   </resultMap>
   <sql id="Base_Column_List" >
@@ -35,7 +37,7 @@
   <select id="query" resultMap="ResultMap" parameterType="map" >
     select 
    a.id, b.id as news_id, a.news_launch_config, a.status, a.aduit_user_id, a.aduit_des, a.aduit_date, a.create_user_id, 
-    a.create_date,b.news_title
+    a.create_date,b.news_title,b.source,b.content
     from news_launch a left join news b on a.news_id = b.id 
     where a.isDel = 0 and a.status in (0,2)
     <if test="record.startDate != null" >

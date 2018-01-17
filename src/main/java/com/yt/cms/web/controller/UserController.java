@@ -202,6 +202,7 @@ public class UserController {
 		if(user_session == null || user_session.getId() == null) {
 			response.setMsg(Const.SESSION_TIMEOUT);
 			response.setSuccess(false);
+			response.setErrCode(Const.SESSION_TIMEOUT_ERROR_CODE);
 			return response;
 		}
 		if(StringUtils.isEmpty(user.getPassWord()) || StringUtils.isEmpty(user.getCurrentPwd())) {

@@ -19,12 +19,6 @@ public interface NewsPublishMapper {
      * @return
      */
     NewsPublishLine selectByPrimaryKey(Integer id);
-    /**
-     * 查询发布表
-     * @param id 主键id
-     * @return
-     */
-    NewsPublish selectByPublishId(Integer id);
     
     int updateByPrimaryKeySelective(NewsPublish record);
 

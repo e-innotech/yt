@@ -21,11 +21,14 @@
     	<association property="news" javaType="com.yt.cms.model.News">
     		<id column="news_id" property="id" jdbcType="INTEGER" />
 		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+		    <result column="source" property="source" jdbcType="VARCHAR" />
 		    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+		    <result column="top_image_path" property="topImagePath" jdbcType="VARCHAR" />
     	</association>
     	<association property="websites" javaType="com.yt.cms.model.Websites">
     		<id column="website_id" property="id" jdbcType="INTEGER" />
 		   	<result column="siteName" property="siteName" jdbcType="VARCHAR" />
+		   	<result column="home_weight_max" property="homeWeightMax" jdbcType="INTEGER" />
     	</association>
     	<association property="channel" javaType="com.yt.cms.model.Channel">
     		<id column="channel_id" property="id" jdbcType="INTEGER" />
@@ -52,22 +55,15 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="findNewsWebChannelResultMap" parameterType="java.lang.Integer" >
     select 
-    a.id, a.news_id, a.website_id, a.channel_id,a.isLine, a.isHome, a.home_weight, a.offLine_date,b.news_title,c.siteName,d.channelName
+    a.id, a.news_id, a.website_id, a.channel_id,a.isLine, a.isHome, a.home_weight, a.offLine_date,b.news_title,b.top_image_path,c.siteName,c.home_weight_max,d.channelName
     from news_publish a, news b, websites c, channel d
     where a.id = #{id,jdbcType=INTEGER} and a.news_id = b.id and a.website_id = c.id and a.channel_id = d.id and d.isDel = 0 and b.isDel = 0 and c.isDel = 0
-  </select>
-  
-    <select id="selectByPublishId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    a.id, a.news_id, a.website_id, a.channel_id,a.isLine, a.isHome, a.home_weight
-    from news_publish a
-    where a.id = #{id,jdbcType=INTEGER}
   </select>
   
     <select id="query" resultMap="findNewsWebChannelResultMap" parameterType="map" >
     select 
      a.id, a.news_id, a.website_id, a.channel_id, a.isLine, a.isHome, a.home_weight, a.offLine_date,
-      b.siteName , c.channelName,d.news_title,d.content 
+      b.siteName , c.channelName,d.news_title,d.source,d.content 
     from news_publish a 
     left join websites b on a.website_id = b.id 
     left join channel c on a.channel_id = c.id 
@@ -85,6 +81,10 @@
 	       <if test="record.websiteName != null" >
 	       and b.siteName like concat('%', #{record.websiteName}, '%')
 	      </if>
+	       <if test="record.newsTitle != null" >
+	       and d.news_title like concat('%', #{record.newsTitle}, '%')
+	      </if>
+	      
 	       order by a.id desc
 	      <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
 	        LIMIT #{page.pageLimit},#{page.pageSize}  
@@ -109,6 +109,9 @@
 	      </if>
 	       <if test="websiteName != null" >
 	       and b.siteName like concat('%', #{websiteName}, '%')
+	      </if>
+	      <if test="newsTitle != null" >
+	       and d.news_title like concat('%', #{newsTitle}, '%')
 	      </if>
   </select>
   

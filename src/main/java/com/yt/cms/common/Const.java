@@ -31,6 +31,8 @@ public class Const {
 	public static final String PASSWORD_REQUIRED = "新密码或者旧密码不能为空！";
 	
 	public static final String SESSION_TIMEOUT = "超时，请重新登录！";
+	
+	public static final String SESSION_TIMEOUT_ERROR_CODE = "E00001";
 	// 稿件审批通过
 	public static final Integer ADUIT_PASS = 1;
 	// 稿件审批不通过
@@ -51,5 +53,7 @@ public class Const {
 	public static final String SESSION_USER_KEY = "_session_user";
 	// 前端会员session key
 	public static final String SESSION_MEMBERS_KEY = "_session_members";
+	
+	
 	
 }

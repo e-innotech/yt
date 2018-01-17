@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +48,7 @@ public class WebsiteMemberController {
 		Members session_member = (Members)session.getAttribute(Const.SESSION_MEMBERS_KEY);
 	
 		if(session_member == null || session_member.getId() == null ) {
-			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,null);
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,Const.SESSION_TIMEOUT_ERROR_CODE);
 		}
 		if(comment.getContent() == null ) {
 			return new AjaxResponseBody(false,Const.FAILED,"评论内容不能为空");
@@ -63,7 +61,7 @@ public class WebsiteMemberController {
 		if(!created) {
 			return new AjaxResponseBody(false,Const.FAILED,null);
 		}
-		return new AjaxResponseBody(true,Const.SUCCESS,null);
+		return new AjaxResponseBody(true,Const.SUCCESS,session.getId());
 	}
 	
 	/**
@@ -73,16 +71,18 @@ public class WebsiteMemberController {
 	 */
 	@GetMapping("/query")
 	@ApiOperation("查询会员自己的评论列表")
-	public AjaxResponseBody queryByMemberId(
-			@NotNull(message="只有登陆之后才可以查看自己的评论内容") @RequestParam(required=true) Integer membersId, //评论用户
-			@NotBlank(message="评论的网站名不能为空") @RequestParam(required=true) Integer websiteId, //评论网站名称
-			@RequestParam Integer pageNum,
-			@RequestParam Integer pageSize){
+	public AjaxResponseBody queryByMemberId(@RequestParam Integer pageNum,
+			@RequestParam Integer pageSize,HttpServletRequest request){
 		
+		HttpSession session = request.getSession();
+		Members session_member = (Members)session.getAttribute(Const.SESSION_MEMBERS_KEY);
+	
+		if(session_member == null || session_member.getId() == null ) {
+			return  new AjaxResponseBody(false,Const.SESSION_TIMEOUT,Const.SESSION_TIMEOUT_ERROR_CODE);
+		}
 		MembersComments comment = new MembersComments();
 		
-		comment.setWebsiteId(websiteId);
-		comment.setMembersId(membersId);
+		comment.setMembersId(session_member.getId());
 		
 		Page page = new Page(pageNum,pageSize);
 		long total = memberCommentsService.queryCount(comment);

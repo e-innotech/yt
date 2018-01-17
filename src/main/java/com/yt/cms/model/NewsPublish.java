@@ -22,8 +22,17 @@ public class NewsPublish {
     private NewsLaunch newsLaunch;
     private String websiteName;
     private String channelName;
+    private String newsTitle;
     
-    public String getWebsiteName() {
+    public String getNewsTitle() {
+		return newsTitle;
+	}
+
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle;
+	}
+
+	public String getWebsiteName() {
 		return websiteName;
 	}
 
