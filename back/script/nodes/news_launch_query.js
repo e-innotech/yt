@@ -92,14 +92,17 @@ $(function () {
             $('#newsLaunchT').append('<tr>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+
                 '<td>'+list[i].news.source+'</td>'+
-                '<td>'+list[i].news.content+'</td>'+
+                '<td><a id="content_'+list[i].id+'">查看</a></td>'+
                 '<td>'+getWC(list[i].webChannelConfig)+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
                 '<td>'+ADUIT[list[i].status]+'</td>'+
                 '<td>'+getCtrl(list[i].id,list[i].status)+'</td>'+
                 '</tr>');
 
-
+            $('#content_'+list[i].id).click(function () {
+                selectNewsLaunch = getNewsLaunchFromId(this.id.split('_')[1]);
+                showNewsContentPreview();
+            });
             $('#editBtn_'+list[i].id).click(function () {
                 selectNewsLaunch = getNewsLaunchFromId(this.id.split('_')[1]);
                 showNewsLaunchEdit();
@@ -158,6 +161,13 @@ $(function () {
                 aduitNewsLaunch();
             });
         });
+    }
+    var showNewsContentPreview = function () {
+        newsContent = selectNewsLaunch.news.content;
+        $.get($components.newsContentPreview,function (re) {
+            $('#popPanel').html(re);
+            $('#newsContentPreviewModal').modal('show');
+        })
     }
     initialize();
 });
