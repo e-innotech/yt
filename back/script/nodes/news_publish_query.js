@@ -64,13 +64,17 @@ $(function () {
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+
-                '<td>'+list[i].news.content+'</td>'+
+                '<td><a id="content_'+list[i].id+'">查看</a></td>'+
                 '<td>'+list[i].websites.siteName+'</td>'+
                 '<td>'+list[i].channel.channelName+'</td>'+
                 '<td>'+OFFONLINE[list[i].isline]+HOME[list[i].ishome]+'</td>'+
                 '<td>'+getCtrl(list[i])+'</td>'+
                 '</tr>');
 
+            $('#content_'+list[i].id).click(function () {
+                selectNewsPublish = getNewsPublishFromId(this.id.split('_')[1]);
+                showNewsContentPreview();
+            });
             $('#onLineBtn_'+list[i].id).click(function () {
                 offOnLineNewsPublish(this.id.split('_')[1],1);
             });
@@ -119,5 +123,12 @@ $(function () {
             }
         }
     };
+    var showNewsContentPreview = function () {
+        newsContent = selectNewsPublish.news.content;
+        $.get($components.newsContentPreview,function (re) {
+            $('#popPanel').html(re);
+            $('#newsContentPreviewModal').modal('show');
+        })
+    }
     initialize();
 });
