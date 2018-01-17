@@ -25,9 +25,9 @@
              <div class="bottom">
               <ul>
                  <li id="personData"><a>个人资料</a></li>
-                 <li><a>我的收藏</a></li>
-                 <li><a>我的评论</a></li>
-                 <li><a>隐私安全</a></li>
+                 <li id="minecollect"><a>我的收藏</a></li>
+                 <li id="minecomment"><a>我的评论</a></li>
+                 <li id="safety"><a>隐私安全</a></li>
               </ul>
            </div>
         </div>
@@ -99,9 +99,9 @@
             <!-- 我的收藏 -->
             <div class="content-rightinside none">
                  <div class="title">
-                     <h2>我的收藏<span>(12)</span></h2>
+                     <h2>我的收藏<span id="collect_total"></span></h2>
                  </div>
-                 <div class="listbottom">
+                 <div class="listbottom" id="collectlistbox">
                      <!--<div class="collectlist">-->
                          <!--<div class="left">-->
                              <!--<input type="checkbox"/>-->
@@ -113,41 +113,37 @@
                              <!--<img src="../images/del.png"/>-->
                          <!--</div>-->
                      <!--</div>-->
-
                  </div>
                  <div class="pages" id="collectpage">
-                    <p>上一页</p>
-                    <p class="bottompages">下一页</p>
+                    <p id="collprevpage">上一页</p>
+                    <p class="bottompages" id="collnextpage">下一页</p>
                     <p>批量删除</p>
                  </div>
-
             </div>
-
             <!-- 我的评论 -->
             <div class="content-rightinside none">
                <div class="title">
-                   <h2>我的评论 <span>(12)</span></h2>
+                   <h2>我的评论 <span id="comment_total"></span></h2>
                </div>
-               <div class="listbottom">
-                   <div class="commentlist">
-                       <div class="left">
-                           <input type="checkbox"/>
-                       </div>
-                       <div class="center">
-                           <p>撒地方看看就是了登记卡是否阿里会计法alfaflj阿里交房贷那啥了空间的还是咖啡店</p>
-                           <span class="text1">2小时前  来自文章：</span>
-                           <span class="text2">发多少阿凡达发斯蒂芬发送阿凡达</span>
-                       </div>
-                       <div class="right">
-                           <img src="../images/del.png"/>
-                       </div>
-                   </div>
-
+               <div class="listbottom" id="commentlistbox">
+                   <!--<div class="commentlist">-->
+                       <!--<div class="left">-->
+                           <!--<input type="checkbox"/>-->
+                       <!--</div>-->
+                       <!--<div class="center">-->
+                           <!--<p>撒地方看看就是了登记卡是否阿里会计法alfaflj阿里交房贷那啥了空间的还是咖啡店</p>-->
+                           <!--<span class="text1">2小时前  来自文章：</span>-->
+                           <!--<span class="text2">发多少阿凡达发斯蒂芬发送阿凡达</span>-->
+                       <!--</div>-->
+                       <!--<div class="right">-->
+                           <!--<img src="../images/del.png"/>-->
+                       <!--</div>-->
+                   <!--</div>-->
                </div>
 
               <div class="pages" id="commentpage">
-                  <p>上一页</p>
-                  <p class="bottompages">下一页</p>
+                  <p id="commprevpage">上一页</p>
+                  <p class="bottompages" id="commnextpage">下一页</p>
                   <p>批量删除</p>
               </div>
            </div>
@@ -181,18 +177,14 @@
     <!-- 以下为footer -->
     <div id="bottom"></div>
 </body>
-
-
-
 <script>
-
-
     //进网站加载个人资料
     window.onload=function(){
         $('#top').load('top.html');
         $('#bottom').load('bottom.html');
         $("#personData").addClass("actives");
     }
+
 
 
 

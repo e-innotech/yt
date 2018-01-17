@@ -33,6 +33,7 @@ $(document).ready(function () {
 
 		$('#content_center').append('<div class="news-top">' +data.content+'</div>');
 	});
+
 	//var getCommentList = function() {
 	//	commentList(publishId, pag, 5,function callback(data){
 	//		for(var i=0;i<data.list.length;i++){
