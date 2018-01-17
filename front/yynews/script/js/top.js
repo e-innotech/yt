@@ -45,4 +45,17 @@ $(function(){
 
 
 
+    window.location
+    $(".nav a").each(function(){
+
+        $this = $(this);
+
+        if($this[0].href==String(window.location)){
+
+            $this.addClass("active");  //hover表示被选中效果的类名
+
+        }
+
+    })
+
 });

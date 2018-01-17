@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.ChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.Channel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channelName" property="channelName" jdbcType="VARCHAR" />
+    <result column="isUse" property="isUse" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <resultMap id="ResultMapByids" type="com.yt.cms.model.Channel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channelName" property="channelName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, channelName, isUse, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where id = #{id,jdbcType=INTEGER} and isDel = 0 
+  </select>
+  
+   <select id="query" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from channel where 1=1 and isDel = 0 
+	    <if test="record.isUse != null and record.isUse != -1" >
+	        and isUse = #{record.isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="record.channelName != null" >
+	       and channelName like concat('%', #{record.channelName}, '%')
+	      </if>
+	 order by id desc
+	 	<if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 	</if>
+  </select>
+  
+  <select id="queryCount" parameterType="com.yt.cms.model.Channel" resultType="long">
+  	select count(1)
+    from channel where 1=1 and isDel = 0 
+	    <if test="isUse != null and isUse != -1" >
+	        and isUse = #{isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="channelName != null" >
+	       and channelName like concat('%', #{channelName}, '%')
+	      </if>
+  </select>
+  
+   <select id="queryByIds" resultMap="ResultMapByids" parameterType="list">
+  	select id,channelName from channel where isDel = 0 and id in 
+  	<foreach collection="ids" item="item" index="index"
+			open="(" close=")" separator=",">
+			#{item}
+	</foreach>
+  </select>
+  
+  <select id="findChannelName" parameterType="java.lang.String" resultType="java.lang.Integer" >
+    SELECT count(1) FROM channel WHERE channelName = #{channelName}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from channel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.Channel" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="channelName != null" >
+        channelName,
+      </if>
+      <if test="isUse != null" >
+        isUse,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Channel" >
+    update channel
+    <set >
+      <if test="channelName != null" >
+        channelName = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        isUse = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+        <if test="isDel != null" >
+        isDel = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="delDate != null" >
+        del_date = #{delDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

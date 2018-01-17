@@ -2,7 +2,7 @@ const apiUrl = 'http://192.168.20.195:8080';
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
 //const apiUrl = 'http://123.59.156.27:8080';
 
-const websiteId = 3;
+const websiteId = 1;
 const sex = ['女','男'];
 
 function serializeObject(a){
@@ -89,6 +89,7 @@ function adList(templateType,callback){
 };
 function channelList(callback){
     var data = {websiteId:websiteId};
+    console.log(111111111111111)
     AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
         if(re.success){
             if(callback){

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.RolesMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.Roles" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="roleName" property="roleName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="ResultMap" type="com.yt.cms.model.Roles" extends="BaseResultMap">
+    <collection property="resource" ofType="com.yt.cms.model.Resource">
+	    <id column="resource_id" property="id" jdbcType="INTEGER" />
+	    <result column="resourceName" property="resourceName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, roleName, remark
+  </sql>
+  <!-- 查询单个角色下的所有资源列表 -->
+  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
+    select 
+     a.id, a.roleName, a.remark, c.id as resource_id, c.resourceName
+    from roles a
+    left join roles_resource b on a.id = b.roles_id
+    left join resource c on b.resource_id = c.id
+    where a.id = #{id,jdbcType=INTEGER} and a.isDel = 0 
+  </select>
+  
+   <select id="query" resultMap="ResultMap" parameterType="com.yt.cms.model.page.RolesPage">
+    select 
+     a.id, a.roleName, a.remark, c.id as resource_id, c.resourceName
+    from (
+     select * from roles where isDel = 0  
+    	<if test="roleName != null" >
+	       and roleName like concat('%', #{roleName}, '%')
+	      </if>
+	      order by id desc 
+	       <if test="pageLimit != null and pageSize != null and pageSize != 0" >
+	        LIMIT #{pageLimit},#{pageSize}  
+	 	  </if>
+    ) a
+    left join roles_resource b on a.id = b.roles_id
+    left join resource c on b.resource_id = c.id
+    
+  </select>
+  
+   <select id="queryCount" resultType="int" parameterType="com.yt.cms.model.page.RolesPage">
+    select count(1) from roles a where  a.isDel = 0  
+    	<if test="roleName != null" >
+	       and roleName like concat('%', #{roleName}, '%')
+	      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from roles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.Roles" >
+     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into roles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="roleName != null" >
+        roleName,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+     
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Roles" >
+    update roles
+    <set >
+      <if test="roleName != null" >
+        roleName = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+ <update id="deleteLogicById" parameterType="java.lang.Integer" >
+    update roles
+   		set isDel = 1, del_date = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+ 
+</mapper>

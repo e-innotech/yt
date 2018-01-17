@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.front.mapper.SectionMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.front.model.Channel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channelName" property="channelName" jdbcType="VARCHAR" />
+    <result column="websites_id" property="websiteId" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <select id="query" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    a.id, a.channelName,b.websites_id
+    from channel a, websites_channel b where a.isDel = 0 and a.id = b.channel_id
+    and b.websites_id = #{websiteId,jdbcType=INTEGER} 
+  </select>
+   
+
+</mapper>

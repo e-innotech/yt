@@ -14,7 +14,7 @@ $(document).ready(function () {
 		$('#content_left').append('<div class="news-top">' +
 		'<h2>'+ data.newsTitle +'</h2>' +
 		'<div class="dateinfo">' +
-		'<div class="time">'+
+		'<div class="times">'+
 		'发布时间:' +
 		'<span>'+ data.createDate +'</span>' +
 		'</div>' +
