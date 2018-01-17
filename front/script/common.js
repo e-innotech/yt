@@ -59,7 +59,7 @@ function AjaxUpload(url,data,callBack) {
     };
     $.ajax(obj);
 };
-function homeList(homeWeight,pageNum,pageSize,callback){
+function homeList(homeWeight,pageNum,pageSize,callback){k
 
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/home','get',data,function(re){
