@@ -14,7 +14,7 @@ $(document).ready(function () {
 		$('#content_left').append('<div class="news-top">' +
 		'<h2>'+ data.newsTitle +'</h2>' +
 		'<div class="dateinfo">' +
-		'<div class="time">'+
+		'<div class="times">'+
 		'发布时间:' +
 		'<span>'+ data.createDate +'</span>' +
 		'</div>' +
@@ -124,17 +124,17 @@ $(document).ready(function () {
 //		}
 //	})
 //
-////点赞时换图片路径，并且下面的字隐藏
-//	$(".zan #greatpic").on("click", function () {
-//		$(this).attr("src", "../images/great.png");
-//		$(".zan p").css("display", "none");
-//
-//	})
-//
-////点击收藏时，如上
-//	$(".cang img").on("click", function () {
-//		$(this).attr("src", "../images/collect.png");
-//		$(".cang p").css("display", "none")
-//	})
+//点赞时换图片路径，并且下面的字隐藏
+	$(".zan #greatpic").on("click", function () {
+		$(this).attr("src", "../images/great.png");
+		$(".zan p").css("display", "none");
+
+	})
+
+//点击收藏时，如上
+	$(".cang img").on("click", function () {
+		$(this).attr("src", "../images/collect.png");
+		$(".cang p").css("display", "none")
+	})
 
 });

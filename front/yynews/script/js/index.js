@@ -104,7 +104,7 @@ $(document).ready(function () {
 
                     //评论
                     var commentp = $("<p></p>");
-                    var commentImg = $("<img />");
+                    var commentImg = $("<img onclick='commentAdd("+newlist[i].publishId+")'/>");
                     commentImg.attr("src", "../images/ping.png");
                     var commentspan = $("<span></span>");
                     //给评论的span赋值
@@ -128,9 +128,7 @@ $(document).ready(function () {
                 }
         })
     }
-//
-//
-//
+
 //    //轮播图右边请求的数据
     homeList(2,1,2,function callback(list){
         for (var i = 0; i <list.length; i++) {

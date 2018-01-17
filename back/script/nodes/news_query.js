@@ -136,11 +136,15 @@ $(function () {
             $('#newsT').append('<tr>' +
                 '<td>'+list[i].newsTitle+'</td>' +
                 '<td>'+list[i].source+'</td>'+
-                '<td>'+list[i].content+'</td>'+
+                '<td><a id="content_'+list[i].id+'">查看</a></td>'+
                 '<td>'+list[i].createDate+'</td>'+
                 '<td>'+getCtrlEdit(list[i].id,list[i].isEdit)+'</td>'+
             '</tr>');
 
+            $('#content_'+list[i].id).click(function () {
+                selectNews = getNewsFromId(this.id.split('_')[1]);
+                showNewsContentPreview();
+            });
             $('#editBtn_'+list[i].id).click(function () {
                 selectNews = getNewsFromId(this.id.split('_')[1]);
                 showNewsEdit('edit');
@@ -196,5 +200,12 @@ $(function () {
             });
         })
     };
+    var showNewsContentPreview = function () {
+        newsContent = selectNews.content;
+        $.get($components.newsContentPreview,function (re) {
+            $('#popPanel').html(re);
+            $('#newsContentPreviewModal').modal('show');
+        })
+    }
     initialize();
 })

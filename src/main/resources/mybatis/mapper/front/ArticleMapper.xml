@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.front.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.front.model.Article" >
+    <id column="publish_id" property="publishId" jdbcType="INTEGER" />
+    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="staticUrl" property="staticUrl" jdbcType="VARCHAR" />
+    <result column="submit_user_id" property="submitUserId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="top_image_path" property="topImagePath" jdbcType="VARCHAR" />
+    <result column="sub_content" property="subContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yt.cms.front.model.Article" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+ 
+ 
+ <!-- 文章的评论数据 -->
+   <resultMap id="commentResultMap" type="com.yt.cms.front.model.Comments" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+    <result column="icon" property="membersPic" jdbcType="VARCHAR" />
+    <result column="regDate" property="membersRegtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+    <!-- 获取文章详情 -->
+  <select id="getWebsiteChannelNewsDetail" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+	  select a.id publish_id,b.news_title,b.content,b.source,b.staticUrl,b.create_date,b.submit_user_id
+	  from news_publish a , news b 
+	  where  a.news_id = b.id and a.isLine = 1 
+	  and a.id = #{publishId}
+  </select>
+  
+  <!-- 获取栏目文章列表 -->
+  <select id="getWebsiteChannelNews" resultMap="BaseResultMap" parameterType="map" >
+	  select a.id as publish_id,b.news_title,left(b.content,50) sub_content,b.source,b.staticUrl,b.create_date,b.submit_user_id
+	  from news_publish a , news b 
+	  where  a.news_id = b.id and a.isLine = 1 
+	  and a.website_id = #{websiteId}
+	  and a.channel_id = #{channelId}
+	  order by b.id desc 
+	  <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+		        LIMIT #{page.pageLimit},#{page.pageSize}
+	  </if>
+  </select>
+  
+  <select id="getWebsiteChannelNewsCount" resultType="long" parameterType="map" >
+     select count(1)
+	  from news_publish a , news b 
+	  where  a.news_id = b.id and a.isLine = 1 
+	  and a.website_id = #{websiteId}
+	  and a.channel_id = #{channelId}
+  </select>
+  <!-- 获取栏目文章列表 -->
+  
+  
+  <!-- 获取文章评论 -->
+   <select id="getArticleComments" resultMap="commentResultMap" parameterType="map" >
+	  SELECT 
+    	a.id, a.content, a.createDate, b.nickName, b.icon, c.regDate
+	FROM
+    members_comments_news a,
+    memberinfos b,
+    members c
+WHERE
+    a.members_id = b.members_id
+        AND b.members_id = c.id
+		and a.news_publish_id = #{publishId}      
+	  order by a.id desc 
+	  <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+		        LIMIT #{page.pageLimit},#{page.pageSize}
+	  </if>
+  </select>
+  
+  <select id="getArticleCommentsCount" resultType="long" parameterType="java.lang.Integer" >
+     SELECT count(1)
+	FROM
+    members_comments_news a,
+    memberinfos b,
+    members c
+WHERE
+    a.members_id = b.members_id
+        AND b.members_id = c.id
+        and a.news_publish_id = #{publishId}
+  </select>
+  
+  <!-- 获取文章评论 -->
+</mapper>

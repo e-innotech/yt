@@ -242,11 +242,11 @@
 	margin-top:20px;
 }
 
-.content-rightinside .center .text1{
+.content-rightinside .center .datas{
 	font-size:14px;
 	color:#999999;
 }
-.content-rightinside .center .text2{
+.content-rightinside .center .articles{
 	font-size:14px;
 	color:#000000;
 	text-decoration: underline;
@@ -310,6 +310,9 @@
   margin-left:16px;
   float:left;
 
+}
+.collectlist .center a{
+	color:#404040;
 }
 
 

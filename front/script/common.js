@@ -2,7 +2,7 @@
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
 const apiUrl = 'http://123.59.156.27:8080';
 
-const websiteId = 3;
+const websiteId = 1;
 const sex = ['女','男'];
 
 function serializeObject(a){
@@ -27,6 +27,10 @@ function AjaxFunc(url, type, data, callBack) {
             withCredentials: true
         },
         success: function (result) {
+            if(result.errCode =='E00001'){
+                loginTimeOut();
+                return;
+            }
             callBack(result)
         }
     };
@@ -59,7 +63,8 @@ function AjaxUpload(url,data,callBack) {
     };
     $.ajax(obj);
 };
-function homeList(homeWeight,pageNum,pageSize,callback){k
+//权重 页数 一页显示多少条 回调函数
+function homeList(homeWeight,pageNum,pageSize,callback){
 
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/home','get',data,function(re){
@@ -84,6 +89,7 @@ function adList(templateType,callback){
 };
 function channelList(callback){
     var data = {websiteId:websiteId};
+
     AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
         if(re.success){
             if(callback){
@@ -141,7 +147,6 @@ function membersPwd(data){
         alert(re.msg);
     });
 }
-
 /**
  * 获取文章评论列表
  * @param publishId
@@ -166,8 +171,6 @@ function addComment(publishId,content,callback){
         callback(re);
     });
 }
-
-
 function getIdFromUrl(){
     var name = 'id';
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -180,11 +183,6 @@ function countCode(obj,count){
         obj.value = str.substr(0,count);
     }
 }
-
-
-
-
-
 function removeHTMLTag(str) {
     str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
     str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
@@ -192,7 +190,6 @@ function removeHTMLTag(str) {
     str=str.replace(/ /g,'');//去掉
     return str;
 }
-
 function memberslogadd() {
     var data = {uname: $('input[name="userName"]').val(), pwd: $('input[name="password"]').val()};
     AjaxFunc($members.logadd, 'post', data, function (re) {
@@ -228,15 +225,72 @@ function memberslogout() {
 }
 
 
-
 ////添加收藏
-function collectAdd(publishId){
-    var memberinfo=JSON.parse(sessionStorage.getItem('memberinfo'));
-    console.log(11111,memberinfo.id)
-    var data={membersId:memberinfo.id,publishId:publishId};
-    AjaxFunc($members.collectAdd, 'post', data, function (re) {
-        //p[]
-    });
+function collectAdd(publishId,callback){
+    //console.log(2222225,publishId)
+    var data = {publishId: publishId};
+        AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
+            if(re.success) {
+                if (callback) {
+                    console.log(222333, callback.data);
+                    callback(re.data);
+                    return;
+                }
+            }
+        });
 }
+//会员收藏列表
+function collectList(pageNum,pageSize,callback){
+    var data = {pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/member/collect/query','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
 
+//会员取消收藏
+function cancelCollect(collect_id,callback){
+    var data = {collectId:collect_id};
+    AjaxFunc(apiUrl+'/member/collect/delete','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function deleteCollect(id){
+    cancelCollect(id);
+    location.reload();
+    //coll();
+}
+//添加评论
+
+//评论列表
+//function commentList(pageNum,pageSize,callback){
+//    var data = {pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data);
+//                return;
+//            }
+//        }
+//    });
+//};
+
+
+
+
+
+function loginTimeOut(){
+    sessionStorage.removeItem('user');
+    location.replace('sign.html');
+    alert(re.msg);
+}
 

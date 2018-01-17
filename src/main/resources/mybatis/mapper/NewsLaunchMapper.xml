@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.NewsLaunchMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.NewsLaunch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="news_launch_config" property="newsLaunchConfig" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="aduit_user_id" property="aduitUserId" jdbcType="INTEGER" />
+    <result column="aduit_des" property="aduitDes" jdbcType="VARCHAR" />
+    <result column="aduit_date" property="aduitDate" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="isDel" property="isDel" jdbcType="INTEGER" />
+    <result column="del_date" property="delDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+    <resultMap id="ResultMap" type="com.yt.cms.model.NewsLaunch" extends="BaseResultMap">
+    	<association property="news" javaType="com.yt.cms.model.News">
+    		<id column="news_id" property="id" jdbcType="INTEGER" />
+		    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    	</association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, news_id, news_launch_config, status, aduit_user_id, aduit_des, aduit_date, create_user_id, 
+    create_date,isDel,del_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_launch
+    where id = #{id,jdbcType=INTEGER} and isDel = 0
+  </select>
+  
+  <select id="query" resultMap="ResultMap" parameterType="map" >
+    select 
+   a.id, b.id as news_id, a.news_launch_config, a.status, a.aduit_user_id, a.aduit_des, a.aduit_date, a.create_user_id, 
+    a.create_date,b.news_title
+    from news_launch a left join news b on a.news_id = b.id 
+    where a.isDel = 0 and a.status in (0,2)
+    <if test="record.startDate != null" >
+       		<![CDATA[ and a.create_date >= #{record.startDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+        <if test="record.endDate != null" >
+       		<![CDATA[ and a.create_date <= #{record.endDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+      	
+	     <if test="record.newsTitle != null" >
+	       and b.news_title like concat('%', #{record.newsTitle}, '%')
+	    </if>
+	  order by a.id desc
+	   <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.NewsLaunch" >
+    select count(1)
+    from news_launch a left join news b on a.news_id = b.id 
+    where a.isDel = 0  and a.status in (0,2)
+    	<if test="startDate != null" >
+       		<![CDATA[ and a.create_date >= #{startDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+        <if test="endDate != null" >
+       		<![CDATA[ and a.create_date <= #{endDate,jdbcType=TIMESTAMP}  ]]>
+      	</if>
+      	
+	     <if test="newsTitle != null" >
+	       and b.news_title like concat('%', #{newsTitle}, '%')
+	    </if>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news_launch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+	<update id="deleteLogicById" parameterType="java.lang.Integer" >
+		update news_launch set isDel = 1, del_date = now() where id = #{id,jdbcType=INTEGER}
+	</update>
+
+  <insert id="insertSelective" parameterType="com.yt.cms.model.NewsLaunch" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into news_launch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="newsLaunchConfig != null" >
+        news_launch_config,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="aduitUserId != null" >
+        aduit_user_id,
+      </if>
+      <if test="aduitDes != null" >
+        aduit_des,
+      </if>
+      <if test="aduitDate != null" >
+        aduit_date,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="newsLaunchConfig != null" >
+        #{newsLaunchConfig,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="aduitUserId != null" >
+        #{aduitUserId,jdbcType=INTEGER},
+      </if>
+      <if test="aduitDes != null" >
+        #{aduitDes,jdbcType=VARCHAR},
+      </if>
+      <if test="aduitDate != null" >
+        #{aduitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.NewsLaunch" >
+    update news_launch
+    <set >
+      <if test="newsLaunchConfig != null" >
+        news_launch_config = #{newsLaunchConfig,jdbcType=VARCHAR},
+      </if>
+        status = 0,
+    </set>
+    where id = #{id,jdbcType=INTEGER} and status = 2
+  </update>
+  
+  
+  <update id="updateStatusByPrimaryKey" parameterType="com.yt.cms.model.NewsLaunch" >
+    update news_launch
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="aduitUserId != null" >
+        aduit_user_id = #{aduitUserId,jdbcType=INTEGER},
+      </if>
+      <if test="aduitDes != null" >
+        aduit_des = #{aduitDes,jdbcType=VARCHAR},
+      </if>
+      <if test="aduitDate != null" >
+        aduit_date = #{aduitDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
