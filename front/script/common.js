@@ -1,5 +1,7 @@
-const apiUrl = 'http://192.168.20.195:8080';
+//const apiUrl = 'http://192.168.20.195:8080';
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
+const apiUrl = 'http://123.59.156.27:8080';
+
 const websiteId = 3;
 const sex = ['女','男'];
 
