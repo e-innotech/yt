@@ -65,9 +65,9 @@
 	height:58px;
 	line-height:59px;
 	font-size:18px;
-
 	text-align:center;
 	border-bottom:1px solid #e7e7e7;
+	cursor: pointer;
 }
 
 .bottom ul li a{
@@ -325,7 +325,7 @@
 .pages{
 	margin-left:304px;
 	position:absolute;
-	bottom:0px;
+	bottom:0;
 
 }
 
@@ -339,6 +339,7 @@
 	text-align:center;
 	background:#c9c9c9;
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 .bottompages{
 	margin-left:40px;

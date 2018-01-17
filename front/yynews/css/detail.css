@@ -18,7 +18,7 @@
 	position:fixed;
 	top:98px;
 	left:240px;
-    
+
 }
 /*以下为主体左边内容*/
 .content-left{
@@ -35,8 +35,8 @@
 .content-left .news-top{
 	/*height:187px;*/
 	background:#fafafa;
-	padding-bottom: 42px;
 	overflow: hidden;
+	padding: 0 12px;
 	/*border-bottom:1px solid #e9e9e9;*/
 
 }
@@ -59,13 +59,13 @@
 }
 
 
-.content-left .news-top .times{
+.content-left .news-top .time{
 	font-size:16px;
 	color:#767676;
 	float:left;
 	margin-top:20px;
 }
-.content-left .news-top .times span{
+.content-left .news-top .time span{
 	font-size:11px;
 	color:#767676;
 
@@ -110,7 +110,14 @@
 
 
 }
-
+#content_center p {
+	margin-top: 22px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #333;
+	text-align: justify;
+	text-indent: 2em;
+}
 
 /*以下为版权*/
 .copyright{
@@ -122,8 +129,8 @@
 	color:#ababab;
 	margin-left:10px;
 	margin-right:10px;
-	
-	
+
+
 
 }
 .copyright h5{
@@ -363,6 +370,7 @@
 	color:#fff;
 	margin-top:22px;
 	margin-bottom:20px;
+    cursor: pointer;
 }
 .commentCon{
 	height:240px;
@@ -408,6 +416,7 @@
 	position: absolute;
 	top:0;
 	right:0;
+	display: none;
 
 }
 .commentCon-l .call{

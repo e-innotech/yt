@@ -1,8 +1,8 @@
-const apiUrl = 'http://192.168.20.195:8080';
+//const apiUrl = 'http://192.168.20.195:8080';
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-//const apiUrl = 'http://123.59.156.27:8080';
+const apiUrl = 'http://123.59.156.27:8080';
 
-const websiteId = 3;
+const websiteId = 1;
 const sex = ['女','男'];
 
 function serializeObject(a){
@@ -164,9 +164,24 @@ function commentList(publishId,pageNum,pageSize,callback){
         }
     });
 };
-function addComment(publishId,content,callback){
+
+
+////评论列表
+//function commentList(pageNum,pageSize,callback){
+//    var data = {pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data);
+//                return;
+//            }
+//        }
+//    });
+//};
+
+function commentAdd(publishId,content,callback){
     var data = {publishId:publishId,content:content};
-    AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
+    AjaxFunc(apiUrl+'web/member/comment/add','post',data,function(re){
         callback(re);
     });
 }
@@ -224,20 +239,6 @@ function memberslogout() {
 }
 
 
-////添加收藏
-function collectAdd(publishId,callback){
-    //console.log(2222225,publishId)
-    var data = {publishId: publishId};
-        AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
-            if(re.success) {
-                if (callback) {
-                    console.log(222333, callback.data);
-                    callback(re.data);
-                    return;
-                }
-            }
-        });
-}
 //会员收藏列表
 function collectList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};
@@ -270,18 +271,7 @@ function deleteCollect(id){
 }
 //添加评论
 
-//评论列表
-function commentList(pageNum,pageSize,callback){
-    var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
-};
+
 
 
 
@@ -292,4 +282,5 @@ function loginTimeOut(){
     location.replace('sign.html');
     alert(re.msg);
 }
+
 
