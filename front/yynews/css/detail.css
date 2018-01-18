@@ -398,7 +398,8 @@
 	border-right:1px solid #e5e5e5;
 	/*border-top:1px solid #e5e5e5;*/
 	border-bottom:1px solid #e5e5e5;
-	float:left;
+	/*float:left;*/
+	margin-left: 180px;
 }
 
 /*.commentCon-Img{

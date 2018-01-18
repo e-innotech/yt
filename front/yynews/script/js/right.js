@@ -30,7 +30,7 @@ $(document).ready(function(){
             textpicBox.append(creatImgtop);
 
             var bg = $("<div class='bg'></div>");
-            var creattagp = $("<p></p>")
+            var creattagp = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'><p></p></a>")
             creattagp.text(list[n].newsTitle);
             bg.append(creattagp)
             textpicBox.append(bg);
