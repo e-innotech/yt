@@ -1,7 +1,7 @@
 var config ={
     init:function(){
-        $apiUrl = ' http://192.168.20.195:8080';//本地
-       // $apiUrl = ' http://123.59.156.27:8080';//测试
+        // $apiUrl = ' http://192.168.20.195:8080';//本地
+       $apiUrl = ' http://123.59.156.27:8080';//测试
 
         $uploadUrl = 'http://192.168.20.195:8888/yy/upload';
 
