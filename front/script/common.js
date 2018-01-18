@@ -302,7 +302,9 @@ function commentAdd(publishId,content,callback) {
 }
 
 
-
+function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");
+};
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');
