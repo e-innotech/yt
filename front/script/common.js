@@ -227,8 +227,9 @@ function memberslogout() {
 
 ////添加收藏
 function collectAdd(publishId,callback){
-    //console.log(2222225,publishId)
-    var data = {publishId: publishId};
+    //判断是否是登录后
+    if(sessionStorage.getItem('user') != null){
+        var data = {publishId: publishId};
         AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
             if(re.success) {
                 if (callback) {
@@ -238,7 +239,13 @@ function collectAdd(publishId,callback){
                 }
             }
         });
+    }else{
+        alert("请登陆后才可以收藏");
+    }
+
 }
+    //console.log(2222225,publishId)
+
 //会员收藏列表
 function collectList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};
