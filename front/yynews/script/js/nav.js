@@ -32,7 +32,7 @@ $(document).ready(function () {
                 //创建头像
                 var createportrait = $("<img class='portrait' />");
                 //头像
-                createportrait.attr("src", newlist[i].portrait);
+                createportrait.attr("src","../images/article.png");
                 ////来源
                 creatsource.text(newlist[i].source);
                 creatsource.append(createportrait);

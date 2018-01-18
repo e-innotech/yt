@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.AdMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.Ad" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="beginDate" property="beginDate" jdbcType="TIMESTAMP" />
+    <result column="endDate" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="adName" property="adName" jdbcType="VARCHAR" />
+    <result column="adType" property="adType" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="off_line_date" property="offLineDate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <resultMap id="ResultMap" type="com.yt.cms.model.Ad" extends="BaseResultMap">
+   		<association property="adPositions" javaType="com.yt.cms.model.AdPositions">
+   			 <id column="adPositions_id" property="id" jdbcType="INTEGER" />
+		    <result column="ad_width" property="adWidth" jdbcType="INTEGER" />
+		    <result column="ad_height" property="adHeight" jdbcType="INTEGER" />
+		    <result column="postitionsName" property="adName" jdbcType="VARCHAR" />
+		    <result column="positionsRemark" property="remark" jdbcType="VARCHAR" />
+   		</association>	
+  	</resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, source,beginDate, endDate, status, adPositions_id, adName, adType, remark,off_line_date
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ad
+    where id = #{id,jdbcType=INTEGER} 
+  </select>
+  
+   <select id="query" resultMap="ResultMap" parameterType="map" >
+    select 
+    a.id, a.source,a.beginDate, a.endDate, a.status, a.adName, a.adType, a.remark,a.off_line_date,
+    b.id as adPositions_id, b.ad_width, b.ad_height, b.ad_name as postitionsName,b.remark as positionsRemark
+    from ad a left join adpositions b on a.adPositions_id = b.id where 1=1 
+	    <if test="ad.status != null and ad.status != -1" >
+			 and a.status = #{ad.status,jdbcType=INTEGER}
+	    </if>
+	      <if test="ad.adName != null" >
+	       and a.adName like concat('%', #{ad.adName}, '%')
+	      </if>
+	      <if test="ad.adType != null and ad.adType != -1">
+	       and a.adType = #{ad.adType,jdbcType=INTEGER}
+	      </if>
+      order by a.id desc
+       <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 </if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.Ad" >
+    select count(1)
+    from ad a left join adpositions b on a.adPositions_id = b.id  where 1=1 
+	    <if test="status != null and status != -1" >
+			 and a.status = #{status,jdbcType=INTEGER}
+	    </if>
+	      <if test="adName != null" >
+	       and a.adName like concat('%', #{adName}, '%')
+	      </if>
+	      <if test="adType != null and adType != -1">
+	       and a.adType = #{adType,jdbcType=INTEGER}
+	      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ad
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.yt.cms.model.Ad" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into ad
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="beginDate != null" >
+        beginDate,
+      </if>
+      <if test="endDate != null" >
+        endDate,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="adPositionsId != null" >
+        adPositions_id,
+      </if>
+      <if test="adName != null" >
+        adName,
+      </if>
+      <if test="adType != null" >
+        adType,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="adPositionsId != null" >
+        #{adPositionsId,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null" >
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adType != null" >
+        #{adType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Ad" >
+    update ad
+    <set >
+      <if test="beginDate != null" >
+        beginDate = #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        endDate = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      
+      <if test="adPositionsId != null" >
+        adPositions_id = #{adPositionsId,jdbcType=INTEGER},
+      </if>
+      <if test="adName != null" >
+        adName = #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="adType != null" >
+        adType = #{adType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+   
+     <!--  <if test="isDel != null" >
+        isDel = #{isDel,jdbcType=INTEGER},
+      </if>
+      <if test="delDate != null" >
+        del_date = #{delDate,jdbcType=TIMESTAMP},
+      </if> -->
+    </set>
+    where id = #{id,jdbcType=INTEGER} and status = 0
+  </update>
+
+
+<update id="offLine" parameterType="com.yt.cms.model.AdOffLine" >
+    update ad
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="offLineDate != null" >
+        off_line_date = #{offLineDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} 
+  </update>
+</mapper>

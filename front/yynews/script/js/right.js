@@ -30,7 +30,7 @@ $(document).ready(function(){
             textpicBox.append(creatImgtop);
 
             var bg = $("<div class='bg'></div>");
-            var creattagp = $("<p></p>")
+            var creattagp = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'><p></p></a>")
             creattagp.text(list[n].newsTitle);
             bg.append(creattagp)
             textpicBox.append(bg);
@@ -40,12 +40,13 @@ $(document).ready(function(){
         }
     });
 
-
+//广告
     adList(0,function callback(list){
-        //console.log(777,list);
-        ////$(".advertising").append('<img src="'+ list[0].source +'">' +
-        ////'<img src="'+ list[1].source +'">');
-        $(".content-right-top").append('<img src="'+ list[2].source +'" class="right-banner"/>');
+        console.log(2222,list);
+        //$(".advertising").append('<img src="'+ list[0].source +'">' +
+        //'<img src="'+ list[1].source +'">');
+        //console.log(1111,list)
+        $(".content-right-top").append('<img src="'+ list[0].source +'" class="right-banner"/>');
 
     })
 });

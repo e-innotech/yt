@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.mapper.MembersMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.cms.model.Members" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="regDate" property="regDate" jdbcType="TIMESTAMP" />
+    <result column="isUse" property="isUse" jdbcType="INTEGER" />
+    <result column="isGag" property="isGag" jdbcType="INTEGER" />
+  </resultMap>
+  
+     <resultMap id="ResultMap" type="com.yt.cms.model.Members" extends="BaseResultMap">
+    	<association property="infos" javaType="com.yt.cms.model.MemberInfos">
+    		<id column="infoId" property="id" jdbcType="INTEGER" />
+		      	<result column="nickName" property="nickName" jdbcType="VARCHAR" />
+			    <result column="sex" property="sex" jdbcType="INTEGER" />
+			    <result column="birth" property="birth" jdbcType="DATE" />
+			    <result column="phone" property="phone" jdbcType="VARCHAR" />
+			    <result column="email" property="email" jdbcType="VARCHAR" />
+			    <result column="qq" property="qq" jdbcType="VARCHAR" />
+			    <result column="address" property="address" jdbcType="VARCHAR" />
+			    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    	</association>
+  	</resultMap>
+  <sql id="Base_Column_List" >
+    id, uname, pwd, regDate, isUse, isGag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMap" parameterType="java.lang.Integer" >
+    select 
+    a.id , a.uname, a.regDate, a.isUse, a.isGag, 
+    b.id as infoId, b.nickName, b.sex, b.birth, b.phone, b.email, b.qq, b.address,b.icon
+    from members a left join memberinfos b on a.id = b.members_id 
+    where a.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectByUname" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(1) 
+    from members
+    where uname = #{uname,jdbcType=VARCHAR}
+  </select>
+  
+  	<!-- 会员登录 -->
+	<select id="login" parameterType="com.yt.cms.model.Members" resultMap="ResultMap" >
+        SELECT a.id, a.uname,a.regDate,a.isUse,a.isGag,
+         b.id as infoId, b.nickName, b.sex, b.birth, b.phone, b.email, b.qq, b.address,b.icon FROM members a
+         left join memberinfos b on a.id = b.members_id WHERE a.uname = #{uname} and a.pwd = #{pwd}
+    </select>
+  
+     <!-- 更新用户密码，注意用户名不许更新 -->
+    <update id="updatePwd" parameterType="com.yt.cms.model.UpdatePwd" >
+       UPDATE 
+       		members 
+       SET 
+       	pwd = #{passWord}
+       WHERE 
+       		id = #{id} and pwd = #{currentPwd}
+    </update>
+    
+    <select id="query" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    id, uname, regDate, isUse, isGag
+    from members where 1=1
+    	<if test="record.isUse != null and record.isUse != -1" >
+	        and isUse = #{record.isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="record.isGag != null and record.isGag !=-1" >
+	        and isGag = #{record.isGag,jdbcType=INTEGER}
+	      </if>
+	      <if test="record.uname != null" >
+	       and uname like concat('%', #{record.uname}, '%')
+	      </if>
+	       order by id desc
+	        <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 		</if>
+  </select>
+  
+  <select id="queryCount" resultType="long" parameterType="com.yt.cms.model.Members" >
+    select count(1)
+    from members where 1=1
+    	<if test="isUse != null and isUse != -1" >
+	        and isUse = #{isUse,jdbcType=INTEGER}
+	      </if>
+	      <if test="isGag != null and isGag !=-1" >
+	        and isGag = #{isGag,jdbcType=INTEGER}
+	      </if>
+	      <if test="uname != null" >
+	       and uname like concat('%', #{uname}, '%')
+	      </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from members
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.model.Members" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into members
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="regDate != null" >
+        regDate,
+      </if>
+      <if test="isUse != null" >
+        isUse,
+      </if>
+      <if test="isGag != null" >
+        isGag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="isGag != null" >
+        #{isGag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.cms.model.Members" >
+    update members
+    <set >
+      <if test="isUse != null" >
+        isUse = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="isGag != null" >
+        isGag = #{isGag,jdbcType=INTEGER},
+      </if>
+      <if test="pwd != null" >
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

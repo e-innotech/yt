@@ -65,9 +65,9 @@
 	height:58px;
 	line-height:59px;
 	font-size:18px;
+
 	text-align:center;
 	border-bottom:1px solid #e7e7e7;
-	cursor: pointer;
 }
 
 .bottom ul li a{
@@ -291,10 +291,10 @@
 	font-size:20px;
 	color:#000;
 
-
+	`
 }*/
 .collectlist{
-	padding-top:29px;
+	padding-top:20px;
 	padding-bottom:29px;
 	border-bottom:1px dashed #e7e7e7;
 	/*border-top:1px dashed #e7e7e7;*/
@@ -325,7 +325,7 @@
 .pages{
 	margin-left:304px;
 	position:absolute;
-	bottom:0;
+	bottom:0px;
 
 }
 
@@ -339,7 +339,6 @@
 	text-align:center;
 	background:#c9c9c9;
 	margin-bottom: 20px;
-	cursor: pointer;
 }
 .bottompages{
 	margin-left:40px;

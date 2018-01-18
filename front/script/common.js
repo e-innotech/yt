@@ -4,7 +4,7 @@ const apiUrl = 'http://123.59.156.27:8080';
 
 const websiteId = 1;
 const sex = ['女','男'];
-
+ var title="";
 function serializeObject(a){
     var o,h,i,e;
     o={};
@@ -89,6 +89,7 @@ function adList(templateType,callback){
 };
 function channelList(callback){
     var data = {websiteId:websiteId};
+
     AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
         if(re.success){
             if(callback){
@@ -153,23 +154,9 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
-function commentList(publishId,pageNum,pageSize,callback){
-    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
-};
-
-
-////评论列表
-//function commentList(pageNum,pageSize,callback){
-//    var data = {pageNum:pageNum,pageSize:pageSize};
-//    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
+//function commentList(publishId,pageNum,pageSize,callback){
+//    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
 //        if(re.success){
 //            if(callback){
 //                callback(re.data);
@@ -178,10 +165,9 @@ function commentList(publishId,pageNum,pageSize,callback){
 //        }
 //    });
 //};
-
-function commentAdd(publishId,content,callback){
+function addComment(publishId,content,callback){
     var data = {publishId:publishId,content:content};
-    AjaxFunc(apiUrl+'web/member/comment/add','post',data,function(re){
+    AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
         callback(re);
     });
 }
@@ -239,6 +225,20 @@ function memberslogout() {
 }
 
 
+////添加收藏
+function collectAdd(publishId,callback){
+    //console.log(2222225,publishId)
+    var data = {publishId: publishId};
+        AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
+            if(re.success) {
+                if (callback) {
+                    console.log(222333, callback.data);
+                    callback(re.data);
+                    return;
+                }
+            }
+        });
+}
 //会员收藏列表
 function collectList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};
@@ -269,18 +269,46 @@ function deleteCollect(id){
     location.reload();
     //coll();
 }
+
+
+//查询详情页
+function commentList(publishId,pageNum,pageSize,callback){
+    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
 //添加评论
+function commentAdd(publishId,content,callback) {
+    var user=JSON.parse(sessionStorage.getItem('user'));
+    if(user == null){
+        alert("登陆之后才可以评论，请登陆");
+        return;
+    }
+    var data = {publishId: publishId,content:content};
+    AjaxFunc(apiUrl + '/web/member/comment/add', 'post', data, function (re) {
+        if (re.success) {
+            if (callback) {
+                callback(re);
+                return;
+            }
+        }
+    });
+}
 
 
-
-
-
-
+function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");
+};
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');
     location.replace('sign.html');
     alert(re.msg);
 }
-
 

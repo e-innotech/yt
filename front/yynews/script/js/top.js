@@ -43,6 +43,14 @@ $(function(){
     renderChannel();
     renderUser();
 
-
+    //添加样式
+    $(".nav a").each(function(){
+        $this = $(this);
+        console.log(1212121212122,$(this));
+        if($this[0].href==String(window.location)){
+            //console.log(12,$this);
+            $this.addClass("active");  //hover表示被选中效果的类名
+        }
+    })
 
 });

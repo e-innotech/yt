@@ -30,6 +30,8 @@ $(document).ready(function () {
 //
 //// 以下为中间部分新闻列表
     function getHomeBoxList(){
+
+        //传的网站ID 页数 一页显示几条数据
         homeList(3,page,7,function callback(newlist){
             for (var i = 0; i < newlist.length; i++) {
                     // 创建一个放新闻的容器

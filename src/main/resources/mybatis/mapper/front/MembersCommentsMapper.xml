@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.cms.front.mapper.MembersCommentsMapper" >
+
+<resultMap id="ResultMap" type="com.yt.cms.front.model.MembersComments" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="createDate" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="news_publish_id" property="publishId" jdbcType="INTEGER" />
+    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="members_id" jdbcType="INTEGER" property="membersId" />
+  </resultMap>
+
+   <select id="query" resultMap="ResultMap" parameterType="map" >
+    select a.id, a.members_id,a.createDate, a.content, a.news_publish_id, c.news_title
+    from members_comments_news a, news_publish b,news c  where a.isDel = 0 and a.news_publish_id = b.id and b.news_id = c.id 
+	    <!-- 会员自己的，当会员查看自己的评论时，此参数必传 -->
+	    <if test="record.membersId != null" >
+	       and a.members_id = #{record.membersId,jdbcType=INTEGER}
+	    </if>
+	     order by a.id desc
+	    <if test="page.pageLimit != null and page.pageSize != null and page.pageSize != 0" >
+	        LIMIT #{page.pageLimit},#{page.pageSize}  
+	 	</if>
+  </select>
+  
+  <select id="queryCount" parameterType="com.yt.cms.front.model.MembersComments" resultType="long">
+  	  select count(1)
+    from members_comments_news a, news_publish b,news c  where a.isDel = 0 and a.news_publish_id = b.id and b.news_id = c.id 
+   	and c.isDel =0
+	     <!-- 会员自己的，当会员查看自己的评论时，此参数必传 -->
+	    <if test="membersId != null" >
+	       and a.members_id = #{membersId,jdbcType=INTEGER}
+	    </if>
+	     <!-- 前端会员试用，当会员查看自己的评论时，此参数必传 -->
+	    <if test="websiteId != null" >
+	       and b.website_id = #{websiteId,jdbcType=INTEGER}
+	    </if>
+  </select>
+  
+  <insert id="insertSelective" parameterType="com.yt.cms.front.model.MembersComments" >
+     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      	</selectKey>
+    insert into members_comments_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="membersId != null" >
+        members_id,
+      </if>
+      <if test="publishId != null" >
+        news_publish_id,
+      </if>
+      <if test="createDate != null" >
+        createDate,
+      </if>
+  
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="membersId != null" >
+        #{membersId,jdbcType=INTEGER},
+      </if>
+      <if test="publishId != null" >
+        #{publishId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+</mapper>
