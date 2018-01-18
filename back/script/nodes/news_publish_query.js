@@ -78,7 +78,7 @@ $(function () {
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+
-                '<td>'+(list[i].news.topImagePath==null?'':'<img src="'+'+list[i].news.topImagePath+'+'">')+'</td>'+
+                '<td>'+(list[i].news.topImagePath==''?'':'<img src="'+list[i].news.topImagePath+'" height="100" width="200">')+'</td>'+
                 '<td><a id="content_'+list[i].id+'">查看</a></td>'+
                 '<td>'+list[i].websites.siteName+'</td>'+
                 '<td>'+list[i].channel.channelName+'</td>'+
