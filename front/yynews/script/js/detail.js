@@ -78,34 +78,30 @@ $(document).ready(function () {
 			'</div>' +
 			'</div>');
 		}
+	}
+		//var getCommentList = function() {
+		//	commentList(publishId, pag, 5,function callback(data){
+		//		for(var i=0;i<data.list.length;i++){
+		//			$('.commentCon-box').append('<div class="commentCon">' +
+		//		'<div class="commentCon-l">' +
+		//		'<img src="" alt="沙发">' +
+		//		'<img src="" alt="图像">' +
+		//		'<p class="call">'+  +'</p>' +
+		//		'<p class="date">'+  +'</p>' +
+		//		'</div>' +
+		//		'<div class="commentCon-r">' +
+		//		'<p>' +
+		//		'<span>'+ (i+1) +'楼</span>' +
+		//		'</p>' +
+		//		'<div class="commentbox">'+data.list[i]. +'</div>' +
+		//		'</div>' +
+		//		'</div>')
+		//		}
+		//	});
+		//}
+		$('#commitBtn').click(function () {
 
-	//var getCommentList = function() {
-	//	commentList(publishId, pag, 5,function callback(data){
-	//		for(var i=0;i<data.list.length;i++){
-	//			$('.commentCon-box').append('<div class="commentCon">' +
-	//		'<div class="commentCon-l">' +
-	//		'<img src="" alt="沙发">' +
-	//		'<img src="" alt="图像">' +
-	//		'<p class="call">'+  +'</p>' +
-	//		'<p class="date">'+  +'</p>' +
-	//		'</div>' +
-	//		'<div class="commentCon-r">' +
-	//		'<p>' +
-	//		'<span>'+ (i+1) +'楼</span>' +
-	//		'</p>' +
-	//		'<div class="commentbox">'+data.list[i]. +'</div>' +
-	//		'</div>' +
-	//		'</div>')
-	//		}
-	//	});
-	//}
-	$('#commitBtn').click(function(){
-
-	});
-
-
-
-
+		});
 
 
 //	var commentReview = document.getElementById('commentCon-box');
