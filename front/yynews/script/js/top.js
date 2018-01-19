@@ -37,14 +37,27 @@ $(function(){
                 sessionStorage.setItem('currentUrl',location.href);
                 memberslogout();
             });
-            $('.userAvatar').click(function(){
-                location.replace('member.html');
+
+
+            $('.userAvatar').one("click",function(){
+                sessionStorage.setItem("one",JSON.stringify("one"));
+                //location.replace('member.html');
             });
+            if(sessionStorage.getItem("one") !=null){
+                  return;
+            }else{
+                location.replace('member.html');
+
+            }
+            //$('.userAvatar').click(function(){
+            //    location.replace('member.html');
+            //});
         }else{
             $('.userAvatar').click(function(){
                 sessionStorage.setItem('currentUrl',location.href);
                 location.replace('sign.html');
             });
+
         }
     };
     renderChannel();

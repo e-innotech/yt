@@ -130,11 +130,26 @@ function initCommentList(data) {
 	
 
 
-})
+
 //点击收藏时，如上
 	$(".cang img").on("click", function () {
 		$(this).attr("src", "../images/collect.png");
 		$(".cang p").css("display", "none")
-	})
+	});
+
+	//有一定滚动时显示这个top
+	$(window).scroll(function(){
+		console.log(11111111111)
+		//获取距离浏览器顶部距离并赋值th
+		var th = $(window).scrollTop();
+		//用if判断，距离顶部大于300时给一个警告弹窗
+		if(th>600){
+			$("#toptop").show();
+		}else{
+			$("#toptop").hide();
+		}
+	});
+
+
 
 });

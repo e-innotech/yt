@@ -1,6 +1,6 @@
-const apiUrl = 'http://192.168.20.195:8080';//测试
+//const apiUrl = 'http://192.168.20.195:8080';//
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-//const apiUrl = 'http://123.59.156.27:8080';
+const apiUrl = 'http://123.59.156.27:8080';//测试
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -65,7 +65,6 @@ function AjaxUpload(url,data,callBack) {
 };
 //权重 页数 一页显示多少条 回调函数
 function homeList(homeWeight,pageNum,pageSize,callback){
-
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/home','get',data,function(re){
         if(re.success){
@@ -110,8 +109,6 @@ function newsList(channelId,pageNum,pageSize,callback){
         }
     });
 };
-
-
 function newsDetail(publishId,callback){
     var data = {publishId:publishId};
     AjaxFunc(apiUrl+'/web/detail','get',data,function(re){
@@ -157,13 +154,6 @@ function membersPwd(data){
  * @param callback
  */
 
-
-
-
-
-
-
-
 //function commentList(publishId,pageNum,pageSize,callback){
 //    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
 //    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
@@ -203,12 +193,17 @@ function removeHTMLTag(str) {
 function delHtmlTag(str){
     return str.replace(/<[^>]+>/g,"");
 };
+//在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
     var data = {uname: uname, pwd: pwd};
     AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
         if (re.success) {
             sessionStorage.setItem('user',JSON.stringify(re.data));
-            location.replace(sessionStorage.getItem('currentUrl'));
+            if(sessionStorage.getItem('currentUrl')){
+                location.replace(sessionStorage.getItem('currentUrl'));
+            }else{
+                location.replace("index.html");
+            }
         } else {
             alert(re.msg);
         }

@@ -11,17 +11,25 @@ $(document).ready(function () {
     getHomeBoxList();
     //轮播图请求的数据
     homeList(1,1,3,function callback(list){
-        console.log(777444,list);
         for (var i = 0; i < list.length; i++) {
-            $('#slide').append('<li class="swiper-slide">' +
-            '<a href="detail.html?id='+list[i].publishId+'">' +
+            var html='<div class="swiper-slide">' +
+                '<a href="detail.html?id='+list[i].publishId+'">' +
                 '<img class="picture" src="' + list[i].topImagePath + '"/>' +
                 '<div class="bgcolor">' +
                 '<p> ' + list[i].newsTitle + '</p>' +
                 '</div>' +
-            '</a>' +
-            '</li>');
-        }
+                '</a>' +
+                '</div>';
+            $('.swiper-wrapper').append(html);
+        };
+        var mySwiper = new Swiper ('.swiper-container', {
+            autoplay: true,
+            loop: true,
+            navigation:{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            }
+        })
     });
 
 //// 以下为中间部分新闻列表
@@ -125,7 +133,7 @@ $(document).ready(function () {
     }
 
    //轮播图右边请求的数据
-    homeList(2,1,2,function callback(list){
+   homeList(2,1,2,function callback(list){
         for (var i = 0; i <list.length; i++) {
                 $(".content-left-r").append('<div class="top">' +
                 '<a href="detail.html?id='+list[i].publishId+'">' +
@@ -137,7 +145,25 @@ $(document).ready(function () {
                 '</div>')
 
             }
+   });
+
+    //有一定滚动时显示这个top
+    $(window).scroll(function(){
+        console.log(11111111111)
+        //获取距离浏览器顶部距离并赋值th
+        var th = $(window).scrollTop();
+       //用if判断，距离顶部大于300时给一个警告弹窗
+        if(th>600){
+            $("#toptop").show();
+        }else{
+            $("#toptop").hide();
+        }
     });
+
+
+
+
+
 });
 
 

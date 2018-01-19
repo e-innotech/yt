@@ -28,16 +28,16 @@
            <div class="content-left-t">
                <div class="content-left-l swiper-container" id="carousel">
                    <!--放轮播图的盒子-->
-                  <ul class="swiper-wrapper" id="slide">
-                      <!--<li class="swiper-slide">-->
+                  <div class="swiper-wrapper" id="slide">
+                      <!--<div class="swiper-slide">-->
                           <!--<a href="https://www.baidu.com/">-->
                               <!--<img class="picture" alt="" src="http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg"/>-->
                               <!--<div class="bgcolor">-->
-                                 <!--<p>3电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</p>-->
+                                  <!--<p>1电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</p>-->
                               <!--</div>-->
                           <!--</a>-->
-                      <!--</li>-->
-                  </ul>
+                      <!--</div>-->
+                  </div>
                    <!--轮播上的箭头-->
                    <div class="swiper-button-prev" id="swiper-button-prev"><img  src="../images/arrows-l.png" class="arrows-l"/></div>
                    <div class="swiper-button-next" id="swiper-button-next"><img  src="../images/arrows-r.png" class="arrows-r"/></div>
@@ -95,49 +95,15 @@
    </div>
 </div>
 <!--回最顶部-->
-<a href="#" id="toptop" style="position:fixed;right:30px;bottom:100px;
-   z-index:100" ;><img src="../images/top.png" class="top"/></a>
+<a href="#" id="toptop";><img src="../images/top.png" class="top"/></a>
 <!-- 以下为footer -->
 <div id="bottom"></div>
-
+</body>
 <script>
-    //轮播图
-    var mySwiper = new Swiper ('.swiper-container', {
-        //轮播图滚动的方向
-        direction: 'horizontal',
-        //整个图片是循环的
-        loop: true,
-        autoplay: {
-            enabled: true,
-            delay: 3000,
-            disableOnInteraction: false
-        },
-
-        // 如果需要前进后退按钮
-        navigation:{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        initialSlide :0,
-        observer:true,
-        observeParents:true
-
-    })
-
-    // 页面一打开就加载头部 尾部 右侧
     window.onload=function(){
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
         $("#content-right").load('right.html');
     }
-
-
-
-
-
 </script>
-
-
-</body>
-
 </html>
