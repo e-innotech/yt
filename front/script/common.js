@@ -110,6 +110,8 @@ function newsList(channelId,pageNum,pageSize,callback){
         }
     });
 };
+
+
 function newsDetail(publishId,callback){
     var data = {publishId:publishId};
     AjaxFunc(apiUrl+'/web/detail','get',data,function(re){
@@ -154,23 +156,7 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
-//function commentList(publishId,pageNum,pageSize,callback){
-//    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
-//    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
-//        if(re.success){
-//            if(callback){
-//                callback(re.data);
-//                return;
-//            }
-//        }
-//    });
-//};
-function addComment(publishId,content,callback){
-    var data = {publishId:publishId,content:content};
-    AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
-        callback(re);
-    });
-}
+
 function getIdFromUrl(){
     var name = 'id';
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -190,6 +176,9 @@ function removeHTMLTag(str) {
     str=str.replace(/ /g,'');//去掉
     return str;
 }
+function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");
+};
 function memberslogadd() {
     var data = {uname: $('input[name="userName"]').val(), pwd: $('input[name="password"]').val()};
     AjaxFunc($members.logadd, 'post', data, function (re) {
@@ -272,17 +261,17 @@ function deleteCollect(id){
 
 
 //查询详情页
-function commentList(publishId,pageNum,pageSize,callback){
-    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
-};
+//function commentList(publishId,pageNum,pageSize,callback){
+//    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data);
+//                return;
+//            }
+//        }
+//    });
+//};
 //添加评论
 function commentAdd(publishId,content,callback) {
     var user=JSON.parse(sessionStorage.getItem('user'));
@@ -302,9 +291,47 @@ function commentAdd(publishId,content,callback) {
 }
 
 
-function delHtmlTag(str){
-    return str.replace(/<[^>]+>/g,"");
+////独家标题
+//function newOriginallist(newsTitle,pageNum,pageSize,callback){
+//    var data = {websiteId:websiteId,newsTitle:newsTitle,pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data.list);
+//                return;
+//            }
+//        }
+//    });
+//};
+
+//搜索
+function globalQuery(websiteId, newsTitle, pageNum, pageSize, callback) {
+    var data = {websiteId: websiteId, newsTitle: newsTitle, pageNum: pageNum, pageSize: pageSize};
+    AjaxFunc(apiUrl + '/global/query', 'get', data, function (re) {
+        if (re.success) {
+            if (callback) {
+                callback(re.data);
+                return;
+            }
+        }
+    });
+}
+
+
+function commentDetailList(publishId,pageNum,pageSize,callback){
+    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
 };
+
+
+
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');

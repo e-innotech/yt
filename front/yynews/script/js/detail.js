@@ -11,11 +11,12 @@ $(document).ready(function () {
 	var publishId = getIdFromUrl();
 	var page = 1;
 	var commentQuery = function () {
-		commentList(publishId, page, 5, initCommentList);
+		commentDetailList(publishId, page, 5, initCommentList);
 	};
 	commentQuery();
 	var user = JSON.parse(sessionStorage.getItem('user'));
 	newsDetail(publishId, function callback(data) {
+		$("title").html(data.newsTitle);
 		$('#content_left').append('<div class="news-top">' +
 		'<h2>' + data.newsTitle + '</h2>' +
 		'<div class="dateinfo">' +
@@ -44,21 +45,9 @@ $(document).ready(function () {
 		'<input type="button"  id="commitBtn" alt="' + data.publishId + '" value="提交评论">');
 
 	});
-	$("#commitBtn").click(function () {
-		var content = $('#textarea_str').val();
-		commentAdd(this.alt, content, function callback(data) {
-			if (data.success) {
-				$('#textarea_str').val('');
-				alert("评论成功！");
-				commentQuery();
-			}
-		});
-	});
-	$('.more').click(function () {
-		page++;
-		commentQuery();
-	});
+
 	function initCommentList(data) {
+		console.log(555555,data)
 		$('#commentCon-box').html('');
 		for (var i = 0; i < data.list.length; i++) {
 			$('.small:first').css('display', 'block');
@@ -79,6 +68,23 @@ $(document).ready(function () {
 		}
 
 	}
+
+	$("#commitBtn").click(function () {
+		var content = $('#textarea_str').val();
+		commentAdd(this.alt, content, function callback(data) {
+			if (data.success) {
+				$('#textarea_str').val('');
+				alert("评论成功！");
+				commentQuery();
+			}
+		});
+	});
+
+	$('.more').click(function () {
+		page++;
+		commentQuery();
+	});
+
 
 
 

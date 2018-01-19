@@ -10,7 +10,7 @@ img {
 body{
     background: #f4f4f4;
 }
-ul,ol{
+ul,ol,ul,li{
     list-style: none;
 }
 

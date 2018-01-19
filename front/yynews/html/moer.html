@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/nav.css"/>
+    <link rel="stylesheet" href="../css/search.css"/>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script src="../script/js/top.js"></script>
+    <script src="../script/js/moer.js"></script>
+
+</head>
+<body>
+<div id="top"></div>
+<div class="contentbg">
+    <div class="content">
+        <div class="content-left">
+            <div id="moerlist"></div>
+            <div class="more">点击加载更多</div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom"></div>
+
+</body>
+</html>
+<script>
+    // 一进页面加载头
+    window.onload=function(){
+        $("#top").load("top.html");
+        init();
+    }
+
+    //更多渲染
+    function init(){
+        var object = window.sessionStorage.getItem("Original_data");
+        var data = JSON.parse(object);
+        var list = data;
+        console.log(929999,data);
+        for (var i = 0; i <list.length; i++) {
+
+            $('#moerlist').append('<div class="list" id="list">' +
+            '<h2 class="subhead">' +
+            "<a href="+'"detail.html?id='+list[i].publishId+'"'+">"+ list[i].newsTitle+"</a>"+
+            '</h2>' +
+            '<div class="center">' +
+            '<div class="center-l">' +
+            '<span>'+list[i].source+'' +
+            '<img class="portrait" src="../images/article.png"/>' +
+            '</span>' +
+            '<span class="time">'+ list[i].createDate +'</span>' +
+            '</div>' +
+            '<div class="center-r" style="float:right;">' +
+            '<p class="like"><img src="../images/zan.png"/><span>0</span></p>' +
+            '<p class="collect"><img src="../images/cang.png"/><span>0</span></p>' +
+            '<p class="comment"><img src="../images/ping.png"/><span>0</span></p>' +
+            '</div>' +
+            '</div>' +
+            '<p>'+removeHTMLTag(list[i].subContent)+'</p>' +
+            '</div>');
+        }
+    }
+</script>
