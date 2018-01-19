@@ -156,7 +156,23 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
-
+function commentList(publishId,pageNum,pageSize,callback){
+    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function addComment(publishId,content,callback){
+    var data = {publishId:publishId,content:content};
+    AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
+        callback(re);
+    });
+}
 function getIdFromUrl(){
     var name = 'id';
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -329,6 +345,24 @@ function commentDetailList(publishId,pageNum,pageSize,callback){
         }
     });
 };
+//添加评论
+function commentAdd(publishId,content,callback) {
+    var user=JSON.parse(sessionStorage.getItem('user'));
+    if(user == null){
+        alert("登陆之后才可以评论，请登陆");
+        return;
+    }
+    var data = {publishId: publishId,content:content};
+    AjaxFunc(apiUrl + '/web/member/comment/add', 'post', data, function (re) {
+        if (re.success) {
+            if (callback) {
+                callback(re);
+                return;
+            }
+        }
+    });
+}
+
 
 
 

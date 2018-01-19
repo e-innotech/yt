@@ -45,9 +45,21 @@ $(document).ready(function () {
 		'<input type="button"  id="commitBtn" alt="' + data.publishId + '" value="提交评论">');
 
 	});
-
+	$("#commitBtn").click(function () {
+		var content = $('#textarea_str').val();
+		commentAdd(this.alt, content, function callback(data) {
+			if (data.success) {
+				$('#textarea_str').val('');
+				alert("评论成功！");
+				commentQuery();
+			}
+		});
+	});
+	$('.more').click(function () {
+		page++;
+		commentQuery();
+	});
 	function initCommentList(data) {
-		console.log(555555,data)
 		$('#commentCon-box').html('');
 		for (var i = 0; i < data.list.length; i++) {
 			$('.small:first').css('display', 'block');
@@ -67,23 +79,30 @@ $(document).ready(function () {
 			'</div>');
 		}
 
-	}
+	//var getCommentList = function() {
+	//	commentList(publishId, pag, 5,function callback(data){
+	//		for(var i=0;i<data.list.length;i++){
+	//			$('.commentCon-box').append('<div class="commentCon">' +
+	//		'<div class="commentCon-l">' +
+	//		'<img src="" alt="沙发">' +
+	//		'<img src="" alt="图像">' +
+	//		'<p class="call">'+  +'</p>' +
+	//		'<p class="date">'+  +'</p>' +
+	//		'</div>' +
+	//		'<div class="commentCon-r">' +
+	//		'<p>' +
+	//		'<span>'+ (i+1) +'楼</span>' +
+	//		'</p>' +
+	//		'<div class="commentbox">'+data.list[i]. +'</div>' +
+	//		'</div>' +
+	//		'</div>')
+	//		}
+	//	});
+	//}
+	$('#commitBtn').click(function(){
 
-	$("#commitBtn").click(function () {
-		var content = $('#textarea_str').val();
-		commentAdd(this.alt, content, function callback(data) {
-			if (data.success) {
-				$('#textarea_str').val('');
-				alert("评论成功！");
-				commentQuery();
-			}
-		});
 	});
 
-	$('.more').click(function () {
-		page++;
-		commentQuery();
-	});
 
 
 
