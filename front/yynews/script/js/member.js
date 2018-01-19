@@ -68,26 +68,44 @@ $(function(){
     //render info
     var renderUserInfo = function() {
         var user = JSON.parse(sessionStorage.getItem('user'));
+        console.log(91,user);
+        var imgUrl = '../images/ren.png';
+        if(user.infos){
+            if(user.infos.icon) {
+                imgUrl = user.infos.icon;
+            }
+        }
+        $('#iconTop').attr('src',imgUrl);
+        if(user.infos){
+            $('#nickName').html(user.infos.nickName);
+            $('.nickname').html(user.infos.nickName);
+            $('.emails').html(user.infos.email);
+            $('.address').html(user.infos.address);
+            $('.sex').html(sex[user.infos.sex]);
+        }
 
-        $('#iconTop').attr('src',user.infos.icon);
-        $('#nickName').html(user.infos.nickName);
-        $('.nickname').html(user.infos.nickName);
-        $('.emails').html(user.infos.email);
-        $('.address').html(user.infos.address);
-        $('.sex').html(sex[user.infos.sex]);
     }
     var renderEditInfo = function() {
         var user = JSON.parse(sessionStorage.getItem('user'));
+        if(user.infos){
+            if(user.infos.icon){
+                $('input[name="icon"]').val(user.infos.icon);
+            }
 
+        }
 
-        $('input[name="icon"]').val(user.infos.icon);
-        $('input[name="nickName"]').val(user.infos.nickName);
-        $('input[name="email"]').val(user.infos.email);
-        $('input[name="address"]').val(user.infos.address);
-        $('select[name="sex"]').val(user.infos.sex);
+        if(user.infos){
+            $('input[name="nickName"]').val(user.infos.nickName);
+            $('input[name="email"]').val(user.infos.email);
+            $('input[name="address"]').val(user.infos.address);
+            $('select[name="sex"]').val(user.infos.sex);
+        }
+
     }
     renderUserInfo();
     renderEditInfo();
+
+    //会员收藏列表
 
 //渲染收藏的列表
     function coll(){
@@ -95,6 +113,7 @@ $(function(){
             $("#collect_total").html('('+data.total+')');
             $("#collectlistbox").html('');
             var list = data.list;
+            console.log("qqqq",list)
             for(var i=0;i<list.length;i++){
                 $("#collectlistbox").append('<div class="collectlist">' +
                 '<div class="left">'+
@@ -106,6 +125,7 @@ $(function(){
             }
         });
     }
+
     //收藏点击下一页时
     $("#collnextpage").click(function(){
         mempage++;
@@ -128,12 +148,14 @@ $(function(){
     })
 
    //评论列表
-    function comm(){
-        commentList(mempage,5,function callback(data){
+   function comm(){
+       console.log(111111111111);
+       memcommentList(mempage,5,function callback(data){
             $("#comment_total").html('('+data.total+')');
             $("#commentlistbox").html('');
             var list = data.list;
-            console.log(777,list);
+            //console.log(7778,list);
+            //console.log(list[i])
             for(var i=0;i<list.length;i++){
                 $("#commentlistbox").append('<div class="commentlist">' +
                 '<div class="left">'+
@@ -142,13 +164,15 @@ $(function(){
                 '<div class="center">'+
                     '<p>'+list[i].content+'</p>'+
                     '<span class="datas">'+list[i].createDate+"&nbsp;&nbsp;&nbsp;&nbsp;来自文章:"+'</span>'+
-                    '<span class="articles">'+"&nbsp;"+list[i].newsTitle+'</span>'+
+                    '<span class="articles">'+"&nbsp;"+ '<a href="detail.html?id='+list[i].publishId+'">'+list[i].newsTitle+'</a></span>'+
                 '</div>'+
-                '<div class="right"><img src="../images/del.png"/></div>'+
+                '<div class="right"><img src="../images/del.png" onclick="deleteComment('+list[i].id+')"/></div>'+
                 '</div>')
             }
         });
-    }
+   }
+
+
     //评论点击下一页时
     $("#commnextpage").click(function(){
         mempage++;
@@ -157,8 +181,6 @@ $(function(){
         $("#commprevpage").css("background","#c9c9c9")
 
     });
-
-
 
     //评论点击上一页时
     $("#commprevpage").click(function(){

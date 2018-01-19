@@ -9,28 +9,23 @@ $(document).ready(function () {
         getHomeBoxList();
     });
     getHomeBoxList();
-
-
     //轮播图请求的数据
-
     homeList(1,1,3,function callback(list){
+        console.log(777444,list);
         for (var i = 0; i < list.length; i++) {
             $('#slide').append('<li class="swiper-slide">' +
             '<a href="detail.html?id='+list[i].publishId+'">' +
-            '<img class="picture" src="' + list[i].topImagePath + '"/>' +
-            '<div class="bgcolor">' +
-            '<p> ' + list[i].newsTitle + '</p>' +
-            '</div>' +
+                '<img class="picture" src="' + list[i].topImagePath + '"/>' +
+                '<div class="bgcolor">' +
+                '<p> ' + list[i].newsTitle + '</p>' +
+                '</div>' +
             '</a>' +
             '</li>');
         }
     });
 
-
-//
 //// 以下为中间部分新闻列表
     function getHomeBoxList(){
-
         //传的网站ID 页数 一页显示几条数据
         homeList(3,page,7,function callback(newlist){
             for (var i = 0; i < newlist.length; i++) {
@@ -72,7 +67,7 @@ $(document).ready(function () {
 
                     //创建时间
                     var time = $("<span class='time'></span>");
-                    //获取时间 时间先写死
+                    //获取时间
                     time.text(newlist[i].createDate);
                     createleft.append(creatsource);
                     createleft.append(time);
@@ -93,7 +88,7 @@ $(document).ready(function () {
 
                     //收藏
                     var collectp = $("<p class='collect' ></p>");
-                    var collectImg = $("<img onclick='collectAdd("+newlist[i].publishId+")'/>");
+                    var collectImg = $("<img/>");
                     collectImg.attr("src", "../images/cang.png");
                     var collectspan = $("<span></span>");
                     //给收藏的span赋值
@@ -104,7 +99,7 @@ $(document).ready(function () {
 
                     //评论
                     var commentp = $("<p></p>");
-                    var commentImg = $("<img onclick='commentAdd("+newlist[i].publishId+")'/>");
+                    var commentImg = $("<img/>");
                     commentImg.attr("src", "../images/ping.png");
                     var commentspan = $("<span></span>");
                     //给评论的span赋值
@@ -129,7 +124,7 @@ $(document).ready(function () {
         })
     }
 
-//    //轮播图右边请求的数据
+   //轮播图右边请求的数据
     homeList(2,1,2,function callback(list){
         for (var i = 0; i <list.length; i++) {
                 $(".content-left-r").append('<div class="top">' +

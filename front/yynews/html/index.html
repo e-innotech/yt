@@ -31,14 +31,13 @@
                   <ul class="swiper-wrapper" id="slide">
                       <!--<li class="swiper-slide">-->
                           <!--<a href="https://www.baidu.com/">-->
-                              <!--<img class="picture" alt="" src="../images/bannerone.png"/>-->
+                              <!--<img class="picture" alt="" src="http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg"/>-->
                               <!--<div class="bgcolor">-->
-                                 <!--<p>卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</p>-->
+                                 <!--<p>3电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</p>-->
                               <!--</div>-->
                           <!--</a>-->
                       <!--</li>-->
                   </ul>
-
                    <!--轮播上的箭头-->
                    <div class="swiper-button-prev" id="swiper-button-prev"><img  src="../images/arrows-l.png" class="arrows-l"/></div>
                    <div class="swiper-button-next" id="swiper-button-next"><img  src="../images/arrows-r.png" class="arrows-r"/></div>
@@ -108,7 +107,12 @@
         direction: 'horizontal',
         //整个图片是循环的
         loop: true,
-        autoplay:true,
+        autoplay: {
+            enabled: true,
+            delay: 3000,
+            disableOnInteraction: false
+        },
+
         // 如果需要前进后退按钮
         navigation:{
             nextEl: '.swiper-button-next',

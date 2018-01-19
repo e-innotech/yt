@@ -43,15 +43,14 @@ $(document).ready(function(){
 //广告
     adList(0,function callback(list){
         console.log(2222,list);
-        //$(".advertising").append('<img src="'+ list[0].source +'">' +
-        //'<img src="'+ list[1].source +'">');
+        $(".advertising").append('<img src="'+ list[0].source +'">' +
+        '<img class="imgbottom" src="'+ list[1].source +'">');
         //console.log(1111,list)
         $(".content-right-top").append('<img src="'+ list[0].source +'" class="right-banner"/>');
 
     })
 
 
-    //更多
     //更多页面调用
     var page = 1;
     var getOriginalList = function (data) {
@@ -60,7 +59,7 @@ $(document).ready(function(){
     };
     //更多
     $("#Original").click(function () {
-        var newsTitle = $('input[name="search"]').val();
+        //var newsTitle = $('input[name="search"]').val();
         //if(newsTitle==''){
         //    alert("请输入内容");
         //    return;
