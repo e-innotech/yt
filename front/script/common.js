@@ -1,6 +1,6 @@
 const apiUrl = 'http://192.168.20.195:8080';//测试
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-//const apiUrl = 'http://123.59.156.27:8080'; //本地
+//const apiUrl = 'http://123.59.156.27:8080';
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -156,6 +156,14 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
+
+
+
+
+
+
+
+
 //function commentList(publishId,pageNum,pageSize,callback){
 //    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
 //    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
@@ -195,7 +203,6 @@ function removeHTMLTag(str) {
 function delHtmlTag(str){
     return str.replace(/<[^>]+>/g,"");
 };
-
 function memberslogin(uname,pwd) {
     var data = {uname: uname, pwd: pwd};
     AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
@@ -262,12 +269,38 @@ function cancelCollect(collect_id,callback){
 function deleteCollect(id){
     cancelCollect(id);
     location.reload();
-    //coll();
+
 }
 
 
-//查询详情页
-function commentList(publishId,pageNum,pageSize,callback){
+////独家标题
+//function newOriginallist(newsTitle,pageNum,pageSize,callback){
+//    var data = {websiteId:websiteId,newsTitle:newsTitle,pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data.list);
+//                return;
+//            }
+//        }
+//    });
+//};
+
+//搜索
+function globalQuery(websiteId, newsTitle, pageNum, pageSize, callback) {
+    var data = {websiteId: websiteId, newsTitle: newsTitle, pageNum: pageNum, pageSize: pageSize};
+    AjaxFunc(apiUrl + '/global/query', 'get', data, function (re) {
+        if (re.success) {
+            if (callback) {
+                callback(re.data);
+                return;
+            }
+        }
+    });
+}
+
+
+function commentDetailList(publishId,pageNum,pageSize,callback){
     var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
         if(re.success){
@@ -278,30 +311,6 @@ function commentList(publishId,pageNum,pageSize,callback){
         }
     });
 };
-
-//会员评论列表
-function memcommentList(pageNum,pageSize,callback){
-    var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
-};
-
-
-
-
-
-
-
-
-
-
-
 //添加评论
 function commentAdd(publishId,content,callback) {
     var user=JSON.parse(sessionStorage.getItem('user'));
@@ -319,8 +328,31 @@ function commentAdd(publishId,content,callback) {
         }
     });
 }
+//会员收藏列表
+function collectList(pageNum,pageSize,callback){
+    var data = {pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/member/collect/query','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
 
-
+};
+//会员评论列表
+function memcommentList(pageNum,pageSize,callback){
+    var data = {pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
 function delHtmlTag(str){
     return str.replace(/<[^>]+>/g,"");
 };

@@ -1,11 +1,3 @@
-// var textarea = document.getElementById('textarea');
-// var commitBtn = document.getElementById('Commit');
-// var commentReview = document.getElementById('commentReview');
-// commitBtn.on("click",function () {
-// 	var textValue = textarea.value;
-// 	 textarea.value = "";
-// })
-
 
 $(document).ready(function () {
 	var publishId = getIdFromUrl();
@@ -40,8 +32,8 @@ $(document).ready(function () {
 		$('#content_center').append('<div class="news-top">' + data.content + '</div>');
 		if (user != null) {
 			var imgUrl = '../images/ren.png';
-			if(user.infos){
-				if(user.infos.icon) {
+			if (user.infos) {
+				if (user.infos.icon) {
 					imgUrl = user.infos.icon;
 				}
 			}
@@ -58,67 +50,27 @@ $("#collectAdd").click(function(){
 
 });
 
-	function collectAdd(publishId,callback){
-		console.log(57,callback)
-		//判断是否是登录后
-		if(sessionStorage.getItem('user') != null){
-			var data = {publishId: publishId};
-			AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
-				if(re.success) {
-					if (callback) {
-						alert("收藏成功");
-						//console.log(222333, callback.data);
-						//callback(re.data);
-						return;
-					}
+function collectAdd(publishId,callback){
+	console.log(57,callback)
+	//判断是否是登录后
+	if(sessionStorage.getItem('user') != null){
+		var data = {publishId: publishId};
+		AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
+			if(re.success) {
+				if (callback) {
+					alert("收藏成功");
+					//console.log(222333, callback.data);
+					//callback(re.data);
+					return;
 				}
-			});
-		}else{
-			alert("请登录后才可以收藏");
-		}
-
+			}
+		});
+	}else{
+		alert("请登录后才可以收藏");
 	}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-	$('.more').click(function () {
-		page++;
-		commentQuery();
-	});
-	function initCommentList(data) {
-		$('#commentCon-box').html('');
-		for (var i = 0; i < data.list.length; i++) {
-			$('.small:first').css('display', 'block');
-			$('#commentCon-box').append('<div class="commentCon">' +
-			'<div class="commentCon-l">' +
-			'<img class="big" src="' + data.list[i].membersPic + '" alt="图像">' +
-			'<img class="small" src="../images/sha.png" alt="沙发">' +
-			'<p class="call">' + data.list[i].nickName + '</p>' +
-			'<p class="date">' + data.list[i].createDate + '</p>' +
-			'</div>' +
-			'<div class="commentCon-r">' +
-			'<p>' +
-			'<span>' + (i + 1) + '楼</span>' +
-			'</p>' +
-			'<div class="commentbox">' + data.list[i].content + '</div>' +
-			'</div>' +
-			'</div>');
-		}
 
-	}
+}
+
 
 $("#commitBtn").click(function () {
 	var content = $('#textarea_str').val();
@@ -129,7 +81,7 @@ $("#commitBtn").click(function () {
 			commentQuery();
 		}
 	});
-
+});
 
 $('.more').click(function () {
 	page++;
@@ -162,62 +114,23 @@ function initCommentList(data) {
 //		$(this).attr("src", "../images/great.png");
 //		$(".zan p").css("display", "none");
 //
-//				}
-//			})
+//	})
 //
-//		} else {
-//			alert("请先登录后在进行评论")
-//
-//		}
-//	}
-//
-//
-//
-//
-//
-//
-//
-//	var a={
-//		"membersId": 13
-//	}
-//
-//
-//	//写品论
-//	console.log(111001010101,Request["nav"])
-//	console.log(98989898989898,Request["id"])
-//	$.ajax({
-//		url:$members.commentadd + "/3/" + Request["id"] +"?pageNum=1&pageSize=10",
-//		data:{content:$('#textarea').val()},
-//		dataType: "json",
-//		async: true,
-//		type: "get",
-//		success: function (detailData) {
-//			console.log(89797124979,detailData)
-//			var slide = detailData.data;
-//
-//			$('.commentCon-box').append('<div class="commentCon">' +
-//			'<div class="commentCon-l">' +
-//			'<img src="" alt="沙发">' +
-//			'<img src="" alt="图像">' +
-//			'<p class="call">'+  +'</p>' +
-//			'<p class="date">'+  +'</p>' +
-//			'</div>' +
-//			'<div class="commentCon-r">' +
-//			'<p>' +
-//			'<span>'+ (i+1) +'楼</span>' +
-//			'</p>' +
-//			'<div class="commentbox">'+ +'</div>' +
-//			'</div>' +
-//			'</div>')
-//		}
+////点击收藏时，如上
+//	$(".cang img").on("click", function () {
+//		$(this).attr("src", "../images/collect.png");
+//		$(".cang p").css("display", "none")
 //	})
 //
 	adList(2,function callback(list){
 		console.log(47,list);
 		$(".advertisingDe").append('<img src="'+ list[0].source +'"/>');
 
-	})
+	});
+	
 
+
+})
 //点击收藏时，如上
 	$(".cang img").on("click", function () {
 		$(this).attr("src", "../images/collect.png");

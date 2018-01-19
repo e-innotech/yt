@@ -83,16 +83,17 @@ $(function(){
             $('.address').html(user.infos.address);
             $('.sex').html(sex[user.infos.sex]);
         }
-        //$('#iconTop').attr('src',user.infos.icon);
-        //$('#nickName').html(user.infos.nickName);
-        //$('.nickname').html(user.infos.nickName);
-        //$('.emails').html(user.infos.email);
-        //$('.address').html(user.infos.address);
-        //$('.sex').html(sex[user.infos.sex]);
+
     }
     var renderEditInfo = function() {
         var user = JSON.parse(sessionStorage.getItem('user'));
-        $('input[name="icon"]').val(user.infos.icon);
+        if(user.infos){
+            if(user.infos.icon){
+                $('input[name="icon"]').val(user.infos.icon);
+            }
+
+        }
+
         if(user.infos){
             $('input[name="nickName"]').val(user.infos.nickName);
             $('input[name="email"]').val(user.infos.email);
