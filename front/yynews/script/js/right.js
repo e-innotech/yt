@@ -1,13 +1,26 @@
 $(document).ready(function(){
 
     //以下为独家标题部分
-    homeList(4,1,7,function callback(list){
-        $(".imgnewlist>img").attr("src",list[0].topImagePath);
-        $(".imgnewlist .textone").text(list[0].newsTitle);
-        $(".imgnewlist .texttwo").text(removeHTMLTag(removeHTMLTag(list[0].subContent)));
-        for(var i=1;i<list.length;i++){
-            $(".rightnewlist").append("<li><a href="+'"detail.html?id='+list[i].publishId+'"'+">"+ list[i].newsTitle+"</a></li>")
+    //homeList(4,1,7,function callback(list){
+    //    $(".imgnewlist>img").attr("src",list[0].topImagePath);
+    //    $(".imgnewlist .textone").text(list[0].newsTitle);
+    //    $(".imgnewlist .texttwo").text(removeHTMLTag(removeHTMLTag(list[0].subContent)));
+    //    for(var i=1;i<list.length;i++){
+    //        $(".rightnewlist").append("<li><a href="+'"detail.html?id='+list[i].publishId+'"'+">"+ list[i].newsTitle+"</a></li>")
+    //    }
+    //});
+    homeList(4, 1, 7, function callback(list) {
+        var creattaga = $("<a href=" + '"detail.html?id=' + list[0].publishId + '"' + "></a>");
+        creattaga.append('<div class="imgnewlist">' +
+        '<img src=' + list[0].topImagePath + '>' +
+        '<p class="textone">' + list[0].newsTitle + '</p>' +
+        '<p class="texttwo">' + removeHTMLTag(removeHTMLTag(list[0].subContent)) + '</p>' +
+        '</div>');
+        $(".content-right-center").append(creattaga);
+        for (var i = 1; i < list.length; i++) {
+            $(".rightnewlist").append("<li><a href=" + '"detail.html?id=' + list[i].publishId + '"' + ">" + list[i].newsTitle + "</a></li>")
         }
+        $(".content-right-center").append($(".rightnewlist"))
     });
 
 
@@ -21,9 +34,13 @@ $(document).ready(function(){
             var textpicBox = $("<div class='textpicBox'></div>");
             //把容器加进右下边的盒子中
 
+            var creata = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'></a>");
+
+
             var creatImg = $("<img class='bigimg'/>");
             creatImg.attr("src", list[n].topImagePath);
-            textpicBox.append(creatImg);
+            textpicBox.append(creata);
+            creata.append(creatImg)
 
             var creatImgtop = $("<img class='smallimg'/>");
             creatImgtop.attr("src", "../images/top1.png");
@@ -36,7 +53,15 @@ $(document).ready(function(){
             textpicBox.append(bg);
             $(".content-right-bottom").append(textpicBox);
 
-
+            //$(".textpicBox").append("<a href='+'detail.html?id='+list[n].publishId+''+'>" +
+            //'<div class="textpicBox">' +
+            //'<img src="../images/top1.png" class="smallimg"/>' +
+            //'<img src="../images/rong.png" class="bigimg"/>' +
+            //'<div class="bg">' +
+            //'<p>'+list[n].newsTitle+'</p>' +
+            //'</div>' +
+            //'</div>' +
+            //"</a>")
         }
     });
 
@@ -50,27 +75,18 @@ $(document).ready(function(){
 
     })
 
-
     //更多页面调用
-    var page = 1;
+    var moerData;
     var getOriginalList = function (data) {
+        moerData=data;
         window.sessionStorage.setItem("Original_data", JSON.stringify(data));
         location.href = 'moer.html';
     };
     //更多
-    $("#Original").click(function () {
-        //var newsTitle = $('input[name="search"]').val();
-        //if(newsTitle==''){
-        //    alert("请输入内容");
-        //    return;
-        //}
-        //参数 网站id 新闻标题 当前页 显示页
-        homeList(4,1,7,getOriginalList);
+    $("#moerData").click(function () {
+        homeList(4,1,10,getOriginalList);
     });
-    $('.more').click(function () {
-        page++;
 
-    });
 
 });
 

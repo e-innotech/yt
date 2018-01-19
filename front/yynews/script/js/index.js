@@ -1,12 +1,17 @@
 $(document).ready(function () {
     var page = 1;
+    var commentData='';
     $(".nav").on("click","li",function(){
         $(this).addClass("active").siblings().removeClass("active")
     })
 
     $('.more').click(function(){
-        page++;
-        getHomeBoxList();
+        if(commentData.length< 7){
+            $('.more').html('没有更多了');
+        }else{
+            page++;
+            getHomeBoxList();
+        }
     });
     getHomeBoxList();
     //轮播图请求的数据
@@ -28,6 +33,8 @@ $(document).ready(function () {
     function getHomeBoxList(){
         //传的网站ID 页数 一页显示几条数据
         homeList(3,page,7,function callback(newlist){
+            console.log("首页新闻列表数据：",newlist)
+                commentData=newlist;
             for (var i = 0; i < newlist.length; i++) {
                     // 创建一个放新闻的容器
                     var list = $("<div class='list' id='list'></div>");

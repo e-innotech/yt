@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="../css/search.css"/>
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
-    <script src="../script/js/top.js"></script>
-    <script src="../script/js/moer.js"></script>
 
 </head>
 <body>
@@ -35,13 +33,15 @@
     }
 
     //更多渲染
+    var page = 1;
+    var moerData;
     function init(){
         var object = window.sessionStorage.getItem("Original_data");
         var data = JSON.parse(object);
         var list = data;
+        moerData=list;
         console.log(929999,data);
         for (var i = 0; i <list.length; i++) {
-
             $('#moerlist').append('<div class="list" id="list">' +
             '<h2 class="subhead">' +
             "<a href="+'"detail.html?id='+list[i].publishId+'"'+">"+ list[i].newsTitle+"</a>"+
@@ -63,4 +63,12 @@
             '</div>');
         }
     }
+    $('.more').click(function () {
+        if(moerData.length< 10){
+            $('.more').html('没有更多了');
+        }else{
+            page++;
+        }
+
+    });
 </script>

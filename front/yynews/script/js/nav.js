@@ -3,11 +3,13 @@
  */
 $(document).ready(function () {
     var page = 1;
+    var commentData='';
     var channelId = getIdFromUrl();
 
     console.log('channelId='+channelId);
     var getNewsList = function(){
         newsList(channelId,page,6,function callback(newlist){
+            commentData=newlist;
             for (var i = 0; i < newlist.length; i++) {
                 //创建列表
                 var createlistbox = $("<div class='list' id='list'></div>");
@@ -93,11 +95,15 @@ $(document).ready(function () {
             }
         })
     };
-    $('.more').click(function(){
-        page++;
-        getNewsList();
-    });
 
+    $('.more').click(function(){
+        if(commentData.length< 6){
+            $('.more').html('没有更多了');
+        }else{
+            page++;
+            getNewsList();
+        }
+    });
 
     adList(1,function callback(list){
          $(".advertiseing-left").append('<img src="'+ list[0].source +'"/>');

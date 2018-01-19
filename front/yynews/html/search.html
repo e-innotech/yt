@@ -33,12 +33,14 @@
     }
 
     //搜索渲染
+    var page = 1;
+    var searchData;
     function init(){
         var object = window.sessionStorage.getItem("global_search_data");
         console.log(99999,object)
         var data = JSON.parse(object);
         var list = data.list;
-        console.log(99999,data);
+        searchData=list;
         for (var i = 0; i <list.length; i++) {
 
             $('#searchlist').append('<div class="list" id="list">' +
@@ -62,4 +64,13 @@
             '</div>');
         }
     }
+
+    $('.more').click(function () {
+        if(searchData.length< 10){
+            $('.more').html('没有更多了');
+        }else{
+            page++;
+
+        }
+    });
 </script>

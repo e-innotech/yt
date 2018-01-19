@@ -253,7 +253,7 @@
     -webkit-box-orient: vertical;
 
 }
-.content-left .more{
+.more{
 	width:692px;
 	height:33px;
 	background:#eeeeee;
@@ -263,6 +263,7 @@
 	font-size:17px;
 	color:#000;
 	margin-top:40px;
+	cursor: pointer;
 }
 
 .listbox .listsurplus{

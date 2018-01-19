@@ -98,6 +98,7 @@
     width:30px;
     height:30px;
     border-radius:50%;
+    cursor: pointer;
 }
 .header .header-right-r a{
     float:left;
@@ -107,6 +108,7 @@
     color:#ff4243;
     display: none;
     /*line-height:73px;*/
+    cursor: pointer;
 }
 .active{
     border-bottom:2px solid #206491;
