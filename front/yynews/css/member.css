@@ -1,10 +1,15 @@
-.banner{
+
+.memadvs img{
 	clear:both;
 	width:100%;
 	height:132px;
-	background:pink;
-	margin-top:24px;
+	margin-bottom:30px;
+	margin-top:22px;
 }
+
+
+
+
 .actives{
 	border-left:1px solid red;
 }
@@ -86,7 +91,7 @@
 
 }
 .content-rightinside .title h2{
-	width:162px;
+	width:169px;
 	line-height:64px;
 	border-bottom:1px solid #fe0100;
 

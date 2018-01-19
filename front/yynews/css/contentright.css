@@ -4,14 +4,16 @@
     background:#f4f4f4;
     float:right;
 }
-.right-banner{
+/*.right-banner{*/
+   /**/
+/*}*/
+.content-right-top img{
     width:350px;
     height:190px;
+    margin-bottom:28px;
 }
-
 .content-right-center{
     width:350px;
-    margin-top:28px;
     border:1px solid #e0e0e0;
     background:url("../images/lan.png") #fff no-repeat left 20px;
 }

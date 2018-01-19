@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     var publishId = getIdFromUrl();
     var page = 1;
@@ -54,6 +55,45 @@ $(document).ready(function () {
         });
     });
 
+	//添加收藏
+$("#collectAdd").click(function(){
+	collectAdd(publishId,function callback(data){});
+
+});
+
+function collectAdd(publishId,callback){
+	console.log(57,callback)
+	//判断是否是登录后
+	if(sessionStorage.getItem('user') != null){
+		var data = {publishId: publishId};
+		AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
+			if(re.success) {
+				if (callback) {
+					alert("收藏成功");
+					//console.log(222333, callback.data);
+					//callback(re.data);
+					return;
+				}
+			}
+		});
+	}else{
+		alert("请登录后才可以收藏");
+	}
+
+}
+
+
+$("#commitBtn").click(function () {
+	var content = $('#textarea_str').val();
+	commentAdd(this.alt, content, function callback(data) {
+		if (data.success) {
+			$('#textarea_str').val('');
+			alert("评论成功！");
+			commentQuery();
+		}
+	});
+});
+
 
     function initCommentList(data) {
        //console.log("评论数据：",data);
@@ -85,19 +125,35 @@ $(document).ready(function () {
             page++;
             commentQuery();
         }
-    });
-    //广告
-    adList(2, function callback(list) {
-        console.log(47, list);
-        $(".advertisingDe").append('<img src="' + list[0].source + '"/>');
 
     });
+
     //点击收藏时，如上
     $(".cang img").on("click", function () {
         $(this).attr("src", "../images/collect.png");
         $(".cang p").css("display", "none")
     })
 
-})
+
+	adList(2,function callback(list){
+		console.log(47,list);
+		$(".advertisingDe").append('<img src="'+ list[0].source +'"/>');
+
+	});
+
+//有一定滚动时显示这个top
+$(window).scroll(function(){
+	console.log(11111111111)
+	//获取距离浏览器顶部距离并赋值th
+	var th = $(window).scrollTop();
+	//用if判断，距离顶部大于300时给一个警告弹窗
+	if(th>600){
+		$("#toptop").show();
+	}else{
+		$("#toptop").hide();
+	}
+});
 
 
+
+});

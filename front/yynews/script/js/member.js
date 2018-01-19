@@ -91,9 +91,7 @@ $(function(){
             if(user.infos.icon){
                 $('input[name="icon"]').val(user.infos.icon);
             }
-
         }
-
         if(user.infos){
             $('input[name="nickName"]').val(user.infos.nickName);
             $('input[name="email"]').val(user.infos.email);

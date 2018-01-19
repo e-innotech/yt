@@ -1,6 +1,5 @@
-const apiUrl = 'http://123.59.156.27:8080';//测试
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-//const apiUrl = 'http://123.59.156.27:8080';
+const apiUrl = 'http://123.59.156.27:8080';//测试
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -203,13 +202,28 @@ function removeHTMLTag(str) {
 function delHtmlTag(str){
     return str.replace(/<[^>]+>/g,"");
 };
+//在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
+
     var data = {uname: uname, pwd: pwd};
     AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
         if (re.success) {
             sessionStorage.setItem('user',JSON.stringify(re.data));
-            location.replace(sessionStorage.getItem('currentUrl'));
-        } else {
+            //判断关闭页面时在哪个页面
+            if(sessionStorage.getItem('currentUrl')){
+                var url=sessionStorage.getItem('currentUrl');
+                var signurl=sessionStorage.getItem("login");
+                //如果关闭前在登陆页面就让它跳到首页
+                if(url==signurl){
+                    location.replace("index.html");
+                    return;
+                }else{
+                    location.replace(sessionStorage.getItem('currentUrl'));
+                }
+            }else{
+                location.replace("index.html");
+            }
+        }else {
             alert(re.msg);
         }
     });
