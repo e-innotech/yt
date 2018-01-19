@@ -87,7 +87,7 @@ $(function(){
     var page = 1;
     var getSearchList = function (data) {
         window.sessionStorage.setItem("global_search_data", JSON.stringify(data));
-        location.href = 'Originallist.html';
+        location.href = 'search.html';
     };
 //搜索
     $("#search").click(function () {

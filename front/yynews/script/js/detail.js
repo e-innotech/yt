@@ -43,50 +43,22 @@ $(document).ready(function () {
 		'<input type="button"  id="commitBtn" alt="' + data.publishId + '" value="提交评论">');
 
 	});
-
-	//添加收藏
-$("#collectAdd").click(function(){
-	collectAdd(publishId,function callback(data){});
-
-});
-
-function collectAdd(publishId,callback){
-	console.log(57,callback)
-	//判断是否是登录后
-	if(sessionStorage.getItem('user') != null){
-		var data = {publishId: publishId};
-		AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
-			if(re.success) {
-				if (callback) {
-					alert("收藏成功");
-					//console.log(222333, callback.data);
-					//callback(re.data);
-					return;
-				}
+	$("#commitBtn").click(function () {
+		var content = $('#textarea_str').val();
+		commentAdd(this.alt, content, function callback(data) {
+			if (data.success) {
+				$('#textarea_str').val('');
+				alert("评论成功！");
+				commentQuery();
 			}
 		});
-	}else{
-		alert("请登录后才可以收藏");
-	}
-
-}
-
-
-$("#commitBtn").click(function () {
-	var content = $('#textarea_str').val();
-	commentAdd(this.alt, content, function callback(data) {
-		if (data.success) {
-			$('#textarea_str').val('');
-			alert("评论成功！");
-			commentQuery();
-		}
 	});
-});
+	$('.more').click(function () {
+		//page++;
+		//commentQuery();
+		if(){}
+	});
 
-$('.more').click(function () {
-	page++;
-	commentQuery();
-});
 
 function initCommentList(data) {
 	$('#commentCon-box').html('');
@@ -109,19 +81,7 @@ function initCommentList(data) {
 	}
 }
 
-////点赞时换图片路径，并且下面的字隐藏
-//	$(".zan #greatpic").on("click", function () {
-//		$(this).attr("src", "../images/great.png");
-//		$(".zan p").css("display", "none");
-//
-//	})
-//
-////点击收藏时，如上
-//	$(".cang img").on("click", function () {
-//		$(this).attr("src", "../images/collect.png");
-//		$(".cang p").css("display", "none")
-//	})
-//
+
 	adList(2,function callback(list){
 		console.log(47,list);
 		$(".advertisingDe").append('<img src="'+ list[0].source +'"/>');
@@ -137,4 +97,3 @@ function initCommentList(data) {
 		$(".cang p").css("display", "none")
 	})
 
-});
