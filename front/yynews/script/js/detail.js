@@ -130,7 +130,7 @@ function initCommentList(data) {
 	
 
 
-
+})
 //点击收藏时，如上
 	$(".cang img").on("click", function () {
 		$(this).attr("src", "../images/collect.png");

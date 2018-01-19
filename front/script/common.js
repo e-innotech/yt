@@ -1,4 +1,4 @@
-//const apiUrl = 'http://192.168.20.195:8080';//
+const apiUrl = 'http://192.168.20.195:8080';//测试
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
 const apiUrl = 'http://123.59.156.27:8080';//测试
 
@@ -65,6 +65,7 @@ function AjaxUpload(url,data,callBack) {
 };
 //权重 页数 一页显示多少条 回调函数
 function homeList(homeWeight,pageNum,pageSize,callback){
+
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/home','get',data,function(re){
         if(re.success){
@@ -109,6 +110,8 @@ function newsList(channelId,pageNum,pageSize,callback){
         }
     });
 };
+
+
 function newsDetail(publishId,callback){
     var data = {publishId:publishId};
     AjaxFunc(apiUrl+'/web/detail','get',data,function(re){
@@ -153,6 +156,13 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
+
+
+
+
+
+
+
 
 //function commentList(publishId,pageNum,pageSize,callback){
 //    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};

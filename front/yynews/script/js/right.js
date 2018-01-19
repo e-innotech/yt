@@ -51,7 +51,6 @@ $(document).ready(function(){
     })
 
 
-    //更多
     //更多页面调用
     var page = 1;
     var getOriginalList = function (data) {
@@ -60,7 +59,7 @@ $(document).ready(function(){
     };
     //更多
     $("#Original").click(function () {
-        var newsTitle = $('input[name="search"]').val();
+        //var newsTitle = $('input[name="search"]').val();
         //if(newsTitle==''){
         //    alert("请输入内容");
         //    return;
