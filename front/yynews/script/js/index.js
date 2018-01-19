@@ -138,9 +138,6 @@ $(document).ready(function () {
 
             }
     });
-
-
-
 });
 
 

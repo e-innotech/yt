@@ -50,6 +50,30 @@ $(function(){
     renderChannel();
     renderUser();
 
+
+    //搜索页面调用
+    var page = 1;
+    var getSearchList = function (data) {
+        window.sessionStorage.setItem("global_search_data", JSON.stringify(data));
+        location.href = 'search.html';
+    };
+    //搜索
+    $("#search").click(function () {
+        var newsTitle = $('input[name="search"]').val();
+        //if(newsTitle==''){
+        //    alert("请输入内容");
+        //    return;
+        //}
+        //参数 网站id 新闻标题 当前页 显示页
+        globalQuery(1, newsTitle, 1, 20, getSearchList);
+    });
+    $('.more').click(function () {
+        page++;
+
+    });
+
+
+
     //添加样式
     $(".nav a").each(function(){
         $this = $(this);

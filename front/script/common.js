@@ -4,7 +4,7 @@ const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
 
 const websiteId = 1;
 const sex = ['女','男'];
-
+ var title="";
 function serializeObject(a){
     var o,h,i,e;
     o={};
@@ -110,6 +110,8 @@ function newsList(channelId,pageNum,pageSize,callback){
         }
     });
 };
+
+
 function newsDetail(publishId,callback){
     var data = {publishId:publishId};
     AjaxFunc(apiUrl+'/web/detail','get',data,function(re){
@@ -154,7 +156,17 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
-
+//function commentList(publishId,pageNum,pageSize,callback){
+//    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+//    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+//        if(re.success){
+//            if(callback){
+//                callback(re.data);
+//                return;
+//            }
+//        }
+//    });
+//};
 function addComment(publishId,content,callback){
     var data = {publishId:publishId,content:content};
     AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
@@ -180,6 +192,9 @@ function removeHTMLTag(str) {
     str=str.replace(/ /g,'');//去掉
     return str;
 }
+function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");
+};
 
 function memberslogin(uname,pwd) {
     var data = {uname: uname, pwd: pwd};
@@ -204,6 +219,32 @@ function memberslogout() {
 }
 
 
+////添加收藏
+function collectAdd(publishId,callback){
+    //console.log(2222225,publishId)
+    var data = {publishId: publishId};
+        AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
+            if(re.success) {
+                if (callback) {
+                    console.log(222333, callback.data);
+                    callback(re.data);
+                    return;
+                }
+            }
+        });
+}
+//会员收藏列表
+function collectList(pageNum,pageSize,callback){
+    var data = {pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/member/collect/query','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
 
 //会员取消收藏
 function cancelCollect(collect_id,callback){
@@ -221,13 +262,48 @@ function cancelCollect(collect_id,callback){
 function deleteCollect(id){
     cancelCollect(id);
     location.reload();
-
+    //coll();
 }
+
+
+//查询详情页
+function commentList(publishId,pageNum,pageSize,callback){
+    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+
+//会员评论列表
+function memcommentList(pageNum,pageSize,callback){
+    var data = {pageNum:pageNum,pageSize:pageSize};
+    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+
+
+
+
+
+
+
+
 
 
 
 //添加评论
-function commentAdd(publishId,content,callback){
+function commentAdd(publishId,content,callback) {
     var user=JSON.parse(sessionStorage.getItem('user'));
     if(user == null){
         alert("登陆之后才可以评论，请登陆");
@@ -243,31 +319,8 @@ function commentAdd(publishId,content,callback){
         }
     });
 }
-//会员收藏列表
-function collectList(pageNum,pageSize,callback){
-    var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/member/collect/query','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
 
-};
-//会员评论列表
-function memcommentList(pageNum,pageSize,callback){
-    var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/web/member/comment/query','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
-};
+
 function delHtmlTag(str){
     return str.replace(/<[^>]+>/g,"");
 };

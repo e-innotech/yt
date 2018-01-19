@@ -49,6 +49,7 @@
     color:#101010;
     margin-top:7px;
     line-height:28px;
+    white-space: nowrap;
     text-overflow: ellipsis;
     text-overflow: -o-ellipsis-lastline;
     overflow: hidden;
@@ -62,11 +63,12 @@
 /*}*/
 
 .imgnewlist .texttwo{
+    height: 50px;
     line-height:25px;
     margin-left:11px;
     font-size:14px;
     color:#6d6d6d;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
      text-overflow: ellipsis;
     overflow: hidden;
     /*display: -webkit-box;*/

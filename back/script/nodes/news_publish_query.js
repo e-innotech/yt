@@ -5,6 +5,7 @@ $(function () {
     var newsPublishList = [];
     var selectNewsPublish;
 
+    var newsTitle = '';
     var websiteName = '';
     var channelName = '';
 
@@ -14,6 +15,9 @@ $(function () {
 
     var getNewsPublishList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize,isline:$('#islineSelect').val(),ishome:$('#ishomeSelect').val()};
+        if(newsTitle!=''){
+            data.newsTitle = newsTitle;
+        }
         if(websiteName!=''){
             data.websiteName = websiteName;
         }
@@ -55,7 +59,17 @@ $(function () {
             if(nodeData.buttons[i].uri.indexOf('setHome')!=-1){
                 ctrl_setHome = nodeData.buttons[i].uri;
             };
-        }
+        };
+
+        $('#searchBtn').click(function () {
+            newsTitle = $('#newsTitleTxt').val();
+            websiteName = $('#websiteNameTxt').val();
+            channelName = $('#channelNameTxt').val();
+            getNewsPublishList();
+        });
+
+
+
         getNewsPublishList();
     };
     var initTable = function (list) {
@@ -64,6 +78,7 @@ $(function () {
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+
+                '<td>'+(list[i].news.topImagePath==''?'':'<img src="'+list[i].news.topImagePath+'" width="200">')+'</td>'+
                 '<td><a id="content_'+list[i].id+'">查看</a></td>'+
                 '<td>'+list[i].websites.siteName+'</td>'+
                 '<td>'+list[i].channel.channelName+'</td>'+
@@ -109,7 +124,9 @@ $(function () {
         };
         if(ctrl_setHome!=''){
             if(obj.ishome == 0){
-                re += '<button id="upHomeBtn_'+obj.id+'">上首页</button>';
+                if(obj.news.topImagePath) {
+                    re += '<button id="upHomeBtn_' + obj.id + '">上首页</button>';
+                }
             }else{
                 re += '<button id="downHomeBtn_'+obj.id+'">下首页</button>';
             }

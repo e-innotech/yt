@@ -80,6 +80,7 @@
 .content-left .news-top .times span{
 	font-size:11px;
 	color:#767676;
+	margin-left: 12px;
 
 }
 #content_center{
@@ -424,6 +425,7 @@
 	position: absolute;
 	top:0;
 	right:0;
+	display: none;
 
 }
 .favourcollect{

@@ -49,6 +49,30 @@ $(document).ready(function(){
         $(".content-right-top").append('<img src="'+ list[0].source +'" class="right-banner"/>');
 
     })
+
+
+    //更多
+    //更多页面调用
+    var page = 1;
+    var getOriginalList = function (data) {
+        window.sessionStorage.setItem("Original_data", JSON.stringify(data));
+        location.href = 'moer.html';
+    };
+    //更多
+    $("#Original").click(function () {
+        var newsTitle = $('input[name="search"]').val();
+        //if(newsTitle==''){
+        //    alert("请输入内容");
+        //    return;
+        //}
+        //参数 网站id 新闻标题 当前页 显示页
+        homeList(4,1,7,getOriginalList);
+    });
+    $('.more').click(function () {
+        page++;
+
+    });
+
 });
 
 
