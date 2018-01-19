@@ -22,8 +22,15 @@ $(function(){
     var renderUser = function(){
         if(sessionStorage.getItem("user") != null){
             var user = JSON.parse(sessionStorage.getItem("user"));
-            console.log(user);
-            $('.userAvatar').attr('src',user.infos.icon!=null?user.infos.icon:'../images/ren.png');
+            console.log(999,user);
+            var imgUrl = '../images/ren.png';
+            if(user.infos){
+                if(user.infos.icon) {
+                    imgUrl = user.infos.icon;
+                }
+            }
+            $('.userAvatar').attr('src',imgUrl);
+
             $('.header-right-r').css('width','115px');
             $('.header-right-r p').css('display','block');
             $('#logoutBtn').click(function(){
@@ -46,11 +53,34 @@ $(function(){
     //添加样式
     $(".nav a").each(function(){
         $this = $(this);
-        console.log(1212121212122,$(this));
         if($this[0].href==String(window.location)){
             //console.log(12,$this);
             $this.addClass("active");  //hover表示被选中效果的类名
         }
     })
+
+    //搜索页面调用
+    var page = 1;
+    var getSearchList = function (data) {
+        window.sessionStorage.setItem("global_search_data", JSON.stringify(data));
+        location.href = 'Originallist.html';
+    };
+//搜索
+    $("#search").click(function () {
+        var newsTitle = $('input[name="search"]').val();
+        //if(newsTitle==''){
+        //    alert("请输入内容");
+        //    return;
+        //}
+        //参数 网站id 新闻标题 当前页 显示页
+        globalQuery(1, newsTitle, 1, -1, getSearchList);
+    });
+    $('.more').click(function () {
+        page++;
+
+    });
+
+
+
 
 });

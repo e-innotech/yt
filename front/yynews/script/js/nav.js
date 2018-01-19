@@ -100,6 +100,8 @@ $(document).ready(function () {
 
 
     adList(1,function callback(list){
+         $(".advertiseing-left").append('<img src="'+ list[0].source +'"/>');
+        $(".advertiseing-right").append('<img src="'+ list[1].source +'"/>')
 
     });
     getNewsList();
