@@ -1,6 +1,6 @@
 // const apiUrl = 'http://192.168.20.195:8080';//测试
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-const apiUrl = 'http://123.59.156.27:8080';//测试
+const apiUrl = 'http://123.59.156.27:8080';//本地的
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -134,6 +134,7 @@ function uploadIcon(data,callback){
         }
     });
 };
+//
 function membersEdit(data,callback){
     AjaxFunc(apiUrl+'/members/update/info','post',data,function(re){
         alert(re.msg);
@@ -144,6 +145,7 @@ function membersEdit(data,callback){
         }
     });
 };
+
 function membersPwd(data){
     AjaxFunc(apiUrl+'/members/pwd','post',data,function(re){
         alert(re.msg);
@@ -156,14 +158,6 @@ function membersPwd(data){
  * @param pageSize
  * @param callback
  */
-
-
-
-
-
-
-
-
 //function commentList(publishId,pageNum,pageSize,callback){
 //    var data = {publishId:publishId,pageNum:pageNum,pageSize:pageSize};
 //    AjaxFunc(apiUrl+'/web/detail/comment','get',data,function(re){
@@ -239,22 +233,37 @@ function memberslogout() {
         };
     });
 }
-
-
-////添加收藏
-function collectAdd(publishId,callback){
-    //console.log(2222225,publishId)
-    var data = {publishId: publishId};
-        AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
-            if(re.success) {
-                if (callback) {
-                    console.log(222333, callback.data);
-                    callback(re.data);
-                    return;
-                }
+//添加评论
+function commentAdd(publishId,content,callback) {
+    var user=JSON.parse(sessionStorage.getItem('user'));
+    if(user == null){
+        alert("登陆之后才可以评论，请登陆");
+        return;
+    }
+    var data = {publishId: publishId,content:content};
+    AjaxFunc(apiUrl + '/web/member/comment/add', 'post', data, function (re) {
+        if (re.success) {
+            if (callback) {
+                callback(re);
+                return;
             }
-        });
+        }
+    });
 }
+////添加收藏
+//function collectAdd(publishId,callback){
+//    //console.log(2222225,publishId)
+//    var data = {publishId: publishId};
+//        AjaxFunc(apiUrl+'/member/collect/add', 'post', data, function (re){
+//            if(re.success) {
+//                if (callback) {
+//                    console.log(222333, callback.data);
+//                    callback(re.data);
+//                    return;
+//                }
+//            }
+//        });
+//}
 //会员收藏列表
 function collectList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};
@@ -283,7 +292,13 @@ function cancelCollect(collect_id,callback){
 //删除会员的收藏
 function deleteCollect(id){
     cancelCollect(id);
+    sessionStorage.setItem("ddd","1");
     location.reload();
+
+    //coll();
+    //$(".content-right .rights").css("display","none");
+    //$("#collectss").show();
+
 
 }
 
@@ -326,23 +341,23 @@ function commentDetailList(publishId,pageNum,pageSize,callback){
         }
     });
 };
-//添加评论
-function commentAdd(publishId,content,callback) {
-    var user=JSON.parse(sessionStorage.getItem('user'));
-    if(user == null){
-        alert("登陆之后才可以评论，请登陆");
-        return;
-    }
-    var data = {publishId: publishId,content:content};
-    AjaxFunc(apiUrl + '/web/member/comment/add', 'post', data, function (re) {
-        if (re.success) {
-            if (callback) {
-                callback(re);
-                return;
-            }
-        }
-    });
-}
+////添加评论
+//function commentAdd(publishId,content,callback) {
+//    var user=JSON.parse(sessionStorage.getItem('user'));
+//    if(user == null){
+//        alert("登陆之后才可以评论，请登陆");
+//        return;
+//    }
+//    var data = {publishId: publishId,content:content};
+//    AjaxFunc(apiUrl + '/web/member/comment/add', 'post', data, function (re) {
+//        if (re.success) {
+//            if (callback) {
+//                callback(re);
+//                return;
+//            }
+//        }
+//    });
+//}
 //会员收藏列表
 function collectList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};

@@ -1,8 +1,23 @@
+
 $(function(){
+    //进网站加载个人资料
+    window.onload=function(){
+        $('#top').load('top.html');
+        $('#bottom').load('bottom.html');
+        $("#personData").addClass("actives");
+        if(sessionStorage.getItem("ddd")!=null){
+            $("#minecollect").addClass("actives").siblings().removeClass("actives");
+            $("#collectss").show().siblings().hide();
+            coll();
+            sessionStorage.removeItem("ddd");
+        }
+
+    }
     var mempage=1;
     //选项卡
     $(".bottom ul").on("click", "li",function(){
         //在同一个盒子中写个人资料和修改个人资料
+        console.log($(this).index());
         switch($(this).index()){
             case 0:
                 switchInfo(false);
@@ -18,7 +33,7 @@ $(function(){
         $(".content-right .content-rightinside").eq($(this).index()).show().siblings().hide();
 
     });
-    //点击确认修改时 让修改个人资料显示
+    //点击修改个人资料时 让修改个人资料显示
     $('.material').click(function(){
         switchInfo(true);
     });
@@ -43,15 +58,20 @@ $(function(){
             };
         });
     })
+    //点击确认修改时的逻辑
     $('#editBtn').click(function(){
         var data = serializeObject($('#userForm').serializeArray());
-        console.log('data:'+data);
+        console.log(6666,serializeObject($('#userForm').serializeArray()));
+        //console.log(6666,$('#userForm').serializeArray());
+        console.log('data:',data);
         membersEdit(data,function callback(data){
             sessionStorage.setItem('user',JSON.stringify(data));
+            console.log(77);
             switchInfo(false);
         });
 
     });
+    //点击修改密码逻辑时
     $('#pwdBtn').click(function(){
         var data = serializeObject($('#pwdForm').serializeArray());
         membersPwd(data)
@@ -102,9 +122,6 @@ $(function(){
     }
     renderUserInfo();
     renderEditInfo();
-
-    //会员收藏列表
-
 //渲染收藏的列表
     function coll(){
         collectList(mempage,9,function callback(data){
@@ -123,6 +140,7 @@ $(function(){
             }
         });
     }
+
 
     //收藏点击下一页时
     $("#collnextpage").click(function(){
@@ -147,7 +165,6 @@ $(function(){
 
    //评论列表
    function comm(){
-       console.log(111111111111);
        memcommentList(mempage,5,function callback(data){
             $("#comment_total").html('('+data.total+')');
             $("#commentlistbox").html('');
@@ -163,9 +180,9 @@ $(function(){
                     '<p>'+list[i].content+'</p>'+
                     '<span class="datas">'+list[i].createDate+"&nbsp;&nbsp;&nbsp;&nbsp;来自文章:"+'</span>'+
                     '<span class="articles">'+"&nbsp;"+ '<a href="detail.html?id='+list[i].publishId+'">'+list[i].newsTitle+'</a></span>'+
-                '</div>'+
-                '<div class="right"><img src="../images/del.png" onclick="deleteComment('+list[i].id+')"/></div>'+
                 '</div>')
+                //+'<div class="right"><img src="../images/del.png" onclick="deleteComment('+list[i].id+')"/></div>'+
+                //'</div>')
             }
         });
    }
@@ -194,7 +211,6 @@ $(function(){
     })
 
 })
-
 
 
 
