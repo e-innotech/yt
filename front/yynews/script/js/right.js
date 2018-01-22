@@ -43,7 +43,10 @@ $(document).ready(function(){
             creata.append(creatImg)
 
             var creatImgtop = $("<img class='smallimg'/>");
-            creatImgtop.attr("src", "../images/top1.png");
+
+                creatImgtop.attr("src", "../images/top1.png");
+
+
             textpicBox.append(creatImgtop);
 
             var bg = $("<div class='bg'></div>");
