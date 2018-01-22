@@ -17,7 +17,7 @@
 	position:fixed;
 	top:98px;
 	left:240px;
-    
+	z-index: 10;
 }
 .advertisingDe img{
 	width:100%;

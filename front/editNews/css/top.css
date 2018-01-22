@@ -134,7 +134,7 @@ input {
 }
 
 .header {
-    height: 120px;
+    height: 110px;
     background: #fff;
     overflow: hidden;
 
@@ -142,16 +142,16 @@ input {
 
 .header .logo {
     float: left;
-    margin-top: 20px;
+    margin-top: 12px;
 
 }
 
 .header .header-r {
     float: right;
-    width: 290px;
-    height: 40px;
+    width: 300px;
+    height: 30px;
     background: #fff;
-    margin-top: 50px;
+    margin-top: 40px;
     border-radius: 2px;
     border: 1px solid #f69900;
 }
@@ -162,69 +162,52 @@ input {
 
 .header .header-r form #search {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 7px;
+    right: 7px;
     cursor: pointer;
 }
 
 .header .header-r input {
     width: 232px;
-    height: 40px;
-    line-height: 40px;
+    height: 30px;
+    line-height: 30px;
     padding-left: 32px;
     background: none;
     border: none;
 
 }
 
-.header_nav {
-    width: 100%;
-    height: 50px;
-    line-height: 40px;
-    background: #f69900;
+.header_nav{
+    float: left;
 }
-
 .header_nav .nav {
-    width: 1200px;
-    margin: 0 auto;
-    height: 50px;
-    line-height: 50px;
+    height: 36px;
+    line-height: 36px;
+    margin-left: 15px;
 }
 
 .header_nav .nav li {
-    width: 124px;
-    height: 50px;
+    width: 70px;
+    height: 36px;
     text-align: center;
     float: left;
-    color: #fff;
-    background: url("../images/border_image.png")no-repeat;
+    margin-top: 40px;
 }
 
 .header_nav .nav li a {
-    font-size: 22px;
+    font-size: 18px;
     display: inline-block;
     width: 80px;
-    color: #fff;
+    color: #000;
 
 }
 
 .header_nav .nav a:hover {
-    border-bottom: 1px solid #ff0000;
-    color: #fff;
-    padding-top:6px;
-    height: 44px;
-    line-height: 44px;
-    position: relative;
-    top: -6px;
+    color: #f25e00;
+
 
 }
 .active{
-    border-bottom: 1px solid #ff0000;
-    color: #fff;
-    padding-top:6px;
-    height: 44px;
-    line-height: 44px;
-    position: relative;
-    top: -6px;
+    color: #f25e00;
 }
 

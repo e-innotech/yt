@@ -1,0 +1,26 @@
+/*以下为尾部*/
+
+.footerbg{
+    background:#868686;
+    height:300px;
+    overflow: hidden;
+}
+
+.footerbox{
+    margin-top:127px;
+    height:170px;
+    width:100%;
+    border-top:1px solid #fff;
+}
+.footerbox p{
+    color:#fff;
+    font-size:20px;
+    text-align:center;
+}
+.footerbox .text1{
+    margin-top:32px;
+}
+.footerbox .text2{
+    margin-top:34px;
+    background:url("../images/hui.png") no-repeat 772px 0px;
+}
