@@ -1,9 +1,9 @@
 $(document).ready(function () {
     var page = 1;
     var commentData='';
-    $(".nav").on("click","li",function(){
-        $(this).addClass("active").siblings().removeClass("active")
-    })
+    //$(".nav").on("click","li",function(){
+    //    $(this).addClass("active").siblings().removeClass("active")
+    //})
 
     $('.more').click(function(){
         if(commentData.length< 7){
