@@ -15,7 +15,7 @@
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <div id="moerlist"></div>
+            <div id="morelist"></div>
             <div class="more">点击加载更多</div>
         </div>
     </div>
@@ -34,15 +34,15 @@
 
     //更多渲染
     var page = 1;
-    var moerData;
+    var moreData;
     function init(){
         var object = window.sessionStorage.getItem("Original_data");
         var data = JSON.parse(object);
         var list = data;
-        moerData=list;
+        moreData=list;
         console.log(929999,data);
         for (var i = 0; i <list.length; i++) {
-            $('#moerlist').append('<div class="list" id="list">' +
+            $('#morelist').append('<div class="list" id="list">' +
             '<h2 class="subhead">' +
             "<a href="+'"detail.html?id='+list[i].publishId+'"'+">"+ list[i].newsTitle+"</a>"+
             '</h2>' +
@@ -64,7 +64,7 @@
         }
     }
     $('.more').click(function () {
-        if(moerData.length< 10){
+        if(moreData.length< 10){
             $('.more').html('没有更多了');
         }else{
             page++;
