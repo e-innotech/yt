@@ -15,7 +15,7 @@ $("#Original").click(function () {
 });
 $('.more').click(function () {
     if(searchData.length< 10){
-        $('.more').html('没有更2222222222222多了');
+        $('.more').html('没有更多了');
     }else{
         page++;
         getOriginalList()

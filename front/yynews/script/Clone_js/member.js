@@ -1,0 +1,182 @@
+$(function () {
+    //进网站加载个人资料
+    window.onload = function () {
+        $('#top').load('top.html');
+        $('#bottom').load('bottom.html');
+        $("#personData").addClass("actives");
+        if (sessionStorage.getItem("ddd") != null) {
+            $("#minecollect").addClass("actives").siblings().removeClass("actives");
+            $("#collectss").show().siblings().hide();
+            coll();
+            sessionStorage.removeItem("ddd");
+        }
+    }
+    var mempage = 1;
+    //选项卡
+    $(".bottom ul").on("click", "li", function () {
+        //在同一个盒子中写个人资料和修改个人资料
+        console.log($(this).index());
+        switch ($(this).index()) {
+            case 0:
+                switchInfo(false);
+                break;
+            case 1:
+                coll();
+                break;
+            case 2:
+                comm();
+                break;
+        };
+        $(this).addClass("actives").siblings().removeClass("actives");
+        $(".content-right .content-rightinside").eq($(this).index()).show().siblings().hide();
+
+    });
+    //点击修改个人资料时 让修改个人资料显示
+    $('.material').click(function () {
+        switchInfo(true);
+    });
+
+    $('.upload_pic').change(function () {
+        var files = $('#upload_file').prop('files');
+        var data = new FormData();
+        data.append('upload_file', files[0]);
+        data.append('fileDirectory', 'userIcon');
+        uploadIcon(data, function callback(data) {
+            $('input[name="icon"]').val(data);
+            $('.info').css('display', 'block');
+            var image = new Image();
+            // 设置src属性
+            image.src = data;
+            var max = 200;
+            image.onload = function () {
+                var canvas = document.getElementById("cvs");
+                var ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0, 88, 88);
+            };
+        });
+    });
+    //点击确认修改时的逻辑
+    $('#editBtn').click(function () {
+        var data = serializeObject($('#userForm').serializeArray());
+        membersEdit(data, function callback(data) {
+            sessionStorage.setItem('user', JSON.stringify(data));
+            console.log(77);
+            switchInfo(false);
+        });
+    });
+    //点击修改密码逻辑时
+    $('#pwdBtn').click(function () {
+        var data = serializeObject($('#pwdForm').serializeArray());
+        membersPwd(data)
+    });
+
+    //判断个人资料和修改个人资料那个显示，那个隐藏的
+    var switchInfo = function (bol) {
+        $('#userInfo').css('display', bol ? 'none' : 'block');
+        $('#editInfo').css('display', bol ? 'block' : 'none');
+        renderUserInfo();
+        renderEditInfo();
+    };
+
+    //render info
+    var renderUserInfo = function () {
+        var user = JSON.parse(sessionStorage.getItem('user'));
+        var imgUrl = '../images/ren.png';
+        if (user.infos) {
+            if (user.infos.icon) {
+                imgUrl = user.infos.icon;
+            }
+        }
+        $('#iconTop').attr('src', imgUrl);
+        if (user.infos) {
+            $('#nickName').html(user.infos.nickName);
+            $('.nickname').html(user.infos.nickName);
+            $('.emails').html(user.infos.email);
+            $('.address').html(user.infos.address);
+            $('.sex').html(sex[user.infos.sex]);
+        }
+    };
+    var renderEditInfo = function () {
+        var user = JSON.parse(sessionStorage.getItem('user'));
+        if (user.infos) {
+            if (user.infos.icon) {
+                $('input[name="icon"]').val(user.infos.icon);
+            }
+        }
+        if (user.infos) {
+            $('input[name="nickName"]').val(user.infos.nickName);
+            $('input[name="email"]').val(user.infos.email);
+            $('input[name="address"]').val(user.infos.address);
+            $('select[name="sex"]').val(user.infos.sex);
+        }
+    };
+    renderUserInfo();
+    renderEditInfo();
+//渲染收藏的列表
+    function coll() {
+        collectList(mempage, 9, function callback(data) {
+            $("#collect_total").html('(' + data.total + ')');
+            $("#collectlistbox").html('');
+        });
+    };
+
+
+    //收藏点击下一页时
+    $("#collnextpage").click(function () {
+        mempage++;
+        coll();
+        $(this).css("background", "#999999");
+        $("#collprevpage").css("background", "#c9c9c9")
+    });
+    //收藏点击上一页时
+    $("#collprevpage").click(function () {
+        mempage--;
+        if (mempage == 0) {
+            mempage = 1;
+            return
+        }
+        coll();
+        $(this).css("background", "#999999");
+        $("#collnextpage").css("background", "#c9c9c9")
+    });
+
+    //评论列表
+    function comm() {
+        memcommentList(mempage, 5, function callback(data) {
+            $("#comment_total").html('(' + data.total + ')');
+            $("#commentlistbox").html('');
+        });
+    };
+
+    //评论点击下一页时
+    $("#commnextpage").click(function () {
+        mempage++;
+        comm();
+        $(this).css("background", "#999999");
+        $("#commprevpage").css("background", "#c9c9c9")
+
+    });
+    //评论点击上一页时
+    $("#commprevpage").click(function () {
+        mempage--;
+        if (mempage == 0) {
+            mempage = 1;
+            return
+        }
+        comm();
+        $(this).css("background", "#999999");
+        $("#commnextpage").css("background", "#c9c9c9");
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
