@@ -1,0 +1,153 @@
+
+.contentbg{
+
+	padding-bottom: 112px;
+
+}
+.content-left{
+	width:858px;
+}
+.content-right{
+	width:311px;
+}
+
+
+
+.content-left .banner{
+	width:858px;
+	height:350px;
+	position:relative;
+
+}
+.content-left .banner li{
+	width: 100%;
+	height: 350px;
+	list-style: none;
+	float: left;
+}
+.content-left .banner .bannerImg{
+	width:100%;
+	height:100%;
+}
+.content-left .banner .swiper-button-prev{
+	position:absolute;
+	left:0;
+	top:151px;
+
+}
+.content-left .banner .swiper-button-next{
+	position:absolute;
+	right:0;
+	top:151px;
+}
+.content-left .banner .picture{
+	width:100%;
+	height:100%;
+
+}
+.banner .bgcolor{
+	width:100%;
+	height:55px;
+	font-size:20px;
+	color:#fafafa;
+    line-height: 26px;
+    padding-left: 10px;
+	position:absolute;
+	left:0;
+	bottom:0;
+	background: rgba(63,83,94,.4);
+
+}
+.banner .bgcolor{
+	text-overflow: ellipsis;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+
+}
+
+
+.bannersmall{
+	height:80px;
+	margin-top:30px;
+
+}
+.bannersmall img{
+
+}
+.content-listbox{
+		margin-top:30px;
+}
+.content-list{
+	height:190px;
+
+	background:#fff;
+	border-bottom:1px solid #e6e6e6;
+	clear:both;
+}
+.content-list>img{
+	width:202px;
+	height:150px;
+	float:left;
+	margin:20px;
+}
+.content-list .list-r{
+	width:450px;
+    padding-bottom: 23px;
+	float:left;
+	margin-top:20px;
+}
+.content-list .list-r h2{
+	font-size:20px;
+	color:#000;
+
+}
+.content-list .list-r>div{
+	font-size:12px;
+	color:#666;
+	line-height:20px;
+	margin-top:17px;
+}
+.content-list .list-r>p{
+	margin-top:44px;
+	font-size:12px;
+	color:#666;
+}
+.content-list .list-r>p span{
+	padding-left: 10px;
+	margin-left:10px;
+	border-left:1px solid #666666;
+}
+.more{
+    margin-top:80px;
+	width:858px;
+	height:40px;
+	font-size:17px;
+	line-height:36px;
+	color:#010101;
+	background:#fafafa;
+	text-align:center;
+
+}
+/*以下为左侧广告*/
+.advertising{
+	width:200px;
+	position:fixed;
+	top:121px;
+	left:0;
+	z-index:1000;
+
+}
+.advertising .advone{
+	width:100%;
+	height:160px;
+	margin-bottom:30px;
+}
+.advertising .advtwo{
+	width:100%;
+	height:260px;
+
+}
+

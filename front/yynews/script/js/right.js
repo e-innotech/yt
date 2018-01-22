@@ -31,40 +31,31 @@ $(document).ready(function(){
             //$(".content-right-bottom").html('');
 
             //创建一个容器
-            var textpicBox = $("<div class='textpicBox'></div>");
-            //把容器加进右下边的盒子中
-
-            var creata = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'></a>");
 
 
-            var creatImg = $("<img class='bigimg'/>");
-            creatImg.attr("src", list[n].topImagePath);
-            textpicBox.append(creata);
-            creata.append(creatImg)
 
-            var creatImgtop = $("<img class='smallimg'/>");
+               var textpicBox = $("<div class='textpicBox'></div>");
+               //把容器加进右下边的盒子中
 
-                creatImgtop.attr("src", "../images/top1.png");
+               var creata = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'></a>");
 
 
-            textpicBox.append(creatImgtop);
+               var creatImg = $("<img class='bigimg'/>");
+               creatImg.attr("src", list[n].topImagePath);
+               textpicBox.append(creata);
+               creata.append(creatImg)
 
-            var bg = $("<div class='bg'></div>");
-            var creattagp = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'><p></p></a>")
-            creattagp.text(list[n].newsTitle);
-            bg.append(creattagp)
-            textpicBox.append(bg);
-            $(".content-right-bottom").append(textpicBox);
+               var creatImgtop = $("<img class='smallimg'/>");
+               creatImgtop.attr("src", "../images/top1.png");
+               textpicBox.append(creatImgtop);
 
-            //$(".textpicBox").append("<a href='+'detail.html?id='+list[n].publishId+''+'>" +
-            //'<div class="textpicBox">' +
-            //'<img src="../images/top1.png" class="smallimg"/>' +
-            //'<img src="../images/rong.png" class="bigimg"/>' +
-            //'<div class="bg">' +
-            //'<p>'+list[n].newsTitle+'</p>' +
-            //'</div>' +
-            //'</div>' +
-            //"</a>")
+               var bg = $("<div class='bg'></div>");
+               var creattagp = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'><p></p></a>")
+               creattagp.text(list[n].newsTitle);
+               bg.append(creattagp)
+               textpicBox.append(bg);
+               $(".content-right-bottom").append(textpicBox);
+
         }
     });
 

@@ -86,21 +86,23 @@ function collectAdd(publishId,callback){
         commentData=data;
         $('#commentCon-box').html('');
         for (var i = 0; i < data.list.length; i++) {
-            $('.small:first').css('display', 'block');
-            $('#commentCon-box').append('<div class="commentCon">' +
-            '<div class="commentCon-l">' +
-            '<img class="big" src="' + data.list[i].membersPic + '" alt="图像">' +
-            '<img class="small" src="../images/sha.png" alt="沙发">' +
-            '<p class="call">' + data.list[i].nickName + '</p>' +
-            '<p class="date">' + data.list[i].createDate + '</p>' +
-            '</div>' +
-            '<div class="commentCon-r">' +
-            '<p>' +
-            '<span>' + (i + 1) + '楼</span>' +
-            '</p>' +
-            '<div class="commentbox">' + data.list[i].content + '</div>' +
-            '</div>' +
-            '</div>');
+
+                $('.small:first').css('display', 'block');
+                $('#commentCon-box').append('<div class="commentCon">' +
+                '<div class="commentCon-l">' +
+                '<img class="big" src="' + data.list[i].membersPic + '" alt="图像">' +
+                '<img class="small" src="../images/sha.png" alt="沙发">' +
+                '<p class="call">' + data.list[i].nickName + '</p>' +
+                '<p class="date">' + data.list[i].createDate + '</p>' +
+                '</div>' +
+                '<div class="commentCon-r">' +
+                '<p>' +
+                '<span>' + (i + 1) + '楼</span>' +
+                '</p>' +
+                '<div class="commentbox">' + data.list[i].content + '</div>' +
+                '</div>' +
+                '</div>');
+
         }
 
     }
@@ -121,11 +123,11 @@ function collectAdd(publishId,callback){
     //})
 
 //渲染详情页的广告
-//	adList(2,function callback(list){
-//		console.log(47,list);
-//		$(".advertisingDe").append('<img src="'+ list[0].source +'"/>');
-//
-//	});
+	adList(2,function callback(list){
+		console.log(47,list);
+		$(".advertisingDe").append('<img src="'+ list[0].source +'"/>');
+
+	});
 
 //有一定滚动时显示这个top
 $(window).scroll(function(){

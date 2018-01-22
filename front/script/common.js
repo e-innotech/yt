@@ -1,6 +1,6 @@
-// const apiUrl = 'http://192.168.20.195:8080';//测试
+const apiUrl = 'http://192.168.20.195:8080';//
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-const apiUrl = 'http://123.59.156.27:8080';//本地的
+//const apiUrl = 'http://123.59.156.27:8080';//测试
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -233,6 +233,19 @@ function memberslogout() {
         };
     });
 }
+function memberslogadd(){
+    var uname=$('input[name="userName"]').val(),pwd=$('input[name="password"]').val()
+    var data = {uname: uname, pwd: pwd};
+    console.log(uname)
+    AjaxFunc(apiUrl+'/members/add', 'post', data, function (re) {
+        if (re.success) {
+            location.replace("sign.html");
+        }else {
+            alert(re.msg);
+        }
+    });
+}
+
 //添加评论
 function commentAdd(publishId,content,callback) {
     var user=JSON.parse(sessionStorage.getItem('user'));
@@ -359,18 +372,7 @@ function commentDetailList(publishId,pageNum,pageSize,callback){
 //    });
 //}
 //会员收藏列表
-function collectList(pageNum,pageSize,callback){
-    var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/member/collect/query','get',data,function(re){
-        if(re.success){
-            if(callback){
-                callback(re.data);
-                return;
-            }
-        }
-    });
 
-};
 //会员评论列表
 function memcommentList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};
@@ -383,9 +385,7 @@ function memcommentList(pageNum,pageSize,callback){
         }
     });
 };
-function delHtmlTag(str){
-    return str.replace(/<[^>]+>/g,"");
-};
+
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');
