@@ -11,7 +11,13 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为固定定位的广告-->
+<div class="detailadv">
+    <img src="../images/adv.png"/>
+    <img src="../images/adv_icon.png" class="adv_icon"/>
+</div>
 <!--以下为内容区域-->
+
 <div class="contentbg">
     <div class="content">
         <!-- 主体内容左边 -->
@@ -52,21 +58,19 @@
 
                 </p>
             </div>
+            <div class="blank"></div>
         </div>
-        <!-- 主体内容右边 -->
+        <!-- 主体内容右边（广告）-->
         <div class="content-right" id="content-right">
-
+             <div class="advise">
+                 <img src="../images/adv.png" class="adv"/>
+                 <img src="../images/adv_icon.png" class="adv_icon"/>
+             </div>
 
         </div>
 
 
     </div>
-</div>
-<!--广告-->
-<!--定位可能会有问题-->
-<div class="detailadv">
-        <img src="../images/advdetail.png" class="bigImg"/>
-        <img style="" src="../images/adv.png" class="smallImg"/>
 </div>
 
 
@@ -74,7 +78,7 @@
 
 
 <!--以下为回到顶部的图片-->
-<a href="#" id="backtop"/><img src="../images/top.png"/></a>
+<a href="#" id="backtop"/><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
 </body>
@@ -82,7 +86,7 @@
     window.onload=function(){
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
+
     }
 
 </script>

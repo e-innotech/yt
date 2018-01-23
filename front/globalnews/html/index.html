@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../script/js/index.js"></script>
+    <script type="text/javascript" src="../script/swiper.min.js"></script>
 </head>
 <body>
 <!--以下为头部-->
@@ -16,25 +19,57 @@
     <div class="content">
         <div class="content-left">
             <div class="news_top">
-                <a href="https://www.baidu.com/">
-                    <img src="../images/banner.png" class="news_Img"/>
-                    <div class="news_text">
-                            <h1>吸金怕卡垃圾收费的看哈了就是</h1>
-                            <p class="title">玩儿若若若若若若若若若若若若若若若若若玩儿若若若若若若若若若若若若若若若若若若若若若拖文鹅鹅鹅饿鹅鹅鹅鹅鹅鹅鹅鹅鹅饿</p>
-                        <p class="info"><span class="source">中南海</span><span class="date">一小时前</span></p>
-                        <img src="../images/recommend.png" class="recommend"/>
-                    </div>
-                </a>
-            </div>
-            <!--以下为广告-->
-            <div class="advises">
-                <!--广告-->
-                <img src="../images/advise.png" class="bigImg"/>
-                <!--定的广告的小图标-->
-                <img src="../images/adv.png" class="smallImg"/>
-            </div>
+                    <div class="news_left swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="https://www.baidu.com/">
+                                    <img src="../images/img.png"/>
+                                    <div class="bgcolor">
+                                        <p>1卡号或或或或或或或或付所跨境老师发的逻辑卡是否对垃圾卡发大水或或或或或付所跨境老师发的逻或或或或或付所跨境老师发的逻</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="https://www.baidu.com/">
+                                    <img src="../images/news.png"/>
+                                    <div class="bgcolor">
+                                        <p>2卡号或或或或或或或或付所跨境老师发的逻辑卡是否对垃圾卡发大水或或或或或付所跨境老师发的逻或或或或或付所跨境老师发的逻</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="https://www.baidu.com/">
+                                    <img src="../images/img.png"/>
+                                    <div class="bgcolor">
+                                        <p>3卡号或或或或或或或或付所跨境老师发的逻辑卡是否对垃圾卡发大水或或或或或付所跨境老师发的逻或或或或或付所跨境老师发的逻</p>
+                                    </div>
+                                </a>
+                            </div>
 
-        <!--以下为新闻列表-->
+
+                        </div>
+                        <!-- 如果需要分页器 -->
+                        <!--<div class="swiper-pagination"></div>-->
+                        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets" id="Shufflingpaging">
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                        </div>
+
+                    </div>
+                    <div class="news_right">
+                        <a href="https://www.baidu.com/">
+                            <img src="../images/news.png"/>
+                        </a>
+                        <a href="https://www.baidu.com/">
+                            <img src="../images/news.png"/>
+                        </a>
+                        <a href="https://www.baidu.com/">
+                            <img src="../images/news.png"/>
+                        </a>
+                    </div>
+            </div>
+            <!--以下为新闻列表-->
             <div class="news_listbox">
                     <div class="news_list">
                         <a href="#">
@@ -45,7 +80,7 @@
                                 <p><span class="source">中南海</span><span class="date">一小时前</span></p>
                             </div>
                         </a>
-                        <img src="../images/recommend.png" class="recommends"/>
+
                     </div>
                     <div class="news_list">
                         <a href="#">
@@ -56,7 +91,7 @@
                                 <p><span class="source">中南海</span><span class="date">一小时前</span></p>
                             </div>
                         </a>
-                        <img src="../images/recommend.png" class="recommends"/>
+
                     </div>
                     <div class="news_list">
                         <a href="#">
@@ -67,7 +102,7 @@
                                 <p><span class="source">中南海</span><span class="date">一小时前</span></p>
                             </div>
                         </a>
-                        <img src="../images/recommend.png" class="recommends"/>
+
                     </div>
                     <div class="news_list">
                         <a href="#">
@@ -78,7 +113,7 @@
                                 <p><span class="source">中南海</span><span class="date">一小时前</span></p>
                             </div>
                         </a>
-                        <img src="../images/recommend.png" class="recommends"/>
+
                     </div>
                     <div class="news_list">
                         <a href="#">
@@ -89,12 +124,10 @@
                                 <p><span class="source">中南海</span><span class="date">一小时前</span></p>
                             </div>
                         </a>
-                        <img src="../images/recommend.png" class="recommends"/>
+
                     </div>
 
 
-                <!--以下为页面的留白区域-->
-            <div class="blank"></div>
 
 
 
@@ -104,27 +137,55 @@
 
         </div>
 
-        <!--以下为点击加载更多-->
-        <div class="more">加载更多</div>
-    </div>
-        <div class="content-center"></div>
-        <div class="content-right" id="content-right">
+              <!--以下为点击加载更多-->
+           <div class="more">加载更多</div>
+        </div>
+        <!--以下为内容右侧（广告）-->
+        <div class="content-right">
+            <div class="bigadv">
+                <img src="../images/adv.png" class="adv"/>
+                <img src="../images/adv_icon.png" class="adv_icon"/>
+            </div>
+            <div class="smalladv">
+                <img src="../images/adv.png" class="adv"/>
+                <img src="../images/adv_icon.png" class="adv_icon"/>
+            </div>
+
+
+
         </div>
     </div>
 </div>
 
 
 <!--以下为回到顶部的图片-->
-<a href="#" id="backtop"/><img src="../images/top.png"/></a>
+<a href="#" id="backtop"/><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
+<!--以下为轮播图-->
+<script>
+var swiper = new Swiper('.swiper-container', {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+    },
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+    }
+});
+
+
+</script>
 
 </body>
 <script>
     window.onload=function(){
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
     }
 
 </script>

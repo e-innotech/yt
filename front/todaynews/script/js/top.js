@@ -21,7 +21,13 @@ $(function() {
         globalQuery(3, newsTitle, 1, 5, getSearchList);
     });
 
+    var $nava=$(".nav");
+    $nava.children("li").click(
+        function(){
 
+            $(this).children("a").addClass("active");
+            $(this).siblings().children("a").removeClass("active")
+        });
     //添加样式
     //$(".nav a").each(function(){
     //    $this = $(this);

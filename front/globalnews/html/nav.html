@@ -18,14 +18,14 @@
         <!--以下为广告-->
         <div class="listadvise">
             <!--广告-->
-            <img src="../images/advise.png" class="bigImg"/>
+            <img src="../images/advise.png" class="adv"/>
             <!--定的广告的小图标-->
-            <img src="../images/adv.png" class="smallImg"/>
+            <img src="../images/adv_icon.png" class="adv_icon"/>
         </div>
         <!--以下为新闻列表-->
         <div class="news_listbox">
             <div class="news_list">
-                <a href="#">
+                <a href="detail.html">
                     <h2>
                         独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
@@ -36,7 +36,7 @@
                 </a>
             </div>
             <div class="news_list">
-                <a href="#">
+                <a href="detail.html">
                     <h2>
                         独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
@@ -47,7 +47,7 @@
                 </a>
             </div>
             <div class="news_list">
-                <a href="#">
+                <a href="detail.html">
                     <h2>
                         独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
@@ -58,7 +58,7 @@
                 </a>
             </div>
             <div class="news_list">
-                <a href="#">
+                <a href="detail.html">
                     <h2>
                         独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
@@ -69,7 +69,7 @@
                 </a>
             </div>
             <div class="news_list">
-                <a href="#">
+                <a href="detail.html">
                     <h2>
                         独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
@@ -80,7 +80,7 @@
                 </a>
             </div>
             <div class="news_list">
-                <a href="#">
+                <a href="detail.html">
                     <h2>
                         独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
@@ -90,27 +90,30 @@
                     <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
                 </a>
             </div>
-
-
-
-
-
-
         </div>
 
         <!--以下为点击加载更多-->
-        <div class="more">加载更多</div>
+        <div class="page">
+            <p class="prevpage">上一页</p>
+            <p class="nextpage">下一页</p>
+        </div>
     </div>
-       <div class="content-center"></div>
        <div class="content-right" id="content-right">
-
+           <div class="bigadv">
+               <img src="../images/adv.png" class="adv"/>
+               <img src="../images/adv_icon.png" class="adv_icon"/>
+           </div>
+           <div class="smalladv">
+               <img src="../images/adv.png" class="adv"/>
+               <img src="../images/adv_icon.png" class="adv_icon"/>
+           </div>
        </div>
     </div>
 </div>
 
 
 <!--以下为回到顶部的图片-->
-<a href="#" id="backtop"/><img src="../images/top.png"/></a>
+<a href="#" id="backtop"/><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
 </body>
@@ -118,7 +121,7 @@
     window.onload=function(){
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
+
     }
 
 
