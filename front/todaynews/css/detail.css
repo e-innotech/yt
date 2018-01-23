@@ -61,7 +61,8 @@
     overflow: hidden;
     font-size:15px;
     color:#ababab;
-    margin:40px 10px 30px 10px;
+    margin:40px 10px 0px 10px;
+    /*margin:40px 10px 30px 10px;*/
 
 
 
@@ -83,14 +84,17 @@
     right:306px;
     display:none;
 }
+.detailblank{
+    height:30px;
+    background:#fff;
+
+}
 .detailadv{
     width:150px;
     height:160px;
     position:fixed;
     top:122px;
     right:200px;
-    /*background:url(../images/adv.png)no-repeat 100px 50px;*/
-
 }
 .detailadv .bigImg{
     width:100%;
