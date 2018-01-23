@@ -22,7 +22,7 @@ $(function(){
     var renderUser = function(){
         if(sessionStorage.getItem("user") != null){
             var user = JSON.parse(sessionStorage.getItem("user"));
-            console.log(999,user);
+            //console.log(999,user);
             var imgUrl = '../images/ren.png';
             if(user.infos){
                 if(user.infos.icon) {
@@ -33,8 +33,17 @@ $(function(){
 
             $('.header-right-r').css('width','115px');
             $('.header-right-r p').css('display','block');
+            //点击退出登录时
             $('#logoutBtn').click(function(){
-                sessionStorage.setItem('currentUrl',location.href);
+                var member=sessionStorage.getItem("member");
+                //console.log(55,member);
+                //判断如果在会员资料页面就跳到首页去否则就跳到退出的那个页面
+                if(sessionStorage.getItem('currentUrl')==member){
+                    alert(member);
+                    location.href="index.html";
+                }else{
+                    sessionStorage.setItem('currentUrl',location.href);
+                }
                 memberslogout();
             });
 
