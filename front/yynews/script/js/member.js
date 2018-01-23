@@ -11,7 +11,6 @@ $(function(){
             coll();
             sessionStorage.removeItem("ddd");
         }
-
     }
     var mempage=1;
     //选项卡
@@ -61,12 +60,8 @@ $(function(){
     //点击确认修改时的逻辑
     $('#editBtn').click(function(){
         var data = serializeObject($('#userForm').serializeArray());
-        console.log(6666,serializeObject($('#userForm').serializeArray()));
-        //console.log(6666,$('#userForm').serializeArray());
-        console.log('data:',data);
         membersEdit(data,function callback(data){
             sessionStorage.setItem('user',JSON.stringify(data));
-            console.log(77);
             switchInfo(false);
         });
 
@@ -74,7 +69,8 @@ $(function(){
     //点击修改密码逻辑时
     $('#pwdBtn').click(function(){
         var data = serializeObject($('#pwdForm').serializeArray());
-        membersPwd(data)
+        membersPwd(data);
+
     });
 
     //判断个人资料和修改个人资料那个显示，那个隐藏的
@@ -152,6 +148,14 @@ $(function(){
     });
     //收藏点击上一页时
     $("#collprevpage").click(function(){
+
+
+
+
+
+
+
+
         mempage--;
         if(mempage==0){
             mempage=1;

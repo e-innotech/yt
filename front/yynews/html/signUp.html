@@ -22,11 +22,11 @@
 		             <span class="text">免费获取手机验证码</span>
 		        </div>
 		        <div class="common password-con"><i></i>
-		              <input type="text"  class="textbox" name="password" id="password" placeholder="密码" maxlength="16">
+		              <input type="password"  class="textbox" name="password" id="password" placeholder="密码" maxlength="16">
 		              <span id="passwordreminder"></span>
 		        </div>
 		        <div class="common password-con " id="newpassword">
-		              <input type="text" class="textbox" id="verifyPassword" placeholder="再次输入密码" maxlength="16">
+		              <input type="password" class="textbox" id="verifyPassword" placeholder="再次输入密码" maxlength="16">
 		              <span id="verifyPreminder"></span>
 		        </div>
 
@@ -72,17 +72,17 @@
    	   $("#passwordreminder").text("6-16位，英文（区分大小写）、只支持英文加字母");
 
    })
-
-	//验证密码
-	$("#password").on("blur",function(){
-		var v= $(this).val();
-		console.log(2,v)
-		var reg= /^[a-zA-Z]{6,16}$/;
-		if(!(reg.test(v))){
-			$("#passwordreminder").text("密码不符合要求");
-		}else{
-			$("#passwordreminder").text("正确");
-		}
+ 
+   //验证密码
+    $("#password").on("blur",function(){
+	   	  var v= $(this).val();
+	   	  console.log(2,v)
+	   	  var reg= /^[a-zA-Z]{6,16}$/;
+	   	  if(!(reg.test(v))){
+	   	  	 $("#passwordreminder").text("密码不符合要求");
+	   	  }else{
+			  $("#passwordreminder").text("正确");
+		  }
 
 	})
 

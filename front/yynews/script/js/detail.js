@@ -116,12 +116,6 @@ function collectAdd(publishId,callback){
 
     });
 
-    ////点击收藏时，如上
-    //$(".cang img").on("click", function () {
-    //    $(this).attr("src", "../images/collect.png");
-    //    $(".cang p").css("display", "none")
-    //})
-
 //渲染详情页的广告
 	adList(2,function callback(list){
 		console.log(47,list);
