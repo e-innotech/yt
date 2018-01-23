@@ -72,18 +72,19 @@
    	   $("#passwordreminder").text("6-16位，英文（区分大小写）、只支持英文加字母");
 
    })
- 
-   //验证密码
-    $("#password").on("blur",function(){
-	   	  var v= $(this).val();
-	   	  console.log(2,v)
-	   	  var reg= /^[a-zA-Z]{6,16}$/;
-	   	  if(!(reg.test(v))){
-	   	  	 $("#passwordreminder").text("请输入密码");
 
-	   	  }
+	//验证密码
+	$("#password").on("blur",function(){
+		var v= $(this).val();
+		console.log(2,v)
+		var reg= /^[a-zA-Z]{6,16}$/;
+		if(!(reg.test(v))){
+			$("#passwordreminder").text("密码不符合要求");
+		}else{
+			$("#passwordreminder").text("正确");
+		}
 
-   })
+	})
 
 //再次输入密码的验证
 $("#verifyPassword").on("blur",function(){

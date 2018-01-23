@@ -34,7 +34,18 @@ $(function(){
             $('.header-right-r').css('width','115px');
             $('.header-right-r p').css('display','block');
             $('#logoutBtn').click(function(){
-                sessionStorage.setItem('currentUrl',location.href);
+
+                //sessionStorage.setItem('currentUrl',location.href);
+                //memberslogout();
+                var member=sessionStorage.getItem("member");
+                //console.log(55,member);
+                //判断如果在会员资料页面就跳到首页去否则就跳到退出的那个页面
+                if(sessionStorage.getItem('currentUrl')==member){
+                    alert(member);
+                    location.href="index.html";
+                }else{
+                    sessionStorage.setItem('currentUrl',location.href);
+                }
                 memberslogout();
             });
 
