@@ -8,7 +8,6 @@ body {
     background: #fff;
     color: #333;
     font-size: 12px;
-    margin-top: 5px;
     font-family: "SimSun", "宋体", "Arial Narrow", "微软雅黑";
 }
 
@@ -39,6 +38,7 @@ h2 {
 
 img {
     display: block;
+    border: none;
 }
 
 body {
@@ -89,7 +89,7 @@ input {
     border: none;
     font-size: 22px;
     color: #333;
-    margin: 120px 42% 220px;
+    margin: 120px 44% 220px;
     cursor: pointer;
 }
 

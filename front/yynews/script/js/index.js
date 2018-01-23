@@ -29,7 +29,7 @@ $(document).ready(function () {
         };
         var mySwiper = new Swiper ('.swiper-container', {
             autoplay: {
-                delay: 1000, stopOnLastSlide: false, disableOnInteraction: false
+                delay: 100000, stopOnLastSlide: false, disableOnInteraction: false
             },
             loop: true,
             navigation:{
