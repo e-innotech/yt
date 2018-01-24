@@ -150,6 +150,7 @@
 
 .content-left-r .top{
 	margin-bottom:10px;
+	overflow:hidden;
 }
 
 /*以下为新闻列表*/

@@ -1,0 +1,22 @@
+/*以下为尾部*/
+
+.footerbg{
+    border-top:3px solid #5fbcfd;
+    width:100%;
+    background:#fff;
+    height:226px;
+    overflow: hidden;
+}
+
+.footerbg p{
+    color:#000;
+    font-size:20px;
+    text-align:center;
+}
+.footerbg .siteinfo{
+    margin-top:81px;
+}
+.footerbg .sitelimit{
+    margin-top:30px;
+    padding-bottom:74px;
+}
