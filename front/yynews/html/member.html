@@ -84,7 +84,8 @@
                                 </div>
                                 <div class="list" id="list3">
                                     <span>邮箱：</span>
-                                    <input type="text" name="email"/>
+                                    <input type="text" name="email" id="email"/>
+                                    <span class="email_text"></span>
                                 </div>
                                 <div class="list" id="list4">
                                     <span>地址：</span>
@@ -159,13 +160,16 @@
                          <span>原始密码：</span>
                          <input type="password" name="currentPwd"/>
                        </div>
-                       <div class="password newpassword">
+                       <div class="password newpassword" >
                          <span>新密码：</span>
-                         <input type="password" name="passWord"/>
+                         <input type="password" name="passWord" id="editPw"/>
+                           <span class="editPw"></span>
+
                        </div>
                        <div class="password truepassword">
                          <span>确认密码：</span>
-                         <input type="password"/>
+                         <input type="password"  id="curPw"/>
+                           <span class="curPw"></span>
                        </div>
                        <input type="button" class="affirmresive" id="pwdBtn" value="确认修改"/>
                      </form>
@@ -186,8 +190,44 @@
 //        $("#personData").addClass("actives");
 //
 //    }
-//把当前页面存起来
- sessionStorage.setItem("member",location.href);
+sessionStorage.setItem("member",location.href);
+
+//验证密码
+$("#editPw").on("blur",function(){
+    var v= $(this).val();
+    var reg= /^(\w){6,20}$/;
+    if(v==$('input[name="currentPwd"]').val()){
+        $(".editPw").text("新密码和旧密码一样");
+    }else{
+        if(!(reg.test(v))){
+            $(".editPw").text("密码不符合要求");
+        }else{
+            $(".editPw").text("正确");
+        }
+    }
+})
+
+//再次输入密码的验证
+$("#curPw").on("blur",function(){
+    var v= $(this).val();
+    var p= $("#editPw").val()
+    if(v!==p){
+        $(".curPw").text("两次密码不一致");
+    }else{
+        $(".curPw").text("正确");
+    }
+})
+//邮箱
+$("#email").on("blur",function(){
+    var v= $(this).val();
+    var reg= /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    if(!(reg.test(v))){
+        $(".email_text").text("请输入正确邮箱");
+    }else{
+        $(".email_text").text("正确");
+    }
+
+})
 
 </script>
 </html>

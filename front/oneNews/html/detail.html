@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- 以下为头部 -->
-<div class="top"></div>
+<div class="top" id="top"></div>
 
 
 <div class="detail_content clearfix">
@@ -56,14 +56,13 @@
 <div class="top_img">
     <a href="#"><img src="../images/top.png" class="back_to_top"/></a>
 </div>
-<div class="bottom"></div>
+<div class="bottom" id="bottom"></div>
 
 </body>
 <script type="text/javascript">
     window.onload = function () {
-        $(".top").load("top.html");
-        $(".bottom").load("bottom.html");
-        $(".content-right").load("right.html");
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
     }
 
 

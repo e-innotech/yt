@@ -1,95 +1,156 @@
-.news_nav {
+/*广告标签*/
+.ad_right {
+    position: fixed;
+    z-index: 100;
+    top: 155px;
+    right: 0;
+}
+
+.ad_left {
+    position: fixed;
+    z-index: 100;
+    top: 155px;
+
+}
+
+.ad_icon2 {
+    position: relative;
+    top: -32px;
+    left: 215px;
+
+}
+
+.content_list .content_list_detail {
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+.content_list .content_list_detail h3 {
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content_list .content_list_detail p {
+    font-size: 16px;
+    color: #666;
+}
+
+.content_list .newsList {
+    margin-top: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+.content_list .newsList li {
+
+    font-size: 16px;
+    color: #666;
+}
+
+.content_list .newsList li h4 {
+    display: inline-block;
+}
+
+.content_list .newsList li a {
+    display: inline-block;
+    width: 625px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_list {
     width: 1200px;
     margin: 0 auto;
 }
 
-.nav_list {
-    width: 945px;
-    float: left;
+.news_list .news_list_left {
+    width: 740px;
+    margin-top: 20px;
 }
 
-.nav_list ul {
-    overflow: hidden;
-    width: 945px;
-}
+.news_list .news_list_left li {
 
-.nav_list li {
-    width: 945px;
-    margin: 15px;
-    float: left;
-}
-
-.nav_list .num {
+    width: 740px;
     display: inline-block;
-    background: #f79a01;
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 30px;
-    font-size: 20px;
-    float: left;
+    height: 180px;
+
 }
 
-.nav_list h3 {
-    font-size: 18px;
-    line-height: 30px;
-    margin-top: 5px;
+.news_list .news_list_left li .title h3 {
+    font-size: 20px;
+    color: #000;
+    line-height: 40px;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
-    margin-left: 40px;
 }
 
-.nav_list p {
+.news_list .news_list_left li .title span {
+    font-size: 20px;
+    line-height: 40px;
+    color: #999;
+}
+
+.news_list .news_list_left li .content_news {
+    border-bottom: 1px dashed #cdcdcd;
+    line-height: 28px;
+    font-size: 20px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom:30px;
+}
+.news_list .news_list_left li .content_news span{
+    color: #ff0000;
+}
+.news_list .news_list_right {
+    width: 416px;
+    height: 400px;
+    background: #f7f7f7;
+    padding: 20px 12px;
+}
+
+.news_list .news_list_right h3 {
+    color: #000;
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.news_list .news_list_right span {
+    font-size: 20px;
+    color: #ff0000;
+    font-style: italic;
+}
+
+.news_list .news_list_right li a {
+    display: inline-block;
+    width: 416px;
+    padding-right: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 36px;
     font-size: 16px;
-    color: #666;
-    line-height: 35px;
-    margin-top: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    margin-left: 40px;
-
+    color: #999;
 }
-
-.nav_list .list_info span, .nav_list .list_info span a {
-    font-size: 12px;
-    color: #999999;
-    padding: 0 10px;
-    margin-left: 20px;
-    line-height: 30px;
+.pageBtn button{
+    width: 141px;
+    height: 55px;
+    background: #fff;
+    border: 1px solid #c1c1c1;
+    border-radius:2px ;
+    margin-top: 40px;
+    margin-bottom: 102px;
+    cursor: pointer;
+    font-size: 22px;
 }
-
-.nav_list .list_info .time {
-    border-left: 1px solid #999999;
-    margin-left: 10px;
+.pageBtn .prev{
+    margin-left: 185px;
 }
-
-.btnPage {
-    margin: 85px 300px;
-}
-
-.btnPage button {
-    width: 138px;
-    height: 38px;
-    line-height: 38px;
-    border: 1px solid #c9c9c9;
-    border-radius: 5px;
-    background: #f3f3f3;
-    font-size: 20px;
-}
-
-.btnPage button.next {
-    margin-left: 40px;
-}
-
-
-.ad_icon {
-    width: 48px;
-    height: 28px;
-    position: relative;
-    top: -40px;
-    right: -140px;
+.pageBtn .next{
+    margin-left: 88px;
 }

@@ -29,7 +29,7 @@ $(document).ready(function () {
         };
         var mySwiper = new Swiper ('.swiper-container', {
             autoplay: {
-                delay: 1000, stopOnLastSlide: false, disableOnInteraction: false
+                delay: 100000, stopOnLastSlide: false, disableOnInteraction: false
             },
             loop: true,
             navigation:{
@@ -49,7 +49,7 @@ $(document).ready(function () {
                     // 创建一个放新闻的容器
                     var list = $("<div class='list' id='list'></div>");
                     //创建图片
-                    var creatImgbig = $("<img />");
+                    var creatImgbig = $("<img onload='drawImage(this,260,140)'/>");
                     var creatImga = $('<a href="detail.html?id='+newlist[i].publishId+'"'+'></a>');
                     creatImgbig.attr("src", newlist[i].topImagePath);
                     creatImga.append(creatImgbig);
@@ -146,7 +146,7 @@ $(document).ready(function () {
         for (var i = 0; i <list.length; i++) {
                 $(".content-left-r").append('<div class="top">' +
                 '<a href="detail.html?id='+list[i].publishId+'">' +
-                '<img src="' + list[i].topImagePath + '"/>' +
+                '<img src="' + list[i].topImagePath + '"  onload="drawImage(this,278,148)"/>' +
                 '<div class="bgcolortwo">' +
                 '<p>' + list[i].newsTitle + '</p>' +
                 '</div>' +

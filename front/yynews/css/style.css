@@ -6,6 +6,7 @@
 }
 img {
     display:block;
+    border: none;
 }
 body{
     background: #f4f4f4;

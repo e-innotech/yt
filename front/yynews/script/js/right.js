@@ -12,7 +12,7 @@ $(document).ready(function(){
     homeList(4, 1, 7, function callback(list) {
         var creattaga = $("<a href=" + '"detail.html?id=' + list[0].publishId + '"' + "></a>");
         creattaga.append('<div class="imgnewlist">' +
-        '<img src=' + list[0].topImagePath + '>' +
+        '<img src=' + list[0].topImagePath + ' onload="drawImage(this,314,156)"/>' +
         '<p class="textone">' + list[0].newsTitle + '</p>' +
         '<p class="texttwo">' + removeHTMLTag(removeHTMLTag(list[0].subContent)) + '</p>' +
         '</div>');
@@ -40,7 +40,7 @@ $(document).ready(function(){
                var creata = $("<a href="+'"detail.html?id='+list[n].publishId+'"'+" style='color: #fff;'></a>");
 
 
-               var creatImg = $("<img class='bigimg'/>");
+               var creatImg = $("<img class='bigimg' onload='drawImage(this,350,222)'/>");
                creatImg.attr("src", list[n].topImagePath);
                textpicBox.append(creata);
                creata.append(creatImg)

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>中国新闻采编网</title>
     <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
-
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
     <script type="text/javascript" src="../script/jquery.min.js"></script>
     <script src="../script/swiper.min.js"></script>
@@ -14,49 +13,58 @@
 </head>
 <body>
 <!-- 以下为头部 -->
-<div class="top"></div>
+<div class="top" id="top"></div>
 
-
-
-
-
+<!--两侧广告-->
+<div>
+    <div class="fl ad_left">
+        <img src="../images/ad_left.png" alt="左侧广告"/>
+        <img class="ad_icon2" src="../images/ad_icon.png" alt="标签"/>
+    </div>
+    <div class="fr ad_right">
+        <img src="../images/ad_left.png" alt="右侧广告"/>
+        <img class="ad_icon2" src="../images/ad_icon.png" alt="标签"/>
+    </div>
+</div>
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content clearfix">
 
         <div class="content-right fl">
             <div class="content_list">
-                <ul>
+                <div class="content_list_detail">
+                    <h3>习近平对政法工作作出重要指示</h3>
 
+                    <p>新华社北京1月22日电 中共中央总书记、国家主席、中央军委主席习近平近日就政法工作作出重要指示，对党的十八大以来政法战线取得的成绩给予充分肯定，对新时代政法工作提出明确要求。</p>
+                </div>
+                <ul class="newsList">
                     <li>
-                        <a href="">
-                            <h2>印巴连续激战4天 莫迪急灭火:别打了 一起去抗贫</h2>
-
-                            <p>海外网1月22日电印巴军队连续4天在边境地区进行激战，造成双方伤亡惨重</p>
-                        </a>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现美军很难发现美军很难发现美军很难发现美军很难发现美军很难发现美军很难发现美军很难发现美军很难发现美军很难发现</a>
                     </li>
                     <li>
-                        <a href="">
-                            <h2>印巴连续激战4天 莫迪急灭火:别打了 一起去抗贫</h2>
-
-                            <p>海外网1月22日电印巴军队连续4天在边境地区进行激战，造成双方伤亡惨重</p>
-                        </a>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现美军很难发现</a>
                     </li>
                     <li>
-                        <a href="">
-                            <h2>印巴连续激战4天 莫迪急灭火:别打了 一起去抗贫</h2>
-
-                            <p>海外网1月22日电印巴军队连续4天在边境地区进行激战，造成双方伤亡惨重</p>
-                        </a>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现美军很难发现</a>
+                    </li>
+                    <li>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现</a>
+                    </li>
+                    <li>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现</a>
+                    </li>
+                    <li>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现</a>
+                    </li>
+                    <li>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现</a>
+                    </li>
+                    <li>
+                        <a href=""><h4>【生活消费】</h4>美军很难发现</a>
                     </li>
                 </ul>
             </div>
-            <div class="content_ad">
-                <a href=""><img src="../images/content_ad.png" alt="广告"/></a>
-                <img class="ad_icon2" src="../images/ad_icon.png" alt="标记"/>
 
-
-            </div>
         </div>
         <div class="content-left fr">
             <div class="banner swiper-container">
@@ -93,12 +101,13 @@
                     </li>
                 </ul>
                 <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
-                    <span class="swiper-pagination-bullet">1</span>
-                    <span class="swiper-pagination-bullet">2</span>
-                    <span class="swiper-pagination-bullet">3</span>
+                    <span class="swiper-pagination-bullet">Slide 1</span>
+                    <span class="swiper-pagination-bullet">Slide 1</span>
+                    <span class="swiper-pagination-bullet">Slide 1</span>
                 </div>
             </div>
         </div>
+        <div style="clear: both"></div>
         <!--广告-->
         <div class="ad">
             <a href=""><img class="ad_img" src="../images/ad_center.png" alt="广告"/></a>
@@ -106,19 +115,16 @@
         </div>
     </div>
     <div class="news_list clearfix">
-        <ul>
+        <ul class="news_list_left fl">
             <li>
                 <a href="">
                     <div>
                         <img src="../images/news_list.png" alt=""/>
 
-                        <h3>江西大上清宫遗址露“真容”</h3>
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
 
-                        <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                        <div class="list_info">
-                            <span class="source"><a href="">中华网</a></span>
-                            <span class="time">1小时前</span>
+                            <span class="time">2018-1-23</span>
                         </div>
                     </div>
                 </a>
@@ -128,229 +134,136 @@
                     <div>
                         <img src="../images/news_list.png" alt=""/>
 
-                        <h3>江西大上清宫遗址露“真容”</h3>
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
 
-                        <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                        <div class="list_info">
-                            <span class="source"><a href="">中华网</a></span>
-                            <span class="time">1小时前</span>
+                            <span class="time">2018-1-23</span>
                         </div>
                     </div>
                 </a>
             </li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div>
-                    <img src="../images/news_list.png" alt=""/>
-
-                    <h3>江西大上清宫遗址露“真容”</h3>
-
-                    <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                    <div class="list_info">
-                        <span class="source"><a href="">中华网</a></span>
-                        <span class="time">1小时前</span>
-                    </div>
-                </div>
-            </a></li>
             <li>
                 <a href="">
                     <div>
                         <img src="../images/news_list.png" alt=""/>
 
-                        <h3>江西大上清宫遗址露“真容”</h3>
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
 
-                        <p>内容内容内容内容内容内容内容内容内容内容内容</p>
-
-                        <div class="list_info">
-                            <span class="source"><a href="">中华网</a></span>
-                            <span class="time">1小时前</span>
+                            <span class="time">2018-1-23</span>
                         </div>
                     </div>
                 </a>
             </li>
-            <button class="more">加载更多</button>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <div>
+                        <img src="../images/news_list.png" alt=""/>
+
+                        <div class="title">
+                            <h3>江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容江西大上清宫遗址露真容</h3>
+
+                            <span class="time">2018-1-23</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <div class="moreBtn">
+                <a class="more" href="">加载更多</a>
+            </div>
         </ul>
+        <div id="hot_list"></div>
     </div>
 </div>
 <div class="top_img">
     <a href="#"><img src="../images/top.png" class="back_to_top"/></a>
 </div>
-<div class="bottom"></div>
+<div class="bottom" id="bottom"></div>
 <script>
 
 
     window.onload = function () {
-        $(".top").load("top.html");
-        $(".bottom").load("bottom.html");
+        $("#top").load("top.html");
+        $("#hot_list").load("right.html");
+        $("#bottom").load("bottom.html");
     }
     //轮播图
 
@@ -358,7 +271,7 @@
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-            delay: 250000000,
+            delay: 2500000,
             disableOnInteraction: false
         },
         pagination: {

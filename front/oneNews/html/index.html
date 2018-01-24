@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- 以下为头部 -->
-<div class="top"></div>
+<div class="top" id="top"></div>
 
 
 
@@ -36,7 +36,6 @@
 
                             <div class="bgcolor">
                                 <p>卡乐芙电视里的咖啡机案件辅导老师的机案件的咖啡机案件</p>
-                                <span></span>
                             </div>
                         </a>
                     </li>
@@ -46,7 +45,6 @@
 
                             <div class="bgcolor">
                                 <p>22日电印巴军队连续4天在边境地区进行激战</p>
-                                <span></span>
                             </div>
                         </a>
                     </li>
@@ -56,7 +54,6 @@
 
                             <div class="bgcolor">
                                 <p>o电视台报道，莫迪21日在接受印度新闻</p>
-                                <span></span>
                             </div>
                         </a>
                     </li>
@@ -334,19 +331,20 @@
                 </a>
             </li>
             <button class="more">加载更多</button>
+
         </ul>
     </div>
 </div>
 <div class="top_img">
     <a href="#"><img src="../images/top.png" class="back_to_top"/></a>
 </div>
-<div class="bottom"></div>
+<div class="bottom" id="bottom"></div>
 <script>
 
 
     window.onload = function () {
-        $(".top").load("top.html");
-        $(".bottom").load("bottom.html");
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
     }
     //轮播图
     var mySwiper = new Swiper('.swiper-container', {
