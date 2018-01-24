@@ -19,7 +19,7 @@ $(document).ready(function () {
         for (var i = 0; i < list.length; i++) {
             var html = '<div class="swiper-slide">' +
                 '<a href="detail.html?id=' + list[i].publishId + '">' +
-                '<img class="picture" src="' + list[i].topImagePath + '"/>' +
+                '<img class="picture" src="' + list[i].topImagePath + '" onload="drawImage(this,552,306)"/>' +
                 '<div class="bgcolor">' +
                 '<p> ' + list[i].newsTitle + '</p>' +
                 '</div>' +

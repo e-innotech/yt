@@ -393,3 +393,16 @@ function loginTimeOut(){
     alert(re.msg);
 }
 
+function drawImage(ImgD,twidth,theight){
+    console.log(ImgD);
+    ImgD.style = 'margin:0 0 0 0';
+    var image=new Image();
+    image.src=ImgD.src;
+    var radix = twidth/theight;
+
+    if(image.width/image.height >= radix){
+        ImgD.height = theight;
+    }else{
+        ImgD.width = twidth;
+    }
+}
