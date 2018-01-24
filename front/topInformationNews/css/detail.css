@@ -2,26 +2,28 @@
 .ad_right {
 	position: fixed;
 	z-index: 100;
-	top: 155px;
+	top: 180px;
 	right: 0;
 }
 
 .ad_left {
 	position: fixed;
 	z-index: 100;
-	top: 155px;
+	top: 180px;
 
 }
 
 .ad_icon2 {
 	position: relative;
 	top: -32px;
-	left: 215px;
+	left: 140px;
 
 }
 
 
-
+.contentbg{
+	margin-top: 20px;
+}
 .news_list {
 	width: 1200px;
 	margin: 0 auto;
@@ -94,18 +96,19 @@
 }
 .news_list .article .article_content p{
 	margin: 25px 15px 0;
-	text-indent:2em;
 	font-size: 16px;
 	color: #000;
 	line-height: 22px;
 }
 
 .notice {
-	margin:80px 10px 60px;
+	margin:50px 10px 50px;
 	font-size: 16px;
 	color: #969696;
 
 }
 .notice p{
 	line-height: 22px;
+	font-size: 16px;
+	color: #999999;
 }
