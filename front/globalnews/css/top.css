@@ -33,9 +33,6 @@
     padding:0 15px;
     text-align:center;
     font-size:20px;
-    /*line-height:120px;*/
-
-
 }
 .header .nav li a{
     display:inline-block;
@@ -43,10 +40,6 @@
     line-height:44px;
     /*height:46px;*/
     color:#000;
-}
-
-.nav li:nth-child(1) a{
-    border-bottom:1px solid #75b748;
 }
 .active{
    border-bottom:1px solid #75b748;

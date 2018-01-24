@@ -45,10 +45,11 @@
         $('.nav ul li').on('click',function(){
             sessionStorage.setItem('index',$(this).index());
             var index=sessionStorage.getItem('index');
+            console.log(111)
         })
     })
     if(sessionStorage.getItem('index')==''){
-       $('.nav li').eq(0).addClass('active').sibling().removeClass('active');
+       $('.nav li').eq(0).addClass('active').siblings().removeClass('active');
 
     }else{
 
