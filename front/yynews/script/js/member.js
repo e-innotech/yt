@@ -70,7 +70,7 @@ $(function(){
     $('#pwdBtn').click(function(){
         var data = serializeObject($('#pwdForm').serializeArray());
         membersPwd(data);
-
+        location.href=sessionStorage.getItem("login");
     });
 
     //判断个人资料和修改个人资料那个显示，那个隐藏的
@@ -148,14 +148,6 @@ $(function(){
     });
     //收藏点击上一页时
     $("#collprevpage").click(function(){
-
-
-
-
-
-
-
-
         mempage--;
         if(mempage==0){
             mempage=1;
