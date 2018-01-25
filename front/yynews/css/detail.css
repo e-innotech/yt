@@ -16,8 +16,12 @@
 	height:484px;
 	position:fixed;
 	top:98px;
-	left:240px;
-	z-index: 10;
+	left:-37%;
+	/*left:50%;*/
+	/*left:50%;*/
+	margin-left:240px;
+	/*left:240px;*/
+	/*z-index: 10;*/
 }
 .advertisingDe img{
 	width:100%;

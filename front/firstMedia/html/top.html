@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/top.js"></script>
+
+</head>
+<body>
+<!--以下为头部-->
+<div class="headerbg">
+    <div class="header">
+        <a href="index.html"><img src="../images/logo.png" class="logo"/></a>
+        <div class="header-r">
+            <form>
+                <input type="text" name="search"/>
+                <a href="#"><img src="../images/search.png" id="search"/></a>
+            </form>
+        </div>
+    </div>
+    <div class="advise">
+        <img src="../images/adv.png"/>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="nav.html">金融</a></li>
+            <li><a href="nav.html">体育</a></li>
+            <li><a href="nav.html">教育</a></li>
+            <li><a href="nav.html">文化</a></li>
+            <li><a href="nav.html">财经</a></li>
+        </ul>
+    </div>
+
+</div>
+<div class="topblank"></div>
+<!--以下为导航-->
+
+
+</body>
+<script>
+    //添加头部样式的
+    $(function(){
+        $('.nav ul li').on('click',function(){
+            sessionStorage.setItem('index',$(this).index());
+            var index=sessionStorage.getItem('index');
+        })
+    })
+    if(sessionStorage.getItem('index')==''){
+       $('.nav li').eq(0).addClass('active').sibling().removeClass('active');
+
+    }else{
+
+      $('.nav li').eq(sessionStorage.getItem('index')).addClass('active');
+    }
+
+    $(".logo").click(function(){
+        sessionStorage.setItem('index','')
+    })
+</script>
+</html>

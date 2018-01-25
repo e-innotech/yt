@@ -112,16 +112,29 @@
     background:#fff;
 
 }
+.Reprint_instr{
+    margin-top:62px;
+    margin-bottom:54px;
+    font-size:15px;
+    color:#9f9f9f;
+    line-height:22px;
+
+}
 /*以下为广告*/
 .detailadv_l{
+    width:258px;
+    height:230px;
     position:fixed;
     top:254px;
     left:0;
 }
 .detailadv_l img{
     width:100%;
+    height:100%;
 }
 .detailadv_r{
+    width:258px;
+    height:230px;
     position:fixed;
     right:0;
     top:253px;
