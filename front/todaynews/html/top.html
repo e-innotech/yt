@@ -34,4 +34,25 @@
 
 <div class="topblank"></div>
 </body>
+<script>
+    //添加头部样式的
+    $(function(){
+        $('.nav li').on('click',function(){
+            sessionStorage.setItem('index',$(this).index());
+            var index=sessionStorage.getItem('index');
+        })
+    })
+    if(sessionStorage.getItem('index')==''){
+        $('.nav li').eq(0).addClass('active').sibling().removeClass('active');
+
+    }else{
+        $('.nav li').eq(sessionStorage.getItem('index')).addClass('active');
+    }
+
+    $(".logo").click(function(){
+        sessionStorage.setItem('index','')
+    })
+
+
+</script>
 </html>

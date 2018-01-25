@@ -33,4 +33,25 @@
 </div>
 <div id="blank"></div>
 </body>
+<script>
+    //添加头部样式的
+    $(function(){
+        $('.nav li').on('click',function(){
+            sessionStorage.setItem('index',$(this).index());
+            var index=sessionStorage.getItem('index');
+//            console.log(44,index)
+        })
+    })
+    if(sessionStorage.getItem('index')==''){
+        $('.nav li').eq(0).addClass('active').siblings().removeClass('active');
+
+    }else{
+
+        $('.nav li').eq(sessionStorage.getItem('index')).addClass('active');
+    }
+
+    $(".logo").click(function(){
+        sessionStorage.setItem('index','')
+    })
+</script>
 </html>
