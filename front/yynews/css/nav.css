@@ -44,11 +44,11 @@
 /*以下为主体左边内容*/
 .content-left{
 	width:840px;
+	min-height:800px ;
 	background:#f4f4f4;
     float:left;
 
 }
-
 
 .content-left #news_Img{
 

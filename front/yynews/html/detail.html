@@ -15,7 +15,7 @@
       
     </div>
 <!-- 以下为竖条广告 -->
-<div class="advertisingDe">
+<div class="advertisingDe" id="advertisingDe">
 </div>
 
 
@@ -130,5 +130,33 @@ window.onload=function(){
     $('.bottom').load('bottom.html');
     $("#content-right").load('right.html');
 }
+
+
+//window.onresize=function(){
+//    var o = window.innerWidth;
+//    var cur_ad=$("#advertisingDe");
+//    console.log(o)
+//    o > 1412 ?  cur_ad.css("margin-left", -710+ "px"):cur_ad.css("margin-left", "-",600+"px");
+//}
+
+
+//function changeDivmarginLeft() {
+//
+////    console.log(cur_ad.style.marginLeft)
+//    if(cur_ad.style.marginLeft<=-1){
+////        alert(w)
+//        cur_ad.style.marginLeft = 0 + "px";
+//    }else{
+//        cur_ad.style.marginLeft = o/2 + "px";
+//    }
+//}
+//var bbc=$(window).width();
+//
+//    $(window).resize(function(){
+//        console.log("bbc的值"+bbc);
+//        $(".advertisingDe").css('marginLeft','-','710'-(bbc-$(window).width())+"px");
+////        console.log("移动的Margin值"+bbc-$(window).width())
+//    })
+
 </script>
 </html>

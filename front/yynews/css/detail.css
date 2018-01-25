@@ -12,12 +12,12 @@
 }
 
 .advertisingDe{
-	width:96px;
-	height:484px;
-	position:fixed;
-	top:98px;
-	left:240px;
-	z-index: 10;
+	width: 96px;
+	height: 484px;
+	position: fixed;
+	top: 98px;
+	left: 50%;
+	margin-left: -710px;
 }
 .advertisingDe img{
 	width:100%;
