@@ -9,7 +9,6 @@
     width: 700px;
     height: 350px;
     position: relative;
-    margin-top: 10px;
 
 }
 
@@ -26,7 +25,7 @@
     line-height: 50px;
     position: absolute;
     left: 0;
-    bottom: 10px;
+    bottom: 45px;
     background: rgba(0, 0, 0, .3);
 
 }
@@ -51,24 +50,25 @@
 
 /*。。。的位置和样式*/
 .swiper-container-horizontal > .swiper-pagination-bullets {
-    bottom: 60px;
+    bottom: 10px;
     width: 100%;
-    left: 300px;
+    left: -200px;
 }
 
 .swiper-pagination-bullet {
     display: inline-block;
-    background: #fefefb;
+    background: #8b8985;
     margin: 0 15px;
     opacity: 1;
     font-size: 14px;
-    width: 20px;
-    height: 20px;
+    width: 88px;
+    height: 5px;
+    border-radius: 0;
 }
 
 .swiper-pagination-bullet-active {
     /*选中的样式*/
-    background: #ff0000;
+    background: #1f77b9;
     font-size: 14px;
     opacity: 1;
 }
