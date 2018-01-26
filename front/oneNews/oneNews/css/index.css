@@ -43,7 +43,7 @@
 }
 
 .content-left .banner li {
-    width: 100%;
+    width: 721px;
     height: 406px;
     list-style: none;
     float: left;
@@ -163,7 +163,14 @@
     margin: 20px auto 180px;
     background: #fff;
 }
-
+.news_list .img_box{
+    width: 240px;
+    height: 170px;
+}
+.news_list .img_box img{
+    width: 100%;
+    height: 100%;
+}
 .news_list ul {
     padding: 20px 60px 0;
 }
@@ -215,4 +222,14 @@
     top: -32px;
     right: -386px;
 
+}
+
+.content_ad .img_box{
+    width: 440px;
+    height: 66px;
+    overflow: hidden;
+}
+.content_ad .img_box img{
+    width: 100%;
+    height: 100%;
 }

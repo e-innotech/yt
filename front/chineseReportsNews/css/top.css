@@ -44,7 +44,7 @@ img {
 
 body {
     font-family: 微软雅黑;
-    background: #f4f4f4;
+    background: #efefef;
 }
 
 ul, ol {
@@ -85,43 +85,47 @@ input {
     *zoom: 1; /*IE/7/6*/
 }
 
-.more {
-    background: #fff;
-    border: none;
-    font-size: 22px;
-    color: #333;
-    margin: 120px 44% 220px;
-    cursor: pointer;
+.moreBtn{
+    width: 824px;
+    height: 245px;
+    background: #efeeee;
+    text-align: center;
+}
+.moreBtn .more {
+    display: inline-block;
+    width: 132px;
+    height: 54px;
+    margin-top: 40px;
+    text-align: center;
+    line-height: 54px;
+    font-size: 20px;
+    color: #000;
+    border: 1px solid #bebebe;
 }
 
-/*广告*/
-.ad {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.ad .ad_img {
-    width: 1200px;
-    margin: 0 auto;
-}
-.ad .img_box{
-    width: 1200px;
-    height: 120px;
-}
 .img_box{
     overflow: hidden;
 }
-.ad .img_box img{
+.img_box img{
     width: 100%;
     height: 100%;
 }
-.ad_icon1 {
-    width: 48px;
-    height: 28px;
-    position: relative;
-    top: -40px;
-    right: -1145px;
+.ad_left .img_box{
+    width: 266px;
+    height: 216px;
 }
+/*广告*/
+.ad {
+    width: 100%;
+    margin-top: 10px;
+}
+.ad .img_box{
+    width: 1200px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+
 .back_to_top{
     display: none;
 }
@@ -136,7 +140,7 @@ input {
 .headerbg {
     width: 100%;
     background: #ffffff;
-    border-bottom: 1px solid #cdcdcd;
+    border-bottom:1px solid #cac9c9;
 }
 
 .header, .content, .footer {
@@ -145,7 +149,7 @@ input {
 }
 
 .header {
-    height: 120px;
+    height: 140px;
     background: #fff;
     overflow: hidden;
 
@@ -153,18 +157,17 @@ input {
 
 .header .logo {
     float: left;
-    margin-top: 20px;
+    margin: 48px 8px 48px 0;
 
 }
 
 .header .header-r {
     float: right;
-    width: 290px;
-    height: 40px;
-    background: #fff;
+    width: 327px;
+    height: 38px;
+    background: #e5e5e5;
     margin-top: 50px;
     border-radius: 2px;
-    border: 1px solid #f69900;
 }
 
 .header .header-r form {
@@ -173,69 +176,51 @@ input {
 
 .header .header-r form #search {
     position: absolute;
-    top: 10px;
-    right: 10px;
     cursor: pointer;
 }
 
 .header .header-r input {
-    width: 232px;
-    height: 40px;
-    line-height: 40px;
-    padding-left: 32px;
+    width: 267px;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 16px;
     background: none;
     border: none;
 
 }
-
-.header_nav {
-    width: 100%;
-    height: 50px;
-    line-height: 40px;
-    background: #f69900;
+.header-r button{
+    width: 59px;
+    height: 38px;
+    border: 0;
+    background: #fe0100;
+    font-size: 20px;
+    color: #fff;
 }
 
+.header_nav{
+    float: left;
+}
 .header_nav .nav {
-    width: 1200px;
-    margin: 0 auto;
-    height: 50px;
-    line-height: 50px;
+
 }
 
 .header_nav .nav li {
-    width: 124px;
-    height: 50px;
-    text-align: center;
     float: left;
-    color: #fff;
-    background: url("../images/border_image.png")no-repeat;
+    width: 20px;
+    margin:45px 0 45px 70px;
 }
 
 .header_nav .nav li a {
-    font-size: 22px;
+    font-size: 20px;
     display: inline-block;
-    width: 80px;
-    color: #fff;
+    color: #000;
 
 }
 
 .header_nav .nav a:hover {
-    border-bottom: 1px solid #ff0000;
-    color: #fff;
-    padding-top:6px;
-    height: 44px;
-    line-height: 44px;
-    position: relative;
-    top: -6px;
-
+    color: #ff0000;
 }
 .active{
-    border-bottom: 1px solid #ff0000;
-    color: #fff;
-    padding-top:6px;
-    height: 44px;
-    line-height: 44px;
-    position: relative;
-    top: -6px;
+    color: #ff0000;
 }
 

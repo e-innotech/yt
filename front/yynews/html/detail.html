@@ -132,31 +132,27 @@ window.onload=function(){
 }
 
 
-//window.onresize=function(){
-//    var o = window.innerWidth;
-//    var cur_ad=$("#advertisingDe");
-//    console.log(o)
-//    o > 1412 ?  cur_ad.css("margin-left", -710+ "px"):cur_ad.css("margin-left", "-",600+"px");
-//}
+window.onresize=function(){
+    changeDivmarginLeft();
+}
+//获取页面的原始宽度
+var original=$(window).width();
+console.log(222,original);
+function changeDivmarginLeft() {
+    //获取当前页面的宽度
+    var current = document.documentElement.clientWidth;//获取页面可见宽度
+//    var mmmm;
+    console.log(333, current);
 
+    console.log(777, original - current);
+    if (original - current >= 240) {
+        document.getElementById("advertisingDe").style.marginLeft = 0;
+    } else {
+//        mmmm =document.getElementById("advertisingDe").style.marginLeft-(original-current)+'px';
+        document.getElementById("advertisingDe").style.marginLeft -= (original - current) + 'px';
 
-//function changeDivmarginLeft() {
-//
-////    console.log(cur_ad.style.marginLeft)
-//    if(cur_ad.style.marginLeft<=-1){
-////        alert(w)
-//        cur_ad.style.marginLeft = 0 + "px";
-//    }else{
-//        cur_ad.style.marginLeft = o/2 + "px";
-//    }
-//}
-//var bbc=$(window).width();
-//
-//    $(window).resize(function(){
-//        console.log("bbc的值"+bbc);
-//        $(".advertisingDe").css('marginLeft','-','710'-(bbc-$(window).width())+"px");
-////        console.log("移动的Margin值"+bbc-$(window).width())
-//    })
-
+//        document.getElementById("advertisingDe").style.marginLeft = mmmm;
+    }
+}
 </script>
 </html>

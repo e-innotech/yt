@@ -1,5 +1,3 @@
-
-
 /*banner大小*/
 .content-left {
     width: 700px;
@@ -14,6 +12,10 @@
 
 }
 
+.content-left .banner .img_box {
+    width: 540px;
+    height: 538px;
+}
 
 .banner .bgcolor {
     width: 100%;
@@ -33,7 +35,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.bgcolor p{
+
+.bgcolor p {
     width: 100%;
     height: 50px;
     font-size: 20px;
@@ -44,13 +47,13 @@
     white-space: nowrap;
     line-height: 50px;
 }
+
 /*。。。的位置和样式*/
-.swiper-container-horizontal>.swiper-pagination-bullets{
+.swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: 60px;
     width: 100%;
     left: 300px;
 }
-
 
 .swiper-pagination-bullet {
     display: inline-block;
@@ -68,7 +71,6 @@
     font-size: 14px;
     opacity: 1;
 }
-
 
 .content-left .banner li {
     width: 100%;
@@ -101,7 +103,6 @@
 
 }
 
-
 .content-right {
     width: 440px;
     height: 375px;
@@ -109,17 +110,20 @@
     border-left: 6px solid #ff0000;
     margin-left: 60px;
 }
-.content-right .content_right_list li{
+
+.content-right .content_right_list li {
     width: 434px;
     height: 94px;
     border-bottom: 1px solid #e7e7e7;
 }
-.content-right .content_right_list li:hover{
+
+.content-right .content_right_list li:hover {
     background: #fff;
     height: 94px;
 
 }
-.content-right .content_right_list .title{
+
+.content-right .content_right_list .title {
     font-size: 20px;
     height: 60px;
     color: #000;
@@ -129,11 +133,12 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
-.content-right .content_right_list .time{
+
+.content-right .content_right_list .time {
     font-size: 16px;
     color: #999;
-    padding-left:10px;
-    padding-top:8px;
+    padding-left: 10px;
+    padding-top: 8px;
 }
 
 /*广告标签*/
@@ -143,57 +148,65 @@
     top: 170px;
     right: 0;
 }
+
 .ad_left {
     position: fixed;
     z-index: 100;
     top: 170px;
 
 }
-.ad_icon2{
+
+.ad_icon2 {
     position: relative;
     top: -32px;
     left: 140px;
 
 }
-.content_list .content_list_detail{
+
+.content_list .content_list_detail {
     padding-bottom: 20px;
     border-bottom: 1px dashed #d0d0d0;
 }
-.content_list .content_list_detail  h3{
+
+.content_list .content_list_detail h3 {
     font-size: 20px;
     color: #000;
     text-align: center;
     margin-bottom: 10px;
 }
 
-.content_list .content_list_detail p{
+.content_list .content_list_detail p {
     font-size: 16px;
     color: #666;
 }
-.content_list .newsList{
+
+.content_list .newsList {
     margin-top: 20px;
     padding-bottom: 18px;
     border-bottom: 1px dashed #d0d0d0;
 }
-.content_list .newsList li{
+
+.content_list .newsList li {
 
     font-size: 16px;
     color: #666;
 }
-.content_list .newsList li h4{
+
+.content_list .newsList li h4 {
     display: inline-block;
 }
-.content_list .newsList li a{
+
+.content_list .newsList li a {
     display: inline-block;
     width: 625px;
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.news_list{
+.news_list {
     width: 1200px;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 .news_list .news_list_left {
@@ -215,7 +228,7 @@
 .news_list .news_list_left li .title {
     float: left;
     margin: 10px 8px 0 10px;
-    width:510px;
+    width: 510px;
 
 }
 
@@ -224,15 +237,17 @@
     color: #000;
     line-height: 36px;
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
-.news_list .news_list_left li .title span{
+
+.news_list .news_list_left li .title span {
     font-size: 20px;
     color: #999;
     line-height: 36px;
 }
-.news_list .news_list_left li .title p{
+
+.news_list .news_list_left li .title p {
     font-size: 16px;
     color: #333333;
     height: 40px;

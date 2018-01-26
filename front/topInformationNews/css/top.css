@@ -2,7 +2,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
     margin: 0;
     padding: 0;
     border: 0;
-    font-weight:normal
+    font-weight: normal
 }
 
 body {
@@ -85,11 +85,12 @@ input {
     *zoom: 1; /*IE/7/6*/
 }
 
-.moreBtn{
+.moreBtn {
     width: 100%;
     text-align: center;
-    margin:60px 0 206px;
+    margin: 60px 0 206px;
 }
+
 .moreBtn .more {
     display: inline-block;
     width: 100%;
@@ -100,6 +101,15 @@ input {
     color: #000;
     background: #fff;
     border: none;
+}
+
+.img_box {
+    overflow: hidden;
+}
+
+.img_box img {
+    width: 100%;
+    height: 100%;
 }
 
 /*广告*/
@@ -121,7 +131,8 @@ input {
     top: -40px;
     right: -1145px;
 }
-.back_to_top{
+
+.back_to_top {
     display: none;
 }
 
@@ -131,14 +142,13 @@ input {
     right: 120px;
 }
 
-
 .headerbg {
     width: 100%;
     background: #ffffff;
     border-bottom: 1px solid #e6e6e6;
 }
 
-.header, .content, .footer,.header_nav {
+.header, .content, .footer, .header_nav {
     width: 1200px;
     margin: 0 auto;
 }
@@ -153,26 +163,31 @@ input {
     margin: 8px 0;
 
 }
-.header  .header_search{
+
+.header .header_search {
     float: left;
     margin: 30px 0 0 120px;
 }
-.header  .header_search .search_box{
+
+.header .header_search .search_box {
     float: left;
 }
-.header  .header_search .search_box input{
+
+.header .header_search .search_box input {
     width: 400px;
     height: 36px;
     border: 1px solid #e7e7e7;
     padding-left: 18px;
 
 }
-.header  .header_search .search_box img{
+
+.header .header_search .search_box img {
     position: relative;
     left: -34px;
     display: inline-block;
 }
-.header  .header_search .searchBtn{
+
+.header .header_search .searchBtn {
     color: #fff;
     background: #ff0000;
     width: 90px;
@@ -196,11 +211,12 @@ input {
 
 }
 
-.header_nav .nav li a{
+.header_nav .nav li a {
     font-size: 20px;
     color: #000;
 }
-.header_nav .nav li a:hover{
+
+.header_nav .nav li a:hover {
     color: #ff0000;
 }
 
