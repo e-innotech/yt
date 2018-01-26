@@ -10,4 +10,27 @@ $(document).ready(function () {
             $("#backtop").hide();
         }
     });
+
+    // 加载更多
+    var commentData="";
+    var page=1;
+    getHomeNewsList();
+    function getHomeNewsList() {
+        //传的网站ID 页数 一页显示几条数据
+        homeList(1, page, 8, function callback(newsList) {
+            commentData = newsList;
+        })
+    };
+
+    /*分页*/
+    $('.more').click(function(){
+        if (commentData.length <= 0) {
+            $('.more').html('没有更多了');
+        } else {
+            page++;
+            getHomeNewsList();
+        }
+    })
+
+
 })

@@ -43,7 +43,7 @@
         })
     })
     if(sessionStorage.getItem('index')==''){
-        $('.nav li').eq(0).addClass('active').sibling().removeClass('active');
+        $('.nav li').eq(0).addClass('active').siblings().removeClass('active');
 
     }else{
         $('.nav li').eq(sessionStorage.getItem('index')).addClass('active');

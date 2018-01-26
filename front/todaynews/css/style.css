@@ -13,6 +13,9 @@ body{
 ul,ol,ul,li{
     list-style: none;
 }
+h2{
+    font-weight:normal;
+}
 
 a{
     text-decoration: none;
