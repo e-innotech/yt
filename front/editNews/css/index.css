@@ -41,7 +41,7 @@
     border: 1px solid #e37015;
 }
 
-.swiper-pagination-bullet-active {
+.swiper-pagination-bullet  .swiper-pagination-bullet-active {
     /*选中的样式*/
     background: #989797;
     color: #e7691a;
