@@ -2,13 +2,14 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>中华新闻报道网</title>
+    <title>中华新闻采编网</title>
     <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
-    <script type="text/javascript" src="../script/jquery.min.js"></script>
-    <script src="../script/swiper.min.js"></script>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script src="../../script/swiper.min.js"></script>
     <script src="../script/js/index.js"></script>
-
+    <script src="../script/js/top.js"></script>
 
 </head>
 <body>
@@ -78,10 +79,7 @@
                             <div class="img_box">
                                 <img class="picture" alt="" src="../images/banner1.png"/>
                             </div>
-                            <div class="bgcolor">
-                                <p>卡乐芙电视里的咖啡机案件辅导老师的机案件的咖啡机案件</p>
-                                <span></span>
-                            </div>
+
                         </a>
                     </li>
                     <li class="swiper-slide">
@@ -89,20 +87,13 @@
                             <div class="img_box">
                                 <img class="picture" alt="" src="../images/banner1.png"/>
                             </div>
-                            <div class="bgcolor">
-                                <p>22日电印巴军队连续4天在边境地区进行激战</p>
-                                <span></span>
-                            </div>
+
                         </a>
                     </li>
                     <li class="swiper-slide">
                         <a href="">
                             <div class="img_box">
                                 <img class="picture" alt="" src="../images/banner1.png"/>
-                            </div>
-                            <div class="bgcolor">
-                                <p>o电视台报道，莫迪21日在接受印度新闻</p>
-                                <span></span>
                             </div>
                         </a>
                     </li>
@@ -290,13 +281,18 @@
     var swiper = new Swiper('.swiper-container', {
         spaceBetween: 30,
         centeredSlides: true,
+        loop: true,
         autoplay: {
-            delay: 2500000,
+            delay: 2500,
             disableOnInteraction: false
+
         },
         pagination: {
             el: '.swiper-pagination',
-            clickable: true
+            clickable: true,
+            renderBullet: function (index, className) {
+                return '<span class="' + className + '">' + (index + 1) + '</span>';
+            }
         }
     });
 

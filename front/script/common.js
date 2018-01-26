@@ -1,6 +1,6 @@
-//const apiUrl = 'http://192.168.20.195:8080';//
+const apiUrl = 'http://192.168.20.195:8080';//
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-const apiUrl = 'http://123.59.156.27:8080';//测试
+//const apiUrl = 'http://123.59.156.27:8080';//测试
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -405,4 +405,50 @@ function drawImage(ImgD,twidth,theight){
     }else{
         ImgD.width = twidth;
     }
+}
+
+
+//回到顶部
+'use strict';
+$.fn.Totop = function (obj) {
+    var othis = this;
+    var win = $(window);
+    var hb = $('html,body');
+    var Option = $.extend(
+        {
+            autohide: true,//设置元素是否一开始就隐藏，
+            speed: 500,//到顶部速度
+            right: 10,
+            bottom: 500,
+            offsetTop: 400,//当scrollTop等于这个值时，如果autohide:true元素显示
+            position: true//是否采用fixed定位
+        }, obj);
+
+    if (Option.autohide) {
+        othis.css('display', 'none')
+    } else {
+        othis.css('display', 'block')
+    }
+    if (Option.position) {
+        othis.css({
+            'position': 'fixed',
+            'right': Option.right,
+            'bottom': Option.bottom
+        })
+    }
+    othis.click(function () {
+        hb.animate({
+            scrollTop: 0
+        }, Option.speed)
+    });
+    win.scroll(function () {
+        var scrollT = win.scrollTop();
+        if (Option.autohide) {
+            if (scrollT > Option.offsetTop) {
+                othis.fadeIn(Option.speed)
+            } else {
+                othis.fadeOut(Option.speed)
+            }
+        }
+    })
 }

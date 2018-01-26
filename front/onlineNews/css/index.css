@@ -1,0 +1,262 @@
+/*banner大小*/
+.content-left {
+    width: 700px;
+    height: 350px;
+    margin-top: 20px;
+}
+
+.content-left .banner {
+    width: 700px;
+    height: 350px;
+    position: relative;
+    margin-top: 10px;
+
+}
+
+.content-left .banner .img_box {
+    width: 700px;
+    height: 350px;
+}
+
+.banner .bgcolor {
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    color: #fff;
+    line-height: 50px;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    background: rgba(0, 0, 0, .3);
+
+}
+
+.banner .bgcolor {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bgcolor p {
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    color: #fff;
+    margin: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 50px;
+}
+
+/*。。。的位置和样式*/
+.swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 60px;
+    width: 100%;
+    left: 300px;
+}
+
+.swiper-pagination-bullet {
+    display: inline-block;
+    background: #fefefb;
+    margin: 0 15px;
+    opacity: 1;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+}
+
+.swiper-pagination-bullet-active {
+    /*选中的样式*/
+    background: #ff0000;
+    font-size: 14px;
+    opacity: 1;
+}
+
+.content-left .banner li {
+    width: 100%;
+    height: 358px;
+    list-style: none;
+    float: left;
+}
+
+.content-left .banner .bannerImg {
+    width: 100%;
+    height: 100%;
+}
+
+.content-left .banner .swiper-button-prev {
+    position: absolute;
+    left: 0;
+    top: 151px;
+
+}
+
+.content-left .banner .swiper-button-next {
+    position: absolute;
+    right: 0;
+    top: 151px;
+}
+
+.content-left .banner .picture {
+    width: 100%;
+    height: 100%;
+
+}
+
+.content-right {
+    width: 440px;
+    height: 375px;
+    margin-top: 20px;
+    border-left: 6px solid #ff0000;
+    margin-left: 60px;
+}
+
+.content-right .content_right_list li {
+    width: 434px;
+    height: 94px;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.content-right .content_right_list li:hover {
+    background: #fff;
+    height: 94px;
+
+}
+
+.content-right .content_right_list .title {
+    font-size: 20px;
+    height: 60px;
+    color: #000;
+    padding: 10px 0 0 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.content-right .content_right_list .time {
+    font-size: 16px;
+    color: #999;
+    padding-left: 10px;
+    padding-top: 8px;
+}
+
+/*广告标签*/
+.ad_right {
+    position: fixed;
+    z-index: 100;
+    top: 170px;
+    right: 0;
+}
+
+.ad_left {
+    position: fixed;
+    z-index: 100;
+    top: 170px;
+
+}
+
+.ad_icon2 {
+    position: relative;
+    top: -32px;
+    left: 140px;
+
+}
+
+.content_list .content_list_detail {
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+.content_list .content_list_detail h3 {
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content_list .content_list_detail p {
+    font-size: 16px;
+    color: #666;
+}
+
+.content_list .newsList {
+    margin-top: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+.content_list .newsList li {
+
+    font-size: 16px;
+    color: #666;
+}
+
+.content_list .newsList li h4 {
+    display: inline-block;
+}
+
+.content_list .newsList li a {
+    display: inline-block;
+    width: 625px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_list {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.news_list .news_list_left {
+    width: 740px;
+}
+
+.news_list .news_list_left li {
+    margin-bottom: 20px;
+    width: 740px;
+    display: inline-block;
+}
+
+.news_list .news_list_left li img {
+    width: 212px;
+    height: 160px;
+    float: right;
+}
+
+.news_list .news_list_left li .title {
+    float: left;
+    margin: 10px 8px 0 10px;
+    width: 510px;
+
+}
+
+.news_list .news_list_left li .title h3 {
+    font-size: 20px;
+    color: #000;
+    line-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_list .news_list_left li .title span {
+    font-size: 20px;
+    color: #999;
+    line-height: 36px;
+}
+
+.news_list .news_list_left li .title p {
+    font-size: 16px;
+    color: #333333;
+    height: 40px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+
+
