@@ -6,17 +6,16 @@
 }
 img {
     display:block;
+    border:none;
 }
-body{
-    background: #f4f4f4;
-}
+
 ul,ol,ul,li{
     list-style: none;
 }
+
 h2{
     font-weight:normal;
 }
-
 a{
     text-decoration: none;
 }

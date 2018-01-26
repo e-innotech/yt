@@ -11,12 +11,12 @@
 
 }
 .content-left{
-    width:942px;
+    width:944px;
     float:left;
 }
 .content-center{
     float:left;
-    margin-left:34px;
+    margin-left:32px;
     margin-bottom:30px;
     height:2430px;
     border-right:1px solid #cdcdcd;
@@ -28,7 +28,7 @@
 }
 
 .content-left .news_top{
-    width:942px;
+    width:944px;
     height:360px;
     background:#fff;
 
@@ -42,7 +42,7 @@
 }
 .news_top .news_text{
     float:right;
-    width:316px;
+    width:318px;
     height:360px;
     padding-left:46px;
     padding-right:46px;
@@ -84,7 +84,7 @@
 }
 .advises{
     margin-top:20px;
-    width:942px;
+    width:944px;
     height:80px;
     position:relative;
 }
@@ -129,7 +129,7 @@
     margin:20px 24px 10px 20px;
 }
 .news_list .list-r{
-    width:450px;
+    width:458px;
     padding-bottom: 23px;
     float:left;
     margin-top:20px;
@@ -137,7 +137,6 @@
 .news_list .list-r h2{
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
     font-size:20px;
     color:#000;
 
