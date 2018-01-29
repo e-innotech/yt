@@ -9,8 +9,9 @@ $(function() {
         window.sessionStorage.setItem("global_search_data", JSON.stringify(data));
         location.href = 'search.html';
     };
-//搜索
+//点击搜索按钮时
     $("#search").click(function () {
+        alert(111)
         var newsTitle = $('input[name="search"]').val();
         console.log(7, newsTitle);
         if (newsTitle == '') {
@@ -20,4 +21,5 @@ $(function() {
         //参数 网站id 新闻标题 当前页 显示页
         globalQuery(3, newsTitle, 1, 5, getSearchList);
     });
+
 })

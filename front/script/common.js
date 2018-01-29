@@ -1,6 +1,6 @@
-const apiUrl = 'http://192.168.20.195:8080';//
+//const apiUrl = 'http://192.168.20.195:8080';//
 const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-//const apiUrl = 'http://123.59.156.27:8080';//测试
+const apiUrl = 'http://123.59.156.27:8080';//测试
 
 const websiteId = 1;
 const sex = ['女','男'];
@@ -199,7 +199,6 @@ function delHtmlTag(str){
 };
 //在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
-
     var data = {uname: uname, pwd: pwd};
     AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
         if (re.success) {

@@ -21,31 +21,49 @@ $(document).ready(function () {
             commentData=NavList;
         })
     };
+    //点击那个button给那个加个背景颜色
+    $(".pages").on("click","button",function(){
+        $(this).css("background","#999999").siblings().css("background","none");
+
+    })
+
+
+    //如果进来是首页时就给首页的元素加个禁用的属性
+    if(page==1){
+        $(".homepages").attr("disabled","disabled");
+    }
+
+
     //点击首页时
     $('.homepages').click(function () {
-        page=1;
-        getNavList();
-
+        if(page!=1){
+            page=1;
+            getNavList();
+            $(".homepages").attr("disabled","disabled");
+        }
     });
     //点击上一页时
     $('.prevpages').click(function () {
-        alert(1111)
         page--;
         getNavList();
         if(page==0){
             page=1;
+            $(".homepages").attr("disabled","disabled");
         }
     });
     //点击下一页时
     $('.nextpages').click(function () {
+        $(".homepages").removeAttr("disabled");
         page++;
         getNavList();
     });
     //点击尾页时
     $('.lastpages').click(function () {
+        $(".homepages").removeAttr("disabled");
         //一共有多少页
-        page=0;
+        //page=0;
         getNavList();
+        console.log(77, commentData);
     });
 
 

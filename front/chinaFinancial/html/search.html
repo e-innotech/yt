@@ -15,8 +15,20 @@
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <div id="searchlist"></div>
-            <div class="more">点击加载更多</div>
+            <!--以下为搜索的数据的渲染-->
+            <div id="searchlist">
+                <div class="news_list">
+                    <a href="detail.html">
+                        <div class="list-l">
+                            <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大</h2>
+                            <p class="date">2018-01-01</p>
+                            <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达</div>
+                        </div>
+                        <img src="../images/news_Img.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="more">加载更多</div>
         </div>
     </div>
 </div>
@@ -35,52 +47,13 @@
     var page = 1;
     var searchData;
     function init(){
-        //渲染的所有的数据
         var object = window.sessionStorage.getItem("global_search_data");
         console.log(99999,object)
         var data = JSON.parse(object);
         var list = data.list;
+        //拿到的搜索的数据
         searchData=list;
-        for (var i = 0; i <list.length; i++) {
-//        <div class="news_list">
-//            <a href="#">
-//            <h2>
-//            独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
-//            </h2>
-//            <div>
-//            咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
-//            </div>
-//            <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
-//            </a>
-//            </div>
-            $('#searchlist').append('<div class="news_list">'+
-                                       '<a href="#">' +
-                                        '<h2>'+"放标题的"+'</h2>'+
-                                         '<div>'+"放内容的"+'<div>'+
-                                         '<p><span class="source"></span><span class="date"></span></p>'+
-                                        '</a>' +
-                                        '</div>')
 
-//            $('#searchlist').append('<div class="list" id="list">' +
-//            '<h2 class="subhead">' +
-//            "<li><a href="+'"detail.html?id='+list[i].publishId+'"'+">"+ list[i].newsTitle+"</a></li>"+
-//            '</h2>' +
-//            '<div class="center">' +
-//            '<div class="center-l">' +
-//            '<span>'+list[i].source+'' +
-//            '<img class="portrait" src="../images/article.png"/>' +
-//            '</span>' +
-//            '<span class="time">'+ list[i].createDate +'</span>' +
-//            '</div>' +
-//            '<div class="center-r" style="float:right;">' +
-//            '<p class="like"><img src="../images/zan.png"/><span>0</span></p>' +
-//            '<p class="collect"><img src="../images/cang.png"/><span>0</span></p>' +
-//            '<p class="comment"><img src="../images/ping.png"/><span>0</span></p>' +
-//            '</div>' +
-//            '</div>' +
-//            '<p>'+removeHTMLTag(list[i].subContent)+'</p>' +
-//            '</div>');
-        }
     }
 
     $('.more').click(function () {

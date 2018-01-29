@@ -61,9 +61,11 @@
     text-align:center;
     margin:80px auto 292px auto;
 }
-.pages p{
+.pages button{
     width:92px;
     height:34px;
+    background:none;
+    font-size:20px;
     border:1px solid #d3d3d3;
     text-align:center;
     line-height:34px;
