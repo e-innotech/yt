@@ -48,12 +48,7 @@
     position:relative;
 }
 
-.header .header-r form #search{
-    position:absolute;
-    top:9px;
-    right:10px;
-    /*left:202px;*/
-}
+
 
 .header .header-r input[type="text"]{
     width:280px;

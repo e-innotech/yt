@@ -199,7 +199,6 @@ function delHtmlTag(str){
 };
 //在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
-
     var data = {uname: uname, pwd: pwd};
     AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
         if (re.success) {

@@ -6,9 +6,10 @@
 }
 img {
     display:block;
+    border:none;
 }
 body{
-    background: #f4f4f4;
+    background: #f3f3f3;
 }
 ul,ol,ul,li{
     list-style: none;
@@ -20,6 +21,6 @@ a{
 input{
     outline:none;
 }
-button{
-    outline:none;
+h2, h3, h4, h5{
+    font-weight:normal;
 }

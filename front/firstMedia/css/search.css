@@ -1,62 +1,56 @@
-.more {
-    width: 692px;
-    height: 33px;
-    background: #eeeeee;
-    margin-left: 58px;
-    line-height: 33px;
-    text-align: center;
-    font-size: 17px;
-    color: #000;
-    margin-top: 40px;
-    cursor: pointer;
-}
-#searchlist{
-    margin-top:20px;
-    overflow:hidden;
-}
-.news_list{
+news_list {
+    border:1px solid #ececec;
+    width:898px;
     background:#fff;
-    border-bottom:1px solid #e6e6e6;
-    clear:both;
-    padding-left:20px;
-}
-
-.news_list {
-    width:942px;
-    padding-bottom: 31px;
-    float:left;
-    /*margin-top:20px;*/
+    padding-left:23px;
+    padding-bottom:44px;
+    margin-top:20px;
 }
 .news_list  h2{
-    width:428px;
-    color:#000;
+    width:330px;
+    color:#333;
+    margin-top:30px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size:20px;
-    margin-top:31px;
-    margin-bottom:24px;
 
+}
+
+
+
+.news_list p{
+    line-height:52px;
+    font-size:16px;
+    color:#999;
 }
 
 .news_list div{
-    font-size:12px;
-    width:650px;
+    font-size:18px;
+    width:653px;
     line-height:22px;
-    margin-top:17px;
-    white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     color:#666;
-}
 
-.news_list p{
-    margin-top:22px;
-    font-size:12px;
-    color:#666;
 }
-.news_list p .date{
-    border-left:1px solid #666666;
-    padding-left: 10px;
-    margin-left:10px;
+.pages{
+    text-align:center;
+    margin:58px 0 88px 350px;
+    overflow:hidden;
+
+}
+.pages p{
+    width:82px;
+    height:32px;
+    background:#fff;
+    color:#000;
+    font-size:20px;
+    text-align:center;
+    line-height:32px;
+    float:left;
+    margin-right:40px;
 }

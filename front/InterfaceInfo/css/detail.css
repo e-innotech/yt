@@ -1,0 +1,126 @@
+/*以下为主体内容*/
+.contentbg{
+    background:#f3f3f3;
+    overflow:hidden;
+}
+
+.content{
+    width:1200px;
+    margin:20px auto 151px auto;
+    overflow:hidden;
+}
+.content-left{
+    width:760px;
+    float:left;
+    background:#fff;
+}
+
+.content-right{
+    width:420px;
+    float:right;
+}
+
+.editor_tit h2{
+    width:756px;
+    line-height:48px;
+    font-size:28px;
+    color:#000;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-left:2px;
+
+
+}
+.editor_tit h2 a{
+    color:#000;
+}
+.editor_tit p{
+    line-height:36px;
+    font-size:16px;
+    color:#999999;
+    margin-left:1px;
+
+}
+.editor_con{
+    margin-top:10px;
+    padding:0 10px;
+}
+.editor_con img{
+    width:100%;
+}
+.editor_con p{
+    font-size:16px;
+    color:#000000;
+}
+.blank{
+    height:52px;
+    width:100%;
+    background:#fff;
+}
+
+/*以下为版权*/
+.copyright{
+    border-top:1px solid #eae9e9;
+    border-bottom:1px solid #eae9e9;
+    overflow: hidden;
+    font-size:15px;
+    color:#ababab;
+    margin:60px 10px 0 10px;
+
+
+
+}
+.copyright h5{
+    font-size:15px;
+    margin-top:12px;
+    line-height:34px;
+}
+.copyright p {
+    padding-bottom:12px;
+    line-height:34px;
+    color:#999;
+}
+#backtop{
+    position:fixed;
+    bottom:310px;
+    right:306px;
+    display:none;
+}
+
+
+/*右侧的广告*/
+.advise{
+    margin-top:48px;
+}
+.advise_top{
+    width:420px;
+    height:327px;
+    position:relative;
+
+}
+.advise_top .adv{
+    width:100%;
+    height:100%;
+}
+.advise_top .adv_icon{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+.advise_bottom{
+    margin-top:60px;
+}
+.advise_bottom{
+    width:420px;
+    height:327px;
+    position:relative;
+}
+.advise_bottom .adv{
+    width:100%;
+    height:100%;
+}
+.advise_bottom .adv_icon{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}

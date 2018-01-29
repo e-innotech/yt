@@ -21,27 +21,4 @@ $(function() {
         globalQuery(3, newsTitle, 1, 5, getSearchList);
     });
 
-
-    //添加样式
-    //$(".nav a").each(function(){
-    //    $this = $(this);
-    //    if($this[0].href==String(window.location)){
-    //       $this.addClass("active");  //hover表示被选中效果的类名
-    //
-    //    }
-    //})
-
-//
-//function styles($this){
-//    $($this).css("color","#f8fbfa");
-//    $($this.parent()).css("background","#e73929");
-//    console.log(3333);
-//}
-
-
-
-
-
-
-
 })

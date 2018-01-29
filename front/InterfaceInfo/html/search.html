@@ -15,7 +15,7 @@
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <!--以下为搜索页面的数据-->
+            <!--以下为搜索的数据的列表-->
             <div id="searchlist">
                 <div class="news_list">
                     <a href="detail.html">
@@ -29,7 +29,11 @@
                     </a>
                 </div>
             </div>
-            <div class="more">点击加载更多</div>
+            <!--以下为分页-->
+            <div class="page">
+                <p class="prevpages">上一页</p>
+                <p class="nextpages">下一页</p>
+            </div>
         </div>
     </div>
 </div>
@@ -41,7 +45,7 @@
     // 一进页面加载头
     window.onload=function(){
         $("#top").load("top.html");
-        init();
+//        init();
     }
 
     //搜索渲染
@@ -56,12 +60,27 @@
         searchData=list;
 
     }
-    $('.more').click(function () {
-        if(searchData.length< 10){
-            $('.more').html('没有更多了');
-        }else{
-            page++;
-
+    /*分页*/
+    var page = 1;
+    var commentData='';
+    var channelId = getIdFromUrl();
+    var getNavList = function(){
+        newsList(channelId,page,8,function callback(NavList){
+            commentData=NavList;
+        })
+    };
+    $('.prevpages').click(function () {
+        page--;
+        getNavList();
+        if(page==0){
+            page=1;
         }
     });
+    $('.nextpages').click(function () {
+        page++;
+        getNavList();
+    });
+
+
+
 </script>
