@@ -1,0 +1,68 @@
+.hot_list {
+    border-top: 1px solid #ff0200;
+    padding-top: 10px;
+}
+
+.hot_list .hot_list_title .news_title {
+    width: 482px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 20px;
+    color: #000;
+    background: #d0d0d0;
+    margin-top: 10px;
+}
+
+.hot_list .hot_list_title h3 {
+    color: #000;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.hot_list li {
+    height: 80px;
+    width: 482px;
+
+}
+
+.hot_list li .icon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 20px;
+    color: #fff;
+    float: left;
+}
+
+.hot_list li .icon span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+background: #9a9a9a;
+}
+
+.hot_list li a {
+    display: inline-block;
+    width: 446px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 20px;
+    color: #999;
+    line-height: 34px;
+}
+.ad_hot .img_box{
+    width: 488px;
+    height: 320px;
+    margin-bottom: 20px;
+}
+.ad_hot .ad_icon{
+    width: 44px;
+    height: 20px;
+    position: relative;
+    top: -50px;
+    right: -445px;
+}

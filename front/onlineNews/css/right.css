@@ -1,43 +1,52 @@
-
-.news_list .news_list_right {
-    width: 416px;
-    height: 400px;
-    padding: 0 12px 20px 12px;
+.hot_list .hot_list_title .news_title{
+    width: 482px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 20px;
+    color: #000;
+    background: #d0d0d0;
+    margin-top: 10px;
 }
 
-.news_list .news_list_right h3 {
+.hot_list .hot_list_title h3 {
     color: #000;
     font-size: 20px;
-    display: inline-block;
-    padding-bottom: 12px;
-    width: 80px;
-    border-bottom: 1px solid #ff0000;
 }
-.news_list .news_list_right li{
-    height: 45px;
-    border-top: 1px solid #eaeaea;
-}
-.news_list .news_list_right li:last-child{
-    border-bottom: 1px solid #eaeaea;
-}
-.news_list .news_list_right li .icon {
-    font-size: 16px;
-    color: #ff0000;
-    font-style: italic;
-    display: inline-block;
-    height: 36px;
-    line-height: 36px;
+.hot_list li{
+    height: 40px;
+    width: 482px;
+
 }
 
-.news_list .news_list_right li a {
+.hot_list li .icon {
     display: inline-block;
-    width: 380px;
-    padding:0 5px;
+    width: 36px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #fff;
+    float: left;
+}
+.hot_list li .icon span{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    background: #2c5daa;
+    border-radius: 50%;
+
+}
+
+.hot_list li a {
+    display: inline-block;
+    width: 446px;
+    height: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 16px;
-    color: #000;
-    margin-top: 13px;
-    margin-bottom: -4px;
-}
+    font-size: 20px;
+    color: #999;
+    line-height: 40px;
+    float: left;
+   }

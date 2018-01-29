@@ -1,14 +1,14 @@
 .content_box{
-    width: 688px;
+    width: 682px;
     margin-top: 20px;
 }
 #hot_list{
-    width: 482px;
+    width: 488px;
     margin-top: 20px;
     float: right;
 }
 .ad_center {
-    width: 688px;
+    width: 682px;
     margin-top: 20px;
 }
 .hot_list_title h3{
@@ -17,51 +17,46 @@
 }
 /*banner大小*/
 .content-left {
-    width: 688px;
+    width: 682px;
     height: 350px;
 }
 
 .content-left .banner {
-    width: 688px;
+    width: 682px;
     height: 350px;
     position: relative;
 
 }
 
 .content-left .banner .img_box {
-    width: 688px;
+    width: 682px;
     height: 350px;
 }
 
 .banner .bgcolor {
     width: 100%;
-    height: 50px;
+    height: 60px;
     font-size: 20px;
     color: #fff;
-    line-height: 50px;
+    line-height: 60px;
     position: absolute;
     left: 0;
-    bottom: 35px;
+    bottom: 8px;
     background: rgba(0, 0, 0, .3);
 
 }
 
-.banner .bgcolor {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
 .bgcolor p {
     width: 100%;
-    height: 50px;
+    height: 60px;
     font-size: 20px;
     color: #fff;
     margin: 0 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    line-height: 50px;
+    line-height: 60px;
 }
 #swiper-button-prev{
     background-image: url("../images/prev.png");
@@ -72,25 +67,25 @@
 }
 /*。。。的位置和样式*/
 .swiper-container-horizontal > .swiper-pagination-bullets {
-    bottom: 10px;
+    bottom: 67px;
     width: 100%;
-    left: -200px;
+    left: 0;
 }
 
 .swiper-pagination-bullet {
     display: inline-block;
-    background: #8b8985;
+    background: #fff;
     margin: 0 15px;
     opacity: 1;
     font-size: 14px;
-    width: 88px;
-    height: 5px;
+    width: 44px;
+    height: 2px;
     border-radius: 0;
 }
 
 .swiper-pagination-bullet-active {
     /*选中的样式*/
-    background: #1f77b9;
+    background: #39a34e;
     font-size: 14px;
     opacity: 1;
 }
@@ -175,7 +170,7 @@
 .ad_left {
     position: fixed;
     z-index: 100;
-    top: 170px;
+    top: 160px;
 
 }
 
@@ -206,7 +201,7 @@
 .content_list .newsList {
     margin-top: 20px;
     padding-bottom: 18px;
-    border-bottom: 1px dashed #d0d0d0;
+    border-bottom: 1px dashed #39a34e;
 }
 
 .content_list .newsList li {
@@ -229,35 +224,37 @@
 
 
 .news_list .news_list_left {
-    width: 688px;
+    width: 682px;
     margin-top: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
 }
 
 .news_list .news_list_left li {
-    margin-bottom: 20px;
-    width: 688px;
-    height: 205px;
+    width: 682px;
+    height: 186px;
     display: inline-block;
-    border-bottom: 1px dashed #dcdcdc;
+    border-bottom: 1px dashed #39a34e;
 }
-
+.news_list .news_list_left li:last-child{
+    border-bottom: none;
+}
 .news_list .news_list_left li img {
-    width: 188px;
-    height: 164px;
+    width: 208px;
+    height: 146px;
     float: right;
 }
 
 .news_list .news_list_left li .title {
     float: left;
-    margin: 10px 8px 0 10px;
-    width: 482px;
+    margin: 10px 18px 0 10px;
+    width: 426px;
 
 }
 
 .news_list .news_list_left li .title h3 {
     font-size: 20px;
     color: #000;
-    line-height: 36px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -265,16 +262,16 @@
 
 .news_list .news_list_left li .title span {
     font-size: 20px;
-    color: #999;
+    color: #000;
 }
 
 .news_list .news_list_left li .title p {
     font-size: 16px;
-    color: #333333;
+    color: #999;
     line-height: 30px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     overflow: hidden;
 }
 
