@@ -1,9 +1,8 @@
 .hot_list {
-    border-top: 1px solid #ff0200;
     padding-top: 10px;
 }
 
-.hot_list .hot_list_title .news_title {
+.hot_list_title .news_title {
     width: 482px;
     height: 48px;
     line-height: 48px;
@@ -12,11 +11,15 @@
     background: #d0d0d0;
     margin-top: 10px;
 }
-
-.hot_list .hot_list_title h3 {
+.hot_list_title{
+    padding-top: 10px;
+    border-top: 1px solid #ff0000;
+}
+.hot_list_title h3 {
     color: #000;
     font-size: 20px;
     margin-left: 30px;
+    line-height: 34px;
 }
 
 .hot_list li {
@@ -57,7 +60,6 @@ background: #9a9a9a;
 .ad_hot .img_box{
     width: 488px;
     height: 320px;
-    margin-bottom: 20px;
 }
 .ad_hot .ad_icon{
     width: 44px;
