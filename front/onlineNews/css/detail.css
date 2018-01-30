@@ -12,14 +12,24 @@
 	top: 180px;
 
 }
-
+.ad_left .img_box{
+	width: 280px;
+	height: 198px;
+}
+.ad_right .img_box{
+	width: 280px;
+	height: 198px;
+}
 .ad_icon2 {
 	position: relative;
 	top: -32px;
 	left: 140px;
 
 }
-
+.ad_center .img_box{
+	width: 688px;
+	height: 140px;
+}
 
 .contentbg{
 	margin-top: 20px;

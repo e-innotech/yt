@@ -102,10 +102,15 @@ input {
     background: #fff;
     border: none;
 }
-
-.img_box {
+.ad_left .img_box{
+    width: 194px;
+    height: 162px;
+}
+.news_list_left .img_box {
     overflow: hidden;
     float: right;
+    width: 212px;
+    height: 160px;
 }
 
 .img_box img {

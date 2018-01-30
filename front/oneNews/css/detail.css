@@ -8,7 +8,10 @@
 	overflow: hidden;
 	margin: 0 50px 100px;
  }
-
+.ad_detail .img_box{
+	width: 140px;
+	height: 290px;
+}
 .article-title{
 	font-size: 26px;
 	text-overflow: ellipsis;

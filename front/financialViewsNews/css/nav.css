@@ -9,26 +9,16 @@
 .ad_left {
     position: fixed;
     z-index: 100;
-    top: 170px;
-
-}
-
-.ad_icon2 {
-    position: relative;
-    top: -32px;
-    left: 140px;
+    top: 164px;
 
 }
 
 
 .content_box{
     width: 688px;
-    margin-top: 20px;
 
 }
-.hot_list {
-    margin-top: 20px;
-}
+
 .content_list .content_list_detail {
     padding-bottom: 20px;
     border-bottom: 1px dashed #d0d0d0;
@@ -76,18 +66,22 @@
 }
 
 .news_list .news_list_left {
-    width: 688px;
+    width: 686px;
     margin-top: 20px;
 }
-
+.news_list .news_list_left ul{
+    border: 1px solid #ccc;
+}
 .news_list .news_list_left li {
-    width:  688px;
+    width:  684px;
     height: 145px;
     display: inline-block;
     padding: 10px 0 0 10px;
-    border-bottom: 1px dashed #dcdcdc;
+    border-bottom: 1px dashed #5baa4e;
 }
-
+.news_list .news_list_left li:last-child {
+    border-bottom: none;
+}
 .news_list .news_list_left li .title h3 {
     font-size: 20px;
     color: #000;
@@ -102,7 +96,7 @@
 }
 
 .news_list .news_list_left li .content_news {
-    line-height: 30px;
+    line-height: 34px;
     font-size: 20px;
     color: #999;
     display: -webkit-box;
@@ -117,20 +111,20 @@
 .pageBtn button{
     width: 116px;
     height: 46px;
-    background: #e2e2e2;
-    border:none;
+    border: 1px solid #989898;
+    background: #f8f8f8;
     border-radius: 2px;
-    margin-top: 53px;
-    margin-bottom: 64px;
+    margin-top: 60px;
+    margin-bottom: 100px;
     cursor: pointer;
     font-size: 20px;
     color: #000;
 }
 .pageBtn .prev{
-    margin-left: 130px;
+    margin-left: 175px;
 }
 .pageBtn .next{
-    margin-left: 94px;
+    margin-left: 39px;
 }
 
 

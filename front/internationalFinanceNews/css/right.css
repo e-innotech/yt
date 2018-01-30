@@ -1,0 +1,60 @@
+
+.hot_list_title .news_title {
+    width: 482px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 20px;
+    color: #000;
+    background: #d0d0d0;
+    margin-top: 10px;
+}
+
+
+.hot_list_title h3 {
+    width: 120px;
+    height: 56px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    background: url("../images/hot_icon.png");
+}
+
+
+
+.hot_list .img_box {
+    width: 118px;
+    height: 80px;
+    float: left;
+}
+.hot_list li {
+    width: 418px;
+    height: 80px;
+    margin-bottom: 30px;
+}
+.hot_list li:last-child{
+    margin-bottom: 10px;
+}
+.hot_list li .hot_list_news_title{
+    float: left;
+    width: 300px;
+    margin-top: 10px;
+}
+.hot_list li .hot_list_news_title a {
+    display: inline-block;
+    width: 280px;
+    height: 70px;
+    overflow: hidden;
+    font-size: 16px;
+    color: #999;
+    line-height: 22px;
+    margin-left: 14px;
+    border-bottom: 1px  dashed #dfdfdf;
+
+}
+
+.ad_hot .img_box {
+    width: 416px;
+    height: 245px;
+    float: right;
+}

@@ -2,11 +2,7 @@
     width: 682px;
     margin-top: 20px;
 }
-#hot_list{
-    width: 488px;
-    margin-top: 20px;
-    float: right;
-}
+
 .ad_center {
     width: 682px;
     margin-top: 20px;
@@ -231,7 +227,7 @@
 }
 
 .news_list .news_list_left li {
-    width: 682px;
+    width: 680px;
     height: 186px;
     display: inline-block;
     border-bottom: 1px dashed #39a34e;
@@ -248,7 +244,7 @@
 .news_list .news_list_left li .title {
     float: left;
     margin: 10px 18px 0 10px;
-    width: 426px;
+    width: 424px;
 
 }
 

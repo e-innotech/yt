@@ -54,9 +54,6 @@
     color: #fff;
 }
 
-.banner_left2 {
-    margin-top: 18px;
-}
 
 .content-left .banner li {
     width: 100%;
@@ -110,7 +107,13 @@
     left: 215px;
 
 }
-
+.content_list .img_box{
+    width: 321px;
+    height: 212px;
+}
+.content_list .img_box:last-child{
+    margin-top: 18px;
+}
 .content_list .content_list_detail {
     padding-bottom: 20px;
     border-bottom: 1px dashed #d0d0d0;
