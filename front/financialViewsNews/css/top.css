@@ -6,7 +6,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 }
 
 body {
-    background: #f4f4f4;
+    background: #f8f8f8;
     color: #333;
     font-size: 12px;
     font-family: "SimSun", "宋体", "Arial Narrow", "微软雅黑";
@@ -88,24 +88,33 @@ input {
 .moreBtn {
     width: 100%;
     text-align: center;
-    margin-top: 50px;
-    height: 140px;
+    margin-top: 40px;
+    height: 153px;
 }
 
 .moreBtn .more {
     display: inline-block;
-    width: 100%;
-    height: 38px;
+    width: 152px;
+    height: 52px;
     text-align: center;
-    line-height: 38px;
+    line-height: 52px;
     font-size: 20px;
     color: #000;
-    background: #fff;
-    border: none;
+    border: 1px solid #999;
 }
-
+.ad_left .img_box{
+    width: 347px;
+    height: 320px;
+}
+.ad_left .ad_icon{
+    width: 44px;
+    height: 20px;
+    position: relative;
+    top: -30px;
+    right: -294px;
+}
 .news_list_left .img_box {
-
+    margin: 10px;
     float: right;
 }
 .hot_list_title .img_box{
@@ -161,7 +170,7 @@ input {
 }
 
 .header {
-    height: 142px;
+    height: 140px;
     background: #fff;
     overflow: hidden;
 
@@ -169,17 +178,17 @@ input {
 
 .header .logo {
     float: left;
-    margin-top: 13px;
+    margin:45px 0 54px 0;
 
 }
 
 .header .header-r {
     float: right;
-    width: 252px;
-    height: 38px;
+    width: 266px;
+    height: 40px;
     border-radius: 2px;
-    background: #ccc;
-    margin-top: 61px;
+    background: #e5e5e5;
+    margin-top: 50px;
 
 }
 
@@ -207,32 +216,27 @@ input {
 .header_nav{
     float: left;
 }
-.header_nav .nav {
-    height: 38px;
-    line-height: 38px;
-    margin-left: 20px;
-}
 
 .header_nav .nav li {
     height: 38px;
     text-align: center;
     float: left;
-    margin: 60px 0 0 60px;
+    margin: 60px 0 0 36px;
 }
 
 .header_nav .nav li a {
+    width: 74px;
     font-size: 20px;
     display: inline-block;
     color: #000;
+    line-height: 38px;
 
 }
 
 .header_nav .nav a:hover {
-    color: #2268b0;
-
-
+    border-bottom: 2px solid #39a34e;
 }
 .active{
-    color: #2268b0;
+    border-bottom: 2px solid #39a34e;
 }
 

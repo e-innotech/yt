@@ -4,8 +4,8 @@ $(document).ready(function(){
     $('.back_to_top').Totop({
         autohide:true,//设置元素是否一开始就隐藏，
         speed:500,//到顶部速度
-        right:274,
-        bottom:210,
+        right:363,
+        bottom:300,
         offsetTop:400,//当scrollTop等于这个值时，如果autohide:true元素显示
         position:true//是否采用fixed定位
     })
