@@ -41,7 +41,10 @@
     position: relative;
 
 }
-
+.content-left .banner .img_box{
+    width: 720px;
+    height: 406px;
+}
 .content-left .banner li {
     width: 721px;
     height: 406px;

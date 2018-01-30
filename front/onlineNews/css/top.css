@@ -103,15 +103,23 @@ input {
     background: #fff;
     border: none;
 }
-
+.ad_left .img_box{
+    width: 280px;
+    height: 198px;
+}
 .news_list_left .img_box {
-
+    width: 188px;
+    height: 164px;
     float: right;
 }
 .hot_list_title .img_box{
     width: 482px;
     height: 190px;
     margin-top: 20px;
+}
+.ad_center .img_box{
+    width: 688px;
+    height: 140px;
 }
 .img_box{
     overflow: hidden;

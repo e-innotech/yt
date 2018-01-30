@@ -24,7 +24,10 @@
     margin:20px 66px 0 52px;
     float: left;
 }
-
+.ad_center .img_box{
+    width: 164px;
+    height: 434px;
+}
 
 .content_list .content_list_detail {
     padding-bottom: 20px;

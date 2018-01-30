@@ -9,7 +9,7 @@
 .ad_left {
 	position: fixed;
 	z-index: 100;
-	top: 180px;
+	top: 160px;
 
 }
 
@@ -21,15 +21,13 @@
 }
 
 
-.contentbg{
-	margin-top: 20px;
-}
 .news_list {
 	width: 1200px;
 	margin: 0 auto;
 }
 .content_box{
 	width: 688px;
+	margin-top: 20px;
 
 }
 .news_list .news_list_left {
@@ -78,7 +76,6 @@
 	min-height: 600px;
 	background: #fff;
 	margin-bottom: 100px;
-	margin-top: 20px;
 }
 .news_list .article .article_title{
 	font-size: 18px;

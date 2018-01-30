@@ -11,10 +11,12 @@
     background: #d0d0d0;
     margin-top: 10px;
 }
-.hot_list_title{
+
+.hot_list_title {
     padding-top: 10px;
     border-top: 1px solid #ff0000;
 }
+
 .hot_list_title h3 {
     color: #000;
     font-size: 20px;
@@ -25,9 +27,16 @@
 .hot_list li {
     height: 80px;
     width: 482px;
+    /*background: url("../images/hot_border.png") no-repeat 0 13px;*/
 
 }
-
+.img_border{
+    float: left;
+}
+.img_border img{
+    position: relative;
+    top: 12px;
+}
 .hot_list li .icon {
     display: inline-block;
     width: 36px;
@@ -43,7 +52,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-background: #9a9a9a;
+    background: #9a9a9a;
 }
 
 .hot_list li a {
@@ -56,15 +65,18 @@ background: #9a9a9a;
     font-size: 20px;
     color: #999;
     line-height: 34px;
+    margin-left: 20px;
 }
-.ad_hot .img_box{
+
+.ad_hot .img_box {
     width: 488px;
     height: 320px;
 }
-.ad_hot .ad_icon{
+
+.ad_hot .ad_icon {
     width: 44px;
     height: 20px;
     position: relative;
-    top: -50px;
-    right: -445px;
+    top: -30px;
+    right: -435px;
 }
