@@ -11,27 +11,46 @@ $(document).ready(function () {
         }
     });
 
-
     /*分页*/
     var page = 1;
     var commentData='';
-    var channelId = getIdFromUrl();
     var getNavList = function(){
-        newsList(channelId,page,8,function callback(NavList){
-            commentData=NavList;
+        //栏目id=1
+        newsList(1,page,8,function callback(newsList){
+            commentData=newsList;
+            for (var i = 0; i < newsList.length; i++) {
+                console.log(newsList)
+                $('.news_listbox').append('<div class="news_list">' +
+                    '<a href="">' +
+                    '<h2>' +newsList[i].newsTitle+' </h2>' +
+                    '<div>' +newsList[i].subContent+'</div>' +
+                    '<p>' +
+                    '<span class="source">' +newsList[i].source+'</span>' +
+                    '<span class="date">' +newsList[i].createDate+'</span>' +
+                    '</p>' +
+                    '</div>' +
+                    '</a>' +
+                    '</div>'
+                )
+            }
         })
     };
-    $('.prevpages').click(function () {
-        page--;
-        getNavList();
-        if(page==0){
+    $('.prev').click(function () {
+        if(page==1){
             page=1;
+        }else{
+            $(".news_listbox").html('');
+            page--;
+            getNavList();
         }
     });
-    $('.nextpages').click(function () {
+    $('.next').click(function () {
+        $(".news_listbox").html('');
         page++;
         getNavList();
     });
+
+
 
 
 

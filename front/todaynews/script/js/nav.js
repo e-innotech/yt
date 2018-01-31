@@ -10,26 +10,42 @@ $(document).ready(function () {
             $("#backtop").hide();
         }
     });
-// 加载更多
-    var commentData="";
+    // 加载更多
+    var commentData='';
     var page=1;
-    getHomeNewsList();
-    function getHomeNewsList() {
-        //传的网站ID 页数 一页显示几条数据
-        homeList(1, page, 10, function callback(newsList) {
-            commentData = newsList;
-        })
-    };
-
     /*分页*/
     $('.more').click(function(){
-        if (commentData.length < 8) {
+        console.log(555,commentData.length);
+        if (commentData.length <=0) {
             $('.more').html('没有更多了');
         } else {
             page++;
             getHomeNewsList();
         }
     })
+
+    getHomeNewsList();
+    function getHomeNewsList() {
+        //传的权限 页数 一页显示几条数据
+        homeList(3, page,4, function callback(newsList) {
+            console.log(34,newsList);
+            commentData = newsList;
+            for (var i = 0; i < newsList.length; i++) {
+                $('.news_listbox').append('<div class="news_list">' +
+                '<a href="">' +
+                '<h2>' +newsList[i].newsTitle+' </h2>' +
+                '<div>' +newsList[i].subContent+'</div>' +
+                '<p>' +
+                '<span class="source">' +newsList[i].source+'</span>' +
+                '<span class="date">' +newsList[i].createDate+'</span>' +
+                '</p>' +
+                '</div>' +
+                '</a>' +
+                '</div>')
+            }
+        })
+    };
+
 
 
 

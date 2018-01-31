@@ -101,9 +101,10 @@
 .news_list{
     background:#fff;
     border-bottom:1px solid #e6e6e6;
-   height:180px;
+     height:180px;
     position:relative;
 }
+
 .news_list .recommends{
     position:absolute;
     bottom:10px;
@@ -117,6 +118,9 @@
     display:block;
 }
 .news_list:nth-child(3) .recommends{
+    display:block;
+}
+.news_list:nth-child(4) .recommends{
     display:block;
 }
 .news_list .news_img{
@@ -152,6 +156,9 @@
 .news_list .list-r>p{
     margin-top:44px;
     font-size:12px;
+    color:#666;
+}
+.news_list .list-r>p a{
     color:#666;
 }
 .news_list .list-r>p .date{
