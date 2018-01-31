@@ -57,9 +57,9 @@
 
 /*。。。的位置和样式*/
 .swiper-pagination-bullets {
-    bottom: -318px;
+    bottom: -10px;
     width: 694px;
-    left: 352px;
+    left: 0;
     height: 50px;
     background: #e2dfe0;
 }
