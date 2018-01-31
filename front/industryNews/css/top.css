@@ -44,7 +44,7 @@ img {
 
 body {
     font-family: 微软雅黑;
-    background: #f8f8f8;
+    background: #f3f3f3;
 }
 
 ul, ol {
@@ -114,8 +114,10 @@ input {
     right: -294px;
 }
 .news_list_left .img_box {
-    margin: 10px;
-    float: right;
+    margin: 20px 0;
+    float: left;
+    width: 206px;
+    height: 150px;
 }
 #hot_list{
     width: 488px;

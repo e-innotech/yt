@@ -15,10 +15,7 @@
         <div class="content-left">
             <div id="searchlist"></div>
             <div style="clear: both"></div>
-            <div class="btnPage">
-                <button class="prev">上一页</button>
-                <button class="next">下一页</button>
-            </div>
+            <button class="more">加载更多</button>
         </div>
     </div>
 </div>
@@ -40,7 +37,6 @@
         var data = JSON.parse(object);
         var list = data.list;
         searchData=list;
-        console.log(2222,list)
         for (var i = 0; i <list.length; i++) {
             $('#searchlist').append('<div class="nav_list">' +
             '<ul>' +
@@ -62,20 +58,15 @@
         }
     }
 
-    $('.prev').click(function () {
-        if(page==1){
-            page=1;
-        }else{
-            $("#searchlist").html('');
-            page--;
+    /*分页*/
+    $('.more').click(function(){
+        if (searchData.length <= 0) {
+            $('.more').attr('disabled',true)
+        } else {
+            page++;
             init();
         }
-    });
-    $('.next').click(function () {
-        $("#searchlist").html('');
-        page++;
-        init();
-    });
+    })
 
 
 </script>

@@ -393,7 +393,7 @@ function loginTimeOut(){
 }
 
 function drawImage(ImgD,twidth,theight){
-    console.log(ImgD);
+    //console.log(ImgD);
     ImgD.style = 'margin:0 0 0 0';
     var image=new Image();
     image.src=ImgD.src;

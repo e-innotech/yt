@@ -2,7 +2,6 @@ $(document).ready(function() {
     /*分页*/
     var page = 1;
     var commentData='';
-    var a=1;
     var getNavList = function(){
         //栏目id=1
         newsList(1,page,10,function callback(NavList){

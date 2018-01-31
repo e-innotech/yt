@@ -1,6 +1,4 @@
-.hot_list {
-    padding-top: 10px;
-}
+
 
 .hot_list_title .news_title {
     width: 482px;
@@ -14,21 +12,19 @@
 
 .hot_list_title {
     padding-top: 10px;
-    border-top: 1px solid #ff0000;
 }
 
 .hot_list_title h3 {
     color: #000;
     font-size: 20px;
-    margin-left: 30px;
-    line-height: 34px;
+    line-height: 40px;
+    border-bottom: 1px solid red;
 }
 
 .hot_list li {
-    height: 80px;
     width: 482px;
-    /*background: url("../images/hot_border.png") no-repeat 0 13px;*/
-
+    background: url("../images/search.png")no-repeat 0 0;
+    padding-left: 28px;
 }
 .img_border{
     float: left;
@@ -37,35 +33,17 @@
     position: relative;
     top: 12px;
 }
-.hot_list li .icon {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 20px;
-    color: #fff;
-    float: left;
-}
 
-.hot_list li .icon span {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #9a9a9a;
-}
 
 .hot_list li a {
     display: inline-block;
-    width: 446px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    width: 100%;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 20px;
     color: #999;
-    line-height: 34px;
-    margin-left: 20px;
+    line-height: 40px;
 }
 
 .ad_hot .img_box {
