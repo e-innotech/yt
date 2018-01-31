@@ -1,7 +1,18 @@
-.content-right-top img{
+.content-right-top{
+    overflow:hidden;
     width:472px;
     height:250px;
 }
+
+
+/*.content-right-top img{*/
+    /*width:472px;*/
+    /*height:250px;*/
+/*}*/
+
+/*.content-right-top{*/
+    /*width:*/
+/*}*/
 .hotnews{
     margin-top:30px;
 

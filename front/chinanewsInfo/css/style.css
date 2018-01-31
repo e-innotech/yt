@@ -9,7 +9,7 @@ img {
     border:none;
 }
 body{
-    background: #f3f3f3;
+    background: #edecec;
 }
 ul,ol,ul,li{
     list-style: none;
@@ -23,4 +23,10 @@ input{
 }
 h2, h3, h4, h5{
     font-weight:normal;
+}
+#backtop{
+    position:fixed;
+    bottom:174px;
+    right:360px;
+    display:none;
 }

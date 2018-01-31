@@ -52,6 +52,10 @@
     font-size:16px;
     color:#000000;
 }
+.editor_tit span{
+
+
+}
 .blank{
     height:52px;
     width:100%;
@@ -80,12 +84,6 @@
     line-height:34px;
     color:#999;
 }
-#backtop{
-    position:fixed;
-    bottom:310px;
-    right:306px;
-    display:none;
-}
 
 
 /*右侧的广告*/
@@ -96,12 +94,10 @@
     width:420px;
     height:327px;
     position:relative;
+    overflow:hidden;
 
 }
-.advise_top .adv{
-    width:100%;
-    height:100%;
-}
+
 .advise_top .adv_icon{
     position:absolute;
     bottom:10px;
@@ -109,15 +105,10 @@
 }
 .advise_bottom{
     margin-top:60px;
-}
-.advise_bottom{
+    overflow:hidden;
     width:420px;
-    height:327px;
+    height:290px;
     position:relative;
-}
-.advise_bottom .adv{
-    width:100%;
-    height:100%;
 }
 .advise_bottom .adv_icon{
     position:absolute;
