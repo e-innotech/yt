@@ -149,7 +149,7 @@ $(function(){
     //收藏点击上一页时
     $("#collprevpage").click(function(){
         mempage--;
-        if(mempage==0){
+        if(mempage==1){
             mempage=1;
             return
         }
@@ -196,7 +196,7 @@ $(function(){
     //评论点击上一页时
     $("#commprevpage").click(function(){
         mempage--;
-        if(mempage==0){
+        if(mempage==1){
             mempage=1;
             return
         }

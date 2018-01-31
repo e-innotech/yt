@@ -67,7 +67,7 @@ function AjaxUpload(url,data,callBack) {
 function homeList(homeWeight,pageNum,pageSize,callback){
 
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/home','get',data,function(re){
+    AjaxFunc(apiUrl+'/web/home','get',data,function(re){
         if(re.success){
             if(callback){
                 callback(re.data.list);
@@ -331,7 +331,7 @@ function deleteCollect(id){
 //搜索
 function globalQuery(websiteId, newsTitle, pageNum, pageSize, callback) {
     var data = {websiteId: websiteId, newsTitle: newsTitle, pageNum: pageNum, pageSize: pageSize};
-    AjaxFunc(apiUrl + '/global/query', 'get', data, function (re) {
+    AjaxFunc(apiUrl + '/web/global/query', 'get', data, function (re) {
         if (re.success) {
             if (callback) {
                 callback(re.data);
@@ -393,7 +393,7 @@ function loginTimeOut(){
 }
 
 function drawImage(ImgD,twidth,theight){
-    console.log(ImgD);
+    //console.log(ImgD);
     ImgD.style = 'margin:0 0 0 0';
     var image=new Image();
     image.src=ImgD.src;

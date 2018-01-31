@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('.prevpages').click(function () {
         page--;
         getNavList();
-        if(page==0){
+        if(page==1){
             page=1;
             $(".homepages").attr("disabled","disabled");
         }

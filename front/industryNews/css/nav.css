@@ -66,22 +66,17 @@
 }
 
 .news_list .news_list_left {
-    width: 686px;
-    margin-top: 20px;
+    width: 694px;
 }
-.news_list .news_list_left ul{
-    border: 1px solid #ccc;
-}
+
 .news_list .news_list_left li {
-    width:  684px;
+    width:  694px;
     height: 145px;
     display: inline-block;
-    padding: 10px 0 0 10px;
-    border-bottom: 1px dashed #5baa4e;
+    padding: 10px 0 0 0;
+    border-bottom: 1px solid #eaeaea;
 }
-.news_list .news_list_left li:last-child {
-    border-bottom: none;
-}
+
 .news_list .news_list_left li .title h3 {
     font-size: 20px;
     color: #000;
@@ -93,6 +88,8 @@
 .news_list .news_list_left li .title span {
     font-size: 20px;
     color: #999;
+    display: inline-block;
+    margin-top: 6px;
 }
 
 .news_list .news_list_left li .content_news {
@@ -109,10 +106,10 @@
 }
 
 .pageBtn button{
-    width: 116px;
-    height: 46px;
+    width: 106px;
+    height: 40px;
     border: 1px solid #989898;
-    background: #f8f8f8;
+    background: #f3f3f3;
     border-radius: 2px;
     margin-top: 60px;
     margin-bottom: 100px;
@@ -121,10 +118,10 @@
     color: #000;
 }
 .pageBtn .prev{
-    margin-left: 175px;
+    margin-left: 180px;
 }
 .pageBtn .next{
-    margin-left: 39px;
+    margin-left: 40px;
 }
 
 

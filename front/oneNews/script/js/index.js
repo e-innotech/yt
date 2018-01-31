@@ -12,7 +12,7 @@ $(document).ready(function(){
     })
 
     // 加载更多
-    var commentData='';
+    var commentData=10;
     var page=1;
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
@@ -41,8 +41,8 @@ $(document).ready(function(){
 
     /*分页*/
     $('.more').click(function(){
-        if (commentData.length < 0) {
-            $('.more').html('没有更多了');
+        if (commentData.length <= 0) {
+            $('.more').attr('disabled',true)
         } else {
             page++;
             getHomeNewsList();
