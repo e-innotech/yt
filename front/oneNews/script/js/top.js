@@ -17,7 +17,7 @@ $(document).ready(function() {
             return;
         }
         //参数 网站id 新闻标题 当前页 显示页
-        globalQuery(2,newsTitle,1, 10, getSearchList);
+        globalQuery(1,newsTitle,1, 10, getSearchList);
     });
 
 
