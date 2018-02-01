@@ -4,6 +4,22 @@
     overflow:hidden;
 }
 
+.advise-t{
+    width:200px;
+    height:160px;
+    position:fixed;
+    top:120px;
+    left:0;
+    overflow:hidden;
+}
+.advise-b{
+    width:200px;
+    height:260px;
+    position:fixed;
+    top:310px;
+    left:0;
+    overflow:hidden;
+}
 .content{
     width:1200px;
     margin:20px auto 151px auto;
