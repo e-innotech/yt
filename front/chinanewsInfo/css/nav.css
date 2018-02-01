@@ -1,16 +1,6 @@
-.advise{
-    width:1200px;
-    margin:10px auto 0 auto;
-    height:130px;
-}
-.advise img{
-    width:100%;
-    height:100%;
-}
 
 
 .contentbg{
-    background:#f3f3f3;
     overflow:hidden;
 
 }
@@ -21,40 +11,51 @@
 
 }
 .content-left{
-    width:680px;
+    width:698px;
     float:left;
 }
 
 .content-right{
-    width:500px;
+    width:472px;
     float:right;
 }
-.news_listbox{
+
+.advise{
+    width:698px;
+    height:150px;
     overflow:hidden;
 }
 
+
+
+
+
+.news_listbox{
+    overflow:hidden;
+    width:698px;
+}
+
 .news_list{
-    width:680px;
-    border-bottom:1px solid #e8e8e8;
+    width:698px;
+    border-bottom:1px solid #e5e5e5;
     clear:both;
-    padding-bottom:16px;
-    padding-left:10px;
-    background:#ffffff;
+    padding-bottom:20px;
 }
 .news_list  h2{
-    width:437px;
+    width:397px;
     line-height:40px;
     white-space: nowrap;
     overflow: hidden;
     font-size:20px;
     color:#000;
+    margin-top:10px;
 }
 
 .news_list div{
-    color:#666;
-    margin-top:6px;
-    font-size:16px;
-    line-height:24px;
+    color:#999;
+    margin-top:5px;
+    font-size:20px;
+    line-height:30px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -69,58 +70,40 @@
 }
 
 .page{
-    width:680px;
-    height:128px;
-    background:#fff;
+
     text-align:center;
     overflow:hidden;
-    margin-bottom:80px;
+    margin-bottom:100px;
 
 
 }
 .prevpages{
-    margin-left:250px;
+    margin-left:212px;
 }
 .page p{
-    /*padding:40px auto 56px auto;*/
-   margin-top:40px;
-  margin-bottom:56px;
+    margin-top:40px;
+    margin-bottom:56px;
     float:left;
-    width:75px;
-    height:30px;
+    width:120px;
+    height:40px;
     font-size:20px;
     font-weight: normal;
-    color:#000;
+    color:#006cb7;
     text-align:center;
-    line-height:30px;
-    border-radius: 2px;
-background:#efeeee;
+    line-height:40px;
+    border-radius:4px;
+    border:1px solid #006cb7;
 
 }
 .nextpages{
     margin-left:40px;
 }
 
-/*以下为右边部分*/
-.rigth_adv{
-    position:relative;
-}
-.rigth_adv .adv{
-    width:100%;
-    height:269px;
-    margin-bottom: 20px;
-}
-.rigth_adv .adv_icon{
-    position:absolute;
-    right:10px;
-    bottom:10px;
-}
-
-
-#backtop{
+.advertising{
+    width:262px;
+    height:214px;
     position:fixed;
-    bottom:168px;
-    right:360px;
-    display:none;
+    left:0;
+    top:130px;
 }
 

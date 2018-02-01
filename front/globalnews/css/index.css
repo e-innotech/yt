@@ -35,6 +35,10 @@
     position:relative;
 
 }
+.news_right a{
+    overflow:hidden;
+    margin-bottom:15px;
+}
 #Shufflingpaging{
     bottom:70px;
 
@@ -64,16 +68,14 @@
 
 
 }
-.news_top .news_right img{
+.news_top .news_right a{
+    display:inline-block;
     width:179px;
     height:124px;
-    margin-bottom:15px;
+    margin-bottom:11px;
+}
 
-}
-.news_left img{
-    width:100%;
-    height:100%;
-}
+
 .news_left .bgcolor{
    background:rgba(0,0,0,.3);
     position:absolute;
@@ -102,24 +104,23 @@
     bottom:10px;
     right:10px;
 }
-.bigadv .adv{
+.bigadv{
     width:190px;
     height:326px;
 
 }
 .smalladv{
     position:relative;
+    width:190px;
+    height:182px;
+    margin-top:30px;
 }
 .smalladv .adv_icon{
     position:absolute;
     bottom:10px;
     right:10px;
 }
-.smalladv .adv{
-    width:190px;
-    height:182px;
-    margin-top:30px;
-}
+
 .news_listbox{
     margin-top:20px;
 }
@@ -136,14 +137,15 @@
     display:none;
 }
 
-.news_list a>img{
+.news_list .news_img{
     width:202px;
     height:150px;
     float:left;
     margin:20px 20px 20px 86px;
+    overflow:hidden;
 }
 .news_list .list-r{
-    width:450px;
+    width:597px;
     padding-bottom: 34px;
     float:left;
     margin-top:20px;
@@ -151,12 +153,12 @@
 .news_list .list-r h2{
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
     font-size:20px;
     color:#000;
 
 }
 .news_list .list-r>div{
+    width:457px;
     font-size:12px;
     color:#666;
     line-height:22px;

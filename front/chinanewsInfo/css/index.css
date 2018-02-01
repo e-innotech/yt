@@ -24,10 +24,7 @@
     height:268px;
     position:relative;
 }
-.news_top img{
-    width:100%;
-    height:100%;
-}
+
 #swiper-button-prev{
     background:url(../images/arrows-l.png) no-repeat;
 }
@@ -47,11 +44,6 @@
     font-size:20px;
     color:#fff;
     text-align:center;
-}
-
-.slideshow img{
-    width:100%;
-    height:100%;
 }
 #Shufflingpaging{
     bottom:60px;
@@ -92,11 +84,6 @@
     float:left;
     position:relative;
 }
-.news_Img img{
-    width:100%;
-    height:100%;
-}
-
 .news_Img:last-child{
     margin-left:10px;
 }
@@ -105,11 +92,12 @@
     border-bottom:1px solid #e5e5e5;
 }
 
-.news_list a>img{
+.news_list a .news_img{
     width:206px;
     height:150px;
     float:left;
     margin:20px 10px 20px 0;
+    overflow:hidden;
 }
 .news_list .list-r{
     width:482px;
@@ -153,14 +141,6 @@
     text-align:center;
     margin:20px auto 80px auto;
 
-}
-/*以下为右边部分*/
-
-#backtop{
-    position:fixed;
-    bottom:174px;
-    right:360px;
-    display:none;
 }
 .advertising{
     width:262px;

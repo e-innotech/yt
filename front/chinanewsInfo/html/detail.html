@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/detail.css"/>
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
     <script type="text/javascript" src="../script/js/detail.js"></script>
 </head>
 <body>
@@ -13,14 +14,18 @@
 <div id="top"></div>
 
 <!--以下为广告-->
-<div class="advise">
-    <img src="../images/adv.png"/>
+<div class="advertising">
+    <img src="../images/adv.png" onload="drawImage(this,262,214)"/>
 </div>
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content">
         <!-- 主体内容左边 -->
         <div class="content-left" id="new_left">
+            <!--以下为广告-->
+            <div class="advise">
+                <img src="../images/adv.png" onload="drawImage(this,698,150)"/>
+            </div>
             <div class="editorbox">
                 <!--标题和时间-->
                 <div class="editor_tit">
@@ -49,11 +54,8 @@
 
         </div>
         <!--主体内容右边-->
-        <div class="content-right">
-            <!--以下为新闻排行的盒子-->
-            <div class="hot" id="hot">
+        <div class="content-right" id="content-right">
 
-            </div>
         </div>
     </div>
 </div>
@@ -71,7 +73,7 @@
     window.onload=function(){
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
-        $("#hot").load("news_com.html");
+        $("#content-right").load("right.html");
 
     }
 

@@ -19,16 +19,14 @@
     float:right;
 }
 
-.listadvise{
+.advise{
     width:990px;
     height:148px;
     position:relative;
+    overflow:hidden;
 }
-.listadvise .adv{
-    width:100%;
-    height:100%
-}
-.listadvise .adv_icon{
+
+.advise .adv_icon{
     position:absolute;
     bottom:10px;
     right:10px;
@@ -37,6 +35,7 @@
 .news_listbox{
     margin-top:10px;
     overflow:hidden;
+    min-height:1162px;
 }
 .news_list{
     width:990px;
@@ -47,16 +46,12 @@
 }
 
 .news_list  h2{
-    width:450px;
+    width:458px;
     color:#000;
     line-height:56px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
     font-size:20px;
-    /*margin-top:20px;*/
-    /*margin-bottom:20px;*/
-
 }
 
 .news_list div{
@@ -102,36 +97,31 @@
     border:1px solid #d1d1d1;
 
 }
-.nextpage{
+.next{
     margin-left:39px;
 }
-.bigadv{
+.advise_top{
     position:relative;
-}
-.bigadv .adv_icon{
-    position:absolute;
-    bottom:10px;
-    right:10px;
-}
-.bigadv .adv{
     width:190px;
     height:326px;
-
 }
-.smalladv{
-    position:relative;
-}
-.smalladv .adv_icon{
+.advise_top .adv_icon{
     position:absolute;
     bottom:10px;
     right:10px;
 }
-.smalladv .adv{
+
+.advise_bottom{
+    position:relative;
     margin-top:30px;
     width:190px;
     height:182px;
 }
-
+.advise_bottom .adv_icon{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
 #backtop{
     position:fixed;
     bottom:311px;

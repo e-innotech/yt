@@ -8,10 +8,6 @@
     width:1200px;
     margin:20px auto 151px auto;
     overflow:hidden;
-    /*margin:0 auto;*/
-    /*padding-top:20px;*/
-    /*padding-bottom:151px;*/
-
 }
 .content-left{
     width:818px;
@@ -96,14 +92,9 @@
     position:fixed;
     top:140px;
     left:0;
-    /*background:url(../images/adv.png)no-repeat 100px 50px;*/
 
 }
-.detailadv .bigImg{
-    width:100%;
-    height: 100%;
 
-}
 .detailadv .adv_icon{
     position:relative;
     right:-145px;

@@ -14,6 +14,7 @@
     height:150px;
     position:relative;
     margin-bottom:20px;
+    overflow:hidden;
 }
 .advise p{
     width:12px;
@@ -23,10 +24,7 @@
     left:0;
     top:0;
 }
-.advise img{
-    width:100%;
-    height:100%;
-}
+
 .content_top{
     overflow:hidden;
 }
@@ -45,11 +43,9 @@
 .left .Img{
     width:490px;
     height:298px;
+    overflow:hidden;
 }
-.left .Img img{
-    width:100%;
-    height:100%;
-}
+
 .left h3{
     width:400px;
     white-space: nowrap;
@@ -79,10 +75,6 @@
 
 }
 
-.swiper-wrapper .picture{
-    width:100%;
-    height:100%;
-}
 .bgcolor{
     width:689px;
     height:56px;
@@ -140,9 +132,10 @@
 .con_lnews{
     overflow:hidden;
 }
-.con_lnews img{
+.con_lnews .news_img{
     width:204px;
     height:138px;
+    overflow:hidden;
     float:left;
 }
 .news_list{
