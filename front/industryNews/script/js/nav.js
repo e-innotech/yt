@@ -25,7 +25,6 @@ $(document).ready(function() {
             }
         })
     };
-    getNavList();
     $('.prev').click(function () {
         if(page==1){
             page=1;
