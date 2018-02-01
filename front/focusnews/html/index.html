@@ -2,195 +2,151 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>首页</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/top.css"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
-	<link rel="stylesheet" href="../css/swiper.min.css"/>
-    <script type="text/javascript" src="../script/jquery.min.js"></script>
-	<script src="../script/swiper.min.js"></script>
-	<script src="../script/js/index.js"></script>
 
-    
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/index.js"></script>
+    <script type="text/javascript" src="../script/swiper.min.js"></script>
 </head>
 <body>
-<!-- 以下为头部 -->
-<div class="top"></div>
-
+<!--以下为头部-->
+<div id="top"></div>
 
 <!-- 以下为左侧广告 -->
-<div class="advertising">
-	<img src="../images/advone.png" class="advone"/>
-	<img src="../images/advtwo.png" class="advtwo"/>
+<div class="advise-t">
+    <img src="../images/adv.png" onload="drawImage(this,200,160)" />
+
 </div>
 
-
- <!-- 以下为内容区域 -->
+<div class="advise-b">
+    <img src="../images/adv.png" onload="drawImage(this,200,260)"/>
+</div>
+<!--以下为内容区域-->
 <div class="contentbg">
-	 <div class="content">
-		 	<div class="content-left">
-		 		<div class="banner swiper-container">
-		 			<ul class="swiper-wrapper" id="slide">
-						<!--<li class="swiper-slide">-->
-						     <!--<a href="https://www.baidu.com/">-->
-								 <!--<img class="picture" alt="" src="../images/banner.png"/>-->
-								 <!--<div class="bgcolor">-->
-									 <!--<p>卡乐芙电视里的咖啡机案件辅导老师的咖啡机案件的咖啡机案件的咖啡机案件的咖啡机案件</p>-->
-								 <!--</div>-->
-						     <!--</a>-->
-						<!--</li>-->
-                    </ul>
-					<!--轮播图的箭头-->
-					<div class="swiper-button-prev" id="swiper-button-prev"><img  src="../images/left.png" class="arrows-l"/></div>
-					<div class="swiper-button-next" id="swiper-button-next"><img  src="../images/right.png" class="arrows-r"/></div>
-		 		</div>
-		 		<div class="bannersmall">
-		 			<img src="../images/bannersmall.png"/>
-		 		</div>
-		 		<div class="content-listbox">
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
-		 			 <div class="content-list">
-		 			 	 <img src="../images/listimg.png"/>
-		 			 	 <div class="list-r">
-		 			 	 	 <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
-		 			 	 	 <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
-		 			 	 	 <p>中南海<span>一小时前</span></p>
-		 			 	 </div>
-		 			 </div>
+    <div class="content">
+        <div class="content-left">
+            <!--以下为轮播图-->
+            <div class="news_top swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="https://www.baidu.com/">
+                            <img src="../images/img.png" onload="drawImage(this,858,350)"/>
+                            <div class="bgcolor">
+                                1斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.baidu.com/">
+                            <img src="../images/news_img.png" onload="drawImage(this,858,350)"/>
+                            <div class="bgcolor">
+                                2斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师
+                            </div>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="https://www.baidu.com/">
+                            <img src="../images/img.png" onload="drawImage(this,858,350)"/>
+                            <div class="bgcolor">
+                                3斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                 <!--轮播图上的箭头-->
+                <div class="swiper-button-prev" id="swiper-button-prev"><img  src="../images/arrows-l.png" class="arrows-l"/></div>
+                <div class="swiper-button-next" id="swiper-button-next"><img  src="../images/arrows-r.png" class="arrows-r"/></div>
+            </div>
+            <div class="advise">
+                <img src="../images/adv.png" onload="drawImage(this,858,80)"/>
+            </div>
+            <!--以下为新闻列表-->
+            <div class="news_listbox">
+                <div class="news_list">
+                    <a href="#">
+                        <div class="news_img">
+                            <img src="../images/news_img.png" onload="drawImage(this,202,150)" />
+                        </div>
+                        <div class="list-r">
+                            <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡给了空间阿里斯顿拉科技师范大咖给了空间阿里斯顿拉科技师范大咖</h2>
+                            <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
+                            <p><span class="sourse">中南海</span><span class="date">一小时前</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="news_list">
+                    <a href="#">
+                        <div class="news_img">
+                            <img src="../images/news_img.png" onload="drawImage(this,202,150)" />
+                        </div>
+                        <div class="list-r">
+                            <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡给了空间阿里斯顿拉科技师范大咖给了空间阿里斯顿拉科技师范大咖</h2>
+                            <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
+                            <p><span class="sourse">中南海</span><span class="date">一小时前</span></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="news_list">
+                    <a href="#">
+                        <div class="news_img">
+                            <img src="../images/news_img.png" onload="drawImage(this,202,150)" />
+                        </div>
+                        <div class="list-r">
+                            <h2>独家 | 输给了空间阿里斯顿拉科技师范大咖啡</h2>
+                            <div>咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉</div>
+                            <p><span class="sourse">中南海</span><span class="date">一小时前</span></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-		 			 <div class="more">加载更多</div>
-		 		</div>
-		 	</div>
-		 	<div class="content-right">
-		 	</div>
-	 </div>
-	  <a href="#"><img src="../images/top.png"/></a>
+              <!--以下为点击加载更多-->
+           <div class="more">加载更多</div>
+        </div>
+        <!--以下为内容右侧-->
+        <div class="content-right" id="content-right">
+
+
+
+        </div>
+    </div>
 </div>
 
-<div class="bottom"></div>
+
+<!--以下为回到顶部的图片-->
+<a href="#" id="backtop"><img src="../images/backtop.png"/></a>
+<!--以下为尾部-->
+<div id="bottom"></div>
+<!--以下为轮播图-->
 <script>
-	//轮播图
-	var mySwiper = new Swiper ('.swiper-container', {
-		//轮播图滚动的方向
-		direction: 'horizontal',
-		//整个图片是循环的
-		loop: true,
-		//自动播放
-		autoplay:true,
-
-		// 如果需要前进后退按钮
-		navigation:{
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
-		},
-
-
-		initialSlide :0,
-		observer:true,//修改swiper自己或子元素时，自动初始化swiper
-		observeParents:true//修改swiper的父元素时，自动初始化swiper
+var swiper = new Swiper('.swiper-container', {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+    },
+    loop: true,
+    navigation:{
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    }
+});
 
 
-	})
 </script>
-
-
-
 
 </body>
-<script type="text/javascript">
-//$(document).ready(function() {
-////	放轮播图的盒子
-//   var unslider = $(".banner").unslider();
-//	//点击轮播图的左右箭头
-//   $(".unslider-arrow").click(function(){
-//	   var fn = this.className.split(' ')[1];
-//	   unslider.data('unslider')[fn]();
-//
-//   })
-//
-//});
-
-window.onload=function(){
-	$(".top").load("top.html");
-	$(".bottom").load("bottom.html");
-	$(".content-right").load("right.html");
-}
-
-
+<script>
+    window.onload=function(){
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
+        $("#content-right").load("right.html");
+    }
 
 </script>
-
-
-
 </html>

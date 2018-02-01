@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"微软雅黑";
+}
+img {
+    display:block;
+    border:none;
+}
+body{
+    background: #f0f0f0;
+}
+ul,ol,ul,li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+input{
+    outline:none;
+}
+h2, h3, h4, h5{
+    font-weight:normal;
+}
+#backtop{
+    position:fixed;
+    bottom:310px;
+    right:306px;
+    display:none;
+}
+
