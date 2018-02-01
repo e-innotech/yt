@@ -50,13 +50,11 @@
     var searchData='';
 
     var object = window.sessionStorage.getItem("global_search_data");
-    console.log(99999,object)
     var data = JSON.parse(object);
     var list = data.list;
 
 
     $('.more').click(function () {
-//        alert(78,searchData.length)
         if(searchData.length<=0){
             $('.more').html('没有更多了');
         }else{
@@ -65,8 +63,6 @@
 
         }
     });
-
-
     function init(){
         searchData=list;
         //拿到的搜索的数据
@@ -82,9 +78,9 @@
             '</div>' +
             '</a>' +
             '</div>');
+
      }
-
-
+        sessionStorage.removeItem("global_search_data");
 
     }
 
