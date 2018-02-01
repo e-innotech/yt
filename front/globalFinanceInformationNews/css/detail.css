@@ -1,0 +1,105 @@
+/*广告标签*/
+.ad_right {
+	position: fixed;
+	z-index: 100;
+	top: 180px;
+	right: 0;
+}
+
+.ad_left {
+	position: fixed;
+	z-index: 100;
+	top: 160px;
+
+}
+
+.ad_icon2 {
+	position: relative;
+	top: -32px;
+	left: 140px;
+
+}
+
+
+.news_list {
+	width: 1200px;
+	margin: 0 auto;
+}
+.content_box{
+	width: 1200px;
+	margin-top: 10px;
+
+}
+.news_list .news_list_left {
+	width: 1200px;
+	margin-top: 20px;
+}
+
+.news_list .news_list_left li {
+
+	width: 1200px;
+	display: inline-block;
+	height: 180px;
+
+}
+
+.news_list .news_list_left li .title h3 {
+	font-size: 20px;
+	color: #000;
+	line-height: 40px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.news_list .news_list_left li .title span {
+	font-size: 20px;
+	line-height: 40px;
+	color: #999;
+}
+
+
+
+.news_list .article{
+	float: left;
+	width: 1200px;
+	min-height: 600px;
+	background: #fff;
+	margin-bottom: 145px;
+}
+.news_list .article .article_title{
+	font-size: 18px;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 20px;
+}
+.article_source{
+	text-align: center;
+}
+.news_list .article .article_source span{
+	font-size: 16px;
+	color: #a4a4a4;
+	line-height: 36px;
+}
+
+.news_list .article .article_source .source{
+	margin-left: 20px;
+}
+.news_list .article .article_content p{
+	margin: 25px 15px 0;
+	font-size: 16px;
+	color: #000;
+	line-height: 22px;
+}
+
+.notice {
+	margin:50px 10px 50px;
+	font-size: 16px;
+	color: #969696;
+
+}
+.notice p{
+	line-height: 22px;
+	font-size: 16px;
+	color: #999999;
+}
