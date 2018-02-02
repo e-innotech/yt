@@ -47,6 +47,12 @@ function AjaxFunc(url, type, data, callBack) {
     };
     $.ajax(obj);
 };
+function delHtmlTag(str)
+{
+    var str=str.replace(/<\/?[^>]*>/gim,"");//去掉所有的html标记
+    var result=str.replace(/(^\s+)|(\s+$)/g,"");//去掉前后空格
+    return  result.replace(/\s/g,"");//去除文章中间空格
+}
 function AjaxUpload(url,data,callBack) {
     var obj = {
         url:url,
@@ -188,15 +194,10 @@ function countCode(obj,count){
     }
 }
 function removeHTMLTag(str) {
-    str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
-    str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
-    str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
+    str = str.replace(/\s|&nbsp;/g,'')
     str=str.replace(/ /g,'');//去掉
     return str;
 }
-function delHtmlTag(str){
-    return str.replace(/<[^>]+>/g,"");
-};
 //在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
     var data = {uname: uname, pwd: pwd};
