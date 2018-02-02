@@ -95,6 +95,7 @@
     height:150px;
     float:left;
     margin:10px 20px 10px 10px;
+    overflow:hidden;
 }
 .news_list .list-r{
     width:448px;

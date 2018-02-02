@@ -29,10 +29,8 @@
                     </a>
                 </div>
             </div>
-            <div class="pages">
-                <p class="prevpages">上一页</p>
-                <p class="nextpages">下一页</p>
-            </div>
+            <!--以下为点击加载更多-->
+            <div class="more">加载更多</div>
 
         </div>
     </div>
@@ -45,44 +43,45 @@
     // 一进页面加载头
     window.onload=function(){
         $("#top").load("top.html");
-//        init();
+        $("#bottom").load("bottom.html");   init();
     }
-
-
-
 
 
     //搜索渲染
     var page = 1;
-    var searchData;
+    var searchData='';
+
+    var object = window.sessionStorage.getItem("global_search_data");
+    var data = JSON.parse(object);
+    var list = data.list;
+
+
+    $('.more').click(function () {
+        if(searchData.length<=0){
+            $('.more').html('没有更多了');
+        }else{
+            page++;
+            init()
+
+        }
+    });
     function init(){
-        var object = window.sessionStorage.getItem("global_search_data");
-        console.log(99999,object)
-        var data = JSON.parse(object);
-        var list = data.list;
-        //拿到的搜索的数据
         searchData=list;
+        //拿到的搜索的数据
+        for (var i = 0; i <searchData.length; i++) {
+            $('#searchlist').append('<div class="news_list">' +
+            '<a href="">' +
+            '<h2>' +searchData[i].newsTitle+' </h2>' +
+            '<p>' +searchData[i].createDate+
+            '</p>' +
+            '<div>' +searchData[i].subContent+'</div>' +
+            '</div>' +
+            '</a>' +
+            '</div>');
+
+        }
+        sessionStorage.removeItem("global_search_data");
 
     }
 
-    /*分页*/
-    var page = 1;
-    var commentData='';
-    var channelId = getIdFromUrl();
-    var getNavList = function(){
-        newsList(channelId,page,8,function callback(NavList){
-            commentData=NavList;
-        })
-    };
-    $('.prevpages').click(function () {
-        page--;
-        getNavList();
-        if(page==1){
-            page=1;
-        }
-    });
-    $('.nextpages').click(function () {
-        page++;
-        getNavList();
-    });
 </script>

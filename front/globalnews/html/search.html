@@ -29,10 +29,8 @@
                 </div>
 
             </div>
-            <div class="page">
-                <p class="prev">上一页</p>
-                <p class="next">下一页</p>
-            </div>
+            <!--以下为点击加载更多-->
+            <div class="more">加载更多</div>
         </div>
     </div>
 </div>
@@ -44,52 +42,48 @@
     // 一进页面加载头
     window.onload=function(){
         $("#top").load("top.html");
-//        init();
+        $("#bottom").load("bottom.html");   init();
     }
 
 
+    //搜索渲染
+    var page = 1;
+    var searchData='';
 
-//    //搜索渲染
-//    var page = 1;
-//    var searchData='';
-//
-//    var object = window.sessionStorage.getItem("global_search_data");
-//    console.log(99999,object)
-//    var data = JSON.parse(object);
-//    var list = data.list;
-//
-//
-//    $('.prev').click(function () {
-//        if(page==1){
-//            page=1;
-//        }else{
-//            $(".news_listbox").html('');
-//            page--;
-//            getNavList();
-//        }
-//    });
-//    $('.next').click(function () {
-//        $(".news_listbox").html('');
-//        page++;
-//        getNavList();
-//    });
-//
-//    function init() {
-//        searchData = list;
-//        //拿到的搜索的数据
-//        for (var i = 0; i < searchData.length; i++) {
-//            $('#searchlist').append('<div class="news_list">' +
-//            '<a href="">' +
-//            '<h2>' + searchData[i].newsTitle + ' </h2>' +
-//            '<div>' + searchData[i].subContent + '</div>' +
-//            '<p>' +
-//            '<span class="source">' + searchData[i].source + '</span>' +
-//            '<span class="date">' + searchData[i].createDate + '</span>' +
-//            '</p>' +
-//            '</div>' +
-//            '</a>' +
-//            '</div>');
-//        }
-//    }
+    var object = window.sessionStorage.getItem("global_search_data");
+    var data = JSON.parse(object);
+    var list = data.list;
+
+
+    $('.more').click(function () {
+        if(searchData.length<=0){
+            $('.more').html('没有更多了');
+        }else{
+            page++;
+            init()
+
+        }
+    });
+    function init(){
+        searchData=list;
+        //拿到的搜索的数据
+        for (var i = 0; i <searchData.length; i++) {
+            $('#searchlist').append('<div class="news_list">' +
+            '<a href="">' +
+            '<h2>' +searchData[i].newsTitle+' </h2>' +
+            '<div>' +searchData[i].subContent+'</div>' +
+            '<p>' +
+            '<span class="source">' +searchData[i].source+'</span>' +
+            '<span class="date">' +searchData[i].createDate+'</span>' +
+            '</p>' +
+            '</div>' +
+            '</a>' +
+            '</div>');
+        }
+        sessionStorage.removeItem("global_search_data");
+
+    }
+
+
 
 </script>

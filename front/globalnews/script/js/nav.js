@@ -12,8 +12,8 @@ $(document).ready(function () {
     });
 
     /*分页*/
-    var page = 1;
-    var commentData='';
+    var page =0;
+    var commentData=10;
     var getNavList = function(){
         //栏目id=1
         newsList(1,page,8,function callback(newsList){

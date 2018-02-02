@@ -71,7 +71,6 @@ function AjaxUpload(url,data,callBack) {
 };
 //权重 页数 一页显示多少条 回调函数
 function homeList(homeWeight,pageNum,pageSize,callback){
-
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/web/home','get',data,function(re){
         if(re.success){
@@ -110,6 +109,7 @@ function newsList(channelId,pageNum,pageSize,callback){
     AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
         if(re.success){
             if(callback){
+                callback(re.data);
                 callback(re.data.list);
                 return;
             }
