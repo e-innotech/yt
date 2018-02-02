@@ -8,20 +8,7 @@ $(document).ready(function() {
             commentData=NavList;
             for (var i = 0; i < NavList.length; i++) {
                 console.log(NavList)
-                $('#navList').append(
-                    '<li>' +
-                    '<a href="#">' +
-                    '<div>' +
-                    '<span class="num">' + (i + 1) + '</span>' +
-                    '<h3>'+NavList[i].newsTitle+'</h3>' +
-                    '<p>'+NavList[i].subContent +'</p>' +
-                    '<div class="list_info">' +
-                    '<span class="source"><a href="">'+NavList[i].source +'</a></span>' +
-                    '<span class="time">'+NavList[i].createDate+'</span>' +
-                    '</div>' +
-                    '</div>' +
-                    '</a>' +
-                    '</li>')
+                $('#navList').append('<li> <a href=""> <div class="title"> <h3>'+NavList[i].newsTitle+'</h3> <span class="time">'+NavList[i].createDate+'</span> </div> <p class="content_news">'+NavList[i].subContent+'</p> </a> </li>')
             }
         })
     };

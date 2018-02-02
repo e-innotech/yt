@@ -1,6 +1,7 @@
 $(document).ready(function() {
 //搜索页面调用
     var searchData;
+    var page=1
     var getSearchList = function (data) {
         searchData=data;
         window.sessionStorage.setItem("global_search_data", JSON.stringify(data));
@@ -14,7 +15,7 @@ $(document).ready(function() {
             return;
         }
         //参数 网站id 新闻标题 当前页 显示页
-        globalQuery(1,newsTitle,1, 10, getSearchList);
+        globalQuery(1,newsTitle,page, 5, getSearchList);
     });
     //添加样式
     var urlstr = location.href;

@@ -198,6 +198,11 @@ function removeHTMLTag(str) {
     str=str.replace(/ /g,'');//去掉
     return str;
 }
+//去掉首位空格
+String.prototype.trim = function() {
+    return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+
 //在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
     var data = {uname: uname, pwd: pwd};

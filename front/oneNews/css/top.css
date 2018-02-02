@@ -17,7 +17,12 @@ button:focus{outline:none}
 ul, ol {
     list-style-type: none;
 }
-
+#moreList{
+    min-height: 1840px;
+}
+#navList{
+    min-height: 1600px;
+}
 select, input, img, select {
     vertical-align: middle;
 }

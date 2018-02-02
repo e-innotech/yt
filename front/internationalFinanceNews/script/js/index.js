@@ -19,21 +19,7 @@ $(document).ready(function(){
             console.log(newsList);
             commentData = newsList;
             for (var i = 0; i < newsList.length; i++) {
-                $('#moreList').append('<li>' +
-                '<a href="">' +
-                '<div>' +
-                '<div class="img_box">' +
-                '<img src=' + newsList[i].topImagePath + ' alt="" onload="drawImage(this,240,170)"/>' +
-                '</div>' +
-                '<h3>' +newsList[i].newsTitle+'</h3>' +
-                '<p>' +newsList[i].subContent+'</p>' +
-                '<div class="list_info">' +
-                '<span class="source"><a href="">' +newsList[i].source+'</a></span>' +
-                '<span class="time">' +newsList[i].createDate+'</span>' +
-                '</div>' +
-                '</div>' +
-                '</a>' +
-                '</li>')
+                $('#moreList').append('<li> <a href=""> <div> <div class="img_box"> <img src="'+newsList[i].topImagePath+'" alt="" onload="drawImage(this,262,150)"/> </div> <div class="title"> <h3>'+newsList[i].newsTitle+'</h3> <span class="time">'+newsList[i].createDate+'</span> <p>'+newsList[i].subContent+'</p> </div> </div> </a> </li>')
             }
         })
     };

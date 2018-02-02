@@ -58,7 +58,6 @@
 .news_list .news_list_left li .title h3 {
     font-size: 20px;
     color: #000;
-    width: 582px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -72,7 +71,6 @@
     margin: 10px 0;
 }
 .news_list .news_list_left li .title p{
-    width: 582px;
     font-size: 20px;
     color: #999;
     overflow: hidden;

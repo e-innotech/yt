@@ -1,9 +1,10 @@
 $(document).ready(function() {
     /*分页*/
-    var page = 1;
+    var page = 0;
     var commentData='';
     var getNavList = function(){
         //栏目id=1
+
         newsList(1,page,10,function callback(NavList){
             commentData=NavList;
             for (var i = 0; i < NavList.length; i++) {
@@ -12,17 +13,16 @@ $(document).ready(function() {
                     '<li>' +
                     '<a href="#">' +
                     '<div>' +
-                    '<span class="num">' + (i + 1) + '</span>' +
                     '<h3>'+NavList[i].newsTitle+'</h3>' +
-                    '<p>'+NavList[i].subContent +'</p>' +
                     '<div class="list_info">' +
-                    '<span class="source"><a href="">'+NavList[i].source +'</a></span>' +
+                    '<span>发布时间：</span>' +
                     '<span class="time">'+NavList[i].createDate+'</span>' +
                     '</div>' +
                     '</div>' +
                     '</a>' +
                     '</li>')
             }
+
         })
     };
     $('.prev').click(function () {
@@ -34,10 +34,16 @@ $(document).ready(function() {
             getNavList();
         }
     });
+    console.log(commentData.length)
+
     $('.next').click(function () {
-        $("#navList").html('');
-        page++;
-        getNavList();
+        if(commentData.length>0){
+            $('.next').attr('disabled',true);
+        }else{
+            $("#navList").html('');
+            page++;
+            getNavList();
+        }
     });
 
 });

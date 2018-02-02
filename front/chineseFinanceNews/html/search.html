@@ -13,10 +13,14 @@
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <div id="searchlist"></div>
+            <div id="searchlist">
+                <div class="nav_list">
+                    <ul id="navList" style="min-height: 600px"></ul>
+                </div>
+            </div>
             <div style="clear: both"></div>
             <div class="moreBtn">
-                <a class="more" href="#">加载更多</a>
+                <a class="more" href="javascript:void(0);">加载更多</a>
             </div>
         </div>
     </div>
@@ -33,47 +37,21 @@
     }
     //搜索渲染
     var page = 1;
-    var searchData;
     function init(){
         var object = window.sessionStorage.getItem("global_search_data");
         var data = JSON.parse(object);
         var list = data.list;
-        searchData=list;
         for (var i = 0; i <list.length; i++) {
-            $('#searchlist').append('<div class="nav_list">' +
-            '<ul>' +
-            '<li>' +
-            '<a href="#">' +
-            '<div>' +
-            '<span class="num">' + (i + 1) + '</span>' +
-            '<h3>'+list[i].newsTitle+'</h3>' +
-            '<p>'+list[i].subContent +'</p>' +
-            '<div class="list_info">' +
-            '<span class="source"><a href="">'+list[i].source +'</a></span>' +
-            '<span class="time">'+list[i].createDate+'</span>' +
-            '</div>' +
-            '</div>' +
-            '</a>' +
-            '</li>'+
-            '</ul>' +
-            '</div>');
+            $('#navList').append(' <li> <a href="#"> <div> <h3>'+list[i].newsTitle+'</h3> <div class="list_info"> <span>发布时间:</span> <span class="time">'+list[i].createDate+'</span> </div> </div> </a> </li>');
+        }
+        if(list.length>0){
+
         }
     }
 
-    $('.prev').click(function () {
-        if(page==1){
-            page=1;
-        }else{
-            $("#searchlist").html('');
-            page--;
-            init();
-        }
-    });
-    $('.next').click(function () {
-        $("#searchlist").html('');
-        page++;
-        init();
-    });
+    $('.more').click(function(){
+        /*分页*/
+        init()
 
-
+    })
 </script>

@@ -11,7 +11,12 @@ body {
     font-size: 12px;
     font-family: "SimSun", "宋体", "Arial Narrow", "微软雅黑";
 }
-
+#moreList{
+    min-height: 2024px;
+}
+#navList{
+    min-height: 1630px;
+}
 ul, ol {
     list-style-type: none;
 }

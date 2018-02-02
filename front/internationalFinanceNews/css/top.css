@@ -117,6 +117,12 @@ input {
     width: 278px;
     height: 236px;
 }
+#moreList{
+    min-height: 1700px;
+}
+#navList{
+    min-height: 1400px;
+}
 .news_list_left .img_box {
     margin:20px  0;
     float: right;

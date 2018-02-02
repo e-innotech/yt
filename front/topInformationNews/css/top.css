@@ -15,7 +15,12 @@ body {
 ul, ol {
     list-style-type: none;
 }
-
+#moreList{
+    min-height: 1830px;
+}
+#navList{
+    min-height: 1400px;
+}
 select, input, img, select {
     vertical-align: middle;
 }

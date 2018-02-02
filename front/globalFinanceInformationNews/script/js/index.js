@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     // 加载更多
     var commentData='';
-    var page=1;
+    var page=0;
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
         homeList(3, page,1, function callback(newsList) {
@@ -23,13 +23,12 @@ $(document).ready(function(){
                 '<a href="">' +
                 '<div>' +
                 '<div class="img_box">' +
-                '<img src=' + newsList[i].topImagePath + ' alt="" onload="drawImage(this,240,170)"/>' +
+                '<img src="'+newsList[i].topImagePath+'" alt="" onload="drawImage(this,250,172)"/>' +
                 '</div>' +
-                '<h3>' +newsList[i].newsTitle+'</h3>' +
-                '<p>' +newsList[i].subContent+'</p>' +
-                '<div class="list_info">' +
-                '<span class="source"><a href="">' +newsList[i].source+'</a></span>' +
-                '<span class="time">' +newsList[i].createDate+'</span>' +
+                '<div class="title">' +
+                '<h3>'+newsList[i].newsTitle+'</h3>' +
+                '<span class="time">'+newsList[i].createDate+'</span>' +
+                '<p>'+newsList[i].subContent+'</p>' +
                 '</div>' +
                 '</div>' +
                 '</a>' +
@@ -37,7 +36,6 @@ $(document).ready(function(){
             }
         })
     };
-
     /*分页*/
     $('.more').click(function(){
         if (commentData.length < 0) {
