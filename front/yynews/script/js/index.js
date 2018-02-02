@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var page = 1;
-    var commentData='';
+    var commentData=10;
     //$(".nav").on("click","li",function(){
     //    $(this).addClass("active").siblings().removeClass("active")
     //})
@@ -13,7 +13,7 @@ $(document).ready(function () {
             getHomeBoxList();
         }
     });
-    getHomeBoxList();
+    //getHomeBoxList();
     //轮播图请求的数据
     homeList(1,1,3,function callback(list){
         for (var i = 0; i < list.length; i++) {
@@ -42,7 +42,8 @@ $(document).ready(function () {
 //// 以下为中间部分新闻列表
     function getHomeBoxList(){
         //传的网站ID 页数 一页显示几条数据
-        homeList(3,page,7,function callback(newlist){
+        homeList(3,page,10,function callback(newlist){
+
             console.log("首页新闻列表数据：",newlist)
                 commentData=newlist;
             for (var i = 0; i < newlist.length; i++) {
@@ -158,7 +159,6 @@ $(document).ready(function () {
 
     //有一定滚动时显示这个top
     $(window).scroll(function(){
-        console.log(11111111111)
         //获取距离浏览器顶部距离并赋值th
         var th = $(window).scrollTop();
        //用if判断，距离顶部大于300时给一个警告弹窗

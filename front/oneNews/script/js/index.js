@@ -16,7 +16,7 @@ $(document).ready(function(){
     var page=1;
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
-        homeList(3, page,1, function callback(newsList) {
+        homeList(3, page,10, function callback(newsList) {
             console.log(newsList);
             commentData = newsList;
             for (var i = 0; i < newsList.length; i++) {

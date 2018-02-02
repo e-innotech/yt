@@ -101,11 +101,9 @@
     position:fixed;
     top:190px;
     left:0;
+    overflow:hidden;
 }
-.detail_adv img{
-    width:100%;
-    height:100%;
-}
+
 /*以下为转载说明*/
 .Reprint_instr{
     margin-top:60px;

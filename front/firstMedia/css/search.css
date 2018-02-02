@@ -37,20 +37,14 @@ news_list {
     color:#666;
 
 }
-.pages{
-    text-align:center;
-    margin:58px 0 88px 350px;
-    overflow:hidden;
-
-}
-.pages p{
-    width:82px;
-    height:32px;
-    background:#fff;
-    color:#000;
+.more{
+    width:900px;
+    height:60px;
     font-size:20px;
+    line-height:60px;
+    color:#000;
+    background:#fff;
     text-align:center;
-    line-height:32px;
-    float:left;
-    margin-right:40px;
+    margin:33px 0px 132px 0px;
+
 }

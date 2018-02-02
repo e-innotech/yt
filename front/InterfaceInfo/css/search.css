@@ -46,27 +46,15 @@
     padding-left: 10px;
     margin-left:10px;
 }
-.page{
-    width:315px;
-    text-align:center;
-    margin:49px auto 100px auto;
-    overflow:hidden;
-
-
-}
-.page p{
-    float:left;
+.more{
     width:120px;
-    height:44px;
-    font-size:20px;
-    font-weight: normal;
-    color:#999;
+    height:45px;
+    line-height:45px;
+    border:1px solid #d3d3d3;
+    border-radius: 4px;
+    font-size:22px;
+    color:#999999;
     text-align:center;
-    line-height:44px;
-    border-radius: 2px;
-    border:1px solid #999;
+    margin:82px auto 145px auto;
 
-}
-.nextpages{
-    margin-left:40px;
 }

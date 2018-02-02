@@ -41,27 +41,15 @@
     padding-left: 10px;
     margin-left:10px;
 }
-.page{
-    width:315px;
-    text-align:center;
-    margin:60px auto 70px auto;
-    overflow:hidden;
-
-
-}
-.page p{
-    float:left;
-    width:134px;
+.more{
+    width:178px;
     height:52px;
-    font-size:20px;
-    font-weight: normal;
-    color:#999;
-    text-align:center;
     line-height:52px;
-    border-radius: 2px;
-    border:1px solid #d1d1d1;
+    border:1px solid #d2d2d2;
+    border-radius: 4px;
+    font-size:22px;
+    color:#999999;
+    text-align:center;
+    margin:40px 0 133px 405px;
 
-}
-.next{
-    margin-left:39px;
 }

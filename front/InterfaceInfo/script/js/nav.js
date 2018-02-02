@@ -1,6 +1,4 @@
-
-$(document).ready(function () {
-    //有一定滚动时显示这个top
+//有一定滚动时显示这个top
     $(window).scroll(function () {
         //获取距离浏览器顶部距离并赋值th
         var th = $(window).scrollTop();
@@ -11,28 +9,43 @@ $(document).ready(function () {
         }
     });
 
+$(document).ready(function () {
+    var page=1;
+    function getNavList() {
+        //传的权限 页数 一页显示几条数据
+        newsList(3, page,10, function callback(newsList) {
+            for (var i = 0; i < newsList.length; i++) {
+                $('.news_listbox').append('<div class="news_list">' +
+                '<a href="">' +
+                '<h2>' +newsList[i].newsTitle+' </h2>' +
+                '<div>' +newsList[i].subContent+'</div>' +
+                '<p>' +
+                '<span class="source">' +newsList[i].source+'</span>' +
+                '<span class="date">' +newsList[i].createDate+'</span>' +
+                '</p>' +
+                '</a>' +
+                '</div>')
 
-    /*分页*/
-    var page = 1;
-    var commentData='';
-    var channelId = getIdFromUrl();
-    var getNavList = function(){
-        newsList(channelId,page,8,function callback(NavList){
-            commentData=NavList;
+            }
         })
     };
+
+    //点击上一页时
     $('.prevpages').click(function () {
-        page--;
-        getNavList();
         if(page==1){
             page=1;
+        }else{
+            $(".news_listbox").html('');
+            page--;
+            getNavList();
         }
     });
+    ////点击下一页时
     $('.nextpages').click(function () {
+        $(".news_listbox").html('');
         page++;
         getNavList();
     });
 
-
-
 })
+

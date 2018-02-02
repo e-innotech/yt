@@ -39,6 +39,7 @@
     width:689px;
     float:right;
     height:508px;
+    overflow:hidden;
 }
 .left .Img{
     width:490px;

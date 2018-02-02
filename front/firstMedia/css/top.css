@@ -51,20 +51,15 @@
     width:1200px;
     height:60px;
     margin:0 auto;
+    overflow:hidden;
 
 }
-.advise img{
-    width:100%;
-    height:100%;
-}
+
 .nav{
     width:100%;
     height:44px;
     background:#fff;
-    /*position:fixed;*/
-    /*top:135px;*/
-    /*left:0;*/
-    /*z-index:100;*/
+
 }
 
 .topblank{

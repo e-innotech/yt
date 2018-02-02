@@ -1,22 +1,18 @@
+//有一定滚动时显示这个top
+$(window).scroll(function () {
+    //获取距离浏览器顶部距离并赋值th
+    var th = $(window).scrollTop();
+    if (th > 600) {
+        $("#backtop").show();
+    } else {
+        $("#backtop").hide();
+    }
+});
 
 $(document).ready(function () {
-    //有一定滚动时显示这个top
-    $(window).scroll(function () {
-        //获取距离浏览器顶部距离并赋值th
-        var th = $(window).scrollTop();
-        if (th > 600) {
-            $("#backtop").show();
-        } else {
-            $("#backtop").hide();
-        }
-    });
-
-
-
-    // 加载更多
-    var commentData='';
+    //一页显示多少条
+    var commentData=10;
     var page=1;
-    /*分页*/
     $('.more').click(function(){
         console.log(555,commentData.length);
         if (commentData.length <=0) {
@@ -27,9 +23,7 @@ $(document).ready(function () {
         }
     })
 
-    getHomeNewsList();
-
-
+    //getHomeNewsList();
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
         homeList(3, page,4, function callback(newsList) {
@@ -55,9 +49,4 @@ $(document).ready(function () {
             }
         })
     };
-
-
-
-
-
 })
