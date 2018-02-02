@@ -2,156 +2,139 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>导航页</title>
-    <link rel="stylesheet" type="text/css" href="../css/headfoot.css"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/nav.css"/>
-	<script type="text/javascript" src="../script/jquery.min.js"></script>
-
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/nav.js"></script>
 </head>
 <body>
-<!-- 以下为头部 -->
-<!--  <div class="headerbg">
-	<div class="header">
-		<img src="../images/logo.png"/>
-		<ul class="nav">
-		    <li><a>首页</a></li>
-		    <li><a>财经</a></li>
-		    <li><a>文化</a></li>
-		    <li><a>政治</a></li>
-		    <li><a>体育</a></li>
-		    <li><a>思想</a></li>
-		</ul>
-		<div class="header-r">
-			<form>
-				<input type="text"/>
-			</form>
-		</div>
-	</div>
- </div>  -->
-<div class="top"></div>
+<!--以下为头部-->
+<div id="top"></div>
 
 <!-- 以下为左侧广告 -->
-<div class="advertising">
-	<img src="../images/advone.png" class="advone"/>
-	<img src="../images/advtwo.png" class="advtwo"/>
+<div class="advise-t">
+    <img src="../images/adv.png" onload="drawImage(this,200,160)" />
+
+</div>
+<div class="advise-b">
+    <img src="../images/adv.png" onload="drawImage(this,200,260)"/>
 </div>
 
-
- <!-- 以下为内容区域 -->
+<!--以下为内容-->
 <div class="contentbg">
-	 <div class="content">
-	 	<div class="content-left">
-	 		<div class="banner">
-	 			<img src="../images/bannersmall.png"/>
-	 		</div>
-	 		<div class="listbox">
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
-	 			<div class="list">
-	 				<h2>独家 | 啊肯定就是奥斯卡厉害马上开了多久麦卢卡发送到</h2>
-	 				<p class="date">中南海<span>2017-05-04</span></p>
-	 				<p class="news"> 
-	 				      拉开始放大垃圾筐电风扇开讲啦发多少安居客莲富大厦埃里克健身房的的说法按付款卡死姐姐偶啦扩所多多多多多多多多多多多多多多付卡萨丁大厦埃里克健身房的的说法按付款卡死姐姐大厦埃里克健身房的的说法按付款卡死姐姐 
-	 				      <span>[查看详情]</span>
-	 				</p>
-	 			</div>
+    <div class="content">
+       <div class="content-left">
+           <!--以下为广告-->
+           <div class="advise">
+               <img src="../images/adv.png" onload="drawImage(this,858,80)"/>
+           </div>
+        <!--以下为新闻列表-->
+        <div class="news_listbox">
+            <div class="news_list">
+                <a href="detail.html">
+                    <h2>
+                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
+                    </h2>
+                    <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
+                    <div>
+                         咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡
+                        萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客
+                        户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
+                    <!--<span>查看详情</span>-->
+                    </div>
+                </a>
+            </div>
+            <div class="news_list">
+                <a href="detail.html">
+                    <h2>
+                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
+                    </h2>
+                    <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
+                    <div>
+                        咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡
+                        萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客
+                        户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
+                        <!--<span>查看详情</span>-->
+                    </div>
+                </a>
+            </div>
+            <div class="news_list">
+                <a href="detail.html">
+                    <h2>
+                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
+                    </h2>
+                    <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
+                    <div>
+                        咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡
+                        萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客
+                        户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
+                        <!--<span>查看详情</span>-->
+                    </div>
+                </a>
+            </div>
+            <div class="news_list">
+                <a href="detail.html">
+                    <h2>
+                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
+                    </h2>
+                    <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
+                    <div>
+                        咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡
+                        萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客
+                        户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
+                        <!--<span>查看详情</span>-->
+                    </div>
+                </a>
+            </div>
+            <div class="news_list">
+                <a href="detail.html">
+                    <h2>
+                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
+                    </h2>
+                    <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
+                    <div>
+                        咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡
+                        萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客
+                        户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
+                        <!--<span>查看详情</span>-->
+                    </div>
+                </a>
+            </div>
+        </div>
+           <!--以下为空白-->
+        <div class="blank">
+        </div>
 
-	 		    <div class="more">加载更多</div>
-	 		</div>
-	 	</div>
-		<div class="content-right">
-		</div>
- 	    <a href="#"><img src="../images/top.png"/></a>
-     </div>
-</div>
-<!-- 以下为footer -->
-<!-- <div class="footerbg">
-	<div class="footerbox">
-		 	 <p class="text1">Copyright  2014~2017 The Paper All rights reserved.中国焦点新闻网站 | 沪ICP证：沪B2-20170116 | 沪ICP备14003370号 | 互联网新闻信息服务许可证：3112014002 </p>
-		 	 <p class="text2">沪公网安备 31010602000299号</p>
-	</div>
+       <!--以下为点击加载更多-->
+       <div class="more">加载更多</div>
 
+    </div>
+       <div class="content-right" id="content-right">
+
+
+
+       </div>
+    </div>
 </div>
- -->
-<div class="bottom"></div>
+
+
+<!--以下为回到顶部的图片-->
+<a href="#" id="backtop"/><img src="../images/backtop.png"/></a>
+<!--以下为尾部-->
+<div id="bottom"></div>
 </body>
 <script>
-window.onload=function(){
-	$(".top").load("top.html");
-	$(".bottom").load("bottom.html");
-	$(".content-right").load("right.html");
-}
+    window.onload=function(){
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
+        $("#content-right").load("right.html");
+
+    }
 
 
 </script>
+
+
 </html>

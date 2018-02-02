@@ -26,7 +26,7 @@
         <div class="header-r">
             <form>
                 <input name="search" type="text"/>
-              <a href="#"><img src="../images/search.png" id="search"/></a>
+                <a href="#"><img src="../images/search.png" id="search"/></a>
             </form>
         </div>
     </div>
@@ -37,7 +37,7 @@
     //添加头部样式的
     $(function(){
         $('.nav li').on('click',function(){
-            sessionStorage.setItem('index',$(this).index());
+            sessionStorage.setItem('index', $(this).index());
             var index=sessionStorage.getItem('index');
         })
     })

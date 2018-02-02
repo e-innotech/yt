@@ -1,16 +1,16 @@
 .headerbg{
     width:100%;
-    height:100px;
+    height:120px;
     background:#ffffff;
+    border-bottom:2px solid #8e2020;
     position:fixed;
     top:0;
     left:0;
     z-index:100;
-    border-bottom:1px solid #cdcdcd;
 }
 .header{
     width:1200px;
-    height:100px;
+    height:120px;
     margin:0 auto;
     overflow:hidden;
 }
@@ -18,39 +18,36 @@
     float:left;
 }
 .header a .logo{
-    margin-top:25px;
+    margin-top:11px;
     float:left;
 }
 .header .nav{
     float:left;
-    margin-left:65px;
-    margin-top:34px;
+    margin-top:40px;
+    margin-left:35px;
 
 }
 .header .nav li{
     float:left;
+    padding:0 35px;
     text-align:center;
     font-size:20px;
 }
 .header .nav  a{
-    padding:0 25px;
     display:inline-block;
-    height:32px;
-    line-height:32px;
+    line-height:40px;
     color:#000;
 }
 .header .nav .active a{
-    color:#f8fbfa;
-    background:#e73929;
+    color:#8f1d22;
 }
 .header .header-r{
     float:right;
-    width:232px;
-    height:37px;
-    margin-top:31px;
-
-
-
+    width:302px;
+    height:48px;
+    margin-top:36px;
+    border-radius: 2px ;
+    border:1px solid #999999;
 }
 
 
@@ -60,22 +57,17 @@
 
 .header .header-r form #search{
     position:absolute;
-    top:7px;
+    top:12px;
     right:10px;
 }
 
 .header .header-r input{
-    width:231px;
-    height:40px;
-    background:#ebebeb;
+    width:300px;
+    height:46px;
     border:none;
     padding-left:10px;
-    font-size:20px;
-    color:#999;
-
-
 }
 #blank{
-    height:100px;
+    height:120px;
     width:100%;
 }
