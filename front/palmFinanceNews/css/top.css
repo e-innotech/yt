@@ -6,7 +6,7 @@ body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div
 }
 
 body {
-    background: #fbfbfb;
+    background: #f4f4f4;
     color: #333;
     font-size: 12px;
     font-family: "SimSun", "宋体", "Arial Narrow", "微软雅黑";
@@ -44,7 +44,7 @@ img {
 
 body {
     font-family: 微软雅黑;
-    background: #f3f3f3;
+    background: #f4f4f4;
 }
 
 ul, ol {
@@ -84,50 +84,46 @@ input {
 .clearfix {
     *zoom: 1; /*IE/7/6*/
 }
-
+.more_box{
+    background: #f4f4f4;
+    height: 142px;
+}
 .moreBtn {
     width: 100%;
-    margin-top: 30px;
-    height: 180px;
+    text-align: center;
+    margin-top: 40px;
+    height: 90px;
 }
 
 .moreBtn .more {
     display: inline-block;
-    width: 955px;
-    height: 40px;
+    width: 100%;
+    height: 38px;
     text-align: center;
-    line-height: 40px;
+    line-height: 38px;
     font-size: 20px;
     color: #000;
-    border:none;
     background: #fff;
-    border-radius: 2px;
+    border: none;
+    border-radius: 4px;
 }
 .ad_left .img_box{
-    width: 288px;
-    height: 244px;
-}
-.ad_left .ad_icon{
-    width: 44px;
-    height: 20px;
-    position: relative;
-    top: -30px;
-    right: -294px;
+    width: 280px;
+    height: 198px;
 }
 .news_list_left .img_box {
-    float: left;
-    width: 250px;
-    height: 172px;
-}
-#hot_list{
-    width: 488px;
-    margin-top: 10px;
+    width: 202px;
+    height: 150px;
     float: right;
 }
 .hot_list_title .img_box{
     width: 482px;
     height: 190px;
     margin-top: 20px;
+}
+.ad_center .img_box{
+    width: 1200px;
+    height: 204px;
 }
 .img_box{
     overflow: hidden;
@@ -168,7 +164,8 @@ input {
 }
 .headerbg {
     width: 100%;
-    background: #fefefe;
+    background: #ffffff;
+    border-bottom: 1px solid #a7197a;
 }
 
 .header, .content, .footer {
@@ -177,7 +174,7 @@ input {
 }
 
 .header {
-    height: 120px;
+    height: 142px;
     background: #fff;
     overflow: hidden;
 
@@ -185,16 +182,17 @@ input {
 
 .header .logo {
     float: left;
-    margin:24px 0 24px 0;
+    margin-top: 28px;
 
 }
 
 .header .header-r {
     float: right;
-    width: 240px;
-    height: 36px;
-    margin-top: 50px;
-    border: 2px solid #2aa7e2;
+    width: 238px;
+    height: 38px;
+    border-radius: 19px;
+    margin-top: 38px;
+    border: 1px solid #a9a9a9;
 }
 
 .header .header-r form {
@@ -203,15 +201,16 @@ input {
 
 .header .header-r form #search {
     position: absolute;
-    top: 7px;
-    right: 10px;
+    top: 9px;
+    right: 14px;
     cursor: pointer;
 }
 
 .header .header-r input {
-    width: 100%;
-    line-height: 32px;
-    padding-left: 16px;
+    width:  100%;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 32px;
     background: none;
     border: none;
 
@@ -219,52 +218,33 @@ input {
 
 .header_nav{
     float: left;
-    height: 120px;
+}
+.header_nav .nav {
+    height: 38px;
+    line-height: 38px;
+    margin-left: 20px;
 }
 
 .header_nav .nav li {
+    height: 38px;
     text-align: center;
     float: left;
-    width: 106px;
-    height: 38px;
-    margin-top: 50px;
-    margin-right: 10px;
-    line-height: 38px;
-    border-radius:2px ;
+    margin: 50px 0 0 60px;
 }
-.header_nav .nav li:first-child{
-    margin-left: 40px;
-}
-.header_nav .nav li:last-child{
-    margin-right: 0;
-}
+
 .header_nav .nav li a {
     font-size: 20px;
     display: inline-block;
-    width: 106px;
-    height: 38px;
+    color: #000;
+
 }
 
 .header_nav .nav a:hover {
-    color: #fff;
-    width: 106px;
-    height: 38px;
-    background: #2ba7e0;
-}
-.nav .active{
-    color: #fff;
-    width: 106px;
-    height: 38px;
-    background: #2ba7e0;
-}
+    color: #ab157d;
 
 
-.ad_center{
-    width: 1200px;
-    margin: 10px auto 0;
+}
+.active{
+    color: #ab157d;
+}
 
-}
-.ad_center .img_box{
-    width: 1200px;
-    height: 200px;
-}

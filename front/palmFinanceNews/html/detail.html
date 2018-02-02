@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>详情页</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/detail.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/article.css"/>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../script/js/index.js"></script>
+</head>
+<body>
+<!-- 以下为头部 -->
+<div class="top" id="top"></div>
+
+
+<!--以下为内容区域-->
+<div class="contentbg">
+
+    <div class="news_list clearfix">
+        <div class="content_box fl">
+            <!--广告-->
+            <div class="ad_center fl">
+                <div class="img_box">
+                    <a href="">
+                        <img src="../images/ad_center.png" alt="" onload='drawImage(this,688,140)'/>
+                    </a>
+                </div>
+            </div>
+            <div class="article fl">
+                <div class="article_title"><h2>本周中东部进入今冬最冷时段 大范围雨雪上线</h2></div>
+                <div class="article_source">
+                    <span class="date">2018-1-22</span><span class="source">中国财经网</span>
+                </div>
+                <div class="article_content">
+                    <img src="../images/122222222.png" alt=""/>
+                    <p class="aaaa">&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;中国天气网讯昨天开始，新一股冷空       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;气强势来袭，东北地区          最先受到影响，局地出现-40℃的极寒天气。随着&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;冷空气南移&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;，预计今天（22日）至26日中东部多地             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          将度过今冬以来最冷的一周，大部地             区气温下降6～10℃，受冷空气影响，                     &nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         河南、江苏等地雾和霾天&nbsp;&nbsp;&nbsp;&nbsp;气今  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           天夜间起开始减弱并消散。25                    日前后最低温0℃线南&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;移至浙江到广西一带。另&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外，明天起中                   东部将迎来持续近一周的大范围&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;雨雪天气，江苏、安徽、浙江、湖北等地部分                                地区再遭暴雪，需提前加以防范。 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</p>
+                    <img src="../images/22222222222.png" alt=""/>
+                    <p>本周冷空气席卷中东部 多地将度过入冬来最冷一周</p>
+                    <img src="../images/ad_center.png" alt=""/>
+                    <p>
+                        新一股强冷空气20日率先抵达东北以及华北中东部地区，内蒙古、黑龙江、河北等地降温剧烈。监测显示，今5时较昨5时，青海东部、甘肃西部、内蒙古中西部及黑龙江北部等地出现6～8℃降温，局地降温幅度10～12℃。</p>
+                    <h2>H1,H2,H3,H4,H5</h2>
+                    <img src="../images/news_list.png" alt=""/>
+                    <p>阿斯达接口就斤斤计较急急急急急急急急急急急急急急急斤斤计较急急急急急急急急急急急急急急急斤斤计较斤斤计较急急急急急急急急急斤斤计较斤斤计较急急急急急急急急急急急急急急急急急急急急急怕怕怕怕怕怕怕怕怕怕怕噢噢噢噢噢噢噢噢噢噢噢噢哦哦酷酷酷酷酷酷酷酷酷酷酷急急急急急急急急急急急急急急急慢慢慢慢慢慢慢慢慢慢慢慢慢慢慢慢慢慢</p>
+                </div>
+                <div class="notice">
+
+                </div>
+            </div>
+            <div id="hot_list"></div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="top_img">
+    <a href="#"><img src="../images/top.png" class="back_to_top"/></a>
+</div>
+
+<!--两侧广告-->
+<div>
+    <div class="fl ad_left">
+        <a href="">
+            <div class="img_box"><img src="../images/news_list.png" alt="左侧广告" onload='drawImage(this,150,136)'/></div>
+        </a>
+    </div>
+
+</div>
+<div class="bottom" id="bottom"></div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
+        $("#hot_list").load("right.html");
+    }
+
+</script>
+
+
+</html>
