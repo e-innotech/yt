@@ -1,0 +1,142 @@
+/*广告标签*/
+.ad_right {
+    position: fixed;
+    z-index: 100;
+    top: 170px;
+    right: 0;
+}
+
+.ad_left {
+    position: fixed;
+    z-index: 100;
+    top: 170px;
+
+}
+
+.ad_icon2 {
+    position: relative;
+    top: -32px;
+    left: 140px;
+
+}
+
+
+.content_box{
+    width: 1200px;
+    margin-top: 20px;
+
+}
+.hot_list {
+    margin-top: 20px;
+}
+.content_list .content_list_detail {
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+.content_list .content_list_detail h3 {
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.content_list .content_list_detail p {
+    font-size: 16px;
+    color: #666;
+}
+
+.content_list .newsList {
+    margin-top: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px dashed #d0d0d0;
+}
+
+.content_list .newsList li {
+
+    font-size: 16px;
+    color: #666;
+}
+
+.content_list .newsList li h4 {
+    display: inline-block;
+}
+
+.content_list .newsList li a {
+    display: inline-block;
+    width: 625px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_list {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.news_list .news_list_left {
+    width: 698px;
+    margin-top: 8px;
+    background: #fff;
+}
+
+.news_list .news_list_left li {
+    width:  698px;
+    height: 145px;
+    display: inline-block;
+    padding: 10px 0 0 10px;
+}
+
+.news_list .news_list_left li .title h3 {
+    font-size: 20px;
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.news_list .news_list_left li .title span {
+    font-size: 18px;
+    color: #999;
+    display: inline-block;
+    margin: 6px 0;
+}
+
+.news_list .news_list_left li .content_news {
+    line-height: 22px;
+    font-size: 16px;
+    color: #999;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.news_list .news_list_left li .content_news span{
+    color: #ff0000;
+}
+.page_box{
+    width: 100%;
+    height: 142px;
+    background: #f4f4f4;
+}
+.pageBtn button{
+    width: 92px;
+    height: 32px;
+    background: #999;
+    border:none;
+    border-radius: 2px;
+    margin-top: 30px;
+    margin-bottom: 80px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+.pageBtn .prev{
+    margin-left: 195px;
+}
+.pageBtn .next{
+    margin-left: 40px;
+}
+
+

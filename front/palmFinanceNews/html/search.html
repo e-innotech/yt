@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <link rel="stylesheet" href="../css/nav.css"/>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script src="../script/js/top.js"></script>
+</head>
+<body>
+<div id="top"></div>
+<div class="contentbg">
+    <div class="content">
+        <div class="content-left">
+            <div id="searchlist"></div>
+            <div style="clear: both"></div>
+            <div class="btnPage">
+                <button class="prev">上一页</button>
+                <button class="next">下一页</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom" id="bottom"></div>
+</body>
+</html>
+<script>
+    // 一进页面加载头
+    window.onload=function(){
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
+        init();
+    }
+    //搜索渲染
+    var page = 1;
+    var searchData;
+    function init(){
+        var object = window.sessionStorage.getItem("global_search_data");
+        var data = JSON.parse(object);
+        var list = data.list;
+        searchData=list;
+        for (var i = 0; i <list.length; i++) {
+            $('#searchlist').append('<div class="nav_list">' +
+            '<ul>' +
+            '<li>' +
+            '<a href="#">' +
+            '<div>' +
+            '<span class="num">' + (i + 1) + '</span>' +
+            '<h3>'+list[i].newsTitle+'</h3>' +
+            '<p>'+list[i].subContent +'</p>' +
+            '<div class="list_info">' +
+            '<span class="source"><a href="">'+list[i].source +'</a></span>' +
+            '<span class="time">'+list[i].createDate+'</span>' +
+            '</div>' +
+            '</div>' +
+            '</a>' +
+            '</li>'+
+            '</ul>' +
+            '</div>');
+        }
+    }
+
+    $('.prev').click(function () {
+        if(page==1){
+            page=1;
+        }else{
+            $("#searchlist").html('');
+            page--;
+            init();
+        }
+    });
+    $('.next').click(function () {
+        $("#searchlist").html('');
+        page++;
+        init();
+    });
+
+
+</script>
