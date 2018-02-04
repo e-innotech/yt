@@ -73,7 +73,7 @@
     overflow:hidden;
 
 }
-.pages p{
+.pages button{
     width:82px;
     height:32px;
     background:#fff;
@@ -83,6 +83,7 @@
     line-height:32px;
     float:left;
     margin-right:40px;
+    border:none;
 }
 
 #backtop{

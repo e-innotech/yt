@@ -11,26 +11,15 @@ $(document).ready(function () {
         }
     });
 
-    // 加载更多
-    var commentData='';
-    var page=1;
-    /*分页*/
-    $('.more').click(function(){
-        console.log(555,commentData.length);
-        if (commentData.length <=0) {
-            $('.more').html('没有更多了');
-        } else {
-            page++;
-            getHomeNewsList();
-        }
-    })
 
-    getHomeNewsList();
+    //当前页
+    var page=1;
+    $('.more').click(function(){
+        getHomeNewsList();
+    })
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
-        homeList(3, page,4, function callback(newsList) {
-            console.log(34,newsList);
-            commentData = newsList;
+        homeList(3, page,10, function callback(newsList) {
             for (var i = 0; i < newsList.length; i++) {
                 $('.news_listbox').append('<div class="news_list">' +
                 '<a href="">' +
@@ -48,6 +37,12 @@ $(document).ready(function () {
                 '</a>' +
                 '</div>')
             }
+            if(newsList.length>0){
+                page++;
+            }else{
+                $('.more').html('没有更多了');
+            }
         })
     };
+
 })

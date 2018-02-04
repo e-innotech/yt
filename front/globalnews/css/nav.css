@@ -84,7 +84,7 @@
 
 
 }
-.page p{
+.page button{
     float:left;
     width:134px;
     height:52px;
@@ -97,7 +97,7 @@
     border:1px solid #d1d1d1;
 
 }
-.next{
+.nextpages{
     margin-left:39px;
 }
 .advise_top{
