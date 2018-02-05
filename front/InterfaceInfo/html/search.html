@@ -51,10 +51,10 @@
     //搜索渲染
     var page = 1;
     var searchData='';
-
     var object = window.sessionStorage.getItem("global_search_data");
     var data = JSON.parse(object);
     var list = data.list;
+    var i = 0;
 
 
     $('.more').click(function () {
@@ -62,14 +62,21 @@
             $('.more').html('没有更多了');
         }else{
             page++;
-            init()
+            i+=10;
+            if(i<searchData.length){
+                init();
+                return;
+            }
+            $('.more').html('没有更多了');
+
 
         }
     });
     function init(){
         searchData=list;
+        console.log(searchData.length)
         //拿到的搜索的数据
-        for (var i = 0; i <searchData.length; i++) {
+        for (i;i <searchData.length; i++) {
             $('#searchlist').append('<div class="news_list">' +
             '<a href="">' +
             '<h2>' +searchData[i].newsTitle+' </h2>' +
@@ -80,9 +87,10 @@
             '</p>' +
             '</a>'+
             '</div>');
-
         }
-        sessionStorage.removeItem("global_search_data");
+        if (searchData.length<=10){
+            searchData = "";
+        }
 
     }
 

@@ -10,21 +10,15 @@ $(window).scroll(function () {
 });
 $(document).ready(function () {
     // 加载更多
-    var commentData=8;
-    var page=0;
+
+    var page=1;
     $('.more').click(function(){
-        if (commentData.length <=0) {
-            $('.more').html('没有更多了');
-        } else {
-            page++;
-            getNavList();
-        }
+        getNavList();
     })
     function getNavList() {
         //传的权限 页数 一页显示几条数据
-        newsList(3, page,8, function callback(newsList) {
+        newsList(3, page,10, function callback(newsList) {
             console.log(34,newsList);
-            commentData = newsList;
             for (var i = 0; i < newsList.length; i++) {
                 $('.news_listbox').append('<div class="news_list">' +
                 '<a href="">' +
@@ -34,8 +28,13 @@ $(document).ready(function () {
                 '</a>' +
                 '</div>')
             }
+            if(newsList.length>0){
+                page++;
+            }else{
+                $('.more').html('没有更多了');
+            }
         })
-    };
-
-
+    }
 })
+
+

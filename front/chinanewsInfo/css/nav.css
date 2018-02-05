@@ -80,7 +80,7 @@
 .prevpages{
     margin-left:212px;
 }
-.page p{
+.page button{
     margin-top:40px;
     margin-bottom:56px;
     float:left;
@@ -93,6 +93,7 @@
     line-height:40px;
     border-radius:4px;
     border:1px solid #006cb7;
+    background:none;
 
 }
 .nextpages{
