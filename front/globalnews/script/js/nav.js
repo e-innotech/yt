@@ -9,53 +9,113 @@
             $("#backtop").hide();
         }
     });
-    $(document).ready(function () {
-        var page=1;
-        function getNavList() {
-            //传的权限 页数 一页显示几条数据
-            newsList(3, page,10, function callback(newsList) {
-                console.log(23,newsList.length);
-                if(newsList.length>0){
-                    for (var i = 0; i < newsList.length; i++) {
-                        $('.news_listbox').append('<div class="news_list">' +
-                            '<a href="">' +
-                            '<h2>' +newsList[i].newsTitle+' </h2>' +
-                            '<div>' +newsList[i].subContent+'</div>' +
-                            '<p>' +
-                            '<span class="source">' +newsList[i].source+'</span>' +
-                            '<span class="date">' +newsList[i].createDate+'</span>' +
-                            '</p>' +
-                            '</div>' +
-                            '</a>' +
-                            '</div>'
-                        )
-                    }
+//    $(document).ready(function () {
+//        var page=1;
+//        function getNavList() {
+//            //传的权限 页数 一页显示几条数据
+//            newsList(3, page,10, function callback(newsList) {
+//                console.log(23,newsList.length);
+//                if(newsList.length>0){
+//                    for (var i = 0; i < newsList.length; i++) {
+//                        $('.news_listbox').append('<div class="news_list">' +
+//                            '<a href="">' +
+//                            '<h2>' +newsList[i].newsTitle+' </h2>' +
+//                            '<div>' +newsList[i].subContent+'</div>' +
+//                            '<p>' +
+//                            '<span class="source">' +newsList[i].source+'</span>' +
+//                            '<span class="date">' +newsList[i].createDate+'</span>' +
+//                            '</p>' +
+//                            '</div>' +
+//                            '</a>' +
+//                            '</div>'
+//                        )
+//                    }
+//                }else{
+//                    $('.nextpages').attr("disabled",true);
+//                }
+//
+//            })
+//        };
+//
+////点击上一页时
+//        $('.prevpages').click(function () {
+//            if(page==1){
+//                page=1;
+//            }else{
+//                $(".news_listbox").html('');
+//                page--;
+//                getNavList();
+//            }
+//            $('.nextpages').attr("disabled",false);
+//
+//        });
+////点击下一页时
+//        $('.nextpages').click(function () {
+//            $(".news_listbox").html('');
+//            page++;
+//            getNavList();
+//        });
+//
+//
+//    })
+//
+        $(document).ready(function () {
+            var navList=[];
+            var page=1;
+            function getNavList() {
+                //传的权限 页数 一页显示几条数据
+                newsList(3, page,10, function callback(newsList) {
+                    navList=newsList;
+                    console.log(23,newsList.length);
+                        for (var i = 0; i < newsList.length; i++) {
+                            $('.news_listbox').append('<div class="news_list">' +
+                                '<a href="">' +
+                                '<h2>' +newsList[i].newsTitle+' </h2>' +
+                                '<div>' +newsList[i].subContent+'</div>' +
+                                '<p>' +
+                                '<span class="source">' +newsList[i].source+'</span>' +
+                                '<span class="date">' +newsList[i].createDate+'</span>' +
+                                '</p>' +
+                                '</div>' +
+                                '</a>' +
+                                '</div>'
+                            )
+                        }
+                    //if(newsList.length>0){
+                    //
+                    //}else{
+                    //    $('.nextpages').attr("disabled",true);
+                    //}
+
+                })
+            };
+
+    //点击上一页时
+            $('.prevpages').click(function () {
+                $('.nextpages').attr("disabled",false);
+                if(page==1){
+                 $(this).attr("disabled",true)
                 }else{
-                    $('.nextpages').attr("disabled",true);
+                    $(".news_listbox").html('');
+                    page--;
+                    getNavList();
                 }
 
-            })
-        };
 
-//点击上一页时
-        $('.prevpages').click(function () {
-            if(page==1){
-                page=1;
-            }else{
-                $(".news_listbox").html('');
-                page--;
+            });
+    //点击下一页时
+            $('.nextpages').click(function () {
                 getNavList();
-            }
-            $('.nextpages').attr("disabled",false);
+                $(".prevpages").attr("disabled",false);
+                $(".news_listbox").html('');
+                if(navList.length>0){
+                    page++;
+                    getNavList();
+                }else{
+                    $(this).attr("disbled",true)
+                }
 
-        });
-//点击下一页时
-        $('.nextpages').click(function () {
-            $(".news_listbox").html('');
-            page++;
-            getNavList();
-        });
+            });
 
 
-    })
-
+        })

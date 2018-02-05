@@ -17,17 +17,17 @@
         <div class="content-left">
             <!--以下为搜索的数据的列表-->
             <div id="searchlist">
-                <div class="news_list">
-                    <a href="detail.html">
-                        <h2>
-                            独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
-                        </h2>
-                        <div>
-                            咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉
-                        </div>
-                        <p><span class="source">中南海</span><span class="date">2017-03-17</span></p>
-                    </a>
-                </div>
+                <!--<div class="news_list">-->
+                    <!--<a href="detail.html">-->
+                        <!--<h2>-->
+                            <!--独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大-->
+                        <!--</h2>-->
+                        <!--<div>-->
+                            <!--咖啡色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克色卡萨丁卡仕达克里斯多夫客户卡好久水电费卡拉胶发多少奥卡福咖啡壶丁卡仕达克里斯多夫客户卡好久水电费卡拉丁卡仕达克里斯多夫客户卡好久水电费卡拉-->
+                        <!--</div>-->
+                        <!--<p><span class="source">中南海</span><span class="date">2017-03-17</span></p>-->
+                    <!--</a>-->
+                <!--</div>-->
             </div>
 
             <!--以下为点击加载更多-->
@@ -40,58 +40,158 @@
 </body>
 </html>
 <script>
-    // 一进页面加载头
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
+//    // 一进页面加载头
+//    //搜索渲染
+//    var page = 0;
+//    var searchData='';
+//    var object = window.sessionStorage.getItem("global_search_data");
+//    var data = JSON.parse(object);
+//    var allnum=data.total;
+//    console.log(123,data);
+//    var list = data.list;
+//    console.log(4,list);
+//    var i=0;
+//    var length=10;
+//    window.onload=function(){
+//        $("#top").load("top.html");
+//        $("#bottom").load("bottom.html");
+//        init();
+//    }
+//
+//    $('.more').click(function (){
+//        if(list.length<10){
+//            $('.more').html('没有更多了');
+//        }else if(page>Math.ceil(allnum/10)){
+//            $('.more').html('没有更多了');
+//        }else{
+//            page++;
+//            i=page*10;
+//            length=(page+1)*length;
+//            init();
+////            if(i<searchData.length){
+////                init();
+////                return;
+////            }
+//        }
+//    });
+//    function init(){
+//        console.log(i);
+//        console.log(length);
+////        if(page>Math.ceil(allnum/10)){
+////            $('.more').html('没有更多了');
+////        }else{
+////            searchData=list;
+////            if(searchData<=10){
+////                $('.more').html('没有更多了');
+////            }
+////            console.log(searchData.length);
+//            //拿到的搜索的数据
+//            for (i;i <length; i++) {
+//                $('#searchlist').append('<div class="news_list">' +
+//                '<a href="">' +
+//                '<h2>' +searchData[i].newsTitle+' </h2>' +
+//                '<div>' +searchData[i].subContent+'</div>' +
+//                '<p>' +
+//                '<span class="source">' +searchData[i].source+'</span>' +
+//                '<span class="date">' +searchData[i].createDate+'</span>' +
+//                '</p>' +
+//                '</a>'+
+//                '</div>');
+//            }
+////        }
+////
+////        if (searchData.length<=10){
+////            searchData = "";
+////        }
+//    }
+// 一进页面加载头
+//window.onload=function(){
+//    $("#top").load("top.html");
+//    $("#bottom").load("bottom.html");
+//    init(0,10);
+//}
+////搜索渲染
+//var page = 0;
+//var object = window.sessionStorage.getItem("global_search_data");
+//var data = JSON.parse(object);
+//var list = data.list;
+//var len = 10;
+//var allnum = data.total;
+//$('.more').click(function () {
+//    page++;
+//    if(list.length<=0){
+//        $('.more').html('没有更多了');
+//    }else{
+//        console.log(Math.ceil(allnum/10));
+//        if(page>=Math.ceil(allnum/10)){
+//            console.log(7,page);
+//            $('.more').html('没有更多了')
+//        }else{
+//            i=10*page;
+//            len=10*(page+1);
+//            init(i,len)
+//        }
+//    }
+//});
+//function init(a,b){
+//    //拿到的搜索的数据
+//    for (var i=a;i <b; i++) {
+//        $('#searchlist').append('<div class="news_list">' +
+//        '<a href="">' +
+//        '<h2>' +list[i].newsTitle+' </h2>' +
+//        '<div>' +list[i].subContent+'</div>' +
+//        '<p>' +
+//        '<span class="source">' +list[i].source+'</span>' +
+//        '<span class="date">' +list[i].createDate+'</span>' +
+//        '</p>' +
+//        '</a>'+
+//        '</div>');
+//    }
+//}
+// 一进页面加载头
+window.onload=function(){
+    $("#top").load("top.html");
+    $("#bottom").load("bottom.html");
+    init();
+}
+//搜索渲染
+var page = 1;
+var allnum,list;
+var newsTitle = window.sessionStorage.getItem("global_newsTitle");
+function init(){
+    var searchData;
+    var getSearchList = function (data) {
+        console.log(121,data);
+        allnum=data.total;
+        list=data.list;
+        if(list.length<10){
+            $('.more').html('没有更多了');
+        }
+    };
+
+    //参数 网站id 新闻标题 当前页 显示页
+    globalQuery(1,newsTitle,page, 10, getSearchList);
+    //拿到的搜索的数据
+    for (var i=0;i <list.length; i++) {
+        $('#searchlist').append('<div class="news_list">' +
+        '<a href="">' +
+        '<h2>' +list[i].newsTitle+' </h2>' +
+        '<div>' +list[i].subContent+'</div>' +
+        '<p>' +
+        '<span class="source">' +list[i].source+'</span>' +
+        '<span class="date">' +list[i].createDate+'</span>' +
+        '</p>' +
+        '</a>'+
+        '</div>');
+    }
+}
+$('.more').click(function () {
+    if(page>=Math.ceil(allnum/10)){
+        $('.more').html('没有更多了');
+    }
+    else{
+        page++;
         init();
     }
-
-
-    //搜索渲染
-    var page = 1;
-    var searchData='';
-    var object = window.sessionStorage.getItem("global_search_data");
-    var data = JSON.parse(object);
-    var list = data.list;
-    var i = 0;
-
-
-    $('.more').click(function () {
-        if(searchData.length<=0){
-            $('.more').html('没有更多了');
-        }else{
-            page++;
-            i+=10;
-            if(i<searchData.length){
-                init();
-                return;
-            }
-            $('.more').html('没有更多了');
-
-
-        }
-    });
-    function init(){
-        searchData=list;
-        console.log(searchData.length)
-        //拿到的搜索的数据
-        for (i;i <searchData.length; i++) {
-            $('#searchlist').append('<div class="news_list">' +
-            '<a href="">' +
-            '<h2>' +searchData[i].newsTitle+' </h2>' +
-            '<div>' +searchData[i].subContent+'</div>' +
-            '<p>' +
-            '<span class="source">' +searchData[i].source+'</span>' +
-            '<span class="date">' +searchData[i].createDate+'</span>' +
-            '</p>' +
-            '</a>'+
-            '</div>');
-        }
-        if (searchData.length<=10){
-            searchData = "";
-        }
-
-    }
-
+});
 </script>
