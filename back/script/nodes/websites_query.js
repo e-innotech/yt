@@ -205,10 +205,11 @@ $(function () {
                 $('input[name="siteName"]').val(selectWebsites.siteName);
                 $('input[name="domain"]').val(selectWebsites.domain);
                 $('input[name="route"]').val(selectWebsites.route);
+                $('input[name="websiteBucketName"]').val(selectWebsites.websiteBucketName);
+                $('select[name="websiteBucketZone"]').val(selectWebsites.websiteBucketZone);
                 $('input[name="homeWeightMax"]').val(selectWebsites.homeWeightMax);
 
                 for(var i=0;i<selectWebsites.webTemplates.length;i++){
-                    console.log(1111111112222454,selectWebsites.webTemplates)
                     $('#template_'+selectWebsites.webTemplates[i].templateType).val(selectWebsites.webTemplates[i].templatePath);
                 }
             }
