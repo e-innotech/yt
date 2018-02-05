@@ -75,11 +75,13 @@ $(function () {
     var initTable = function (list) {
         newsPublishList = list;
         $('#newsPublishT').empty();
+        console.log('list',list)
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+
-                '<td>'+(list[i].news.topImagePath==''?'':'<img src="'+list[i].news.topImagePath+'" width="200">')+'</td>'+
-                '<td><a id="content_'+list[i].id+'">查看</a></td>'+
+                '<td>'+(list[i].news.topImagePath==''?'':'<img src="'+list[i].news.topImagePath+'" width="200">')+'</td>' +
+                '<td><a target="_blank" href="'+list[i].staticUrl+'">查看文章</a></td>'+
+                '<td><a id="content_'+list[i].id+'">查看详情</a></td>'+
                 '<td>'+list[i].websites.siteName+'</td>'+
                 '<td>'+list[i].channel.channelName+'</td>'+
                 '<td>'+OFFONLINE[list[i].isline]+HOME[list[i].ishome]+'</td>'+
@@ -103,7 +105,7 @@ $(function () {
                     $('#homeCtrlModal').modal('show');
                     $('input[name="siteName"]').val(selectNewsPublish.websites.siteName);
                     $('#saveBtn').click(function () {
-                        homeNewsPublish(selectNewsPublish.id,1,$('input[name="homeWeight"]').val());
+                        homeNewsPublish(selectNewsPublish.id,1,$('select[name="homeWeight"]').val());
                         $('#homeCtrlModal').modal('hide');
                     });
                 });
