@@ -94,7 +94,6 @@ function adList(templateType,callback){
 };
 function channelList(callback){
     var data = {websiteId:websiteId};
-
     AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
         if(re.success){
             if(callback){
@@ -109,7 +108,7 @@ function newsList(channelId,pageNum,pageSize,callback){
     AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
         if(re.success){
             if(callback){
-                callback(re.data);
+                //callback(re.data);
                 callback(re.data.list);
                 return;
             }
