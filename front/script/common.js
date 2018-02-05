@@ -109,7 +109,7 @@ function newsList(channelId,pageNum,pageSize,callback){
     AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
         if(re.success){
             if(callback){
-                callback(re.data);
+                //callback(re.data);
                 callback(re.data.list);
                 return;
             }

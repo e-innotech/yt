@@ -15,7 +15,25 @@ $(document).ready(function () {
         //传的权限 页数 一页显示几条数据
         newsList(3, page,10, function callback(newsList) {
             console.log(23,newsList.length);
-            if(newsList.length>0){
+            if(newsList.length<10){
+                if(newsList.length>0){
+                    for (var i = 0; i < newsList.length; i++) {
+                        $('.news_listbox').append('<div class="news_list">' +
+                        '<a href="">' +
+                        '<h2>' +newsList[i].newsTitle+' </h2>' +
+                        '<div>' +newsList[i].subContent+'</div>' +
+                        '<p>' +
+                        '<span class="source">' +newsList[i].source+'</span>' +
+                        '<span class="date">' +newsList[i].createDate+'</span>' +
+                        '</p>' +
+                        '</a>' +
+                        '</div>')
+                    }
+                    $('.nextpages').attr("disabled",true);
+                }else{
+                    $('.nextpages').attr("disabled",true);
+                }
+            }else{
                 for (var i = 0; i < newsList.length; i++) {
                     $('.news_listbox').append('<div class="news_list">' +
                     '<a href="">' +
@@ -28,8 +46,6 @@ $(document).ready(function () {
                     '</a>' +
                     '</div>')
                 }
-            }else{
-                $('.nextpages').attr("disabled",true);
             }
 
         })
@@ -53,7 +69,5 @@ $(document).ready(function () {
         page++;
         getNavList();
     });
-
-
 })
 
