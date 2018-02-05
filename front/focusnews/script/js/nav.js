@@ -23,17 +23,12 @@ $(document).ready(function () {
             for (var i = 0; i < newsList.length; i++) {
                 $('.news_listbox').append('<div class="news_list">' +
                 '<a href="">' +
-                '<div class="news_img">' +
-                '<img src=' + newsList[i].topImagePath + ' alt="" onload="drawImage(this,202,150)"/>' +
-                '</div>' +
-                '<div class="list-r">'+
                 '<h2>' +newsList[i].newsTitle+' </h2>' +
-                '<div>' +newsList[i].subContent+'</div>' +
                 '<p>'+
                 '<span class="sourse">'+newsList[i].source+'</span>'+
                 '<span class="date">' +newsList[i].createDate+'</span>' +
                 '</p>'+
-                '</div>' +
+                '<div>' +newsList[i].subContent+'</div>' +
                 '</a>' +
                 '</div>')
             }

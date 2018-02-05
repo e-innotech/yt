@@ -18,6 +18,7 @@ $(document).ready(function () {
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
         homeList(3, page,10, function callback(newsList) {
+            //console.log(77,newsList.length);
             for (var i = 0; i < newsList.length; i++) {
                 $('.news_listbox').append('<div class="news_list">' +
                 '<a href="">' +
