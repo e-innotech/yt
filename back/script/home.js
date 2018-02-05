@@ -30,7 +30,7 @@ $(function(){
                 if(re.success) {
                     sessionStorage.removeItem('userinfo');
                     sessionStorage.removeItem('permissons');
-                    location.replace('login.html');
+                    location.replace('index.html');
                 }else{
                     alert(re.msg);
                 };
