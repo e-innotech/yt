@@ -36,118 +36,9 @@
     </div>
 </div>
 <div class="bottom"></div>
-
 </body>
 </html>
 <script>
-//    // 一进页面加载头
-//    //搜索渲染
-//    var page = 0;
-//    var searchData='';
-//    var object = window.sessionStorage.getItem("global_search_data");
-//    var data = JSON.parse(object);
-//    var allnum=data.total;
-//    console.log(123,data);
-//    var list = data.list;
-//    console.log(4,list);
-//    var i=0;
-//    var length=10;
-//    window.onload=function(){
-//        $("#top").load("top.html");
-//        $("#bottom").load("bottom.html");
-//        init();
-//    }
-//
-//    $('.more').click(function (){
-//        if(list.length<10){
-//            $('.more').html('没有更多了');
-//        }else if(page>Math.ceil(allnum/10)){
-//            $('.more').html('没有更多了');
-//        }else{
-//            page++;
-//            i=page*10;
-//            length=(page+1)*length;
-//            init();
-////            if(i<searchData.length){
-////                init();
-////                return;
-////            }
-//        }
-//    });
-//    function init(){
-//        console.log(i);
-//        console.log(length);
-////        if(page>Math.ceil(allnum/10)){
-////            $('.more').html('没有更多了');
-////        }else{
-////            searchData=list;
-////            if(searchData<=10){
-////                $('.more').html('没有更多了');
-////            }
-////            console.log(searchData.length);
-//            //拿到的搜索的数据
-//            for (i;i <length; i++) {
-//                $('#searchlist').append('<div class="news_list">' +
-//                '<a href="">' +
-//                '<h2>' +searchData[i].newsTitle+' </h2>' +
-//                '<div>' +searchData[i].subContent+'</div>' +
-//                '<p>' +
-//                '<span class="source">' +searchData[i].source+'</span>' +
-//                '<span class="date">' +searchData[i].createDate+'</span>' +
-//                '</p>' +
-//                '</a>'+
-//                '</div>');
-//            }
-////        }
-////
-////        if (searchData.length<=10){
-////            searchData = "";
-////        }
-//    }
-// 一进页面加载头
-//window.onload=function(){
-//    $("#top").load("top.html");
-//    $("#bottom").load("bottom.html");
-//    init(0,10);
-//}
-////搜索渲染
-//var page = 0;
-//var object = window.sessionStorage.getItem("global_search_data");
-//var data = JSON.parse(object);
-//var list = data.list;
-//var len = 10;
-//var allnum = data.total;
-//$('.more').click(function () {
-//    page++;
-//    if(list.length<=0){
-//        $('.more').html('没有更多了');
-//    }else{
-//        console.log(Math.ceil(allnum/10));
-//        if(page>=Math.ceil(allnum/10)){
-//            console.log(7,page);
-//            $('.more').html('没有更多了')
-//        }else{
-//            i=10*page;
-//            len=10*(page+1);
-//            init(i,len)
-//        }
-//    }
-//});
-//function init(a,b){
-//    //拿到的搜索的数据
-//    for (var i=a;i <b; i++) {
-//        $('#searchlist').append('<div class="news_list">' +
-//        '<a href="">' +
-//        '<h2>' +list[i].newsTitle+' </h2>' +
-//        '<div>' +list[i].subContent+'</div>' +
-//        '<p>' +
-//        '<span class="source">' +list[i].source+'</span>' +
-//        '<span class="date">' +list[i].createDate+'</span>' +
-//        '</p>' +
-//        '</a>'+
-//        '</div>');
-//    }
-//}
 // 一进页面加载头
 window.onload=function(){
     $("#top").load("top.html");
@@ -156,23 +47,21 @@ window.onload=function(){
 }
 //搜索渲染
 var page = 1;
-var allnum,list;
+var totalnum,list;
 var newsTitle = window.sessionStorage.getItem("global_newsTitle");
 function init(){
-    var searchData;
-    var getSearchList = function (data) {
+    var getSearchList = function (data){
         console.log(121,data);
-        allnum=data.total;
+        totalnum=data.total;
         list=data.list;
         if(list.length<10){
             $('.more').html('没有更多了');
         }
     };
-
     //参数 网站id 新闻标题 当前页 显示页
     globalQuery(1,newsTitle,page, 10, getSearchList);
     //拿到的搜索的数据
-    for (var i=0;i <list.length; i++) {
+    for (var i=0;i <list.length; i++){
         $('#searchlist').append('<div class="news_list">' +
         '<a href="">' +
         '<h2>' +list[i].newsTitle+' </h2>' +
@@ -185,11 +74,10 @@ function init(){
         '</div>');
     }
 }
-$('.more').click(function () {
-    if(page>=Math.ceil(allnum/10)){
+$('.more').click(function (){
+    if(page>Math.ceil(totalnum/10)){
         $('.more').html('没有更多了');
-    }
-    else{
+    }else{
         page++;
         init();
     }

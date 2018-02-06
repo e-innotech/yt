@@ -35,7 +35,7 @@
 .news_listbox{
     margin-top:10px;
     overflow:hidden;
-    min-height:1162px;
+    min-height:1000px;
 }
 .news_list{
     width:990px;
@@ -95,6 +95,7 @@
     line-height:52px;
     border-radius: 2px;
     border:1px solid #d1d1d1;
+    background:none;
 
 }
 .nextpages{

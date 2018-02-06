@@ -17,6 +17,12 @@ ul,ol,ul,li{
 a{
     text-decoration: none;
 }
-input{
+input, button{
     outline:none;
+}
+#backtop{
+    position:fixed;
+    bottom:290px;
+    right:288px;
+    display:none;
 }

@@ -1,30 +1,13 @@
-//有一定滚动时显示这个top
-$(window).scroll(function () {
-    //获取距离浏览器顶部距离并赋值th
-    var th = $(window).scrollTop();
-    if (th > 600) {
-        $("#backtop").show();
-    } else {
-        $("#backtop").hide();
-    }
-});
-
-
 $(document).ready(function(){
+    backtop();
     //声明一个变量代表第几页
     var page=1;
-    var allnum;
+    var totalnum;
     function getNavList() {
         //传的权限 页数 一页显示几条数据
-        newsList(3, page,10, function callback(data){
-            //console.log(66,newsList);
-            //newsList.total
-            allnum=data.total;
-            console.log(77,allnum);
+        newsList(3, page,8, function callback(data){
+            totalnum=data.total;
             var newsList=data.list;
-            //console.log(newsList)
-            //console.log(23,newsList.length);
-                //array=newsList;
                 for (var i = 0; i < newsList.length; i++){
                     $('.news_listbox').append('<div class="news_list">' +
                     '<a href="">' +
@@ -53,7 +36,7 @@ $(document).ready(function(){
     });
    //点击下一页时
     $('.nextpages').click(function (){
-        if(page>=Math.ceil(allnum/10)){
+        if(page>=Math.ceil(totalnum/8)){
             $(this).attr("disabled","true");
             return
         }else{

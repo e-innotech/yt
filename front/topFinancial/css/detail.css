@@ -75,7 +75,7 @@
     margin-left:10px;
 }
 
-
+editor_con
 .content-right {
     width: 470px;
     float: right;
@@ -91,6 +91,30 @@
     margin-left:2px;
 
 
+}
+.editor_con {
+    margin: 25px 15px 0!important;
+    padding-bottom:50px;
+
+}
+
+.editor_con p {
+    text-indent: 2em !important;
+    margin-bottom: 30px!important;
+    font-size: 16px!important;
+    color: #000!important;
+    line-height: 28px!important;
+}
+
+
+.editor_con h1, .editor_con h2, .editor_con h3, .editor_con h4, .editor_con h5 {
+    font-size: 20px!important;
+    margin-bottom: 30px!important;
+}
+
+.editor_con img {
+    max-width: 100%!important;
+    margin: 5px auto!important;
 }
 
 

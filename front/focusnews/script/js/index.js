@@ -1,17 +1,6 @@
 
 $(document).ready(function () {
-    //有一定滚动时显示这个top
-    $(window).scroll(function () {
-        //获取距离浏览器顶部距离并赋值th
-        var th = $(window).scrollTop();
-        if (th > 600) {
-            $("#backtop").show();
-        } else {
-            $("#backtop").hide();
-        }
-    });
-
-
+   backtop();
     //当前页
     var page=1;
     $('.more').click(function(){
@@ -39,6 +28,9 @@ $(document).ready(function () {
             }
             if(newsList.length>0){
                 page++;
+                if(newsList.length<10){
+                    $('.more').html('没有更多了');
+                }
             }else{
                 $('.more').html('没有更多了');
             }

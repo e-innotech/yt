@@ -20,7 +20,7 @@ $(document).ready(function () {
 
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
-        homeList(3, page,10, function callback(newsList) {
+        homeList(3, page,8, function callback(newsList) {
             for (var i = 0; i < newsList.length; i++) {
                 $('.news_listbox').append('<div class="news_list">' +
                 '<a href="">' +
@@ -37,6 +37,9 @@ $(document).ready(function () {
             }
             if(newsList.length>0){
                 page++;
+                if(newsList.length<8){
+                    $('.more').html('没有更多了');
+                }
             }else{
                 $('.more').html('没有更多了');
             }

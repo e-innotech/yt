@@ -24,9 +24,6 @@
 .content-left .news_top{
     width:990px;
     height:402px;
-    /*background:#fff;*/
-
-
 }
 .news_top .news_left{
     width:800px;
@@ -123,6 +120,7 @@
 
 .news_listbox{
     margin-top:20px;
+    min-height:1000px;
 }
 .news_list{
     background:#fff;
@@ -191,11 +189,5 @@
     text-align:center;
     margin:40px 0 133px 405px;
 
-}
-#backtop{
-    position:fixed;
-    bottom:311px;
-    right:436px;
-    display:none;
 }
 

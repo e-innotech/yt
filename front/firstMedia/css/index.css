@@ -113,6 +113,7 @@ font-weight: normal;
 }
 .news_listbox{
     margin-top:20px;
+    min-height:1000px;
 }
 .news_list{
     background:#fff;

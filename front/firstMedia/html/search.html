@@ -43,45 +43,46 @@
     // 一进页面加载头
     window.onload=function(){
         $("#top").load("top.html");
-        $("#bottom").load("bottom.html");   init();
+        $("#bottom").load("bottom.html");
+        init();
     }
-
-
     //搜索渲染
     var page = 1;
-    var searchData='';
-
-    var object = window.sessionStorage.getItem("global_search_data");
-    var data = JSON.parse(object);
-    var list = data.list;
-
-
-    $('.more').click(function () {
-        if(searchData.length<=0){
-            $('.more').html('没有更多了');
-        }else{
-            page++;
-            init()
-
-        }
-    });
+    var totalnum,list;
+    var newsTitle = window.sessionStorage.getItem("global_newsTitle");
     function init(){
-        searchData=list;
+        var getSearchList = function (data) {
+            console.log(121,data);
+            totalnum=data.total;
+            list=data.list;
+            if(list.length<10){
+                $('.more').html('没有更多了');
+            }
+        };
+
+        //参数 网站id 新闻标题 当前页 显示页
+        globalQuery(1,newsTitle,page, 10, getSearchList);
         //拿到的搜索的数据
-        for (var i = 0; i <searchData.length; i++) {
+        for (var i=0;i <list.length; i++) {
             $('#searchlist').append('<div class="news_list">' +
             '<a href="">' +
-            '<h2>' +searchData[i].newsTitle+' </h2>' +
-            '<p>' +searchData[i].createDate+
+            '<h2>' +list[i].newsTitle+' </h2>' +
+            '<p>' +list[i].createDate+
             '</p>' +
-            '<div>' +searchData[i].subContent+'</div>' +
+            '<div>' +list[i].subContent+'</div>' +
             '</div>' +
             '</a>' +
             '</div>');
-
         }
-        sessionStorage.removeItem("global_search_data");
-
     }
+    $('.more').click(function () {
+        if(page>=Math.ceil(totalnum/10)){
+            $('.more').html('没有更多了');
+        }
+        else{
+            page++;
+            init();
+        }
+    });
 
 </script>

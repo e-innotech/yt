@@ -29,7 +29,6 @@
                     </a>
                 </div>
             </div>
-            <input type="hidden" value="" id="search_key">
             <div class="more">加载更多</div>
         </div>
     </div>
@@ -38,126 +37,49 @@
 
 </body>
 </html>
-<script>
-    // 一进页面加载头
-    window.onload=function(){
-        var search = window.sessionStorage.getItem("global_search_data_searchKey");
-        window.sessionStorage.removeItem("global_search_data_searchKey");
-        $('#top').load('top.html');
-        $('#bottom').load('bottom.html');
-        $('#search_key').val(search);
-    }
+ <script>
+     // 一进页面加载头
+     window.onload=function(){
+         $("#top").load("top.html");
+         $("#bottom").load("bottom.html");
+         init();
+     }
+     //搜索渲染
+     var page = 1;
+     var totalnum,list;
+     var newsTitle = window.sessionStorage.getItem("global_newsTitle");
+     function init(){
+         var getSearchList = function (data){
+             console.log(121,data);
+             totalnum=data.total;
+             list=data.list;
+             if(list.length<10){
+                 $('.more').html('没有更多了');
+             }
+         };
+        //参数 网站id 新闻标题 当前页 显示页
+         globalQuery(1,newsTitle,page, 10, getSearchList);
+       //拿到的搜索的数据
+         for (var i=0;i <list.length; i++){
+             $('#searchlist').append('<div class="news_list">' +
+             '<a href="">' +
+             '<h2>' +list[i].newsTitle+' </h2>' +
+             '<div>' +list[i].subContent+'</div>' +
+             '<p>' +
+             '<span class="source">' +list[i].source+'</span>' +
+             '<span class="date">' +list[i].createDate+'</span>' +
+             '</p>' +
+             '</a>'+
+             '</div>');
+         }
+     }
+     $('.more').click(function (){
+         if(page>Math.ceil(totalnum/10)){
+             $('.more').html('没有更多了');
+         }else{
+             page++;
+             init();
+         }
+     });
+ </script>
 
-    //搜索渲染
-    var page = 1;
-    var list;
-    function init(){
-        var object = window.sessionStorage.getItem("global_search_data");
-        var data = JSON.parse(object);
-        var list = data.list;
-//        searchData=list;
-        for (var i = 0; i <list.length; i++) {
-            $('#searchlist').append('<div class="news_list">' +
-            '<a href="">' +
-            '<h2>' +searchData[i].newsTitle+' </h2>' +
-            '<div>' +searchData[i].subContent+'</div>' +
-            '<p>' +
-            '<span class="source">' +searchData[i].source+'</span>' +
-            '<span class="date">' +searchData[i].createDate+'</span>' +
-            '</p>' +
-            '</div>' +
-            '</a>' +
-            '</div>');
-        }
-    }
-
-    function nextSearchPage(){
-        var newsKey = $('#search_key').val();
-        globalQuery(websiteId, newsKey, page, 10, function callback(data){
-//            searchData=data.list;
-            var list = data.list;
-            for (var i = 0; i < list.length; i++) {
-                $('#searchlist').append('<div class="news_list">' +
-                '<a href="">' +
-                '<h2>' +searchData[i].newsTitle+' </h2>' +
-                '<div>' +searchData[i].subContent+'</div>' +
-                '<p>' +
-                '<span class="source">' +searchData[i].source+'</span>' +
-                '<span class="date">' +searchData[i].createDate+'</span>' +
-                '</p>' +
-                '</div>' +
-                '</a>' +
-                '</div>');
-
-            }
-
-        })
-    };
-
-    $('.more').click(function () {
-//        console.log(343,searchData.length);
-        console.log(5,typeof(searchData))
-        if(list.length<= 0){
-            $('.more').html('没有更多了');
-        }else{
-            page++;
-            nextSearchPage();
-        }
-    });
-
-
-//    // 一进页面加载头
-//    window.onload=function(){
-//        $("#top").load("top.html");
-//        $("#bottom").load("bottom.html");
-//        var search = window.sessionStorage.getItem("global_search_data_searchKey");
-//        init();
-//    }
-//
-//
-//    //搜索渲染
-//    var page = 1;
-//    var searchData;
-//    function init(){
-//
-//
-//
-//
-//    }
-//
-//    var object = window.sessionStorage.getItem("global_search_data");
-//    var data = JSON.parse(object);
-//    var list = data.list;
-//
-//
-//    $('.more').click(function () {
-//        if(searchData.length<=0){
-//            $('.more').html('没有更多了');
-//        }else{
-//            page++;
-//            init()
-//
-//        }
-//    });
-//    function init(){
-//        searchData=list;
-//        //拿到的搜索的数据
-//        for (var i = 0; i <searchData.length; i++) {
-//            $('#searchlist').append('<div class="news_list">' +
-//            '<a href="">' +
-//            '<h2>' +searchData[i].newsTitle+' </h2>' +
-//            '<div>' +searchData[i].subContent+'</div>' +
-//            '<p>' +
-//            '<span class="source">' +searchData[i].source+'</span>' +
-//            '<span class="date">' +searchData[i].createDate+'</span>' +
-//            '</p>' +
-//            '</div>' +
-//            '</a>' +
-//            '</div>');
-//
-//     }
-//        sessionStorage.removeItem("global_search_data");
-//
-//    }
-
-</script>

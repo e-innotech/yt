@@ -17,7 +17,7 @@ ul,ol,ul,li{
 a{
     text-decoration: none;
 }
-input{
+input, button{
     outline:none;
 }
 button{
@@ -25,4 +25,10 @@ button{
 }
 h2, h3, h4, h5{
     font-weight: normal;
+}
+#backtop{
+    position:fixed;
+    bottom:265px;
+    right:288px;
+    display:none;
 }
