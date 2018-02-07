@@ -507,3 +507,29 @@
 	z-index:100;
 	display:none;
 }
+#content_center .news-top p ,#content_center .news-top div{
+	text-indent: 2em !important;
+	margin-bottom: 30px!important;
+	font-size: 16px!important;
+	color: #000!important;
+	line-height: 28px!important;
+}
+
+#content_center .news-top {
+	margin: 25px 15px 0!important;
+
+}
+
+#content_center .news-top h1, #content_center .news-top h2, #content_center .news-top h3, #content_center .news-top h4, #content_center .news-topt h5 {
+	font-size: 20px!important;
+	margin-bottom: 30px!important;
+}
+
+#content_center .news-top img {
+	max-width: 100%!important;
+	margin: 5px auto!important;
+}
+
+
+
+
