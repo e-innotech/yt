@@ -2,7 +2,7 @@ var apiUrl = 'http://192.168.20.195:8080';//
 var uploadUrl = 'http://www.wemtk.com:8888/yy/upload';
 //var apiUrl = 'http://www.wemtk.com:8888';//测试
 var baseUrl = 'http://www.yingyannews.com/';
-var websiteId = $("#websiteId").val();
+var websiteId = 1;
 var channelId = "${channelId!''}";
 var sex = ['女','男'];
 function serializeObject(a){
@@ -74,7 +74,7 @@ function homeList(homeWeight,pageNum,pageSize,callback){
                 return;
             }
         }
-     });
+    });
 };
 function adList(templateType,callback){
     var data = {websiteId:websiteId,templateType:templateType};
@@ -104,7 +104,7 @@ function newsList(channelId,pageNum,pageSize,callback){
     AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
         if(re.success){
             if(callback){
-            	callback(re.data);
+                callback(re.data);
 //                callback(re.data.list);
                 return;
             }
@@ -224,9 +224,9 @@ function memberslogout(url) {
         if (re.success) {
             sessionStorage.removeItem('user');
             if(url) {
-            	location.replace('/index.html');
+                location.replace('/index.html');
             } else {
-            	location.replace(sessionStorage.getItem('currentUrl'));
+                location.replace(sessionStorage.getItem('currentUrl'));
             }
         } else {
             alert(re.msg);
@@ -302,14 +302,14 @@ function collectStatus(publishId,callback){
     });
 };
 function addCollect(publishId,callback){
-	var data = {publishId: publishId};
-	AjaxFunc(apiUrl + '/web/member/collect/add', 'post', data, function (re) {
-	    if (re.success) {
-	        if (callback) {
-	        	callback(re);
-	        }
-	    }
-	});	
+    var data = {publishId: publishId};
+    AjaxFunc(apiUrl + '/web/member/collect/add', 'post', data, function (re) {
+        if (re.success) {
+            if (callback) {
+                callback(re);
+            }
+        }
+    });
 }
 
 //会员取消收藏

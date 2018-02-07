@@ -79,8 +79,7 @@ function init(){
 $('.more').click(function () {
     if(page>=Math.ceil(totalnum/10)){
         $('.more').html('没有更多了');
-    }
-    else{
+    }else{
         page++;
         init();
     }

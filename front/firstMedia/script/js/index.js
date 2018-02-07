@@ -1,9 +1,13 @@
 $(document).ready(function () {
    backtop();
     //当前页
-    var page=1;
+    var page=2;
     $('.more').click(function(){
-        getHomeNewsList();
+        if($('.more').html()=='没有更多了'){
+            $(this).attr('disabled','true');
+        }else{
+            getHomeNewsList();
+        }
     })
 
     function getHomeNewsList() {

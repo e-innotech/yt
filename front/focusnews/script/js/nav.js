@@ -1,8 +1,12 @@
 $(document).ready(function () {
     backtop();
-    var page=1;
+    var page=2;
     $('.more').click(function(){
-        getNavList();
+        if($('.more').html()=='没有更多了'){
+            $(this).attr('disabled','true');
+        }else{
+            getNavList();
+        }
     })
     function getNavList() {
         //传的权限 页数 一页显示几条数据
