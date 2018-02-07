@@ -12,6 +12,7 @@
 .content-left{
     width:898px;
     float:left;
+
 }
 
 .content-right {
@@ -28,7 +29,9 @@
     overflow:hidden;
 }
 
-
+.news_listbox{
+    min-height:1000px;
+}
 .news_list {
     border:1px solid #ececec;
     width:898px;
@@ -86,12 +89,7 @@
     border:none;
 }
 
-#backtop{
-    position:fixed;
-    bottom:250px;
-    right:288px;
-    display:none;
-}
+
 
 /*以下为广告*/
 .navadv_l{

@@ -33,34 +33,15 @@
     color:#999;
 }
 
-.page{
+.more{
     width:680px;
-    height:128px;
+    height:35px;
+    line-height:35px;
     background:#fff;
-    text-align:center;
-    overflow:hidden;
-    margin-bottom:80px;
-
-
-}
-.prevpages{
-    margin-left:250px;
-}
-.page p{
-    margin-top:40px;
-    margin-bottom:56px;
-    float:left;
-    width:75px;
-    height:30px;
+    border-radius: 2px;
     font-size:20px;
-    font-weight: normal;
     color:#000;
     text-align:center;
-    line-height:30px;
-    border-radius: 2px;
-    background:#efeeee;
+    margin:30px auto 130px auto;
 
-}
-.nextpages{
-    margin-left:40px;
 }

@@ -1,16 +1,5 @@
-//有一定滚动时显示这个top
-//$(window).scroll(function () {
-//    //获取距离浏览器顶部距离并赋值th
-//    var th = $(window).scrollTop();
-//    if (th > 600) {
-//        $("#backtop").show();
-//    } else {
-//        $("#backtop").hide();
-//    }
-//});
-
-//
 $(document).ready(function () {
+    backtop();
     //当前页
     var pages=1;
     var channelId = 3;
@@ -20,8 +9,9 @@ $(document).ready(function () {
 
     function getNavList() {
         //传的权限 页数 一页显示几条数据
-        newsList(channelId, pages,10, function callback(newsList) {
+        newsList(channelId, pages,10, function callback(data) {
             console.log(channelId);
+            var newsList=data.list;
             console.log(223,newsList.length);
             for (var i = 0; i < newsList.length; i++) {
                 $('.news_listbox').append('<div class="news_list">' +
@@ -37,8 +27,11 @@ $(document).ready(function () {
                 '</div>')
             }
             if(newsList.length>0){
-                alert(newsList.length);
+               console.log(newsList.length);
                 pages++;
+                if(newsList.length<10){
+                    $(".more").html("没有更多了");
+                }
             }else{
                 $(".more").html("没有更多了");
             }

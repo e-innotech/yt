@@ -1,8 +1,8 @@
 .headerbg{
     width:100%;
     height:120px;
-    background:#ffffff;
-    border-bottom:1px solid #bcdece;
+    background:#f9f9f9;
+    border-bottom:1px solid #75b748;
     position:fixed;
     top:0;
     left:0;
@@ -38,10 +38,9 @@
     display:inline-block;
     height:44px;
     line-height:44px;
-    /*height:46px;*/
     color:#000;
 }
-.active{
+.header .nav .active a{
    border-bottom:1px solid #75b748;
 }
 .header .header-r{
@@ -51,11 +50,7 @@
     margin-top:40px;
     border-radius: 2px ;
     border:1px solid #cacaca;
-
-
 }
-
-
 .header .header-r form{
     position:relative;
 }

@@ -40,6 +40,7 @@
 .news_listbox{
     margin-top:20px;
     overflow:hidden;
+    min-height:1000px;
 }
 .news_list {
     width:942px;
@@ -96,12 +97,5 @@
     text-align:center;
     margin-bottom:64px;
 
-}
-
-#backtop{
-    position:fixed;
-    bottom:311px;
-    right:306px;
-    display:none;
 }
 

@@ -64,11 +64,9 @@
     width:450px;
     height:248px;
     position:relative;
+    overflow:hidden;
 }
-.news_Img img{
-    width:100%;
-    height:100%;
-}
+
 .news_Img p{
     position:absolute;
     bottom:10px;

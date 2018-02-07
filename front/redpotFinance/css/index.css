@@ -84,6 +84,7 @@
 
 .news_listbox{
     margin-top:14px;
+    min-height:1000px;
 }
 .news_list{
     background:#fff;

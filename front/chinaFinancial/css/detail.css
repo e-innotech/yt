@@ -65,61 +65,41 @@
     margin-left:1px;
 
 }
-.editor_con{
-    padding:0 10px;
+
+.editor_con {
+    margin: 25px 15px 0!important;
+    padding-bottom:50px;
+
 }
-.editor_con img{
-    width:100%;
-}
-.editor_con p{
-    font-size:16px;
-    color:#000000;
+
+.editor_con p {
+    text-indent: 2em !important;
+    margin-bottom: 30px!important;
+    font-size: 16px!important;
+    color: #000!important;
+    line-height: 28px!important;
 }
 
 
-/*以下为版权*/
-.copyright{
-    border-top:1px solid #eae9e9;
-    border-bottom:1px solid #eae9e9;
-    overflow: hidden;
-    font-size:15px;
-    color:#ababab;
-    margin:40px 10px 0px 10px;
-    /*margin:40px 10px 30px 10px;*/
+.editor_con h1, .editor_con h2, .editor_con h3, .editor_con h4, .editor_con h5 {
+    font-size: 20px!important;
+    margin-bottom: 30px!important;
+}
+
+.editor_con img {
+    max-width: 100%!important;
+    margin: 5px auto!important;
+}
 
 
 
-}
-.copyright h5{
-    font-size:15px;
-    margin-top:12px;
-    color:#ababab;
-    font-weight:normal;
-    line-height:34px;
-}
-.copyright p {
-    padding-bottom:12px;
-    line-height:34px;
-}
-#backtop{
-    position:fixed;
-    bottom:249px;
-    right:288px;
-    display:none;
-}
+
 .detailblank{
     height:30px;
     background:#fff;
 
 }
-.Reprint_instr{
-    margin-top:62px;
-    margin-bottom:54px;
-    font-size:15px;
-    color:#9f9f9f;
-    line-height:22px;
 
-}
 /*以下为广告*/
 .detailadv_l{
     width:258px;

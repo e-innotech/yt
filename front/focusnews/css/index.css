@@ -24,7 +24,6 @@
     width:1200px;
     margin:20px auto 0 auto;
     overflow:hidden;
-
 }
 
 .content-left{
@@ -69,6 +68,7 @@
 }
 .news_listbox{
     margin-top:30px;
+    min-height:1000px;
 }
 .news_list{
     background:#fff;

@@ -97,12 +97,7 @@
     padding-bottom:12px;
     line-height:34px;
 }
-#backtop{
-    position:fixed;
-    bottom:311px;
-    right:306px;
-    display:none;
-}
+
 .detailblank{
     height:30px;
     background:#fff;

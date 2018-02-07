@@ -108,8 +108,8 @@ function newsList(channelId,pageNum,pageSize,callback){
     AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
         if(re.success){
             if(callback){
-                //callback(re.data);
-                callback(re.data.list);
+                callback(re.data);
+                //callback(re.data.list);
                 return;
             }
         }
@@ -455,4 +455,18 @@ $.fn.Totop = function (obj) {
             }
         }
     })
+}
+
+function backtop(){
+    //有一定滚动时显示这个top
+    $(window).scroll(function () {
+        //获取距离浏览器顶部距离并赋值th
+        var th = $(window).scrollTop();
+        if (th > 600) {
+            $("#backtop").show();
+        } else {
+            $("#backtop").hide();
+        }
+    });
+
 }

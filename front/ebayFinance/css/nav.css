@@ -19,14 +19,10 @@
     width:504px;
     float:right;
 }
-
-
-
-
-
 .news_listbox{
     overflow:hidden;
     width:668px;
+    min-height:1000px;
 }
 
 .news_list{

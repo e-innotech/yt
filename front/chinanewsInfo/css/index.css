@@ -73,7 +73,9 @@
     -webkit-box-orient: vertical;
     padding-left:32px;
 }
-
+.news_listbox{
+    min-height:1000px;
+}
 .news_Imgbox{
     width:698px;
     margin-top:10px;

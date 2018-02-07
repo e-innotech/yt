@@ -59,6 +59,9 @@
     width:470px;
     float:right;
 }
+.news_listbox{
+    min-height:1000px;
+}
 .news_list{
     padding-bottom:23px;
     border-bottom:1px dashed #dddddd;

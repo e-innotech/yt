@@ -96,6 +96,7 @@
 
 .news_listbox{
     margin-top:20px;
+    min-height:1000px;
 }
 
 .news_list{
@@ -183,10 +184,5 @@
     margin-bottom:112px;
 
 }
-#backtop{
-    position:fixed;
-    bottom:311px;
-    right:306px;
-    display:none;
-}
+
 

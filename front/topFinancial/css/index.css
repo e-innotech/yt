@@ -109,6 +109,7 @@
 .lefts{
     width:710px;
     float:left;
+    min-height:1000px;
 
 }
 
@@ -181,10 +182,5 @@
     margin-top:10px;
     margin-bottom:71px;
 }
-#backtop{
-    position:fixed;
-    bottom:310px;
-    right:360px;
-    display:none;
-}
+
 

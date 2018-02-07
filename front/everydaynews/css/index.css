@@ -54,6 +54,9 @@
     float:right;
 
 }
+.news_listbox{
+    min-height:1000px;
+}
 .news_list{
     border-bottom: 1px dashed #adadad;
     overflow:hidden;
