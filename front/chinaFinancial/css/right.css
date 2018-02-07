@@ -26,6 +26,14 @@
     border-radius: 50%;
     background:#14cbff;
 }
+/*.hot_news ul li:before{*/
+    /*content:"";*/
+    /*display:inline-block;*/
+    /*width:8px;*/
+    /*height:8px;*/
+    /*border-radius: 50%;*/
+    /*background:#14cbff;*/
+/*}*/
 .hot_news ul li a{
     color:#333;
     padding-left:10px;

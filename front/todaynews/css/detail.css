@@ -103,18 +103,26 @@
     background:#fff;
 
 }
-.detailadv{
+.detailadvbox{
     width:150px;
     height:160px;
     position:fixed;
     top:122px;
-    right:200px;
+    right:0;
+    overflow:hidden;
 }
-.detailadv .bigImg{
-    width:100%;
-    height: 100%;
+.detailadv:before{
+    position:absolute;
+    display:inline-block;
+    content:"广告";
+    width:50px;
+    height:28px;
+    background:#aca9ab;
+    border-radius:20px;
+    font-size:18px;
+    line-height:28px;
+    text-align:center;
+    bottom:10px;
+    right:10px;
+}
 
-}
-.detailadv .smallImg{
-    position: relative;top: -35px;right:-94px;
-}

@@ -246,7 +246,7 @@ input {
 .header_nav .nav a:hover {
     border-bottom: 2px solid #39a34e;
 }
-.active{
+.header_nav .nav .active{
     border-bottom: 2px solid #39a34e;
 }
 

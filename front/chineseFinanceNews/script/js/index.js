@@ -14,7 +14,7 @@ $(document).ready(function(){
     var page=1;
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
-        homeList(3, page,1, function callback(newsList) {
+        homeList(3, page,12, function callback(newsList) {
             console.log(newsList);
             for (var i = 0; i < newsList.length; i++) {
                 $('#moreList').append('<li>' +
@@ -34,6 +34,9 @@ $(document).ready(function(){
             }
             if(newsList.length>0){
                 page++;
+                if(newsList.length<12){
+                    $('.more').html('没有更多了');
+                }
             }else{
                 $('.more').html('没有更多了');
             }

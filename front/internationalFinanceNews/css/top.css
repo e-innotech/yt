@@ -254,7 +254,7 @@ input {
 .header_nav .nav a:hover {
     color: #37d9e4;
 }
-.active{
+.header_nav .nav .active{
     color: #37d9e4;
 }
 
