@@ -75,7 +75,7 @@ $(function () {
     var initTable = function (list) {
         newsPublishList = list;
         $('#newsPublishT').empty();
-        console.log('list',list)
+        console.log('稿件上下线_list',list)
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+

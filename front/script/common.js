@@ -1,10 +1,10 @@
-//const apiUrl = 'http://192.168.20.195:8080';//
-const uploadUrl = 'http://192.168.20.195:8888/yy/upload';
-const apiUrl = 'http://123.59.156.27:8080';//测试
-
-const websiteId = 1;
-const sex = ['女','男'];
- var title="";
+var apiUrl = 'http://192.168.20.195:8080';//
+var uploadUrl = 'http://www.wemtk.com:8888/yy/upload';
+//var apiUrl = 'http://www.wemtk.com:8888';//测试
+var baseUrl = 'http://www.yingyannews.com/';
+var websiteId = $("#websiteId").val();
+var channelId = "${channelId!''}";
+var sex = ['女','男'];
 function serializeObject(a){
     var o,h,i,e;
     o={};
@@ -47,12 +47,6 @@ function AjaxFunc(url, type, data, callBack) {
     };
     $.ajax(obj);
 };
-function delHtmlTag(str)
-{
-    var str=str.replace(/<\/?[^>]*>/gim,"");//去掉所有的html标记
-    var result=str.replace(/(^\s+)|(\s+$)/g,"");//去掉前后空格
-    return  result.replace(/\s/g,"");//去除文章中间空格
-}
 function AjaxUpload(url,data,callBack) {
     var obj = {
         url:url,
@@ -71,6 +65,7 @@ function AjaxUpload(url,data,callBack) {
 };
 //权重 页数 一页显示多少条 回调函数
 function homeList(homeWeight,pageNum,pageSize,callback){
+
     var data = {websiteId:websiteId,homeWeight:homeWeight,pageNum:pageNum,pageSize:pageSize};
     AjaxFunc(apiUrl+'/web/home','get',data,function(re){
         if(re.success){
@@ -83,7 +78,7 @@ function homeList(homeWeight,pageNum,pageSize,callback){
 };
 function adList(templateType,callback){
     var data = {websiteId:websiteId,templateType:templateType};
-    AjaxFunc(apiUrl+'/common/ad','get',data,function(re){
+    AjaxFunc(apiUrl+'/web/common/ad','get',data,function(re){
         if(re.success){
             if(callback){
                 callback(re.data);
@@ -94,7 +89,8 @@ function adList(templateType,callback){
 };
 function channelList(callback){
     var data = {websiteId:websiteId};
-    AjaxFunc(apiUrl+'/common/channel','get',data,function(re){
+
+    AjaxFunc(apiUrl+'/web/common/channel','get',data,function(re){
         if(re.success){
             if(callback){
                 callback(re.data);
@@ -108,8 +104,8 @@ function newsList(channelId,pageNum,pageSize,callback){
     AjaxFunc(apiUrl+'/web/channel/query','get',data,function(re){
         if(re.success){
             if(callback){
-                callback(re.data);
-                //callback(re.data.list);
+            	callback(re.data);
+//                callback(re.data.list);
                 return;
             }
         }
@@ -141,7 +137,7 @@ function uploadIcon(data,callback){
 };
 //
 function membersEdit(data,callback){
-    AjaxFunc(apiUrl+'/members/update/info','post',data,function(re){
+    AjaxFunc(apiUrl+'/web/members/update/info','post',data,function(re){
         alert(re.msg);
         if(re.success) {
             if(callback) {
@@ -152,7 +148,7 @@ function membersEdit(data,callback){
 };
 
 function membersPwd(data){
-    AjaxFunc(apiUrl+'/members/pwd','post',data,function(re){
+    AjaxFunc(apiUrl+'/web/members/pwd','post',data,function(re){
         alert(re.msg);
     });
 }
@@ -174,12 +170,7 @@ function membersPwd(data){
 //        }
 //    });
 //};
-function addComment(publishId,content,callback){
-    var data = {publishId:publishId,content:content};
-    AjaxFunc(apiUrl+'/member/comment/add','get',data,function(re){
-        callback(re);
-    });
-}
+
 function getIdFromUrl(){
     var name = 'id';
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -193,19 +184,20 @@ function countCode(obj,count){
     }
 }
 function removeHTMLTag(str) {
-    str = str.replace(/\s|&nbsp;/g,'')
+    str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
+    str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
+    str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
     str=str.replace(/ /g,'');//去掉
     return str;
 }
-//去掉首位空格
-String.prototype.trim = function() {
-    return this.replace(/(^\s*)|(\s*$)/g, "");
-}
-
+function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");
+};
 //在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
+
     var data = {uname: uname, pwd: pwd};
-    AjaxFunc(apiUrl+'/members/login', 'post', data, function (re) {
+    AjaxFunc(apiUrl+'/web/members/login', 'post', data, function (re) {
         if (re.success) {
             sessionStorage.setItem('user',JSON.stringify(re.data));
             //判断关闭页面时在哪个页面
@@ -214,24 +206,28 @@ function memberslogin(uname,pwd) {
                 var signurl=sessionStorage.getItem("login");
                 //如果关闭前在登陆页面就让它跳到首页
                 if(url==signurl){
-                    location.replace("index.html");
+                    location.replace('/index.html');
                     return;
                 }else{
                     location.replace(sessionStorage.getItem('currentUrl'));
                 }
             }else{
-                location.replace("index.html");
+                location.replace('/index.html');
             }
         }else {
             alert(re.msg);
         }
     });
 }
-function memberslogout() {
-    AjaxFunc(apiUrl+'/members/logout', 'get', null, function (re) {
+function memberslogout(url) {
+    AjaxFunc(apiUrl+'/web/members/logout', 'get', null, function (re) {
         if (re.success) {
             sessionStorage.removeItem('user');
-            location.replace(sessionStorage.getItem('currentUrl'));
+            if(url) {
+            	location.replace('/index.html');
+            } else {
+            	location.replace(sessionStorage.getItem('currentUrl'));
+            }
         } else {
             alert(re.msg);
         };
@@ -241,9 +237,9 @@ function memberslogadd(){
     var uname=$('input[name="userName"]').val(),pwd=$('input[name="password"]').val()
     var data = {uname: uname, pwd: pwd};
     console.log(uname)
-    AjaxFunc(apiUrl+'/members/add', 'post', data, function (re) {
+    AjaxFunc(apiUrl+'/web/members/add', 'post', data, function (re) {
         if (re.success) {
-            location.replace("sign.html");
+            location.replace("/front/yynews/ftl/sign.html?id="+websiteId);
         }else {
             alert(re.msg);
         }
@@ -284,7 +280,7 @@ function commentAdd(publishId,content,callback) {
 //会员收藏列表
 function collectList(pageNum,pageSize,callback){
     var data = {pageNum:pageNum,pageSize:pageSize};
-    AjaxFunc(apiUrl+'/member/collect/query','get',data,function(re){
+    AjaxFunc(apiUrl+'/web/member/collect/query','get',data,function(re){
         if(re.success){
             if(callback){
                 callback(re.data);
@@ -293,11 +289,33 @@ function collectList(pageNum,pageSize,callback){
         }
     });
 };
+// 查询收藏状态
+function collectStatus(publishId,callback){
+    var data = {publishId:publishId};
+    AjaxFunc(apiUrl+'/web/detail/collect','get',data,function(re){
+        if(re.success){
+            if(callback){
+                callback(re.data);
+                return;
+            }
+        }
+    });
+};
+function addCollect(publishId,callback){
+	var data = {publishId: publishId};
+	AjaxFunc(apiUrl + '/web/member/collect/add', 'post', data, function (re) {
+	    if (re.success) {
+	        if (callback) {
+	        	callback(re);
+	        }
+	    }
+	});	
+}
 
 //会员取消收藏
 function cancelCollect(collect_id,callback){
     var data = {collectId:collect_id};
-    AjaxFunc(apiUrl+'/member/collect/delete','get',data,function(re){
+    AjaxFunc(apiUrl+'/web/member/collect/delete','get',data,function(re){
         if(re.success){
             if(callback){
                 callback(re.data);
@@ -393,12 +411,10 @@ function memcommentList(pageNum,pageSize,callback){
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');
-    location.replace('sign.html');
+    location.replace('/front/yynews/ftl/sign.html');
     alert(re.msg);
 }
-
 function drawImage(ImgD,twidth,theight){
-    //console.log(ImgD);
     ImgD.style = 'margin:0 0 0 0';
     var image=new Image();
     image.src=ImgD.src;
@@ -410,8 +426,6 @@ function drawImage(ImgD,twidth,theight){
         ImgD.width = twidth;
     }
 }
-
-
 //回到顶部
 'use strict';
 $.fn.Totop = function (obj) {
@@ -456,7 +470,6 @@ $.fn.Totop = function (obj) {
         }
     })
 }
-
 function backtop(){
     //有一定滚动时显示这个top
     $(window).scroll(function () {

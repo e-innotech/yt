@@ -24,7 +24,9 @@
    <div class="content">
        <!-- 主体内容左边 -->
        <div class="content-left" id="new_left">
-           <div id="content_left"></div>
+           <div id="content_left">
+               <p>fsldifjl dsf/lk; fs;;lk;k;ewroiuou fkjs kfs jhsd kjsfk</p>
+           </div>
                  <!--<h2>发神经老地方卡范德萨发射空间的卡见风使舵发神经老地方卡范德萨发射空间的卡见风使舵发神经德萨发射空间的卡见风使舵发神经</h2>-->
                  <!--<div class="dateinfo">-->
                        <!--<div class="times">发布时间： <span>2017-10-11 10:16:27</span></div>-->
@@ -141,7 +143,6 @@ console.log(222,original);
 function changeDivmarginLeft() {
     //获取当前页面的宽度
     var current = document.documentElement.clientWidth;//获取页面可见宽度
-
     if (original - current >= 240) {
         document.getElementById("advertisingDe").style.marginLeft = 0;
     } else {
@@ -151,5 +152,15 @@ function changeDivmarginLeft() {
 //        document.getElementById("advertisingDe").style.marginLeft = mmmm;
     }
 }
+$()
+var description=$('#content_left p');
+description = description.replace(/(\n)/g, "");
+description = description.replace(/(\t)/g, "");
+description = description.replace(/(\r)/g, "");
+description = description.replace(/<\/?[^>]*>/g, "");
+description = description.replace(/\s*/g, "");
+console.log(description)
+
+
 </script>
 </html>

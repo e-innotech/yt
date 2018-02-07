@@ -46,7 +46,7 @@ $(function () {
         for (var i = 0; i < list.length; i++) {
             $('#newsLaunchEditT').append('<tr>' +
                 '<td>'+list[i].siteName+'</td>'+
-                '<td>'+getChannels(list[i].id,list[i].channels)+'</td>'+
+                '<td style="white-space:pre-wrap">'+getChannels(list[i].id,list[i].channels)+'</td>'+
                 '</tr>');
             for(var j=0;j<list[i].channels.length;j++){
                 $('#wcCB_'+list[i].id+'_'+list[i].channels[j].id).change(function () {

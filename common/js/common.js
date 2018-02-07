@@ -61,7 +61,11 @@ function AjaxFunc(url,type,data,callBack) {
         xhrFields: {
             withCredentials: true
         },
-        success:function (result) {
+        success: function (result) {
+            if(result.errCode =='E00001'){
+                loginTimeOut();
+                return;
+            }
             callBack(result)
         }
     };
@@ -78,7 +82,11 @@ function AjaxFunc(url,type,data,callBack) {
     };
     $.ajax(obj);
 };
-
+function loginTimeOut(){
+    sessionStorage.removeItem('user');
+    location.replace('index.html');
+    alert(re.msg);
+}
 /**
  * 上传
  * @param url
