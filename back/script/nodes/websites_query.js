@@ -112,7 +112,6 @@ $(function () {
                 showWebsitesEdit('add');
                 //$('.channelCB').attr("checked",false)//全部清除
                 $('input[type="checkbox"]').attr("checked",false)//全部清除
-
             });
         };
         $('#searchBtn').click(function () {
