@@ -27,6 +27,7 @@ $(function () {
         });
 
     };
+
     var getChannelList = function () {
         var data = {pageNum:1,pageSize:0,isUse:1};
         AjaxFunc($query.channel,'get',data,function (re) {
@@ -54,7 +55,6 @@ $(function () {
                 getWebsitesList();
             };
         });
-
     };
     var editWebsites = function () {
         if($('input[name="siteName"]').val() == ''){
@@ -108,8 +108,11 @@ $(function () {
         }
         if(ctrl_add != '') {
             $('#addWebsitesBtn').show();
-            $('#addWebsitesBtn').click(function () {
+            $('#addWebsitesBtn').click(function (list) {
                 showWebsitesEdit('add');
+                //$('.channelCB').attr("checked",false)//全部清除
+                $('input[type="checkbox"]').attr("checked",false)//全部清除
+
             });
         };
         $('#searchBtn').click(function () {
@@ -151,12 +154,12 @@ $(function () {
                 });
             });
         }
-
     };
-    var renderChannelEdit = function (list) {
-        for(var i=0;i<list.length;i++){
-            $('#channelIds').append('<label class="btn btn-default" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" id="channelCB_'+list[i].id+'" >' + list[i].channelName + '</label>');
 
+    var renderChannelEdit = function (list) {
+
+        for(var i=0;i<list.length;i++){
+            $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" class="channelCB" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
             if(selectWebsites) {
                 for (var j = 0; j < selectWebsites.channels.length; j++) {
                     if (list[i].id == selectWebsites.channels[j].id) {
@@ -198,7 +201,6 @@ $(function () {
         $.get($components.websitesEdit,function (re) {
             $('#popPanel').html(re);
             $('#websitesEditModal').modal('show');
-
             getChannelList();
             if(type == 'edit'){
                 $('#websitesEditModalLabel').html('编辑网站');
