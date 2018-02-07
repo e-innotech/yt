@@ -11,7 +11,7 @@ $(document).ready(function(){
         position:true//是否采用fixed定位
     })
     // 加载更多
-    var page=1;
+    var page=2;
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
         homeList(3, page,12, function callback(newsList) {
@@ -42,10 +42,13 @@ $(document).ready(function(){
             }
         })
     };
-
     /*分页*/
     $('.more').click(function(){
-        getHomeNewsList();
+        if($('.more').html()=='没有更多了'){
+            $(this).attr('disabled','true');
+        }else{
+            getHomeNewsList();
+        }
     })
 });
 

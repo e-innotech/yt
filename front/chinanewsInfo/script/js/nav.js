@@ -34,14 +34,14 @@ $(document).ready(function(){
      });
      //点击下一页时
      $('.nextpages').click(function (){
-         if(page>=Math.ceil(totalnum/8)){
-             $(this).attr("disabled","true");
-             return
-         }else{
-             $(".news_listbox").html('');
-             page++;
-             getNavList();
-         }
+             if(page>=Math.ceil(totalnum/8)){
+                 $(this).attr("disabled","true");
+                 return
+             }else{
+                 $(".news_listbox").html('');
+                 page++;
+                 getNavList();
+             }
          $('.prevpages').attr("disabled",false);
      });
  })

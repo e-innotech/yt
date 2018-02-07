@@ -1,7 +1,8 @@
-var apiUrl = 'http://192.168.20.195:8080';//
+//var apiUrl = 'http://192.168.20.195:8080';
 var uploadUrl = 'http://www.wemtk.com:8888/yy/upload';
-//var apiUrl = 'http://www.wemtk.com:8888';//测试
 var baseUrl = 'http://www.yingyannews.com/';
+var apiUrl = 'http://123.59.156.27:8080';//测试
+
 var websiteId = 1;
 var channelId = "${channelId!''}";
 var sex = ['女','男'];

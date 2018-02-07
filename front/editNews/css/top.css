@@ -95,7 +95,7 @@ input {
     text-align: center;
     margin:30px 0 110px;
 }
-.moreBtn .more {
+.more {
     display: inline-block;
     width: 142px;
     height: 54px;
@@ -223,15 +223,14 @@ input {
     font-size: 20px;
     display: inline-block;
     color: #000;
-
 }
 
 .header_nav .nav a:hover {
     color: #e56b14;
-
-
 }
 .active{
     color: #e56b14;
 }
-
+#searchlist{
+    min-height:1000px;
+}
