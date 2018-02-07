@@ -213,7 +213,7 @@ input {
 .header_nav .nav li a:hover{
     color: #ff0000;
 }
-.active{
+.header_nav .nav li .active{
     color: #ff0000;
 }
 

@@ -7,6 +7,20 @@
     position:relative;
 
 }
+.r_advise:before{
+    position:absolute;
+    display:inline-block;
+    content:"广告";
+    width:50px;
+    height:28px;
+    background:#aca9ab;
+    border-radius:20px;
+    font-size:18px;
+    line-height:28px;
+    text-align:center;
+    bottom:10px;
+    right:10px;
+}
 
 .r_advise .adv_icon{
     position:absolute;

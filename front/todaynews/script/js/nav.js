@@ -1,7 +1,7 @@
 $(document).ready(function () {
     backtop();
     //当前页
-    var pages=1;
+    var pages=2;
     var channelId = 3;
     $('#more').click(function(){
         getNavList();
