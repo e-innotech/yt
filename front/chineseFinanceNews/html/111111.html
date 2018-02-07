@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新闻列表页</title>
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div>
+    <select id="test">
+        <option selected value="0">- 请选择 -</option>
+        <option value="1">关羽</option>
+        <option value="2">赵云</option>
+        <option value="3">马超</option>
+        <option value="4">黄忠</option>
+        <option value="5">张飞</option>
+    </select>
+    <input type="text" id="sel_text"/><input type='button' value='设置选项' onclick="fun()"/>
+</div>
+<script type="text/javascript">
+    obj = document.getElementById(select_id);
+    for(i=0;i<obj.length;i++){
+        if(obj[i].value == something)
+            obj[i].selected = true;
+    }
+    function fun(){
+        str = document.getElementById("sel_text").value;
+        obj = document.getElementById("test");
+        for(i=0;i<obj.length;i++){
+            if(obj[i].value==str)
+                obj[i].selected = true;
+        }
+    }
+</script>
+</body>
+</html>

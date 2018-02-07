@@ -108,10 +108,10 @@ $(function () {
         }
         if(ctrl_add != '') {
             $('#addWebsitesBtn').show();
-            $('#addWebsitesBtn').click(function (list) {
+            $('#addWebsitesBtn').click(function () {
                 showWebsitesEdit('add');
-                //$('.channelCB').attr("checked",false)//全部清除
-                $('input[type="checkbox"]').attr("checked",false)//全部清除
+                $('.channelCB').attr("checked",false)//全部清除
+
             });
         };
         $('#searchBtn').click(function () {
@@ -127,6 +127,7 @@ $(function () {
             $('#websitesT').append('<tr>' +
             '<td>'+list[i].siteName+'</td>'+
             '<td>'+list[i].domain+'</td>'+
+            '<td>'+list[i].zone+'</td>'+
             '<td>'+list[i].route+'</td>'+
             '<td>'+getChannelNames(list[i].channels)+'</td>'+
             '<td>'+list[i].createDate+'</td>'+
@@ -158,7 +159,7 @@ $(function () {
     var renderChannelEdit = function (list) {
 
         for(var i=0;i<list.length;i++){
-            $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" class="channelCB" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
+            $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
             if(selectWebsites) {
                 for (var j = 0; j < selectWebsites.channels.length; j++) {
                     if (list[i].id == selectWebsites.channels[j].id) {
@@ -201,15 +202,15 @@ $(function () {
             $('#popPanel').html(re);
             $('#websitesEditModal').modal('show');
             getChannelList();
+            console.log(selectWebsites)
             if(type == 'edit'){
                 $('#websitesEditModalLabel').html('编辑网站');
                 $('input[name="siteName"]').val(selectWebsites.siteName);
                 $('input[name="domain"]').val(selectWebsites.domain);
                 $('input[name="route"]').val(selectWebsites.route);
+                $('select').val(selectWebsites.websiteBucketZone);
                 $('input[name="websiteBucketName"]').val(selectWebsites.websiteBucketName);
-                $('select[name="websiteBucketZone"]').val(selectWebsites.websiteBucketZone);
                 $('input[name="homeWeightMax"]').val(selectWebsites.homeWeightMax);
-
                 for(var i=0;i<selectWebsites.webTemplates.length;i++){
                     $('#template_'+selectWebsites.webTemplates[i].templateType).val(selectWebsites.webTemplates[i].templatePath);
                 }
