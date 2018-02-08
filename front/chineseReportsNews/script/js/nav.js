@@ -41,7 +41,7 @@
 //});
 $(document).ready(function(){
     //声明一个变量代表第几页
-    var page=1;
+    var page=2;
     var totalnum;
     function getNavList() {
         //传的权限 页数 一页显示几条数据
@@ -86,7 +86,7 @@ $(document).ready(function(){
             page++;
             getNavList();
         }
-        $('.next').attr("disabled",false);
+        $('.prev').attr("disabled",false);
     });
 })
 

@@ -5,9 +5,9 @@ $(document).ready(function(){
      var totalnum;
      function getNavList() {
          //传的权限 页数 一页显示几条数据
-         newsList(3, page,8, function callback(data){
+         newsList(3, page,3, function callback(data){
              totalnum=data.total;
-             //console.log(77,allnum);
+             console.log(77,totalnum);
              var newsList=data.list;
              for (var i = 0; i < newsList.length; i++){
                  $('.news_listbox').append('<div class="news_list">' +
@@ -34,14 +34,22 @@ $(document).ready(function(){
      });
      //点击下一页时
      $('.nextpages').click(function (){
-         if(page>=Math.ceil(totalnum/8)){
-             $(this).attr("disabled","true");
-             return
-         }else{
-             $(".news_listbox").html('');
-             page++;
-             getNavList();
-         }
+         console.log($("#totalpages").html())
+            //if(page==$("#totalpages").html()){
+            //    $(this).attr("disabled","true");
+            //}else{
+            //    $(".news_listbox").html('');
+            //        page++;
+            //        getNavList();
+            //}
+             if(page>=Math.ceil(totalnum/8)){
+                 $(this).attr("disabled","true");
+                 return
+             }else{
+                 $(".news_listbox").html('');
+                 page++;
+                 getNavList();
+             }
          $('.prevpages').attr("disabled",false);
      });
  })

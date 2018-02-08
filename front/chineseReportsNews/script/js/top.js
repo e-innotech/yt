@@ -1,6 +1,7 @@
 $(document).ready(function() {
     //点击搜索时，获取输入框的值，
     $("#search").click(function () {
+        alert(111)
         var newsTitle = $('input[name="search"]').val();
         if(newsTitle==''){
             alert("请输入内容");

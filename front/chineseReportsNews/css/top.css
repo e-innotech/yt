@@ -184,7 +184,7 @@ input {
     cursor: pointer;
 }
 
-.header .header-r input {
+.header .header-r input[type='text'] {
     width: 268px;
     height: 38px;
     line-height: 38px;
@@ -193,7 +193,7 @@ input {
     border: none;
 
 }
-.header-r button{
+.header-r input[type='button']{
     width: 59px;
     height: 38px;
     border: 0;
@@ -201,7 +201,6 @@ input {
     font-size: 20px;
     color: #fff;
 }
-
 .header_nav{
     float: left;
 }

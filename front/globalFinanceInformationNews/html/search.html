@@ -7,6 +7,19 @@
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
     <script src="../script/js/top.js"></script>
+    <style>
+        .more{
+            display: inline-block;
+            width: 152px;
+            height: 52px;
+            text-align: center;
+            line-height: 52px;
+            font-size: 20px;
+            color: #000;
+            border: 1px solid #999;
+        }
+    </style>
+
 </head>
 <body>
 <div id="top"></div>
@@ -15,10 +28,7 @@
         <div class="content-left">
             <div id="searchlist"></div>
             <div style="clear: both"></div>
-            <div class="btnPage">
-                <button class="prev">上一页</button>
-                <button class="next">下一页</button>
-            </div>
+            <div class="more"></div>
         </div>
     </div>
 </div>
@@ -26,22 +36,31 @@
 </body>
 </html>
 <script>
-    // 一进页面加载头
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        init();
-    }
-    //搜索渲染
-    var page = 1;
-    var searchData;
-    function init(){
-        var object = window.sessionStorage.getItem("global_search_data");
-        var data = JSON.parse(object);
-        var list = data.list;
-        searchData=list;
-        for (var i = 0; i <list.length; i++) {
-            $('#searchlist').append('<div class="nav_list">' +
+// 一进页面加载头
+window.onload=function(){
+    $("#top").load("top.html");
+    $("#bottom").load("bottom.html");
+    init();
+}
+//搜索渲染
+var page = 1;
+var totalnum,list;
+var newsTitle = window.sessionStorage.getItem("global_newsTitle");
+function init(){
+    var getSearchList = function (data) {
+        console.log(121,data);
+        totalnum=data.total;
+        list=data.list;
+        if(list.length<8){
+            $('.more').html('没有更多了');
+        }
+    };
+
+    //参数 网站id 新闻标题 当前页 显示页
+    globalQuery(1,newsTitle,page, 8, getSearchList);
+    //拿到的搜索的数据
+    for (var i=0;i <list.length; i++) {
+        $('#searchlist').append('<div class="nav_list">' +
             '<ul>' +
             '<li>' +
             '<a href="#">' +
@@ -58,23 +77,14 @@
             '</li>'+
             '</ul>' +
             '</div>');
-        }
     }
-
-    $('.prev').click(function () {
-        if(page==1){
-            page=1;
-        }else{
-            $("#searchlist").html('');
-            page--;
-            init();
-        }
-    });
-    $('.next').click(function () {
-        $("#searchlist").html('');
+}
+$('.more').click(function () {
+    if(page>=Math.ceil(totalnum/8)){
+        $('.more').html('没有更多了');
+    } else{
         page++;
         init();
-    });
-
-
+    }
+});
 </script>
