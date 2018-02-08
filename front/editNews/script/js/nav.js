@@ -41,7 +41,7 @@
 $(document).ready(function(){
     //声明一个变量代表第几页
     var page=1;
-    var totalnum;
+    var totalnum=$("#alltotalnum").val();
     function getNavList() {
         //传的权限 页数 一页显示几条数据
         newsList(3, page,10, function callback(data){

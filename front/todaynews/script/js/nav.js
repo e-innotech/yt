@@ -4,7 +4,13 @@ $(document).ready(function () {
     var pages=2;
     var channelId = 3;
     $('#more').click(function(){
-        getNavList();
+        if($('.more').html()=='没有更多了'){
+            $(this).attr('disabled','true');
+        }else{
+            getNavList();
+        }
+
+
     })
 
     function getNavList() {

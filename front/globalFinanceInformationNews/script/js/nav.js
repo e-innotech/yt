@@ -1,11 +1,11 @@
 
 $(document).ready(function(){
     //声明一个变量代表第几页
-    var page=2;
-    var totalnum;
+    var page=1;
+    var totalnum=$("#alltotalnum").val();
     function getNavList() {
         //传的权限 页数 一页显示几条数据
-        newsList(3, page,8, function callback(data){
+        newsList(3, page,10, function callback(data){
             console.log(26,data);
             totalnum=data.total;
             var NavList=data.list;
@@ -35,7 +35,7 @@ $(document).ready(function(){
     });
     //点击下一页时
     $('.next').click(function (){
-        if(page>=Math.ceil(totalnum/8)){
+        if(page>=Math.ceil(totalnum/10)){
             $(this).attr("disabled","true");
             return
         }else{

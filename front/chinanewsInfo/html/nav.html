@@ -16,7 +16,8 @@
 <div class="advertising">
     <img src="../images/adv.png" onload="drawImage(this,262,214)"/>
 </div>
-<span id="totalpages" style="display:none;">4</span>
+<!--为了初始化时拿到总条数-->
+<input type="hidden" id="alltotalnum" value=12 />
 <!--以下为内容-->
 <div class="contentbg">
     <div class="content">
@@ -62,7 +63,6 @@
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
         $("#content-right").load("right.html");
-
     }
 
 
