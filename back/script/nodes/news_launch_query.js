@@ -121,18 +121,17 @@ $(function () {
         }
     };
     var getWC = function (list) {
-        console.log('稿件投放_list',list)
+        var re = '';
+        for (var i = 0; i < list.length; i++) {
+            re += list[i].website.siteName + '&nbsp;';
+            var c = [];
+            for (var j = 0; j < list[i].website.length; j++) {
+                c.push(list[i].website[j].siteName);
+            }
+            re += c.toString() + '&nbsp;';
+        }
 
-           var re=[''];
-           for(var i=0;i<list.length;i++){
-               re += list[i].website.siteName+'【';
-               var c = [];
-               for(var j=0;j<list[i].channels.length;j++){
-                   c.push(list[i].channels[j].channelName);
-               }
-               re += c.toString()+'】';
-           };
-           return re;
+        return re;
     };
     var getCtrl = function (id,status) {
         var re = '';
