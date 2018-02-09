@@ -161,6 +161,7 @@ $(function () {
 
     var renderChannelEdit = function (list) {
         channelList = list;
+        selectChannelIds = [];
         for(var i=0;i<list.length;i++){
             $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" class="channelCB" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
 
@@ -168,7 +169,7 @@ $(function () {
             if(selectWebsites) {
                 for (var j = 0; j < selectWebsites.channels.length; j++) {
                     //list[i].id是所有的栏目的id  1-13    //selectWebsites.channels[j].id是选中的id
-                    console.log(selectWebsites.channels[j].id)
+                    // console.log(selectWebsites.channels[j].id)
                     if (list[i].id == selectWebsites.channels[j].id) {
                         selectChannelIds.push(selectWebsites.channels[j].id);
                         $('#channelCB_' + list[i].id).prop('checked', true);
