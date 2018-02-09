@@ -113,7 +113,7 @@ $(function () {
         if(ctrl_add != '') {
             $('#addWebsitesBtn').show();
             $('#addWebsitesBtn').click(function () {
-                selectWebsites = [];
+                selectWebsites = null;
                 showWebsitesEdit('add');
             });
         };
@@ -164,22 +164,22 @@ $(function () {
         selectChannelIds = [];
         for(var i=0;i<list.length;i++){
             $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" class="channelCB" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
-
-
-            if(selectWebsites) {
-                for (var j = 0; j < selectWebsites.channels.length; j++) {
-                    //list[i].id是所有的栏目的id  1-13    //selectWebsites.channels[j].id是选中的id
-                    // console.log(selectWebsites.channels[j].id)
-                    if (list[i].id == selectWebsites.channels[j].id) {
-                        selectChannelIds.push(selectWebsites.channels[j].id);
-                        $('#channelCB_' + list[i].id).prop('checked', true);
-                    }
-                }
-            }
             $('#channelCB_' + list[i].id).change(function () {
                 updateChannelIds(this.id.split('_')[1],this.checked);//点击checked
             });
         };
+        if(selectWebsites) {
+            for (var m = 0; m < selectWebsites.channels.length; m++) {
+                for (var n = 0; n < list.length; n++) {
+                    if (selectWebsites.channels[m].id == list[n].id) {
+                        selectChannelIds.push(selectWebsites.channels[m].id);
+                        $('#channelCB_' + list[n].id).prop('checked', true);
+                    }
+                }
+            }
+        }
+
+
         renderChannelSort();
     };
     var renderChannelSort = function () {
