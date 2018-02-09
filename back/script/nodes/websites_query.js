@@ -8,6 +8,8 @@ $(function () {
 
     var selectChannelIds = [];
 
+    var channelList = [];
+
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
@@ -111,6 +113,7 @@ $(function () {
         if(ctrl_add != '') {
             $('#addWebsitesBtn').show();
             $('#addWebsitesBtn').click(function () {
+                selectWebsites = [];
                 showWebsitesEdit('add');
             });
         };
@@ -157,9 +160,10 @@ $(function () {
     };
 
     var renderChannelEdit = function (list) {
+        channelList = list;
         for(var i=0;i<list.length;i++){
             $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" class="channelCB" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
-            //$('#navSort').append('<span style="display:inline-block;margin:10px 0 0 10px;width: 68px;height: 34px;line-height: 34px;text-align:center;border: 1px solid #ccc;border-radius: 5px">' + list[i].channelName + '</sapn>');
+
 
             if(selectWebsites) {
                 for (var j = 0; j < selectWebsites.channels.length; j++) {
@@ -174,20 +178,57 @@ $(function () {
             $('#channelCB_' + list[i].id).change(function () {
                 updateChannelIds(this.id.split('_')[1],this.checked);//点击checked
             });
+        };
+        renderChannelSort();
+    };
+    var renderChannelSort = function () {
+        $('#channelSort').empty();
+        if(selectChannelIds.length>0) {
+            $('#channelSort').append('<li class="list-group-item-info"><h4 class="list-group-item-heading">频道排序</h4></li>');
+            for (var i = 0; i < selectChannelIds.length; i++) {
+                channel = getChannelFromId(selectChannelIds[i]);
+                $('#channelSort').append('<li class="list-group-item">' + channel.channelName +
+                    (i==0?'':'<button class="badge" id="upBtn_'+channel.id+'">↑</button>') +
+                    '</li>');
+                $('#upBtn_'+channel.id).click(function () {
+                    var id = this.id.split('_')[1];
+                    moveChannelIds(id);
+                });
+            }
         }
     };
 
+    var moveChannelIds = function (id) {
+        for (var i = 1; i < selectChannelIds.length; i++) {
+            if (id == selectChannelIds[i]) {
+                var temp = selectChannelIds[i];
+                selectChannelIds[i] = selectChannelIds[i-1];
+                selectChannelIds[i-1] = temp;
+                renderChannelSort();
+                return;
+            }
+        }
+    }
     var updateChannelIds = function (id,bol) {
         if(!bol) {
             for (var i = 0; i < selectChannelIds.length; i++) {
                 if (id == selectChannelIds[i]) {
                     selectChannelIds.splice(i, 1);
+                    renderChannelSort();
                     return;
                 }
             }
         }
         selectChannelIds.push(id);
+        renderChannelSort();
     };
+    var getChannelFromId = function (id) {
+        for(var i=0;i<channelList.length;i++){
+            if(id == channelList[i].id){
+                return channelList[i];
+            }
+        }
+    }
     var getChannelNames = function (list) {
         var re = [];
         for(var i=0;i<list.length;i++){
