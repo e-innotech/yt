@@ -1,3 +1,4 @@
+.news_list{background: #ff0000}
 .news_list .news_list_left{
     width: 735px;
     margin-top: 20px;
@@ -33,4 +34,13 @@
     overflow: hidden;
 }
 
-
+.more {
+    display: inline-block;
+    width: 152px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    font-size: 20px;
+    color: #000;
+    border: 1px solid #999;
+}
