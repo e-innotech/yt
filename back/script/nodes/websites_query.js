@@ -8,6 +8,8 @@ $(function () {
 
     var selectChannelIds = [];
 
+    var channelList = [];
+
     var ctrl_add = '';
     var ctrl_upate = '';
     var ctrl_delete = '';
@@ -67,6 +69,7 @@ $(function () {
             {templateType:2,templatePath:$('#template_2').val()}];
         data.channelIds = selectChannelIds.slice();
         data.id = selectWebsites.id;
+        data.channels = selectWebsites.channels;
         AjaxFunc($apiUrl+ctrl_upate,'post',data,function (re) {
             alert(re.msg);
             if(re.success){
@@ -75,6 +78,7 @@ $(function () {
             };
         });
     };
+
     var deleteWebsites = function (id) {
         var data = {id:id};
         AjaxFunc($apiUrl+ctrl_delete,'get',data,function (re) {
@@ -94,7 +98,7 @@ $(function () {
             }
         });
     };
-    var initialize = function () {
+    var initialize = function (list) {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('add')!=-1){
                 ctrl_add = nodeData.buttons[i].uri;
@@ -109,9 +113,8 @@ $(function () {
         if(ctrl_add != '') {
             $('#addWebsitesBtn').show();
             $('#addWebsitesBtn').click(function () {
+                selectWebsites = null;
                 showWebsitesEdit('add');
-                $('.channelCB').attr("checked",false)//全部清除
-
             });
         };
         $('#searchBtn').click(function () {
@@ -157,32 +160,76 @@ $(function () {
     };
 
     var renderChannelEdit = function (list) {
-
+        channelList = list;
+        selectChannelIds = [];
         for(var i=0;i<list.length;i++){
-            $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
-            if(selectWebsites) {
-                for (var j = 0; j < selectWebsites.channels.length; j++) {
-                    if (list[i].id == selectWebsites.channels[j].id) {
-                        $('#channelCB_' + list[i].id).prop('checked', true);
+            $('#channelIds').append('<label class="btn btn-default checkboxL" style="margin-left: 10px; margin-top: 10px;" ><input type="checkbox" class="channelCB" id="channelCB_'+list[i].id+'">' + list[i].channelName + '</label>');
+            $('#channelCB_' + list[i].id).change(function () {
+                updateChannelIds(this.id.split('_')[1],this.checked);//点击checked
+            });
+        };
+        if(selectWebsites) {
+            for (var m = 0; m < selectWebsites.channels.length; m++) {
+                for (var n = 0; n < list.length; n++) {
+                    if (selectWebsites.channels[m].id == list[n].id) {
+                        selectChannelIds.push(selectWebsites.channels[m].id);
+                        $('#channelCB_' + list[n].id).prop('checked', true);
                     }
                 }
-            };
-            $('#channelCB_' + list[i].id).change(function () {
-                updateChannelIds(this.id.split('_')[1],this.checked);
-            });
+            }
+        }
+
+
+        renderChannelSort();
+    };
+    var renderChannelSort = function () {
+        $('#channelSort').empty();
+        if(selectChannelIds.length>0) {
+            $('#channelSort').append('<li class="list-group-item-info"><h4 class="list-group-item-heading">频道排序</h4></li>');
+            for (var i = 0; i < selectChannelIds.length; i++) {
+                channel = getChannelFromId(selectChannelIds[i]);
+                $('#channelSort').append('<li class="list-group-item">' + channel.channelName +
+                    (i==0?'':'<button class="badge" id="upBtn_'+channel.id+'">↑</button>') +
+                    '</li>');
+                $('#upBtn_'+channel.id).click(function () {
+                    var id = this.id.split('_')[1];
+                    moveChannelIds(id);
+                });
+            }
         }
     };
+
+    var moveChannelIds = function (id) {
+        for (var i = 1; i < selectChannelIds.length; i++) {
+            if (id == selectChannelIds[i]) {
+                var temp = selectChannelIds[i];
+                selectChannelIds[i] = selectChannelIds[i-1];
+                selectChannelIds[i-1] = temp;
+                renderChannelSort();
+                return;
+            }
+        }
+    }
     var updateChannelIds = function (id,bol) {
         if(!bol) {
             for (var i = 0; i < selectChannelIds.length; i++) {
                 if (id == selectChannelIds[i]) {
                     selectChannelIds.splice(i, 1);
+                    renderChannelSort();
                     return;
                 }
             }
         }
         selectChannelIds.push(id);
+        renderChannelSort();
     };
+    var getChannelFromId = function (id) {
+        for(var i=0;i<channelList.length;i++){
+            if(id == channelList[i].id){
+                return channelList[i];
+            }
+        }
+    }
     var getChannelNames = function (list) {
         var re = [];
         for(var i=0;i<list.length;i++){
@@ -202,7 +249,6 @@ $(function () {
             $('#popPanel').html(re);
             $('#websitesEditModal').modal('show');
             getChannelList();
-            console.log(selectWebsites)
             if(type == 'edit'){
                 $('#websitesEditModalLabel').html('编辑网站');
                 $('input[name="siteName"]').val(selectWebsites.siteName);
@@ -221,8 +267,11 @@ $(function () {
                     return;
                 }
                 addWebsites();
+
             });
         });
     };
     initialize();
+
+
 })
