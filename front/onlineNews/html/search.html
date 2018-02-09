@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -8,82 +7,70 @@
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
     <script src="../script/js/top.js"></script>
-    <style>
-        .more{
-            display: inline-block;
-            width: 152px;
-            height: 52px;
-            text-align: center;
-            line-height: 52px;
-            font-size: 20px;
-            color: #000;
-            border: 1px solid #999;
-        }
-    </style>
-
 </head>
 <body>
 <div id="top"></div>
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <div id="searchlist"></div>
-            <div style="clear: both"></div>
-            <div class="more">加载更多</div>
+            <div class="news_list ">
+                <div class="news_list_left fl">
+                    <ul id="navList">
+
+                    </ul>
+                    <div class="more_box"><div class="more">加载更多</div></div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<div style="clear: both"></div>
+
 <div class="bottom" id="bottom"></div>
 </body>
 </html>
 <script>
     // 一进页面加载头
-    window.onload=function(){
+    window.onload = function () {
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
         init();
     }
     //搜索渲染
     var page = 1;
-    var totalnum,list;
+    var totalnum, list;
     var newsTitle = window.sessionStorage.getItem("global_newsTitle");
-    function init(){
+    function init() {
         var getSearchList = function (data) {
-            console.log(121,data);
-            totalnum=data.total;
-            list=data.list;
-            if(list.length<8){
+            console.log(121, data);
+            totalnum = data.total;
+            list = data.list;
+            if (list.length < 8) {
                 $('.more').html('没有更多了');
             }
         };
 
         //参数 网站id 新闻标题 当前页 显示页
-        globalQuery(1,newsTitle,page, 8, getSearchList);
+        globalQuery(1, newsTitle, page, 8, getSearchList);
         //拿到的搜索的数据
-        for (var i=0;i <list.length; i++) {
-            $('#searchlist').append('<div class="nav_list">' +
-            '<ul>' +
-            '<li>' +
-            '<a href="#">' +
-            '<div>' +
-            '<span class="num">' + (i + 1) + '</span>' +
-            '<h3>'+list[i].newsTitle+'</h3>' +
-            '<p>'+list[i].subContent +'</p>' +
-            '<div class="list_info">' +
-            '<span class="source"><a href="">'+list[i].source +'</a></span>' +
-            '<span class="time">'+list[i].createDate+'</span>' +
-            '</div>' +
-            '</div>' +
-            '</a>' +
-            '</li>'+
-            '</ul>' +
-            '</div>');
+        for (var i = 0; i < list.length; i++) {
+            $('#navList').append(
+                    '<li>' +
+                    '<a href="#">' +
+                    '<div class="title">' +
+                    '<h3>' + list[i].newsTitle + '</h3>' +
+                    '<span class="time">' + list[i].createDate + '</span>' +
+                    '</div>' +
+                    '<p class="content_news">' + list[i].subContent + '</p>' +
+                    '</a>' +
+                    '</li>')
         }
     }
     $('.more').click(function () {
-        if(page>=Math.ceil(totalnum/8)){
+        if (page >= Math.ceil(totalnum / 8)) {
             $('.more').html('没有更多了');
-        } else{
+        } else {
             page++;
             init();
         }

@@ -130,7 +130,7 @@
 .pageBtn .next{
     margin-left: 80px;
 }
- .more {
+.pageBtn .more {
     display: inline-block;
     width: 132px;
     height: 54px;
@@ -140,4 +140,19 @@
     font-size: 20px;
     color: #000;
     border: 1px solid #bebebe;
+}
+.more_box{
+    width: 836px;
+    text-align: center;
+}
+.more_box .more {
+    display: inline-block;
+    width: 152px;
+    height: 52px;
+    text-align: center;
+    line-height: 52px;
+    font-size: 20px;
+    color: #000;
+    border: 1px solid #999;
+    margin: 30px 0 50px;
 }

@@ -7,29 +7,22 @@
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
     <script src="../script/js/top.js"></script>
-    <style>
-        .more {
-            display: inline-block;
-            width: 152px;
-            height: 52px;
-            text-align: center;
-            line-height: 52px;
-            font-size: 20px;
-            color: #000;
-            border: 1px solid #999;
-        }
-    </style>
+
 </head>
 <body>
 <div id="top"></div>
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <div class="news_list_left fl">
-                <ul id="navList"></ul>
+            <div class="news_list">
+                <div class="news_list_left fl">
+                    <ul id="navList"></ul>
+                </div>
+                <div style="clear: both"></div>
+                <div class="more_box">
+                    <div class="more">加载更多</div>
+                </div>
             </div>
-            <div style="clear: both"></div>
-            <div class="more">加载更多</div>
         </div>
     </div>
 </div>
@@ -64,10 +57,10 @@
             $('#navList').append('<li>' +
             '<a href="">' +
             '<div class="title">' +
-            '<h3>'+list[i].newsTitle+'</h3>' +
-            '<span class="time">'+list[i].createDate+'</span>' +
+            '<h3>' + list[i].newsTitle + '</h3>' +
+            '<span class="time">' + list[i].createDate + '</span>' +
             '</div>' +
-            '<p class="content_news">'+list[i].subContent+'</p>' +
+            '<p class="content_news">' + list[i].subContent + '</p>' +
             '</a>' +
             '</li>')
         }
