@@ -38,13 +38,9 @@ jQuery.prototype.serializeObject=function(){
  * @returns {string|*}
  */
 function getNote(uri) {
-    console.log(uri);
     var arr = uri.split('/');
-    console.log("数组"+arr);
     arr.shift();
-    console.log(3,arr);
     re = 'nodes/' + arr.join('_',arr) + '.html';
-    console.log('last',re);
     return re;
 };
 
