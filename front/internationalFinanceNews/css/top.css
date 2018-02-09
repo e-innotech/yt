@@ -118,10 +118,10 @@ input {
     height: 236px;
 }
 #moreList{
-    min-height: 1700px;
+    min-height: 1500px;
 }
 #navList{
-    min-height: 1400px;
+    min-height: 1200px;
 }
 .news_list_left .img_box {
     margin:20px  0;

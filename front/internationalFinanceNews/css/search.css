@@ -1,0 +1,36 @@
+.news_list .news_list_left{
+    width: 735px;
+    margin-top: 20px;
+}
+.news_list .news_list_left li {
+    width: 735px;
+    height: 145px;
+    display: inline-block;
+    padding: 10px 0 0 10px;
+    border-top: 1px solid #e5e5e5;
+}
+.news_list .news_list_left li .title h3 {
+    font-size: 20px;
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.news_list .news_list_left li .title span {
+    display: inline-block;
+    font-size: 16px;
+    color: #999;
+    margin: 6px 0;
+}
+.news_list .news_list_left li .content_news {
+    line-height: 26px;
+    font-size: 16px;
+    color: #999999;
+    color: #999;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+

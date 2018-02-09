@@ -14,7 +14,9 @@
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-            <div id="searchlist"></div>
+            <div class="news_list clearfix">
+                <ul class="news_list_left fl" id="navList"></ul>
+            </div>
             <div style="clear: both"></div>
             <div class="more">加载更多</div>
         </div>
@@ -24,56 +26,48 @@
 </body>
 </html>
 <script>
-// 一进页面加载头
-window.onload=function(){
-    $("#top").load("top.html");
-    $("#bottom").load("bottom.html");
-    init();
-}
-//搜索渲染
-var page = 1;
-var totalnum,list;
-var newsTitle = window.sessionStorage.getItem("global_newsTitle");
-function init(){
-    var getSearchList = function (data) {
-        console.log(121,data);
-        totalnum=data.total;
-        list=data.list;
-        if(list.length<10){
-            $('.more').html('没有更多了');
-        }
-    };
-
-    //参数 网站id 新闻标题 当前页 显示页
-    globalQuery(1,newsTitle,page, 10, getSearchList);
-    //拿到的搜索的数据
-    for (var i=0;i <list.length; i++) {
-        $('#searchlist').append('<div class="nav_list">' +
-            '<ul>' +
-            '<li>' +
-            '<a href="#">' +
-            '<div>' +
-            '<span class="num">' + (i + 1) + '</span>' +
-            '<h3>'+list[i].newsTitle+'</h3>' +
-            '<p>'+list[i].subContent +'</p>' +
-            '<div class="list_info">' +
-            '<span class="source"><a href="">'+list[i].source +'</a></span>' +
-            '<span class="time">'+list[i].createDate+'</span>' +
-            '</div>' +
-            '</div>' +
-            '</a>' +
-            '</li>'+
-            '</ul>' +
-            '</div>');
-    }
-}
-$('.more').click(function () {
-    if(page>=Math.ceil(totalnum/10)){
-        $('.more').html('没有更多了');
-    } else{
-        page++;
+    // 一进页面加载头
+    window.onload = function () {
+        $("#top").load("top.html");
+        $("#bottom").load("bottom.html");
         init();
     }
-});
+    //搜索渲染
+    var page = 1;
+    var totalnum, list;
+    var newsTitle = window.sessionStorage.getItem("global_newsTitle");
+    function init() {
+        var getSearchList = function (data) {
+            console.log(121, data);
+            totalnum = data.total;
+            list = data.list;
+            if (list.length < 10) {
+                $('.more').html('没有更多了');
+            }
+        };
+
+        //参数 网站id 新闻标题 当前页 显示页
+        globalQuery(1, newsTitle, page, 10, getSearchList);
+        //拿到的搜索的数据
+        for (var i = 0; i < list.length; i++) {
+            $('#navList').append('<li>' +
+            '<a href="">' +
+            '<div class="title">' +
+            '<h3>' + list[i].newsTitle + '</h3>' +
+            '<span class="time">' + list[i].createDate + '</span>' +
+            '</div>' +
+            '<p class="content_news">' + list[i].subContent + '</p>' +
+            '</a>' +
+            '</li>')
+        }
+    }
+    $('.more').click(function () {
+        if (page >= Math.ceil(totalnum / 10)) {
+            $('.more').html('没有更多了');
+        } else {
+            page++;
+            init();
+        }
+    });
 
 </script>
