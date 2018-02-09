@@ -128,7 +128,7 @@ a {
 
 }
 #tree{
-    width:13%;
+    width:16%;
 }
 .list-group li{
     padding:15px;
@@ -252,7 +252,7 @@ a {
 
 a:focus,
 a:hover {
-    color: #fff;
+    /*color: #fff;*/
     text-decoration: none;
 }
 
@@ -459,12 +459,12 @@ a:hover {
 }
 
 .anniu.active {
-    background-color: #23ebb0;
+    background-color: #337ab7;
     /*margin-left:0;*/
 }
 /*单独长的导航文字*/
 .navbar > .container-fluid .longNavbar{
-    width: 195px;
+    /*width: 195px;*/
 }
 .anniu > span {
     position: absolute;
@@ -480,6 +480,9 @@ a:hover {
     left: 24px;
 }
 
+.form-group span{
+    color:#fff;
+}
 /*禁言*/
 .isGag {
     position: relative;
@@ -493,7 +496,7 @@ a:hover {
 }
 
 .isGag.active {
-    background-color: #1cbb95;
+    background-color: #337ab7;
     /*margin-left:0;*/
 }
 
@@ -509,7 +512,7 @@ a:hover {
 
 /*表格里的按钮样式*/
 tbody button {
-    background-color: #23ebb0;
+    background-color: #337ab7;
     border: none;
     border-radius: 5px;
     color: white;
