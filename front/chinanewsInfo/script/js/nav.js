@@ -1,11 +1,13 @@
 $(document).ready(function(){
      backtop();
      //声明一个变量代表第几页
-     var page=2;
-     var totalnum;
+     var page=1;
+    //数据总条数
+     var totalnum=$("#alltotalnum").val();
+     console.log(22,totalnum);
      function getNavList() {
          //传的权限 页数 一页显示几条数据
-         newsList(3, page,3, function callback(data){
+         newsList(3, page,10, function callback(data){
              totalnum=data.total;
              console.log(77,totalnum);
              var newsList=data.list;
@@ -34,22 +36,14 @@ $(document).ready(function(){
      });
      //点击下一页时
      $('.nextpages').click(function (){
-         console.log($("#totalpages").html())
-            //if(page==$("#totalpages").html()){
-            //    $(this).attr("disabled","true");
-            //}else{
-            //    $(".news_listbox").html('');
-            //        page++;
-            //        getNavList();
-            //}
-             if(page>=Math.ceil(totalnum/8)){
+            if(page>=Math.ceil(totalnum/10)){
                  $(this).attr("disabled","true");
                  return
-             }else{
+            }else{
                  $(".news_listbox").html('');
                  page++;
                  getNavList();
-             }
+            }
          $('.prevpages').attr("disabled",false);
      });
  })
