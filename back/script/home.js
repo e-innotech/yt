@@ -2,9 +2,9 @@ $(function(){
     config.init();
     var userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
     var treeData = JSON.parse(sessionStorage.getItem('permissons'));
-   //console.log(treeData);
+   console.log(45,treeData);
     var initHeader = function(){
-        $('#userinfo').html(userinfo.roleName+':'+userinfo.userName);
+        $('#userinfo').html(userinfo.roleName+"&nbsp;"+':'+"&nbsp;"+userinfo.userName);
         //修改密码
         $('#changepwd').click(function(){
             // console.log('pwd');
@@ -27,6 +27,7 @@ $(function(){
         //登出
         $('#out').click(function(){
             AjaxFunc($admin.logout,'get',null,function (re) {
+                console.log(567,re);
                 if(re.success) {
                     sessionStorage.removeItem('userinfo');
                     sessionStorage.removeItem('permissons');
@@ -58,7 +59,9 @@ $(function(){
                 selected: true
             },
             onNodeExpanded: function (event,data) {
+                console.log(event);
                 var brothers = $('#tree').treeview('getSiblings', data);
+                console.log(111,brothers);
                 for(var i=0;i<brothers.length;i++){
                     $('#tree').treeview('collapseNode',brothers[i]);
                 }
