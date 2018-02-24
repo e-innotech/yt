@@ -5,23 +5,19 @@ $(document).ready(function(){
     function getNavList() {
         //传的权限 页数 一页显示几条数据
         newsList(3, page,10, function callback(data){
-            console.log(26,data);
             totalnum=data.total;
             var NavList=data.list;
+            console.log(11126,NavList[0].createDate);
+
             for (var i = 0; i < NavList.length; i++){
-                $('#navList').append(
-                    '<li>' +
-                    '<a href="#">' +
-                    '<div class="title">' +
-                    '<h3>'+NavList[i].newsTitle+'</h3>' +
-                    '<span class="time">'+NavList[i].createDate +'</span>' +
-                    '</div>'+
-                    '<p class="content_news">' +NavList[i].subContent+'</p>'+
-                    '</a>' +
-                    '</li>')
+                $('#navList').append('<li><a href=""><div class="title"><h3>'+NavList[i].newsTitle+'</h3><span class="time">'+NavList[i].createDate +'</span></div><p class="content_news">'+NavList[i].subContent+'</p></a></li>')
             }
         })
     };
+
+    /*
+
+     */
 //点击上一页时
     $('.prev').click(function (){
         if(page==1){

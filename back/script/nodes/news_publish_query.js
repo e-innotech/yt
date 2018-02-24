@@ -72,6 +72,9 @@ $(function () {
 
         getNewsPublishList();
     };
+
+
+
     var initTable = function (list) {
         newsPublishList = list;
         $('#newsPublishT').empty();
@@ -108,6 +111,8 @@ $(function () {
                         homeNewsPublish(selectNewsPublish.id,1,$('select[name="homeWeight"]').val());
                         $('#homeCtrlModal').modal('hide');
                     });
+                    option='<option value='+selectNewsPublish.websites.siteName+'>'+selectNewsPublish.websites.siteName+'</ option>';
+                    $("#homeWeightSiteName").append(option);
                 });
             });
             $('#downHomeBtn_'+list[i].id).click(function () {

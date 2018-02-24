@@ -108,7 +108,12 @@
     border: 1px solid #e5e5e5;
     padding: 10px 0 10px;
 }
+.news_hot_list ul li{
+    height: 30px;
+}
 .news_hot_list ul li a{
+    display: inline-block;
+    width: 300px;
     float: left;
     margin-right: 33px;
     text-overflow: ellipsis;
@@ -125,6 +130,7 @@
     background: #e5e5e5;
     border-radius: 50%;
     margin-right: 12px;
+    margin-top: 12px;
 }
 .ad_icon {
     width: 48px;
