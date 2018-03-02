@@ -262,6 +262,7 @@ $(function () {
                 }
             }
             $('#saveBtn').click(function () {
+
                 if(type == 'edit'){
                     editWebsites();
                     return;

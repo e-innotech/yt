@@ -32,8 +32,12 @@ $(function () {
         });
         $('#saveBtn').click(function () {
             if(newsLaunchConfig.length>0) {
+                // 禁用按钮防止重复提交
+                $('#saveBtn').attr("disabled","disabled");
                 $('#newsLaunchConfig').val(JSON.stringify(newsLaunchConfig));
                 $('#newsLaunchEditModal').trigger('save');
+
+
             }else{
                 alert('请选择栏目投放');
             }

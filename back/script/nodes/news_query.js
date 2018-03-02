@@ -158,11 +158,13 @@ $(function () {
     };
     var getCtrlEdit = function(id,isEdit){
         var re = '';
-        if(ctrl_upate!='' && isEdit==0){
-            re += '<button id="editBtn_'+id+'">编辑</button>';
-        };
+        //if(ctrl_upate!='' && isEdit==0){
+        //
+        //
+        //};
         if(ctrl_launch_add!=''){
             re += '<button id="launchBtn_'+id+'">投放</button>';
+            re += '<button id="editBtn_'+id+'">编辑</button>';
         }
         return re;
     }
