@@ -14,6 +14,12 @@
                         <input type="text" name="siteName" class="form-control" id="siteNameID">
                     </div>
                     <br>
+
+                    <!--<div id="city" class="input-group">-->
+                        <!--<span class="input-group-addon">首页权重：</span>-->
+                        <!--<select class="prov form-control"></select>-->
+                        <!--<select class="city form-control" disabled="disabled"></select>-->
+                    <!--</div>-->
                     <div class="input-group">
                         <span class="input-group-addon">首页权重：</span>
                         <!--<select name="homeWeight" class="form-control" id="change">-->
@@ -25,30 +31,30 @@
                         <!--</select>-->
                         <!--<input type="text" name="homeWeight" class="form-control">-->
                         <select name="province" id="homeWeightSiteName" class="form-control" onchange="if(this.value != '') setCity(this.options[this.selectedIndex].value);">
-                            <!--<option value="">请选择网站</option>-->
-                            <!--<option value="鹰眼新闻">鹰眼新闻</option>-->
-                            <!--<option value="中华财经资讯网">中华财经资讯网</option>-->
-                            <!--<option value="中国新闻资讯网">中国新闻资讯网</option>-->
-                            <!--<option value="中华财经网">中华财经网</option>-->
-                            <!--<option value="中国新闻报道网">中国新闻报道网</option>-->
-                            <!--<option value="易趣财经">易趣财经</option>-->
-                            <!--<option value="中华新闻采编网">中华新闻采编网</option>-->
-                            <!--<option value="每日新闻">每日新闻</option>-->
-                            <!--<option value="财经观点网">财经观点网</option>-->
-                            <!--<option value="第一传媒网">第一传媒网</option>-->
-                            <!--<option value="焦点新闻网">焦点新闻网</option>-->
-                            <!--<option value="环球财经资讯">环球财经资讯</option>-->
-                            <!--<option value="环球财经">环球财经</option>-->
-                            <!--<option value="中国产经咨询">中国产经咨询</option>-->
-                            <!--<option value="InterfaceInfo">InterfaceInfo</option>-->
-                            <!--<option value="国际财经网">国际财经网</option>-->
-                            <!--<option value="第一新闻网">第一新闻网</option>-->
-                            <!--<option value="中国新闻在线">中国新闻在线</option>-->
-                            <!--<option value="掌上财经">掌上财经</option>-->
-                            <!--<option value="红鼎财经网">红鼎财经网</option>-->
-                            <!--<option value="今日财经">今日财经</option>-->
-                            <!--<option value="顶端财经">顶端财经</option>-->
-                            <!--<option value="中国顶端资讯网">中国顶端资讯网</option>-->
+                            <option value="">请选择网站</option>
+                            <option value="鹰眼新闻">鹰眼新闻</option>
+                            <option value="中华财经资讯网">中华财经资讯网</option>
+                            <option value="中国新闻资讯网">中国新闻资讯网</option>
+                            <option value="中华财经网">中华财经网</option>
+                            <option value="中国新闻报道网">中国新闻报道网</option>
+                            <option value="易趣财经">易趣财经</option>
+                            <option value="中华新闻采编网">中华新闻采编网</option>
+                            <option value="每日新闻">每日新闻</option>
+                            <option value="财经观点网">财经观点网</option>
+                            <option value="第一传媒网">第一传媒网</option>
+                            <option value="焦点新闻网">焦点新闻网</option>
+                            <option value="环球财经资讯">环球财经资讯</option>
+                            <option value="环球财经">环球财经</option>
+                            <option value="中国产经咨询">中国产经咨询</option>
+                            <option value="InterfaceInfo">InterfaceInfo</option>
+                            <option value="国际财经网">国际财经网</option>
+                            <option value="第一新闻网">第一新闻网</option>
+                            <option value="中国新闻在线">中国新闻在线</option>
+                            <option value="掌上财经">掌上财经</option>
+                            <option value="红鼎财经网">红鼎财经网</option>
+                            <option value="今日财经">今日财经</option>
+                            <option value="顶端财经">顶端财经</option>
+                            <option value="中国顶端资讯网">中国顶端资讯网</option>
                         </select>
 
                         <select name="homeWeight" id="homeWeight" class="form-control" >
@@ -135,7 +141,6 @@
                 {txt:'新闻列表', val:'2'},
                 {txt:'焦点新闻', val:'3'},
             ];
-
     homeWeightArr['中华财经网'] =/*id=8*/
             [
                 {txt:'专栏', val:'1'},
@@ -161,7 +166,6 @@
                 {txt:'轮播图', val:'2'},
                 {txt:'新闻列表', val:'3'},
             ];
-
     homeWeightArr['中华新闻采编网'] =
             [
                 {txt:'专栏', val:'1'},
@@ -238,7 +242,6 @@
                 {txt:'新闻列表', val:'2'},
                 {txt:'热点', val:'3'},
             ];
-
     homeWeightArr['顶端财经'] =
             [
                 {txt:'专栏', val:'1'},
@@ -253,8 +256,6 @@
                 {txt:'新闻推荐', val:'3'},
                 {txt:'热文排行', val:'4'},
             ];
-
-
     function setCity(province) {
         setSelectOption('homeWeight', homeWeightArr[province], '请选择位置');
     }

@@ -7,6 +7,7 @@ $(function () {
        editor.customConfig.uploadImgParams = {fileDirectory:'news'};
        editor.customConfig.uploadImgMaxLength = 5;
        editor.customConfig.uploadImgServer = $uploadUrl;
+
        editor.create();
 
        editor.txt.html(newsContent);
@@ -25,10 +26,11 @@ $(function () {
                }
            });
        });
-
        $('#saveBtn').click(function () {
            newsContent = editor.txt.html();
            $('#newsEditModal').trigger('save');
+           // 禁用按钮防止重复提交
+           $('#saveBtn').attr("disabled","disabled");
        });
 
 

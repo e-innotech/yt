@@ -12,6 +12,7 @@ $(function () {
 
     var ctrl_offLine = '';
     var ctrl_setHome = '';
+    var ctrl_delete = '';
 
     var getNewsPublishList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize,isline:$('#islineSelect').val(),ishome:$('#ishomeSelect').val()};
@@ -51,6 +52,46 @@ $(function () {
             }
         });
     }
+    var deleteNews = function () {
+        var ids= new Array();
+        ids.push(this.id);
+        var data =ids;
+        AjaxFunc($apiUrl+ctrl_delete,'post',data,function (re) {
+            if(re.success){
+                getNewsPublishList();
+            }
+            alert(re.msg);
+        });
+    }
+    var deleteSubmit = function(){
+        var ids= new Array();
+        var checked=$("input[type='checkbox']:checked");
+        checked.each(function () {
+            ids.push($(this).val());
+        });
+        var data = ids;
+        AjaxFunc($apiUrl+ctrl_delete,'post',data,function (re) {
+            if(re.success){
+                getNewsPublishList();
+            }
+            alert(re.msg);
+        });
+    }
+    $('#deleteSubmit').click(function () {
+        var ids= new Array();
+        var checked=$("input[type='checkbox']:checked");
+        checked.each(function () {
+            ids.push($(this).val());
+        });
+        $.get($components.confirm,function (re) {
+            $('#popPanel1').html(re);
+            $('#confirmModal').modal('show');
+            confirm.initialize(ids,deleteSubmit);
+        });
+
+    });
+
+
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
             if(nodeData.buttons[i].uri.indexOf('offLine')!=-1){
@@ -59,20 +100,19 @@ $(function () {
             if(nodeData.buttons[i].uri.indexOf('setHome')!=-1){
                 ctrl_setHome = nodeData.buttons[i].uri;
             };
+            if(nodeData.buttons[i].uri.indexOf('delete')!=-1){
+                ctrl_delete = nodeData.buttons[i].uri;
+            };
         };
 
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
-            websiteName = $('#websiteNameTxt').val();
+            websiteName = '鹰眼新闻'//$('#websiteNameTxt').val();
             channelName = $('#channelNameTxt').val();
             getNewsPublishList();
         });
-
-
-
         getNewsPublishList();
     };
-
 
 
     var initTable = function (list) {
@@ -81,6 +121,7 @@ $(function () {
         console.log('稿件上下线_list',list)
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
+                '<td style="text-align: center">'+ '<input type="checkbox" name="subBox" value="'+list[i].id+'">'+'</td>' +
                 '<td>'+list[i].news.newsTitle+'</td>'+
                 '<td>'+(list[i].news.topImagePath==''?'':'<img src="'+list[i].news.topImagePath+'" width="200">')+'</td>' +
                 '<td><a target="_blank" href="'+list[i].staticUrl+'">查看文章</a></td>'+
@@ -88,7 +129,7 @@ $(function () {
                 '<td>'+list[i].websites.siteName+'</td>'+
                 '<td>'+list[i].channel.channelName+'</td>'+
                 '<td>'+OFFONLINE[list[i].isline]+HOME[list[i].ishome]+'</td>'+
-                '<td>'+getCtrl(list[i])+'</td>'+
+                '<td style="text-align: center;">'+getCtrl(list[i])+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
                 '</tr>');
 
             $('#content_'+list[i].id).click(function () {
@@ -111,24 +152,39 @@ $(function () {
                         homeNewsPublish(selectNewsPublish.id,1,$('select[name="homeWeight"]').val());
                         $('#homeCtrlModal').modal('hide');
                     });
-                    option='<option value='+selectNewsPublish.websites.siteName+'>'+selectNewsPublish.websites.siteName+'</ option>';
-                    $("#homeWeightSiteName").append(option);
+                    //option='<option value='+selectNewsPublish.websites.siteName+'>'+selectNewsPublish.websites.siteName+'</ option>';
+                    //$("#homeWeightSiteName").append(option);
                 });
             });
             $('#downHomeBtn_'+list[i].id).click(function () {
                 homeNewsPublish(this.id.split('_')[1],0,0);
             });
+            $('#deleteBtn_'+list[i].id).click(function () {
+                var id = this.id.split('_')[1];
+                $.get($components.confirm,function (re) {
+                    $('#popPanel1').html(re);
+                    $('#confirmModal').modal('show');
+                    confirm.initialize(id,deleteNews);
+                });
+            });
+
+
+
         };
     };
+
+
+
+
     var getCtrl = function (obj) {
         var re = '';
-        if(ctrl_offLine!=''){
-            if(obj.isline == 1){
-                re += '<button id="offLineBtn_'+obj.id+'">↓</button>';
-            }else{
-                re += '<button id="onLineBtn_'+obj.id+'">↑</button>';
-            };
-        };
+        //if(ctrl_offLine!=''){
+        //    if(obj.isline == 1){
+        //        re += '<button id="offLineBtn_'+obj.id+'">↓</button>';
+        //    }else{
+        //        re += '<button id="onLineBtn_'+obj.id+'">↑</button>';
+        //    };
+        //};
         if(ctrl_setHome!=''){
             if(obj.ishome == 0){
                 if(obj.news.topImagePath) {
@@ -155,4 +211,11 @@ $(function () {
         })
     }
     initialize();
+
+
+
+
+
+
+
 });

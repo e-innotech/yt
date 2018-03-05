@@ -58,6 +58,7 @@ function AjaxFunc(url,type,data,callBack) {
         url:url,
         async: false,
         dataType: "json",
+
         xhrFields: {
             withCredentials: true
         },
@@ -67,6 +68,10 @@ function AjaxFunc(url,type,data,callBack) {
                 return;
             }
             callBack(result)
+        },
+        complete: function () {
+            $('#button').removeAttr("disabled");
+            $('#button').val("保存");
         }
     };
     switch (type){
@@ -78,10 +83,12 @@ function AjaxFunc(url,type,data,callBack) {
         case 'post':
             obj.contentType = 'application/json';
             obj.data = JSON.stringify(data);
+            //debugger;
             break;
     };
     $.ajax(obj);
 };
+
 function loginTimeOut(){
     sessionStorage.removeItem('user');
     location.replace('index.html');
@@ -145,9 +152,20 @@ function initPage(pgId,pgTxt,total,callback){
 
 
 
-
-
-
+var isCheckAll = false;
+function swapCheck() {
+    if (isCheckAll) {
+        $("input[type='checkbox']").each(function() {
+            this.checked = false;
+        });
+        isCheckAll = false;
+    } else {
+        $("input[type='checkbox']").each(function() {
+            this.checked = true;
+        });
+        isCheckAll = true;
+    }
+}
 
 //正则验证
 function verify() {
