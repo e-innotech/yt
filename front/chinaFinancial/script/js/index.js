@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $("#top").load("top.html");
+    $("#bottom").load("bottom.html");
+    $("#content-right").load("right.html");
     backtop();
 //当前页
     var page = 2;
