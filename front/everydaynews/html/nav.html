@@ -12,6 +12,13 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
+
 <!--以下为固定定位的广告-->
 <div class="advise_l">
     <img src="../images/adv.png" onload="drawImage(this,284,248)"/>
@@ -119,16 +126,4 @@
 <!--以下为尾部-->
 <div id="bottom"></div>
 </body>
-<script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
-
-    }
-
-
-</script>
-
-
 </html>
