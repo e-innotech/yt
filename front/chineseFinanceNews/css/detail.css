@@ -10,12 +10,18 @@
 	margin-top: -20px;
  }
 
-.article-title{
-	font-size: 26px;
+.article h2{
+	line-height:46px;
+	font-size: 22px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-	margin-top: 10px;
+	padding-top: 28px;
+	text-align:center;
+}
+.article-source{
+	text-align:center;
+	line-height:48px;
 }
 .article-source span{
 	font-size: 16px;

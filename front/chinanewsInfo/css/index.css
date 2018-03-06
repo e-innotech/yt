@@ -34,7 +34,7 @@
 }
 
 .news_top .bgcolor{
-    background:rgba(0,0,0,.15);
+    background:rgba(0,0,0,.4);
     position:absolute;
     bottom:0;
     left:0;
@@ -58,7 +58,7 @@
     margin:0 10px;
 }
 .news_Img .bgcolor{
-    background:rgba(0,0,0,.15);
+    background:rgba(0,0,0,.4);
     position:absolute;
     bottom:0;
     left:0;
@@ -71,7 +71,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    padding-left:32px;
+    padding:0 32px;
 }
 .news_listbox{
     min-height:1000px;
@@ -109,6 +109,7 @@
     width:397px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     font-size:20px;
     color:#000;
     line-height:40px;

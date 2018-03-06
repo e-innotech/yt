@@ -15,9 +15,14 @@
 </head>
 <body>
 <!-- 以下为头部 -->
-<div class="top" id="top"></div>
+<div id="top"></div>
 
-
+    <!--以下为头部的加载-->
+    <script>
+        $('#top').load('top.html',function(){
+            $(".contentbg").show();
+        });
+    </script>
 <!--两侧广告-->
 <div>
     <div class="fl ad_left img_box">
@@ -303,13 +308,14 @@
     <a href="javascript:void(0);"><img src="../images/top.png" class="back_to_top"/></a>
 </div>
 <div class="bottom" id="bottom"></div>
+<!--以下为底部的加载-->
+<script>
+    $('#bottom').load('bottom.html');
+</script>
 <script>
 
 
-    window.onload = function () {
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-    }
+
     //轮播图
     var mySwiper = new Swiper('.swiper-container', {
         //轮播图滚动的方向
