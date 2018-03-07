@@ -131,35 +131,5 @@ window.onload=function(){
     $('.bottom').load('bottom.html');
     $("#content-right").load('right.html');
 }
-
-
-window.onresize=function(){
-    changeDivmarginLeft();
-}
-//获取页面的原始宽度
-var original=$(window).width();
-console.log(222,original);
-function changeDivmarginLeft() {
-    //获取当前页面的宽度
-    var current = document.documentElement.clientWidth;//获取页面可见宽度
-    if (original - current >= 240) {
-        document.getElementById("advertisingDe").style.marginLeft = 0;
-    } else {
-//        mmmm =document.getElementById("advertisingDe").style.marginLeft-(original-current)+'px';
-        document.getElementById("advertisingDe").style.marginLeft -= (original - current) + 'px';
-
-//        document.getElementById("advertisingDe").style.marginLeft = mmmm;
-    }
-}
-$()
-var description=$('#content_left p');
-description = description.replace(/(\n)/g, "");
-description = description.replace(/(\t)/g, "");
-description = description.replace(/(\r)/g, "");
-description = description.replace(/<\/?[^>]*>/g, "");
-description = description.replace(/\s*/g, "");
-console.log(description)
-
-
 </script>
 </html>

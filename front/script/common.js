@@ -188,12 +188,13 @@ function removeHTMLTag(str) {
     str = str.replace(/<\/?.+?>/g,""); //去除HTML tag
     str = str.replace(/(^\s*)|(\s*$)/g, ""); //去除行尾空白
     str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
-    str=str.replace(/ /g,'');//去掉
+    str = str.replace(/ /g, '');//去掉
     return str;
 }
-function delHtmlTag(str){
-    return str.replace(/<[^>]+>/g,"");
-};
+function removeAllSpace(str){
+    str = str.replace(/&nbsp;/g, '');
+    return str;
+}
 //在哪个页面浏览的点击登录按钮跳到哪个页面
 function memberslogin(uname,pwd) {
 

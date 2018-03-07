@@ -366,7 +366,7 @@
     display: none;
 }
 
-#content_center .news-top p, #content_center .news-top div {
+#content_center .news-top p, #content_center .news-top div ,#content_center .news-top font{
     text-indent: 2em !important;
     margin-bottom: 30px !important;
     font-size: 16px !important;
