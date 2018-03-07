@@ -3,8 +3,8 @@ $(function () {
     pageNum = 1;
     pageSize = 20;
 
-    var name = ''
-    var value = ''
+    var name = '';
+    var value = '';
     var userList = [];
     var selectUser;
 
@@ -170,6 +170,7 @@ $(function () {
             if (type == 'edit') {
                 $('#EditModalLabel').html('编辑配置');
                 $('input[name="name"]').val(selectUser.name);
+                $('input[name="name"]').attr("disabled","false");
                 $('input[name="value"]').val(selectUser.value);
                 //$('input[name="roleName"]').val(selectUser.roles.roleName);
             };

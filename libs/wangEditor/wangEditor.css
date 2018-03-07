@@ -271,6 +271,8 @@
   width: 100%;
   margin: 10px 0;
 }
+.w-e-text-container{
+  width: 743px !important;}
 .w-e-text-container .w-e-panel-container .w-e-panel-tab-content input[type=text]:focus {
   border-bottom: 2px solid #1e88e5;
 }
@@ -343,6 +345,9 @@
 .w-e-text {
   padding: 0 10px;
   overflow-y: scroll;
+}
+.w-e-text div{
+  width: 100%;
 }
 .w-e-text p,
 .w-e-text h1,

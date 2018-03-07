@@ -63,33 +63,7 @@ $(function () {
             alert(re.msg);
         });
     }
-    var deleteSubmit = function(){
-        var ids= new Array();
-        var checked=$("input[type='checkbox']:checked");
-        checked.each(function () {
-            ids.push($(this).val());
-        });
-        var data = ids;
-        AjaxFunc($apiUrl+ctrl_delete,'post',data,function (re) {
-            if(re.success){
-                getNewsPublishList();
-            }
-            alert(re.msg);
-        });
-    }
-    $('#deleteSubmit').click(function () {
-        var ids= new Array();
-        var checked=$("input[type='checkbox']:checked");
-        checked.each(function () {
-            ids.push($(this).val());
-        });
-        $.get($components.confirm,function (re) {
-            $('#popPanel1').html(re);
-            $('#confirmModal').modal('show');
-            confirm.initialize(ids,deleteSubmit);
-        });
 
-    });
 
 
     var initialize = function () {
@@ -107,18 +81,18 @@ $(function () {
 
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
-            websiteName = '鹰眼新闻'//$('#websiteNameTxt').val();
+            websiteName = $('#websiteNameTxt').val();
             channelName = $('#channelNameTxt').val();
             getNewsPublishList();
         });
         getNewsPublishList();
     };
 
-
     var initTable = function (list) {
         newsPublishList = list;
+        $('#deleteBtn').empty();
+        $('#deleteBtn').append(''+(ctrl_delete!=''?'<button id="deleteSubmit" class="btn btn-primary" type="submit">批量删除</button>':'')+'');
         $('#newsPublishT').empty();
-        console.log('稿件上下线_list',list)
         for(var i=0;i<list.length;i++){
             $('#newsPublishT').append('<tr>' +
                 '<td style="text-align: center">'+ '<input type="checkbox" name="subBox" value="'+list[i].id+'">'+'</td>' +
@@ -128,6 +102,7 @@ $(function () {
                 '<td><a id="content_'+list[i].id+'">查看详情</a></td>'+
                 '<td>'+list[i].websites.siteName+'</td>'+
                 '<td>'+list[i].channel.channelName+'</td>'+
+                '<td>'+list[i].publishUser+'</td>'+
                 '<td>'+OFFONLINE[list[i].isline]+HOME[list[i].ishome]+'</td>'+
                 '<td style="text-align: center;">'+getCtrl(list[i])+(ctrl_delete!=''?'<button id="deleteBtn_'+list[i].id+'">删除</button>':'')+'</td>'+
                 '</tr>');
@@ -171,6 +146,33 @@ $(function () {
 
 
         };
+        var deleteSubmit = function(){
+            var ids= new Array();
+            var checked=$("input[type='checkbox']:checked");
+            checked.each(function () {
+                ids.push($(this).val());
+            });
+            var data = ids;
+            AjaxFunc($apiUrl+ctrl_delete,'post',data,function (re) {
+                if(re.success){
+                    getNewsPublishList();
+                }
+                alert(re.msg);
+            });
+        }
+        $('#deleteSubmit').click(function () {
+            var ids= new Array();
+            var checked=$("input[type='checkbox']:checked");
+            checked.each(function () {
+                ids.push($(this).val());
+            });
+            $.get($components.confirm,function (re) {
+                $('#popPanel1').html(re);
+                $('#confirmModal').modal('show');
+                confirm.initialize(ids,deleteSubmit);
+            });
+
+        });
     };
 
 

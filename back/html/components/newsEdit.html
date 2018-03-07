@@ -9,10 +9,41 @@
                 <h4 class="modal-title" id="newsEditModalLabel">新增稿件</h4>
             </div>
             <div class="modal-body">
-                <form id="newsForm" role="form" >
-                    <div class="input-group">
+                <div class="input-group" id="editTypeBox">
+                    <span class="input-group-addon" id="editType">上传类型：</span>
+                    <select id="myselect" class="form-control">
+                        <option value="2">word上传</option>
+                        <option value="1">编辑器</option>
+                    </select>
+                </div>
+                <form id="newsForm" role="form">
+
+                    <div class="input-group" id="newsTitle">
                         <span class="input-group-addon">标题：</span>
                         <input type="text" name="newsTitle" class="form-control">
+                    </div>
+
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">来源：</span>
+                        <input type="text" name="source" class="form-control">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">头图：</span>
+                        <input type="file" accept=".jpg,.jpeg,.png" name="upload_file" class="form-control">
+                        <input type="hidden" name="topImagePath">
+                    </div>
+                    <div class="input-group form-control" id="editor" style="width: 730px!important;">
+                        <!--<iframe id="ueditor" src="../../libs/ueditor1_4_3_3-utf8-jsp/utf8-jsp/index.html" width="850px" height="600px" frameborder="0" scrolling="no"></iframe>-->
+                    </div>
+
+                </form>
+
+                <form id="newsWordForm" role="form" enctype="multipart/form-data">
+                    <div class="input-group" id="uploadWord">
+                        <span class="input-group-addon">上传：</span>
+                        <input id="upload_word" type="file" name="upload_word" class="form-control">
                     </div>
                     <br>
                     <div class="input-group">
@@ -22,12 +53,11 @@
                     <br>
                     <div class="input-group">
                         <span class="input-group-addon">头图：</span>
-                        <input id="upload_file" type="file" accept=".jpg,.jpeg,.png" name="upload_file" class="form-control">
-                        <input type="hidden" name="topImagePath">
+                        <input type="file" accept=".jpg,.jpeg,.png" name="upload_file1" class="form-control">
+                        <input type="hidden" name="topImagePath1">
                     </div>
-                    <div class="input-group form-control" id="editor">
-                        <!--<iframe id="ueditor" src="../../libs/ueditor1_4_3_3-utf8-jsp/utf8-jsp/index.html" width="850px" height="600px" frameborder="0" scrolling="no"></iframe>-->
-                    </div>
+
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -37,5 +67,10 @@
         </div>
     </div>
 </div>
+<script>
+
+
+
+</script>
 <script type="text/javascript" src="../../libs/wangEditor/wangEditor.min.js"></script>
 <script type="text/javascript" src="../script/components/newsEdit.js"></script>

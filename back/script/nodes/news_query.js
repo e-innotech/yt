@@ -13,6 +13,7 @@ $(function () {
 
 
     var ctrl_add = '';
+    var ctrl_word2Add = '';
     var ctrl_upate = '';
     var ctrl_launch_add = '';
 
@@ -56,6 +57,21 @@ $(function () {
             }
         });
     };
+    var wordAddNews = function () {
+        var data = $("#newsWordForm");
+            var options = {
+                url:$apiUrl+ctrl_word2Add, //上传文件的路径
+                type:'post',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success:function(){
+                    $('#newsEditModal').modal('hide');
+                    getNewsList();
+                }
+            };
+            data.ajaxSubmit(options);
+    };
     var editNews = function () {
         var data = $('#newsForm').serializeObject();
         data.content = newsContent;
@@ -90,6 +106,10 @@ $(function () {
             if(nodeData.buttons[i].uri.indexOf('/news/launch/add')!=-1){
                 ctrl_launch_add = nodeData.buttons[i].uri;
             };
+            if(nodeData.buttons[i].uri.indexOf('/news/word2Add')!=-1){
+                ctrl_word2Add = nodeData.buttons[i].uri;
+
+            };
         };
         if(ctrl_add != '') {
             $('#addNewsBtn').show();
@@ -97,22 +117,8 @@ $(function () {
                 showNewsEdit('add');
             });
         };
-        //$('#startDate').datetimepicker({
-        //    format:'yyyy-mm-dd',
-        //    language:'zh-CN',
-        //    autoclose:true,
-        //    todayBtn:true,
-        //    todayHighlight:true,
-        //    minView:'month'
-        //});
-        //$('#endDate').datetimepicker({
-        //    format:'yyyy-mm-dd',
-        //    language:'zh-CN',
-        //    autoclose:true,
-        //    todayBtn:true,
-        //    todayHighlight:true,
-        //    minView:'month'
-        //});
+
+
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
             source = $('#sourceTxt').val();
@@ -137,6 +143,7 @@ $(function () {
                 '<td>'+list[i].newsTitle+'</td>' +
                 '<td>'+list[i].source+'</td>'+
                 '<td><a id="content_'+list[i].id+'">查看</a></td>'+
+                '<td>'+list[i].submitUserName+'</td>'+
                 '<td>'+list[i].createDate+'</td>'+
                 '<td>'+getCtrlEdit(list[i].id,list[i].isEdit)+'</td>'+
             '</tr>');
@@ -156,12 +163,8 @@ $(function () {
             });
         }
     };
-    var getCtrlEdit = function(id,isEdit){
+    var getCtrlEdit = function(id){
         var re = '';
-        //if(ctrl_upate!='' && isEdit==0){
-        //
-        //
-        //};
         if(ctrl_launch_add!=''){
             re += '<button id="launchBtn_'+id+'">投放</button>';
             re += '<button id="editBtn_'+id+'">编辑</button>';
@@ -177,10 +180,15 @@ $(function () {
         $.get($components.newsEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsEditModal').modal('show');
+
             if(type=='edit'){
+                $('#editTypeBox').css('display','none');//
+                $('#newsForm').css('display','block');//
+                $('#newsWordForm').css('display','none');//
                 $('#newsEditModalLabel').html('编辑稿件');
                 $('input[name="newsTitle"]').val(selectNews.newsTitle);
                 $('input[name="source"]').val(selectNews.source);
+                //$('input[name="editorPath"]').val(selectNews.content);
                 $('input[name="topImagePath"]').val(selectNews.topImagePath);
             };
             $('#newsEditModal').on('save',function () {
@@ -188,7 +196,11 @@ $(function () {
                     editNews();
                     return;
                 }
-                addNews();
+                if($("#myselect").val()==1){
+                    addNews();
+                }else if($("#myselect").val()==2){
+                    wordAddNews();
+                }
             });
         });
     };
@@ -209,5 +221,8 @@ $(function () {
             $('#newsContentPreviewModal').modal('show');
         })
     }
+
+
+
     initialize();
 })
