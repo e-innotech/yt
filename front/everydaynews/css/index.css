@@ -73,9 +73,9 @@
     float:left;
 }
 .news_list .list-r h2{
-    width:297px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow:ellipsis;
     font-size:20px;
     color:#000;
     line-height:40px;

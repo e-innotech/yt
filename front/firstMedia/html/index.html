@@ -15,6 +15,13 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
+
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content">
@@ -92,7 +99,7 @@
                 </div>
             </div>
             <div class="con_advise">
-                <img src="../images/adv.png"/>
+                <img src="../images/adv.png" onload="drawImage(this,900,90)"/>
             </div>
         <!--以下为新闻列表-->
             <div class="news_listbox">
@@ -153,6 +160,10 @@
 
 
         </div>
+        <!--以下为内容右侧的加载-->
+        <script>
+            $('#content-right').load('right.html');
+        </script>
     </div>
 </div>
 
@@ -161,7 +172,9 @@
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
+
 <script>
+    $('#bottom').load('bottom.html');
     var swiper = new Swiper('.swiper-container', {
         spaceBetween: 30,
         centeredSlides: true,

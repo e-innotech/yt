@@ -12,6 +12,13 @@
 </head>
 <body>
 <div id="top"></div>
+
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
@@ -39,48 +46,15 @@
     </div>
 </div>
 <div class="bottom"></div>
-
+<script>
+    $('#bottom').load('bottom.html');
+</script>
 </body>
 </html>
 <script>
-//    // 一进页面加载头
-//    window.onload=function(){
-//        $("#top").load("top.html");
-//        $("#bottom").load("bottom.html");
-//        init();
-//    }
-//    //搜索渲染
-//    var page = 1;
-//    var searchData;
-//    function init(){
-//        var object = window.sessionStorage.getItem("global_search_data");
-//        var data = JSON.parse(object);
-//        var list = data.list;
-//        searchData=list;
-//        for (var i = 0; i <list.length; i++) {
-//            $('#searchlist').append('<div class="news_list">' +
-//            '<a href="">' +
-//            '<h2>' +list[i].newsTitle+' </h2>' +
-//            '<p>' +list[i].createDate+'</p>' +
-//            '<div>' +list[i].subContent+'</div>' +
-//            '</a>' +
-//            '</div>');
-//        }
-//    }
-//
-//    /*分页*/
-//    $('.more').click(function(){
-//        if (searchData.length <= 0) {
-//            $('.more').attr('disabled',true)
-//        } else {
-//            page++;
-//            init();
-//        }
-//    })
-    // 一进页面加载头
+
+// 一进页面加载头
     window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
         init();
     }
     //搜索渲染

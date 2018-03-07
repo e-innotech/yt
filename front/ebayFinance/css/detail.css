@@ -18,11 +18,12 @@
 .advise{
     width:682px;
     height:110px;
+    margin-bottom:20px;
     overflow:hidden;
 }
 .editorbox{
     background:#eaeaea;
-    margin-top:20px;
+    /*margin-top:20px;*/
 
 }
 .editor_con {

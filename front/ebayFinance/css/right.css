@@ -14,6 +14,7 @@
     height:232px;
     margin-top:10px;
     margin-bottom:15px;
+    overflow:hidden;
 }
 .right-top .right_con{
     line-height:26px;

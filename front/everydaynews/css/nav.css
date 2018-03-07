@@ -43,10 +43,11 @@
     padding-bottom:15px;
 }
 .news_list  h2{
-    width:298px;
+
     line-height:40px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow:ellipsis;
     font-size:20px;
     color:#000;
     margin-top:10px;

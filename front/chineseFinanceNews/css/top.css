@@ -148,6 +148,7 @@ input {
 .header, .content, .footer,.header_nav {
     width: 1000px;
     margin: 0 auto;
+    overflow:hidden;
 }
 
 .header {

@@ -12,6 +12,13 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
+
 <!--以下为固定定位的广告-->
 <div class="advise_l">
     <img src="../images/adv.png" onload="drawImage(this,284,248)"/>
@@ -34,7 +41,7 @@
             <div class="news_list">
                 <a href="detail.html">
                     <h2>
-                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
+                        独家 | 输给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大给了空间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                     </h2>
                     <p>2017-03-17</p>
                     <div>
@@ -110,6 +117,10 @@
        <div class="content-right rights" id="content-right">
 
        </div>
+        <script>
+            $('#content-right').load('right.html');
+
+        </script>
     </div>
 </div>
 
@@ -118,17 +129,9 @@
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
-</body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
-
-    }
-
-
+    $('#bottom').load('bottom.html');
 </script>
 
-
+</body>
 </html>

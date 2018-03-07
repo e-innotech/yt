@@ -14,6 +14,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 
 <!--以下为固定定位的广告-->
 <div class="advise_l">
@@ -55,14 +61,20 @@
         <div class="content-right" id="content-right">
 
         </div>
+        <!--以下为内容右侧的加载-->
+        <script>
+            $('#content-right').load('right.html');
+        </script>
     </div>
 </div>
-
-
 <!--以下为回到顶部的图片-->
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
+<!--以下为底部的加载-->
+<script>
+    $('#bottom').load('bottom.html');
+</script>
 <!--以下为轮播图-->
 <script>
 var swiper = new Swiper('.swiper-container', {
@@ -78,17 +90,6 @@ var swiper = new Swiper('.swiper-container', {
         prevEl: '.swiper-button-prev'
     }
 });
-
-
 </script>
-
 </body>
-<script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
-    }
-
-</script>
 </html>
