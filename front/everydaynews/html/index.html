@@ -73,17 +73,16 @@
                 </div>
                 <!--以下为点击加载更多-->
                 <div class="more">加载更多</div>
+            </div>
 
-                    </div>
+            <!--以下为焦点新闻-->
+            <div class="rights" id="rights">
 
-                        <!--以下为焦点新闻-->
-                    <div class="rights" id="rights">
-
-                    </div>
-                        <!--以下为内容右侧的加载-->
-                    <script>
-                         $('#rights').load('right.html');
-                    </script>
+            </div>
+            <!--以下为内容右侧的加载-->
+            <script>
+                $('#rights').load('right.html');
+            </script>
         </div>
 
     </div>
@@ -94,11 +93,7 @@
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
-<!--以下为底部的加载-->
-
-
-
-<!--以下为轮播图-->
+<!--以下为底部的加载和轮播图-->
 <script>
     $('#bottom').load('bottom.html');
 var swiper = new Swiper('.swiper-container', {

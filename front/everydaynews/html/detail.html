@@ -12,6 +12,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 
 <!--以下为固定定位的广告-->
 <div class="advise_l">
@@ -32,7 +38,7 @@
             <div class="editorbox">
                 <!--标题和时间-->
                 <div class="editor_tit">
-                    <h2><a href="#">发神经老地方卡范德萨发射空间的卡舵舵发神经</a></h2>
+                    <h2>发神经老地方卡范德萨发射空间的卡舵舵发神经</h2>
                     <p>发布时间:<span class="date">2017-17-17 10:10:27</span></p>
                 </div>
                 <!--以下为编辑器中的内容-->
@@ -60,6 +66,11 @@
         <div class="content-right rights" id="content-right">
 
         </div>
+        <script>
+            $('#content-right').load('right.html');
+
+        </script>
+
     </div>
 </div>
 
@@ -71,14 +82,9 @@
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
-</body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
-
-    }
-
+    $('#bottom').load('bottom.html');
 </script>
+</body>
+
 </html>

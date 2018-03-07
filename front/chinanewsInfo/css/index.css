@@ -106,7 +106,6 @@
     float:left;
 }
 .news_list .list-r h2{
-    width:397px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
