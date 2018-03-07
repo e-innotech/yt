@@ -62,6 +62,11 @@ function AjaxFunc(url,type,data,callBack) {
         xhrFields: {
             withCredentials: true
         },
+        beforeSend: function () {
+            // 禁用按钮防止重复提交
+            $('#saveBtn').attr("disabled","disabled");
+            $("saveBtn").show();
+        },
         success: function (result) {
             if(result.errCode =='E00001'){
                 loginTimeOut();
@@ -70,8 +75,8 @@ function AjaxFunc(url,type,data,callBack) {
             callBack(result)
         },
         complete: function () {
-            $('#button').removeAttr("disabled");
-            $('#button').val("保存");
+            $('#saveBtn').removeAttr("disabled");
+            $('#saveBtn').val("保存");
         }
     };
     switch (type){
