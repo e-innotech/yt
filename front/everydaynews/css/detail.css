@@ -19,10 +19,11 @@
     width:830px;
     height:174px;
     overflow:hidden;
+    margin-bottom:20px;
 }
 .editorbox{
     background:#eaeaea;
-    margin-top:20px;
+
 
 }
 
