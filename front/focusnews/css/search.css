@@ -14,17 +14,17 @@
     overflow:hidden;
 }
 .news_list  h2{
-    width:458px;
+
     font-weight:bold;
     line-height:60px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow:ellipsis;
     font-size:20px;
     color:#000;
 }
 
 .news_list div{
-    width:448px;
     color:#666;
     margin-top:-4px;
     font-size:12px;

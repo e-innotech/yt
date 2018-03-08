@@ -12,6 +12,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为广告-->
 <div class="advise">
     <img src="../images/adv.png" onload="drawImage(this,1200,130)"/>
@@ -52,25 +58,22 @@
            <div class="hot" id="hot">
 
            </div>
+           <script>
+               $("#hot").load("news_com.html");
+           </script>
        </div>
     </div>
 </div>
 
 
 <!--以下为回到顶部的图片-->
-<a href="#" id="backtop"/><img src="../images/backtop.png"/></a>
+<a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
+
 </body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#hot").load("news_com.html");
-
-    }
-
-
+    $('#bottom').load('bottom.html');
 </script>
 
 

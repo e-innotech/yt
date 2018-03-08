@@ -24,6 +24,9 @@ input{
 h2, h3, h4, h5{
     font-weight:normal;
 }
+.contentbg{
+    display:none;
+}
 #backtop{
     position:fixed;
     bottom:310px;

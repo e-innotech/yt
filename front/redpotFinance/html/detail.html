@@ -12,7 +12,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
-
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为广告-->
 <div class="advise">
     <img src="../images/adv.png" onload="drawImage(this,1200,130)"/>
@@ -25,7 +30,7 @@
             <div class="editorbox">
                 <!--标题和时间-->
                 <div class="editor_tit">
-                    <h2><a href="#">发神经老地方卡范德萨发射空间的卡舵舵发神经</a></h2>
+                    <h2>发神经老地方卡范德萨发射空间的卡舵舵发神经</h2>
                     <p> <span class="date">2017-12-11</span><span class="source">红鼎财经网</span></p>
                 </div>
                 <!--以下为编辑器中的内容-->
@@ -55,26 +60,20 @@
             <div class="hot" id="hot">
 
             </div>
+            <script>
+                $("#hot").load("news_com.html");
+            </script>
+
         </div>
     </div>
 </div>
-
-
-
-
-
 <!--以下为回到顶部的图片-->
-<a href="#" id="backtop"/><img src="../images/backtop.png"/></a>
+<a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
-</body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#hot").load("news_com.html");
-
-    }
-
+    $('#bottom').load('bottom.html');
 </script>
+
+</body>
 </html>

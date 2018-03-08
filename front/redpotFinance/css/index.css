@@ -101,11 +101,12 @@
 .news_list .list-r{
     width:448px;
     float:left;
+    padding-right:10px;
 }
 .news_list .list-r h2{
-    width:417px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow:ellipsis;
     font-size:20px;
     color:#000;
     line-height:40px;
