@@ -13,6 +13,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content">
@@ -23,7 +29,7 @@
                         <img src="../images/banner.png" onload="drawImage(this,626,360)"/>
                     </div>
                     <div class="news_text">
-                        <h1>吸金怕卡垃圾收费的看哈了就是</h1>
+                        <h1>吸金怕卡是吸金怕卡垃圾</h1>
                         <p class="title">玩儿若若若若若若若若若若若若若若若若若玩儿若若若若若若若若若若若若若若若若若若若若若拖文鹅鹅鹅饿鹅鹅鹅鹅鹅鹅鹅鹅鹅饿</p>
                         <p class="info"><span class="source">中南海</span><span class="date">一小时前</span></p>
                         <img src="../images/recommend.png" class="recommend"/>
@@ -67,21 +73,19 @@
         <div class="content-center"></div>
         <div class="content-right" id="content-right">
         </div>
+        <script>
+            $("#content-right").load("right.html");
+        </script>
     </div>
 </div>
-
 
 <!--以下为回到顶部的图片-->
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
-
-</body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
-    }
+    $("#bottom").load("bottom.html");
 </script>
+</body>
+
 </html>

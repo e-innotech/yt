@@ -52,6 +52,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
+    font-weight: normal;
     margin-top:20px;
     font-size:20px;
     color:#000;
@@ -126,6 +127,7 @@
 .con_lnews h2{
     width:359px;
     white-space: nowrap;
+    text-overflow:ellipsis;
     overflow:hidden;
     font-size:20px;
     color:#000;

@@ -12,6 +12,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content">
@@ -19,8 +25,8 @@
         <div class="content-left" id="new_left">
             <div class="editorbox">
                 <div class="editor_tit">
-                    <h2><a href="#">发神经老地方卡范德萨发射空间的卡见风使舵发神经老地方卡范德萨发射空间的卡见风使舵发神经德萨发射空间的卡见风使舵发神经</a></h2>
-                    <p>发布时间:2017-12-11 15:13</p>
+                    <h2>发神经老地方卡范德萨发射空间的卡见风使舵发神经舵</h2>
+                    <p>发布时间 : 2017-12-11 15:13</p>
                 </div>
                 <div class="editor_con">
                     <img src="../images/banner.png"/>
@@ -61,6 +67,9 @@
         <div class="content-right" id="content-right">
 
         </div>
+        <script>
+            $("#content-right").load("right.html");
+        </script>
     </div>
 </div>
 <!--广告-->
@@ -74,13 +83,9 @@
 <a href="#" id="backtop"><img src="../images/backtop.png"/></a>
 <!--以下为尾部-->
 <div id="bottom"></div>
-</body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load("right.html");
-    }
-
+    $("#bottom").load("bottom.html");
 </script>
+</body>
+
 </html>

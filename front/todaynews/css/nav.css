@@ -46,27 +46,28 @@
     width:942px;
     background:#fff;
     border-bottom:1px solid #e6e6e6;
-    padding-left:20px;
-    padding-bottom: 21px;
+    /*padding-left:20px;*/
+    /*padding-bottom: 21px;*/
+    padding:0 20px 20px 20px;
     float:left;
 }
 .news_list  h2{
-    width:437px;
     color:#000;
     white-space: nowrap;
     overflow: hidden;
     font-size:20px;
     margin-top:17px;
     line-height:48px;
+    text-overflow:ellipsis;
 
 }
 
 .news_list div{
     font-size:12px;
-     width:647px;
     line-height:32px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow:ellipsis;
     color:#666;
 }
 
