@@ -164,7 +164,7 @@ $(function () {
             var ids= new Array();
             var checked=$("input[type='checkbox']:checked");
             checked.each(function () {
-                ids.push($(this).val());
+                ids.push(checked.val());
             });
             $.get($components.confirm,function (re) {
                 $('#popPanel1').html(re);
