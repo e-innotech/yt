@@ -151,12 +151,13 @@
 .news_list .list-r h2{
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     font-size:20px;
     color:#000;
 
+
 }
 .news_list .list-r>div{
-    width:457px;
     font-size:12px;
     color:#666;
     line-height:22px;

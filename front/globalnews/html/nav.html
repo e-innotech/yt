@@ -12,6 +12,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为内容-->
 <!--为了初始化时拿到总条数-->
 <input type="hidden" id="alltotalnum" value=12 />
@@ -67,13 +73,7 @@
 <div id="bottom"></div>
 </body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
         $("#bottom").load("bottom.html");
-
-    }
-
-
 </script>
 
 

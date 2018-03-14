@@ -24,21 +24,14 @@
     line-height:48px;
     font-size:27px;
     color:#000;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-left:2px;
+    text-align:center;
 
-
-}
-.editor_tit h2 a{
-    color:#000;
 }
 .editor_tit p{
     line-height:60px;
     font-size:16px;
     color:#767676;
-    margin-left:1px;
+    text-align:center;
 
 }
 .editor_con {

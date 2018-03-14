@@ -12,6 +12,12 @@
 </head>
 <body>
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
@@ -36,14 +42,14 @@
     </div>
 </div>
 <div class="bottom"></div>
-
+<script>
+    $('#bottom').load('bottom.html');
+</script>
 </body>
 </html>
 <script>
     // 一进页面加载头
     window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
         init();
     }
     //搜索渲染

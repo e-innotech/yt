@@ -15,7 +15,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
-
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content">
@@ -96,12 +101,11 @@
             <div class="rights" id="rights">
 
             </div>
+            <script>
+                $("#rights").load("right.html")
+            </script>
             </div>
     </div>
-
-
-
-
 
 </div>
 
@@ -113,6 +117,7 @@
 <div id="bottom"></div>
 <!--以下为轮播图-->
 <script>
+    $("#bottom").load("bottom.html");
 var swiper = new Swiper('.swiper-container', {
     spaceBetween: 30,
     centeredSlides: true,
@@ -127,17 +132,6 @@ var swiper = new Swiper('.swiper-container', {
     }
 
 });
-
-
 </script>
-
 </body>
-<script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#rights").load("right.html")
-    }
-
-</script>
 </html>

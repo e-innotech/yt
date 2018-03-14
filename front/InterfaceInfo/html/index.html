@@ -15,6 +15,12 @@
 <body>
 <!--以下为头部-->
 <div id="top"></div>
+<!--以下为头部的加载-->
+<script>
+    $('#top').load('top.html',function(){
+        $(".contentbg").show();
+    });
+</script>
 <!--以下为内容区域-->
 <div class="contentbg">
     <div class="content">
@@ -83,7 +89,7 @@
                         <h3>望日本卡垃圾收费的卡就是奋斗拉克丝</h3>
                         <p class="con">
                             间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
-                            间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大\
+                            间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                             间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大间阿里斯顿拉科技师范大咖啡里斯顿拉科技师范大里斯顿拉科技师范大
                         </p>
                     </a>
@@ -97,6 +103,9 @@
                 <div class="news_comlist" id="news_comlist">
 
                 </div>
+                <script>
+                    $("#news_comlist").load("news_com.html");
+                </script>
             </div>
 
         </div>
@@ -110,6 +119,7 @@
 <div id="bottom"></div>
 <!--以下为轮播图-->
 <script>
+    $('#bottom').load('bottom.html');
 var swiper = new Swiper('.swiper-container', {
     spaceBetween: 30,
     centeredSlides: true,
@@ -123,17 +133,6 @@ var swiper = new Swiper('.swiper-container', {
         clickable: true
     }
 });
-
-
 </script>
-
 </body>
-<script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#news_comlist").load("news_com.html");
-    }
-
-</script>
 </html>
