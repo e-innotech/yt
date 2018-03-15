@@ -58,27 +58,25 @@ function AjaxFunc(url,type,data,callBack) {
         url:url,
         async: false,
         dataType: "json",
-
         xhrFields: {
             withCredentials: true
         },
-        beforeSend: function () {
-            // 禁用按钮防止重复提交
-            $('#saveBtn').attr("disabled","disabled");
-            $("saveBtn").show();
-        },
+
         success: function (result) {
+            console.log('resultresultresult=',result)
             if(result.errCode =='E00001'){
                 loginTimeOut();
                 return;
             }
+
             callBack(result)
         },
-        complete: function () {
-            $('#saveBtn').removeAttr("disabled");
-            $('#saveBtn').val("保存");
+        complete: function(){
+
+            $('#img_loading').css('display','none');
         }
     };
+
     switch (type){
         case 'get':
             if(data){
@@ -130,6 +128,7 @@ function AjaxUpload(url,data,callBack) {
  * @param total
  * @param callback
  */
+
 function initPage(pgId,pgTxt,total,callback){
     if(pageNum>1){
         return;
@@ -156,7 +155,7 @@ function initPage(pgId,pgTxt,total,callback){
 };
 
 
-
+//全选
 var isCheckAll = false;
 function swapCheck() {
     if (isCheckAll) {

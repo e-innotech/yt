@@ -30,6 +30,7 @@ var config ={
             'userGroup':$apiUrl+'/userGroup/query',
             'log':$apiUrl+'/log/query',
             'websites':$apiUrl+'/websites/query',
+            'newsQuery':$apiUrl+'/news/websites/query',
             'websitesTemplate':$apiUrl+'/websites/template/query',
             'config':$apiUrl+'/config/query'
         };

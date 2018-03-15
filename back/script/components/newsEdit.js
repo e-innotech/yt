@@ -42,11 +42,10 @@ $(function () {
             });
         });
         $('#saveBtn').click(function () {
-
-                newsContent = editor.txt.html();
+            newsContent = editor.txt.html();
             $('#newsEditModal').trigger('save');
             //禁用按钮防止重复提交
-            //$('#saveBtn').attr("disabled", "disabled");
+            $('#saveBtn').attr("disabled","true");
         });
 
         //上传类型
