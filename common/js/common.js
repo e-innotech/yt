@@ -53,9 +53,10 @@ function getNote(uri) {
  * @constructor
  */
 function AjaxFunc(url,type,data,callBack) {
+
     var obj = {
         type:type,
-        url:url,
+        url:timeURL(url),
         async: false,
         dataType: "json",
         xhrFields: {
@@ -89,12 +90,24 @@ function AjaxFunc(url,type,data,callBack) {
             break;
     };
     $.ajax(obj);
+
+
 };
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');
     location.replace('index.html');
     alert(re.msg);
+}
+
+function timeURL(url){
+    var time = (new Date()).valueOf();
+    if(url.indexOf('?')>=0){
+        url = url +'＆ｔ＝' + time;
+    }else{
+        url = url + '?t=' + time;
+    }
+    return url;
 }
 /**
  * 上传
