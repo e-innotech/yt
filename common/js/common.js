@@ -61,7 +61,9 @@ function AjaxFunc(url,type,data,callBack) {
         xhrFields: {
             withCredentials: true
         },
-
+        //beforeSend: function() {
+        //    $('#saveBtn').css('background','red');
+        //},
         success: function (result) {
             console.log('resultresultresult=',result)
             if(result.errCode =='E00001'){
@@ -70,11 +72,8 @@ function AjaxFunc(url,type,data,callBack) {
             }
 
             callBack(result)
-        },
-        complete: function(){
-
-            $('#img_loading').css('display','none');
         }
+
     };
 
     switch (type){
@@ -152,9 +151,32 @@ function initPage(pgId,pgTxt,total,callback){
             pgTxt.text('当前第'+pageNum+'页 共'+Math.ceil(total/pageSize)+'页（每页'+pageSize+'条 共：'+total+'条）');
         }
     });
-};
+}
 
-
+function initPages(pgId,pgTxt,total,callback){
+    if(pageNums>1){
+        return;
+    }
+    $.jqPaginator('#'+pgId, {
+        totalCounts:Number(total)==0?1:Number(total),
+        pageSize:pageSizes,
+        visiblePages: 3,
+        currentPage: pageNums,
+        first: '<li class="first"><a href="javascript:;"><<</a></li>',
+        prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+        next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+        last: '<li class="last"><a href="javascript:;">>></a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+//	            alert(type + '：' + num);
+            if(type == 'change'){
+                pageNums = num;
+                callback();
+            }
+            pgTxt.text('当前第'+pageNums+'页 共'+Math.ceil(total/pageSizes)+'页（每页'+pageSizes+'条 共：'+total+'条）');
+        }
+    });
+}
 //全选
 var isCheckAll = false;
 function swapCheck() {

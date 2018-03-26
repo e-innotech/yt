@@ -1,9 +1,9 @@
 var config ={
     init:function(){
-        //$apiUrl = ' http://192.168.20.195:8080';//本地
+        //$apiUrl = ' http://192.168.20.196:8080';//本地
         $apiUrl = ' http://123.59.156.27:8080';//测试
-
-        $uploadUrl = 'http://123.59.156.27:8080/yy/upload';
+        $uploadUrl = 'http://123.59.156.27:8080/yy/upload';//测试
+        //$uploadUrl = 'http://192.168.20.196:8080/yy/upload';//本地
 
         $admin = {
             'login':$apiUrl+'/login',
@@ -32,6 +32,8 @@ var config ={
             'websites':$apiUrl+'/websites/query',
             'newsQuery':$apiUrl+'/news/websites/query',
             'websitesTemplate':$apiUrl+'/websites/template/query',
+            'home':$apiUrl+'/home',
+            'home_query':$apiUrl+'/home/query',
             'config':$apiUrl+'/config/query'
         };
 
@@ -39,7 +41,11 @@ var config ={
 
 
         $components = {
+            'indexEdit':'components/indexEdit.html',
+
+
             'confirm':'components/confirm.html',
+
 
 
             'pwdReset':'components/pwdReset.html',
@@ -61,6 +67,8 @@ var config ={
 
             'newsEdit':'components/newsEdit.html',
             'newsLaunchEdit':'components/newsLaunchEdit.html',
+
+
             'newsLaunchAduit':'components/newsLaunchAduit.html',
             'newsList':'components/newsList.html',
             'newsContentPreview':'components/newsContentPreview.html',

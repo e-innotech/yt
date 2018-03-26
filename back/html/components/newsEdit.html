@@ -12,9 +12,8 @@
                 <div class="input-group" id="editTypeBox" style="margin-bottom: 18px;">
                     <span class="input-group-addon" id="editType">上传类型：</span>
                     <select id="myselect" class="form-control">
-                        <option value="1">编辑器</option>
                         <option value="2">word上传</option>
-
+                        <option value="1">编辑器</option>
                     </select>
                 </div>
                 <form id="newsForm" role="form">
@@ -62,8 +61,12 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <!--<button id="btn1">change</button>-->
+                <input type="button" id="formatText" class="btn fl" value="一键排版"/><span class="fl" style="margin: 10px;color: #ccc;">一键排版功能去掉广告链接和空格</span>
+
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button id="saveBtn" type="button" class="btn btn-primary">保存</button>
+
             </div>
         </div>
     </div>
@@ -73,5 +76,5 @@
 
 
 </script>
-<script type="text/javascript" src="../../libs/wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript" src="../../libs/wangEditor/wangEditor.js"></script>
 <script type="text/javascript" src="../script/components/newsEdit.js"></script>

@@ -212,6 +212,7 @@ $(function () {
             $('#newsContentPreviewModal').modal('show');
         })
     }
+
     initialize();
 
 

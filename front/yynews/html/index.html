@@ -4,23 +4,34 @@
     <meta charset="UTF-8">
     <title>鹰眼新闻</title>
     <link rel="stylesheet" href="../css/style.css"/>
+
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/swiper.min.css"/>
     <script src="../../script/jquery.min.js"></script>
     <script src="../script/swiper.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
     <script type="text/javascript" src="../script/js/index.js"></script>
+    <script type="text/javascript" src="../script/js/h.js"></script>
+
 
 </head>
 <body>
 <!-- 以下为头部 -->
-<div id="top" style="height: 73px"></div>
+<div id="top" style="height: 73px"><embed type="text/html" src="top.html" style="width: 100%;height: 73px"/></div>
+<!--<include src="top.html"></include>-->
+
+<!--<script>-->
+    <!--$("#top").load("top.html");-->
+    <!--$("#content-right").load('right.html');-->
+    <!--$("#bottom").load("bottom.html");-->
+<!--</script>-->
 <!-- 以下为左侧的悬浮广告 -->
 <div class="advertising">
     <!--<img src="../images/adv.png" class="Imgtop"/>-->
     <!--<img src="../images/adv.png"/>-->
 </div>
 <!-- 以下为主体内容 -->
+
 <div class="contentbg">
    <div class="content">
        <!-- 主体内容左边 -->
@@ -100,10 +111,7 @@
 <div id="bottom"></div>
 </body>
 <script>
-    window.onload=function(){
-        $("#top").load("top.html");
-        $("#bottom").load("bottom.html");
-        $("#content-right").load('right.html');
-    }
+    $("#content-right").load('right.html');
+    $("#bottom").load("bottom.html");
 </script>
 </html>

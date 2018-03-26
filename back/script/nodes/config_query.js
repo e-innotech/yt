@@ -115,6 +115,7 @@ $(function () {
             $('#userT').append('<tr>' +
             '<td>' + list[i].name + '</td>' +
             '<td>' + list[i].value + '</td>' +
+            '<td>' + list[i].remark + '</td>' +
             '<td>' + list[i].createDate + '</td>' +
             '<td><p id="statusBtn_' + list[i].id + '" class="' + (list[i].isUse == 0 ? 'anniu' : 'anniu active') + '"><span></span></p></td>' +
             '<td>' + (ctrl_upate != '' ? '<button id="editBtn_' + list[i].id + '">编辑</button>' : '') + (ctrl_delete != '' ? '<button id="deleteBtn_'+list[i].id+'">删除</button>' : '') +'</td>' +
@@ -140,11 +141,9 @@ $(function () {
                 } else {
                     isUse = 0;
                 }
-                ;
                 statusUser(this.id.split('_')[1], isUse)
             });
         }
-        ;
     };
 
 
@@ -169,9 +168,10 @@ $(function () {
             $('#editModal').modal('show');
             if (type == 'edit') {
                 $('#EditModalLabel').html('编辑配置');
-                $('input[name="name"]').val(selectUser.name);
+                $('input[name="name"]').val(sE = window.wangEditorelectUser.name);
                 $('input[name="name"]').attr("disabled","false");
                 $('input[name="value"]').val(selectUser.value);
+                $('input[name="remark"]').val(selectUser.remark);
                 //$('input[name="roleName"]').val(selectUser.roles.roleName);
             };
             $('#userGroupBtn').click(function () {
