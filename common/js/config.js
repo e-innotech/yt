@@ -41,48 +41,48 @@ var config ={
 
 
         $components = {
-            'indexEdit':'components/indexEdit.html',
+            'indexEdit':'components/indexEdit.html'+'?v='+version,
 
 
-            'confirm':'components/confirm.html',
+            'confirm':'components/confirm.html'+'?v='+version,
 
 
 
-            'pwdReset':'components/pwdReset.html',
+            'pwdReset':'components/pwdReset.html'+'?v='+version,
 
-            'userGroup':'components/userGroup.html',
-            'userQuery':'components/userQuery.html',
-            'adduserGroup':'components/userGroup.html',
-            'addRole':'components/addroles.html',
-            'userGroupQuery':'components/userGroupQuery.html',
-            'userGroup_rolesId':'components/userGroup_rolesId.html',
+            'userGroup':'components/userGroup.html'+'?v='+version,
+            'userQuery':'components/userQuery.html'+'?v='+version,
+            'adduserGroup':'components/userGroup.html'+'?v='+version,
+            'addRole':'components/addroles.html'+'?v='+version,
+            'userGroupQuery':'components/userGroupQuery.html'+'?v='+version,
+            'userGroup_rolesId':'components/userGroup_rolesId.html'+'?v='+version,
 
-            'resourceEdit':'components/resourceEdit.html',
-            'resourceList':'components/resourceList.html',
+            'resourceEdit':'components/resourceEdit.html'+'?v='+version,
+            'resourceList':'components/resourceList.html'+'?v='+version,
 
-            'roleEdit':'components/roleEdit.html',
+            'roleEdit':'components/roleEdit.html'+'?v='+version,
 
-            'websitesEdit':'components/websitesEdit.html',
-            'channelEdit':'components/channelEdit.html',
+            'websitesEdit':'components/websitesEdit.html'+'?v='+version,
+            'channelEdit':'components/channelEdit.html'+'?v='+version,
 
-            'newsEdit':'components/newsEdit.html',
-            'newsLaunchEdit':'components/newsLaunchEdit.html',
-
-
-            'newsLaunchAduit':'components/newsLaunchAduit.html',
-            'newsList':'components/newsList.html',
-            'newsContentPreview':'components/newsContentPreview.html',
-
-            'adEdit':'components/adEdit.html',
-            'adPositionsEdit':'components/adPositionsEdit.html',
-            'adPositionsList':'components/adPositionsList.html',
-
-            'webTemplateList':'components/webTemplateList.html',
+            'newsEdit':'components/newsEdit.html'+'?v='+version,
+            'newsLaunchEdit':'components/newsLaunchEdit.html'+'?v='+version,
 
 
-            'homeCtrl':'components/homeCtrl.html',
+            'newsLaunchAduit':'components/newsLaunchAduit.html'+'?v='+version,
+            'newsList':'components/newsList.html'+'?v='+version,
+            'newsContentPreview':'components/newsContentPreview.html'+'?v='+version,
 
-            'configQuery':'components/configQuery.html'
+            'adEdit':'components/adEdit.html'+'?v='+version,
+            'adPositionsEdit':'components/adPositionsEdit.html'+'?v='+version,
+            'adPositionsList':'components/adPositionsList.html'+'?v='+version,
+
+            'webTemplateList':'components/webTemplateList.html'+'?v='+version,
+
+
+            'homeCtrl':'components/homeCtrl.html'+'?v='+version,
+
+            'configQuery':'components/configQuery.html'+'?v='+version
 
 
 

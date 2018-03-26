@@ -21,7 +21,7 @@ function serializeObject(a){
 function AjaxFunc(url, type, data, callBack) {
     var obj = {
         type: type,
-        url: timeURL(url),
+        url: url,
         async: false,
         dataType: "json",
         xhrFields: {
@@ -48,6 +48,7 @@ function AjaxFunc(url, type, data, callBack) {
     };
     $.ajax(obj);
 };
+
 function AjaxUpload(url,data,callBack) {
     var obj = {
         url:url,

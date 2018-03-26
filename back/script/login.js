@@ -21,7 +21,7 @@ $(function () {
                 var userinfo = {userName:re.data.userName,roleName:re.data.roleName};
                 sessionStorage.setItem('userinfo',JSON.stringify(userinfo));
                 sessionStorage.setItem('permissons',JSON.stringify(re.data.menu));
-                location.replace('home.html');
+                location.replace('home.html?v='+version);
             }else{
                 alert(re.msg);
             }

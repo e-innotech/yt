@@ -4,10 +4,10 @@
 var nodeData;//选择菜单后的数据
 var pageNum = 1;//翻页：页数
 var pageSize = 15;//翻页：数量
+var version  = '1.0.0';
 var resourceListType = 'parent';//资源列表选择类型
 var resourceListSelectIds = [];//角色资源选择id集合
 var newsContent = '';//稿件编辑器内容
-
 const RW = ['只读','读写'];
 const MENU = ['否','是'];
 const OFFONLINE = ['下线','上线'];
@@ -31,7 +31,6 @@ jQuery.prototype.serializeObject=function(){
     }
     return o;
 };
-
 /**
  * 根据资源地址uri转换为页面相对路径
  * @param uri
@@ -53,10 +52,9 @@ function getNote(uri) {
  * @constructor
  */
 function AjaxFunc(url,type,data,callBack) {
-
     var obj = {
         type:type,
-        url:timeURL(url),
+        url:url,
         async: false,
         dataType: "json",
         xhrFields: {
@@ -90,24 +88,12 @@ function AjaxFunc(url,type,data,callBack) {
             break;
     };
     $.ajax(obj);
-
-
 };
 
 function loginTimeOut(){
     sessionStorage.removeItem('user');
     location.replace('index.html');
     alert(re.msg);
-}
-
-function timeURL(url){
-    var time = (new Date()).valueOf();
-    if(url.indexOf('?')>=0){
-        url = url +'＆ｔ＝' + time;
-    }else{
-        url = url + '?t=' + time;
-    }
-    return url;
 }
 /**
  * 上传

@@ -72,7 +72,7 @@ $(function(){
                 nodeData = data;
                 console.log(getNote(data.uri))
                 if(data.uri) {
-                    $.get(getNote(data.uri), function (re) {
+                    $.get(getNote(data.uri)+'?v='+version, function (re) {
                         $('#main').html(re);
                     });
                 }
