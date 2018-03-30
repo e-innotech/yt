@@ -2,17 +2,39 @@ $(function () {
     var E = window.wangEditor;
     var editor = new E('#editor');
     var initialize = function () {
-        editor.customConfig.pasteFilterStyle = false;
-        editor.customConfig.pasteIgnoreImg = false;
+
         editor.customConfig.uploadFileName = 'upload_file';
         editor.customConfig.uploadImgParams = {fileDirectory: 'news'};
-
+        editor.customConfig.onchangeTimeout = 3000;
         editor.customConfig.uploadImgMaxLength = 5;
         editor.customConfig.uploadImgServer = $uploadUrl;
 
-        editor.create();
 
+        editor.customConfig.onchange = function () {
+            var imgLen=$('#editor img');
+            for (var i = 0; i < imgLen.length; i++) {
+                var imgSrc=$('#editor img')[i].currentSrc;
+                console.log(imgSrc);
+
+                //var files = imgLen.prop('files');
+                //var data = new FormData();
+                //data.append('upload_file', files);
+                //data.append('fileDirectory', 'news/top');
+                //AjaxUpload($uploadUrl, data, function (re) {
+                //    alert(re.msg);
+                //    if (re.success) {
+                //
+                //    }
+                //});
+            }
+        };
+
+        editor.create();
         editor.txt.html(newsContent);
+
+
+
+
 
 
         $('#formatText').click(function(){
@@ -21,7 +43,6 @@ $(function () {
                 content = content.replace(/<[\s]*(script)[^>]*>.*?<[\s]*\/[\s]*(script)[\s]*>/gi,'');
                 content = content.replace(/<[\s]*(style|title)[^>]*>.*?<[\s]*\/[\s]*(style|title)[\s]*>/gi,'');
                 content = content.replace(/<[\s]*(meta|link|base)[^>]*>/gi,'');
-
                 content = content.replace(/<[\s]*(object)[^>]*>.*?<[\s]*\/[\s]*(object)[\s]*>/gi,'');
                 content = content.replace(/<[\s]*(embed|bgsound)[^>]*>/gi,'');
                 content = content.replace(/(id|class|style|onclick|alt|title|width|height|_href|_src)\s*\=\'[^\>\']*?\'/gi,'');
@@ -52,8 +73,10 @@ $(function () {
 
 
 
-        $('input[name="upload_file"]').change(function () {
+        $('input[name="upload_file"]').change(function () { //编辑器头图
+
             var files = $('input[name="upload_file"]').prop('files');
+            console.log(files)
             var data = new FormData();
             data.append('upload_file', files[0]);
             data.append('fileDirectory', 'news/top');
@@ -66,7 +89,7 @@ $(function () {
             });
         });
 
-        $('input[name="upload_file1"]').change(function () {
+        $('input[name="upload_file1"]').change(function () {//word图片
             var files = $('input[name="upload_file1"]').prop('files');
             var data = new FormData();
             data.append('upload_file', files[0]);
