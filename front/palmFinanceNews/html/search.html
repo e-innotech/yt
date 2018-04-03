@@ -7,7 +7,6 @@
     <script type="text/javascript" src="../../script/jquery.min.js"></script>
     <script type="text/javascript" src="../../script/common.js"></script>
     <script src="../script/js/top.js"></script>
-
 </head>
 <body>
 <div id="top"></div>
@@ -33,6 +32,7 @@
 <div class="bottom" id="bottom"></div>
 </body>
 </html>
+
 <script>
     // 一进页面加载头
     window.onload = function () {
@@ -58,7 +58,7 @@
         globalQuery(1, newsTitle, page, 8, getSearchList);
         //拿到的搜索的数据
         for (var i = 0; i < list.length; i++) {
-            $('#navList').append('<li><a href=""><div class="title"> <h3>'+list[i].newsTitle+'</h3> <span class="time">'+list[i].createDate+'</span> </div> <p class="content_news">'+list[i].subContent+'</p> </a> </li>')
+            $('#navList').append('<li><a href=""><div class="title"> <h3>' + list[i].newsTitle + '</h3> <span class="time">' + list[i].createDate + '</span> </div> <p class="content_news">' + list[i].subContent + '</p> </a> </li>')
 
         }
     }

@@ -11,21 +11,22 @@ $(function () {
 
 
         editor.customConfig.onchange = function () {
+            debugger;
             var imgLen=$('#editor img');
-            for (var i = 0; i < imgLen.length; i++) {
-                var imgSrc=$('#editor img')[i].currentSrc;
-                console.log(imgSrc);
 
-                //var files = imgLen.prop('files');
-                //var data = new FormData();
-                //data.append('upload_file', files);
-                //data.append('fileDirectory', 'news/top');
-                //AjaxUpload($uploadUrl, data, function (re) {
-                //    alert(re.msg);
-                //    if (re.success) {
-                //
-                //    }
-                //});
+
+            for (var i = 0; i < imgLen.length; i++) {
+                var imgURL=$('#editor img')[i].currentSrc;
+                var files = $('#editor img').prop('src','imgURL');
+                var data = new FormData();
+                data.append('upload_file',files[0]);
+                data.append('fileDirectory', 'news/top');
+                AjaxUpload($uploadUrl, data, function (re) {
+                    alert(re.msg);
+                    if (re.success) {
+                        alert(1)
+                    }
+                });
             }
         };
 
@@ -74,7 +75,6 @@ $(function () {
 
 
         $('input[name="upload_file"]').change(function () { //编辑器头图
-
             var files = $('input[name="upload_file"]').prop('files');
             console.log(files)
             var data = new FormData();

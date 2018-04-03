@@ -22,31 +22,32 @@
     <img src="../images/news.png" onload="drawImage(this,252,229)"/>
 </div>
 <!--为了初始化时拿到总条数-->
-<input type="hidden" id="alltotalnum" value=12 />
+<input type="hidden" id="alltotalnum" value=12/>
 
 <!--以下为内容-->
 <div class="contentbg">
     <div class="content">
-       <div class="content-left">
-           <p class="guidance"><span><a>首页</a></span> <span><a>金融</a></span></p>
-           <span id="totalnum" style="display:none;">3</span>
-           <div class="news_listbox">
-               <ul class="news_list">
-                   <li><a href="#">卡垃圾收费阿卡三等奖阿里健家阿范德萨</a><span>2018-01-01</span></li>
-                   <li><a href="#">卡垃圾收费阿卡三等奖阿里健康撒反对垃圾收费的卡就是奋斗离开家阿范德萨</a><span>2018-01-01</span></li>
-                   <li><a href="#">卡垃圾收费阿卡三等奖阿奋斗离开家阿范德萨</a><span>2018-01-01</span></li>
-                   <li><a href="#">卡垃圾收费阿卡三等奖阿里健康撒反对垃奋斗离开家阿范德萨</a><span>2018-01-01</span></li>
-               </ul>
-           </div>
-           <div class="pages">
-               <button class="homepages">首页</button>
-               <button class="prevpages">上一页</button>
-               <button class="nextpages">下一页</button>
-               <button class="lastpages">尾页</button>
-           </div>
-       </div>
-       <div class="content-right" id="content-right">
-       </div>
+        <div class="content-left">
+            <p class="guidance"><span><a>首页</a></span> <span><a>金融</a></span></p>
+            <span id="totalnum" style="display:none;">3</span>
+
+            <div class="news_listbox">
+                <ul class="news_list">
+                    <li><a href="#">卡垃圾收费阿卡三等奖阿里健家阿范德萨</a><span>2018-01-01</span></li>
+                    <li><a href="#">卡垃圾收费阿卡三等奖阿里健康撒反对垃圾收费的卡就是奋斗离开家阿范德萨</a><span>2018-01-01</span></li>
+                    <li><a href="#">卡垃圾收费阿卡三等奖阿奋斗离开家阿范德萨</a><span>2018-01-01</span></li>
+                    <li><a href="#">卡垃圾收费阿卡三等奖阿里健康撒反对垃奋斗离开家阿范德萨</a><span>2018-01-01</span></li>
+                </ul>
+            </div>
+            <div class="pages">
+                <button class="homepages">首页</button>
+                <button class="prevpages">上一页</button>
+                <button class="nextpages">下一页</button>
+                <button class="lastpages">尾页</button>
+            </div>
+        </div>
+        <div class="content-right" id="content-right">
+        </div>
     </div>
 </div>
 <!--以下为回到顶部的图片-->
@@ -54,8 +55,9 @@
 <!--以下为尾部-->
 <div id="bottom"></div>
 </body>
+
 <script>
-    window.onload=function(){
+    window.onload = function () {
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
         $("#content-right").load("right.html");

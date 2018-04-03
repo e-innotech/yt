@@ -13,18 +13,21 @@
 <div class="contentbg">
     <div class="content">
         <div class="content-left">
-                <div class="news_list clearfix">
-                    <ul class="news_list_left fl" id="navList"></ul>
-                </div>
+            <div class="news_list clearfix">
+                <ul class="news_list_left fl" id="navList"></ul>
+            </div>
             <div style="clear: both"></div>
 
-            <div class="more_box"><div class="more">加载更多</div></div>
+            <div class="more_box">
+                <div class="more">加载更多</div>
+            </div>
         </div>
     </div>
 </div>
 <div class="bottom" id="bottom"></div>
 </body>
 </html>
+
 <script>
     window.onload = function () {
         $("#top").load("top.html");
@@ -53,9 +56,9 @@
             '<a href="">' +
             '<div>' +
             '<div class="title">' +
-            '<h3>' +list[i].newsTitle +'</h3>' +
-            '<span class="time">' +list[i].createDate+'</span>' +
-            '<p>' +list[i].subContent+' </p>' +
+            '<h3>' + list[i].newsTitle + '</h3>' +
+            '<span class="time">' + list[i].createDate + '</span>' +
+            '<p>' + list[i].subContent + ' </p>' +
             ' </div>' +
             ' </div>' +
             '</a>' +

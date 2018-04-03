@@ -1,18 +1,1 @@
-/*以下为尾部*/
-
-.footerbg{
-    width:100%;
-    background:#999999;
-    height:300px;
-    overflow: hidden;
-}
-
-.footer{
-    width:1200px;
-    margin:0 auto;
-    text-align:center;
-    padding-top:128px;
-    padding-bottom:130px;
-    font-size:20px;
-    color:#000;
-}
+.footerbg{width:100%;background:#999999;height:300px;overflow:hidden;}.footer{width:1200px;margin:0 auto;text-align:center;padding-top:128px;padding-bottom:130px;font-size:20px;color:#000;}
