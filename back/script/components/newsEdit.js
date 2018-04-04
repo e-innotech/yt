@@ -11,23 +11,23 @@ $(function () {
 
 
         editor.customConfig.onchange = function () {
-            debugger;
-            var imgLen=$('#editor img');
-
-
-            for (var i = 0; i < imgLen.length; i++) {
-                var imgURL=$('#editor img')[i].currentSrc;
-                var files = $('#editor img').prop('src','imgURL');
-                var data = new FormData();
-                data.append('upload_file',files[0]);
-                data.append('fileDirectory', 'news/top');
-                AjaxUpload($uploadUrl, data, function (re) {
-                    alert(re.msg);
-                    if (re.success) {
-                        alert(1)
-                    }
-                });
-            }
+            //debugger;
+            //var imgLen=$('#editor img');
+            //
+            //
+            //for (var i = 0; i < imgLen.length; i++) {
+            //    var imgURL=$('#editor img')[i].currentSrc;
+            //    var files = $('#editor img').prop('src','imgURL');
+            //    var data = new FormData();
+            //    data.append('upload_file',files[0]);
+            //    data.append('fileDirectory', 'news/top');
+            //    AjaxUpload($uploadUrl, data, function (re) {
+            //        alert(re.msg);
+            //        if (re.success) {
+            //            alert(1)
+            //        }
+            //    });
+            //}
         };
 
         editor.create();
