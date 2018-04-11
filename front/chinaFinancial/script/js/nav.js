@@ -14,19 +14,19 @@ $(document).ready(function(){
                 '<a href="#">'+newsList[i].newsTitle+'</a>'+
                 '<span>'+newsList[i].createDate+'</span>'+
                 '</li>'+
-                '<li>'+
-                '<a href="#">'+newsList[i].source+'</a>'+
-                '<span>'+newsList[i].createDate+'</span>'+
-                '</li>'+
-                '<li>'+
-                '<a href="#">'+newsList[i].submitUserId+'</a>' +
-                '<span>'+newsList[i].createDate+'</span>'+
-                '</li>'+
-                '<li>'+
-                '<a href="#">'+newsList[i].subContent
-                +'</a>' +
-                '<span>'+newsList[i].createDate+'</span>'+
-                '</li>'+
+                //'<li>'+
+                //'<a href="#">'+newsList[i].source+'</a>'+
+                //'<span>'+newsList[i].createDate+'</span>'+
+                //'</li>'+
+                //'<li>'+
+                //'<a href="#">'+newsList[i].submitUserId+'</a>' +
+                //'<span>'+newsList[i].createDate+'</span>'+
+                //'</li>'+
+                //'<li>'+
+                //'<a href="#">'+newsList[i].subContent
+                //+'</a>' +
+                //'<span>'+newsList[i].createDate+'</span>'+
+                //'</li>'+
                 '</ul>')
             }
         })
