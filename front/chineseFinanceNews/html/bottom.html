@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <title>脚部</title>
     <link rel="stylesheet" href="../css/bottom.css">
+    <script type="text/javascript" src="../../script/jquery.min.js"></script>
 
 </head>
 <body>
 
 <div class="footer">
     <div class="footer-center">
-        <p><span>本网地址 :</span>武汉市江夏区文化大道侨亚国际大厦20楼武汉盈图文化传播有限公司</p>
+        <p><span>地址 :</span>武汉市江夏区文化大道侨亚国际大厦20楼武汉盈图文化传播有限公司</p>
         <!--<p>联系方式:(010) 10086</p>-->
         <!--<p>举报电话:(010) 110</p>-->
-        <p> 鄂ICP备17027254号-1</p>
+        <p class="copyrightdate"></p>
+        <p> 鄂ICP备17027254号-4</p>
     </div>
 </div>
 </body>
-<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script>
+    $(".copyrightdate").html("版权所有&copy2017"+"-"+ new Date().getFullYear()+" 中华财经网保留一切权利");
+</script>
 </html>
