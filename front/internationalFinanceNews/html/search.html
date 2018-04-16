@@ -32,18 +32,16 @@
 
 <script>
     // 一进页面加载头
-    window.onload = function () {
         $("#top").load("top.html");
         $("#bottom").load("bottom.html");
         init();
-    }
     //搜索渲染
     var page = 1;
     var totalnum, list;
     var newsTitle = window.sessionStorage.getItem("global_newsTitle");
     function init() {
         var getSearchList = function (data) {
-            console.log(121, data);
+            console.log(121, data.list);
             totalnum = data.total;
             list = data.list;
             if (list.length < 8) {

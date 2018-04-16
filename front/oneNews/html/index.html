@@ -409,8 +409,10 @@
         //整个图片是循环的
         loop: true,
         //自动播放
-        autoplay: true,
-
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false
+        },
         // 如果需要前进后退按钮
         navigation: {
             nextEl: '.swiper-button-next',

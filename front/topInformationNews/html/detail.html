@@ -76,11 +76,6 @@
         $("#bottom").load("bottom.html");
         $("#hot_list").load("right.html");
     }
-  //去掉首位空格
-    String.prototype.trim = function() {
-        return this.replace(/&nbsp;/g, "").replace(/ /g, "").replace(/\s/g, "");
-    }
-    console.log($('.article_content').text().trim());
 
 </script>
 
