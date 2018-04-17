@@ -10,6 +10,13 @@ $(document).ready(function(){
     })
     // 加载更多
     var page=2;
+    $('.more').click(function(){
+        if($('.more').html()=='没有更多了'){
+            $(this).attr('disabled','true');
+        }else{
+            getHomeNewsList();
+        }
+    })
     function getHomeNewsList() {
         //传的权限 页数 一页显示几条数据
         homeList(3, page,8, function callback(newsList) {
@@ -26,17 +33,9 @@ $(document).ready(function(){
                 $('.more').html('没有更多了');
             }
         })
-    };
+    }
 
-    /*分页*/
-    $('.more').click(function(){
-        if($('.more').html()=='没有更多了'){
-            $(this).attr('disabled','true');
-        }else{
-            getHomeNewsList();
-        }
 
-    })
 
 
 });
