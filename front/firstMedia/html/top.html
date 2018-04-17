@@ -24,8 +24,8 @@
     <div class="advise">
         <img src="../images/adv.png" onload="drawImage(this,1200,60)"/>
     </div>
-    <div class="nav">
-        <ul>
+    <div class="nav1">
+        <ul class="nav">
             <li><a href="index.html">首页</a></li>
             <li><a href="nav.html">金融</a></li>
             <li><a href="nav.html">体育</a></li>
@@ -42,7 +42,7 @@
 <script>
     //添加头部样式的
     $(function(){
-        $('.nav ul li').on('click',function(){
+        $('.nav li').on('click',function(){
             sessionStorage.setItem('index',$(this).index());
             var index=sessionStorage.getItem('index');
         })
