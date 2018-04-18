@@ -245,7 +245,7 @@ $(function () {
         AjaxFunc($query.newsQuery, 'get', data, function (re) {
             if (re.success) {
                 initTables(re.data.list);
-                initPages('pgNewsLaunch', $('#totalPgNewsLaunch'), re.data.total, getWebsitesList);
+                //initPages('pgNewsLaunch', $('#totalPgNewsLaunch'), re.data.total, getWebsitesList);
             } else {
                 alert(re.msg);
             }
