@@ -17,7 +17,7 @@ $(function () {
 
 
     pageNums = 1;
-    pageSizes = 10;
+    pageSizes = 0;
 
     var siteName = '';
 
