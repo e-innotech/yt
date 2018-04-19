@@ -168,7 +168,7 @@ $(function () {
             $('#editModal').modal('show');
             if (type == 'edit') {
                 $('#EditModalLabel').html('编辑配置');
-                $('input[name="name"]').val(sE = window.wangEditorelectUser.name);
+                $('input[name="name"]').val(selectUser.name);
                 $('input[name="name"]').attr("disabled","false");
                 $('input[name="value"]').val(selectUser.value);
                 $('input[name="remark"]').val(selectUser.remark);
