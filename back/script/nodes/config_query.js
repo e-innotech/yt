@@ -171,7 +171,7 @@ $(function () {
                 $('input[name="name"]').val(selectUser.name);
                 $('input[name="name"]').attr("disabled","false");
                 $('input[name="value"]').val(selectUser.value);
-                $('input[name="remark"]').val(selectUser.remark);
+                $('textarea[name="remark"]').val(selectUser.remark);
                 //$('input[name="roleName"]').val(selectUser.roles.roleName);
             };
             $('#userGroupBtn').click(function () {
