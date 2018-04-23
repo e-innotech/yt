@@ -123,6 +123,8 @@ $(function () {
                     $('#popPanel').html(re);
                     $('#homeCtrlModal').modal('show');
                     $('input[name="siteName"]').val(selectNewsPublish.websites.siteName);
+                    $('select[name="province"]').val(selectNewsPublish.websites.siteName);
+                    setCity(selectNewsPublish.websites.siteName);
                     $('#saveBtn').click(function () {
                         homeNewsPublish(selectNewsPublish.id,1,$('select[name="homeWeight"]').val());
                         $('#homeCtrlModal').modal('hide');

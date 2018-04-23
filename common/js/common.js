@@ -281,7 +281,196 @@ function idCard() {
 }
 
 
+function removeOptions(selectObj) {
+    if (typeof selectObj != 'object') {
+        selectObj = document.getElementById(selectObj);
+    }
+    // 原有选项计数
+    for (var i=0; i < selectObj.options.length; i++) {
+        // 移除当前选项
+        selectObj.options[0] = null;
+    }
+}
+function setSelectOption(selectObj, optionList, firstOption, selected) {
+    if (typeof selectObj != 'object') {
+        selectObj = document.getElementById(selectObj);
+    }
+    // 清空选项
+    removeOptions(selectObj);
+    // 选项计数
+    var start = 0;
+    // 如果需要添加第一个选项
+    if (firstOption) {
+        selectObj.options[0] = new Option(firstOption, '');
+        // 选项计数从 1 开始
+        start ++;
+    }
+    for (var i=0; i < optionList.length; i++) {
+        // 设置 option
+        selectObj.options[start] = new Option(optionList[i].txt, optionList[i].val);
+        // 选中项
+        if(selected == optionList[i].val)  {
+            selectObj.options[start].selected = true;
+        }
+        // 计数加 1
+        start ++;
+    }
+}
 
 
+
+function setCity(province) {
+    var homeWeightArr = [];
+    homeWeightArr['鹰眼新闻'] =/*id=1*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'专栏', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'热门文章', val:'5'}
+        ];
+    homeWeightArr['第一新闻网'] =/*id=2*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'专栏', val:'2'},
+            {txt:'新闻列表', val:'3'}
+        ];
+    homeWeightArr['今日财经网'] =/*id=3*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'热点推荐', val:'3'}
+        ];
+    homeWeightArr['中华财经资讯网'] =/*id=6*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'热点要闻', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'财经专题', val:'4'}
+        ];
+    homeWeightArr['每日新闻'] =/*id=7*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'右上', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'焦点新闻', val:'4'}
+        ];
+    homeWeightArr['中华财经网'] =/*id=8*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'轮播图', val:'2'},
+            {txt:'新闻列表', val:'3'}
+        ];
+    homeWeightArr['易趣财经'] =/*id=12*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'右上', val:'3'},
+            {txt:'右下', val:'4'}
+        ];
+    homeWeightArr['中国新闻资讯网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'专栏', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'热点新闻', val:'4'}
+        ];
+    homeWeightArr['中华新闻网'] =/*id=*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'轮播图', val:'2'},
+            {txt:'新闻列表', val:'3'}
+        ];
+    homeWeightArr['中国新闻采编网'] =/*id=*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'轮播图', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'今日热点', val:'4'}
+        ];
+    homeWeightArr['财经观点网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'焦点新闻', val:'3'}
+        ];
+    homeWeightArr['第一传媒网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'专栏', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'热点', val:'4'}
+        ];
+    homeWeightArr['焦点新闻网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'推荐', val:'3'},
+            {txt:'热点新闻', val:'4'}
+        ];
+    homeWeightArr['环球财经资讯网'] =/*id=*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'轮播图', val:'2'},
+            {txt:'新闻列表', val:'3'}
+        ];
+    homeWeightArr['环球财经网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'专栏', val:'2'},
+            {txt:'新闻列表', val:'3'}
+        ];
+    homeWeightArr['中国产经资讯'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'热点新闻', val:'3'}
+        ];
+    homeWeightArr['界面资讯网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'右上', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'新闻排行', val:'4'}
+        ];
+    homeWeightArr['国际财经网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'热点新闻', val:'3'}
+        ];
+    homeWeightArr['中国新闻在线'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'热点专题', val:'3'}
+        ];
+    homeWeightArr['掌上财经'] =/*id=*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'热点专题', val:'3'}
+        ];
+    homeWeightArr['红鼎财经网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'热点', val:'3'}
+        ];
+    homeWeightArr['顶端财经'] =/*id=*/
+        [
+            {txt:'专栏', val:'1'},
+            {txt:'轮播图', val:'2'},
+            {txt:'新闻列表', val:'3'},
+            {txt:'热点推荐', val:'4'}
+        ];
+    homeWeightArr['中国顶端资讯网'] =/*id=*/
+        [
+            {txt:'轮播图', val:'1'},
+            {txt:'新闻列表', val:'2'},
+            {txt:'新闻推荐', val:'3'},
+            {txt:'热文排行', val:'4'}
+        ];
+    setSelectOption('homeWeight', homeWeightArr[province], '请选择位置');
+}
 
 
