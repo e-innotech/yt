@@ -276,11 +276,13 @@ $(function () {
             '</tr>');
             for (var j = 0; j < list[i].channelLaunch.length; j++) {
                 $('#wcCB_' + list[i].websiteId + '_' + list[i].channelLaunch[j].channelId).change(function () {
-                    //$.each($('input:checkbox:checked'),function(){
-                    //
-                    //});
-                    var ids = this.id.split('_');
-                    updateSelectLaunch(ids[1],ids[2],this.checked);
+                    var ids = new Array();
+                    $('input:checkbox:checked').each(function(){
+                        ids.push(this.id.split('_'));
+                    });
+                    for(var o in ids){
+                        updateSelectLaunch(ids[o][1],ids[o][2],this.checked);
+                    }
                 });
             }
         };
@@ -292,7 +294,7 @@ $(function () {
         var re = '';
         for (var i = 0; i < list.length; i++) {
             if (list[i].channelCheck == 1) {
-                re += '<label style="margin-left: 5px;margin-top: 5px;color: #ff0000;">' + '<input type="checkbox"  id="wcCB_' + websiteId + '_' + list[i].channelId + '">' + list[i].channelName + '</label>';
+                re += '<label style="margin-left: 5px;margin-top: 5px;color: #ff0000;">' + '<input type="checkbox" checked id="wcCB_' + websiteId + '_' + list[i].channelId + '">' + list[i].channelName + '</label>';
             } else {
                 re += '<label style="margin-left: 5px;margin-top: 5px;">' + '<input type="checkbox" id="wcCB_' + websiteId + '_' + list[i].channelId + '">' + list[i].channelName + '</label>';
 
