@@ -258,6 +258,7 @@ $(function () {
         $.get($components.newsLaunchEdit,function (re) {
             $('#popPanel').html(re);
             $('#newsLaunchEditModal').modal('show');
+            $('#newsLaunchConfig').val('');
             initializes();
             $('#newsLaunchEditModal').on('save',function () {//投放时保存按钮
 
@@ -312,13 +313,11 @@ $(function () {
             getWebsitesList();
         });
         $('#saveBtn').click(function () {
-
             if (newsLaunchConfig.length > 0) {
 
                 // 禁用按钮防止重复提交
                 $('#saveBtn').attr("disabled", "true");
                 $('#newsLaunchConfig').val(JSON.stringify(newsLaunchConfig));
-                //console.log('newsLaunchConfig222w',JSON.stringify(newsLaunchConfig[1]))
                 $('#newsLaunchEditModal').trigger('save');
 
             } else {
@@ -330,12 +329,10 @@ $(function () {
 
 
     var updateSelectLaunch = function (wid,cid,bol) {
-        // console.log(wid,cid,bol);
         if(bol){
             for (var i = 0; i < newsLaunchConfig.length; i++) {
                 if (wid == newsLaunchConfig[i].websiteId && jQuery.inArray(cid,newsLaunchConfig[i].channelId) == -1) {
                     newsLaunchConfig[i].channelId.push(cid);
-                    // console.log('newsLaunchConfig=='+JSON.stringify(newsLaunchConfig));
                     return;
                 }
             }
@@ -345,12 +342,10 @@ $(function () {
                 var index = jQuery.inArray(cid,newsLaunchConfig[j].channelId);
                 if(index!=-1){
                     newsLaunchConfig[j].channelId.splice(index,1);
-                    // console.log('newsLaunchConfig=='+JSON.stringify(newsLaunchConfig));
                     return;
                 }
             }
         }
-        // console.log('newsLaunchConfig=='+JSON.stringify(newsLaunchConfig));
     }
     initialize();
 

@@ -29,10 +29,7 @@ $(function () {
             alert('用户组不能为空');
             return;
         }
-        //var data={rolesId:selectUser.rolesId};
-        //console.log(11111,selectUser.rolesId)
         var data = $('#roleForm').serializeObject();
-        console.log(data)
         AjaxFunc($apiUrl+ctrl_add,'post',data,function (re) {
             if(re.success){
                 $('#editModal').modal('hide');
@@ -127,7 +124,6 @@ $(function () {
                 });
             });
             $('#statusBtn_' + list[i].id).click(function () {
-                //console.log($(this).attr('class'));
                 var isUse = 0;
                 if ($(this).attr('class') == 'anniu') {
                     isUse = 1;
@@ -163,6 +159,7 @@ $(function () {
             if (type == 'edit') {
                 $('#EditModalLabel').html('编辑用户组');
                 $('input[name="groupName"]').val(selectUser.groupName);
+                $('input[name="groupName"]').attr("disabled","false");
                 $('input[name="remark"]').val(selectUser.remark);
                 //$('input[name="roleName"]').val(selectUser.roles.roleName);
                 $('input[name="pname"]').val(selectUser.roles.roleName);

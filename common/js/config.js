@@ -34,6 +34,7 @@ var config ={
             'websitesTemplate':$apiUrl+'/websites/template/query',
             'home':$apiUrl+'/home',
             'home_query':$apiUrl+'/home/query',
+            'userId':$apiUrl+'/user/findEditorGroup',
             'config':$apiUrl+'/config/query'
         };
 
@@ -53,6 +54,7 @@ var config ={
             'userGroup':'components/userGroup.html'+'?v='+version,
             'userQuery':'components/userQuery.html'+'?v='+version,
             'adduserGroup':'components/userGroup.html'+'?v='+version,
+            'addSelectWebsite':'components/selectWebsite.html'+'?v='+version,
             'addRole':'components/addroles.html'+'?v='+version,
             'userGroupQuery':'components/userGroupQuery.html'+'?v='+version,
             'userGroup_rolesId':'components/userGroup_rolesId.html'+'?v='+version,

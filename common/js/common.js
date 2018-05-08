@@ -134,7 +134,7 @@ function initPage(pgId,pgTxt,total,callback){
     $.jqPaginator('#'+pgId, {
         totalCounts:Number(total)==0?1:Number(total),
         pageSize:pageSize,
-        visiblePages: 3,
+        visiblePages: 10,
         currentPage: pageNum,
         first: '<li class="first"><a href="javascript:;"><<</a></li>',
         prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
@@ -151,7 +151,9 @@ function initPage(pgId,pgTxt,total,callback){
         }
     });
 }
-
+$('body').on('hidden.bs.modal', '.modal', function () {
+    $(this).removeData('bs.modal');
+});
 function initPages(pgId,pgTxt,total,callback){
     if(pageNums>1){
         return;

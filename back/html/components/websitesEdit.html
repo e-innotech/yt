@@ -30,6 +30,15 @@
                     </div>
                     <br>
                     <div class="input-group">
+                        <span class="input-group-addon">指定的用户：</span>
+                        <!--<input type="text" id="websiteOwner" name="websiteOwner" class="form-control" readonly="readonly" placeholder="请选择">-->
+                        <!--<input type="hidden" name="userGroupId" class="btn btn-default navbar-btn">-->
+                        <select name="province" id="websiteOwner" class="form-control"></select>
+
+                    </div>
+
+                    <br>
+                    <div class="input-group">
                         <span class="input-group-addon">网站区域：</span>
                         <select name="websiteBucketZone" class="form-control">
                             <option value ="0">华东</option>
@@ -65,3 +74,4 @@
         </div>
     </div>
 </div>
+<script src="../script/nodes/websites_query.js"></script>

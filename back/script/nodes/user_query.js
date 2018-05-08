@@ -103,7 +103,6 @@ $(function () {
                 showUserEdit('edit');
             });
             $('#statusBtn_' + list[i].id).click(function () {
-                //console.log($(this).attr('class'));
                 var isUse = 0;
                 if ($(this).attr('class') == 'anniu') {
                     isUse = 1;
@@ -148,6 +147,12 @@ $(function () {
                 $.get($components.adduserGroup, function (re) {
                     $('#popPanel1').html(re);
                     $('#userGroupModal').modal('show');
+                });
+            });
+            $('#selectWebsiteBtn').click(function () {
+                $.get($components.addSelectWebsite, function (re) {
+                    $('#popPanel1').html(re);
+                    $('#selectWebsiteModal').modal('show');
                 });
             });
             $('#saveBtn').click(function () {
