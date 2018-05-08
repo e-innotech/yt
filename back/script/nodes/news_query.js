@@ -281,8 +281,8 @@ $(function () {
                     $('input:checkbox:checked').each(function(){
                         ids.push(this.id.split('_'));
                     });
-                    for(var o in ids){
-                        updateSelectLaunch(ids[o][1],ids[o][2],this.checked);
+                    for(var e in ids){
+                        updateSelectLaunch(ids[e][1],ids[e][2],this.checked);
                     }
                 });
             }
