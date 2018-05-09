@@ -1,43 +1,32 @@
 $(function () {
-    pageNum = 1;
-    pageSize = 20;
-
-
     var newsTitle = '';
     var startDate = '';
     var endDate = '';
     var source = '';
-
     var newsList = [];
     var selectNews;
     var ctrl_add = '';
     var ctrl_word2Add = '';
     var ctrl_upate = '';
     var ctrl_launch_add = '';
-
-
     pageNums = 1;
     pageSizes = 0;
-
     var siteName = '';
-
     var websitesList = [];
-
     var newsLaunchConfig = [];
-
 
     var getNewsList = function () {
         var data = {pageNum:pageNum,pageSize:pageSize};
         if(newsTitle!=''){
             data.newsTitle = newsTitle;
-        };
+        }
         if(source!=''){
             data.source = source;
-        };
+        }
         if(startDate!='' && endDate!=''){
             data.startDate = startDate;
             data.endDate = endDate;
-        };
+        }
         AjaxFunc($query.news,'get',data,function (re) {
             if(re.success){
                 initTable(re.data.list);
@@ -47,6 +36,7 @@ $(function () {
             }
         });
     };
+
     var addNews = function () {
         var data = $('#newsForm').serializeObject();
         data.content = newsContent;
@@ -62,10 +52,12 @@ $(function () {
             alert(re.msg);
             if(re.success){
                 $('#newsEditModal').modal('hide');
+
                 getNewsList();
             }
         });
     };
+
     var wordAddNews = function () {
         var data = $("#newsWordForm");
             var options = {
@@ -81,6 +73,7 @@ $(function () {
             };
             data.ajaxSubmit(options);
     };
+
     var editNews = function () {
         var data = $('#newsForm').serializeObject();
         data.content = newsContent;
@@ -101,10 +94,9 @@ $(function () {
             if(re.success){
                 getNewsList();
                 $('#newsLaunchEditModal').modal('hide');
-                $('#newsLaunchConfig').val('');
             }
         })
-    }
+    };
 
     var initialize = function () {
         for(var i=0;i<nodeData.buttons.length;i++){
@@ -120,16 +112,13 @@ $(function () {
             if(nodeData.buttons[i].uri.indexOf('/news/word2Add')!=-1){
                 ctrl_word2Add = nodeData.buttons[i].uri;
             }
-
-        };
+        }
         if(ctrl_add != '') {
             $('#addNewsBtn').show();
             $('#addNewsBtn').click(function () {
                 showNewsEdit('add');
             });
-        };
-
-
+        }
         $('#searchBtn').click(function () {
             newsTitle = $('#newsTitleTxt').val();
             source = $('#sourceTxt').val();
@@ -140,14 +129,14 @@ $(function () {
         getNewsList();
     };
 
-
     var getNewsFromId = function (id) {
         for(var i=0;i<newsList.length;i++){
             if(id == newsList[i].id){
                 return newsList[i];
             }
         }
-    }
+    };
+
     var initTable = function(list) {
         newsList = list;
         $('#newsT').empty();
@@ -160,7 +149,6 @@ $(function () {
                 '<td>'+list[i].createDate+'</td>'+
                 '<td>'+getCtrlEdit(list[i].id,list[i].isEdit)+'</td>'+
             '</tr>');
-
             $('#content_'+list[i].id).click(function () {
                 selectNews = getNewsFromId(this.id.split('_')[1]);
                 showNewsContentPreview();
@@ -184,7 +172,8 @@ $(function () {
             re += '<button id="editBtn_'+id+'">编辑</button>';
         }
         return re;
-    }
+    };
+
     var showNewsEdit = function (type) {
         if(type == 'edit'){
             newsContent = selectNews.content;
@@ -218,7 +207,6 @@ $(function () {
         });
     };
 
-
     var showNewsContentPreview = function () {
         newsContent = selectNews.content;
         $.get($components.newsContentPreview,function (re) {
@@ -226,18 +214,9 @@ $(function () {
             $('#popPanel').html(re);
             $('#newsContentPreviewModal').modal('show');
         })
-    }
-
-
-
-
-
-
-
-
+    };
 
     var getWebsitesList = function () {
-
         var data = {pageNum: pageNums, pageSize: pageSizes, newsId:selectNews.id};
         if (siteName != '') {
             data.siteName = siteName;
@@ -250,9 +229,7 @@ $(function () {
                 alert(re.msg);
             }
         });
-
     };
-
 
     var showNewsLaunchEdit = function(){
         $.get($components.newsLaunchEdit,function (re) {
@@ -261,12 +238,11 @@ $(function () {
             $('#newsLaunchConfig').val('');
             initializes();
             $('#newsLaunchEditModal').on('save',function () {//投放时保存按钮
-
                 addNewsLaunch();
-
             });
         })
     };
+
     var initTables = function (list) {
         websitesList = list;
         $('#newsLaunchEditT').empty();
@@ -277,19 +253,12 @@ $(function () {
             '</tr>');
             for (var j = 0; j < list[i].channelLaunch.length; j++) {
                 $('#wcCB_' + list[i].websiteId + '_' + list[i].channelLaunch[j].channelId).change(function () {
-                    var ids = new Array();
-                    $('input:checkbox:checked').each(function(){
-                        ids.push(this.id.split('_'));
-                    });
-                    for(var e in ids){
-                        updateSelectLaunch(ids[e][1],ids[e][2],this.checked);
-                    }
+                    var ids = this.id.split('_');
+                    updateSelectLaunch(ids[1], ids[2], this.checked);
                 });
             }
-        };
-    }
-
-
+        }
+    };
 
     var getChannels = function (websiteId, list) {
         var re = '';
@@ -298,35 +267,30 @@ $(function () {
                 re += '<label style="margin-left: 5px;margin-top: 5px;color: #ff0000;">' + '<input type="checkbox" checked id="wcCB_' + websiteId + '_' + list[i].channelId + '">' + list[i].channelName + '</label>';
             } else {
                 re += '<label style="margin-left: 5px;margin-top: 5px;">' + '<input type="checkbox" id="wcCB_' + websiteId + '_' + list[i].channelId + '">' + list[i].channelName + '</label>';
-
             }
-
         }
         return re;
     };
 
     var initializes = function () {
-
-
         $('#searchNewsLaunchBtn').click(function () {
             siteName = $('#siteNameNewsLaunchTxt').val();
             getWebsitesList();
         });
         $('#saveBtn').click(function () {
             if (newsLaunchConfig.length > 0) {
-
                 // 禁用按钮防止重复提交
                 $('#saveBtn').attr("disabled", "true");
                 $('#newsLaunchConfig').val(JSON.stringify(newsLaunchConfig));
                 $('#newsLaunchEditModal').trigger('save');
-
+                parent.location.reload();
             } else {
                 alert('请选择栏目投放');
             }
         });
+        siteName='';
         getWebsitesList();
     };
-
 
     var updateSelectLaunch = function (wid,cid,bol) {
         if(bol){
@@ -346,10 +310,7 @@ $(function () {
                 }
             }
         }
-    }
+    };
+
     initialize();
-
-
-
-
-})
+});
