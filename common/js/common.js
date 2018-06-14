@@ -64,13 +64,15 @@ function AjaxFunc(url,type,data,callBack) {
         //    $('#saveBtn').css('background','red');
         //},
         success: function (result) {
-            console.log('resultresultresult=',result)
             if(result.errCode =='E00001'){
                 loginTimeOut();
                 return;
             }
-
             callBack(result)
+        },
+        error: function(){
+            alert('登陆超时，请重新登陆！');
+            loginTimeOut();
         }
 
     };
@@ -93,7 +95,6 @@ function AjaxFunc(url,type,data,callBack) {
 function loginTimeOut(){
     sessionStorage.removeItem('user');
     location.replace('index.html');
-    alert(re.msg);
 }
 /**
  * 上传
@@ -473,6 +474,40 @@ function setCity(province) {
             {txt:'热文排行', val:'4'}
         ];
     setSelectOption('homeWeight', homeWeightArr[province], '请选择位置');
+
+}
+
+function reDrawImage(ImgD) {
+    //缩放成照片宽400.高300
+    var nWidth = 100;
+    var nHeight=75;
+    var image = new Image();
+    image.src = ImgD.src;
+    image.width = ImgD.width;
+    image.height = ImgD.height;
+    if (image.width > 0 && image.height > 0) {
+        //宽度与高度的比例大于或等于要求显示的比例（说明比较宽）
+        if (image.width / image.height >= nWidth / nHeight) {
+            //如果宽度大于要求显示的宽度
+            if (image.width > nWidth) {
+                ImgD.width = nWidth; //那么图片就显示要显示的宽度
+                ImgD.height = (image.height * nWidth) / image.width;
+            } else {
+                ImgD.width = image.width;
+                ImgD.height = image.height;
+            }
+        }
+        else {
+            //说明比较高
+            if (image.height > nHeight) {
+                ImgD.height = nHeight;
+                ImgD.width = (image.width * nHeight) / image.height;
+            } else {
+                ImgD.width = image.width;
+                ImgD.height = image.height;
+            }
+        }
+    }
 }
 
 

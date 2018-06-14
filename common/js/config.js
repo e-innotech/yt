@@ -1,10 +1,11 @@
 var config ={
     init:function(){
-        //$apiUrl = ' http://192.168.20.196:8080';//本地
-        $apiUrl = ' http://123.59.156.27:8080';//测试
-        $uploadUrl = 'http://123.59.156.27:8080/yy/upload';//测试
-        //$uploadUrl = 'http://192.168.20.196:8080/yy/upload';//本地
-
+        //$apiUrl = ' http://192.168.20.195:8080';//本地
+        //$apiUrl = ' http://123.59.156.27:8080';//测试
+        //$uploadUrl = 'http://123.59.156.27:8080/yy/upload';//测试
+        //$uploadUrl = 'http://192.168.20.195:8080/yy/upload';//本地
+        $apiUrl = 'http://www.yourcaijing.cn:8888';//测试
+        $uploadUrl = 'http://www.yourcaijing.cn:8888/yy/upload';//测试
         $admin = {
             'login':$apiUrl+'/login',
             'logout':$apiUrl+'/logout'
@@ -35,7 +36,9 @@ var config ={
             'home':$apiUrl+'/home',
             'home_query':$apiUrl+'/home/query',
             'userId':$apiUrl+'/user/findEditorGroup',
-            'config':$apiUrl+'/config/query'
+            'config':$apiUrl+'/config/query',
+            'newsQueryWebChannel':$apiUrl+'/news/websites/queryAll',
+            'newsQueryWebChannelRelationShip':$apiUrl+'/news/websites/queryRealation'
         };
 
 
@@ -68,6 +71,7 @@ var config ={
             'channelEdit':'components/channelEdit.html'+'?v='+version,
 
             'newsEdit':'components/newsEdit.html'+'?v='+version,
+            'newsEdit_topImg':'components/newsEdit_topImg.html'+'?v='+version,
             'newsLaunchEdit':'components/newsLaunchEdit.html'+'?v='+version,
 
 

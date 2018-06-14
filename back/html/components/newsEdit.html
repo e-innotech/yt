@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../libs/wangEditor/wangEditor.css"/>
-<div class="modal fade" id="newsEditModal" tabindex="-1" role="dialog" aria-labelledby="newsEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="newsEditModal"  role="dialog" aria-labelledby="newsEditModalLabel" style="overflow-y:auto;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="width: 800px;">
             <div class="modal-header">
@@ -12,8 +12,8 @@
                 <div class="input-group" id="editTypeBox" style="margin-bottom: 18px;">
                     <span class="input-group-addon" id="editType">上传类型：</span>
                     <select id="myselect" class="form-control">
-                        <option value="2">word上传</option>
                         <option value="1">编辑器</option>
+                        <option value="2">word上传</option>
                     </select>
                 </div>
                 <form id="newsForm" role="form">
@@ -29,14 +29,57 @@
                         <input type="text" name="source" class="form-control">
                     </div>
                     <br>
-                    <div class="input-group" style="margin-bottom: 18px;">
+                <!--    <div class="input-group" style="margin-bottom: 18px;">
                         <span class="input-group-addon">头图：</span>
                         <input type="file" accept=".jpg,.jpeg,.png" name="upload_file" class="form-control" style="width: 60%;"><span style="display:inline-block;margin: 10px 0 0 10px;color: #ccc;">上传jpg,jpeg,png格式的图片</span>
                         <input type="hidden" name="topImagePath">
-                    </div>
+                    </div>-->
                     <div class="input-group form-control" id="editor" style="width: 730px!important;">
                         <!--<iframe id="ueditor" src="../../libs/ueditor1_4_3_3-utf8-jsp/utf8-jsp/index.html" width="850px" height="600px" frameborder="0" scrolling="no"></iframe>-->
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">头图：</span>
+                        <input id="topImg" type="hidden" name="topImagePath">
+                        <div class="form-control">
+                            <label style="font-weight:100"><input name="cover" type="radio" value="-1" checked="checked">无</label>
+                            <label style="font-weight:100"><input name="cover" type="radio" value="0">默认文章第一张图</label>
+                            <label style="font-weight:100"><input name="cover" type="radio" value="1">从文章中选择 </label>
+                        </div>
+                        <div id="selectDiv" style="display: none">
+                            <div id="coverImg">
+
+                            </div>
+                            <div>
+                                <a id="select_topImg"><span> 点击选择图片</span></a>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="input-group">
+                        <div id="showLaunchTitle">
+                            <span><strong>选择投放网站的栏目</strong></span>
+                        </div>
+                    </div><br>
+                    <!-- 稿件投放部分 -->
+                    <div class="input-group" id="web_channel">
+                        <input type="hidden" id="newsLaunchConfigNew">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr class="info">
+                                    <th style="width:120px;">网站名</th>
+                                    <th>栏目</th>
+                                    <!--<th>已投放栏目</th>-->
+                                </tr>
+                                </thead>
+                                <tbody id="newsWebchannel">
+                                </tbody>
+                            </table>
+                    </div><br>
+                    <div>
+                    <span style="float: left;color: #ff0000;">红色勾选为已投放的栏目</span>
+                    </div><br>
+                    <!-- 设置上首页-->
+                    <!--<div class="input-group">
+                    </div><br>-->
 
                 </form>
 
@@ -51,12 +94,11 @@
                         <input type="text" name="source" class="form-control">
                     </div>
                     <br>
-                    <div class="input-group">
+               <!--     <div class="input-group">
                         <span class="input-group-addon">头图：</span>
                         <input type="file" accept=".jpg,.jpeg,.png" name="upload_file1" class="form-control" style="width: 60%;"><span style="display:inline-block;margin: 10px 0 0 10px;color: #ccc;">上传jpg,jpeg,png格式的图片 </span>
                         <input type="hidden" name="topImagePath1">
-                    </div>
-
+                    </div>-->
 
                 </form>
             </div>
