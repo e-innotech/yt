@@ -171,13 +171,14 @@ $(function () {
             var arr = $(this).attr("id").split("_");
             pushArray(arr[1],arr[2],newsLaunchConfigNew);
         });
-        if(newsLaunchConfigNew.length == 0){
-            alert('请选择栏目投放');
-            return;
-        }
+
         launch = JSON.stringify(newsLaunchConfigNew);
         if($('#editLaunchConfig').prop("checked")){
             data.editLaunchConfigFlag = 1;
+            if(newsLaunchConfigNew.length == 0){
+                alert('请选择栏目投放');
+                return;
+            }
         } else {
             data.editLaunchConfigFlag = 0;
         }
