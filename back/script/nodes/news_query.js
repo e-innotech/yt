@@ -104,18 +104,17 @@ $(function () {
         if(!validate_doc('upload_word')){
             return;
         }
-
-            var options = {
-                url:$apiUrl+ctrl_word2Add, //上传文件的路径
-                type:'post',
-                xhrFields: {
-                    withCredentials: true
-                },
-                success:function(){
-                    $('#newsEditModal').modal('hide');
-                    getNewsList();
-                }
-            };
+        var options = {
+            url:$apiUrl+ctrl_word2Add, //上传文件的路径
+            type:'post',
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function(){
+                $('#newsEditModal').modal('hide');
+                getNewsList();
+            }
+        };
         from.ajaxSubmit(options);
     };
 
@@ -134,7 +133,7 @@ $(function () {
             alert("请上传小于10M的文档");
             return false;
         }
-        return;
+        return true;
     }
 // 编辑稿件+投放关系
     var editNews = function () {
