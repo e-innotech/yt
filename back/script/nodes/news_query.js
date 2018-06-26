@@ -65,6 +65,10 @@ $(function () {
             alert('标题不能为空');
             return;
         }
+        if(data.newsTitle.length > 200) {
+            alert('标题长度不能超过200个字符');
+            return;
+        }
         if(data.content == ''){
             alert('内容不能为空');
             return;
@@ -158,6 +162,10 @@ $(function () {
         }
         if(data.newsTitle == ''){
             alert('标题不能为空');
+            return;
+        }
+        if(data.newsTitle.length > 200) {
+            alert('标题长度不能超过200个字符');
             return;
         }
         if(data.content == ''){
@@ -297,6 +305,7 @@ $(function () {
                 $('#newsWordForm').css('display','none');//
                 $('#newsEditModalLabel').html('编辑稿件');
                 $('input[name="newsTitle"]').val(selectNews.newsTitle);
+                $("#newsTitle_length").html(selectNews.newsTitle.length);
                 $('input[name="source"]').val(selectNews.source);
                 //$('input[name="editorPath"]').val(selectNews.content);
                 $('input[name="topImagePath"]').val(selectNews.topImagePath);
@@ -322,7 +331,17 @@ $(function () {
                     wordAddNews();
                 }
             });
-
+            //
+            $("input[name=newsTitle]").keyup(function(){
+                var str = $(this).val();
+             /*   var reg = /[`"'$&<>#!]+?/g;
+                if (reg.test(str)) {
+                    $(this).val(str.replace(reg, ""));
+                }*/
+                var length = str.length;
+                //console.log('标题长度：' + length);
+                $("#newsTitle_length").html(length);
+            });
             // 绑定头图选择
 
                 $("input[name=cover]").click(function(){

@@ -614,3 +614,9 @@ td{
 .show_topImg_item_selected{
     border:3px solid red;
 }
+
+.newsTitle_length_surplus{
+    color: #CCC;
+    position: absolute;
+    right: 0px;
+}
