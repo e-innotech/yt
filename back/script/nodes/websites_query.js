@@ -284,7 +284,7 @@ $(function () {
                 $('input[name="route"]').val(selectWebsites.route);
                 $('select').val(selectWebsites.websiteBucketZone);
                 $('input[name="websiteBucketName"]').val(selectWebsites.websiteBucketName);
-                $("#websiteOwner option:selected").text(selectWebsites.websiteOwner);
+                $("#websiteOwner option:contains('"+selectWebsites.websiteOwner+"')").attr('selected', true);
                 $('input[name="homeWeightMax"]').val(selectWebsites.homeWeightMax);
                 for (var i = 0; i < selectWebsites.webTemplates.length; i++) {
                     $('#template_' + selectWebsites.webTemplates[i].templateType).val(selectWebsites.webTemplates[i].templatePath);
