@@ -56,6 +56,8 @@ $(function () {
                 alert("您是要自定义头图，请选择头图！");
                 return;
             }
+        } else {
+            data.topImagePath = null;
         }
         if(data.source == ''){
             alert('来源不能为空');
@@ -152,9 +154,8 @@ $(function () {
                 alert("您是要自定义头图，请选择头图！");
                 return;
             }
-        }
-        if(data.cover == '0'){
-            data.topImagePath = '';
+        } else {
+            data.topImagePath = null;
         }
         if(data.source == ''){
             alert('来源不能为空');
@@ -349,6 +350,7 @@ $(function () {
                     if(discount=="0" || discount == "-1"){
                         $("#selectDiv").css("display","none");
                         $("#coverImg").html('');
+                        $("input[name=topImagePath]").val('');
                         $("#show_topImg_Modal").modal('hide');
                     }
                     if(discount=="1"){
